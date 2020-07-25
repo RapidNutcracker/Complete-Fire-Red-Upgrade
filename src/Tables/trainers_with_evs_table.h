@@ -1231,6 +1231,103 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 		.ball = TRAINER_EV_CLASS_BALL,
 		.ability = Ability_Hidden,
 	},
+		[121] =
+	{ //Early mons, just max IVs not much investment otherwise 
+		.nature = NATURE_BASHFUL,
+		.ivs = 31,
+		.hpEv = 4,
+		.atkEv = 16,
+		.spAtkEv = 16,
+		.spdEv = 252,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_Random_1_2,
+	},
+	[122] =
+	{ //Early mons, just max IVs not much investment otherwise 
+		.nature = NATURE_BASHFUL,
+		.ivs = 31,
+		.hpEv = 4,
+		.atkEv = 16,
+		.spAtkEv = 16,
+		.spdEv = 252,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_Hidden,
+	},
+	[123] =
+	{ //Early mons, just max IVs not much investment otherwise 
+		.nature = NATURE_BASHFUL,
+		.ivs = 31,
+		.hpEv = 4,
+		.atkEv = 16,
+		.spAtkEv = 16,
+		.spdEv = 252,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_2,
+	},
+	[124] =
+	{ //Early mons, just max IVs not much investment otherwise mistys starmie brendans lunatone
+		.nature = NATURE_BASHFUL,
+		.ivs = 31,
+		.hpEv = 24,
+		.atkEv = 16,
+		.spAtkEv = 40,
+		.spdEv = 252,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_Random_1_2,
+	},
+	[125] =
+	{ //Early mons, just max IVs not much investment otherwise grovyle
+		.nature = NATURE_BASHFUL,
+		.ivs = 31,
+		.hpEv = 4,
+		.atkEv = 100,
+		.spAtkEv = 16,
+		.spdEv = 252,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_Random_1_2,
+	},
+	[126] =
+	{ //Early mons, just max IVs not much investment otherwise Bugsy specifically 
+		.nature = NATURE_BASHFUL,
+		.ivs = 31,
+		.atkEv = 4,
+		.spAtkEv = 16,
+		.spdEv = 252,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_2,
+	},
+	[127] =
+	{ //Mixed Attacker: Attack Based, Less Defense - Ability_Hidden
+		.nature = NATURE_BASHFUL,
+		.ivs = 31,
+		.atkEv = 8,
+		.spdEv = 252,
+		.spAtkEv = 8,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_Hidden,
+	},
+	[128] =
+	{ //Early mons, just max IVs not much investment otherwise 
+		.nature = NATURE_BASHFUL,
+		.ivs = 31,
+		.hpEv = 4,
+		.atkEv = 100,
+		.spAtkEv = 100,
+		.spdEv = 252,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_Random_1_2,
+	},
+	[129] =
+	{ //Early mons, just max IVs not much investment otherwise vikavolt
+		.nature = NATURE_BASHFUL,
+		.ivs = 31,
+		.hpEv = 100,
+		.atkEv = 100,
+		.spAtkEv = 4,
+		.spdEv = 252,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_Random_1_2,
+	},
 };
 #endif
 

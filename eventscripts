@@ -1,1 +1,17 @@
 ##
+npc 14 9 13 EventScript_Saffron_Nerd
+npc 14 9 12 EventScript_Saffron_Nerd2
+##npc 14 9 14 EventScript_Saffron_Test
+npc 10 7 4 EventScript_Random_StarterEgg
+npc 14 0 3 EventScript_DumbassKid
+npc 16 0 1 EventScript_MagikarpGuy
+tile 3 42 42 EventScript_FinalBrendan_Fight
+npc 13 0 8 EventScript_VictoryRoad_ExtraMart
+npc 3 42 10 EventScript_VictoryRoad_Salamencite
+npc 3 41 1 EventScript_Route22_Scizorite
+npc 3 24 7 EventScript_Route6_Pinsirite
+tile 3 9 0 EventScript_FinalCreator_Fight
+tile 1 84 0 EventScript_SeafoamIslands_Keldeo
+npc 10 7 5 EventScript_Random_GivePika
+npc 5 2 1 EventScript_Viridian_WiseGlasses 
+npc 1 1 13 EventScript_MtMoon_MuscleBand

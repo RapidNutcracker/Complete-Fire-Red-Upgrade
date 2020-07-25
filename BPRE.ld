@@ -299,7 +299,7 @@ gSoftResetDisabled = 0x03003530;
 gLocalLinkPlayerId = 0x300502C;
 gTotalCameraPixelOffsetY = 0x3005068;
 gTotalCameraPixelOffsetX = 0x300506C;
-gInputToStoreInQuestLogMaybe = 0x3005078;
+/* gInputToStoreInQuestLogMaybe = 0x3005078; */ 
 gCB2_AfterEvolution = 0x300537C;
 gItemUseCB = 0x3005E98;
 

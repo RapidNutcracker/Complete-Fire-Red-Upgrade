@@ -1072,7 +1072,7 @@ const struct BattleMove gBattleMoves[] =
 
 	[MOVE_DRILLPECK] =
 	{
-		.effect = EFFECT_HIT,
+		.effect = EFFECT_HIGH_CRITICAL,
 		.power = 80,
 		.type = TYPE_FLYING,
 		.accuracy = 100,
@@ -5265,7 +5265,7 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_SHADOWPUNCH] =
 	{
 		.effect = EFFECT_ALWAYS_HIT,
-		.power = 60,
+		.power = 80,
 		.type = TYPE_GHOST,
 		.accuracy = 0,
 		.pp = 20,

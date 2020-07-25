@@ -7,6 +7,38 @@ Time to Dynamax!\p
 
 #org @gText_TestTrainerDynamaxMsg
 I now shall unleash the power\nof Dynamax!\p 
+#org @sText_BrockLastSwitchIn
+Ah ha ha! It iches! It itches!\p 
+
+#org @sText_FalknerLastSwitchIn
+The wind is finally with us!\p 
+
+#org @sText_ArcherOneLastSwitchIn
+Don't worry.\nYour suffering will be over soon.\p 
+
+#org @sText_MistyLastSwitchIn
+Hmm[.] You're pretty good[.]\p 
+
+#org @sText_LtSurgeLastSwitchIn
+It's not over yet!\nIt's just the beginning!\p 
+
+#org @sText_ErikaLastSwitchIn
+Don't go easy on me.\nGive me everything you've got!\p 
+
+#org @sText_SabrinaLastSwitchIn
+What will happen after this?\nI already know.\p 
+
+#org @sText_BugsyLastSwitchIn
+Hang in there!\nJust a little more!\p 
+
+#org @sText_WhitneyLastSwitchIn
+H-hey! Just one left?!\nI still ain't losing, you hear?\p 
+
+#org @sText_MortyLastSwitchIn
+No, it's not over yet!\nI still believe we can do it!\p 
+
+#org @sText_ChuckLastSwitchIn
+We haven't lost yet!\nI don't train to fail!\p 
 
 //For Pokemon Unbound - Feel free to remove, and do not place strings below
 #ifdef UNBOUND

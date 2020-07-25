@@ -26,7 +26,17 @@ struct DynamaxTrainerSlide
 
 static const struct TrainerSlide sTrainerSlides[] =
 {
-	{},
+	{0x19E, NULL, sText_BrockLastSwitchIn, NULL},
+	{0x2D, NULL, sText_FalknerLastSwitchIn, NULL},
+	{0x19F, NULL, sText_MistyLastSwitchIn, NULL},
+	{0x1A0, NULL, sText_LtSurgeLastSwitchIn, NULL},
+	{0x1A1, NULL, sText_ErikaLastSwitchIn, NULL},
+	{0x1A4, NULL, sText_SabrinaLastSwitchIn, NULL},
+	{0x2F, NULL, sText_BugsyLastSwitchIn, NULL},
+	{0x31, NULL, sText_WhitneyLastSwitchIn, NULL},
+	{0x34, NULL, sText_MortyLastSwitchIn, NULL},
+	{0x13D, NULL, sText_ChuckLastSwitchIn, NULL},
+	{0x2E, NULL, sText_ArcherOneLastSwitchIn, NULL},
 
 	#ifdef UNBOUND //For Pokemon Unbound - Feel free to remove
 	{0x6, sText_MirskleFirstMonDown, NULL, NULL},

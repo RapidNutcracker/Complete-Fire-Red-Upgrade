@@ -14,6 +14,18 @@ extern const u8 BattleScript_TrainerSlideMsgEnd2[];
 extern const u8 gText_DefaultTrainerDynamaxMsg[];
 extern const u8 gText_TestTrainerDynamaxMsg[];
 
+extern u8 sText_BrockLastSwitchIn[];
+extern u8 sText_FalknerLastSwitchIn[];
+extern u8 sText_MistyLastSwitchIn[];
+extern u8 sText_BugsyLastSwitchIn[];
+extern u8 sText_WhitneyLastSwitchIn[];
+extern u8 sText_LtSurgeLastSwitchIn[];
+extern u8 sText_MortyLastSwitchIn[];
+extern u8 sText_ErikaLastSwitchIn[];
+extern u8 sText_SabrinaLastSwitchIn[];
+extern u8 sText_ChuckLastSwitchIn[];
+extern u8 sText_ArcherOneLastSwitchIn[];
+
 //For Unbound
 
 extern const u8 sText_MirskleFirstMonDown[];

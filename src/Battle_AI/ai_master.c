@@ -748,8 +748,8 @@ void AI_TrySwitchOrUseItem(void)
 		{
 			//Partner isn't allowed to use items
 		}
-		else if (ShouldAIUseItem())
-			ret = TRUE;
+		// else if (ShouldAIUseItem())
+		// 	ret = TRUE;
 
 		TryRevertTempMegaEvolveBank(gActiveBattler, &backupMonAtk, &backupSpeciesAtk, &backupAbilityAtk);
 		if (ret) return;

@@ -4,7 +4,7 @@
 .equ rom, 0x8000000
 
 @Custom Defines
-.equ MAX_LEVEL, 100
+.equ MAX_LEVEL, 250
 .equ fossilImageTable, 0x081a4600
 .equ pcSelect_StateTracker, 0x0203b7ac
 .equ gCreateSpriteTableSetter, 0x0203b7ad

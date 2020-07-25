@@ -1351,7 +1351,70 @@ void TrainerFaceFix(void)
 	if (!GetProperDirection(playerX, playerY, npcX, npcY))
 		gSpecialVar_LastResult = 0xFFFF;
 }
+void SetChosenMonHiddenAbility(void) //added this
+{
+	struct Pokemon* mon = &gPlayerParty[Var8004];
+	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+	if(gBaseStats[species].hiddenAbility == ABILITY_NONE){
+		gSpecialVar_LastResult = 0x0;
+	}
+	else{
+		gSpecialVar_LastResult = 0x1;
+		if (gPlayerParty[Var8004].hiddenAbility == TRUE)
+			gPlayerParty[Var8004].hiddenAbility = FALSE;
+		else
+			gPlayerParty[Var8004].hiddenAbility = TRUE;
+	}
+}
 
+void SwitchChosenMonAbility(void) //addedthis 
+{
+	struct Pokemon* mon = &gPlayerParty[Var8004];
+	bool8 doThis = TRUE;
+	if (gPlayerParty[Var8004].hiddenAbility == TRUE)
+		gSpecialVar_LastResult = 0x1;
+	else{
+		u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+		u8 ability = GetMonAbility(mon);
+		if (ability == gBaseStats[species].ability1)
+		{
+			if (ability == gBaseStats[species].ability2 || gBaseStats[species].ability2 == ABILITY_NONE){
+				gSpecialVar_LastResult = 0x2;
+				doThis = FALSE;
+			}
+		}
+		if(doThis){
+			gSpecialVar_LastResult = 0x0;
+			u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
+			u8 abilityNum = (personality & 1) ^ 1; //Flip ability bit
+			u32 trainerId = GetMonData(mon, MON_DATA_OT_ID, NULL);
+			u16 sid = HIHALF(trainerId);
+			u16 tid = LOHALF(trainerId);
+			u8 nature = GetNatureFromPersonality(personality);
+			u8 gender = GetGenderFromSpeciesAndPersonality(species, personality);
+			bool8 isShiny = IsMonShiny(mon);
+
+			do
+			{
+				personality = Random32();
+
+				if (isShiny)
+				{
+					u8 shinyRange = 1;
+					personality = (((shinyRange ^ (sid ^ tid)) ^ LOHALF(personality)) << 16) | LOHALF(personality);
+				}
+
+				personality &= ~(1);
+				personality |= abilityNum; //Either 0 or 1
+
+			} while (GetNatureFromPersonality(personality) != nature || GetGenderFromSpeciesAndPersonality(species, personality) != gender);
+
+			mon->hiddenAbility = FALSE;
+			SetMonData(mon, MON_DATA_PERSONALITY, &personality);
+			CalculateMonStats(mon);
+		}
+	}
+}
 static bool8 GetProperDirection(u16 currentX, u16 currentY, u16 toX, u16 toY)
 {
 	u8 ret = FALSE;
@@ -1550,7 +1613,7 @@ static const u8* TryUseFlashInDarkCave(void)
 
 	if (gSpecialVar_LastResult && HasBadgeToUseFlash())
 	{
-		if ((Var8004 = gFieldEffectArguments[0] = PartyHasMonWithFieldMovePotential(MOVE_FLASH, ITEM_TM70_FLASH, 0)) < PARTY_SIZE)
+		if ((Var8004 = gFieldEffectArguments[0] = PartyHasMonWithFieldMovePotential(MOVE_FLASH, ITEM_HM05_FLASH, 0)) < PARTY_SIZE)
 			return EventScript_UseFlash;
 	}
 
@@ -2415,7 +2478,7 @@ bool8 TrySetupDiveDownScript(void)
 	{
 		u16 item = ITEM_NONE;
 		#ifdef ONLY_CHECK_ITEM_FOR_HM_USAGE
-		item = ITEM_HM05_DIVE;
+		item = ITEM_HM08_ROCK_CLIMB;
 		#endif
 
 		u8 partyId = PartyHasMonWithFieldMovePotential(MOVE_DIVE, item, SHOULD_BE_SURFING);
@@ -2442,7 +2505,7 @@ bool8 TrySetupDiveEmergeScript(void)
 	{
 		u16 item = ITEM_NONE;
 		#ifdef ONLY_CHECK_ITEM_FOR_HM_USAGE
-		item = ITEM_HM05_DIVE;
+		item = ITEM_HM08_ROCK_CLIMB;
 		#endif
 
 		u8 partyId = PartyHasMonWithFieldMovePotential(MOVE_DIVE, item, 0);
@@ -2544,19 +2607,19 @@ bool8 ProcessNewFieldPlayerInput(struct FieldInput* input)
 {
 	if (input->pressedSelectButton && UseRegisteredKeyItemOnField())
     {
-        gInputToStoreInQuestLogMaybe.pressedSelectButton = TRUE;
+        // gInputToStoreInQuestLogMaybe.pressedSelectButton = TRUE;
         return TRUE;
     }
 
 	if (input->pressedLButton && StartLButtonFunc())
 	{
-		gInputToStoreInQuestLogMaybe.pressedRButton = TRUE;
+		// gInputToStoreInQuestLogMaybe.pressedRButton = TRUE;
 		return TRUE;
 	}
 
 	if (input->pressedRButton && StartRButtonFunc())
 	{
-		gInputToStoreInQuestLogMaybe.pressedRButton = TRUE;
+		// gInputToStoreInQuestLogMaybe.pressedRButton = TRUE;
 		return TRUE;
 	}
 

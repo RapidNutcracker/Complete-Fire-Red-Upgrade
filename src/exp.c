@@ -39,10 +39,10 @@ enum
 };
 
 #define BattleScript_LevelUp (u8*) 0x81D89F5
-
+#define FLAG_GIOVANNI_BOSS 0x982
 extern const u16 gBaseExpBySpecies[];
 extern u8 String_TeamExpGain[];
-
+u8 LevelCap_Badges[11] = {15, 27, 34, 45, 59, 66, 75, 78, 79, 84, 250}; //added here
 //This file's functions:
 static u32 ExpCalculator(u32 a, u32 t, u32 b, u32 e, u32 L, u32 Lp, u32 p, u32 f, u32 v, u32 s);
 static bool8 WasWholeTeamSentIn(u8 bank, u8 sentIn);
@@ -53,6 +53,7 @@ static void Task_GiveExpToMon(u8 taskId);
 static void sub_80300F4(u8 taskId);
 static u32 GetExpToLevel(u8 toLevel, u8 growthRate);
 static void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies);
+u8 GetBadgeCount(void); //added this
 
 ///////////////////// GAIN EXPERIENCE //////////////////////
 void atk23_getexp(void)
@@ -249,6 +250,11 @@ void atk23_getexp(void)
 
 	SKIP_EXP_CALC:
 		calculatedExp = MathMax(1, calculatedExp);
+		u8 badgeCount = GetBadgeCount(); //added
+		u8 lvlCap = LevelCap_Badges[badgeCount]; //added
+		if(pokeLevel >= lvlCap){ //added
+			calculatedExp = calculatedExp / 15; //added
+		} //added
 		gBattleMoveDamage = calculatedExp;
 
 		gBattleScripting.expStateTracker++;
@@ -775,4 +781,34 @@ bool8 AddEVs(struct Pokemon* mon, u8 statId, u16 numToAdd)
 	}
 
 	return FALSE; //No EVs were added
+}
+
+
+u8 GetBadgeCount(void) //added this here
+{
+	u8 badgeCount = 0;
+
+	if (FlagGet(FLAG_SYS_GAME_CLEAR)) //0x82C
+		return 10;
+
+	if (FlagGet(FLAG_BADGE08_GET))
+		++badgeCount;
+	if (FlagGet(FLAG_GIOVANNI_BOSS))
+	    ++badgeCount;
+	if (FlagGet(FLAG_BADGE07_GET))
+		++badgeCount;
+	if (FlagGet(FLAG_BADGE06_GET))
+		++badgeCount;
+	if (FlagGet(FLAG_BADGE05_GET))
+		++badgeCount;
+	if (FlagGet(FLAG_BADGE04_GET))
+		++badgeCount;
+	if (FlagGet(FLAG_BADGE03_GET))
+		++badgeCount;
+	if (FlagGet(FLAG_BADGE02_GET))
+		++badgeCount;
+	if (FlagGet(FLAG_BADGE01_GET))
+		++badgeCount;
+
+	return badgeCount;
 }
