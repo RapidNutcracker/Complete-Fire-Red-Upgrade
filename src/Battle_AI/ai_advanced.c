@@ -473,13 +473,13 @@ u8 PredictFightingStyle(const u16* const moves, const u8 ability, const u8 itemE
 				else
 					class = FIGHT_CLASS_SWEEPER_KILL;
 			}
-			else if (attackMoveNum >= 2 && (boostingMove || statusMoveNum > 0))
+			else if (attackMoveNum >= 2 && (boostingMove))
 			{
 				//A class should always be assigned here because of the conditions to enter this scope
 				if (boostingMove)
 					class = FIGHT_CLASS_SWEEPER_SETUP_STATS;
-				else if (statusMoveNum > 0)
-					class = FIGHT_CLASS_SWEEPER_SETUP_STATUS;
+				// else if (statusMoveNum > 0)
+				// 	class = FIGHT_CLASS_SWEEPER_SETUP_STATUS;
 			}
 			else if (healingMove)
 				class = FIGHT_CLASS_STALL;

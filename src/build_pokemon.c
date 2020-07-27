@@ -3277,16 +3277,32 @@ static u8 GetHighestMonLevel(const struct Pokemon* const party)
 		u8 level;
 		u16 species = GetMonData(&party[i], MON_DATA_SPECIES2, NULL);
 	
-		if (max == MAX_LEVEL || species == SPECIES_NONE)
+		// if (max == MAX_LEVEL || species == SPECIES_NONE)
+		// 	return max;
+
+		// if (species == SPECIES_EGG)
+		// 	continue;
+
+		// level = GetMonData(&party[i], MON_DATA_LEVEL, NULL);
+		// if (level > max)
+		// 	max = level;
+		if (max < 55){
+			max = 57;
+		}
+		if (max == MAX_LEVEL)
 			return max;
+		if(species == SPECIES_NONE){
+			max = max - 3;
+			return max;
+		}
 
-		if (species == SPECIES_EGG)
+		if (species == SPECIES_EGG )
 			continue;
-
 		level = GetMonData(&party[i], MON_DATA_LEVEL, NULL);
 		if (level > max)
 			max = level;
 	}
+	max = max - 3; 
 
 	return max;
 }

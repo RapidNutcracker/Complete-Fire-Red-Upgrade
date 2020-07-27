@@ -40,6 +40,10 @@
 #define FLAG_0x025               0x025
 #define FLAG_0x026               0x026
 #define FLAG_0x027               0x027
+#define FLAG_ARCHER_ARIANA_TAG   0x955
+#define FLAG_GIOVANNI_BOSS       0x982
+#define FLAG_MAY_BOSS            0x998
+#define FLAG_ARCHER_ARIANA_B2B   0x981
 
 // Hide/show flags
 /*
@@ -59,7 +63,9 @@
 #define FLAG_HIDE_POKEHOUSE_FUJI                           0x035
 #define FLAG_HIDE_LIFT_KEY                                 0x036
 #define FLAG_HIDE_SILPH_SCOPE                              0x037
+*/
 #define FLAG_HIDE_HIDEOUT_GIOVANNI                         0x038
+/*
 #define FLAG_HIDE_TOWN_MAP                                 0x039
 #define FLAG_HIDE_POKEDEX                                  0x03A
 #define FLAG_HIDE_CERULEAN_ROCKET                          0x03B
@@ -86,7 +92,9 @@
 #define FLAG_HIDE_PEWTER_MUSEUM_GUIDE                      0x050
 #define FLAG_HIDE_TOWER_RIVAL                              0x051
 #define FLAG_HIDE_MOLTRES                                  0x052
+*/
 #define FLAG_HIDE_SILPH_ROCKETS                            0x053
+/*
 #define FLAG_HIDE_ROUTE_12_SNORLAX                         0x054
 #define FLAG_HIDE_VIRIDIAN_GIOVANNI                        0x055
 #define FLAG_HIDE_OLD_AMBER                                0x056

@@ -1297,7 +1297,7 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 		.ability = Ability_2,
 	},
 	[127] =
-	{ //Mixed Attacker: Attack Based, Less Defense - Ability_Hidden
+	{ //Mixed Attacker: Attack Based, Less Defense - Ability_Hidden floatzel
 		.nature = NATURE_BASHFUL,
 		.ivs = 31,
 		.atkEv = 8,

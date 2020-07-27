@@ -949,21 +949,21 @@ void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
 			++k;
 		}
 	}
-	/*if (k < MAX_MON_MOVES) //Doesn't know 4 field moves
+	if (k < MAX_MON_MOVES) //Doesn't know 4 field moves
 	{
-		bool8 hasTM = CheckBagHasItem(ITEM_TM29_DIG, 1) > 0;
+		bool8 hasTM = CheckBagHasItem(ITEM_TM28_DIG, 1) > 0;
 		u16 species = GetMonData(&mons[slotId], MON_DATA_SPECIES2, NULL);
 		
 		if (species != SPECIES_NONE
 		&& species != SPECIES_EGG
 		&& hasTM
 		&& HasBadgeToUseFieldMove(FIELD_MOVE_DIG)
-		&& CanMonLearnTMTutor(&mons[slotId], ITEM_TM29_DIG, 0) == CAN_LEARN_MOVE)
+		&& CanMonLearnTMTutor(&mons[slotId], ITEM_TM28_DIG, 0) == CAN_LEARN_MOVE)
 		{
 			AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_FIELD_MOVES + FIELD_MOVE_DIG);
 			++k;
 		}
-	}*/
+	}
 	#endif
 
 	if (!ShouldDisablePartyMenuItemsBattleTower())

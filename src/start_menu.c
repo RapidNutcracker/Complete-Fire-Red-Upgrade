@@ -118,7 +118,7 @@ const struct MenuAction sStartMenuActionTable[] =
 	[STARTMENU_BAG] = {gText_MenuBag, {.u8_void = StartMenuBagCallback}},
 	[STARTMENU_PLAYER] = {gText_MenuPlayer, {.u8_void = StartMenuPlayerCallback}},
 	[STARTMENU_SAVE] = {gText_MenuSave, {.u8_void = StartMenuSaveCallback}},
-	[STARTMENU_OPTION] = {gText_MenuOption, {.u8_void = StartMenuOptionCallback}},
+	[STARTMENU_OPTION] = {gText_MenuOption, {.u8_void = StartMenuExitCallback}},
 	[STARTMENU_EXIT] = {gText_MenuExit, {.u8_void = StartMenuExitCallback}},
 	[STARTMENU_RETIRE_SAFARI] = {gText_MenuRetire, {.u8_void = StartMenuSafariZoneRetireCallback}},
 	[STARTMENU_PLAYER_LINK] = {gText_MenuPlayer, {.u8_void = StartMenuLinkModePlayerCallback}},

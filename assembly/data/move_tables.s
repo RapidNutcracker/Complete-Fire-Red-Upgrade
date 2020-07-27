@@ -909,6 +909,7 @@ gHighCriticalChanceMoves:
 .hword MOVE_SPACIALREND
 .hword MOVE_DRILLRUN
 .hword MOVE_SNIPESHOT
+.hword MOVE_DRILLPECK
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -1053,6 +1054,7 @@ gTwoToFiveStrikesMoves:
 .hword MOVE_SPIKECANNON
 .hword MOVE_TAILSLAP
 .hword MOVE_WATERSHURIKEN
+.hword MOVE_SURGINGSTRIKES
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

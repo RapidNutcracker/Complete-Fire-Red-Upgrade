@@ -2159,7 +2159,7 @@ BS_104_TripleKick:
 	ppreduce
 	accuracycheck BS_MOVE_MISSED 0x0
 	jumpifmove MOVE_TRIPLEAXEL BS_TripleAxel
-	addbyte TRIPLE_KICK_POWER 10
+	addbyte TRIPLE_KICK_POWER 20
 	goto BS_STANDARD_HIT
 
 BS_TripleAxel:

@@ -15,3 +15,9 @@ tile 1 84 0 EventScript_SeafoamIslands_Keldeo
 npc 10 7 5 EventScript_Random_GivePika
 npc 5 2 1 EventScript_Viridian_WiseGlasses 
 npc 1 1 13 EventScript_MtMoon_MuscleBand
+tile 3 6 0 EventScript_Celadon_CheckErika
+tile 3 6 1 EventScript_Celadon_CheckErika2
+tile 1 57 4 EventScript_SilphCo_TeamAlert 
+tile 1 57 5 EventScript_SilphCo_TeamAlert 
+tile 1 57 6 EventScript_SilphCo_TeamAlert 
+tile 3 8 1 EventScript_CinnabarMay_Boss

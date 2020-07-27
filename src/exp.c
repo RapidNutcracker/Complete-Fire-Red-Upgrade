@@ -39,10 +39,26 @@ enum
 };
 
 #define BattleScript_LevelUp (u8*) 0x81D89F5
-#define FLAG_GIOVANNI_BOSS 0x982
 extern const u16 gBaseExpBySpecies[];
 extern u8 String_TeamExpGain[];
-u8 LevelCap_Badges[11] = {15, 27, 34, 45, 59, 66, 75, 78, 79, 84, 250}; //added here
+u8 LevelCap_Badges[17] = {
+	15, //Before Brock
+	27, //Before Misty
+	34, //Before Surge
+	44, //Before Erika
+	47, //Before Celadon Giovanni
+	56, //Before Archer/Ariana Tag battle
+	57, //Before Giovanni Saffron
+	59, //Before Sabrina 
+	68, //Before Koga
+	73, //Before May
+	76, //Before Blaine
+	79, //Before Archer/Ariana B2b
+	80, //Before Giovanni Mewtwo
+	81, //Before Claire
+	82, //Before Brendan
+	86, //Before E4
+	250}; //added here
 //This file's functions:
 static u32 ExpCalculator(u32 a, u32 t, u32 b, u32 e, u32 L, u32 Lp, u32 p, u32 f, u32 v, u32 s);
 static bool8 WasWholeTeamSentIn(u8 bank, u8 sentIn);
@@ -253,7 +269,7 @@ void atk23_getexp(void)
 		u8 badgeCount = GetBadgeCount(); //added
 		u8 lvlCap = LevelCap_Badges[badgeCount]; //added
 		if(pokeLevel >= lvlCap){ //added
-			calculatedExp = calculatedExp / 15; //added
+			calculatedExp = calculatedExp / 10; //added
 		} //added
 		gBattleMoveDamage = calculatedExp;
 
@@ -789,18 +805,28 @@ u8 GetBadgeCount(void) //added this here
 	u8 badgeCount = 0;
 
 	if (FlagGet(FLAG_SYS_GAME_CLEAR)) //0x82C
-		return 10;
+		return 17;
 
 	if (FlagGet(FLAG_BADGE08_GET))
 		++badgeCount;
 	if (FlagGet(FLAG_GIOVANNI_BOSS))
 	    ++badgeCount;
+	if (FlagGet(FLAG_ARCHER_ARIANA_B2B))
+		++badgeCount;
 	if (FlagGet(FLAG_BADGE07_GET))
+		++badgeCount;
+	if (FlagGet(FLAG_MAY_BOSS))
 		++badgeCount;
 	if (FlagGet(FLAG_BADGE06_GET))
 		++badgeCount;
 	if (FlagGet(FLAG_BADGE05_GET))
 		++badgeCount;
+	if (FlagGet(FLAG_HIDE_SILPH_ROCKETS))
+		++badgeCount;
+	if (FlagGet(FLAG_ARCHER_ARIANA_TAG))
+		++badgeCount;
+	if (FlagGet(FLAG_HIDE_HIDEOUT_GIOVANNI))
+		++badgeCount; 
 	if (FlagGet(FLAG_BADGE04_GET))
 		++badgeCount;
 	if (FlagGet(FLAG_BADGE03_GET))

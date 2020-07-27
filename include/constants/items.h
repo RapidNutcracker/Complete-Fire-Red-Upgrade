@@ -613,7 +613,7 @@ enum
 #define ITEM_BEEDRILLITE 0xE8 //added koga
 #define ITEM_PIDGEOTITE 0xE9 //added safari zone
 #define ITEM_ALAKAZITE 0xE3 //added sabrina
-#define ITEM_SLOWBRONITE 0xEA //added that one route
+#define ITEM_SLOWBRONITE 0xEA //added that one fishing route
 #define ITEM_GENGARITE 0x52 //added morty
 #define ITEM_KANGASKHANITE 0xEB
 #define ITEM_PINSIRITE 0xEC //route 6
@@ -643,7 +643,7 @@ enum
 #define ITEM_ABSOLITE 0x71 //cycling road
 #define ITEM_GLALITITE 0x72 //added pryce
 #define ITEM_SALAMENCITE 0x73 //outside beginning victory road, route 23
-#define ITEM_METAGROSSITE 0x74
+#define ITEM_METAGROSSITE 0x74 //final creator
 #define ITEM_LATIASITE 0x75
 #define ITEM_LATIOSITE 0x76
 #define ITEM_LOPUNNITE 0x77 //safari zone north
