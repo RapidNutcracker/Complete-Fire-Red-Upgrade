@@ -1756,7 +1756,7 @@ MOVESCR_CHECK_0:
 				DECREASE_VIABILITY(10);
 			else if (move == MOVE_FAKEOUT)
 			{
-				if ((data->atkItemEffect == ITEM_EFFECT_CHOICE_BAND || data->atkAbility == ABILITY_GORILLATACTICS)
+				if ((data->atkItemEffect == ITEM_EFFECT_CHOICE_BAND || data->atkAbility == ABILITY_GORILLATACTICS || data->atkAbility == ABILITY_SAGEPOWER)
 				&& (ViableMonCountFromBank(bankDef) >= 2 || !MoveKnocksOutXHits(MOVE_FAKEOUT, bankAtk, bankDef, 1)))
 				{
 					if (IS_DOUBLE_BATTLE)
@@ -2006,7 +2006,7 @@ MOVESCR_CHECK_0:
 
 		case EFFECT_KNOCK_OFF:
 			if (data->defItemEffect == ITEM_EFFECT_ASSAULT_VEST
-			|| (data->defItemEffect == ITEM_EFFECT_CHOICE_BAND && data->atkAbility != ABILITY_GORILLATACTICS && gBattleStruct->choicedMove[bankDef]))
+			|| (data->defItemEffect == ITEM_EFFECT_CHOICE_BAND && data->atkAbility != ABILITY_GORILLATACTICS && gBattleStruct->choicedMove[bankDef] && data->atkAbility != ABILITY_SAGEPOWER))
 			{
 				if (GetStrongestMove(bankDef, bankAtk) == MOVE_NONE
 				|| AI_SpecialTypeCalc(GetStrongestMove(bankDef, bankAtk), bankDef, bankAtk) & (MOVE_RESULT_NO_EFFECT | MOVE_RESULT_MISSED))

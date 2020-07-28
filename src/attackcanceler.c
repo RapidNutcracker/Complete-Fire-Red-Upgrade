@@ -326,8 +326,8 @@ static u8 AtkCanceller_UnableToUseMove(void)
 			gBattleStruct->atkCancellerTracker++;
 			break;
 
-		case CANCELLER_TRUANT: // truant
-			if (ABILITY(gBankAttacker) == ABILITY_TRUANT && gDisableStructs[gBankAttacker].truantCounter)
+		case CANCELLER_TRUANT: // truant added 
+			if (ABILITY(gBankAttacker) == ABILITY_TRUANT && gDisableStructs[gBankAttacker].truantCounter && !CheckHealingMove(gCurrentMove))
 			{
 				CancelMultiTurnMoves(gBankAttacker);
 				gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;

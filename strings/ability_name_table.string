@@ -722,8 +722,8 @@ Intrepid Sword
 #org @NAME_DAUNTLESS_SHIELD
 Valiant Shield
 
-#org @NAME_BALL_FETCH
-Ball Fetch
+#org @NAME_STRIKER
+Striker
 
 #org @NAME_COTTON_DOWN
 Cotton Down
@@ -731,8 +731,8 @@ Cotton Down
 #org @NAME_MIRROR_ARMOR
 Mirror Armor
 
-#org @NAME_GULP_MISSLE
-Gulp Missile
+#org @NAME_BLADEMASTER
+Blademaster
 
 #org @NAME_STALWART
 Stalwart
@@ -766,3 +766,6 @@ Screen Cleaner
 
 #org @NAME_PASTEL_VEIL
 Pastel Veil
+
+#org @NAME_SAGEPOWER 
+Sage Power

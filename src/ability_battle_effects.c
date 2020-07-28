@@ -276,10 +276,10 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_ZENMODE] = -1,
 	[ABILITY_INTREPIDSWORD] = 3,
 	[ABILITY_DAUNTLESSSHIELD] = 3,
-	[ABILITY_BALLFETCH] = 0,
+	// [ABILITY_BALLFETCH] = 0, modified 
 	[ABILITY_COTTONDOWN] = 3,
 	[ABILITY_MIRRORARMOR] = 6,
-	[ABILITY_GULPMISSLE] = 3,
+	[ABILITY_BLADEMASTER] = 8,
 	[ABILITY_STALWART] = 2, //Also Propellor Tail
 	[ABILITY_STEAMENGINE] = 3,
 	[ABILITY_PUNKROCK] = 2,
@@ -297,6 +297,8 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_PERISH_BODY] = -1,
 	[ABILITY_WANDERING_SPIRIT] = 2,
 	[ABILITY_GORILLATACTICS] = 4,
+	[ABILITY_SAGEPOWER] = 4,
+	[ABILITY_STRIKER] = 6,
 };
 
 const bool8 gMoldBreakerIgnoredAbilities[] =
@@ -610,6 +612,50 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 
 			break;
 
+		//added here
+		case ABILITY_FORECAST:
+			if(ITEM_EFFECT(bank) == ITEM_EFFECT_ICY_ROCK)
+			{
+				if (!(gBattleWeather & (WEATHER_HAIL_ANY | WEATHER_PRIMAL_ANY | WEATHER_CIRCUS)))
+					{
+						gBattleScripting.animArg1 = B_ANIM_HAIL_CONTINUES;
+						effect = ActivateWeatherAbility(WEATHER_HAIL_PERMANENT | WEATHER_HAIL_TEMPORARY,
+														ITEM_EFFECT_ICY_ROCK, bank, B_ANIM_HAIL_CONTINUES, 3, FALSE);
+					}
+			}
+			else if(ITEM_EFFECT(bank) == ITEM_EFFECT_HEAT_ROCK)
+			{
+				if (!(gBattleWeather & (WEATHER_SUN_ANY | WEATHER_PRIMAL_ANY | WEATHER_CIRCUS)))
+				{
+					effect = ActivateWeatherAbility(WEATHER_SUN_PERMANENT | WEATHER_SUN_TEMPORARY,
+												ITEM_EFFECT_HEAT_ROCK, bank, B_ANIM_SUN_CONTINUES, 2, FALSE);
+				}
+
+			}
+			else if(ITEM_EFFECT(bank) == ITEM_EFFECT_SMOOTH_ROCK)
+			{
+				if (!(gBattleWeather & (WEATHER_SANDSTORM_ANY | WEATHER_PRIMAL_ANY | WEATHER_CIRCUS)))
+				{
+					effect = ActivateWeatherAbility(WEATHER_SANDSTORM_PERMANENT | WEATHER_SANDSTORM_TEMPORARY,
+												ITEM_EFFECT_SMOOTH_ROCK, bank, B_ANIM_SANDSTORM_CONTINUES, 1, FALSE);
+				}
+			}
+			else if(ITEM_EFFECT(bank) == ITEM_EFFECT_DAMP_ROCK)
+			{
+				if (!(gBattleWeather & (WEATHER_RAIN_ANY | WEATHER_PRIMAL_ANY | WEATHER_CIRCUS)))
+				{
+					effect = ActivateWeatherAbility(WEATHER_RAIN_PERMANENT | WEATHER_RAIN_TEMPORARY,
+												ITEM_EFFECT_DAMP_ROCK, bank, B_ANIM_RAIN_CONTINUES, 0, FALSE);
+				}
+			}
+			effect = CastformDataTypeChange(bank);
+			if (effect != 0)
+			{
+				BattleScriptPushCursorAndCallback(BattleScript_CastformChange);
+				gBattleStruct->castformToChangeInto = effect - 1;
+			}
+			break; 
+
 		case ABILITY_PRIMORDIALSEA:
 			if (!(gBattleWeather & (WEATHER_RAIN_PRIMAL | WEATHER_CIRCUS)))
 			{
@@ -662,14 +708,14 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			}
 			break;
 
-		case ABILITY_FORECAST:
-			effect = CastformDataTypeChange(bank);
-			if (effect != 0)
-			{
-				BattleScriptPushCursorAndCallback(BattleScript_CastformChange);
-				gBattleStruct->castformToChangeInto = effect - 1;
-			}
-			break;
+		// case ABILITY_FORECAST:
+		// 	effect = CastformDataTypeChange(bank);
+		// 	if (effect != 0)
+		// 	{
+		// 		BattleScriptPushCursorAndCallback(BattleScript_CastformChange);
+		// 		gBattleStruct->castformToChangeInto = effect - 1;
+		// 	}
+		// 	break;
 
 		case ABILITY_TRACE: ;
 			u8 target2;
@@ -1429,22 +1475,22 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 					}
 					break;
 
-				case ABILITY_BALLFETCH:
-					if (gNewBS->failedThrownPokeBall != ITEM_NONE
-					&& SIDE(bank) == B_SIDE_PLAYER
-					&& ITEM(bank) == ITEM_NONE)
-					{
-						gLastUsedItem = ITEM(bank) = gNewBS->failedThrownPokeBall;
-						gNewBS->failedThrownPokeBall = ITEM_NONE;
+				// case ABILITY_BALLFETCH: added modified
+				// 	if (gNewBS->failedThrownPokeBall != ITEM_NONE
+				// 	&& SIDE(bank) == B_SIDE_PLAYER
+				// 	&& ITEM(bank) == ITEM_NONE)
+				// 	{
+				// 		gLastUsedItem = ITEM(bank) = gNewBS->failedThrownPokeBall;
+				// 		gNewBS->failedThrownPokeBall = ITEM_NONE;
 
-						gActiveBattler = bank;
-						EmitSetMonData(0, REQUEST_HELDITEM_BATTLE, 0, 2, &gBattleMons[gActiveBattler].item);
-						MarkBufferBankForExecution(gActiveBattler);
+				// 		gActiveBattler = bank;
+				// 		EmitSetMonData(0, REQUEST_HELDITEM_BATTLE, 0, 2, &gBattleMons[gActiveBattler].item);
+				// 		MarkBufferBankForExecution(gActiveBattler);
 
-						BattleScriptPushCursorAndCallback(BattleScript_BallFetch);
-						++effect;
-					}
-					break;
+				// 		BattleScriptPushCursorAndCallback(BattleScript_BallFetch);
+				// 		++effect;
+				// 	}
+				// 	break;
 
 				case ABILITY_FORECAST:
 					effect = CastformDataTypeChange(bank);

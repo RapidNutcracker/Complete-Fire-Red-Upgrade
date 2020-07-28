@@ -114,6 +114,7 @@ void atk04_critcalc(void)
 						+ (CheckTableForMove(gCurrentMove, gHighCriticalChanceMoves))
 						+ (atkEffect == ITEM_EFFECT_SCOPE_LENS)
 						+ (atkAbility == ABILITY_SUPERLUCK)
+						+ (atkAbility == ABILITY_BLADEMASTER && CheckTableForMove(gCurrentMove, gSwordMoves))
 						#ifdef SPECIES_CHANSEY
 						+ 2 * (atkEffect == ITEM_EFFECT_LUCKY_PUNCH && gBattleMons[gBankAttacker].species == SPECIES_CHANSEY)
 						#endif
@@ -200,6 +201,7 @@ static u8 CalcPossibleCritChance(u8 bankAtk, u8 bankDef, u16 move, struct Pokemo
 					+ (CheckTableForMove(move, gHighCriticalChanceMoves))
 					+ (atkEffect == ITEM_EFFECT_SCOPE_LENS)
 					+ (atkAbility == ABILITY_SUPERLUCK)
+					+ (atkAbility == ABILITY_BLADEMASTER && CheckTableForMove(gCurrentMove, gSwordMoves))
 					#ifdef SPECIES_CHANSEY
 					+ 2 * (atkEffect == ITEM_EFFECT_LUCKY_PUNCH && atkSpecies == SPECIES_CHANSEY)
 					#endif
@@ -2059,7 +2061,7 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 
 		case ABILITY_DEFEATIST:
 		//0.5x Boost
-			if (data->atkHP <= (data->atkMaxHP / 2))
+			if (data->atkHP <= (data->atkMaxHP / 3))
 			{
 				attack /= 2;
 				spAttack /= 2;
@@ -2110,6 +2112,11 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		//1.5x Boost
 			if (!IsDynamaxed(bankAtk))
 				attack = (attack * 15) / 10;
+			break;
+		case ABILITY_SAGEPOWER:
+		//1.5x Boost
+			if (!IsDynamaxed(bankAtk))
+				spAttack = (spAttack * 15) / 10;
 			break;
 	}
 
@@ -3177,6 +3184,17 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 				power = (power * 12) / 10;
 			break;
 
+		case ABILITY_STRIKER:
+		//1.3x Boost
+			if (CheckTableForMove(move, gKickingMoves))
+				power = (power * 13) / 10;
+			break;
+
+		case ABILITY_BLADEMASTER: 
+		//1.2x boost, gives +crit ratio to sword moves check above 
+			if (CheckTableForMove(move, gSwordMoves))
+				power = (power * 12) / 10;
+			break;
 		case ABILITY_TOXICBOOST:
 		//1.5x Boost
 			if (data->atkStatus1 & STATUS_PSN_ANY && data->moveSplit == SPLIT_PHYSICAL)

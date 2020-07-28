@@ -1544,7 +1544,7 @@ static u8 BuildFrontierParty(struct Pokemon* const party, const u16 trainerId, c
 				else
 					builder->itemEffectOnTeam[itemEffect] = TRUE;
 
-				if (itemEffect == ITEM_EFFECT_CHOICE_BAND || ability == ABILITY_GORILLATACTICS)
+				if (itemEffect == ITEM_EFFECT_CHOICE_BAND || ability == ABILITY_GORILLATACTICS || ability == ABILITY_SAGEPOWER)
 					++builder->numChoiceItems;
 
 				if (IsMegaStone(item))
@@ -3008,7 +3008,7 @@ static void PostProcessTeam(struct Pokemon* party, struct TeamBuilder* builder)
 	}
 
 	//Shuffle moves in camomons
-	TryShuffleMovesForCamomons(party, builder->tier, builder->trainerId);
+	TryShuffleMovesForCamomons(party, builder->tier, builder->trainerId); 
 
 	if (IsFrontierSingles(builder->battleType))
 	{

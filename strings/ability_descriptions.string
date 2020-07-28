@@ -203,7 +203,7 @@ Attack rises when stats fall.
 Sp. Atk rises when stats fall.
 
 #org @DESC_DEFEATIST
-Gives up at half HP.
+Gives up at a third HP.
 
 #org @DESC_SLOWSTART
 Takes a while to get going.
@@ -479,8 +479,8 @@ Ups Attack on entry.
 #org @DESC_DAUNTLESSSHIELD
 Ups Defense on entry.
 
-#org @DESC_BALLFETCH
-Fetches first failed Pok\e Ball.
+#org @DESC_STRIKER
+Boosts kicking moves.
 
 #org @DESC_COTTONDOWN
 Lowers everyone's Speed when hit.
@@ -488,8 +488,8 @@ Lowers everyone's Speed when hit.
 #org @DESC_MIRRORARMOR
 Bounces back stat decreases.
 
-#org @DESC_GULPMISSILE
-Spits prey if damaged after a swim.
+#org @DESC_BLADEMASTER
+Powers up sword moves.
 
 #org @DESC_STALWART
 #org @DESC_PROPELLERTAIL
@@ -542,3 +542,6 @@ Protects team from poison.
 
 #org @DESC_HUNGERSWITCH
 Changes form each turn.
+
+#org @DESC_SAGEPOWER
+Ups Sp Atk, but allows one move.

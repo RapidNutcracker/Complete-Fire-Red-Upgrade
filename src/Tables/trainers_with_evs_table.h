@@ -1231,7 +1231,7 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 		.ball = TRAINER_EV_CLASS_BALL,
 		.ability = Ability_Hidden,
 	},
-		[121] =
+	[121] =
 	{ //Early mons, just max IVs not much investment otherwise 
 		.nature = NATURE_BASHFUL,
 		.ivs = 31,
@@ -1321,10 +1321,10 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 	{ //Early mons, just max IVs not much investment otherwise vikavolt
 		.nature = NATURE_BASHFUL,
 		.ivs = 31,
-		.hpEv = 100,
-		.atkEv = 100,
-		.spAtkEv = 4,
-		.spdEv = 252,
+		.hpEv = 200,
+		.atkEv = 0,
+		.spAtkEv = 100,
+		.spdEv = 4,
 		.ball = TRAINER_EV_CLASS_BALL,
 		.ability = Ability_Random_1_2,
 	},

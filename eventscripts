@@ -21,3 +21,4 @@ tile 1 57 4 EventScript_SilphCo_TeamAlert
 tile 1 57 5 EventScript_SilphCo_TeamAlert 
 tile 1 57 6 EventScript_SilphCo_TeamAlert 
 tile 3 8 1 EventScript_CinnabarMay_Boss
+npc 5 1 10 EventScript_Viridian_GiveTestItem

@@ -61,6 +61,8 @@ move_tables.s
 .global gSpecialWholeFieldMoves
 .global gAromaVeilProtectedMoves
 .global gMovesThatLiftProtectTable
+.global gKickingMoves
+.global gSwordMoves
 .global gMovesWithQuietBGM
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -688,6 +690,34 @@ gPunchingMoves:
 .hword MOVE_PLASMAFISTS
 .hword MOVE_DOUBLEIRONBASH
 .hword MOVE_TABLES_TERMIN
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+gKickingMoves:
+.hword MOVE_BLAZEKICK
+.hword MOVE_JUMPKICK
+.hword MOVE_HIGHJUMPKICK
+.hword MOVE_TRIPLEAXEL
+.hword MOVE_TRIPLEKICK
+.hword MOVE_STOMP 
+.hword MOVE_MEGAKICK 
+.hword MOVE_LOWKICK 
+.hword MOVE_ROLLINGKICK
+.hword MOVE_TROPKICK
+.hword MOVE_TABLES_TERMIN
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+gSwordMoves:
+.hword MOVE_SACREDSWORD
+.hword MOVE_SECRETSWORD
+.hword MOVE_PSYCHOCUT
+.hword MOVE_CUT 
+.hword MOVE_SLASH 
+.hword MOVE_LEAFBLADE 
+.hword MOVE_NIGHTSLASH 
+.hword MOVE_FALSESWIPE
+.hword MOVE_TABLES_TERMIN 
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
