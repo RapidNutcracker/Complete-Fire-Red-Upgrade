@@ -196,7 +196,7 @@ gMoveAnimations:
 .word ANIM_ROCKSLIDE
 .word 0x81d2165		@MOVE_HYPERFANG
 .word 0x81caeee		@MOVE_SHARPEN
-.word 0x81c9fa9		@MOVE_CONVERSION
+.word ANIM_DARKHOLE	@@.word 0x81c9fa9		@MOVE_CONVERSION, now DARKHOLE
 .word 0x81d21cc		@MOVE_TRIATTACK
 .word 0x81caefa		@MOVE_SUPERFANG
 .word 0x81caf7b		@MOVE_SLASH
@@ -579,7 +579,7 @@ gMoveAnimations:
 .word ANIM_LANDSWRATH
 .word ANIM_OBLIVIONWING
 .word ANIM_HEARTSWAP
-.word ANIM_CRUSHGRIP
+.word ANIM_AQUAFANG
 .word ANIM_SACREDSWORD
 .word ANIM_HEATCRASH
 .word ANIM_HEADCHARGE
@@ -1244,6 +1244,13 @@ ANIM_ROCKSLIDE:
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool 
+@Credits to ghoulslash for the blackholeeclipse anim 
+ANIM_DARKHOLE: 
+	goto ANIM_BLACK_HOLE_ECLIPSE 
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
 ANIM_MACHPUNCH:
 	loadparticle ANIM_TAG_IMPACT
@@ -8352,36 +8359,65 @@ ANIM_HEARTSWAP:
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-.pool
-@Credits to Lixdel
-ANIM_CRUSHGRIP:
-	loadparticle ANIM_TAG_EXPLOSION @hits
-	loadparticle ANIM_TAG_ACUPRESSURE_FINGER @hand colour
-	loadparticle ANIM_TAG_ASSURANCE_HAND @hand
-	setblends 0xF
-	launchtemplate CRUSHGRIP_HAND 0x82 0x6 0x10 0x0 0x0 0x0 0x19 0x101
-	waitanimation
-	launchtask AnimTask_CompressTargetHorizontally 0x2 0x0
-	launchtemplate CRUSHGRIP_HITPARTICLES TEMPLATE_TARGET 0x4 0x0 0x0 0x1 0x1
-	pause 0x3
-	playsound2 0xab SOUND_PAN_ATTACKER
-	launchtemplate CRUSHGRIP_HITPARTICLES TEMPLATE_TARGET 0x4 0x18 0xffe8 0x1 0x1
-	pause 0x3
-	playsound2 0xab SOUND_PAN_ATTACKER
-	launchtemplate CRUSHGRIP_HITPARTICLES TEMPLATE_TARGET 0x4 0xfff0 0x10 0x1 0x1
-	pause 0x3
-	playsound2 0xab SOUND_PAN_ATTACKER
-	launchtemplate CRUSHGRIP_HITPARTICLES TEMPLATE_TARGET 0x4 0xffe8 0xfff4 0x1 0x1
-	pause 0x3
-	playsound2 0xab SOUND_PAN_ATTACKER
-	launchtemplate CRUSHGRIP_HITPARTICLES TEMPLATE_TARGET 0x4 0x10 0x10 0x1 0x1
-	waitanimation
-	resetblends
-	endanimation
+@ .pool
+@ Credits to Lixdel
+@ ANIM_CRUSHGRIP:
+@	loadparticle ANIM_TAG_EXPLOSION @hits
+@	loadparticle ANIM_TAG_ACUPRESSURE_FINGER @hand colour
+@	loadparticle ANIM_TAG_ASSURANCE_HAND @hand
+@	setblends 0xF
+@	launchtemplate CRUSHGRIP_HAND 0x82 0x6 0x10 0x0 0x0 0x0 0x19 0x101
+@	waitanimation
+@	launchtask AnimTask_CompressTargetHorizontally 0x2 0x0
+@	launchtemplate CRUSHGRIP_HITPARTICLES TEMPLATE_TARGET 0x4 0x0 0x0 0x1 0x1
+@	pause 0x3
+@	playsound2 0xab SOUND_PAN_ATTACKER
+@	launchtemplate CRUSHGRIP_HITPARTICLES TEMPLATE_TARGET 0x4 0x18 0xffe8 0x1 0x1
+@	pause 0x3
+@	playsound2 0xab SOUND_PAN_ATTACKER
+@	launchtemplate CRUSHGRIP_HITPARTICLES TEMPLATE_TARGET 0x4 0xfff0 0x10 0x1 0x1
+@	pause 0x3
+@	playsound2 0xab SOUND_PAN_ATTACKER
+@	launchtemplate CRUSHGRIP_HITPARTICLES TEMPLATE_TARGET 0x4 0xffe8 0xfff4 0x1 0x1
+@	pause 0x3
+@	playsound2 0xab SOUND_PAN_ATTACKER
+@	launchtemplate CRUSHGRIP_HITPARTICLES TEMPLATE_TARGET 0x4 0x10 0x10 0x1 0x1
+@	waitanimation
+@	resetblends
+@	endanimation
 
-.align 2
-CRUSHGRIP_HITPARTICLES: objtemplate ANIM_TAG_EXPLOSION ANIM_TAG_EXPLOSION OAM_OFF_32x32 0x83E3F90 0x0 gDummySpriteAffineAnimTable SpriteCB_AnimSpriteOnMonPos
-CRUSHGRIP_HAND: objtemplate ANIM_TAG_ASSURANCE_HAND ANIM_TAG_ACUPRESSURE_FINGER OAM_NORMAL_32x32 0x83E74A8 0x0 gSpriteAffineAnimTable_CrushGripHand 0x80B5075
+@ .align 2
+@ CRUSHGRIP_HITPARTICLES: objtemplate ANIM_TAG_EXPLOSION ANIM_TAG_EXPLOSION OAM_OFF_32x32 0x83E3F90 0x0 gDummySpriteAffineAnimTable SpriteCB_AnimSpriteOnMonPos
+@ CRUSHGRIP_HAND: objtemplate ANIM_TAG_ASSURANCE_HAND ANIM_TAG_ACUPRESSURE_FINGER OAM_NORMAL_32x32 0x83E74A8 0x0 gSpriteAffineAnimTable_CrushGripHand 0x80B5075
+
+ANIM_AQUAFANG:
+	loadparticle ANIM_TAG_SHARP_TEETH
+	loadparticle ANIM_TAG_IMPACT
+	loadparticle ANIM_TAG_SMALL_BUBBLES
+	loadparticle ANIM_TAG_WATER_IMPACT
+	loadparticle ANIM_TAG_ICE_CRYSTALS
+	pokespritetoBG bank_target
+	playsound2 0x9a SOUND_PAN_TARGET
+	launchtask AnimTask_pal_fade 0xa 0x5 PAL_DEF 0x2 0x0 0x9 0x7f4c
+	launchtemplate Template_Teeth 0x2 0x6 0x0 0xffe0 0x0 0x0 0x333 0xa
+	launchtemplate Template_Teeth 0x2 0x6 0x0 0x20 0x4 0x0 0xfccd 0xa
+	launchtask AnimTask_BlendParticle 0x5 0x5 ANIM_TAG_SHARP_TEETH 0x1 0x0 0xA 0x7f4c @;Yellow
+	pause 0xA
+	launchtemplate Template_Hit 0x2 0x4 0x0 0x0 0x1 0x2
+	launchtask AnimTask_move_bank 0x2 0x5 0x1 0x3 0x0 0x6 0x1
+	playsound2 0x84 SOUND_PAN_TARGET
+	waitanimation
+	call WATER_DIVE_ATTACK
+	waitanimation
+	pause 0x2
+	launchtask AnimTask_pal_fade 0xa 0x5 PAL_DEF 0x2 0x9 0x0 0x7f4c
+	launchtask AnimTask_move_bank 0x5 0x5 bank_target 0x0 0x4 0x7 0x1
+	waitanimation
+	pokespritefromBG bank_target
+	endanimation
+	@ loadparticle ANIM_TAG_SHARP_TEETH
+	@ goto ANIM_FISHIOUS_REND
+	@ endanimation 
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
@@ -26146,8 +26182,10 @@ ANIM_G_MAX_ONE_BLOW:
 @Credits to -
 ANIM_G_MAX_RAPID_FLOW:
 	goto ANIM_AQUAJET
-
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
 .pool
 .align 2
 SKILLSWAP_CHOOSER:

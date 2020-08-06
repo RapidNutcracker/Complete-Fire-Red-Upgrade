@@ -854,6 +854,10 @@ bool8 SetMoveEffect2(void)
 			{
 				break;
 			}
+			else if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)) //no steal effect in battle_type_trainer 
+			{
+				break;
+			}
 			else if (ITEM(gEffectBank) == 0
 			||  ITEM(gBankAttacker) != 0
 			||  !CanTransferItem(SPECIES(gEffectBank), ITEM(gEffectBank))

@@ -44,6 +44,7 @@
 #define FLAG_GIOVANNI_BOSS       0x982
 #define FLAG_MAY_BOSS            0x998
 #define FLAG_ARCHER_ARIANA_B2B   0x981
+#define FLAG_BRENDAN_FINAL       0x991
 
 // Hide/show flags
 /*

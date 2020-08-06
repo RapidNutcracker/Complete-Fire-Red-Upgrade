@@ -402,6 +402,8 @@ static const struct WildPokemon gRoute16_LandMonsNight[] =
 {
 	{34, 37, SPECIES_MUDBRAY},
 	{34, 36, SPECIES_GOTHORITA},
+	// {34, 37, SPECIES_DELIBIRD},
+	// {34, 36, SPECIES_DELIBIRD},
 	{35, 35, SPECIES_DODRIO},
 	{34, 36, SPECIES_CRABRAWLER},
 	{35, 35, SPECIES_TRUBBISH},

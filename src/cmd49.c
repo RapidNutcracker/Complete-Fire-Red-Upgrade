@@ -768,7 +768,8 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 					&& MOVE_HAD_EFFECT
 					&& CanTransferItem(SPECIES(bankDef), ITEM(bankDef))
 					&& CanTransferItem(SPECIES(gBankAttacker), ITEM(bankDef))
-					&& (ABILITY(bankDef) != ABILITY_STICKYHOLD || !BATTLER_ALIVE(bankDef)))
+					&& (ABILITY(bankDef) != ABILITY_STICKYHOLD || !BATTLER_ALIVE(bankDef))
+					&& !(gBattleTypeFlags & BATTLE_TYPE_TRAINER)) //added this, cannot steal from trainers
 					{
 						gBattleScripting.bank = gBankAttacker;
 						BattleScriptPushCursor();
@@ -1267,7 +1268,7 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 
 				if (bank != gBankAttacker
 				&&  !SheerForceCheck()
-				&&  ABILITY(bank) == ABILITY_PICKPOCKET
+				&&  ABILITY(bank) == ABILITY_NONE //used to be pickpocket, but this ability doesnt exist anymore. 
 				&&  !(gNewBS->ResultFlags[bank] & MOVE_RESULT_NO_EFFECT)
 				&&  TOOK_DAMAGE(bank)
 				&&  !MoveBlockedBySubstitute(gCurrentMove, gBankAttacker, bank)

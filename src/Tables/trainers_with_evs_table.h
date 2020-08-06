@@ -1321,7 +1321,7 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 	{ //Early mons, just max IVs not much investment otherwise vikavolt
 		.nature = NATURE_BASHFUL,
 		.ivs = 31,
-		.hpEv = 200,
+		.hpEv = 20,
 		.atkEv = 0,
 		.spAtkEv = 100,
 		.spdEv = 4,

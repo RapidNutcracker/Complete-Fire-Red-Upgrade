@@ -57,7 +57,7 @@ u8 LevelCap_Badges[17] = {
 	80, //Before Giovanni Mewtwo
 	81, //Before Claire
 	82, //Before Brendan
-	86, //Before E4
+	85, //Before E4
 	250}; //added here
 //This file's functions:
 static u32 ExpCalculator(u32 a, u32 t, u32 b, u32 e, u32 L, u32 Lp, u32 p, u32 f, u32 v, u32 s);
@@ -805,8 +805,9 @@ u8 GetBadgeCount(void) //added this here
 	u8 badgeCount = 0;
 
 	if (FlagGet(FLAG_SYS_GAME_CLEAR)) //0x82C
-		return 17;
-
+		return 16;
+	if (FlagGet(FLAG_BRENDAN_FINAL))
+		++badgeCount;
 	if (FlagGet(FLAG_BADGE08_GET))
 		++badgeCount;
 	if (FlagGet(FLAG_GIOVANNI_BOSS))

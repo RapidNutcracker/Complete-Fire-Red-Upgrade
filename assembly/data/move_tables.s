@@ -515,6 +515,7 @@ gSheerForceBoostedMoves:
 .hword MOVE_CROSSPOISON
 .hword MOVE_CRUNCH
 .hword MOVE_CRUSHCLAW
+.hword MOVE_CRUSHGRIP @Aqua Fang
 .hword MOVE_DARKPULSE
 .hword MOVE_DIAMONDSTORM
 .hword MOVE_DISCHARGE
@@ -704,6 +705,7 @@ gKickingMoves:
 .hword MOVE_LOWKICK 
 .hword MOVE_ROLLINGKICK
 .hword MOVE_TROPKICK
+.hword MOVE_PYROBALL
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -744,6 +746,7 @@ gBitingMoves:
 .hword MOVE_THUNDERFANG
 .hword MOVE_JAWLOCK
 .hword MOVE_FISHIOUSREND
+.hword MOVE_CRUSHGRIP @Aqua Fang
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -891,6 +894,7 @@ gSubstituteBypassMoves:
 .hword MOVE_STICKYWEB
 .hword MOVE_SPIKES
 .hword MOVE_TOXICSPIKES
+.hword MOVE_CONVERSION
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -1035,6 +1039,7 @@ gFlinchChanceMoves:
 .hword MOVE_ICICLECRASH @30
 .hword MOVE_ZINGZAP @30
 .hword MOVE_DOUBLEIRONBASH @30
+.hword MOVE_CRUSHGRIP @10 Aqua Fang
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

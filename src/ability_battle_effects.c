@@ -168,7 +168,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_OWNTEMPO] = 3,
 	[ABILITY_PARENTALBOND] = 10,
 	[ABILITY_PICKUP] = 1,
-	[ABILITY_PICKPOCKET] = 3,
+	// [ABILITY_PICKPOCKET] = 3,
 	[ABILITY_PIXILATE] = 8,
 	[ABILITY_PLUS] = 0,
 	[ABILITY_POISONHEAL] = 8,
@@ -280,7 +280,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_COTTONDOWN] = 3,
 	[ABILITY_MIRRORARMOR] = 6,
 	[ABILITY_BLADEMASTER] = 8,
-	[ABILITY_STALWART] = 2, //Also Propellor Tail
+	[ABILITY_SURPRISE] = 2, //Aadded
 	[ABILITY_STEAMENGINE] = 3,
 	[ABILITY_PUNKROCK] = 2,
 	[ABILITY_SANDSPIT] = 5,
@@ -421,7 +421,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 	u8 moveType;
 	u8 side;
 	u8 target1;
-
+	u16 roll;
 	if (gBattleTypeFlags & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_OLD_MAN))
 		return FALSE;
 
@@ -477,6 +477,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			case ABILITY_IMPOSTER:
 			case ABILITY_ANTICIPATION:
 			case ABILITY_FRISK:
+			case ABILITY_SURPRISE:
 				gStatuses3[bank] |= STATUS3_SWITCH_IN_ABILITY_DONE;
 				break;
 			case ABILITY_TRACE: //Trace is the only ability that activates after a U-Turn + faint switch-in
@@ -705,6 +706,72 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				gBattleStruct->intimidateBank = bank;
 				gNewBS->intimidateActive = bank + 1;
 				effect++;
+			}
+			break;
+		case ABILITY_SURPRISE:
+			roll = Random() % 5;
+			if(roll == 0)
+			{
+				if (!(gBattleMons[FOE(bank)].status2 & STATUS2_SUBSTITUTE) || !(gBattleMons[PARTNER(FOE(bank))].status2 & STATUS2_SUBSTITUTE))
+				{
+					BattleScriptPushCursorAndCallback(BattleScript_IntimidateActivatesEnd3);
+					gBattleStruct->intimidateBank = bank;
+					gNewBS->intimidateActive = bank + 1;
+					effect++;
+				}
+			}
+			else if(roll == 1)
+			{
+				if (STAT_STAGE(bank, STAT_STAGE_ATK) < STAT_STAGE_MAX)
+				{
+					gBankAttacker = bank;
+					STAT_STAGE(bank, STAT_STAGE_ATK)++;
+					gBattleScripting.statChanger = STAT_STAGE_ATK | INCREASE_1;
+					PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_STAGE_ATK);
+					PREPARE_STAT_ROSE(gBattleTextBuff2);
+					BattleScriptPushCursorAndCallback(BattleScript_AttackerAbilityStatRaiseEnd3);
+					effect++;
+				}
+			}
+			else if (roll == 2)
+			{
+				if (STAT_STAGE(bank, STAT_STAGE_SPEED) < STAT_STAGE_MAX)
+				{
+					gBattleMons[bank].statStages[STAT_SPEED - 1]++;
+					gBattleScripting.statChanger = STAT_SPEED | INCREASE_1;
+					gBattleScripting.animArg1 = 0x11;
+					gBattleScripting.animArg2 = 0;
+					PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_SPEED);
+					PREPARE_STAT_ROSE(gBattleTextBuff2);
+					BattleScriptPushCursorAndCallback(BattleScript_AttackerAbilityStatRaiseEnd3);
+					effect++;
+				}
+			}
+			else if (roll == 3)
+			{
+				gNewBS->SlowStartTimers[bank] = 5;
+				gBattleStringLoader = gText_SlowStartActivate;
+				BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+				effect++;
+				break;
+			}
+			else if (roll == 4)
+			{
+				if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_HAIL_ANY))
+				{
+					if (gNewBS->AuroraVeilTimers[SIDE(gBankAttacker)] < 3){ //If aurora veil is less than 3, we should set it to 3 as it will be beneficial 
+						SetAuroraVeil();
+						gBattleStringLoader = gText_IcyVeilActivate; 
+						BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+						effect++;
+					}
+				}
+				else if (!(gBattleWeather & (WEATHER_HAIL_ANY | WEATHER_PRIMAL_ANY | WEATHER_CIRCUS)))
+				{
+					gBattleScripting.animArg1 = B_ANIM_HAIL_CONTINUES;
+					effect = ActivateWeatherAbility(WEATHER_HAIL_PERMANENT | WEATHER_HAIL_TEMPORARY,
+													ITEM_EFFECT_ICY_ROCK, bank, B_ANIM_HAIL_CONTINUES, 3, FALSE);
+				}
 			}
 			break;
 
@@ -1208,7 +1275,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 		case ABILITY_SCREENCLEANER:
 			RemoveScreensFromSide(B_SIDE_PLAYER);
 			RemoveScreensFromSide(B_SIDE_OPPONENT);
-			gBattleStringLoader = gText_ScreenCleanerActivate;
+			gBattleStringLoader = gText_IcyVeilActivate;
 			BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
 			effect++;
 			break;
@@ -1221,6 +1288,18 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				BattleScriptPushCursor();
 				gBattlescriptCurrInstr = script;
 				effect++;
+			}
+			break;
+
+		case ABILITY_ICYPROTECTOR:
+			if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_HAIL_ANY))
+			{
+				if (gNewBS->AuroraVeilTimers[SIDE(gBankAttacker)] < 3){ //If aurora veil is less than 3, we should set it to 3 as it will be beneficial 
+					SetAuroraVeil();
+					gBattleStringLoader = gText_IcyVeilActivate; 
+					BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+					effect++;
+				}
 			}
 			break;
 
@@ -1242,6 +1321,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			BattleScriptPushCursorAndCallback(BattleScript_NeutralizingGas);
 			effect++;
 		}
+
 
 		switch (gLastUsedAbility) { //These abilities should always activate if they can
 			case ABILITY_NONE: //So Unnerve activates the first time when Neutralizing Gas leaves the field
@@ -2345,7 +2425,7 @@ static u8 CalcMovePowerForForewarn(u16 move)
 				power = 120;
 				break;
 
-			case MOVE_CRUSHGRIP:
+			// case MOVE_CRUSHGRIP:
 			case MOVE_DRAGONRAGE:
 			case MOVE_ELECTROBALL:
 			case MOVE_ENDEAVOR:

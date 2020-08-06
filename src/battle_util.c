@@ -608,8 +608,9 @@ bool8 IsMoveRedirectionPrevented(u16 move, u8 atkAbility)
 {
 	return move == MOVE_SKYDROP
 		|| move == MOVE_SNIPESHOT
+		|| atkAbility == ABILITY_NONE; //to prevent compiler warnings
 //		|| atkAbility == ABILITY_PROPELLERTAIL
-		|| atkAbility == ABILITY_STALWART;
+		// || atkAbility == ABILITY_STALWART;
 }
 
 u8 GetMoveTarget(u16 move, u8 useMoveTarget)

@@ -4760,6 +4760,7 @@ RelicSongEndBS:
 
 .global BS_224_Blank
 BS_224_Blank:
+	setmoveeffect MOVE_EFFECT_SLEEP
 	goto BS_STANDARD_HIT
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

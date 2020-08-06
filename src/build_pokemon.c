@@ -1091,7 +1091,7 @@ static u8 BuildFrontierParty(struct Pokemon* const party, const u16 trainerId, c
 		const struct BattleTowerSpread* spread = NULL;
 
 		do
-		{
+		{ 
 			switch (trainerId) {
 				case BATTLE_TOWER_SPECIAL_TID:
 				case FRONTIER_BRAIN_TID:

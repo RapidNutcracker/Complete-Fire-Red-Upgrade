@@ -22,3 +22,8 @@ tile 1 57 5 EventScript_SilphCo_TeamAlert
 tile 1 57 6 EventScript_SilphCo_TeamAlert 
 tile 3 8 1 EventScript_CinnabarMay_Boss
 npc 5 1 10 EventScript_Viridian_GiveTestItem
+npc 24 1 0 EventScript_Fuschia_OakAid
+npc 12 1 2 EventScript_Cinnabar_WeatherRock
+tile 10 15 0 EventScript_Celadon_StopExploit
+# npc 7 0 0 EventScript_Cerulean_FossilGuy
+npc 12 2 3 EventScript_Cinnabar_FossilGuy

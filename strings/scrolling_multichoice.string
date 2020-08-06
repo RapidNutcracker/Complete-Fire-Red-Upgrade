@@ -32,4 +32,27 @@ Example 9
 #org @sExampleText_10
 Example 10
 
+#org @sExampleText_Root
+Root Fossil
+
+#org @sExampleText_Claw
+Claw Fossil
+
+#org @sExampleText_Skull
+Skull Fossil 
+
+#org @sExampleText_Armor 
+Armor Fossil 
+
+#org @sExampleText_Cover 
+Cover Fossil 
+
+#org @sExampleText_Plume
+Plume Fossil 
+
+#org @sExampleText_Jaw 
+Jaw Fossil 
+
+#org @sExampleText_Sail 
+Sail Fossil
 #endif

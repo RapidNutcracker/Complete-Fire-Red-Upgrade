@@ -4,6 +4,9 @@
 #org @DESC_NO_MOVE
 No move information.
 
+#org @DESC_DARKHOLE 
+The user sends the\nfoe to the shadow\nrealm. It may\ncause sleep.
+
 #org @DESC_LEECHFANG
 An attack that\nabsorbs half the\ndamage it inflicted\nto restore HP.
 
@@ -565,8 +568,8 @@ The user absorbs its\ntarget's HP. The\nuser's HP is restored\nby over half the\
 #org @DESC_HEARTSWAP
 The user employs its\npsychic power to\nswitch stat changes\nwith the target.
 
-#org @DESC_CRUSHGRIP
-The foe's crushed\nwith great force. The\nmore HP the foe has,\nthe stronger the\npower.
+#org @DESC_AQUAFANG
+The user bites the\nfoe with aquatic\nforce. It may make\nthe foe flinch.
 
 #org @DESC_SACREDSWORD
 The user attacks by\nslicing with a long\nhorn. The target's\nstat changes are\nignored.

@@ -2610,19 +2610,19 @@ const struct BattleMove gBattleMoves[] =
 		.z_move_effect = Z_EFFECT_ATK_UP_1
 	},
 
-	[MOVE_CONVERSION] =
+	[MOVE_DARKHOLE] =
 	{
-		.effect = EFFECT_CONVERSION,
-		.power = 0,
-		.type = TYPE_NORMAL,
-		.accuracy = 0,
-		.pp = 30,
-		.secondaryEffectChance = 0,
-		.target = MOVE_TARGET_USER,
+		.effect = EFFECT_BLANK_224, //chance to sleep! 
+		.power = 100,
+		.type = TYPE_DARK,
+		.accuracy = 100,
+		.pp = 5,
+		.secondaryEffectChance = 40,
+		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
-		.flags = FLAG_SNATCH_AFFECTED,
+		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
 		.z_move_power = 0,
-		.split = SPLIT_STATUS,
+		.split = SPLIT_SPECIAL,
 		.z_move_effect = Z_EFFECT_ALL_STATS_UP_1
 	},
 
@@ -8778,18 +8778,18 @@ const struct BattleMove gBattleMoves[] =
 		.z_move_effect = Z_EFFECT_BOOST_CRITS
 	},
 
-	[MOVE_CRUSHGRIP] =
+	[MOVE_AQUAFANG] =
 	{
-		.effect = EFFECT_HIT,
-		.power = 1,
-		.type = TYPE_NORMAL,
+		.effect = EFFECT_FLINCH_HIT,
+		.power = 90,
+		.type = TYPE_WATER,
 		.accuracy = 100,
-		.pp = 5,
-		.secondaryEffectChance = 0,
+		.pp = 10,
+		.secondaryEffectChance = 10,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
 		.flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 190,
+		.z_move_power = 160,
 		.split = SPLIT_PHYSICAL,
 		.z_move_effect = 0
 	},
@@ -14758,7 +14758,7 @@ const u8 gDynamaxMovePowers[MOVES_COUNT] =
 	[MOVE_DOUBLEHIT] = 120,
 	[MOVE_ROAROFTIME] = 150,
 	[MOVE_SPACIALREND] = 130,
-	[MOVE_CRUSHGRIP] = 140,
+	[MOVE_AQUAFANG] = 140,
 	[MOVE_MAGMASTORM] = 130,
 	[MOVE_SEEDFLARE] = 140,
 	[MOVE_OMINOUSWIND] = 110,

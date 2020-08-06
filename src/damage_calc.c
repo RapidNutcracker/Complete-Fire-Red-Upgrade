@@ -2447,6 +2447,17 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 					break;
 			}
 		}
+
+		// else if (gBattleWeather & WEATHER_HAIL_ANY) added this here
+		// {
+		// 	u8 atkType1 = gBattleMons[gBankAttacker].type1;
+		// 	u8 atkType2 = gBattleMons[gBankAttacker].type2;
+		// 	u8 atkType3 = gBattleMons[gBankAttacker].type3;
+		// 	if(atkType1 == TYPE_ICE || atkType2 == TYPE_ICE || atkType3 == TYPE_ICE )
+		// 	{
+		// 		damage = (damage * 12) / 10;
+		// 	}
+		// }
 	}
 
 	//Aura Abilities
@@ -2922,7 +2933,7 @@ static u16 GetBasePower(struct DamageCalc* data)
 			break;
 		#endif
 
-		case MOVE_CRUSHGRIP:
+		// case MOVE_CRUSHGRIP:
 		case MOVE_WRINGOUT:
 		case MOVE_DRAGONENERGY:
 			if (!(data->specialFlags & FLAG_IGNORE_TARGET))
@@ -3195,6 +3206,7 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 			if (CheckTableForMove(move, gSwordMoves))
 				power = (power * 12) / 10;
 			break;
+
 		case ABILITY_TOXICBOOST:
 		//1.5x Boost
 			if (data->atkStatus1 & STATUS_PSN_ANY && data->moveSplit == SPLIT_PHYSICAL)
@@ -3413,7 +3425,7 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 	#ifdef OLD_TERRAIN_BOOST
 		#define TERRAIN_BOOST 15 //1.5x in Gen 6 & 7
 	#else
-		#define TERRAIN_BOOST 13 //1.3x in Gen 8
+		#define TERRAIN_BOOST 15 //1.3x in Gen 8 changed this cuz im never gonna do 13
 	#endif
 
 	//Terrain Checks
