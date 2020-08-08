@@ -25,5 +25,13 @@ npc 5 1 10 EventScript_Viridian_GiveTestItem
 npc 24 1 0 EventScript_Fuschia_OakAid
 npc 12 1 2 EventScript_Cinnabar_WeatherRock
 tile 10 15 0 EventScript_Celadon_StopExploit
-# npc 7 0 0 EventScript_Cerulean_FossilGuy
+npc 7 0 0 EventScript_Cerulean_Haircut
 npc 12 2 3 EventScript_Cinnabar_FossilGuy
+npc 7 9 0 EventScript_Cerulean_HappinessCheck
+npc 3 38 12 EventScript_Route20_Medichamite
+npc 12 3 3 EventScript_Cinnabar_Latis
+npc 3 36 3 EventScript_Route18_Roost 
+npc 3 38 13 EventScript_Route20_FocusBlast
+npc 1 93 5 EventScript_PkmnTower_DarkPulse
+npc 1 51 9 EventScript_SilphCo_Wisp
+npc 1 40 13 EventScript_VictoryRoad_Moltres 

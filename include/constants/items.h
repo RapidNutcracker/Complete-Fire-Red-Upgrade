@@ -615,7 +615,7 @@ enum
 #define ITEM_ALAKAZITE 0xE3 //added sabrina
 #define ITEM_SLOWBRONITE 0xEA //added that one fishing route
 #define ITEM_GENGARITE 0x52 //added morty
-#define ITEM_KANGASKHANITE 0xEB
+#define ITEM_KANGASKHANITE 0xEB //silph co
 #define ITEM_PINSIRITE 0xEC //route 6
 #define ITEM_GYARADOSITE 0xED //added misty
 #define ITEM_AERODACTYLITE 0xEE //added brock
@@ -634,7 +634,7 @@ enum
 #define ITEM_SABLENITE 0xFB //pokemon tower
 #define ITEM_MAWILITE 0xFC //added ariana
 #define ITEM_AGGRONITE 0xFD //Rock Tunnel
-#define ITEM_MEDICHAMITE 0xFE
+#define ITEM_MEDICHAMITE 0xFE //Route 20
 #define ITEM_MANECTITE 0xFF //added surge
 #define ITEM_SHARPEDONITE 0x100 //fisherman route 12
 #define ITEM_CAMERUPTITE 0x101 //blaine
@@ -644,8 +644,8 @@ enum
 #define ITEM_GLALITITE 0x72 //added pryce
 #define ITEM_SALAMENCITE 0x73 //outside beginning victory road, route 23
 #define ITEM_METAGROSSITE 0x74 //final creator
-#define ITEM_LATIASITE 0x75
-#define ITEM_LATIOSITE 0x76
+#define ITEM_LATIASITE 0x75 //scientist
+#define ITEM_LATIOSITE 0x76 //scientist
 #define ITEM_LOPUNNITE 0x77 //safari zone north
 #define ITEM_GARCHOMPITE 0x78 //victory road
 #define ITEM_LUCARIONITE 0x57 //added all starter stones
