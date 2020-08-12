@@ -35,3 +35,5 @@ npc 3 38 13 EventScript_Route20_FocusBlast
 npc 1 93 5 EventScript_PkmnTower_DarkPulse
 npc 1 51 9 EventScript_SilphCo_Wisp
 npc 1 40 13 EventScript_VictoryRoad_Moltres 
+npc 24 1 1 EventScript_Fuschia_NastyPlot 
+npc 11 9 1 EventScript_Fuschia_EggTutor

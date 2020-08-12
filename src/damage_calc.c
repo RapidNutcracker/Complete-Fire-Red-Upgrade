@@ -3204,7 +3204,7 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 		case ABILITY_BLADEMASTER: 
 		//1.2x boost, gives +crit ratio to sword moves check above 
 			if (CheckTableForMove(move, gSwordMoves))
-				power = (power * 12) / 10;
+				power = (power * 11) / 10;
 			break;
 
 		case ABILITY_TOXICBOOST:

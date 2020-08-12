@@ -719,6 +719,10 @@ gSwordMoves:
 .hword MOVE_LEAFBLADE 
 .hword MOVE_NIGHTSLASH 
 .hword MOVE_FALSESWIPE
+.hword MOVE_XSCISSOR
+.hword MOVE_SOLARBLADE
+.hword MOVE_FURYCUTTER
+.hword MOVE_SMARTSTRIKE
 .hword MOVE_TABLES_TERMIN 
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
