@@ -184,8 +184,8 @@ Normal moves become Fairy.
 #org @DESC_AERILATE
 Normal moves become Flying.
 
-#org @DESC_NORMALIZE
-All moves become Normal-type.
+#org @DESC_FELINEPOWER
+Doubles Special Attack stat.
 
 #org @DESC_UNBURDEN
 Doubles Speed if item is lost.
@@ -242,7 +242,7 @@ Transforms after a KO.
 KOing a foe ups highest stat.
 
 #org @DESC_CORROSION
-May poison any type.
+Poison can hit Steel types.
 
 #org @DESC_DISGUISE
 Takes one hit with no damage.
@@ -515,8 +515,8 @@ Takes one free physical hit.
 #org @DESC_POWERSPOT
 Powers up ally moves.
 
-#org @DESC_MIMICRY
-Changes type with terrain.
+#org @DESC_FLAMINGSOUL
+Fire type moves hit first.
 
 #org @DESC_SCREENCLEANER
 Screens are removed on entry.

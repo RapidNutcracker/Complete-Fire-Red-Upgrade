@@ -1812,6 +1812,7 @@ static bool8 ShouldSwitchIfWonderGuard(void)
 							return FALSE;
 						break;
 					case EFFECT_BATON_PASS:
+					case EFFECT_TELEPORT:
 						return FALSE;
 					case EFFECT_MEMENTO:
 						if (SPLIT(move) == SPLIT_STATUS)

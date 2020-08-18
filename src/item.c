@@ -18,6 +18,7 @@
 #include "../include/new/util.h"
 #include "../include/new/item.h"
 #include "../include/new/set_z_effect.h"
+
 /*
 item.c
 	handles all item related functions, such as returning hold effects, tm/hm expansion, etc.
@@ -26,9 +27,9 @@ item.c
 #define EOS 0xFF
 
 struct BagMenuAlloc
-{
-	MainCallback exitCB;
-	u8 itemOriginalLocation;
+{ 
+	MainCallback exitCB; 
+	u8 itemOriginalLocation; 
 	u8 pocketSwitchMode:4;
 	u8 itemMenuIcon:2;
 	u8 inhibitItemDescriptionPrint:2;
@@ -43,7 +44,7 @@ struct BagMenuAlloc
 extern const u8 gMoveNames[][MOVE_NAME_LENGTH + 1];
 extern const u8 gText_ThrowInOnePremierBall[];
 extern const u8 gText_ThrowInPremierBalls[];
-extern const u16 gItemsByType[];
+extern const u16 gItemsByType[]; //add a comment idk
 extern struct BagMenuAlloc* sBagMenuDisplay; //0x203AD10
 extern const u8* sBagContextMenuItemsPtr; //0x203AD24
 extern u8 sBagContextMenuNumItems; //0x203AD28
@@ -72,12 +73,12 @@ static void Task_SortFinish(u8 taskId);
 static void FinishBagSortIntro(u8 taskId);
 
 //General Utility Functions
-u16 SanitizeItemId(u16 itemId)
+u16 SanitizeItemId(u16 itemIdd)
 {
-	if (itemId >= ITEMS_COUNT)
+	if (itemIdd >= ITEMS_COUNT)
 		return ITEM_NONE;
 
-	return itemId;
+	return itemIdd;
 }
 
 const u8* ItemId_GetName(u16 itemId)
@@ -118,6 +119,7 @@ bool8 IsZCrystal(u16 item)
 bool8 IsTypeZCrystal(u16 item, u8 moveType)
 {
 	return IsZCrystal(item) && ItemId_GetHoldEffectParam(item) == moveType && !IsSpecialZCrystal(item);
+	
 }
 
 bool8 IsBerry(u16 item)
@@ -348,8 +350,8 @@ bool8 CanMonLearnTutorMove(struct Pokemon* mon, u8 tutorId)
 	u16 dexNum = SpeciesToNationalPokedexNum(species);
 	switch (tutorId) {
 		case TUTOR_SPECIAL_DRACO_METEOR:
-			return GetMonData(mon, MON_DATA_FRIENDSHIP, NULL) >= MAX_FRIENDSHIP
-				&& (gBaseStats[species].type1 == TYPE_DRAGON
+			// return GetMonData(mon, MON_DATA_FRIENDSHIP, NULL) >= MAX_FRIENDSHIP &&
+			return (gBaseStats[species].type1 == TYPE_DRAGON
 				 || gBaseStats[species].type2 == TYPE_DRAGON);
 		#ifdef NATIONAL_DEX_KELDEO
 		case TUTOR_SPECIAL_SECRET_SWORD:

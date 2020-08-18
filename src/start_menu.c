@@ -31,6 +31,7 @@ enum
 	STARTMENU_PLAYER_LINK,
 	STARTMENU_DEXNAV,
 	STARTMENU_QUEST_LOG,
+	// STARTMENU_TOGGLEDOUBLE,
 	STARTMENU_EXIT_RIGHT,
 	STARTMENU_EXIT_LEFT,
 	MAX_STARTMENU_ITEMS
@@ -55,6 +56,8 @@ extern const u8 gText_DexNav[];
 extern const u8 gText_MissionLog[];
 extern const u8 gText_MenuBag[];
 extern const u8 gText_MenuCube[];
+// extern const u8 gText_ToggleDouble[]; //added
+
 #ifdef UNBOUND
 #define gText_MenuBag gText_MenuCube
 #endif
@@ -65,10 +68,12 @@ extern const u8 gText_BagDescription[];
 extern const u8 gText_PlayerDescription[];
 extern const u8 gText_SaveDescription[];
 extern const u8 gText_OptionDescription[];
+extern const u8 gText_OptionBugDescription[];
 extern const u8 gText_ExitDescription[];
 extern const u8 gText_RetireDescription[];
 extern const u8 gText_PlayerDescription[];
 extern const u8 gText_DexNavDescription[];
+// extern const u8 gText_ToggleDoubleDescription[]; //added
 
 extern bool8 (*sStartMenuCallback)(void);
 extern u8 sStartMenuCursorPos;
@@ -91,6 +96,7 @@ bool8 __attribute__((long_call)) StartMenuOptionCallback(void);
 bool8 __attribute__((long_call)) StartMenuExitCallback(void);
 bool8 __attribute__((long_call)) StartMenuSafariZoneRetireCallback(void);
 bool8 __attribute__((long_call)) StartMenuLinkModePlayerCallback(void);
+// bool8 __attribute__((long_call)) StartMenuToggleDoubleCallback(void);
 bool8 __attribute__((long_call)) StartMenuQuestLogCallback(void);
 void __attribute__((long_call)) AppendToStartMenuItems(u8 action);
 void __attribute__((long_call)) DestroySafariZoneStatsWindow(void);
@@ -119,10 +125,12 @@ const struct MenuAction sStartMenuActionTable[] =
 	[STARTMENU_PLAYER] = {gText_MenuPlayer, {.u8_void = StartMenuPlayerCallback}},
 	[STARTMENU_SAVE] = {gText_MenuSave, {.u8_void = StartMenuSaveCallback}},
 	[STARTMENU_OPTION] = {gText_MenuOption, {.u8_void = StartMenuExitCallback}},
+	// [STARTMENU_OPTION] = {gText_MenuOption, {.u8_void = StartMenuToggleDoubleCallback}},
 	[STARTMENU_EXIT] = {gText_MenuExit, {.u8_void = StartMenuExitCallback}},
 	[STARTMENU_RETIRE_SAFARI] = {gText_MenuRetire, {.u8_void = StartMenuSafariZoneRetireCallback}},
 	[STARTMENU_PLAYER_LINK] = {gText_MenuPlayer, {.u8_void = StartMenuLinkModePlayerCallback}},
 	[STARTMENU_DEXNAV] = {gText_DexNav, {.u8_void = StartMenuDexNavCallback}},
+	// [STARTMENU_TOGGLEDOUBLE] = {gText_ToggleDouble, {.u8_void = StartMenuToggleDoubleCallback}}, //added
 	#ifdef FLAG_SYS_QUEST_LOG
 	[STARTMENU_QUEST_LOG] = {gText_MissionLog, {.u8_void = (void*) (0x801D768 | 1)}},
 	#endif
@@ -137,11 +145,13 @@ const u8* const sStartMenuDescPointers[] =
 	gText_BagDescription,
 	gText_PlayerDescription,
 	gText_SaveDescription,
-	gText_OptionDescription,
+	// gText_ToggleDoubleDescription,
+	gText_OptionBugDescription,
 	gText_ExitDescription,
 	gText_RetireDescription,
 	gText_PlayerDescription,
 	gText_DexNavDescription,
+	// gText_ToggleDoubleDescription,
 	NULL,
 	gText_ExitDescription,
 	gText_ExitDescription,
@@ -229,10 +239,11 @@ static void BuildPokeToolsMenu(void)
 	sNumStartMenuItems = 0;
 
 	#ifdef FLAG_SYS_DEXNAV
-	if (FlagGet(FLAG_SYS_DEXNAV) && FlagGet(FLAG_SYS_POKEDEX_GET))
+	if (FlagGet(FLAG_SYS_DEXNAV) && FlagGet(FLAG_SYS_POKEDEX_GET)){
 	#endif
 		AppendToStartMenuItems(STARTMENU_DEXNAV);
-
+		//AppendToStartMenuItems(STARTMENU_TOGGLEDOUBLE); //added this
+	}
 	#ifdef FLAG_SYS_QUEST_LOG
 	if (FlagGet(FLAG_SYS_QUEST_LOG))
 		AppendToStartMenuItems(STARTMENU_QUEST_LOG);
@@ -358,3 +369,18 @@ static bool8 ReloadStartMenuItems(void)
 
 	return FALSE;
 }
+
+// bool8 StartMenuToggleDoubleCallback(void)
+// {
+// 	if (FlagGet( FLAG_DOUBLE_WILD_BATTLE)){
+// 		FlagClear(FLAG_DOUBLE_WILD_BATTLE);
+// 	}
+// 	else{
+// 		FlagSet(FLAG_DOUBLE_WILD_BATTLE);
+// 	}
+// 	PlaySE(SE_SELECT);
+// 	sStartMenuCursorPos = 0; //Reset cursor position
+// 	sStartMenuOpen = START_MENU_NORMAL;
+// 	sStartMenuCallback = CloseAndReloadStartMenu;
+// 	return TRUE;
+// }

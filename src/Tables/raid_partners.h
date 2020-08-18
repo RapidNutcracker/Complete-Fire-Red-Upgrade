@@ -1,7 +1,7 @@
 #include "../config.h"
 
 
-#ifdef UNBOUND
+// #ifdef UNBOUND
 
 static const struct BattleTowerSpread sRaidPartnerSpread_Catherine_Rank12[] =
 {
@@ -181,7 +181,7 @@ static const struct BattleTowerSpread sRaidPartnerSpread_Catherine_Rank456[] =
 		.defEv = 252,
 		.spAtkEv = 4,
 		.ability = FRONTIER_ABILITY_2, //ABILITY_STORMDRAIN
-		.item = ITEM_WIKI_BERRY,
+		.item = ITEM_LEFTOVERS,
 		.moves =
 		{
 			MOVE_SCALD,
@@ -262,7 +262,7 @@ static const struct BattleTowerSpread sRaidPartnerSpread_Ginger_Rank123[] =
 		.defEv = 4,
 		.spdEv = 252,
 		.ability = FRONTIER_ABILITY_HIDDEN, //ABILITY_FRIENDGUARD
-		.item = ITEM_BINDING_BAND,
+		.item = ITEM_LEFTOVERS,
 		.moves =
 		{
 			MOVE_INFESTATION,
@@ -344,7 +344,7 @@ static const struct BattleTowerSpread sRaidPartnerSpread_Ginger_Rank456[] =
 		.defEv = 4,
 		.spdEv = 252,
 		.ability = FRONTIER_ABILITY_HIDDEN, //ABILITY_FRIENDGUARD
-		.item = ITEM_BINDING_BAND,
+		.item = ITEM_LEFTOVERS,
 		.moves =
 		{
 			MOVE_INFESTATION,
@@ -533,7 +533,7 @@ static const struct BattleTowerSpread sRaidPartnerSpread_Abimbola_Rank456[] =
 		.defEv = 252,
 		.spdEv = 4,
 		.ability = FRONTIER_ABILITY_2, //ABILITY_MOLDBREAKER
-		.item = ITEM_DRAGONIUM_Z,
+		.item = ITEM_LEFTOVERS,
 		.moves =
 		{
 			MOVE_DRAGONCLAW,
@@ -589,7 +589,7 @@ static const struct BattleTowerSpread sRaidPartnerSpread_Mahina_Rank456[] =
 		.atkEv = 4,
 		.spDefEv = 252,
 		.ability = FRONTIER_ABILITY_1, //ABILITY_INTIMIDATE
-		.item = ITEM_WATERIUM_Z,
+		.item = ITEM_LEFTOVERS,
 		.moves =
 		{
 			MOVE_AQUATAIL,
@@ -942,7 +942,7 @@ static const struct BattleTowerSpread sRaidPartnerSpread_Marlon_Rank56[] =
 		.spAtkEv = 252,
 		.spDefEv = 4,
 		.ability = FRONTIER_ABILITY_HIDDEN, //ABILITY_STATIC
-		.item = ITEM_ELECTRIUM_Z,
+		.item = ITEM_LEFTOVERS,
 		.moves =
 		{
 			MOVE_THUNDERBOLT,
@@ -972,7 +972,7 @@ static const struct BattleTowerSpread sRaidPartnerSpread_Jax_Rank6[] =
 		.atkEv = 252,
 		.spDefEv = 4,
 		.ability = FRONTIER_ABILITY_1, //ABILITY_IRONFIST
-		.item = ITEM_GROUNDIUM_Z,
+		.item = ITEM_LEFTOVERS,
 		.moves =
 		{
 			MOVE_HIGHHORSEPOWER,
@@ -1053,7 +1053,7 @@ static const struct BattleTowerSpread sRaidPartnerSpread_Red_Rank6[] =
 		.spDefEv = 4,
 		.spdEv = 252,
 		.ability = FRONTIER_ABILITY_HIDDEN, //ABILITY_LIGHTNINGROD
-		.item = ITEM_PIKASHUNIUM_Z,
+		.item = ITEM_LEFTOVERS,
 		.moves =
 		{
 			MOVE_THUNDERBOLT,
@@ -1079,7 +1079,7 @@ static const struct BattleTowerSpread sRaidPartnerSpread_Red_Rank6[] =
 		.atkEv = 252,
 		.spDefEv = 4,
 		.ability = FRONTIER_ABILITY_HIDDEN, //ABILITY_GLUTTONY
-		.item = ITEM_AGUAV_BERRY,
+		.item = ITEM_LEFTOVERS,
 		.moves =
 		{
 			MOVE_BODYSLAM,
@@ -1132,9 +1132,9 @@ extern const u8 sTrainerName_Red[];
 const struct MultiRaidTrainer gRaidPartners[] =
 {
 	{
-		.owNum = EVENT_OBJ_GFX_CATHERINE,
+		.owNum = EVENT_OBJ_GFX_SABRINA,
 		.trainerClass = CLASS_PKMN_TRAINER_2,
-		.backSpriteId = TRAINER_BACK_PIC_CATHERINE,
+		.backSpriteId = TRAINER_BACK_PIC_LEAF,
 		.gender = FEMALE,
 		.otId = 0xCD2F27AB,
 		.name = sTrainerName_Catherine,
@@ -1152,9 +1152,9 @@ const struct MultiRaidTrainer gRaidPartners[] =
 		},
 	},
 	{
-		.owNum = EVENT_OBJ_GFX_GINGER,
+		.owNum = EVENT_OBJ_GFX_BLAINE,
 		.trainerClass = CLASS_PKMN_TRAINER_2,
-		.backSpriteId = TRAINER_BACK_PIC_GINGER,
+		.backSpriteId = TRAINER_BACK_PIC_LEAF,
 		.gender = FEMALE,
 		.otId = 0xAD5C417B,
 		.name = sTrainerName_Ginger,
@@ -1170,9 +1170,9 @@ const struct MultiRaidTrainer gRaidPartners[] =
 		},
 	},
 	{
-		.owNum = EVENT_OBJ_GFX_ABIMBOLA,
+		.owNum = EVENT_OBJ_GFX_GIOVANNI,
 		.trainerClass = CLASS_PKMN_TRAINER_2,
-		.backSpriteId = TRAINER_BACK_PIC_ABIMBOLA,
+		.backSpriteId = TRAINER_BACK_PIC_LEAF,
 		.gender = MALE,
 		.otId = 0x2EC3AEBC,
 		.name = sTrainerName_Abimbola,
@@ -1188,9 +1188,9 @@ const struct MultiRaidTrainer gRaidPartners[] =
 		},
 	},
 	{
-		.owNum = EVENT_OBJ_GFX_MAHINA,
+		.owNum = EVENT_OBJ_GFX_BROCK,
 		.trainerClass = CLASS_PKMN_TRAINER_2,
-		.backSpriteId = TRAINER_BACK_PIC_MAHINA,
+		.backSpriteId = TRAINER_BACK_PIC_RED,
 		.gender = FEMALE,
 		.otId = 0x87116209,
 		.name = sTrainerName_Mahina,
@@ -1204,9 +1204,9 @@ const struct MultiRaidTrainer gRaidPartners[] =
 		},
 	},
 	{
-		.owNum = EVENT_OBJ_GFX_ALFORD,
+		.owNum =  EVENT_OBJ_GFX_MISTY,
 		.trainerClass = CLASS_PKMN_TRAINER_2,
-		.backSpriteId = TRAINER_BACK_PIC_ALFORD,
+		.backSpriteId = TRAINER_BACK_PIC_RED,
 		.gender = MALE,
 		.otId = 0x61AC8B90,
 		.name = sTrainerName_Alford,
@@ -1222,7 +1222,7 @@ const struct MultiRaidTrainer gRaidPartners[] =
 	{
 		.owNum = EVENT_OBJ_GFX_RIVAL,
 		.trainerClass = CLASS_RIVAL,
-		.backSpriteId = TRAINER_BACK_PIC_RIVAL,
+		.backSpriteId = TRAINER_BACK_PIC_BRENDAN,
 		.gender = MALE,
 		.otId = 0xECBAA1AD,
 		.name = NULL, //Predefined ingame
@@ -1236,9 +1236,9 @@ const struct MultiRaidTrainer gRaidPartners[] =
 		},
 	},
 	{
-		.owNum = EVENT_OBJ_GFX_MARLON,
-		.trainerClass = CLASS_SHADOW_ADMIN,
-		.backSpriteId = TRAINER_BACK_PIC_MARLON,
+		.owNum = EVENT_OBJ_GFX_MAY,
+		.trainerClass = CLASS_RIVAL,
+		.backSpriteId = TRAINER_BACK_PIC_POKE_DUDE,
 		.gender = MALE,
 		.otId = 0x4156010,
 		.name = sTrainerName_Marlon,
@@ -1252,9 +1252,9 @@ const struct MultiRaidTrainer gRaidPartners[] =
 		},
 	},
 	{
-		.owNum = EVENT_OBJ_GFX_JAX,
+		.owNum = EVENT_OBJ_GFX_MAY,
 		.trainerClass = CLASS_PKMN_TRAINER_2,//CLASS_CHAMPION,
-		.backSpriteId = TRAINER_BACK_PIC_JAX,
+		.backSpriteId = TRAINER_BACK_PIC_MAY,
 		.gender = MALE,
 		.otId = 0x95746426,
 		.name = sTrainerName_Jax,
@@ -1268,9 +1268,9 @@ const struct MultiRaidTrainer gRaidPartners[] =
 		},
 	},
 	{
-		.owNum = EVENT_OBJ_GFX_RED,
+		.owNum = EVENT_OBJ_GFX_MOM,
 		.trainerClass = CLASS_PKMN_TRAINER_2,
-		.backSpriteId = TRAINER_BACK_PIC_RED_NEW,
+		.backSpriteId = TRAINER_BACK_PIC_MAY,
 		.gender = MALE,
 		.otId = 0x95746426,
 		.name = sTrainerName_Red,
@@ -1285,14 +1285,14 @@ const struct MultiRaidTrainer gRaidPartners[] =
 	},
 };
 
-#else
+// #else
 
-const struct MultiRaidTrainer gRaidPartners[] =
-{
-	{
-	},
-};
+// const struct MultiRaidTrainer gRaidPartners[] =
+// {
+// 	{
+// 	},
+// };
 
-#endif
+// #endif
 
 const u8 gNumRaidPartners = NELEMS(gRaidPartners);

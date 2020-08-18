@@ -706,6 +706,7 @@ gKickingMoves:
 .hword MOVE_ROLLINGKICK
 .hword MOVE_TROPKICK
 .hword MOVE_PYROBALL
+.hword MOVE_HIGHHORSEPOWER
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -723,6 +724,8 @@ gSwordMoves:
 .hword MOVE_SOLARBLADE
 .hword MOVE_FURYCUTTER
 .hword MOVE_SMARTSTRIKE
+.hword MOVE_RAZORSHELL
+.hword MOVE_SHADOWCLAW
 .hword MOVE_TABLES_TERMIN 
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

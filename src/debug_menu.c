@@ -34,7 +34,7 @@ void DebugMenu_ProcessSetFlag(void)
 			//FlagSet(0x152D);
 			VarSet(0x500C, 0x28);
 			//FlagClear(0x15AC);
-			break;
+			break; 
 	}
 }
 

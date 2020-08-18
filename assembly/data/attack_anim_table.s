@@ -16914,7 +16914,18 @@ ANIM_SCALE_SHOT:
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
 ANIM_METEOR_BEAM:
-	goto 0x81cad1b @Continental Crush
+	loadparticle ANIM_TAG_SPARK
+	loadparticle ANIM_TAG_SPARK_2
+	@loadparticle ANIM_TAG_ICE_CHUNK @Ice Ball
+	loadparticle ANIM_TAG_CIRCLE_OF_LIGHT @Electric Circle
+	choosetwoturnanim METEOR_BEAM_CHARGE METEOR_BEAM_ATTACK
+
+METEOR_BEAM_CHARGE:
+	goto FREEZE_SHOCK_CHARGE
+	endanimation 
+
+METEOR_BEAM_ATTACK:
+	goto ANIM_CONTINENTAL_CRUSH 
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -16992,8 +17003,55 @@ ANIM_FLIP_TURN:
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
 ANIM_TRIPLE_AXEL:
-	goto 0x81cfecb @MOVE_TRIPLEKICK
+	loadparticle ANIM_TAG_HANDS_AND_FEET
+	loadparticle ANIM_TAG_IMPACT
+	loadparticle ANIM_TAG_ICE_CRYSTALS
+	pokespritetoBG side_target 
+	setblends 0x80c
+	playsound2 0x74 0x3f
+	jumpifmoveturn 0 TRIPLE_AXEL_0
+	jumpifmoveturn 1 TRIPLE_AXEL_1
+	goto TRIPLE_AXEL_2
+
+TRIPLE_AXEL_0:
+	launchtemplate Template_Fist TEMPLATE_TARGET | 4, 0x5 0xfff0 0xfff8 0x14 0x1 0x2
+	launchtemplate Template_Hit TEMPLATE_TARGET | 3, 0x4 0xfff0 0xfff0 0x1 0x2
+	launchtemplate TRIPLE_AXEL_ICE TEMPLATE_TARGET | 1, 0x4 0xfff0 0xfff8 0xff00 0xffd8
+	launchtemplate TRIPLE_AXEL_ICE TEMPLATE_TARGET | 1, 0x4 0xfff0 0xfff8 0x1a0 0xffda
+	launchtask AnimTask_move_bank 0x5 0x5 bank_target 0x4 0x0 0x4 0x1
+	goto TRIPLE_AXEL_END
+
+TRIPLE_AXEL_1:
+	launchtemplate Template_Fist TEMPLATE_TARGET | 4, 0x5 0x8 0x8 0x14 0x1 0x2
+	launchtemplate Template_Hit TEMPLATE_TARGET | 3, 0x4 0x8 0x0 0x1 0x2
+	launchtemplate TRIPLE_AXEL_ICE TEMPLATE_TARGET | 1, 0x4 0x8 0x8 0xa0 0xffe0
+	launchtemplate TRIPLE_AXEL_ICE TEMPLATE_TARGET | 1, 0x4 0x8 0x8 0xff00 0xffd8
+	launchtemplate TRIPLE_AXEL_ICE TEMPLATE_TARGET | 1, 0x4 0x8 0x8 0x1a0 0xffda
+	launchtemplate TRIPLE_AXEL_ICE TEMPLATE_TARGET | 1, 0x4 0x8 0x8 0xfe80 0xffe1
+	launchtask AnimTask_move_bank 0x5 0x5 bank_target 0x4 0x0 0x6 0x1
+	goto TRIPLE_AXEL_END
+
+TRIPLE_AXEL_2:
+	launchtemplate Template_Fist TEMPLATE_TARGET | 4, 0x5 0x0 0x0 0x14 0x1 0x2
+	launchtemplate Template_Hit TEMPLATE_TARGET | 3, 0x4 0x0 0xfff8 0x1 0x1
+	launchtemplate TRIPLE_AXEL_ICE TEMPLATE_TARGET | 1, 0x4 0x0 0x0 0xa0 0xffe0
+	launchtemplate TRIPLE_AXEL_ICE TEMPLATE_TARGET | 1, 0x4 0x0 0x0 0xff00 0xffd8
+	launchtemplate TRIPLE_AXEL_ICE TEMPLATE_TARGET | 1, 0x4 0x0 0x0 0x80 0xfff0
+	launchtemplate TRIPLE_AXEL_ICE TEMPLATE_TARGET | 1, 0x4 0x0 0x0 0x1a0 0xffda
+	launchtemplate TRIPLE_AXEL_ICE TEMPLATE_TARGET | 1, 0x4 0x0 0x0 0xff80 0xffea
+	launchtemplate TRIPLE_AXEL_ICE TEMPLATE_TARGET | 1, 0x4 0x0 0x0 0xfe80 0xffe1
+	launchtask AnimTask_move_bank 0x5 0x5 bank_target 0x6 0x0 0x8 0x1
+
+TRIPLE_AXEL_END:
+	pause 0x4
+	playsound2 0x82 0x3f
+	waitanimation
+	pokespritefromBG side_target
+	resetblends
 	endanimation
+
+.align 2
+TRIPLE_AXEL_ICE: objtemplate ANIM_TAG_ICE_CRYSTALS ANIM_TAG_ICE_CRYSTALS OAM_OFF_BLEND_8x8 0x83E6324 0x0 gDummySpriteAffineAnimTable 0x80B0DF1
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool

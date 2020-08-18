@@ -1335,9 +1335,12 @@ bool8 ShouldPivot(u8 bankAtk, u8 bankDef, u16 move, u8 class)
 		{
 			if (CanKnockOut(bankDef, bankAtk))
 			{
-				return CAN_TRY_PIVOT; //You're probably going to faint anyways so if for some reason you don't, better switch
-			}
-			if (Can2HKO(bankDef, bankAtk)) //Foe can 2HKO AI
+				if (gBattleMoves[move].effect == EFFECT_TELEPORT)
+					return DONT_PIVOT; //If you're going to faint because you'll go second, use a different move
+				else
+					return CAN_TRY_PIVOT; //You're probably going to faint anyways so if for some reason you don't, better switch
+			}				
+			else if (Can2HKO(bankDef, bankAtk)) //Foe can 2HKO AI
 			{
 				if (CanKnockOut(bankAtk, bankDef))
 				{

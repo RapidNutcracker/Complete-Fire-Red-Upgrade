@@ -1843,7 +1843,7 @@ static void SetWildMonHeldItem(void)
 	u16 var2 = 95;
 
 	if (!GetMonData(&gPlayerParty[0], MON_DATA_IS_EGG, 0)
-	&& (GetMonAbility(&gPlayerParty[0]) == ABILITY_COMPOUNDEYES || GetMonAbility(&gPlayerParty[0]) == ABILITY_SUPERLUCK))
+	&& (GetMonAbility(&gPlayerParty[0]) == ABILITY_COMPOUNDEYES || GetMonAbility(&gPlayerParty[0]) == ABILITY_SUPERLUCK ||GetMonAbility(&gPlayerParty[0]) == ABILITY_FRISK ))
 	{
 		var1 = 20;
 		var2 = 80;
@@ -1904,7 +1904,7 @@ void GiveMonNatureAndAbility(struct Pokemon* mon, u8 nature, u8 abilityNum, bool
 		if (abilityNum != 0xFF)
 		{
 			personality &= ~(1);
-			personality |= abilityNum; 
+			personality |= abilityNum;  
 		}
 	} while (GetNatureFromPersonality(personality) != nature
 	|| (keepGender && GetGenderFromSpeciesAndPersonality(species, personality) != gender)

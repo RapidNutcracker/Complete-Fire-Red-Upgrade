@@ -3001,6 +3001,17 @@ BS_145_SkullBash:
 	setbyte TWOTURN_STRINGID, 0x2
 	call BattleScript_FirstChargingTurn
 	jumpifmove MOVE_METEORBEAM BS_MeteorBeam
+	@ setstatchanger STAT_ATK | INCREASE_1
+	@ statbuffchange STAT_ATTACKER | STAT_BS_PTR | STAT_CERTAIN SkullBashTwo
+	setbyte STAT_ANIM_PLAYED 0x0
+	playstatchangeanimation BANK_ATTACKER, STAT_ANIM_ATK, STAT_ANIM_UP | STAT_ANIM_IGNORE_ABILITIES
+	setstatchanger STAT_ATK | INCREASE_1 
+	statbuffchange STAT_ATTACKER | STAT_BS_PTR | STAT_CERTAIN SkullBashTwo 
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 SkullBashTwo
+	printfromtable 0x83FE57C
+	waitmessage DELAY_1SECOND
+
+SkullBashTwo:
 	setstatchanger STAT_DEF | INCREASE_1
 	statbuffchange STAT_ATTACKER | STAT_BS_PTR | STAT_CERTAIN BS_MOVE_END
 	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 BS_MOVE_END
@@ -3101,9 +3112,14 @@ BS_152_Thunder:
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 .global BS_153_Teleport
+.global BattleScript_TeleportFlee
+.global BattleScript_TeleportSwitch
 BS_153_Teleport:
 	attackcanceler
-	jumpifbattletype BATTLE_TRAINER | BATTLE_DOUBLE, FAILED_PRE
+	callasm SetCorrectTeleportBattleScript
+
+BattleScript_TeleportFlee:
+	jumpifbattletype BATTLE_DOUBLE, FAILED_PRE
 	callasm SetTeleportBit
 	getifcantrunfrombattle BANK_ATTACKER
 	jumpifbyte EQUALS BATTLE_COMMUNICATION 0x1 FAILED_PRE
@@ -3116,6 +3132,15 @@ BS_153_Teleport:
 	waitmessage DELAY_1SECOND
 	setbyte BATTLE_OUTCOME 0x5 @;Teleported
 	goto BS_MOVE_END
+
+BattleScript_TeleportSwitch:
+	jumpifcannotswitch BANK_ATTACKER | ATK4F_DONT_CHECK_STATUSES, FAILED_PRE
+	attackstring
+	ppreduce
+	attackanimation
+	waitanimation
+	copybyte SWITCHING_BANK USER_BANK
+	goto BatonPassSwitchOutBS
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 

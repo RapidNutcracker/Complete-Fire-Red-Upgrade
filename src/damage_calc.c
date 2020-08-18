@@ -1159,12 +1159,16 @@ static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, 
 
 	if (!checkMonDef && multiplier == TYPE_MUL_NO_EFFECT)
 	{
-		if ((defType == TYPE_GHOST && (moveType == TYPE_NORMAL || moveType == TYPE_FIGHTING))
+		if ((defType == TYPE_GHOST && (moveType == TYPE_NORMAL || moveType == TYPE_FIGHTING) )
 		&& (gBattleMons[bankDef].status2 & STATUS2_FORESIGHT || atkAbility == ABILITY_SCRAPPY))
 			return; //Foresight breaks ghost immunity
 
 		if (moveType == TYPE_PSYCHIC && defType == TYPE_DARK && (gStatuses3[bankDef] & STATUS3_MIRACLE_EYED))
 			return; //Miracle Eye causes normal damage hits
+
+		if ((defType == TYPE_STEEL && (moveType == TYPE_POISON) )
+		&& (atkAbility == ABILITY_CORROSION))
+			return; //Corrosion now affects steel types
 	}
 	else if (checkMonDef)
 	{
@@ -1290,8 +1294,6 @@ u8 GetMoveTypeSpecialPostAbility(u16 move, u8 atkAbility, bool8 zMoveActive)
 
 		//Change non-Normal-type moves
 		switch (atkAbility) {
-			case ABILITY_NORMALIZE:
-				return TYPE_NORMAL;
 			case ABILITY_LIQUIDVOICE:
 				if (CheckSoundMove(move)) //Change Sound Moves
 					return TYPE_WATER;
@@ -1341,7 +1343,7 @@ static bool8 AbilityCanChangeTypeAndBoost(u16 move, u8 atkAbility, u8 electrifyT
 	}
 
 	//Check non-Normal-type moves
-	return atkAbility == ABILITY_NORMALIZE && moveTypeCanBeChanged;
+	return atkAbility == ABILITY_NONE && moveTypeCanBeChanged; //used to be normalize
 }
 
 u8 GetExceptionMoveType(u8 bankAtk, u16 move)
@@ -2017,6 +2019,10 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 //		case ABILITY_PUREPOWER:
 		//2x Boost
 			attack *= 2;
+			break;
+
+		case ABILITY_FELINEPOWER:
+			spAttack *= 2;
 			break;
 
 		case ABILITY_FLOWERGIFT:
@@ -3190,9 +3196,9 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 			break;
 
 		case ABILITY_IRONFIST:
-		//1.2x Boost
+		//1.3x Boost
 			if (CheckTableForMove(move, gPunchingMoves))
-				power = (power * 12) / 10;
+				power = (power * 13) / 10; 
 			break;
 
 		case ABILITY_STRIKER:
@@ -3202,7 +3208,7 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 			break;
 
 		case ABILITY_BLADEMASTER: 
-		//1.2x boost, gives +crit ratio to sword moves check above 
+		//1.1x boost, gives +crit ratio to sword moves check above 
 			if (CheckTableForMove(move, gSwordMoves))
 				power = (power * 11) / 10;
 			break;
@@ -3236,7 +3242,6 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 		case ABILITY_PIXILATE:
 		case ABILITY_REFRIGERATE:
 		case ABILITY_GALVANIZE:
-		case ABILITY_NORMALIZE:
 		//1.2x / 1.3x Boost
 			if ((!useMonAtk && AbilityCanChangeTypeAndBoost(move, data->atkAbility, gNewBS->ElectrifyTimers[bankAtk], TRUE, (gNewBS->zMoveData.active || gNewBS->zMoveData.viewing)))
 			||   (useMonAtk && AbilityCanChangeTypeAndBoost(move, data->atkAbility, 0, FALSE, FALSE)))
@@ -3300,9 +3305,9 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 			break;
 
 		case ABILITY_PUNKROCK:
-		//1.3x Boost
+		//1.2x Boost
 			if (CheckSoundMove(move))
-				power = (power * 13) / 10;
+				power = (power * 12) / 10;
 			break;
 	}
 

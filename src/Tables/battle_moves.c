@@ -4729,7 +4729,7 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_ARMTHRUST] =
 	{
 		.effect = EFFECT_MULTI_HIT,
-		.power = 15,
+		.power = 25,
 		.type = TYPE_FIGHTING,
 		.accuracy = 100,
 		.pp = 20,
@@ -9293,7 +9293,7 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_PARABOLICCHARGE] =
 	{
 		.effect = EFFECT_ABSORB,
-		.power = 65,
+		.power = 75,
 		.type = TYPE_ELECTRIC,
 		.accuracy = 100,
 		.pp = 20,
@@ -9493,7 +9493,7 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_DRAGONHAMMER] =
 	{
 		.effect = EFFECT_HIT,
-		.power = 90,
+		.power = 100,
 		.type = TYPE_DRAGON,
 		.accuracy = 100,
 		.pp = 15,

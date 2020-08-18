@@ -1662,9 +1662,18 @@ s8 PriorityCalc(u8 bank, u8 action, u16 move)
 			case ABILITY_TRIAGE:
 				if (gBattleMoves[move].flags & FLAG_TRIAGE_AFFECTED)
 					priority += 3;
+				break;
+
+			case ABILITY_FLAMINGSOUL:
+				if (GetMoveTypeSpecial(bank, move) == TYPE_FIRE)
+					{
+							if (BATTLER_MAX_HP(bank))
+								++priority;
+					}
+				break;
 		}
 		
-		if (move == MOVE_GRASSYGLIDE && gTerrainType == GRASSY_TERRAIN && CheckGrounding(bank))
+		if (move == MOVE_GRASSYGLIDE && gTerrainType == GRASSY_TERRAIN)
 			++priority;
 	}
 
@@ -1696,6 +1705,15 @@ s8 PriorityCalcMon(struct Pokemon* mon, u16 move)
 		case ABILITY_TRIAGE:
 			if (gBattleMoves[move].flags & FLAG_TRIAGE_AFFECTED)
 				priority += 3;
+				break;
+
+		case ABILITY_FLAMINGSOUL:
+				if (GetMoveTypeSpecial(bank, move) == TYPE_FIRE)
+					{
+							if (GetMonData(mon, MON_DATA_HP, NULL) == GetMonData(mon, MON_DATA_MAX_HP, NULL))
+								++priority;
+					}
+				break;
 	}
 
 	return priority;

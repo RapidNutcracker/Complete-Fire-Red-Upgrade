@@ -704,7 +704,24 @@ MOVESCR_CHECK_0:
 			break;
 
 		case EFFECT_TELEPORT:
-			DECREASE_VIABILITY(10);
+			if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+			{
+				if (!BankHasMonToSwitchTo(bankAtk))
+					DECREASE_VIABILITY(10);
+			}
+			else //Wild Battle
+			{
+				if (SIDE(gBankAttacker) == B_SIDE_PLAYER)
+				{
+					if (!BankHasMonToSwitchTo(bankAtk))
+						DECREASE_VIABILITY(10);
+				}
+				else //Wild Enemy
+				{
+					if (IS_DOUBLE_BATTLE || IsTrapped(bankAtk, FALSE))
+						DECREASE_VIABILITY(10);
+				}
+			}
 			break;
 
 		case EFFECT_ATTACK_UP:

@@ -3047,14 +3047,16 @@ extern const u8 sExampleText_7[];
 extern const u8 sExampleText_8[];
 extern const u8 sExampleText_9[];
 extern const u8 sExampleText_10[];
-extern const u8 sExampleText_Root[]; 
-extern const u8 sExampleText_Claw[]; 
-extern const u8 sExampleText_Skull[]; 
-extern const u8 sExampleText_Armor[]; 
-extern const u8 sExampleText_Cover[]; 
-extern const u8 sExampleText_Plume[]; 
-extern const u8 sExampleText_Jaw[]; 
-extern const u8 sExampleText_Sail[]; 
+extern const u8 sExampleText_HydroPump[]; 
+extern const u8 sExampleText_DrillRun[]; 
+extern const u8 sExampleText_BlazeKick[]; 
+extern const u8 sExampleText_PSplit[]; 
+extern const u8 sExampleText_ZenHeadbutt[]; 
+extern const u8 sExampleText_WeatherBall[]; 
+extern const u8 sExampleText_AirSlash[]; 
+extern const u8 sExampleText_Hex[]; 
+extern const u8 sExampleText_MysticalFire[]; 
+extern const u8 sExampleText_SeedBomb[]; 
 
 extern const u8 sText_1[];
 extern const u8 sText_2[];
@@ -3103,14 +3105,16 @@ static const u8* sMultichoiceSet2[] =
 
 static const u8* sMultichoiceSet3[] =
 {
- 	sExampleText_Root,
-	sExampleText_Claw,
-	sExampleText_Skull, 
-	sExampleText_Armor, 
-	sExampleText_Cover, 
-	sExampleText_Plume, 
-	sExampleText_Jaw, 
-	sExampleText_Sail,
+ 	sExampleText_HydroPump,
+	sExampleText_DrillRun,
+	sExampleText_BlazeKick, 
+	sExampleText_PSplit, 
+	sExampleText_ZenHeadbutt, 
+	sExampleText_WeatherBall, 
+	sExampleText_AirSlash, 
+	sExampleText_Hex,
+	sExampleText_MysticalFire,
+	sExampleText_SeedBomb,
 };
 
 // Multichoice Lists
