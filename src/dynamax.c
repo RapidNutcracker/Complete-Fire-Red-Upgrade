@@ -114,8 +114,8 @@ const u8 gRaidBattleStarsByBadges[NUM_BADGE_OPTIONS][2] =
 	[4] = {TWO_STAR_RAID,   THREE_STAR_RAID},
 	[5] = {THREE_STAR_RAID, THREE_STAR_RAID},
 	[6] = {THREE_STAR_RAID, FOUR_STAR_RAID},
-	[7] = {FOUR_STAR_RAID,  FOUR_STAR_RAID},
-	[8] = {FOUR_STAR_RAID,  FIVE_STAR_RAID},
+	[7] = {FOUR_STAR_RAID,  FIVE_STAR_RAID},
+	[8] = {FIVE_STAR_RAID,  SIX_STAR_RAID},
 	[9] = {FIVE_STAR_RAID,  SIX_STAR_RAID}, //Beat Game
 };
 
@@ -126,7 +126,7 @@ const u8 gRaidBattleLevelRanges[RAID_STAR_COUNT][2] =
 	[THREE_STAR_RAID] = {35, 40},
 	[FOUR_STAR_RAID]  = {50, 55},
 	[FIVE_STAR_RAID]  = {60, 65},
-	[SIX_STAR_RAID]   = {75, 90},
+	[SIX_STAR_RAID]   = {65, 75},
 };
 
 //The chance that each move is replaced with an Egg Move

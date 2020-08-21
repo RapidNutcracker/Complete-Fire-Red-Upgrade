@@ -1703,17 +1703,18 @@ s8 PriorityCalcMon(struct Pokemon* mon, u16 move)
 			break;
 
 		case ABILITY_TRIAGE:
-			if (gBattleMoves[move].flags & FLAG_TRIAGE_AFFECTED)
+			if (gBattleMoves[move].flags & FLAG_TRIAGE_AFFECTED){
 				priority += 3;
-				break;
+			}
+			break;
 
 		case ABILITY_FLAMINGSOUL:
-				if (GetMoveTypeSpecial(bank, move) == TYPE_FIRE)
-					{
-							if (GetMonData(mon, MON_DATA_HP, NULL) == GetMonData(mon, MON_DATA_MAX_HP, NULL))
-								++priority;
-					}
-				break;
+			if (GetMonMoveTypeSpecial(mon, move) == TYPE_FIRE)
+			{
+				if (GetMonData(mon, MON_DATA_HP, NULL) == GetMonData(mon, MON_DATA_MAX_HP, NULL))
+					++priority;
+			}
+			break;
 	}
 
 	return priority;

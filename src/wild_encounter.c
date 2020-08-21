@@ -380,8 +380,11 @@ void sp117_CreateRaidMon(void)
 	u8 numPerfectStats = 0;
 	u8 perfect = 31;
 	bool8 perfectStats[NUM_STATS] = {0};
-
-	while (numPerfectStats < MathMin(gRaidBattleStars, NUM_STATS)) //Error prevention
+	u8 perfIVs = gRaidBattleStars;
+	if (gRaidBattleStars > 4){
+		perfIVs = 1;
+	}
+	while (numPerfectStats < MathMin(gRaidBattleStars, perfIVs)) //Error prevention, used to be NUM_STATS, now its 3
 	{
 		u8 statId = Random() % NUM_STATS;
 		if (!perfectStats[statId]) //Must be unique

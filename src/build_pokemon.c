@@ -48,7 +48,7 @@ build_pokemon.c
 #define TOTAL_LEGENDARY_SPREADS ARRAY_COUNT(gFrontierLegendarySpreads)
 #define TOTAL_ARCEUS_SPREADS ARRAY_COUNT(gArceusSpreads)
 #define TOTAL_PIKACHU_SPREADS ARRAY_COUNT(gPikachuSpreads)
-#define TOTAL_WORMADAM_SPREADS ARRAY_COUNT(gWormadamSpreads)
+#define TOTAL_WORMADAM_SPREADS ARRAY_COUNT(gWormadamSpreads) 
 #define TOTAL_ROTOM_SPREADS ARRAY_COUNT(gRotomSpreads)
 #define TOTAL_ORICORIO_SPREADS ARRAY_COUNT(gOricorioSpreads)
 #define TOTAL_LITTLE_CUP_SPREADS ARRAY_COUNT(gLittleCupSpreads)
@@ -58,13 +58,13 @@ enum
 {
 	HAZARDS_SETUP,
 	BATON_PASSER,
-	SCREENER,
+	SCREENER, 
 	CLERIC,
 	FAST_MON,
 	BAD_ABILITY,
-	NORMAL_IMMUNITY,
+	NORMAL_IMMUNITY, 
 	POISON_IMMUNITY,
-	GROUND_IMMUNITY,
+	GROUND_IMMUNITY, 
 	FIRE_IMMUNITY,
 	WATER_IMMUNITY,
 	GRASS_IMMUNITY,
@@ -76,11 +76,11 @@ enum
 
 struct TeamBuilder
 {
-	u16 speciesArray[PARTY_SIZE];
+	u16 speciesArray[PARTY_SIZE]; 
 	u16 itemArray[PARTY_SIZE];
-	bool8 speciesOnTeam[NATIONAL_DEX_COUNT];
+	bool8 speciesOnTeam[NATIONAL_DEX_COUNT]; 
 	bool8 moveOnTeam[MOVES_COUNT];
-	bool8 abilityOnTeam[ABILITIES_COUNT];
+	bool8 abilityOnTeam[ABILITIES_COUNT]; 
 	bool8 itemEffectOnTeam[ITEM_EFFECT_COUNT];
 	const struct BattleTowerSpread* spreads[PARTY_SIZE];
 	u8 spreadClasses[PARTY_SIZE];
@@ -117,12 +117,12 @@ extern const species_t gRandomizerSpeciesBanList[];
 extern const species_t gSetPerfectXIvList[];
 extern const species_t gDeerlingForms[];
 extern const species_t gSawsbuckForms[];
-extern const species_t gVivillonForms[];
+extern const species_t gVivillonForms[]; 
 extern const species_t gFurfrouForms[];
 extern const species_t gFlabebeForms[];
 extern const species_t gFloetteForms[];
 extern const species_t gFlorgesForms[];
-extern const species_t gPikachuCapForms[];
+extern const species_t gPikachuCapForms[]; 
 extern const species_t gAlcremieForms[];
 extern const u8 gNumDeerlingForms;
 extern const u8 gNumSawsbuckForms;
@@ -191,21 +191,21 @@ void BuildTrainerPartySetup(void)
 
 	if (gBattleTypeFlags & (BATTLE_TYPE_TOWER_LINK_MULTI))
 	{
-		BuildFrontierParty(&gEnemyParty[0], gTrainerBattleOpponent_A, towerTier, TRUE, FALSE, B_SIDE_OPPONENT);
+		BuildFrontierParty(&gEnemyParty[0], gTrainerBattleOpponent_A, towerTier, TRUE, FALSE, B_SIDE_OPPONENT); 
 		BuildFrontierParty(&gEnemyParty[3], VarGet(VAR_SECOND_OPPONENT), towerTier, FALSE, FALSE, B_SIDE_OPPONENT);
 	}
 	else if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
 	{
 		if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
 		{
-			BuildFrontierParty(&gEnemyParty[0], gTrainerBattleOpponent_A, towerTier, TRUE, FALSE, B_SIDE_OPPONENT);
-			BuildFrontierParty(&gEnemyParty[3], SECOND_OPPONENT, towerTier, FALSE, FALSE, B_SIDE_OPPONENT);
+			BuildFrontierParty(&gEnemyParty[0], gTrainerBattleOpponent_A, towerTier, TRUE, FALSE, B_SIDE_OPPONENT);  
+			BuildFrontierParty(&gEnemyParty[3], SECOND_OPPONENT, towerTier, FALSE, FALSE, B_SIDE_OPPONENT); 
 		}
 		else
 			BuildFrontierParty(&gEnemyParty[0], gTrainerBattleOpponent_A, towerTier, TRUE, FALSE, B_SIDE_OPPONENT);
 
 		if (IsRandomBattleTowerBattle())
-			BuildFrontierParty(gPlayerParty, 0, towerTier, TRUE, TRUE + 1, B_SIDE_PLAYER);
+			BuildFrontierParty(gPlayerParty, 0, towerTier, TRUE, TRUE + 1, B_SIDE_PLAYER); 
 	}
 	else if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
 	{
@@ -218,7 +218,7 @@ void BuildTrainerPartySetup(void)
 			CreateNPCTrainerParty(&gEnemyParty[0], gTrainerBattleOpponent_A, TRUE, B_SIDE_OPPONENT);
 
 		else if (!(gBattleTypeFlags & (BATTLE_TYPE_POKE_DUDE | BATTLE_TYPE_SCRIPTED_WILD_1)))
-			SetWildMonHeldItem();
+			SetWildMonHeldItem(); 
 
 		if (IsRaidBattle())
 		{
@@ -1794,7 +1794,7 @@ static void CreateFrontierMon(struct Pokemon* mon, const u8 level, const struct 
 	#endif
 
 	mon->metLevel = level;
-	mon->obedient = TRUE;
+	mon->obedient = TRUE; 
 	mon->friendship = 255;
 
 	i = 0;
@@ -2681,7 +2681,7 @@ static u16 GivePlayerFrontierMonGivenSpecies(const u16 species, const struct Bat
 }
 
 void CreateFrontierRaidMon(u16 originalSpecies)
-{
+{ //add to this
 	u16 species;
 	struct Pokemon mon;
 	const struct BattleTowerSpread* spreadPtr = (const struct BattleTowerSpread*) gPokeBackupPtr;

@@ -470,7 +470,7 @@ extern const u8 sTrainerName_Golche[];
 extern const u8 sTrainerName_Gail[];
 extern const u8 sTrainerName_Lixdel[];
 extern const u8 sTrainerName_Cynthia[];
-extern const u8 sTrainerName_Red[];
+extern const u8 sTrainerName_May[];
 extern const u8 sTrainerName_BigMo[];
 extern const u8 sTrainerName_Galavan[];
 extern const u8 sTrainerName_Candice[];
@@ -1914,7 +1914,7 @@ const struct SpecialBattleFrontierTrainer gSpecialTowerTrainers[] =
 		.trainerClass = 	CLASS_PKMN_TRAINER_2,
 		.trainerSprite = 	TRAINER_PIC_RED,
 		.gender = 			BATTLE_FACILITY_MALE,
-		.name =				sTrainerName_Red,
+		.name =				sTrainerName_May,
 		.preBattleText = 	sFrontierText_Red_PreBattle,
 		.playerWinText = 	sFrontierText_Red_PlayerWin,
 		.playerLoseText = 	sFrontierText_Red_PlayerLose,

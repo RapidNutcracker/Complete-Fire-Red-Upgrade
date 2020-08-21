@@ -8781,7 +8781,7 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_AQUAFANG] =
 	{
 		.effect = EFFECT_FLINCH_HIT,
-		.power = 90,
+		.power = 85,
 		.type = TYPE_WATER,
 		.accuracy = 100,
 		.pp = 10,
