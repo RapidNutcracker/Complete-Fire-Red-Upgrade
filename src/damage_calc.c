@@ -3168,7 +3168,7 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 			break;
 
 		case ABILITY_RIVALRY: ;
-		//1.25x / 0.75x Boost
+		//1.25x / 0.75x Boost changed to 1x Boost
 			u8 attackerGender, targetGender;
 			if (useMonAtk)
 				attackerGender = GetGenderFromSpeciesAndPersonality(data->atkSpecies, data->monAtk->personality);
@@ -3184,11 +3184,17 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 			{
 				if (attackerGender == targetGender)
 					power = (power * 125) / 100;
-				else
-					power = (power * 75) / 100;
+				// else
+				// 	power = (power * 75) / 100; removed here
 			}
 			break;
 
+		case ABILITY_ILLUSION: //added this here!  
+			if (gStatuses3[bank] & STATUS3_ILLUSION) {
+				power = (power * 13) / 10;
+				break;
+			}
+	
 		case ABILITY_RECKLESS:
 		//1.2x Boost
 			if (CheckTableForMove(move, gRecklessBoostedMoves))
@@ -3198,16 +3204,16 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 		case ABILITY_IRONFIST:
 		//1.3x Boost
 			if (CheckTableForMove(move, gPunchingMoves))
-				power = (power * 13) / 10; 
+				power = (power * 13) / 10; //added 
 			break;
 
-		case ABILITY_STRIKER:
+		case ABILITY_STRIKER: //added 
 		//1.3x Boost
 			if (CheckTableForMove(move, gKickingMoves))
 				power = (power * 13) / 10;
 			break;
 
-		case ABILITY_BLADEMASTER: 
+		case ABILITY_BLADEMASTER: //added 
 		//1.1x boost, gives +crit ratio to sword moves check above 
 			if (CheckTableForMove(move, gSwordMoves))
 				power = (power * 11) / 10;
@@ -3307,7 +3313,7 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 		case ABILITY_PUNKROCK:
 		//1.2x Boost
 			if (CheckSoundMove(move))
-				power = (power * 12) / 10;
+				power = (power * 12) / 10; //changed
 			break;
 	}
 

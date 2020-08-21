@@ -9817,7 +9817,7 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_REVELATIONDANCE] =
 	{
 		.effect = EFFECT_HIT,
-		.power = 90,
+		.power = 100,
 		.type = TYPE_NORMAL,
 		.accuracy = 100,
 		.pp = 15,
