@@ -1618,7 +1618,8 @@ u32 GetPoisonDamage(u8 bank)
 	u8 ability = ABILITY(bank);
 
 	if (ability != ABILITY_MAGICGUARD
-	&& ability != ABILITY_POISONHEAL)
+	&& ability != ABILITY_POISONHEAL
+	&& ability != ABILITY_TOXICBOOST)
 	{
 		if (gBattleMons[bank].status1 & STATUS_POISON)
 		{
@@ -1642,7 +1643,8 @@ u32 GetBurnDamage(u8 bank)
 	u8 ability = ABILITY(bank);
 
 	if (gBattleMons[bank].status1 & STATUS_BURN
-	&& ability != ABILITY_MAGICGUARD)
+	&& ability != ABILITY_MAGICGUARD
+	&& ability != ABILITY_FLAREBOOST)
 	{
 		if (ability == ABILITY_HEATPROOF)
 		{

@@ -465,8 +465,8 @@ void HoldItemFormChange(struct Pokemon* mon, u16 item)
 				if (itemEffect == ITEM_EFFECT_MEMORY)
 					targetSpecies = sTypeToSilvallyForm[type];
 
-				if (targetSpecies == SPECIES_NONE)
-					targetSpecies = SPECIES_SILVALLY;
+				// if (targetSpecies == SPECIES_NONE)
+				// 	targetSpecies = SPECIES_SILVALLY; //changed this
 			}
 			break;
 		#endif

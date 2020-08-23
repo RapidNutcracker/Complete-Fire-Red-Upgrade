@@ -294,11 +294,13 @@ void atkEF_handleballthrow(void)
 
 				case BALL_TYPE_DUSK_BALL:
 					if (GetCurrentMapType() == MAP_TYPE_UNDERGROUND)
-						ballMultiplier = DUSK_BALL_MULTIPLIER;
+						ballMultiplier = 35; //added 
 
 					#ifdef TIME_ENABLED
 					else if (IsNightTime())
-						ballMultiplier = DUSK_BALL_MULTIPLIER;
+						ballMultiplier = 35; //added 
+					else 
+						ballMultiplier = 10; 
 					#endif
 					break;
 
@@ -312,6 +314,8 @@ void atkEF_handleballthrow(void)
 				case BALL_TYPE_DREAM_BALL:
 					if (gBattleMons[gBankTarget].status1 & STATUS1_SLEEP)
 						ballMultiplier = 30;
+					else
+						ballMultiplier = 10;
 					break;
 
 				case BALL_TYPE_BEAST_BALL:
@@ -532,6 +536,8 @@ u8 GiveMonToPlayer(struct Pokemon* mon) //Hook in
 			HealMon(mon);
 		else if (ItemId_GetType(gLastUsedItem) == BALL_TYPE_FRIEND_BALL)
 			mon->friendship = 200;
+		else if (ItemId_GetType(gLastUsedItem) == BALL_TYPE_DREAM_BALL) //added this here
+			mon->hiddenAbility = TRUE;
 	}
 
 	if (gMain.inBattle && IsRaidBattle() && FlagGet(FLAG_BATTLE_FACILITY))

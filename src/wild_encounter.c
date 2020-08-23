@@ -550,7 +550,7 @@ SKIP_INDEX_SEARCH:
 		CreateWildMon(wildMonInfo->wildPokemon[wildMonIndex].species, level, wildMonIndex, TRUE);
 
 	#ifdef FLAG_DOUBLE_WILD_BATTLE
-	if (FlagGet(FLAG_DOUBLE_WILD_BATTLE))
+	if (FlagGet(FLAG_DOUBLE_WILD_BATTLE)) // && ViableMonCount(gPlayerParty) >= 2)
 	{
 		wildMonIndex = 0;
 
@@ -600,7 +600,7 @@ static species_t GenerateFishingWildMon(const struct WildPokemonInfo* wildMonInf
 	CreateWildMon(wildMonInfo->wildPokemon[wildMonIndex].species, level, wildMonIndex, TRUE);
 
 	#ifdef FLAG_DOUBLE_WILD_BATTLE
-	if (FlagGet(FLAG_DOUBLE_WILD_BATTLE))
+	if (FlagGet(FLAG_DOUBLE_WILD_BATTLE))//  && ViableMonCount(gPlayerParty) >= 2)
 	{
 		u8 wildMonIndex = ChooseWildMonIndex_Fishing(rod);
 		u8 level = ChooseWildMonLevel(&wildMonInfo->wildPokemon[wildMonIndex]);
@@ -954,7 +954,7 @@ bool8 SweetScentWildEncounter(void)
 		}
 
 		#ifdef SWEET_SCENT_WILD_DOUBLE_BATTLES
-		if (Random() % 100 < WILD_DOUBLE_RANDOM_CHANCE)
+		if (Random() % 100 < WILD_DOUBLE_RANDOM_CHANCE && ViableMonCount(gPlayerParty) >= 2)
 			FlagSet(FLAG_DOUBLE_WILD_BATTLE); //Sweet Scent can trigger a wild double battle
 		#endif
 		TryGenerateWildMon(landMonsInfo, WILD_AREA_LAND, 0);
@@ -974,7 +974,7 @@ bool8 SweetScentWildEncounter(void)
 		}
 
 		#ifdef SWEET_SCENT_WILD_DOUBLE_BATTLES
-		if (Random() % 100 < WILD_DOUBLE_RANDOM_CHANCE)
+		if (Random() % 100 < WILD_DOUBLE_RANDOM_CHANCE && ViableMonCount(gPlayerParty) >= 2)
 			FlagSet(FLAG_DOUBLE_WILD_BATTLE); //Sweet Scent can trigger a wild double battle
 		#endif
 		TryGenerateWildMon(waterMonsInfo, WILD_AREA_WATER, 0);

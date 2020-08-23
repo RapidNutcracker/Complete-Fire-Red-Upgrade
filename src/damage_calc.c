@@ -119,7 +119,7 @@ void atk04_critcalc(void)
 						+ 2 * (atkEffect == ITEM_EFFECT_LUCKY_PUNCH && gBattleMons[gBankAttacker].species == SPECIES_CHANSEY)
 						#endif
 						#ifdef SPECIES_FARFETCHD
-						+ 2 * (atkEffect == ITEM_EFFECT_STICK && gBattleMons[gBankAttacker].species == SPECIES_FARFETCHD)
+						+  (atkEffect == ITEM_EFFECT_STICK && gBattleMons[gBankAttacker].species == SPECIES_FARFETCHD) //changed from +2 crit rate to +1 
 						#endif
 						+ 2 * (gCurrentMove == MOVE_10000000_VOLT_THUNDERBOLT);
 
@@ -1410,10 +1410,12 @@ u8 GetExceptionMoveType(u8 bankAtk, u16 move)
 			break;
 
 		case MOVE_MULTIATTACK:
-			if (effect == ITEM_EFFECT_MEMORY)
-				moveType = quality;
-			else
-				moveType = TYPE_NORMAL;
+			// if (effect == ITEM_EFFECT_MEMORY)
+			// 	moveType = quality;
+
+			// else
+			// 	moveType = TYPE_NORMAL;
+			moveType = gBattleMons[bankAtk].type1;
 			break;
 
 		case MOVE_TECHNOBLAST:
@@ -1543,10 +1545,10 @@ u8 GetMonExceptionMoveType(struct Pokemon* mon, u16 move)
 			break;
 
 		case MOVE_MULTIATTACK:
-			if (effect == ITEM_EFFECT_MEMORY && ability != ABILITY_KLUTZ)
-				moveType = quality;
-			else
-				moveType = TYPE_NORMAL;
+			// if (effect == ITEM_EFFECT_MEMORY && ability != ABILITY_KLUTZ)
+			moveType = GetMonType(mon, 0); //changed this
+			// else
+			// 	moveType = TYPE_NORMAL;
 			break;
 
 		case MOVE_TECHNOBLAST:
@@ -3152,7 +3154,6 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 	u8 bankAtk = data->bankAtk;
 	u8 bankDef = data->bankDef;
 	u16 move = data->move;
-
 	bool8 useMonAtk = data->monAtk != NULL;
 	bool8 useMonDef = data->monDef != NULL;
 
@@ -3190,10 +3191,9 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 			break;
 
 		case ABILITY_ILLUSION: //added this here!  
-			if (gStatuses3[bank] & STATUS3_ILLUSION) {
+			if (data->atkStatus3 & STATUS3_ILLUSION)
 				power = (power * 13) / 10;
-				break;
-			}
+			break;
 	
 		case ABILITY_RECKLESS:
 		//1.2x Boost

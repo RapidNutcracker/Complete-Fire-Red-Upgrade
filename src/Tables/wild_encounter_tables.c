@@ -349,7 +349,7 @@ static const struct WildPokemon gRockTunnelB1F_LandMonsNight[] =
 	{28, 31, SPECIES_RHYHORN},
 	{27, 31, SPECIES_SWINUB},
 	{28, 32, SPECIES_SWINUB},
-	{27, 32, SPECIES_BRONZOR},
+	{27, 32, SPECIES_BONSLY},
 	{28, 32, SPECIES_BRONZOR},
 	{27, 32, SPECIES_ONIX},
 	{28, 32, SPECIES_ONIX},
@@ -383,7 +383,7 @@ static const struct WildPokemonInfo gRoute7_LandMonsInfoNight = {20, gRoute7_Lan
 static const struct WildPokemon gRoute8_LandMonsNight[] =
 {
 	{33, 35, SPECIES_LOMBRE},
-	{33, 35, SPECIES_RATICATE_A},
+	{33, 35, SPECIES_MINCCINO},
 	{34, 34, SPECIES_GROWLITHE},
 	{34, 34, SPECIES_KIRLIA},
 	{35, 35, SPECIES_VENIPEDE},
@@ -742,7 +742,8 @@ static const struct WildPokemonInfo gPowerPlant_LandMonsInfoNight = {7, gPowerPl
 
 static const struct WildPokemon gCeruleanCave1_LandMonsNight[] = 
 {
-	{68, 71, SPECIES_PARASECT},
+	// {68, 71, SPECIES_PARASECT},
+	{68, 71, SPECIES_SILVALLY_FIGHT},
 	{68, 71, SPECIES_GOLBAT},
 	{67, 67, SPECIES_CONKELDURR},
 	{67, 68, SPECIES_CONKELDURR},
@@ -752,8 +753,8 @@ static const struct WildPokemon gCeruleanCave1_LandMonsNight[] =
 	{66, 69, SPECIES_SEISMITOAD},
 	{64, 64, SPECIES_DITTO},
 	{64, 64, SPECIES_DITTO},
-	{66, 66, SPECIES_WOBBUFFET},
-	{66, 66, SPECIES_WOBBUFFET},
+	{66, 66, SPECIES_TYPE_NULL},
+	{66, 66, SPECIES_TYPE_NULL},
 };
 
 static const struct WildPokemonInfo gCeruleanCave1_LandMonsInfoNight = {7, gCeruleanCave1_LandMonsNight};
@@ -770,8 +771,8 @@ static const struct WildPokemon gCeruleanCave2_LandMonsNight[] =
 	{69, 70, SPECIES_REUNICLUS},
 	{64, 64, SPECIES_DITTO},
 	{64, 64, SPECIES_DITTO},
-	{68, 68, SPECIES_WOBBUFFET},
-	{68, 68, SPECIES_WOBBUFFET},
+	{68, 68, SPECIES_TYPE_NULL},
+	{68, 68, SPECIES_TYPE_NULL},
 };
 
 static const struct WildPokemonInfo gCeruleanCave2_LandMonsInfoNight = {7, gCeruleanCave2_LandMonsNight};
@@ -788,8 +789,8 @@ static const struct WildPokemon gCeruleanCave3_LandMonsNight[] =
 	{69, 72, SPECIES_GARDEVOIR},
 	{70, 72, SPECIES_EXCADRILL},
 	{70, 72, SPECIES_EXCADRILL},
-	{68, 69, SPECIES_WOBBUFFET},
-	{69, 69, SPECIES_WOBBUFFET},
+	{68, 69, SPECIES_TYPE_NULL},
+	{69, 69, SPECIES_TYPE_NULL},
 };
 
 static const struct WildPokemonInfo gCeruleanCave3_LandMonsInfoNight = {7, gCeruleanCave3_LandMonsNight};
