@@ -742,8 +742,8 @@ static const struct WildPokemonInfo gPowerPlant_LandMonsInfoNight = {7, gPowerPl
 
 static const struct WildPokemon gCeruleanCave1_LandMonsNight[] = 
 {
-	// {68, 71, SPECIES_PARASECT},
-	{68, 71, SPECIES_SILVALLY_FIGHT},
+	{68, 71, SPECIES_PARASECT},
+	// {68, 71, SPECIES_SILVALLY_FIGHT},
 	{68, 71, SPECIES_GOLBAT},
 	{67, 67, SPECIES_CONKELDURR},
 	{67, 68, SPECIES_CONKELDURR},

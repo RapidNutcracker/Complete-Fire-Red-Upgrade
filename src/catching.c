@@ -329,8 +329,8 @@ void atkEF_handleballthrow(void)
 		else
 			ballMultiplier = sBallCatchBonuses[ballType - BALL_TYPE_ULTRA_BALL];
 
-		if (CheckTableForSpecies(defSpecies, gUltraBeastList) && ballType != BALL_TYPE_BEAST_BALL)
-			ballMultiplier = 1; //All balls except for Beast Ball have a hard time catching Ultra Beasts
+		// if (CheckTableForSpecies(defSpecies, gUltraBeastList) && ballType != BALL_TYPE_BEAST_BALL)
+		// 	ballMultiplier = 1; //All balls except for Beast Ball have a hard time catching Ultra Beasts
 
 		odds = (((catchRate * ballMultiplier) / 10) * (gBattleMons[gBankTarget].maxHP * 3 - gBattleMons[gBankTarget].hp * 2)) / (3 * gBattleMons[gBankTarget].maxHP);
 

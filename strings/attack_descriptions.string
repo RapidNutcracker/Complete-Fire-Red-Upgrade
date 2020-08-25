@@ -4,8 +4,26 @@
 #org @DESC_NO_MOVE
 No move information.
 
+#org @DESC_SANDATTACK
+The user throw sand\nat the foe, lowering\nits Attack.
+
+#org @DESC_SMOKESCREEN
+The user throws smoke\nat the foe, lowering\nits Attack. 
+
+#org @DESC_FLASH
+The user flashes a\nbright light, which\nlowers its Attack. 
+
 #org @DESC_DARKHOLE 
 The user sends the\nfoe to the shadow\nrealm. It may\ncause sleep.
+
+#org @DESC_MUDSLAP 
+The user hurls mud at\nthe foe, dealing minimal\ndamage. 
+
+#org @DESC_OCTAZOOKA
+Ink is blasted in the\nfoe's face or eyes\nto deal damage.
+
+#org @DESC_MUDDYWATER
+Attacks with muddy\nwater. 
 
 #org @DESC_LEECHFANG
 An attack that\nabsorbs half the\ndamage it inflicted\nto restore HP.
@@ -98,7 +116,7 @@ Scarlet flames wash\nover all Pok\emon in\nbattle. It may also\ninflict burns.
 A steel bomb is\nstuck to the foe.\nIt is sure to hit.
 
 #org @DESC_MUDBOMB
-The foe is struck\nwith a mud ball\nthat may also lower\nits accuracy.
+The foe is struck\nwith a mud ball.
 
 #org @DESC_NASTYPLOT
 The user thinks\nbad thoughts. It\nsharply raises the\nSp. Atk stat.
@@ -191,7 +209,7 @@ The user rouses\nitself to raise\nits Attack and\nSp. Atk stats.
 The user mystically\ndances, raising its\nSp. Atk, Sp. Def,\nand Speed.
 
 #org @DESC_LEAFTORNADO
-Sharp leaves circle\nthe foe. It may also\nlower the foe's\naccuracy.
+Sharp leaves circle\nthe foe.
 
 #org @DESC_LOWSWEEP
 The user attacks\nthe foe's legs,\nlowering its\nSpeed stat.
@@ -281,7 +299,7 @@ The foe is made to\nswitch out with an\nally. In the wild,\nthe battle ends.
 The foe is made to\nswitch out with an\nally. In the wild,\nthe battle ends.
 
 #org @DESC_MIRRORSHOT
-The user looses\na flash of energy\nto damage and\nlower accuracy.
+The user looses\na flash of energy\nto damage.
 
 #org @DESC_WOODHAMMER
 The user slams the\nfoe with its hard\nbody, also hurting\nitself a little.
@@ -554,7 +572,7 @@ The user turns the\ntarget's power\nagainst it. Power\nincreases with the\nfoe's
 The user dances\nwith an odd rhythm,\nmaking the target's\nAbility the same as\nthe user's Ability.
 
 #org @DESC_NIGHTDAZE
-The user releases a\npitch-black blast\nat its target. May\nalso lower target's\naccuracy.
+The user releases a\npitch-black blast\nat its target. 
 
 #org @DESC_ECHOEDVOICE
 The user attacks\nthe target with a\nharsh echo.\nIf used every turn,\npower increases.

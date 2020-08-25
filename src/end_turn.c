@@ -564,7 +564,8 @@ u8 TurnBasedEffects(void)
 
 			case ET_Poison:
 				if (BATTLER_ALIVE(gActiveBattler)
-				&& ABILITY(gActiveBattler) != ABILITY_MAGICGUARD)
+				&& ABILITY(gActiveBattler) != ABILITY_MAGICGUARD
+				&& ABILITY(gActiveBattler) != ABILITY_TOXICBOOST) //added 
 				{
 					if (gBattleMons[gActiveBattler].status1 & (STATUS_POISON | STATUS_TOXIC_POISON))
 					{
@@ -593,10 +594,10 @@ u8 TurnBasedEffects(void)
 			case ET_Burn:
 				if (gBattleMons[gActiveBattler].status1 & STATUS_BURN
 				&& BATTLER_ALIVE(gActiveBattler)
-				&& ABILITY(gActiveBattler) != ABILITY_MAGICGUARD)
+				&& ABILITY(gActiveBattler) != ABILITY_MAGICGUARD
+				&& ABILITY(gActiveBattler) != ABILITY_FLAREBOOST) //added 
 				{
 					gBattleMoveDamage = GetBurnDamage(gActiveBattler);
-
 					BattleScriptExecute(BattleScript_BurnTurnDmg);
 					effect++;
 				}

@@ -222,7 +222,7 @@ void BuildTrainerPartySetup(void)
 
 		if (IsRaidBattle())
 		{
-			SetWildMonHeldItem();
+			SetWildMonHeldItem(); 
 
 			if (GetMonData(&gEnemyParty[0], MON_DATA_SPECIES, NULL) != SPECIES_SHEDINJA)
 			{
@@ -268,7 +268,8 @@ void BuildTrainerPartySetup(void)
 		{
 			if (IsRandomBattleTowerBattle()
 			|| GetMonData(&gPlayerParty[3], MON_DATA_SPECIES, NULL) == SPECIES_NONE) //Ideally the partner's Pokemon should be prepared beforehand. This is a backup measure
-				BuildFrontierParty(&gPlayerParty[3], VarGet(VAR_PARTNER), towerTier, 3, FALSE, B_SIDE_PLAYER);
+				BuildFrontierParty(&gPlayerParty[3], VarGet(VAR_PARTNER), towerTier, 3, FALSE, B_SIDE_PLAYER); 
+				
 		}
 		else
 		{
@@ -1640,7 +1641,6 @@ static u8 BuildFrontierParty(struct Pokemon* const party, const u16 trainerId, c
 		if (IsFrontierDoubles(battleType) || IsFrontierMulti(battleType))
 			gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
 	}
-
 	return monsCount;
 }
 
@@ -1748,12 +1748,15 @@ static void BuildRaidMultiParty(void)
 {
 	int i;
 	u8 zero = METLOC_FATEFUL_ENCOUNTER;
-	u8 numStars = gRaidBattleStars;
+
+	u8 numStars = gRaidBattleStars; 
 	u8 multiId = VarGet(VAR_FACILITY_TRAINER_ID_PARTNER);
+
 
 	//Build Team
 	for (i = 0; i < PARTY_SIZE / 2 && i < gRaidPartners[multiId].spreadSizes[numStars]; ++i)
 	{
+		
 		const struct BattleTowerSpread* spread = GetRaidMultiSpread(multiId, i, numStars);
 		CreateFrontierMon(&gPlayerParty[i + 3], GetRandomRaidLevel(), spread, RAID_BATTLE_MULTI_TRAINER_TID, 2, gRaidPartners[multiId].gender, FALSE);
 		SetMonData(&gPlayerParty[i + 3], MON_DATA_MET_LOCATION, &zero); //So they don't say "Battle Frontier"

@@ -4762,6 +4762,7 @@ void atkE5_pickupitemcalculation(void) {
 		switch (GetMonAbility(&gPlayerParty[i])) {
 			case ABILITY_PICKUP:
 				chance = 10; // ~10% chance of pickup to activate
+				level = MathMin(level, 100); //added this
 				item = ChoosePickupItem(level);
 				break;
 

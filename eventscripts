@@ -81,3 +81,16 @@ tile 3 2 8 EventScript_Pewter_GiveDmaxMiddle
 tile 3 2 9 EventScript_Pewter_GiveDmaxBottom
 npc 1 1 14 EventScript_MtMoonRaid
 npc 3 22 11 EventScript_Route4Raid
+npc 3 21 9 EventScript_Route3Raid 
+npc 3 43 11 EventScript_Route24Raid 
+npc 3 44 15 EventScript_Route25Raid 
+npc 3 23 2 EventScript_Route5Raid
+npc 3 24 9 EventScript_Route6Raid 
+npc 3 29 15 EventScript_Route11Raid 
+npc 1 37 0 EventScript_DigletsCaveRaid 
+npc 3 20 8 EventScript_Route2Raid 
+npc 3 27 12 EventScript_Route9Raid 
+npc 3 28 12 EventScript_Route10Raid 
+npc 1 82 26 EventScript_RockTunnelRaid 
+npc 3 25 1 EventScript_Route7Raid
+npc 3 26 15 EventScript_Route8Raid 
