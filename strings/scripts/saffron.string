@@ -1,0 +1,164 @@
+#org @gText_Saffron_Nerd
+Hi, I can swap to a Pok\emon's\nhidden ability and vice versa.\pI'll need a [LIGHT_BLUE]Bottle Cap[BLUE] though.\pHow about it?
+
+#org @gText_Saffron_NerdGiveItem
+[BLACK][PLAYER] handed over a Bottle Cap.[BLUE]
+
+#org @gText_Saffron_NerdAfter
+Thank you!\pAbilities have been swapped.
+
+#org @gText_Saffron_NerdReject
+Uh, you don't have a [LIGHT_BLUE]Bottle Cap[BLUE].
+
+#org @gText_Saffron_Nerd2
+I can change a Pok\emon's ability.\pYou in?
+
+#org @gText_Saffron_Nerd2_Hidden
+That Pok\emon has its Hidden\nAbility. You'll have to talk to\lmy other friend here to get that\lswapped.
+
+#org @gText_SaffronNerd2_NoDiff
+[.]That Pok\emon doesn't have an\nability to swap to. 
+
+#org @gText_SaffronNerd_NoHidden
+[.]That Pok\emon doesn't have a\nHidden Ability. 
+
+#org @gText_RandomEgg_1
+Hi, I hand out Starter eggs!\pI'm also a shard collector.\pGive me a Red, Blue, or Green\nShard, and I'll give a random egg\lcorresponding to that type.
+
+#org @gText_RandomEgg_2
+Ah! You have a Shard!\pWould you like to exchange it\nfor an egg?
+
+#org @gText_RandomEgg_GiveRedMsg
+A Red Shard!\pI can give a Fire starter for that!\pSound good?
+
+#org @gText_RandomEgg_GiveBlueMsg
+A Blue Shard!\pI can give a Water starter for that!\pSound good?
+
+#org @gText_RandomEgg_GiveGreenMsg
+A Green Shard!\pI can give a Grass starter for that!\pSound good?
+
+#org @gText_RandomEgg_AwOkayThen
+Aw, okay then.
+
+#org @gText_RandomEgg_NoRoom
+You have no room for this.\pCome back when you do!
+
+#org @gText_RandomEgg_GiveShard
+[BLACK][PLAYER] handed over the Shard.[BLUE]
+
+#org @gText_RandomEgg_ReceivedEgg
+[BLACK][PLAYER] received an Egg![BLUE]
+
+#org @gText_RandomEgg_ThankYou
+[BLUE]Thank you!\pHere it is.
+
+#org @gText_RandomEgg_WhichShard 
+Which Shard are you exchanging?
+
+#org @gText_RandomEgg_YouDontHave
+Erm.\pYou don't have that Shard.
+
+#org @gText_RandomEgg_Red 
+Red Shard 
+
+#org @gText_RandomEgg_Blue 
+Blue Shard 
+
+#org @gText_RandomEgg_LearnMore
+Learn More 
+
+#org @gText_RandomEgg_LearnMoreMsg 
+The pool for Fire Starters are\nCyndaquil, Chimchar, Tepig,\lFennekin, and Litten.\pThe pool for Grass Starters are\nChikorita, Turtwig, Chespin, and\lRowlet.\pThe pool for Water starters are\nTotodile, Piplup, Oshawott, and\lPopplio.
+
+#org @gText_RandomEgg_Green 
+Green Shard 
+
+#org @gText_DumbassKid_1
+i Herd U Liek Mudkipz 
+
+#org @gText_DumbassKid_Good
+Mud! Kip!
+
+#org @gText_DumbassKid_Battle
+no??? NO???????\pI HERD U LIEK MUDKIPZ????
+
+#org @gText_DumbassKid_Battle2 
+YOU[.]\pYOU WILL PAY!!!!!!!!!
+
+#org @gText_DumbassKidLoss
+mud... kip...\p:( 
+
+#org @gText_DumbassKid_PostLoss
+Well[.]\pMudkips are still cool[.]\pI will share the love XD 
+
+#org @gText_DumbassKid_GetMudkip
+[BLACK]You received a [LIGHT_GREEN]Mudkip[BLACK]!
+
+#org @gText_DumbassKid_LastMsg
+THIS GAME WON'T LET ME OVERLEVEL\nREEEEEEEEEEEEEEEEEEEEEEEEEEE-\lEEEEEEEEEEEE!!!
+
+#org @gText_SilphCo_TeamAlert1
+[BLACK]Just a small warning from\nthe creator himself[.]\pThere's an upcoming tag battle,\nso put the 3 Pok\emon you'd like\lto use in front.\pI've also healed your team.\pHave fun and stay safe out there!\n:)
+
+#org @gText_Saffron_ManyTutors1 
+Hiya, I got a whole slew of\nuseful moves!\pThey cost \$7500.
+
+#org @gText_Saffron_ManyTutors2 
+Hm, that's not enough money. 
+
+#org @gText_Saffron_ManyTutors3 
+Nice doing business with ya! 
+
+#org @gText_Saffron_ManyTutors4
+[.]
+
+#org @gText_Saffron_ManyTutors5
+Well, alright then. 
+
+#org @gText_Saffron_ManyTutors6
+Which move would you like? 
+
+#org @gText_Saffron_ManyTutors7
+Who wants it? 
+
+#org @gText_Saffron_ManyTutors8
+Need more options eh? 
+
+#org @gText_HydroPump
+Hydro Pump
+
+#org @gText_DrillRun
+Drill Run
+
+#org @gText_BlazeKick
+Blaze Kick
+
+#org @gText_PSplit
+Pain Split
+
+#org @gText_ZenHeadbutt
+Zen Headbutt
+
+#org @gText_WeatherBall
+Weather Ball
+
+#org @gText_AirSlash
+Air Slash 
+
+#org @gText_Hex
+Hex
+
+#org @gText_MysticalFire
+Mystic Fire 
+
+#org @gText_SeedBomb
+Seed Bomb
+
+#org @gText_LeafBlade
+Leaf Blade 
+
+#org @gText_ViewMore
+View More 
+
+#org @gText_Back 
+Back 

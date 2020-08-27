@@ -1,0 +1,26 @@
+#org @gText_MagikarpGuy_1
+Man: Hello there, kid!\nHave I got a deal just for you!\pI'll let you have a secret Pok\emon\n- a [LIGHT_GREEN]Magikarp[BLUE] - for just \$500!\pSo, you'll buy it, am I right?
+
+#org @gText_MagikarpGuy_Reject
+No? You say no? I'm only doing this\nas a favor to you!
+
+#org @gText_MagikarpGuy_MoreMoney
+You'll need more money than that!
+
+#org @gText_MagikarpGuy_Bought1
+[BLACK][PLAYER] paid an outrageous \$500\nand bought the [LIGHT_GREEN]Magikarp[.][BLUE]
+
+#org @gText_MagikarpGuy_2
+Man: Hah! My favorite kid!\pCouldn't get enough of [LIGHT_GREEN]Magikarp[BLUE],\nhuh?\pYou want another one for \$75000,\ndon't you?
+
+#org @gText_MagikarpGuy_Bought2
+[BLACK][PLAYER], again, paid an outrageous\n\$75000 and bought the [LIGHT_GREEN]Magikarp[.][BLUE]
+
+#org @gText_MagikarpGuy_AfterBought2
+Ha ha ha! What a score!\pThanks for the business, ya idiot!
+
+#org @gText_MagikarpGuy_3
+Ha ha ha! My favorite kid!\pI scammed you out of \$75000 with\nthat defective [LIGHT_GREEN]Magikarp[BLUE]!
+
+#org @gText_MagikarpGuy_4
+[.]That was a Shiny?!\pYou're kidding!\p[.]Can I have it back? Please? 

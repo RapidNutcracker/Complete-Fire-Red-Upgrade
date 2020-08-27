@@ -653,6 +653,12 @@ enum
 #define ITEM_GALLADITE 0x59 //added chuck
 #define ITEM_AUDINITE 0x5A //added silph co
 #define ITEM_DIANCITE 0x5B
+#define ITEM_BUTTERFREEITE_X 0x1BF
+#define ITEM_MACHAMPITE 0x1C0
+#define ITEM_KINGLERITE 0x1C1
+#define ITEM_SNORLAXITE 0x11B
+#define ITEM_GARBODORITE 0x11C
+#define ITEM_LAPRASITE 0x11D
 
 //Type-Resist + New Berries
 #define ITEM_OCCA_BERRY 0x193

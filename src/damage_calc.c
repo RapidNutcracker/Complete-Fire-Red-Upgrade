@@ -112,6 +112,7 @@ void atk04_critcalc(void)
 			critChance  = 2 * ((gBattleMons[gBankAttacker].status2 & STATUS2_FOCUS_ENERGY) != 0)
 						+ gNewBS->chiStrikeCritBoosts[gBankAttacker]
 						+ (CheckTableForMove(gCurrentMove, gHighCriticalChanceMoves))
+						+ (gCurrentMove == MOVE_SNIPESHOT) //give Snipe Shot +2 crit rate
 						+ (atkEffect == ITEM_EFFECT_SCOPE_LENS)
 						+ (atkAbility == ABILITY_SUPERLUCK)
 						+ (atkAbility == ABILITY_BLADEMASTER && CheckTableForMove(gCurrentMove, gSwordMoves))
@@ -119,7 +120,7 @@ void atk04_critcalc(void)
 						+ 2 * (atkEffect == ITEM_EFFECT_LUCKY_PUNCH && gBattleMons[gBankAttacker].species == SPECIES_CHANSEY)
 						#endif
 						#ifdef SPECIES_FARFETCHD
-						+  (atkEffect == ITEM_EFFECT_STICK && gBattleMons[gBankAttacker].species == SPECIES_FARFETCHD) //changed from +2 crit rate to +1 
+						+  (atkEffect == ITEM_EFFECT_STICK && (gBattleMons[gBankAttacker].species == SPECIES_FARFETCHD || gBattleMons[gBankAttacker].species == SPECIES_FARFETCHD_G)) //changed from +2 crit rate to +1 
 						#endif
 						+ 2 * (gCurrentMove == MOVE_10000000_VOLT_THUNDERBOLT);
 
@@ -2518,6 +2519,11 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 				damage = (damage * 75) / 100;
 			break;
 
+		case ABILITY_PRIMALARMOR:
+			if (data->resultFlags & MOVE_RESULT_SUPER_EFFECTIVE)
+					damage /= 2;
+			break;
+
 		case ABILITY_HEATPROOF:
 		case ABILITY_WATERBUBBLE:
 		//0.5x Decrement
@@ -3356,13 +3362,13 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 				power = (power * 12) / 10;
 			break;
 
-		#ifdef SPECIES_DIALGA
-		case ITEM_EFFECT_ADAMANT_ORB:
-		//1.2x Boost
-			if (data->atkSpecies == SPECIES_DIALGA && (data->moveType == TYPE_STEEL || data->moveType == TYPE_DRAGON))
-				power = (power * 12) / 10;
-			break;
-		#endif
+		// #ifdef SPECIES_DIALGA removed
+		// // case ITEM_EFFECT_ADAMANT_ORB:
+		// // //1.2x Boost
+		// // 	if (data->atkSpecies == SPECIES_DIALGA && (data->moveType == TYPE_STEEL || data->moveType == TYPE_DRAGON))
+		// // 		power = (power * 12) / 10;
+		// // 	break;
+		// #endif
 
 		#ifdef SPECIES_PALKIA
 		case ITEM_EFFECT_LUSTROUS_ORB:

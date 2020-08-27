@@ -408,8 +408,8 @@ Summons a mysterious air current.
 #org @DESC_BERSERK
 Ups Sp. Atk below half HP.
 
-#org @DESC_LONGREACH
-Never makes contact.
+#org @DESC_PRIMALARMOR
+Decreases super-effective moves.
 
 #org @DESC_LIQUIDVOICE
 Sound moves become Water-type.

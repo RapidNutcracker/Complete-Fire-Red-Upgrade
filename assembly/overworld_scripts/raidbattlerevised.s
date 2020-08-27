@@ -1,0 +1,427 @@
+.thumb
+.align 2
+
+.include "../xse_commands.s"
+.include "../xse_defines.s"
+
+.equ SPECIAL_IS_RAID_BATTLE_AVAILABLE, 0x115
+.equ SPECIAL_RAID_BATTLE_INTRO, 0x116
+.equ SPECIAL_CREATE_RAID_MON, 0x117
+.equ SPECIAL_START_RAID_BATTLE, 0x118 
+.equ SPECIAL_SET_RAID_BATTLE_FLAG, 0x119
+.equ SPECIAL_GIVE_RAID_BATTLE_REWARDS, 0x11C
+.equ FLAG_TAG_BATTLE, 0x908
+.equ FLAG_DYNAMAX_BATTLE, 0x918
+.equ VAR_DAILY_EVENT, 0x504A @ Also 504B
+.equ VAR_CERULEANCAVE, 0x504C @also 504D
+.equ VAR_MTMOON, 0x504E @also 504F 
+.equ VAR_ROUTE4, 0x505E @also 505F
+.equ VAR_ROUTE3, 0x506B @also 506C 
+.equ VAR_ROUTE24, 0x506D @also 506E
+.equ VAR_ROUTE25, 0x5061 @also 5062
+.equ VAR_ROUTE5, 0x5063 @also 5064
+.equ VAR_ROUTE6, 0x5065 @also 5066 
+.equ VAR_ROUTE11, 0x5067 @also 5068
+.equ VAR_DIGLETSSCAVE, 0x5070 @also 5071
+.equ VAR_ROUTE2, 0x5072 @also 5073
+.equ VAR_ROUTE9, 0x5074 @also 5075
+.equ VAR_ROUTE10, 0x5076 @also 5077
+.equ VAR_ROCKTUNNEL, 0x5078 @also 5079
+.equ VAR_ROUTE8, 0x507A @also 507B
+.equ VAR_ROUTE7, 0x507C @also 507D
+
+.global EventScript_VictoryRoadRaid
+EventScript_VictoryRoadRaid:
+    setvar 0x8000 VAR_DAILY_EVENT
+    setvar 0x8001 0x0
+    special2 LASTRESULT 0xA0
+    compare LASTRESULT 0x0 
+    if equal _goto RaidScript_Cancel @If we proceed in script that means it's a new day 
+    call RaidBattle 
+    setvar 0x4000 0x0
+    call RaidScript_GiveReward 
+    goto RaidScript_End
+    end 
+
+RaidBattle: 
+    setvar 0x8000 0x0  @Clear Raid Script flag 
+    special 0x11A
+    lock
+    faceplayer 
+    special SPECIAL_IS_RAID_BATTLE_AVAILABLE
+    compare LASTRESULT 0x0 
+    if equal _goto RaidScript_Cancel 
+    msgbox gText_StartRaidBattle MSG_YESNO 
+    compare LASTRESULT YES 
+    if NO _goto RaidScript_EndClear 
+    setflag FLAG_DYNAMAX_BATTLE
+    fadescreen FADEOUT_BLACK
+    sound 0x9
+    checksound
+    special SPECIAL_RAID_BATTLE_INTRO
+    waitstate
+    compare LASTRESULT 0x0 
+    if equal _goto RaidScript_EndClear
+    setflag FLAG_TAG_BATTLE 
+    msgbox gText_RaidTeamUp MSG_NORMAL
+    special SPECIAL_CREATE_RAID_MON 
+    special SPECIAL_START_RAID_BATTLE
+    waitstate 
+    special2 LASTRESULT 0xB4
+    compare LASTRESULT 0x4 @Ran 
+    if equal _goto RaidScript_End2 
+    compare LASTRESULT 0x5 @Teleported, lost battle
+    if equal _goto RaidScript_End2
+    special SPECIAL_SET_RAID_BATTLE_FLAG 
+    @ goto RaidScript_GiveReward
+    return 
+
+RaidScript_GiveReward:
+    special SPECIAL_GIVE_RAID_BATTLE_REWARDS 
+    compare LASTRESULT 0x1
+    if equal _goto RaidScript_End2
+    callstd MSG_FIND 
+    goto RaidScript_GiveReward 
+
+RaidScript_End2:
+    return 
+
+RaidScript_End: 
+    setvar 0x8000 VAR_DAILY_EVENT
+    setvar 0x8001 0x0
+    special 0xA1
+    release 
+    end 
+
+RaidScript_Cancel:
+    msgbox gText_StartRaidBattle2 MSG_NORMAL 
+    release 
+    end 
+
+RaidScript_EndClear:
+    setvar 0x8000 0x0  @Clear Raid Script flag 
+    clearflag FLAG_DYNAMAX_BATTLE @Prevent Dynamax lol
+    special 0x11A
+    release 
+    end 
+
+.global EventScript_MtMoonRaid
+EventScript_MtMoonRaid:
+    setvar 0x8000 VAR_MTMOON
+    setvar 0x8001 0x0
+    special2 LASTRESULT 0xA0
+    compare LASTRESULT 0x0 
+    if equal _goto RaidScript_Cancel @If we proceed in script that means it's a new day 
+    call RaidBattle 
+    setvar 0x4000 0x0
+    call RaidScript_GiveReward 
+    goto RaidScript_EndMtMoon
+    end 
+
+RaidScript_EndMtMoon: 
+    setvar 0x8000 VAR_MTMOON
+    setvar 0x8001 0x0
+    special 0xA1
+    release 
+    end 
+
+.global EventScript_Route4Raid
+EventScript_Route4Raid:
+    setvar 0x8000 VAR_ROUTE4
+    setvar 0x8001 0x0
+    special2 LASTRESULT 0xA0
+    compare LASTRESULT 0x0 
+    if equal _goto RaidScript_Cancel @If we proceed in script that means it's a new day 
+    call RaidBattle 
+    setvar 0x4000 0x0
+    call RaidScript_GiveReward
+    goto RaidScript_EndRoute4  
+    end 
+
+RaidScript_EndRoute4: 
+    setvar 0x8000 VAR_ROUTE4
+    setvar 0x8001 0x0
+    special 0xA1
+    release 
+    end 
+
+.global EventScript_Route3Raid @Here 
+EventScript_Route3Raid:
+    setvar 0x8000 VAR_ROUTE3 @Here 
+    setvar 0x8001 0x0
+    special2 LASTRESULT 0xA0
+    compare LASTRESULT 0x0 
+    if equal _goto RaidScript_Cancel @If we proceed in script that means it's a new day 
+    call RaidBattle 
+    setvar 0x4000 0x0
+    call RaidScript_GiveReward
+    goto RaidScript_EndRoute3 @ Here
+    end 
+
+RaidScript_EndRoute3: @Here 
+    setvar 0x8000 VAR_ROUTE3 @Here 
+    setvar 0x8001 0x0
+    special 0xA1
+    release 
+    end 
+
+.global EventScript_Route24Raid @Here 
+EventScript_Route24Raid:
+    setvar 0x8000 VAR_ROUTE24 @Here 
+    setvar 0x8001 0x0
+    special2 LASTRESULT 0xA0
+    compare LASTRESULT 0x0 
+    if equal _goto RaidScript_Cancel @If we proceed in script that means it's a new day 
+    call RaidBattle 
+    setvar 0x4000 0x0
+    call RaidScript_GiveReward
+    goto RaidScript_EndRoute24 @ Here
+    end 
+
+RaidScript_EndRoute24: @Here 
+    setvar 0x8000 VAR_ROUTE24 @Here 
+    setvar 0x8001 0x0
+    special 0xA1
+    release 
+    end 
+
+.global EventScript_Route25Raid @Here 
+EventScript_Route25Raid:
+    setvar 0x8000 VAR_ROUTE25 @Here 
+    setvar 0x8001 0x0
+    special2 LASTRESULT 0xA0
+    compare LASTRESULT 0x0 
+    if equal _goto RaidScript_Cancel @If we proceed in script that means it's a new day 
+    call RaidBattle 
+    setvar 0x4000 0x0
+    call RaidScript_GiveReward
+    goto RaidScript_EndRoute25 @ Here
+    end 
+
+RaidScript_EndRoute25: @Here 
+    setvar 0x8000 VAR_ROUTE25 @Here 
+    setvar 0x8001 0x0
+    special 0xA1
+    release 
+    end 
+
+.global EventScript_Route5Raid @Here 
+EventScript_Route5Raid:
+    setvar 0x8000 VAR_ROUTE5 @Here 
+    setvar 0x8001 0x0
+    special2 LASTRESULT 0xA0
+    compare LASTRESULT 0x0 
+    if equal _goto RaidScript_Cancel @If we proceed in script that means it's a new day 
+    call RaidBattle 
+    setvar 0x4000 0x0
+    call RaidScript_GiveReward
+    goto RaidScript_EndRoute5 @ Here
+    end 
+
+RaidScript_EndRoute5: @Here 
+    setvar 0x8000 VAR_ROUTE5 @Here 
+    setvar 0x8001 0x0
+    special 0xA1
+    release 
+    end 
+
+.global EventScript_Route6Raid @Here 
+EventScript_Route6Raid:
+    setvar 0x8000 VAR_ROUTE6 @Here 
+    setvar 0x8001 0x0
+    special2 LASTRESULT 0xA0
+    compare LASTRESULT 0x0 
+    if equal _goto RaidScript_Cancel @If we proceed in script that means it's a new day 
+    call RaidBattle 
+    setvar 0x4000 0x0
+    call RaidScript_GiveReward
+    goto RaidScript_EndRoute6 @ Here
+    end 
+
+RaidScript_EndRoute6: @Here 
+    setvar 0x8000 VAR_ROUTE6 @Here 
+    setvar 0x8001 0x0
+    special 0xA1
+    release 
+    end 
+
+.global EventScript_Route11Raid @Here 
+EventScript_Route11Raid:
+    setvar 0x8000 VAR_ROUTE11 @Here 
+    setvar 0x8001 0x0
+    special2 LASTRESULT 0xA0
+    compare LASTRESULT 0x0 
+    if equal _goto RaidScript_Cancel @If we proceed in script that means it's a new day 
+    call RaidBattle 
+    setvar 0x4000 0x0
+    call RaidScript_GiveReward
+    goto RaidScript_EndRoute11 @ Here
+    end 
+
+RaidScript_EndRoute11: @Here 
+    setvar 0x8000 VAR_ROUTE11 @Here 
+    setvar 0x8001 0x0
+    special 0xA1
+    release 
+    end 
+
+.global EventScript_DigletsCaveRaid @Here 
+EventScript_DigletsCaveRaid:
+    setvar 0x8000 VAR_DIGLETSSCAVE @Here 
+    setvar 0x8001 0x0
+    special2 LASTRESULT 0xA0
+    compare LASTRESULT 0x0 
+    if equal _goto RaidScript_Cancel @If we proceed in script that means it's a new day 
+    call RaidBattle 
+    setvar 0x4000 0x0
+    call RaidScript_GiveReward
+    goto RaidScript_EndDigletsCave @ Here
+    end 
+
+RaidScript_EndDigletsCave: @Here 
+    setvar 0x8000 VAR_DIGLETSSCAVE @Here 
+    setvar 0x8001 0x0
+    special 0xA1
+    release 
+    end 
+
+.global EventScript_Route2Raid @Here 
+EventScript_Route2Raid:
+    setvar 0x8000 VAR_ROUTE2 @Here 
+    setvar 0x8001 0x0
+    special2 LASTRESULT 0xA0
+    compare LASTRESULT 0x0 
+    if equal _goto RaidScript_Cancel @If we proceed in script that means it's a new day 
+    call RaidBattle 
+    setvar 0x4000 0x0
+    call RaidScript_GiveReward
+    goto RaidScript_EndRoute2 @ Here
+    end 
+
+RaidScript_EndRoute2: @Here 
+    setvar 0x8000 VAR_ROUTE2 @Here 
+    setvar 0x8001 0x0
+    special 0xA1
+    release 
+    end 
+
+.global EventScript_Route9Raid @Here 
+EventScript_Route9Raid:
+    setvar 0x8000 VAR_ROUTE9 @Here 
+    setvar 0x8001 0x0
+    special2 LASTRESULT 0xA0
+    compare LASTRESULT 0x0 
+    if equal _goto RaidScript_Cancel @If we proceed in script that means it's a new day 
+    call RaidBattle 
+    setvar 0x4000 0x0
+    call RaidScript_GiveReward
+    goto RaidScript_EndRoute9 @ Here
+    end 
+
+RaidScript_EndRoute9: @Here 
+    setvar 0x8000 VAR_ROUTE9 @Here 
+    setvar 0x8001 0x0
+    special 0xA1
+    release 
+    end 
+
+.global EventScript_Route10Raid @Here 
+EventScript_Route10Raid:
+    setvar 0x8000 VAR_ROUTE10 @Here 
+    setvar 0x8001 0x0
+    special2 LASTRESULT 0xA0
+    compare LASTRESULT 0x0 
+    if equal _goto RaidScript_Cancel @If we proceed in script that means it's a new day 
+    call RaidBattle 
+    setvar 0x4000 0x0
+    call RaidScript_GiveReward
+    goto RaidScript_EndRoute10 @ Here
+    end 
+
+RaidScript_EndRoute10: @Here 
+    setvar 0x8000 VAR_ROUTE10 @Here 
+    setvar 0x8001 0x0
+    special 0xA1
+    release 
+    end 
+
+
+.global EventScript_RockTunnelRaid
+EventScript_RockTunnelRaid:
+    setvar 0x8000 VAR_ROCKTUNNEL
+    setvar 0x8001 0x0
+    special2 LASTRESULT 0xA0
+    compare LASTRESULT 0x0 
+    if equal _goto RaidScript_Cancel @If we proceed in script that means it's a new day 
+    call RaidBattle 
+    setvar 0x4000 0x0
+    call RaidScript_GiveReward
+    goto RaidScript_EndRockTunnel
+    end 
+
+RaidScript_EndRockTunnel: 
+    setvar 0x8000 VAR_ROCKTUNNEL
+    setvar 0x8001 0x0
+    special 0xA1
+    release 
+    end 
+
+.global EventScript_Route7Raid
+EventScript_Route7Raid:
+    setvar 0x8000 VAR_ROUTE7
+    setvar 0x8001 0x0
+    special2 LASTRESULT 0xA0
+    compare LASTRESULT 0x0 
+    if equal _goto RaidScript_Cancel @If we proceed in script that means it's a new day 
+    call RaidBattle 
+    setvar 0x4000 0x0
+    call RaidScript_GiveReward
+    goto RaidScript_EndRoute7
+    end 
+
+RaidScript_EndRoute7: 
+    setvar 0x8000 VAR_ROUTE7
+    setvar 0x8001 0x0
+    special 0xA1
+    release 
+    end 
+
+.global EventScript_Route8Raid
+EventScript_Route8Raid:
+    setvar 0x8000 VAR_ROUTE8
+    setvar 0x8001 0x0
+    special2 LASTRESULT 0xA0
+    compare LASTRESULT 0x0 
+    if equal _goto RaidScript_Cancel @If we proceed in script that means it's a new day 
+    call RaidBattle 
+    setvar 0x4000 0x0
+    call RaidScript_GiveReward
+    goto RaidScript_EndRoute8
+    end 
+
+RaidScript_EndRoute8: 
+    setvar 0x8000 VAR_ROUTE8
+    setvar 0x8001 0x0
+    special 0xA1
+    release 
+    end 
+
+.global EventScript_CeruleanCaveRaid
+EventScript_CeruleanCaveRaid:
+    setvar 0x8000 VAR_CERULEANCAVE
+    setvar 0x8001 0x0
+    special2 LASTRESULT 0xA0
+    compare LASTRESULT 0x0 
+    if equal _goto RaidScript_Cancel @If we proceed in script that means it's a new day 
+    call RaidBattle 
+    setvar 0x4000 0x0
+    call RaidScript_GiveReward
+    goto RaidScript_EndCerulean 
+    end 
+
+RaidScript_EndCerulean: 
+    setvar 0x8000 VAR_CERULEANCAVE
+    setvar 0x8001 0x0
+    special 0xA1
+    release 
+    end 

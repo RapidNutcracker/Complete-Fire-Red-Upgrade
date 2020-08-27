@@ -1,0 +1,27 @@
+#org @gText_Cerulean_Haircut1
+Hi, I can groom one of your\nPok\emon.\lFor only \$500!\pDoes that sound good?
+
+#org @gText_Cerulean_Haircut2
+Great! Who shall I groom? 
+
+#org @gText_Cerulean_Haircut3 
+Alright, let's get [BUFFER1]\nlooking nice and spiffy.
+
+#org @gText_Cerulean_Haircut4
+I'm done grooming for today.\pCome back tomorrow though!
+
+#org @gText_Cerulean_Haircut5
+There you go!\p[BUFFER1] seems pleased.\pAs for the payment[.]
+
+#org @gText_Cerulean_Haircut6
+Thank you!\pPlease, come back tomorrow! 
+
+#org @gText_Cerulean_Haircut7
+That's not enough money[.]
+
+#org @gText_Cerulean_Happiness1
+Hello. I can evaluate your\nPok\emon's happiness. 
+
+#org @gText_Cerulean_Happiness2
+Your [BUFFER1]'s happiness\nvalue is [BUFFER2].
+

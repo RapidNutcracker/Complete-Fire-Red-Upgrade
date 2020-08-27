@@ -10985,7 +10985,7 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_SNIPESHOT] =
 	{
 		.effect = EFFECT_IGNORE_REDIRECTION,
-		.power = 80,
+		.power = 70,
 		.type = TYPE_WATER,
 		.accuracy = 100,
 		.pp = 15,

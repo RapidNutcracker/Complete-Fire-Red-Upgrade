@@ -330,8 +330,7 @@ u8 ViableMonCountFromBankLoadPartyRange(u8 bank)
 bool8 CheckContact(u16 move, u8 bank)
 {
 	if (!(gBattleMoves[move].flags & FLAG_MAKES_CONTACT)
-	|| ITEM_EFFECT(bank) == ITEM_EFFECT_PROTECTIVE_PADS
-	|| ABILITY(bank) == ABILITY_LONGREACH)
+	|| ITEM_EFFECT(bank) == ITEM_EFFECT_PROTECTIVE_PADS)
 		return FALSE;
 
 	return TRUE;
@@ -340,8 +339,7 @@ bool8 CheckContact(u16 move, u8 bank)
 bool8 CheckContactByMon(u16 move, struct Pokemon* mon)
 {
 	if (!(gBattleMoves[move].flags & FLAG_MAKES_CONTACT)
-	|| GetMonItemEffect(mon) == ITEM_EFFECT_PROTECTIVE_PADS
-	|| GetMonAbility(mon) == ABILITY_LONGREACH)
+	|| GetMonItemEffect(mon) == ITEM_EFFECT_PROTECTIVE_PADS)
 		return FALSE;
 
 	return TRUE;

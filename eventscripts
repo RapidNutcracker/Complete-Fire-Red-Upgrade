@@ -94,3 +94,4 @@ npc 3 28 12 EventScript_Route10Raid
 npc 1 82 26 EventScript_RockTunnelRaid 
 npc 3 25 1 EventScript_Route7Raid
 npc 3 26 15 EventScript_Route8Raid 
+npc 1 0 17 EventScript_ViridianForest_Buterfree
