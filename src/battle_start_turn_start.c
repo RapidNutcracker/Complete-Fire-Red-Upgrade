@@ -1788,7 +1788,7 @@ static u32 BoostSpeedByItemEffect(u8 itemEffect, u8 itemQuality, u16 species, u3
 {
 	switch (itemEffect) {
 		case ITEM_EFFECT_MACHO_BRACE:
-			speed /= 2;
+			speed = (speed * 15) / 20;
 			break;
 		case ITEM_EFFECT_CHOICE_BAND:
 			if (!isDynamaxed && itemQuality == QUALITY_CHOICE_SCARF)
@@ -1802,7 +1802,8 @@ static u32 BoostSpeedByItemEffect(u8 itemEffect, u8 itemQuality, u16 species, u3
 				speed *= 2;
 			break;
 		case ITEM_EFFECT_STICK:
-			speed = (speed * 15) / 10;
+			if (species == SPECIES_FARFETCHD || species == SPECIES_FARFETCHD_G)
+				speed = (speed * 15) / 10;
 			break;
 	}
 

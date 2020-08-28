@@ -851,7 +851,7 @@ void ChangeTargetTypeFunc(void)
 	switch (gCurrentMove) {
 		case MOVE_SOAK:
 			if (ABILITY(gBankTarget) == ABILITY_MULTITYPE
-			||  ABILITY(gBankTarget) == ABILITY_RKS_SYSTEM
+			// ||  ABILITY(gBankTarget) == ABILITY_RKS_SYSTEM
 			|| (gBattleMons[gBankTarget].type1 == TYPE_WATER &&
 				gBattleMons[gBankTarget].type2 == TYPE_WATER &&
 				gBattleMons[gBankTarget].type3 == TYPE_BLANK))
@@ -868,7 +868,7 @@ void ChangeTargetTypeFunc(void)
 
 		case MOVE_MAGICPOWDER:
 			if (ABILITY(gBankTarget) == ABILITY_MULTITYPE
-			||  ABILITY(gBankTarget) == ABILITY_RKS_SYSTEM
+			// ||  ABILITY(gBankTarget) == ABILITY_RKS_SYSTEM
 			|| (gBattleMons[gBankTarget].type1 == TYPE_PSYCHIC &&
 				gBattleMons[gBankTarget].type2 == TYPE_PSYCHIC &&
 				gBattleMons[gBankTarget].type3 == TYPE_BLANK))

@@ -381,6 +381,11 @@ u32 AI_CalcDmg(const u8 bankAtk, const u8 bankDef, const u16 move, struct Damage
 		#endif
 		return damage;
 	}
+	else if (ABILITY(bankAtk) == ABILITY_RAGINGBOXER && CheckTableForMove(move, gPunchingMoves))
+	{
+		damage = (damage * 15) / 10;
+		return damage; 
+	}
 
 	//Multi hit moves skip these checks
 	if (gBattleMoves[move].effect == EFFECT_FALSE_SWIPE
@@ -477,6 +482,12 @@ u32 AI_CalcPartyDmg(u8 bankAtk, u8 bankDef, u16 move, struct Pokemon* monAtk, st
 		#endif
 		return damage;
 	}
+	else if (GetMonAbility(monAtk) == ABILITY_RAGINGBOXER && CheckTableForMove(move, gPunchingMoves))
+	{
+		damage = (damage * 15) / 10;
+		return damage; 
+	}
+
 
 	//Multi hit moves skip these checks
 	if (gBattleMoves[move].effect == EFFECT_FALSE_SWIPE
@@ -569,6 +580,11 @@ u32 AI_CalcMonDefDmg(u8 bankAtk, u8 bankDef, u16 move, struct Pokemon* monDef, s
 			damage = (damage * 125) / 100; //1.25x overall boost
 		#endif
 		return damage;
+	}
+	else if (ABILITY(bankAtk) == ABILITY_RAGINGBOXER && CheckTableForMove(move, gPunchingMoves))
+	{
+		damage = (damage * 15) / 10;
+		return damage; 
 	}
 
 	//Multi hit moves skip these checks
@@ -2625,7 +2641,10 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		#ifdef OLD_PARENTAL_BOND_DAMAGE
 			damage /= 2;
 		#else
-			damage /= 4;
+			if (data->atkAbility == ABILITY_RAGINGBOXER) //changed 
+				damage /= 2;
+			else 
+				damage /= 4;
 		#endif
 	}
 

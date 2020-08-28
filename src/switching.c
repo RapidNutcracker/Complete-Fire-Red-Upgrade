@@ -632,6 +632,7 @@ void atk52_switchineffects(void)
 			if (CheckGrounding(gActiveBattler)
 			&& gSideTimers[SIDE(gActiveBattler)].spikesAmount > 0
 			&& ability != ABILITY_MAGICGUARD
+			&& ability != ABILITY_SHIELDDUST
 			&& itemEffect != ITEM_EFFECT_HEAVY_DUTY_BOOTS)
 			{
 				gBattleMoveDamage = CalcSpikesDamage(gActiveBattler);
@@ -652,6 +653,7 @@ void atk52_switchineffects(void)
 		case SwitchIn_StealthRock:
 			if (gSideTimers[SIDE(gActiveBattler)].srAmount > 0
 			&& ability != ABILITY_MAGICGUARD
+			&& ability != ABILITY_SHIELDDUST
 			&& itemEffect != ITEM_EFFECT_HEAVY_DUTY_BOOTS)
 			{
 				gBattleMoveDamage = CalcStealthRockDamage(gActiveBattler);
@@ -672,6 +674,7 @@ void atk52_switchineffects(void)
 		case SwitchIn_Steelsurge:
 			if (gSideTimers[SIDE(gActiveBattler)].steelsurge > 0
 			&& ability != ABILITY_MAGICGUARD
+			&& ability != ABILITY_SHIELDDUST
 			&& itemEffect != ITEM_EFFECT_HEAVY_DUTY_BOOTS)
 			{
 				gBattleMoveDamage = CalcSteelsurgeDamage(gActiveBattler);
@@ -690,7 +693,8 @@ void atk52_switchineffects(void)
 
 		case SwitchIn_ToxicSpikes:
 			if (gSideTimers[SIDE(gActiveBattler)].tspikesAmount > 0
-			&& CheckGrounding(gActiveBattler))
+			&& CheckGrounding(gActiveBattler)
+			&& ability != ABILITY_SHIELDDUST)
 			{
 				if (IsOfType(gActiveBattler, TYPE_POISON))
 				{
@@ -726,7 +730,8 @@ void atk52_switchineffects(void)
 		case SwitchIn_StickyWeb:
 			if (gSideTimers[SIDE(gActiveBattler)].stickyWeb
 			&&  CheckGrounding(gActiveBattler)
-			&& itemEffect != ITEM_EFFECT_HEAVY_DUTY_BOOTS)
+			&& itemEffect != ITEM_EFFECT_HEAVY_DUTY_BOOTS
+			&& ability != ABILITY_SHIELDDUST)
 			{
 				BattleScriptPushCursor();
 				gBattlescriptCurrInstr = BattleScript_StickyWebSpeedDrop;

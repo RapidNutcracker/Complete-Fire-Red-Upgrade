@@ -132,6 +132,14 @@ EventScript_ViridianForest_Buterfree:
     release 
     end 
 
+.global EventScript_VermilionCity_Machampite
+EventScript_VermilionCity_Machampite:
+    hidesprite 0x800F
+    giveitem 0x1C0 0x1 MSG_FIND 
+    setflag 0x99D 
+    release 
+    end 
+
 
 .global EventScript_SeafoamIslands_Keldeo
 EventScript_SeafoamIslands_Keldeo:

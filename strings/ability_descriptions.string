@@ -264,8 +264,8 @@ Transforms below half HP.
 #org @DESC_PRISMARMOR
 Weakens super-effective moves.
 
-#org @DESC_RKS_SYSTEM
-Changes type to match Memory.
+#org @DESC_RAGING_BOXER
+Punch moves hit twice. 
 
 #org @DESC_SCHOOLING
 Schools up with high HP.
@@ -340,7 +340,7 @@ Reverses stat changes.
 Stops the foe from eating Berries.
 
 #org @DESC_WEAKARMOR
-Hits raise Speed but drop Defense.
+Hits plus Speed but drop Defense.
 
 #org @DESC_HEAVYMETAL
 Doubles weight.

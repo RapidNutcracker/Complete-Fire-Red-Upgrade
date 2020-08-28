@@ -97,6 +97,17 @@ void atk00_attackcanceler(void)
 		PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0);
 	}
 
+	else if (!gNewBS->ParentalBondOn //added 
+	&& gNewBS->OriginalAttackerTargetCount == 0
+	&& ABILITY(gBankAttacker) == ABILITY_RAGINGBOXER
+	&& CheckTableForMove(gCurrentMove, gPunchingMoves)
+	&& !(gAbsentBattlerFlags & gBitTable[gBankTarget]))
+	{
+		gNewBS->ParentalBondOn = 2;
+		gMultiHitCounter = 2;
+		PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0);
+	}
+
 	if (gBattleMons[gBankAttacker].pp[gCurrMovePos] == 0
 	&& gCurrentMove != MOVE_STRUGGLE
 	&& !(gHitMarker & (HITMARKER_x800000 | HITMARKER_NO_ATTACKSTRING))

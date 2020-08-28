@@ -119,7 +119,7 @@ YouDontHave:
 
 Receiveredegg:
     removeitem 0x30 0x1
-    random 0x5
+    random 0x6
     compare 0x800D 0x0
     if equal _goto Cyndaquil
     compare 0x800D 0x1 
@@ -128,6 +128,8 @@ Receiveredegg:
     if equal _goto Tepig
     compare 0x800D 0x3
     if equal _goto Fennekin
+    compare 0x800D 0x4
+    if equal _goto Scorbunny 
     @If we got here that means it rolled 5 for Litten
     call EggMessageStuff
     giveegg 0x3AE @Litten
@@ -136,13 +138,15 @@ Receiveredegg:
 
 Receiveblueegg:
     removeitem 0x31 0x1
-    random 0x4
+    random 0x5
     compare 0x800D 0x0
     if equal _goto Totodile
     compare 0x800D 0x1 
     if equal _goto Piplup
     compare 0x800D 0x2 
     if equal _goto Oshawott
+    compare 0x800D 0x3 
+    if equal _goto Sobble 
     call EggMessageStuff @if we get here that means we rolled 4 for popplio
     giveegg 0x3B1
     release
@@ -150,13 +154,15 @@ Receiveblueegg:
 
 Receivegreenegg:
     removeitem 0x33 0x1
-    random 0x4
+    random 0x5
     compare 0x800D 0x0
     if equal _goto Chikorita
     compare 0x800D 0x1
     if equal _goto Turtwig
     compare 0x800D 0x2
     if equal _goto Chespin
+    compare 0x800D 0x3
+    if equal _goto Grookey 
     call EggMessageStuff @if we get here that means we rolled 4 for dartrix
     giveegg 0x3AB
     release
@@ -178,6 +184,24 @@ Chikorita:
     call EggMessageStuff
     giveegg 0x98
     release
+    end
+
+Grookey:
+    call EggMessageStuff 
+    giveegg 0x44E
+    release 
+    end 
+
+Scorbunny:
+    call EggMessageStuff 
+    giveegg 0x451
+    release 
+    end 
+
+Sobble:
+    call EggMessageStuff 
+    giveegg 0x454
+    release 
     end 
 
 Piplup:

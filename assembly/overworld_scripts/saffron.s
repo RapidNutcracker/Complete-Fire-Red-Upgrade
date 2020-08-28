@@ -172,11 +172,14 @@ SecondList:
     loadpointer 0x0 gText_LeafBlade
     special 0x25
     setvar 0x8006 0x5
+    loadpointer 0x0 gText_KnockOff
+    special 0x25
+    setvar 0x8006 0x6
     loadpointer 0x0 gText_Back 
     special 0x25 
     preparemsg gText_Saffron_ManyTutors8
     waitmsg
-    multichoice 0x0 0x0 0x24 0x0 
+    multichoice 0x0 0x0 0x25 0x0 
     compare LASTRESULT 0x0
     if 0x1 _goto AirSlash
     compare LASTRESULT 0x1
@@ -187,7 +190,9 @@ SecondList:
     if 0x1 _goto SeedBomb
     compare LASTRESULT 0x4
     if 0x1 _goto LeafBlade
-    compare LASTRESULT 0x5 
+    compare LASTRESULT 0x5
+    if 0x1 _goto KnockOff
+    compare LASTRESULT 0x6 
     if 0x1 _goto FirstList
     goto FirstList 
     end 
@@ -245,6 +250,11 @@ SeedBomb:
 
 LeafBlade:
     setvar 0x8005 0x6E
+    goto EndScript 
+    end 
+
+KnockOff:
+    setvar 0x8005 0x35
     goto EndScript 
     end 
 

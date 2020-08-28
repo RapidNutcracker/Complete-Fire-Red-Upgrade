@@ -193,7 +193,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_REFRIGERATE] = 8,
 	[ABILITY_REGENERATOR] = 8,
 	[ABILITY_RIVALRY] = 1,
-	[ABILITY_RKS_SYSTEM] = 8,
+	[ABILITY_RAGINGBOXER] = 8,
 	[ABILITY_ROCKHEAD] = 5,
 	[ABILITY_ROUGHSKIN] = 6,
 	[ABILITY_RUNAWAY] = 0,
@@ -1977,7 +1977,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 						case ABILITY_DISGUISE:
 						case ABILITY_MULTITYPE:
 						case ABILITY_POWERCONSTRUCT:
-						case ABILITY_RKS_SYSTEM:
+						// case ABILITY_RKS_SYSTEM:
 						case ABILITY_SCHOOLING:
 						case ABILITY_SHIELDSDOWN:
 						case ABILITY_STANCECHANGE:
