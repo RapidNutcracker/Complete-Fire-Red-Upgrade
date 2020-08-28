@@ -131,9 +131,9 @@ const struct MenuAction sStartMenuActionTable[] =
 	[STARTMENU_PLAYER_LINK] = {gText_MenuPlayer, {.u8_void = StartMenuLinkModePlayerCallback}},
 	[STARTMENU_DEXNAV] = {gText_DexNav, {.u8_void = StartMenuDexNavCallback}},
 	// [STARTMENU_TOGGLEDOUBLE] = {gText_ToggleDouble, {.u8_void = StartMenuToggleDoubleCallback}}, //added
-	#ifdef FLAG_SYS_QUEST_LOG
-	[STARTMENU_QUEST_LOG] = {gText_MissionLog, {.u8_void = (void*) (0x801D768 | 1)}},
-	#endif
+	//#ifdef FLAG_SYS_QUEST_LOG
+	// [STARTMENU_QUEST_LOG] = {gText_MissionLog, {.u8_void = (void*) (0x801D768 | 1)}},
+	//#endif
 	[STARTMENU_EXIT_RIGHT] = {gText_MenuExitRight, {.u8_void = StartMenuExitCallback}},
 	[STARTMENU_EXIT_LEFT] = {gText_MenuExitLeft, {.u8_void = StartMenuExitCallback}},
 };
@@ -164,10 +164,10 @@ static bool8 CanSetUpSecondaryStartMenu(void)
 		return TRUE;
 	#endif
 
-	#ifdef FLAG_SYS_QUEST_LOG
-	if (FlagGet(FLAG_SYS_QUEST_LOG))
-		return TRUE;
-	#endif
+	//#ifdef FLAG_SYS_QUEST_LOG
+	// if (FlagGet(FLAG_SYS_QUEST_LOG))
+		// return TRUE;
+	//#endif
 
 	return FALSE;
 }
@@ -244,10 +244,10 @@ static void BuildPokeToolsMenu(void)
 		AppendToStartMenuItems(STARTMENU_DEXNAV);
 		//AppendToStartMenuItems(STARTMENU_TOGGLEDOUBLE); //added this
 	}
-	#ifdef FLAG_SYS_QUEST_LOG
-	if (FlagGet(FLAG_SYS_QUEST_LOG))
-		AppendToStartMenuItems(STARTMENU_QUEST_LOG);
-	#endif
+	//#ifdef FLAG_SYS_QUEST_LOG
+	// if (FlagGet(FLAG_SYS_QUEST_LOG))
+	// AppendToStartMenuItems(STARTMENU_QUEST_LOG);
+	//#endif
 
 	AppendToStartMenuItems(STARTMENU_EXIT_LEFT);
 }

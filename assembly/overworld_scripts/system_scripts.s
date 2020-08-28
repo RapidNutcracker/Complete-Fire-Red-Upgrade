@@ -610,7 +610,7 @@ EventScript_UseSurf:
 	bufferattack 0x1 MOVE_SURF
 	callasm IsUnboundToVar
 	compare LASTRESULT 0x0
-	if equal _goto EventScript_UseSurf_Ask
+	if equal _goto EventScript_UseSurf_SkipAsk @ EventScript_UseSurf_Ask
 	checkflag FLAG_AUTO_HMS
 	if SET _goto EventScript_UseSurf_SkipAsk
 

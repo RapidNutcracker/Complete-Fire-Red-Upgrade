@@ -1,8 +1,8 @@
 #org @gText_ChangeSaveType
-WRONG SAVE TYPE!\nPlease change to Flash 128k.
+WRONG SAVE TYPE!\nPlease change to Flash 128k.\pConsult the Discord if you need help. 
 
 #org @gText_MainMenuEnableRTC
-WARNING!\pThe correct system time could\nnot be read.\pEnable the Real Time Clock (RTC),\nand make sure the time is correct.
+WARNING!\pThe correct system time could\nnot be read.\pEnable the Real Time Clock (RTC),\nand make sure the time is correct.\pConsult the Discord if you need help. 
 
 #org @gText_UsedVar2WildStronger
 [BUFFER][01] used the\n[BUFFER][03].\pThe chance of encountering strong\nwild Pok\emon in this area increased.[FC][09]
@@ -35,13 +35,13 @@ You also get a [BUFFER][03] as\nan added bonus.[FC][09]
 You also get [BUFFER][02] [BUFFER][03]s as\nan added bonus.[FC][09]
 
 #org @gText_AskUseAnotherRepel
-The repellent's effect wore off!\nWould you like to use another one?
+Repel wore off. Use another?
 
 #org @gText_UsedAnotherRepel
 [BUFFER][01] used a [BUFFER][04].
 
 #org @gText_RepelWoreOff
-The repellent's effect wore off!
+Repel wore off. 
 
 #org @gText_FoundMultipleItems
 [PLAYER] found [BUFFER1] [BUFFER2]!
