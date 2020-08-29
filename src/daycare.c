@@ -774,7 +774,7 @@ static u8 GetEggStepsToSubtract(void)
 			u8 ability = GetMonAbility(&gPlayerParty[i]);
 			if (ability == ABILITY_MAGMAARMOR || ability == ABILITY_FLAMEBODY || ability == ABILITY_STEAMENGINE)
 			{
-				return 2;
+				return 4;
 			}
 		}
 	}
@@ -834,7 +834,7 @@ u8 ModifyBreedingScoreForOvalCharm(u8 score)
 		}
 	}
 	#endif
-
+	score = 90;
 	return score;
 }
 

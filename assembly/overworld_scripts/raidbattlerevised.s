@@ -15,8 +15,8 @@
 .equ VAR_DAILY_EVENT, 0x504A @ Also 504B
 .equ VAR_CERULEANCAVE, 0x504C @also 504D
 .equ VAR_MTMOON, 0x504E @also 504F 
-.equ VAR_ROUTE4, 0x505E @also 505F
-.equ VAR_ROUTE3, 0x506B @also 506C 
+.equ VAR_ROUTE4, 0x507E @also 507F
+.equ VAR_ROUTETHREE, 0x5080 @also 5081 
 .equ VAR_ROUTE24, 0x506D @also 506E
 .equ VAR_ROUTE25, 0x5061 @also 5062
 .equ VAR_ROUTE5, 0x5063 @also 5064
@@ -145,9 +145,9 @@ RaidScript_EndRoute4:
     release 
     end 
 
-.global EventScript_Route3Raid @Here 
+.global EventScript_Route3Raid 
 EventScript_Route3Raid:
-    setvar 0x8000 VAR_ROUTE3 @Here 
+    setvar 0x8000 VAR_ROUTETHREE 
     setvar 0x8001 0x0
     special2 LASTRESULT 0xA0
     compare LASTRESULT 0x0 
@@ -155,11 +155,11 @@ EventScript_Route3Raid:
     call RaidBattle 
     setvar 0x4000 0x0
     call RaidScript_GiveReward
-    goto RaidScript_EndRoute3 @ Here
+    goto RaidScript_EndRoute3 
     end 
 
 RaidScript_EndRoute3: @Here 
-    setvar 0x8000 VAR_ROUTE3 @Here 
+    setvar 0x8000 VAR_ROUTETHREE
     setvar 0x8001 0x0
     special 0xA1
     release 

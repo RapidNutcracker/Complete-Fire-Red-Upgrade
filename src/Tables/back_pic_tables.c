@@ -23,6 +23,8 @@ tables to edit:
 
 extern const u8 gTrainerBackPic_BrendanPal[];
 #define gTrainerPalette_Brendan gTrainerBackPic_BrendanPal
+extern const u8 gTrainerBackPic_Brendan2Pal[];
+#define gTrainerPalette_Brendan2 gTrainerBackPic_Brendan2Pal
 extern const u8 gTrainerBackPic_MayPal[];
 #define gTrainerPalette_May gTrainerBackPic_MayPal
 extern const u8 gTrainerBackPic_MarlonPal[];
@@ -48,11 +50,19 @@ extern const u8 gTrainerBackPic_AlfordPal[];
 extern const u8 gTrainerBackPic_TessyPal[];
 #define gTrainerPalette_Tessy gTrainerBackPic_TessyPal
 
+extern const u8 gTrainerBackPic_NewRedPal[];
+#define gTrainerPallete_NewRed gTrainerBackPic_NewRedPal 
+
+extern const u8 gTrainerBackPic_NewLeafPal[];
+#define gTrainerPallete_NewLeaf gTrainerBackPic_NewLeafPal 
+
 const struct CompressedSpritePalette gTrainerBackPicPaletteTable[] =
 {
-	[TRAINER_BACK_PIC_RED] =		{gTrainerBackPicPalette_Red, 	TRAINER_BACK_PIC_RED},
-	[TRAINER_BACK_PIC_LEAF] =		{gTrainerBackPicPalette_Leaf, 	TRAINER_BACK_PIC_LEAF},
-	[TRAINER_BACK_PIC_BRENDAN] =	{gTrainerPalette_Brendan, 		TRAINER_BACK_PIC_BRENDAN},
+	// [TRAINER_BACK_PIC_RED] =		{gTrainerBackPicPalette_Red, 	TRAINER_BACK_PIC_RED},
+	[TRAINER_BACK_PIC_RED] =		{gTrainerPallete_NewRed, TRAINER_BACK_PIC_RED},
+	// [TRAINER_BACK_PIC_LEAF] =		{gTrainerBackPicPalette_Leaf, 	TRAINER_BACK_PIC_LEAF},
+	[TRAINER_BACK_PIC_LEAF] =		{gTrainerPallete_NewLeaf , 	TRAINER_BACK_PIC_LEAF},
+	[TRAINER_BACK_PIC_BRENDAN] =	{gTrainerPalette_Brendan2, 		TRAINER_BACK_PIC_BRENDAN},
 	[TRAINER_BACK_PIC_MAY] =		{gTrainerPalette_May, 			TRAINER_BACK_PIC_MAY},
 	[TRAINER_BACK_PIC_POKE_DUDE] =	{gTrainerPalette_PokeDude, 		TRAINER_BACK_PIC_POKE_DUDE},
 	[TRAINER_BACK_PIC_OLD_MAN] =	{gTrainerPalette_OldMan, 		TRAINER_BACK_PIC_OLD_MAN},
@@ -72,7 +82,8 @@ const struct CompressedSpritePalette gTrainerBackPicPaletteTable[] =
 #endif
 };
 
-#define gTrainerBackAnims_Red (const union AnimCmd* const*) 0x8239F44
+// #define gTrainerBackAnims_Red (const union AnimCmd* const*) 0x8239F44
+#define gTrainerBackAnims_Red (const union AnimCmd* const*) 0x8239F54
 #define gTrainerBackAnims_Leaf (const union AnimCmd* const*) 0x8239F4C
 #define gTrainerBackAnims_Brendan (const union AnimCmd* const*) 0x8239F54
 #define gTrainerBackAnims_May (const union AnimCmd* const*) 0x8239F54
@@ -149,7 +160,10 @@ const struct MonCoords gTrainerBackPicCoords[] =
 #define gTrainerBackPicTable_PokeDude (void*) 0x8234768
 #define gTrainerBackPicTable_OldMan (void*) 0x8234788
 
+extern const u8 gTrainerBackPic_NewRedTiles[];
+extern const u8 gTrainerBackPic_NewLeafTiles[];
 extern const u8 gTrainerBackPic_BrendanTiles[];
+extern const u8 gTrainerBackPic_Brendan2Tiles[];
 extern const u8 gTrainerBackPic_MayTiles[];
 extern const u8 gTrainerBackPic_MarlonTiles[];
 extern const u8 gTrainerBackPic_PokeKidTiles[];
@@ -165,10 +179,10 @@ extern const u8 gTrainerBackPic_TessyTiles[];
 
 static const struct SpriteFrameImage sTrainerBackPicTable_Brendan[] =
 {
-	{gTrainerBackPic_BrendanTiles, 			0x800, 0},
-	{gTrainerBackPic_BrendanTiles + 0x0800, 0x800, 0},
-	{gTrainerBackPic_BrendanTiles + 0x1000, 0x800, 0},
-	{gTrainerBackPic_BrendanTiles + 0x1800, 0x800, 0},
+	{gTrainerBackPic_Brendan2Tiles, 			0x800, 0},
+	{gTrainerBackPic_Brendan2Tiles + 0x0800, 0x800, 0},
+	{gTrainerBackPic_Brendan2Tiles + 0x1000, 0x800, 0},
+	{gTrainerBackPic_Brendan2Tiles + 0x1800, 0x800, 0},
 };
 
 static const struct SpriteFrameImage sTrainerBackPicTable_May[] =
@@ -177,6 +191,22 @@ static const struct SpriteFrameImage sTrainerBackPicTable_May[] =
 	{gTrainerBackPic_MayTiles + 0x0800, 	0x800, 0},
 	{gTrainerBackPic_MayTiles + 0x1000, 	0x800, 0},
 	{gTrainerBackPic_MayTiles + 0x1800, 	0x800, 0},
+};
+
+static const struct SpriteFrameImage sTrainerBackPicTable_NewRed[] =
+{
+	{gTrainerBackPic_NewRedTiles, 			0x800, 0},
+	{gTrainerBackPic_NewRedTiles + 0x0800, 0x800, 0},
+	{gTrainerBackPic_NewRedTiles + 0x1000, 0x800, 0},
+	{gTrainerBackPic_NewRedTiles + 0x1800, 0x800, 0},
+};
+
+static const struct SpriteFrameImage sTrainerBackPicTable_NewLeaf[] =
+{
+	{gTrainerBackPic_NewLeafTiles, 			0x800, 0},
+	{gTrainerBackPic_NewLeafTiles + 0x0800, 0x800, 0},
+	{gTrainerBackPic_NewLeafTiles + 0x1000, 0x800, 0},
+	{gTrainerBackPic_NewLeafTiles + 0x1800, 0x800, 0},
 };
 
 #ifdef UNBOUND
@@ -287,7 +317,7 @@ const struct SpriteTemplate gSpriteTemplateTable_TrainerBackSprites[] =
 		.paletteTag = 0,
 		.oam = gOamData_TrainerBacksprite,
 		.anims = NULL,
-		.images = gTrainerBackPicTable_Red,
+		.images = sTrainerBackPicTable_NewRed,
 		.affineAnims = gAffineAnims_TrainerBacksprite,
 		.callback = gSpriteCB_TrainerBacksprite,
 	},
@@ -297,7 +327,7 @@ const struct SpriteTemplate gSpriteTemplateTable_TrainerBackSprites[] =
 		.paletteTag = 0,
 		.oam = gOamData_TrainerBacksprite,
 		.anims = NULL,
-		.images = gTrainerBackPicTable_Leaf,
+		.images = sTrainerBackPicTable_NewLeaf,
 		.affineAnims = gAffineAnims_TrainerBacksprite,
 		.callback = gSpriteCB_TrainerBacksprite,
 	},

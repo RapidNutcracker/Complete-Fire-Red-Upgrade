@@ -213,16 +213,137 @@ sStartMenuActionTable 0806F3F8
 sStartMenuDescPointers 0806F138
 sStartMenuDescPointers 0806F368
 
+#5 
+archerTiles 82395A4 
+archerPal   8239A44
+
+#6 30 
+arianaTiles  823957C  
+arianaPal    8239A4C
+
+#3 tested 
+falknerTiles 8239594 
+falknerPal   8239A34
+
+#116
+brockTiles 823991C 
+brockPal   8239DBC 
+
+#7
+bugsyTiles  82395B4 
+bugsyPal    8239A54
+
+#117 3A8 
+mistyTiles  8239924 
+mistyPal    8329DC4     
+
+#118 3B0
+ltsurgeTiles 823992C 
+ltsurgePal   8239DCC
+
+#119 8C8
+erikaTiles   8239E44  
+erikaPal     823A2E4
+
+#9 48
+mortyTiles 82395C4
+mortyPal   8239A64
 
 #Trainer sprite is 823957C
 #Multiply ID by 8 and add 
 #Trainer palette is at 8239A1C, same direction as above 
 
-archerTiles 82395A4
-archerPal   8239A44
+#11 58
+jasmineTiles 82395D4
+jasminePal   8239A74
 
-falknerTiles 8239594
-falknerPal   8239A34
+#122 3D0     
+sabrinaTiles 823994C
+sabrinaPal   8239DEC
+
+#120  3C0
+kogaTiles  823993C
+kogaPal    8239DDC
+
+#12 60
+pryceTiles 82395DC
+prycePal   8239A7C
+
+#121 3C8
+blaineTiles 8239944
+blainePal   8239DE4
+
+#108 360
+giovanniTiles 82398DC
+giovanniPal 8239D7C
+
+#13  68
+claireTiles 82395E4
+clairePal   8239A84
+
+#56 tested 
+brendanTiles 823973C
+brendanPal   8239BDC
+
+# red 135
+gTrainerPicNewFrontRedTiles 82399B4
+gTrainerPicNewFrontRedPal 8239E54
+
+#leaf 136
+leafTiles
+leafPal 
+
+#Trainer sprite is 823957C
+#Multiply ID by 8 and add 
+#Trainer palette is at 8239A1C, same direction as above 
+
+#109 tested 
+gruntTiles 82398E4
+gruntPal 8239D84
+
+#106 tested 
+garyTiles 82398CC
+garyPal 8239D6C
+
+#113 
+brunoTiles 8239904
+brunoPal   8239DA4
+
+#83 tested 
+bugcatcherTiles 8239814
+bugcatcherPal 8239CB4
+
+#92 burglar 
+burglarTiles 823985C
+burglarPal   8239CFC
+
+#105 black belt 
+blackbeltTiles 82398C4
+blackbeltPal  8239D64
+
+#16 Nurse
+nursetrainerTiles 82395FC
+nursetrainerPal 8239A9C
+
+#107 scientist 
+scientistTiles 82398D4
+scientistPal 8239D74
+
+#86 camper 
+camperTiles 823982C
+camperPal   8239CCC
+
+#87 camper girl  
+campergirlTiles 8239834
+campergirlPal   8239CD4
+
+#84 lass  tested 
+LassTiles    823981C
+LassPal      8239CBC
+
+#82 youngster tested 
+youngsterTiles   823980C
+youngsterPal     8239CAC
 
 #replace bug catcher with falkner 
 # gEventObjectGraphicsInfo_Falkner 8EB1050
