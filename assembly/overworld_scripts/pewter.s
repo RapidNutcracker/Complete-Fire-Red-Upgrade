@@ -3,23 +3,24 @@
 
 .include "../xse_commands.s"
 .include "../xse_defines.s"
+.include "../asm_defines.s" 
 
 .global EventScript_Pewter_GiveDmax 
 EventScript_Pewter_GiveDmax:
+    clearflag 0x200
+    showsprite 0x8 
     applymovement 0xFF Stop 
     waitmovement 0x0
     msgbox gText_Pewter_GiveDmax1 MSG_NORMAL 
-    clearflag 0x200
-    showsprite 0x8 
     applymovement 0x8 ComeToYou 
     waitmovement 0x0 
     applymovement 0xFF Look
     waitmovement 0x0
     msgbox gText_Pewter_GiveDmax2 MSG_NORMAL 
     msgbox gText_Pewter_GiveDmax3 MSG_NORMAL 
-    giveitem 0x119 0x1 MSG_OBTAIN
+    giveitem ITEM_DYNAMAX_BAND 0x1 MSG_OBTAIN 
     setflag 0x200
-    @ msgbox gText_Pewter_GiveDmax3 MSG_NORMAL 
+    msgbox gText_Pewter_GiveDynamaxEnd MSG_NORMAL 
     applymovement 0x8 GoLeave 
     waitmovement 0x0 
     hidesprite 0x8
@@ -74,4 +75,167 @@ EventScript_Pewter_GiveDmaxBottom:
     waitmovement 0x0 
     goto EventScript_Pewter_GiveDmax 
     end 
+
+.global EventScript_falknercheck_Start
+EventScript_falknercheck_Start:
+	checkflag 0x920
+	if 0x1 _goto EventScript_falknercheck_Done
+	applymovement 0xFF EventScript_falknercheck_Move0
+	waitmovement 0x0
+	msgbox gText_falknercheck_1 0x3
+	applymovement 0xFF EventScript_falknercheck_Move
+	waitmovement 0x0
+	release
+	end
+
+EventScript_falknercheck_Done:
+	release
+	end
+
+
+EventScript_falknercheck_Move0:
+.byte 0x1
+.byte 0xFE
+
+EventScript_falknercheck_Move:
+.byte 0x10
+.byte 0xFE
+
+.global EventScript_falkner_Start
+EventScript_falkner_Start:
+	lock
+	textcolor 0x00
+	msgbox gText_falkner_1 0x6
+	sound 0x15
+	applymovement 0x6 EventScript_falkner_Look
+    waitmovement 0x0 
+	checksound
+	applymovement 0x6 EventScript_falkner_Look2
+    waitmovement 0x0 
+	msgbox gText_falkner_2 0x6
+	msgbox gText_falkner_3 0x6
+	setflag 0x915
+	trainerbattle3 0x3 0x2D 0x0 gText_falkner_Defeat
+	msgbox gText_falkner_4 0x6
+	giveitem ITEM_TM51 0x1 MSG_OBTAIN 
+	msgbox gText_falkner_6 0x6
+	fadescreen 0x1
+	hidesprite 0x6
+	sound 0x9
+	checksound
+	fadescreen 0x0
+	setflag 0x920
+	release
+	end
+
+EventScript_falkner_Look:
+    .byte exclaim
+    .byte end_m
+
+EventScript_falkner_Look2:
+.byte 0x4A
+.byte 0xFE
+
+.global EventScript_checkbadge1_Start
+EventScript_checkbadge1_Start:
+	checkflag 0x820
+	if 0x1 _goto EventScript_checkbadge1_Done
+	textcolor 0x00
+	applymovement 0x05 EventScript_checkbadge1_Npcmove
+	waitmovement 0x0
+	msgbox gText_checkbadge1_1 0x6
+	applymovement 0xFF EventScript_checkbadge1_Playermoveback
+	waitmovement 0x0
+	release
+	end
+
+
+EventScript_checkbadge1_Npcmove:
+.byte 0x21
+.byte 0x21
+.byte 0xFE
+
+EventScript_checkbadge1_Playermoveback:
+.byte 0x12
+.byte 0xFE
+
+EventScript_checkbadge1_Done:
+	release
+	end
+
+.global EventScript_checkbadge1_Npctalk
+EventScript_checkbadge1_Npctalk:
+	lock
+	faceplayer
+	msgbox gText_checkbadge1_1 0x6
+	release
+	end
+
+
+.global EventScript_brock_Start
+EventScript_brock_Start:
+	lock
+	faceplayer
+	checkflag 0x820
+	if 0x1 _goto EventScript_brock_Defeated
+	setflag 0x915
+	trainerbattle1 0x1 0x19E 0x0 gText_brock_EncounterText gText_brock_DefeatText EventScript_brock_WonPointer
+	release
+	end
+
+EventScript_brock_Defeated:
+	checkitem 0xE2 0x1
+	compare 0x800D 0x1
+	if 0x4 _goto EventScript_brock_Rematch
+	msgbox gText_brock_AfterBattle 0x6
+	release
+	end
+
+EventScript_brock_WonPointer:
+	msgbox gText_brock_Givetm 0x6
+	giveitem 0x147 0x1 MSG_OBTAIN
+	settrainerflag 0x8E
+	setflag 0x820 @badge
+	setflag 0x976 @placeholder flags
+	setflag 0x977
+	setflag 0x978
+	msgbox gText_brock_TMInfomsg 0x6
+	release
+	end
+
+EventScript_brock_Rematch:
+	checkflag 0x959
+	if 0x1 _goto EventScript_brock_DefeatedRematch
+	lock
+	faceplayer
+	msgbox gText_brock_Helloagain 0x5
+	compare LASTRESULT 0x0
+	if 0x1 _goto EventScript_brock_Cancel
+	setflag 0x915
+	setflag 0x90E @scale levels
+	trainerbattle1 0x1 0x38 0x0 gText_brock_Battle gText_brock_Seconddefeat EventScript_brock_Rematchwon
+	release
+	end
+
+EventScript_brock_Cancel:
+	msgbox gText_brock_Comeback 0x6
+	release
+	end
+
+
+EventScript_brock_Rematchwon:
+	clearflag 0x915
+	msgbox gText_brock_Won2text 0x6
+	giveitem ITEM_AERODACTYLITE 0x1 MSG_OBTAIN
+	giveitem ITEM_TM71 0x1 MSG_OBTAIN
+	setflag 0x959
+	msgbox gText_brock_Info 0x6
+	release
+	end
+
+EventScript_brock_DefeatedRematch:
+	msgbox gText_brock_Info 0x6
+	release
+	end
+
 

@@ -68,58 +68,58 @@ It's a dull red jewel222.
 Got here. 
 
 #org @gText_Adamant
-Adamant 
+Adamant +Atk -SpA
 
 #org @gText_Modest 
-Modest 
+Modest  +SpA -Atk
 
 #org @gText_Timid 
-Timid 
+Timid   +Speed -Atk
 
 #org @gText_Jolly 
-Jolly 
+Jolly   +Speed -SpA
 
 #org @gText_Hasty 
-Hasty 
+Hasty   +Speed -Def
 
 #org @gText_Naive 
-Naive 
+Naive   +Speed -SpD
 
 #org @gText_Mild 
-Mild 
+Mild     +SpA -Def
 
 #org @gText_Naughty
-Naughty 
+Naughty +Atk -SpD
 
 #org @gText_Rash 
-Rash 
+Rash     +SpA -SpDef
 
 #org @gText_Lonely 
-Lonely 
+Lonely   +Atk -Def 
 
 #org @gText_Brave 
-Brave 
+Brave    +Atk -Speed 
 
 #org @gText_Quiet 
-Quiet 
+Quiet    +SpA -Speed 
 
 #org @gText_Calm
-Calm 
+Calm    +SpD -Atk
 
 #org @gText_Impish
-Impish 
+Impish  +Def -SpA 
 
 #org @gText_Sassy
-Sassy 
+Sassy   +SpD -Speed
 
 #org @gText_Careful
-Careful 
+Careful +SpD -SpA
 
 #org @gText_Relaxed
-Relaxed 
+Relaxed +Def -Speed
 
 #org @gText_Bold 
-Bold 
+Bold    +Def -Atk
 
 #org @gText_Exit 
 Exit 

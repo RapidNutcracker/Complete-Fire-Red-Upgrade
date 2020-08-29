@@ -774,16 +774,16 @@ bool8 StandardWildEncounter(const u32 currMetaTileBehavior, const u16 previousMe
 		else
 		{
 			//Try a regular wild land encounter
-			#ifdef FLAG_DOUBLE_WILD_BATTLE
-			if (!FlagGet(FLAG_DOUBLE_WILD_BATTLE) //Flag hasn't already been set by user
-			&&  ViableMonCount(gPlayerParty) >= 2
-			&&  (lowerByte & TILE_FLAG_WILD_DOUBLE)
-			&&  Random() % 100 < WILD_DOUBLE_RANDOM_CHANCE)
-			{
-				FlagSet(FLAG_DOUBLE_WILD_BATTLE);
-				clearDoubleFlag = TRUE;
-			}
-			#endif
+			// #ifdef FLAG_DOUBLE_WILD_BATTLE
+			// if (!FlagGet(FLAG_DOUBLE_WILD_BATTLE) //Flag hasn't already been set by user
+			// &&  ViableMonCount(gPlayerParty) >= 2
+			// &&  (lowerByte & TILE_FLAG_WILD_DOUBLE)
+			// &&  Random() % 100 < WILD_DOUBLE_RANDOM_CHANCE)
+			// {
+			// 	FlagSet(FLAG_DOUBLE_WILD_BATTLE);
+			// 	clearDoubleFlag = TRUE;
+			// }
+			// #endif
 
 			if (TryGenerateWildMon(landMonsInfo, WILD_AREA_LAND, WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE) == TRUE)
 			{
@@ -824,16 +824,16 @@ bool8 StandardWildEncounter(const u32 currMetaTileBehavior, const u16 previousMe
 		}
 		else // try a regular surfing encounter
 		{
-			#ifdef FLAG_DOUBLE_WILD_BATTLE
-			if (!FlagGet(FLAG_DOUBLE_WILD_BATTLE) //Flag hasn't already been set by user
-			&&  ViableMonCount(gPlayerParty) >= 2
-			&&  lowerByte & TILE_FLAG_WILD_DOUBLE
-			&&  Random() % 100 < WILD_DOUBLE_RANDOM_CHANCE)
-			{
-				FlagSet(FLAG_DOUBLE_WILD_BATTLE);
-				clearDoubleFlag = TRUE;
-			}
-			#endif
+			// #ifdef FLAG_DOUBLE_WILD_BATTLE
+			// if (!FlagGet(FLAG_DOUBLE_WILD_BATTLE) //Flag hasn't already been set by user
+			// &&  ViableMonCount(gPlayerParty) >= 2
+			// &&  lowerByte & TILE_FLAG_WILD_DOUBLE
+			// &&  Random() % 100 < WILD_DOUBLE_RANDOM_CHANCE)
+			// {
+			// 	FlagSet(FLAG_DOUBLE_WILD_BATTLE);
+			// 	clearDoubleFlag = TRUE;
+			// }
+			// #endif
 
 			if (TryGenerateWildMon(waterMonsInfo, WILD_AREA_WATER, WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE) == TRUE)
 			{
@@ -953,10 +953,10 @@ bool8 SweetScentWildEncounter(void)
 			return TRUE;
 		}
 
-		#ifdef SWEET_SCENT_WILD_DOUBLE_BATTLES
-		if (Random() % 100 < WILD_DOUBLE_RANDOM_CHANCE && ViableMonCount(gPlayerParty) >= 2)
-			FlagSet(FLAG_DOUBLE_WILD_BATTLE); //Sweet Scent can trigger a wild double battle
-		#endif
+		// #ifdef SWEET_SCENT_WILD_DOUBLE_BATTLES
+		// if (Random() % 100 < WILD_DOUBLE_RANDOM_CHANCE && ViableMonCount(gPlayerParty) >= 2)
+		// 	FlagSet(FLAG_DOUBLE_WILD_BATTLE); //Sweet Scent can trigger a wild double battle
+		// #endif
 		TryGenerateWildMon(landMonsInfo, WILD_AREA_LAND, 0);
 
 		BattleSetup_StartWildBattle();
@@ -973,10 +973,10 @@ bool8 SweetScentWildEncounter(void)
 			return TRUE;
 		}
 
-		#ifdef SWEET_SCENT_WILD_DOUBLE_BATTLES
-		if (Random() % 100 < WILD_DOUBLE_RANDOM_CHANCE && ViableMonCount(gPlayerParty) >= 2)
-			FlagSet(FLAG_DOUBLE_WILD_BATTLE); //Sweet Scent can trigger a wild double battle
-		#endif
+		// #ifdef SWEET_SCENT_WILD_DOUBLE_BATTLES
+		// if (Random() % 100 < WILD_DOUBLE_RANDOM_CHANCE && ViableMonCount(gPlayerParty) >= 2)
+		// 	FlagSet(FLAG_DOUBLE_WILD_BATTLE); //Sweet Scent can trigger a wild double battle
+		// #endif
 		TryGenerateWildMon(waterMonsInfo, WILD_AREA_WATER, 0);
 		BattleSetup_StartWildBattle();
 		return TRUE;

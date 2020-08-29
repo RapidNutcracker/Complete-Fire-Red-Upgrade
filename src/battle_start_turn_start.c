@@ -119,7 +119,7 @@ void BattleBeginFirstTurn(void)
 	int i, j, k;
 	u8* state = &(gBattleStruct->switchInAbilitiesCounter);
 	u8* bank = &(gBattleStruct->switchInItemsCounter);
-
+	gBattleScripting.battleStyle = OPTIONS_BATTLE_STYLE_SET; //added to force battle style set
 	if (!gBattleExecBuffer) //Inlclude Safari Check Here?
 	{
 		switch(*state) {

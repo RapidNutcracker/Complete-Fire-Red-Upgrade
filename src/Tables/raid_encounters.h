@@ -11945,7 +11945,7 @@ static struct Raid sCootesBogRaids5Star[] =
 static struct Raid sRoute3Raids1Star[] =
 {
 	{
-		.species = SPECIES_SPEAROW,
+		.species = SPECIES_BLIPBUG,
 		.ability = RAID_ABILITY_HIDDEN,
 		.drops =
 		{
@@ -11964,7 +11964,7 @@ static struct Raid sRoute3Raids1Star[] =
 		},
 	},
 	{
-		.species = SPECIES_NIDORAN_F,
+		.species = SPECIES_FLETCHLING,
 		.ability = RAID_ABILITY_HIDDEN,
 		.drops =
 		{
@@ -12044,7 +12044,7 @@ static struct Raid sRoute3Raids1Star[] =
 static struct Raid sRoute4Raids1Star[] =
 {
 	{
-		.species = SPECIES_ELECTRIKE,
+		.species = SPECIES_YAMPER,
 		.ability = RAID_ABILITY_HIDDEN,
 		.drops =
 		{
@@ -12063,7 +12063,7 @@ static struct Raid sRoute4Raids1Star[] =
 		},
 	},
 	{
-		.species = SPECIES_MANKEY,
+		.species = SPECIES_CHEWTLE,
 		.ability = RAID_ABILITY_HIDDEN,
 		.drops =
 		{
@@ -12162,7 +12162,7 @@ static struct Raid sMtMoonRaids1Star[] =
 		},
 	},
 	{
-		.species = SPECIES_TYMPOLE,
+		.species = SPECIES_CUFANT,
 		.ability = RAID_ABILITY_HIDDEN,
 		.drops =
 		{
@@ -12219,7 +12219,7 @@ static struct Raid sMtMoonRaids1Star[] =
 		},
 	},
 	{
-		.species = SPECIES_NOSEPASS,
+		.species = SPECIES_ROLYCOLY,
 		.ability = RAID_ABILITY_HIDDEN,
 		.drops =
 		{
@@ -13429,104 +13429,104 @@ static struct Raid sRoute8Raids2Star[] =
 	},
 };
 
-static struct Raid sRoute12Raids2Star[] =
-{
-	{
-		.species = SPECIES_CORSOLA_G,
-		.ability = RAID_ABILITY_HIDDEN,
-		.drops =
-		{
-			/*100 %*/ ITEM_NONE,
-			/* 80 %*/ ITEM_DIVE_BALL,
-			/* 80 %*/ ITEM_ELIXIR,
-			/* 50 %*/ ITEM_BLUE_SHARD,
-			/* 50 %*/ ITEM_NONE,
-			/* 30 %*/ ITEM_NUGGET,
-			/* 30 %*/ ITEM_LUXURY_BALL,
-			/* 25 %*/ ITEM_PP_UP,
-			/* 25 %*/ ITEM_DREAM_BALL,
-			/*  5 %*/ ITEM_BIG_NUGGET,
-			/*  4 %*/ ITEM_LUCKY_EGG,
-			/*  1 %*/ ITEM_LUCKY_EGG,
-		},
-	},
-	{
-		.species = SPECIES_SLOWPOKE_G,
-		.ability = RAID_ABILITY_HIDDEN,
-		.drops =
-		{
-			/*100 %*/ ITEM_NONE,
-			/* 80 %*/ ITEM_DIVE_BALL,
-			/* 80 %*/ ITEM_ELIXIR,
-			/* 50 %*/ ITEM_BLUE_SHARD,
-			/* 50 %*/ ITEM_NONE,
-			/* 30 %*/ ITEM_NUGGET,
-			/* 30 %*/ ITEM_LUXURY_BALL,
-			/* 25 %*/ ITEM_PP_UP,
-			/* 25 %*/ ITEM_DREAM_BALL,
-			/*  5 %*/ ITEM_BIG_NUGGET,
-			/*  4 %*/ ITEM_LUCKY_EGG,
-			/*  1 %*/ ITEM_LUCKY_EGG,
-		},
-	},
-	{
-		.species = SPECIES_CARVANHA,
-		.ability = RAID_ABILITY_HIDDEN,
-		.drops =
-		{
-			/*100 %*/ ITEM_NONE,
-			/* 80 %*/ ITEM_DIVE_BALL,
-			/* 80 %*/ ITEM_ELIXIR,
-			/* 50 %*/ ITEM_BLUE_SHARD,
-			/* 50 %*/ ITEM_NONE,
-			/* 30 %*/ ITEM_NUGGET,
-			/* 30 %*/ ITEM_LUXURY_BALL,
-			/* 25 %*/ ITEM_PP_UP,
-			/* 25 %*/ ITEM_DREAM_BALL,
-			/*  5 %*/ ITEM_BIG_NUGGET,
-			/*  4 %*/ ITEM_LUCKY_EGG,
-			/*  1 %*/ ITEM_LUCKY_EGG,
-		},
-	},
-	{
-		.species = SPECIES_ALOMOMOLA,
-		.ability = RAID_ABILITY_HIDDEN,
-		.drops =
-		{
-			/*100 %*/ ITEM_NONE,
-			/* 80 %*/ ITEM_DIVE_BALL,
-			/* 80 %*/ ITEM_ELIXIR,
-			/* 50 %*/ ITEM_BLUE_SHARD,
-			/* 50 %*/ ITEM_NONE,
-			/* 30 %*/ ITEM_NUGGET,
-			/* 30 %*/ ITEM_LUXURY_BALL,
-			/* 25 %*/ ITEM_PP_UP,
-			/* 25 %*/ ITEM_DREAM_BALL,
-			/*  5 %*/ ITEM_BIG_NUGGET,
-			/*  4 %*/ ITEM_LUCKY_EGG,
-			/*  1 %*/ ITEM_LUCKY_EGG,
-		},
-	},
-	{
-		.species = SPECIES_TAUROS,
-		.ability = RAID_ABILITY_HIDDEN,
-		.drops =
-		{
-			/*100 %*/ ITEM_NONE,
-			/* 80 %*/ ITEM_DUSK_BALL,
-			/* 80 %*/ ITEM_ELIXIR,
-			/* 50 %*/ ITEM_GREEN_SHARD,
-			/* 50 %*/ ITEM_NONE,
-			/* 30 %*/ ITEM_NUGGET,
-			/* 30 %*/ ITEM_LUXURY_BALL,
-			/* 25 %*/ ITEM_PP_UP,
-			/* 25 %*/ ITEM_DREAM_BALL,
-			/*  5 %*/ ITEM_BIG_NUGGET,
-			/*  4 %*/ ITEM_LUCKY_EGG,
-			/*  1 %*/ ITEM_LUCKY_EGG,
-		},
-	},
-};
+// static struct Raid sRoute12Raids2Star[] =
+// {
+// 	{
+// 		.species = SPECIES_CORSOLA_G,
+// 		.ability = RAID_ABILITY_HIDDEN,
+// 		.drops =
+// 		{
+// 			/*100 %*/ ITEM_NONE,
+// 			/* 80 %*/ ITEM_DIVE_BALL,
+// 			/* 80 %*/ ITEM_ELIXIR,
+// 			/* 50 %*/ ITEM_BLUE_SHARD,
+// 			/* 50 %*/ ITEM_NONE,
+// 			/* 30 %*/ ITEM_NUGGET,
+// 			/* 30 %*/ ITEM_LUXURY_BALL,
+// 			/* 25 %*/ ITEM_PP_UP,
+// 			/* 25 %*/ ITEM_DREAM_BALL,
+// 			/*  5 %*/ ITEM_BIG_NUGGET,
+// 			/*  4 %*/ ITEM_LUCKY_EGG,
+// 			/*  1 %*/ ITEM_LUCKY_EGG,
+// 		},
+// 	},
+// 	{
+// 		.species = SPECIES_SLOWPOKE_G,
+// 		.ability = RAID_ABILITY_HIDDEN,
+// 		.drops =
+// 		{
+// 			/*100 %*/ ITEM_NONE,
+// 			/* 80 %*/ ITEM_DIVE_BALL,
+// 			/* 80 %*/ ITEM_ELIXIR,
+// 			/* 50 %*/ ITEM_BLUE_SHARD,
+// 			/* 50 %*/ ITEM_NONE,
+// 			/* 30 %*/ ITEM_NUGGET,
+// 			/* 30 %*/ ITEM_LUXURY_BALL,
+// 			/* 25 %*/ ITEM_PP_UP,
+// 			/* 25 %*/ ITEM_DREAM_BALL,
+// 			/*  5 %*/ ITEM_BIG_NUGGET,
+// 			/*  4 %*/ ITEM_LUCKY_EGG,
+// 			/*  1 %*/ ITEM_LUCKY_EGG,
+// 		},
+// 	},
+// 	{
+// 		.species = SPECIES_CARVANHA,
+// 		.ability = RAID_ABILITY_HIDDEN,
+// 		.drops =
+// 		{
+// 			/*100 %*/ ITEM_NONE,
+// 			/* 80 %*/ ITEM_DIVE_BALL,
+// 			/* 80 %*/ ITEM_ELIXIR,
+// 			/* 50 %*/ ITEM_BLUE_SHARD,
+// 			/* 50 %*/ ITEM_NONE,
+// 			/* 30 %*/ ITEM_NUGGET,
+// 			/* 30 %*/ ITEM_LUXURY_BALL,
+// 			/* 25 %*/ ITEM_PP_UP,
+// 			/* 25 %*/ ITEM_DREAM_BALL,
+// 			/*  5 %*/ ITEM_BIG_NUGGET,
+// 			/*  4 %*/ ITEM_LUCKY_EGG,
+// 			/*  1 %*/ ITEM_LUCKY_EGG,
+// 		},
+// 	},
+// 	{
+// 		.species = SPECIES_ALOMOMOLA,
+// 		.ability = RAID_ABILITY_HIDDEN,
+// 		.drops =
+// 		{
+// 			/*100 %*/ ITEM_NONE,
+// 			/* 80 %*/ ITEM_DIVE_BALL,
+// 			/* 80 %*/ ITEM_ELIXIR,
+// 			/* 50 %*/ ITEM_BLUE_SHARD,
+// 			/* 50 %*/ ITEM_NONE,
+// 			/* 30 %*/ ITEM_NUGGET,
+// 			/* 30 %*/ ITEM_LUXURY_BALL,
+// 			/* 25 %*/ ITEM_PP_UP,
+// 			/* 25 %*/ ITEM_DREAM_BALL,
+// 			/*  5 %*/ ITEM_BIG_NUGGET,
+// 			/*  4 %*/ ITEM_LUCKY_EGG,
+// 			/*  1 %*/ ITEM_LUCKY_EGG,
+// 		},
+// 	},
+// 	{
+// 		.species = SPECIES_TAUROS,
+// 		.ability = RAID_ABILITY_HIDDEN,
+// 		.drops =
+// 		{
+// 			/*100 %*/ ITEM_NONE,
+// 			/* 80 %*/ ITEM_DUSK_BALL,
+// 			/* 80 %*/ ITEM_ELIXIR,
+// 			/* 50 %*/ ITEM_GREEN_SHARD,
+// 			/* 50 %*/ ITEM_NONE,
+// 			/* 30 %*/ ITEM_NUGGET,
+// 			/* 30 %*/ ITEM_LUXURY_BALL,
+// 			/* 25 %*/ ITEM_PP_UP,
+// 			/* 25 %*/ ITEM_DREAM_BALL,
+// 			/*  5 %*/ ITEM_BIG_NUGGET,
+// 			/*  4 %*/ ITEM_LUCKY_EGG,
+// 			/*  1 %*/ ITEM_LUCKY_EGG,
+// 		},
+// 	},
+// };
 
 static struct Raid sCeruleanCaveRaids5Star[] =
 {

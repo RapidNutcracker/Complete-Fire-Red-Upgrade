@@ -48,7 +48,7 @@ static const struct WildPokemon gRoute2_LandMonsNight[] =
 	{5, 5, SPECIES_PIDOVE},
 	{5, 5, SPECIES_PATRAT},
 	{5, 5, SPECIES_BURMY},
-	{5, 6, SPECIES_BURMY},
+	{5, 6, SPECIES_SKWOVET},
 	{5, 5, SPECIES_PANSAGE},
 	{5, 5, SPECIES_PANSAGE},
 };
@@ -85,8 +85,8 @@ static const struct WildPokemon gViridianFor_LandMonsNight[] =
 	{5, 5, SPECIES_SPINARAK},
 	{5, 6, SPECIES_GRUBBIN},
 	{5, 6, SPECIES_JOLTIK},
-	{6, 6, SPECIES_MURKROW},
-	{7, 7, SPECIES_MURKROW},
+	{6, 6, SPECIES_SNOM},
+	{7, 7, SPECIES_SNOM},
 };
 
 static const struct WildPokemonInfo gViridianFor_LandMonsInfoNight = {12, gViridianFor_LandMonsNight};

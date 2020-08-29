@@ -213,6 +213,21 @@ sStartMenuActionTable 0806F3F8
 sStartMenuDescPointers 0806F138
 sStartMenuDescPointers 0806F368
 
+
+#Trainer sprite is 823957C
+#Multiply ID by 8 and add 
+#Trainer palette is at 8239A1C, same direction as above 
+
+archerTiles 82395A4
+archerPal   8239A44
+
+falknerTiles 8239594
+falknerPal   8239A34
+
+#replace bug catcher with falkner 
+# gEventObjectGraphicsInfo_Falkner 8EB1050
+# gEventObjectPic_FalknerPal 83A5160
+
 #ifdef UNBOUND
 TestScript 08B7AD70
 TestScript 08B7ADA0

@@ -100,6 +100,7 @@ struct Immunity
 	u8 type;
 };
 
+
 static struct Immunity sImmunities[] =
 {
 	{NORMAL_IMMUNITY, TYPE_NORMAL},
@@ -133,6 +134,7 @@ extern const u8 gNumFlorgesForms;
 extern const u8 gNumFurfrouForms;
 extern const u8 gNumPikachuCapForms;
 extern const u8 gNumAlcremieForms;
+
 
 extern bool8 sp051_CanTeamParticipateInSkyBattle(void);
 extern bool8 CanMonParticipateInASkyBattle(struct Pokemon* mon);
