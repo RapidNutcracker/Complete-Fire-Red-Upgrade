@@ -5,8 +5,11 @@
 .include "../xse_defines.s"
 .include "../asm_defines.s" 
 
+.global EventScript_givepoweruppunch_Start
 EventScript_givepoweruppunch_Start:
 	textcolor 0x0
+	lock 
+	faceplayer 
 	checkflag 0x202
 	if 0x1 _goto EventScript_givepoweruppunch_Done
 	msgbox gText_givepoweruppunch_3 0x6
@@ -30,6 +33,7 @@ EventScript_givepoweruppunch_Done:
 	release
 	end
 
+.global EventScript_machobrace_Start
 EventScript_machobrace_Start:
 	lock
 	faceplayer

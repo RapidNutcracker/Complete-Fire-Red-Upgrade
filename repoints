@@ -213,7 +213,7 @@ sStartMenuActionTable 0806F3F8
 sStartMenuDescPointers 0806F138
 sStartMenuDescPointers 0806F368
 
-#5 
+#5  tested 
 archerTiles 82395A4 
 archerPal   8239A44
 
@@ -285,17 +285,12 @@ clairePal   8239A84
 brendanTiles 823973C
 brendanPal   8239BDC
 
-# red 135
+# red 135 tested 
 gTrainerPicNewFrontRedTiles 82399B4
 gTrainerPicNewFrontRedPal 8239E54
 
 #leaf 136
-leafTiles
-leafPal 
 
-#Trainer sprite is 823957C
-#Multiply ID by 8 and add 
-#Trainer palette is at 8239A1C, same direction as above 
 
 #109 tested 
 gruntTiles 82398E4
@@ -345,10 +340,56 @@ LassPal      8239CBC
 youngsterTiles   823980C
 youngsterPal     8239CAC
 
+#Trainer sprite is 823957C
+#Multiply ID by 8 and add 
+#Trainer palette is at 8239A1C, same direction as above 
+
+# supernerd 89
+supernerdTiles 8239844
+supernerdPal   8239CE4
+
+# gentleman 123
+gentlemanTiles 8239954
+gentlemanPal 8239DF4
+
+#hiker 90
+hikerTiles 823984C
+hikerPal  8239CEC
+
+#juggler 102
+jugglerTiles 82398AC
+jugglerPal   8239D4C
+
+#gamer 97
+gamerTiles   8239884
+gamerPal     8239D24
+
+#bird keeper 104 
+birdkeeperTiles 82398BC
+birdkeeperPal   8239D5C
+
+#channeler 126
+channelerTiles 823996C
+channelerPal   8239E0C
+ 
+#biker 96
+bikerTiles     823987C
+bikerPal       8239D1C
+
+#dumbasskid 29 
+dumbasskidTiles 8239664
+dumbasskidPal   8239B04
+
+#fisherman 94 
+dumbasskidTiles   823986C
+dumbasskidPal     8239D0C
+
 #replace bug catcher with falkner 
 # gEventObjectGraphicsInfo_Falkner 8EB1050
 # gEventObjectPic_FalknerPal 83A5160
 
+#offsets 800000 - 80107F reserved for descriptions!  orrrr not 
+# DESC_ROOST 08800000
 #ifdef UNBOUND
 TestScript 08B7AD70
 TestScript 08B7ADA0

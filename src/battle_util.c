@@ -1369,33 +1369,33 @@ void ClearBankStatus(u8 bank)
 
 bool8 DoesSleepClausePrevent(u8 bank)
 {
-	if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
-	{
-		switch (VarGet(VAR_BATTLE_FACILITY_TIER)) {
-			case BATTLE_FACILITY_OU:
-			case BATTLE_FACILITY_UBER:
-			case BATTLE_FACILITY_LITTLE_CUP:
-			case BATTLE_FACILITY_MONOTYPE:
-			case BATTLE_FACILITY_CAMOMONS:
-			case BATTLE_FACILITY_UBER_CAMOMONS:
-			case BATTLE_FACILITY_LC_CAMOMONS:
-			case BATTLE_FACILITY_SCALEMONS:
-			case BATTLE_FACILITY_350_CUP:
-			case BATTLE_FACILITY_AVERAGE_MONS:
-			case BATTLE_FACILITY_BENJAMIN_BUTTERFREE:
-			case BATTLE_FACILITY_NATIONAL_DEX_OU: ;
-				u8 firstId, lastId;
-				struct Pokemon* party = LoadPartyRange(bank, &firstId, &lastId);
+	// if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
+	// {
+		// switch (VarGet(VAR_BATTLE_FACILITY_TIER)) { //removed
+		// 	case BATTLE_FACILITY_OU:
+		// 	case BATTLE_FACILITY_UBER:
+		// 	case BATTLE_FACILITY_LITTLE_CUP:
+		// 	case BATTLE_FACILITY_MONOTYPE:
+		// 	case BATTLE_FACILITY_CAMOMONS:
+		// 	case BATTLE_FACILITY_UBER_CAMOMONS:
+		// 	case BATTLE_FACILITY_LC_CAMOMONS:
+		// 	case BATTLE_FACILITY_SCALEMONS:
+		// 	case BATTLE_FACILITY_350_CUP:
+		// 	case BATTLE_FACILITY_AVERAGE_MONS:
+		// 	case BATTLE_FACILITY_BENJAMIN_BUTTERFREE:
+		// 	case BATTLE_FACILITY_NATIONAL_DEX_OU: ;
+		u8 firstId, lastId;
+		struct Pokemon* party = LoadPartyRange(bank, &firstId, &lastId);
 
-				for (int i = 0; i < PARTY_SIZE; ++i)
-				{
-					if (GetMonData(&party[i], MON_DATA_HP, NULL) != 0
-					&& !GetMonData(&party[i], MON_DATA_IS_EGG, NULL)
-					&& GetMonData(&party[i], MON_DATA_STATUS, NULL) & STATUS_SLEEP) //Someone on team is already asleep
-						return TRUE;
-				}
+		for (int i = 0; i < PARTY_SIZE; ++i)
+		{
+			if (GetMonData(&party[i], MON_DATA_HP, NULL) != 0
+			&& !GetMonData(&party[i], MON_DATA_IS_EGG, NULL)
+			&& GetMonData(&party[i], MON_DATA_STATUS, NULL) & STATUS_SLEEP) //Someone on team is already asleep
+				return TRUE;
 		}
-	}
+		// }
+	// }
 
 	return FALSE;
 }

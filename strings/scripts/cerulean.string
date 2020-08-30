@@ -25,3 +25,36 @@ Hello. I can evaluate your\nPok\emon's happiness.
 #org @gText_Cerulean_Happiness2
 Your [BUFFER1]'s happiness\nvalue is [BUFFER2].
 
+#org @gText_misty_EncounterText
+Hi, you're a new face!\pOnly those trainer who have a\npolicy about Pok\emon can turn pro.\pWhat is your approach when you\ncatch and train Pok\emon?\pMy policy is an all-out offensive\nwith Water-type Pok\emon!
+
+#org @gText_misty_DefeatText
+Wow!\nYou're too much!\pAll right!\pYou can have the Cascade Badge to\nshow you beat me.
+
+#org @gText_misty_Givetm
+The Cascade Badge allows you\nto use Cut anytime,\leven out of battle.\pYou can Cut down small trees to\nopen new pathways.\pYou can also have my favorite TM.
+
+#org @gText_misty_TMInfomsg
+TM03 teaches Flip Turn.\pUse it on an aquatic Pok\emon!
+
+#org @gText_misty_Helloagain
+Oh hey! Welcome back!\pYou've returned at the nick of time!\pMy Pok\emon and I have actually been\ndying for a rematch.\pAlthough you already have my badge,\nI have special items to give as a\lreward.\pWhat do you say?
+
+#org @gText_misty_Comeback
+Oh[.] alright then.\pWhen you're ready, please do come\nback.
+
+#org @gText_misty_Battle
+Cool! We're going all out this time!\pPrepare yourself!
+
+#org @gText_misty_Seconddefeat
+Washed again...
+
+#org @gText_misty_Won2text
+As I thought, you're a super talent-\ned trainer! As promised, here you go.
+
+#org @gText_misty_Info
+[LIGHT_GREEN]Mega Gyarados[RED] is a huge threat.\pIt changes from Flying to Dark type,\nand boasts an even higher Attack\lstat!\pThe[LIGHT_GREEN] Froakie[RED] I've given has its Hidden\nAbility Protean, one of the best\labilities out there!\pWith these, you should be able to\nreach greater heights!
+
+#org @gText_misty_Froakie
+You received a [LIGHT_GREEN]Froakie!
+

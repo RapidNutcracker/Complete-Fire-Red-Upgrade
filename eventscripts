@@ -33,12 +33,26 @@ npc 3 21 9 EventScript_Route3Raid
 npc 16 0 1 EventScript_MagikarpGuy
 npc 3 22 7 EventScript_Route4Raid
 npc 16 0 6 EventScript_NatureChanger 
+npc 3 22 4 EventScript_givepoweruppunch_Start
+npc 3 22 5 EventScript_machobrace_Start
 
 #MT MOON 
 npc 1 1 13 EventScript_MtMoon_MuscleBand
 npc 1 1 14 EventScript_MtMoonRaid 
 npc 1 3 11 EventScript_MtMoon_ScopeLens 
+tile 1 3 1 EventScript_adminmtmoonright
+tile 1 3 2 EventScript_adminmtmoonleft_Start
 
 #CERULEAN 
 npc 7 3 7 EventScript_NatureChanger 
+npc 7 5 2 EventScript_misty_Start
+npc 7 0 0 EventScript_Cerulean_Haircut
+npc 7 9 0 EventScript_Cerulean_HappinessCheck
 
+#Route 24 
+npc 3 43 8 EventScript_Route24Raid
+npc 3 43 9 EVentScript_Route24FlameCharge
+
+#Route 25
+npc 3 44 13 EventScript_bugsy_Start
+npc 3 44 14 EventScript_Route25Raid 

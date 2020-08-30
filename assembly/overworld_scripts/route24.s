@@ -42,3 +42,12 @@ EventScript_bugsy_Battle:
 EventScript_bugsy_Look:
 .byte 0x4A
 .byte 0xFE
+
+
+EventScript_flamecharge_Start:
+	hidesprite 0x9
+	giveitem 0x9E 0x1 MSG_FIND
+	setflag 0x937
+	release
+	end
+

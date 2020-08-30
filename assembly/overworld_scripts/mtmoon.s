@@ -3,6 +3,7 @@
 
 .include "../xse_commands.s"
 .include "../xse_defines.s"
+.include "../asm_defines.s"
 
 .global EventScript_MtMoon_MuscleBand
 EventScript_MtMoon_MuscleBand:
@@ -12,7 +13,7 @@ EventScript_MtMoon_MuscleBand:
     if 0x1 _goto Done
     msgbox gText_MtMoon_MuscleBand1 MSG_FACE 
     msgbox gText_MtMoon_MuscleBand2 MSG_FACE
-    giveitem 0x18C 0x1 MSG_OBTAIN 
+    giveitem ITEM_MUSCLE_BAND 0x1 MSG_OBTAIN 
     setflag 0x997
     release
     end
@@ -31,11 +32,11 @@ EventScript_adminmtmoonright:
 PlayerMoveLeft:
 	.byte walk_left 
 	.byte end_m  
-	
+
 .global EventScript_adminmtmoonleft_Start
 EventScript_adminmtmoonleft_Start:
 	clearflag 0x200
-	showsprite 0x0C
+	showsprite 0x0D
 	textcolor 0x00
 	applymovement 0xFF EventScript_adminmtmoonleft_Stop
 	waitmovement 0x0
@@ -44,7 +45,7 @@ EventScript_adminmtmoonleft_Start:
 	applymovement 0xFF EventScript_adminmtmoonleft_Question
 	waitmovement 0x0
 	checksound
-	applymovement 0x0C EventScript_adminmtmoonleft_Comeup
+	applymovement 0x0D EventScript_adminmtmoonleft_Comeup
 	waitmovement 0x0
 	applymovement 0xFF EventScript_adminmtmoonleft_Look
 	waitmovement 0x0
@@ -52,10 +53,10 @@ EventScript_adminmtmoonleft_Start:
 	setflag 0x200
 	trainerbattle3 0x3 0x2E 0x0 gText_adminmtmoonleft_Defeat
 	msgbox gText_adminmtmoonleft_4 0x6
-	applymovement 0x0C EventScript_adminmtmoonleft_Comedown
+	applymovement 0x0d EventScript_adminmtmoonleft_Comedown
 	waitmovement 0x0
 	setvar 0x4014 0x1
-	hidesprite 0x0C
+	hidesprite 0x0D
 	sound 0x9
 	checksound
 	setflag 0x201
