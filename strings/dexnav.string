@@ -92,4 +92,7 @@ It's too dark to search for a Pok\emon!
 Cube
 
 #org @gText_OptionBugDescription
-This doesn't work right now, sorry.\nVersion 1.12. 
+Don't try to switch to Shift.\nIt won't work :)
+
+#org @gText_VersionNumber
+Early Version 2.0.

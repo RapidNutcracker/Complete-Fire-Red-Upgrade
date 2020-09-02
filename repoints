@@ -233,10 +233,14 @@ brockPal   8239DBC
 bugsyTiles  82395B4 
 bugsyPal    8239A54
 
+#8
+whitneyTiles 82395BC
+whitneyPal   8239A5C
+
 #117 3A8 
 mistyTiles  8239924 
-mistyPal    8329DC4     
-
+mistyPal    8239DC4    
+            
 #118 3B0
 ltsurgeTiles 823992C 
 ltsurgePal   8239DCC
@@ -361,8 +365,8 @@ jugglerTiles 82398AC
 jugglerPal   8239D4C
 
 #gamer 97
-gamerTiles   8239884
-gamerPal     8239D24
+# gamerTiles   8239884
+# gamerPal     8239D24
 
 #bird keeper 104 
 birdkeeperTiles 82398BC
@@ -381,15 +385,16 @@ dumbasskidTiles 8239664
 dumbasskidPal   8239B04
 
 #fisherman 94 
-dumbasskidTiles   823986C
-dumbasskidPal     8239D0C
+fishermanTiles   823986C
+fishermanPal     8239D0C
 
 #replace bug catcher with falkner 
-# gEventObjectGraphicsInfo_Falkner 8EB1050
-# gEventObjectPic_FalknerPal 83A5160
+#gEventObjectGraphicsInfo_Falkner 8EB1050
+#gEventObjectPic_FalknerPal 83A5160
 
 #offsets 800000 - 80107F reserved for descriptions!  orrrr not 
-# DESC_ROOST 08800000
+DESC_ROOST 08800000
+
 #ifdef UNBOUND
 TestScript 08B7AD70
 TestScript 08B7ADA0

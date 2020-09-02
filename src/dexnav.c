@@ -179,19 +179,18 @@ void DexNavGetMon(u16 species, u8 potential, u8 level, u8 ability, u16* moves, u
 
 	//Pick potential ivs to set to 31
 	u8 iv[3];
-	for (i = 0; i < NELEMS(iv); ++i)
-		iv[i] = Random() % 6;
+	do { 
+		for (i = 0; i < NELEMS(iv); ++i)
+			iv[i] = Random() % 6;
+	} while ((iv[0] == iv[1]) || (iv[0] == iv[2]) || (iv[1] == iv[2]));
 
-	if ((iv[0] != iv[1]) && (iv[0] != iv[2]) && (iv[1] != iv[2]))
-	{
-		u8 perfectIv = 0x1F;
-		if (potential > 2)
-			SetMonData(mon, MON_DATA_HP_IV + iv[2], &perfectIv);
-		else if (potential > 1)
-			SetMonData(mon, MON_DATA_HP_IV + iv[1], &perfectIv);
-		else if (potential)
-			SetMonData(mon, MON_DATA_HP_IV + iv[0], &perfectIv);
-	}
+	u8 perfectIv = 0x1F;
+	if (potential > 2)
+		SetMonData(mon, MON_DATA_HP_IV + iv[2], &perfectIv);
+	if (potential > 1)  
+		SetMonData(mon, MON_DATA_HP_IV + iv[1], &perfectIv);
+	if (potential) 
+		SetMonData(mon, MON_DATA_HP_IV + iv[0], &perfectIv);
 
 	//Set ability
 	if (gBaseStats[species].hiddenAbility == ability)
@@ -1026,6 +1025,7 @@ static u16 DexNavGenerateHeldItem(u16 species, u8 searchLevel)
 	u16 item1 = gBaseStats[species].item1;
 	u16 item2 = gBaseStats[species].item2;
 
+	return ITEM_NONE; //for now, as dex nav is misleading w item hold 
 	// if both are the same, 100% to hold
 	if (item1 == item2)
 		return item1;

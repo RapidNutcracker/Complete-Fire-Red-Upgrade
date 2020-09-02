@@ -80,7 +80,7 @@ GiveRedStarter:
     special2 LASTRESULT 0x83
     compare LASTRESULT 0x6
     if notequal _goto Receiveredegg  @if we have a slot open 
-    msgbox gText_RandomEgg_NoRoom MSG_FACE
+    msgbox gText_RandomEggNoRoom MSG_FACE
     release 
     end
 

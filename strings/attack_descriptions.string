@@ -587,7 +587,7 @@ The user absorbs its\ntarget's HP. The\nuser's HP is restored\nby over half the\
 The user employs its\npsychic power to\nswitch stat changes\nwith the target.
 
 #org @DESC_AQUAFANG
-The user bites the\nfoe with aquatic\nforce. It may make\nthe foe flinch.
+The user bites the\nfoe with aquatic\nforce. 
 
 #org @DESC_SACREDSWORD
 The user attacks by\nslicing with a long\nhorn. The target's\nstat changes are\nignored.

@@ -12,7 +12,7 @@ EventScript_NatureChanger:
     msgbox gText_NatureChanger1 MSG_YESNO 
     compare LASTRESULT YES 
     if 0x0 _goto CancelThis2 
-	checkmoney 0x1F4 0x0
+	checkmoney 0x1D4C 0x0
     compare LASTRESULT 0x1
     if 0x0 _goto NotEnoughMoney
 	hidemoney 0x00 0x00 
@@ -238,7 +238,7 @@ CancelThis2:
 EndThisScript: 
 	msgbox gText_NatureChanger3 MSG_NORMAL 
 	sound 0x58
-    removemoney 0x1F4 0x00
+    removemoney 0x1D4C 0x00
     updatemoney 0x35 0x00 0x00
     checksound 
     hidemoney 0x35 0x00

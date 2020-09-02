@@ -258,11 +258,3 @@ EventScript_brendanbattleleft_Comedown:
     .byte 0x10
     .byte 0x10
     .byte 0xFE
-
-
-
-
-
-
-
-

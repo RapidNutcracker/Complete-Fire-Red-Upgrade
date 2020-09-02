@@ -1275,7 +1275,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 		case ABILITY_SCREENCLEANER:
 			RemoveScreensFromSide(B_SIDE_PLAYER);
 			RemoveScreensFromSide(B_SIDE_OPPONENT);
-			gBattleStringLoader = gText_IcyVeilActivate;
+			gBattleStringLoader = gText_ScreenCleanerActivate;
 			BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
 			effect++;
 			break;
@@ -1291,17 +1291,17 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 		// 	}
 		// 	break;
 
-		case ABILITY_ICYPROTECTOR:
-			if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_HAIL_ANY))
-			{
-				if (gNewBS->AuroraVeilTimers[SIDE(gBankAttacker)] < 3){ //If aurora veil is less than 3, we should set it to 3 as it will be beneficial 
-					SetAuroraVeil();
-					gBattleStringLoader = gText_IcyVeilActivate; 
-					BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
-					effect++;
-				}
-			}
-			break;
+		// case ABILITY_ICYPROTECTOR:
+		// 	if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_HAIL_ANY))
+		// 	{
+		// 		if (gNewBS->AuroraVeilTimers[SIDE(gBankAttacker)] < 3){ //If aurora veil is less than 3, we should set it to 3 as it will be beneficial 
+		// 			SetAuroraVeil();
+		// 			gBattleStringLoader = gText_IcyVeilActivate; 
+		// 			BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+		// 			effect++;
+		// 		}
+		// 	}
+		// 	break;
 
 		case ABILITY_NEUTRALIZINGGAS:
 			for (i = 0; i < gBattlersCount; ++i)

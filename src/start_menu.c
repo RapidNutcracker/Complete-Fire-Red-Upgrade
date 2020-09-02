@@ -69,7 +69,8 @@ extern const u8 gText_PlayerDescription[];
 extern const u8 gText_SaveDescription[];
 extern const u8 gText_OptionDescription[];
 extern const u8 gText_OptionBugDescription[];
-extern const u8 gText_ExitDescription[];
+// extern const u8 gText_ExitDescription[];
+extern const u8 gText_VersionNumber[];
 extern const u8 gText_RetireDescription[];
 extern const u8 gText_PlayerDescription[];
 extern const u8 gText_DexNavDescription[];
@@ -147,14 +148,16 @@ const u8* const sStartMenuDescPointers[] =
 	gText_SaveDescription,
 	// gText_ToggleDoubleDescription,
 	gText_OptionBugDescription,
-	gText_ExitDescription,
+	gText_VersionNumber,
 	gText_RetireDescription,
 	gText_PlayerDescription,
 	gText_DexNavDescription,
 	// gText_ToggleDoubleDescription,
 	NULL,
-	gText_ExitDescription,
-	gText_ExitDescription,
+	gText_VersionNumber,
+	gText_VersionNumber,
+	// gText_ExitDescription,
+	// gText_ExitDescription,
 };
 
 static bool8 CanSetUpSecondaryStartMenu(void)

@@ -238,4 +238,71 @@ EventScript_brock_DefeatedRematch:
 	release
 	end
 
+.global EventScript_badtantrum_Start
+EventScript_badtantrum_Start:
+	lock
+	faceplayer
+	textcolor 0x0
+	checkflag 0x963
+	if 0x1 _goto EventScript_badtantrum_Cost
+	msgbox gText_badtantrum_1 0x5
+	compare LASTRESULT 0x0
+	if 0x1 _goto EventScript_badtantrum_Cancel
+	msgbox gText_badtantrum_3 0x6
+	setvar 0x8005 0x2E
+	call EventScript_badtantrum_Teach
+	compare LASTRESULT 0x0
+	if 0x1 _goto EventScript_badtantrum_Cancel
+	setflag 0x963
+	msgbox gText_badtantrum_4 0x6
+	release
+	end
 
+
+EventScript_badtantrum_Teach:
+	special 0x18D
+	waitstate
+	return
+
+EventScript_badtantrum_Cost:
+	showmoney 0x00 0x00 0x00
+	msgbox gText_badtantrum_1 0x6
+	msgbox gText_badtantrum_2 0x5
+	compare LASTRESULT 0x0
+	if 0x1 _goto EventScript_badtantrum_Cancelhide
+	checkmoney 0xBB8 0x00
+	compare 0x800D 0x1
+	if 0x0 _goto EventScript_badtantrum_Nomoney
+	msgbox gText_badtantrum_3 0x6
+	hidemoney 0x00 0x00
+	setvar 0x8005 0x2E
+	call EventScript_badtantrum_Teach
+	compare LASTRESULT 0x0
+	if 0x1 _goto EventScript_badtantrum_Cancel
+	showmoney 0x00 0x00 0x00
+	msgbox gText_badtantrum_Wait 0x6
+	removemoney 0xBB8 0x00
+	sound 0x58
+	updatemoney 0x00 0x00 0x00
+	msgbox gText_badtantrum_4 0x6
+	checksound
+	hidemoney 0x0 0x0
+	release
+	end
+
+EventScript_badtantrum_Cancel:
+	msgbox gText_badtantrum_No 0x6
+	release
+	end
+
+EventScript_badtantrum_Cancelhide:
+	hidemoney 0x00 0x00
+	msgbox gText_badtantrum_No 0x6
+	release
+	end
+
+EventScript_badtantrum_Nomoney:
+	msgbox gText_badtantrum_Poor 0x6
+	hidemoney 0x00 0x00
+	release
+	end

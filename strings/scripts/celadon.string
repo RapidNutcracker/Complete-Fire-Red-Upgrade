@@ -18,3 +18,252 @@ Have any hardheaded Pok\emon?\pPerhaps you ought to teach them\nIron Head!\pYou'
 
 #org @gText_Celadon_IronHead2
 I hope you land a lot of flinches!
+
+#org @gText_playrough_1
+Oh, hi!\nI finally finished Pok\emon.\pNot done yet? How about I teach\nyou a good move?\pThe move I have in mind is Play\nRough.\pKinda like your mom in bed!
+
+#org @gText_playrough_2
+It'll cost ya \$5000 though.
+
+#org @gText_playrough_3
+Which Pok\emon should I teach\nPlay Rough to?
+
+#org @gText_playrough_4
+Get rough and rowdy with these\nfellas.
+
+#org @gText_playrough_No
+You're not interested? Come see\nme if you change your mind.
+
+#org @gText_playrough_Wait
+[.]
+
+#org @gText_playrough_Poor
+[.]You don't have enough money.
+
+#org @gText_coincasenugget_3
+I used to give out[LIGHT_BLUE] Coin Cases[BLUE] to\nminors that approached me,\lbut then it became illegal.\pYou can have these instead.
+
+#org @gText_coincasenugget_4
+I can't stay a gambling addict[.]\pTake my money so I don't do it\nanymore[.]
+
+#org @gText_coincasenugget_5
+Game Corner has been fueling my\ngambling addiction in quarantine.
+
+#org @gText_ivseller_1
+Psst[.] I have a crazy proposition.\pI can max one of your Pok\emon's\nIVs for \$350000.\pIt's crazy expensive, but this is\ntechnically illegal!\pHow about it?
+
+#org @gText_ivseller_2
+Boo. You don't have enough money.\pCome back when you got stacks.
+
+#org @gText_ivseller_Op
+Don't you want OP Pok\emon?\pEspecially in a screwed up ROM hack\nlike this?\pYou can't get this anywhere else.
+
+#org @gText_ivseller_3
+Sweet. Who wants it?
+
+#org @gText_ivseller_4
+So, [BUFFER1] will have its IVs\nmaxed.
+
+#org @gText_ivseller_5
+Is that correct?
+
+#org @gText_ivseller_Wtf
+Yo, I don't operate on eggs.
+
+#org @gText_ivseller_Wait
+[.]
+
+#org @gText_ivseller_Done
+All done.\pYou gotta battle first to see the\nchanges take place.\pHope you enjoy pal.
+
+#org @gText_ivseller_Grind
+The grind don't stop, right?
+
+#org @gText_amuletcoin_3
+Life sure is tough in the city[.]\nI learned it the hard way,\nnothing is free!
+
+#org @gText_amuletcoin_4
+[.]You came from [LIGHT_GREEN]Pallet Town[BLUE]?!\pHoly cow!\pYou'd make better use of this than\nme.
+
+#org @gText_amuletcoin_5
+The [LIGHT_BLUE]Amulet Coin[BLUE] ain't a money tree,\nbut it's the next closest thing.
+
+#org @gText_coinstory_6
+Way back in the day, me and my\nsquad here hustled money using the\l[LIGHT_BLUE]Amulet Coin[BLUE].\pWe'd keep note of all the weak train-\ners that paid well, and repeatedly\lbattled them with the [LIGHT_BLUE]VS Seeker[BLUE].
+
+#org @gText_coinstory_7
+It was a scummy way of making money,\ntaking money from weak children and\lwhat not.\pBut, it was a business nonetheless.
+
+#org @gText_coinstory_8
+Eventually, the League caught wind\nof it, and rather than banning the\l[LIGHT_BLUE]Amulet Coin[BLUE], they banned the [LIGHT_BLUE]VS\lSeeker[BLUE].
+
+#org @gText_coinstory_9
+Funny, isn't it?\pUs chumps caused an item to be\noutlawed!\pIt was a big hit for us at the time,\nbut now we're making bank thanks to\lour new services.
+
+#org @gText_coinstory_10
+Just keep quiet what we're doing\nhere, fam.
+
+#org @gText_gamecornertms_Hello
+May I help you?
+
+#org @gText_gamecornertms_Comeagain
+Please come again!
+
+#org @gText_gamecornermons_1
+We sell exclusive Pok\emon!\pThese Pok\emon can be upgraded to\ntheir shiny forms for a steep\lprice as well.\pInterested?
+
+#org @gText_gamecornermons_Text1
+Dratini
+
+#org @gText_gamecornermons_Text2
+Larvitar
+
+#org @gText_gamecornermons_Text3
+Beldum
+
+#org @gText_gamecornermons_Text4
+Bagon
+
+#org @gText_gamecornermons_Text5
+Riolu
+
+#org @gText_gamecornermons_Text6
+Rotom
+
+#org @gText_gamecornermons_Text7
+View More 
+
+#org @gText_gamecornermons_Itllbe
+That'll be \$100000.
+
+#org @gText_gamecornermons_Itllberotom
+That'll be \$100000.
+
+#org @gText_gamecornermons_Whichpkmn
+Which Pok\emon would you like?
+
+#org @gText_gamecornermons_Upgrade
+Would you like to upgrade it to\nits Shiny form?\pIt'll double the price.
+
+#org @gText_gamecornermons_Haupgrade
+Would you like its Hidden Ability?
+
+#org @gText_gamecornermons_Shinytxt
+With a shiny upgrade, making it\nanother \$100000[.]\p\$200000 total.
+
+#org @gText_gamecornermons_Rotomtxt
+With a shiny upgrade, making it\nanother \$100000[.]\p\$200000 total.
+
+#org @gText_gamecornermons_Withha
+With its Hidden Ability[.]
+
+#org @gText_gamecornermons_Isitok
+This is default Rotom.\pIs that okay?
+
+#org @gText_gamecornermons_Correct
+Is this correct?
+
+#org @gText_gamecornermons_4
+Thank you partner!\pEnjoy!
+
+#org @gText_gamecornermons_Wait
+[.]
+
+#org @gText_gamecornermons_Poor
+[.]You don't have enough money.
+
+#org @gText_gamecornermons_Gotdratini
+You received a [LIGHT_GREEN]Dratini!
+
+#org @gText_gamecornermons_Gotlarvitar
+You received a [LIGHT_GREEN]Larvitar!
+
+#org @gText_gamecornermons_Gotbeldum
+You received a [LIGHT_GREEN]Beldum!
+
+#org @gText_gamecornermons_Gotbagon
+You received a [LIGHT_GREEN]Bagon!
+
+#org @gText_gamecornermons_Gotriolu
+You received a [LIGHT_GREEN]Riolu!
+
+#org @gText_gamecornermons_Gotrotom
+You received a [LIGHT_GREEN]Rotom!
+
+#org @gText_gamecornermons_GotToxel
+You received a [LIGHT_GREEN]Toxel!
+
+#org @gText_giveNickname 
+Give it a Nickname?
+
+#org @gText_gamecornermons2_Text1
+Gible
+
+#org @gText_gamecornermons2_Text2
+Larvesta
+
+#org @gText_gamecornermons2_Text3
+Deino
+
+#org @gText_gamecornermons2_Text4
+Goomy
+
+#org @gText_gamecornermons2_Text5
+Jangmo-o
+
+#org @gText_gamecornermons2_Text6
+Dreepy
+
+#org @gText_gamecornermons2_Text7
+Floette-Eternal 
+
+#org @gText_gamecornermons2_Itllbefloette
+That'll be \$50000.
+
+#org @gText_gamecornermons2_Whichpkmn
+Which Pok\emon would you like?
+
+#org @gText_gamecornermons2_Shinytxt
+With a shiny upgrade, making it\nanother \$100000[.]\p\$200000 total.
+
+#org @gText_gamecornermons2_Floettetxt
+With a shiny upgrade, making it\nanother \$50000[.]\p\$100000 total.
+
+#org @gText_gamecornermons2_Isitok
+Floette-Eternal can't evolve.\pIs that okay?
+
+#org @gText_gamecornermons2_Correct
+Is this correct?
+
+#org @gText_gamecornermons2_4
+Thank you partner!\pEnjoy!
+
+#org @gText_gamecornermons2_Wait
+[.]
+
+#org @gText_gamecornermons2_Poor
+[.]You don't have enough money.
+
+#org @gText_gamecornermons2_Gotgible
+You received a [LIGHT_GREEN]Gible!
+
+#org @gText_gamecornermons2_GotLarvesta
+You received a [LIGHT_GREEN]Larvesta!
+
+#org @gText_gamecornermons2_GotDeino
+You received a [LIGHT_GREEN]Deino!
+
+#org @gText_gamecornermons2_GotGoomy
+You received a [LIGHT_GREEN]Goomy!
+
+#org @gText_gamecornermons2_Gotjangmo
+You received a [LIGHT_GREEN]Jangmo-o!
+
+#org @gText_gamecornermons2_Gotfloette
+You received a [LIGHT_GREEN]Floette-Eternal!
+
+#org @gText_gardevoirite_1
+Hey, you came to see me!\pI'm not thirsty like I was in\nthe old games though.\pYou can have this instead!
+
+#org @gText_gardevoirite_2
+That item Mega Evolves [LIGHT_GREEN]Gardevoir[RED]!\pYou'll need a [LIGHT_BLUE]Mega Ring[RED] for it\nto work though.

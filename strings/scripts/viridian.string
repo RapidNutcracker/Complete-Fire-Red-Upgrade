@@ -55,3 +55,12 @@ I haven't had a loss like that in\na while! But, that was rather fun. \p[.][GREE
 #org @gText_brendanbattleleft_6
 I have some errands to run in [LIGHT_GREEN]Vir-\nidian.\p[BLUE]Until we meet again, [GREEN][PLAYER]!
 
+#org @gText_DoYouWantRandomizer
+Do you want to set the\nrandomizer option? 
+
+#org @gText_DoYouWantAbility
+Do you want abilities\nrandomized?
+
+#org @gText_DoYouWantLearnsets
+Do you want learnsets\nrandomized? 
+

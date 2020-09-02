@@ -17,10 +17,10 @@
 .equ VAR_MTMOON, 0x504E @also 504F 
 .equ VAR_ROUTE4, 0x507E @also 507F
 .equ VAR_ROUTETHREE, 0x5080 @also 5081 
-.equ VAR_ROUTE24, 0x506D @also 506E
-.equ VAR_ROUTE25, 0x5061 @also 5062
-.equ VAR_ROUTE5, 0x5063 @also 5064
-.equ VAR_ROUTE6, 0x5065 @also 5066 
+.equ VAR_ROUTE24, 0x5082 @0x506D also 506E
+.equ VAR_ROUTE25, 0x5084 @also 5062
+.equ VAR_ROUTE5, 0x5086 @also 5064
+.equ VAR_ROUTE6, 0x5088 @also 5066 
 .equ VAR_ROUTE11, 0x5067 @also 5068
 .equ VAR_DIGLETSSCAVE, 0x5070 @also 5071
 .equ VAR_ROUTE2, 0x5072 @also 5073
@@ -366,9 +366,9 @@ RaidScript_EndRockTunnel:
     release 
     end 
 
-.global EventScript_Route7Raid
-EventScript_Route7Raid:
-    setvar 0x8000 VAR_ROUTE7
+.global EventScript_Route16Raid
+EventScript_Route16Raid:
+    setvar 0x8000 VAR_ROUTE7 @originally route 7 but route too small, too lazy to change 
     setvar 0x8001 0x0
     special2 LASTRESULT 0xA0
     compare LASTRESULT 0x0 
@@ -376,10 +376,10 @@ EventScript_Route7Raid:
     call RaidBattle 
     setvar 0x4000 0x0
     call RaidScript_GiveReward
-    goto RaidScript_EndRoute7
+    goto RaidScript_EndRoute16
     end 
 
-RaidScript_EndRoute7: 
+RaidScript_EndRoute16: 
     setvar 0x8000 VAR_ROUTE7
     setvar 0x8001 0x0
     special 0xA1

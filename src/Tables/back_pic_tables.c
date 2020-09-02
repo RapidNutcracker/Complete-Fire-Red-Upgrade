@@ -84,7 +84,7 @@ const struct CompressedSpritePalette gTrainerBackPicPaletteTable[] =
 
 // #define gTrainerBackAnims_Red (const union AnimCmd* const*) 0x8239F44
 #define gTrainerBackAnims_Red (const union AnimCmd* const*) 0x8239F54
-#define gTrainerBackAnims_Leaf (const union AnimCmd* const*) 0x8239F4C
+#define gTrainerBackAnims_Leaf (const union AnimCmd* const*) 0x8239F4C //0x8239F4C 0x8239F54
 #define gTrainerBackAnims_Brendan (const union AnimCmd* const*) 0x8239F54
 #define gTrainerBackAnims_May (const union AnimCmd* const*) 0x8239F54
 #define gTrainerBackAnims_PokeDude (const union AnimCmd* const*) 0x8239F54
@@ -207,6 +207,7 @@ static const struct SpriteFrameImage sTrainerBackPicTable_NewLeaf[] =
 	{gTrainerBackPic_NewLeafTiles + 0x0800, 0x800, 0},
 	{gTrainerBackPic_NewLeafTiles + 0x1000, 0x800, 0},
 	{gTrainerBackPic_NewLeafTiles + 0x1800, 0x800, 0},
+	{gTrainerBackPic_NewLeafTiles + 0x2000, 0x800, 0},
 };
 
 #ifdef UNBOUND

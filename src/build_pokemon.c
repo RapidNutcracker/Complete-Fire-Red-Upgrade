@@ -115,6 +115,7 @@ static struct Immunity sImmunities[] =
 extern const u8 gClassPokeBalls[NUM_TRAINER_CLASSES];
 extern const u8 gRandomizerAbilityBanList[];
 extern const species_t gRandomizerSpeciesBanList[];
+extern const species_t gWonderTradeList[];
 extern const species_t gSetPerfectXIvList[];
 extern const species_t gDeerlingForms[];
 extern const species_t gSawsbuckForms[];
@@ -3528,7 +3529,7 @@ u32 CheckShinyMon(struct Pokemon* mon)
 void TryRandomizeSpecies(unusedArg u16* species)
 {
 	#ifdef FLAG_POKEMON_RANDOMIZER
-	if (FlagGet(FLAG_POKEMON_RANDOMIZER) && !FlagGet(FLAG_BATTLE_FACILITY) && *species != SPECIES_NONE && *species < NUM_SPECIES)
+	if (FlagGet(FLAG_POKEMON_RANDOMIZER) && !FlagGet(FLAG_DISABLE_BAG) && !FlagGet(FLAG_BATTLE_FACILITY) && *species != SPECIES_NONE && *species < NUM_SPECIES) //&& !(gBattleTypeFlags & BATTLE_TYPE_TRAINER
 	{
 		u32 id = MathMax(1, T1_READ_32(gSaveBlock2->playerTrainerId)); //0 id would mean every Pokemon would crash the game
 		u32 newSpecies = *species;
@@ -3538,6 +3539,19 @@ void TryRandomizeSpecies(unusedArg u16* species)
 			newSpecies *= id;
 			newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
 		} while (CheckTableForSpecies(newSpecies, gRandomizerSpeciesBanList));
+		
+		*species = newSpecies;
+	}
+	if (FlagGet(FLAG_WONDER_TRADE) && !FlagGet(FLAG_BATTLE_FACILITY) && *species != SPECIES_NONE && *species < NUM_SPECIES)
+	{
+		u32 id = MathMax(1, T1_READ_32(gSaveBlock2->playerTrainerId)); //0 id would mean every Pokemon would crash the game
+		u32 newSpecies = *species;
+
+		do
+		{
+			newSpecies *= id;
+			newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
+		} while (!CheckTableForSpecies(newSpecies, gWonderTradeList));
 		
 		*species = newSpecies;
 	}

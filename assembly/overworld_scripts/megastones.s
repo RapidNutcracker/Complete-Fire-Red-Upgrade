@@ -3,11 +3,12 @@
 
 .include "../xse_commands.s"
 .include "../xse_defines.s"
+.include "../asm_defines.s" 
 
 .global EventScript_VictoryRoad_Salamencite
 EventScript_VictoryRoad_Salamencite:
     hidesprite 0x800F
-    giveitem 0x73 0x1 MSG_FIND
+    giveitem ITEM_SALAMENCITE 0x1 MSG_FIND
     setflag 0x992
     release
     end
@@ -15,7 +16,7 @@ EventScript_VictoryRoad_Salamencite:
 .global EventScript_Route22_Scizorite
 EventScript_Route22_Scizorite:
     hidesprite 0x800F
-    giveitem 0xF3 0x1 MSG_FIND
+    giveitem ITEM_SCIZORITE 0x1 MSG_FIND
     setflag 0x993
     release
     end
@@ -23,8 +24,24 @@ EventScript_Route22_Scizorite:
 .global EventScript_Route6_Pinsirite
 EventScript_Route6_Pinsirite:
     hidesprite 0x800F
-    giveitem 0xEC 0x1 MSG_FIND
+    giveitem ITEM_PINSIRITE 0x1 MSG_FIND
     setflag 0x994
+    release
+    end
+
+.global EventScript_Route2_ChargeBeam
+EventScript_Route2_ChargeBeam:
+    hidesprite 0x800F
+    giveitem ITEM_TM57 0x1 MSG_FIND
+    setflag 0x936
+    release
+    end
+
+.global EventScript_Route10_WildCharge
+EventScript_Route10_WildCharge:
+    hidesprite 0x800F
+    giveitem ITEM_TM99 0x1 MSG_FIND
+    setflag 0x988
     release
     end
 
@@ -47,7 +64,7 @@ EventScript_Route18_Roost:
 .global EventScript_Route20_FocusBlast
 EventScript_Route20_FocusBlast:
     hidesprite 0x800F
-    giveitem 0x79 0x1 MSG_FIND
+    giveitem ITEM_TM52 0x1 MSG_FIND
     setflag 0x94D
     release
     end
@@ -55,7 +72,7 @@ EventScript_Route20_FocusBlast:
 .global EventScript_PkmnTower_DarkPulse
 EventScript_PkmnTower_DarkPulse:
     hidesprite 0x800F
-    giveitem 0x9F 0x1 MSG_FIND
+    giveitem ITEM_TM79 0x1 MSG_FIND
     setflag 0x94E
     release
     end
@@ -63,7 +80,7 @@ EventScript_PkmnTower_DarkPulse:
 .global EventScript_SilphCo_Wisp
 EventScript_SilphCo_Wisp:
     hidesprite 0x800F
-    giveitem 0x7E 0x1 MSG_FIND
+    giveitem ITEM_TM61 0x1 MSG_FIND
     setflag 0x94F
     release
     end
@@ -71,7 +88,7 @@ EventScript_SilphCo_Wisp:
 .global EventScript_Route13_Teleport
 EventScript_Route13_Teleport:
     hidesprite 0x800F
-    giveitem 0x142 0x1 MSG_FIND
+    giveitem ITEM_TM34 0x1 MSG_FIND
     setflag 0x95A
     release
     end
@@ -79,7 +96,7 @@ EventScript_Route13_Teleport:
 .global EventScript_SilphCo_Upgrade
 EventScript_SilphCo_Upgrade:
     hidesprite 0x800F
-    giveitem 0x3C 0x2 MSG_FIND
+    giveitem ITEM_UPGRADE 0x2 MSG_FIND
     setflag 0x95B
     release
     end
@@ -103,7 +120,7 @@ EventScript_MtMoon_ScopeLens:
 .global EventScript_Route6_Venoshock
 EventScript_Route6_Venoshock:
     hidesprite 0x800F
-    giveitem 0x11A 0x1 MSG_FIND 
+    giveitem ITEM_TM63 0x1 MSG_FIND 
     setflag 0x95F 
     release 
     end 
@@ -111,7 +128,7 @@ EventScript_Route6_Venoshock:
 .global EventScript_Route12_TrickRoom
 EventScript_Route12_TrickRoom:
     hidesprite 0x800F
-    giveitem 0x1BB 0x1 MSG_FIND 
+    giveitem ITEM_TM116 0x1 MSG_FIND 
     setflag 0x97C
     release 
     end 
@@ -119,8 +136,8 @@ EventScript_Route12_TrickRoom:
 .global EventScript_Celadon_DreamBall
 EventScript_Celadon_DreamBall:
     hidesprite 0x800F
-    giveitem 0x10A 0x1 MSG_FIND 
-    setflag 0x97D
+    giveitem ITEM_DREAM_BALL 0x1 MSG_FIND 
+    setflag 0x1D1
     release 
     end 
 
@@ -140,6 +157,37 @@ EventScript_VermilionCity_Machampite:
     release 
     end 
 
+.global EventScript_SSAnne_RockPolish
+EventScript_SSAnne_RockPolish:
+    hidesprite 0x800F
+    giveitem ITEM_TM69 0x1 MSG_FIND 
+    setflag 0x99F
+    release 
+    end 
+
+.global EventScript_SSAnne_BrickBreak
+EventScript_SSAnne_BrickBreak:
+    hidesprite 0x800F
+    giveitem ITEM_TM31 0x1 MSG_FIND 
+    setflag 0x1000
+    release 
+    end 
+
+.global EventScript_SSAnne_WorkUp
+EventScript_SSAnne_WorkUp:
+    hidesprite 0x800F
+    giveitem ITEM_TM98 0x1 MSG_FIND 
+    setflag 0x1001
+    release 
+    end 
+
+.global EventScript_Route11_StarPiece
+EventScript_Route11_StarPiece:
+    hidesprite 0x800F
+    giveitem ITEM_SOFT_SAND 0x1 MSG_FIND 
+    setflag 0x1002
+    release 
+    end 
 
 .global EventScript_SeafoamIslands_Keldeo
 EventScript_SeafoamIslands_Keldeo:

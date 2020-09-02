@@ -766,7 +766,7 @@ static u8 GetEggStepsToSubtract(void)
 {
 	u8 i;
 	u8 count = CalculatePlayerPartyCount();
-	//If any party mons have Magma Armor or Flame Body, subtract 2 steps from hatch counter instead of 1
+	//If any party mons have Magma Armor or Flame Body, subtract 2 steps from hatch counter instead of 1. Updated to 4. 
 	for (i = 0; i < count; ++i)
 	{
 		if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG, NULL))
@@ -810,7 +810,7 @@ void TryDecrementingDaycareStepCounterIfMoreEggsToHatch(struct DayCare* daycare,
 		steps = GetMonData(&gPlayerParty[i], MON_DATA_FRIENDSHIP, NULL);
 		if (steps == 0 || steps == 1)
 		{
-			daycare->stepCounter--;
+			daycare->stepCounter--; 
 			return; //So the next Egg can hatch on the next step
 		}
 	}

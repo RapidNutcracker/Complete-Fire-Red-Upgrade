@@ -1652,20 +1652,20 @@ u8 TrySetCantSelectMoveBattleScript(void)
 		gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingImprisionedMove;
 		++limitations;
 	}
-	else if (!isAnyMaxMove && ability == ABILITY_GORILLATACTICS && *choicedMove != 0 && *choicedMove != 0xFFFF && *choicedMove != move)
+	else if (!isAnyMaxMove && (ability == ABILITY_GORILLATACTICS || ability == ABILITY_SAGEPOWER) && *choicedMove != 0 && *choicedMove != 0xFFFF && *choicedMove != move)
 	{
 		gCurrentMove = *choicedMove;
 		gLastUsedAbility = ability;
 		gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingNotAllowedMoveChoiceAbility;
 		++limitations;
 	}
-	else if (!isAnyMaxMove && ability == ABILITY_SAGEPOWER && *choicedMove != 0 && *choicedMove != 0xFFFF && *choicedMove != move)
-	{
-		gCurrentMove = *choicedMove;
-		gLastUsedAbility = ability;
-		gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingNotAllowedMoveChoiceAbility;
-		++limitations;
-	}
+	// else if (!isAnyMaxMove && ability == ABILITY_SAGEPOWER && *choicedMove != 0 && *choicedMove != 0xFFFF && *choicedMove != move)
+	// {
+	// 	gCurrentMove = *choicedMove;
+	// 	gLastUsedAbility = ability;
+	// 	gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingNotAllowedMoveChoiceAbility;
+	// 	++limitations;
+	// }
 	else if (!isAnyMaxMove && holdEffect == ITEM_EFFECT_CHOICE_BAND && *choicedMove != 0 && *choicedMove != 0xFFFF && *choicedMove != move)
 	{
 		gCurrentMove = *choicedMove;
@@ -1944,7 +1944,7 @@ bool8 IsBagDisabled(void)
 	}
 	#endif
 
-	return FlagGet(FLAG_DISABLE_BAG) || (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_FRONTIER));
+	return FlagGet(FLAG_DISABLE_BAG) || (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_TRAINER));
 }
 
 static void TryLoadTypeIcons(void)

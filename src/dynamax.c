@@ -121,8 +121,8 @@ const u8 gRaidBattleStarsByBadges[NUM_BADGE_OPTIONS][2] =
 
 const u8 gRaidBattleLevelRanges[RAID_STAR_COUNT][2] =
 {
-	[ONE_STAR_RAID]   = {15, 20},
-	[TWO_STAR_RAID]   = {25, 30},
+	[ONE_STAR_RAID]   = {20, 25},
+	[TWO_STAR_RAID]   = {28, 32},
 	[THREE_STAR_RAID] = {40, 45},
 	[FOUR_STAR_RAID]  = {50, 55},
 	[FIVE_STAR_RAID]  = {60, 65},

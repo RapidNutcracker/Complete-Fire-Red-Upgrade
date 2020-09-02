@@ -3047,17 +3047,29 @@ extern const u8 sExampleText_7[];
 extern const u8 sExampleText_8[];
 extern const u8 sExampleText_9[];
 extern const u8 sExampleText_10[];
-extern const u8 sExampleText_HydroPump[]; 
-extern const u8 sExampleText_DrillRun[]; 
-extern const u8 sExampleText_BlazeKick[]; 
-extern const u8 sExampleText_PSplit[]; 
-extern const u8 sExampleText_ZenHeadbutt[]; 
-extern const u8 sExampleText_WeatherBall[]; 
-extern const u8 sExampleText_AirSlash[]; 
-extern const u8 sExampleText_Hex[]; 
-extern const u8 sExampleText_MysticalFire[]; 
-extern const u8 sExampleText_SeedBomb[]; 
-
+// extern const u8 sExampleText_HydroPump[]; 
+// extern const u8 sExampleText_DrillRun[]; 
+// extern const u8 sExampleText_BlazeKick[]; 
+// extern const u8 sExampleText_PSplit[]; 
+// extern const u8 sExampleText_ZenHeadbutt[]; 
+// extern const u8 sExampleText_WeatherBall[]; 
+// extern const u8 sExampleText_AirSlash[]; 
+// extern const u8 sExampleText_Hex[]; 
+// extern const u8 sExampleText_MysticalFire[]; 
+// extern const u8 sExampleText_SeedBomb[]; 
+extern const u8	gText_gamecornermons_Text1[];
+extern const u8	gText_gamecornermons_Text2[];
+extern const u8	gText_gamecornermons_Text3[];
+extern const u8	gText_gamecornermons_Text4[];
+extern const u8	gText_gamecornermons_Text5[];
+extern const u8	gText_gamecornermons_Text6[];
+extern const u8	gText_gamecornermons2_Text1[];
+extern const u8	gText_gamecornermons2_Text2[];
+extern const u8	gText_gamecornermons2_Text3[];
+extern const u8	gText_gamecornermons2_Text4[];
+extern const u8	gText_gamecornermons2_Text5[];
+extern const u8	gText_gamecornermons2_Text6[];
+extern const u8	gText_gamecornermons2_Text7[];
 extern const u8 sText_1[];
 extern const u8 sText_2[];
 extern const u8 sText_3[];
@@ -3105,16 +3117,19 @@ static const u8* sMultichoiceSet2[] =
 
 static const u8* sMultichoiceSet3[] =
 {
- 	sExampleText_HydroPump,
-	sExampleText_DrillRun,
-	sExampleText_BlazeKick, 
-	sExampleText_PSplit, 
-	sExampleText_ZenHeadbutt, 
-	sExampleText_WeatherBall, 
-	sExampleText_AirSlash, 
-	sExampleText_Hex,
-	sExampleText_MysticalFire,
-	sExampleText_SeedBomb,
+	gText_gamecornermons_Text1,
+	gText_gamecornermons_Text2,
+	gText_gamecornermons_Text3,
+	gText_gamecornermons_Text4,
+	gText_gamecornermons_Text5,
+	gText_gamecornermons_Text6,
+	gText_gamecornermons2_Text1,
+	gText_gamecornermons2_Text2,
+	gText_gamecornermons2_Text3,
+	gText_gamecornermons2_Text4,
+	gText_gamecornermons2_Text5,
+	gText_gamecornermons2_Text6,
+	gText_gamecornermons2_Text7,
 };
 
 // Multichoice Lists

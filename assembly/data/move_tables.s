@@ -271,6 +271,7 @@ gMetronomeBannedMoves:
 .hword MOVE_ETERNABEAM
 .hword MOVE_STEELBEAM
 .hword MOVE_DARKVOID
+.hword MOVE_COURTCHANGE 
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

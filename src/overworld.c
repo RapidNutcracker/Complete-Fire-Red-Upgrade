@@ -1700,7 +1700,9 @@ static const u8* TryUseFlashInDarkCave(void)
 
 	if (gSpecialVar_LastResult && HasBadgeToUseFlash())
 	{
-		if ((Var8004 = gFieldEffectArguments[0] = PartyHasMonWithFieldMovePotential(MOVE_FLASH, ITEM_HM05_FLASH, 0)) < PARTY_SIZE)
+		bool8 hasHM = CheckBagHasItem(ITEM_HM05_FLASH, 1) > 0;
+		// if ((Var8004 = gFieldEffectArguments[0] = PartyHasMonWithFieldMovePotential(MOVE_FLASH, ITEM_HM05_FLASH, 0)) < PARTY_SIZE)
+		if(hasHM)
 			return EventScript_UseFlash;
 	}
 
