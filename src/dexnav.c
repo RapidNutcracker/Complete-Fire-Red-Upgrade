@@ -448,7 +448,7 @@ static void DexNavFreeHUD(void)
 	SafeFreeMonIconPalette(sDexNavHudPtr->species);
 	DestroyMonIconSprite(&gSprites[sDexNavHudPtr->spriteIdSpecies]);
 
-	//Clear black bars
+	//Clear black bar
 	FieldEffectFreeGraphicsResources(&gSprites[sDexNavHudPtr->spriteIdBlackBar[0]]);
 	FreeSpriteOamMatrix(&gSprites[sDexNavHudPtr->spriteIdBlackBar[0]]);
 	FreeSpriteOamMatrix(&gSprites[sDexNavHudPtr->spriteIdBlackBar[1]]);

@@ -299,16 +299,16 @@ EventScript_gamecornertms_End:
 	end
 
 EventScript_gamecornertms_Values:
-    .hword ITEM_TM35
 	.hword ITEM_TM13
 	.hword ITEM_TM24
-	.hword ITEM_TM102
-    .hword ITEM_TM91
-    .hword ITEM_TM79
-    .hword ITEM_TM53 
-    .hword ITEM_TM83 
+    .hword ITEM_TM35
+	.hword ITEM_TM53 
+	.hword ITEM_TM65 
+	.hword ITEM_TM79
+	.hword ITEM_TM83 
     .hword ITEM_TM84 
-    .hword ITEM_TM65 
+    .hword ITEM_TM91
+	.hword ITEM_TM102
     .hword 0x0
 
 @damn this script was written when i was stupid af so it's veeerrry messy and i'm way too lazy to clean it up so rip 
@@ -807,8 +807,8 @@ EventScript_CeladonTMs:
 	if 0x1 _goto EventScript_gamecornertms_End
 	lock
 	faceplayer
-	@ preparemsg gText_gamecornertms_Hello @"Hi, there!\nMay I help you?"
-	@ waitmsg
+	preparemsg gText_gamecornertms_Hello @"Hi, there!\nMay I help you?"
+	waitmsg
 	pokemart EventScript_TMs_Values
 	msgbox gText_gamecornertms_Comeagain MSG_KEEPOPEN @"Please come again!"
 	release
@@ -818,15 +818,14 @@ EventScript_TMs_Values:
     .hword ITEM_TM06
 	.hword ITEM_TM15
     .hword ITEM_TM16
+	.hword ITEM_TM17
     .hword ITEM_TM20
 	.hword ITEM_TM33
+	.hword ITEM_TM56 
     .hword ITEM_TM75
+	.hword ITEM_TM82 
     .hword ITEM_TM93 
 	.hword 0x0
-   @ .hword ITEM_TM95
-   @ .hword ITEM_TM96
-   @ .hword ITEM_TM100 
-   @ .hword ITEM_TM106
 
 .global EventScript_CeladonBalls
 EventScript_CeladonBalls:

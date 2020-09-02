@@ -161,7 +161,7 @@ npc 10 16 8 EventScript_Cut
 npc 10 16 9 EventScript_Cut
 npc 10 16 10 EventScript_Cut
 npc 10 12 4 EventScript_NatureChanger
-
+npc 10 15 4 EventScript_CeladonTMs
 #Route 8 
 npc 3 26 9 EventScript_Cut 
 npc 3 26 10 EventScript_Cut 
