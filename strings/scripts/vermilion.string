@@ -1,0 +1,65 @@
+#org @gText_punchtutor_1
+I teach Elemental Punches and Fangs,\nbut it's going to cost ya \$2500.\pInterested?
+
+#org @gText_punchtutor_Text1
+Fire Punch
+
+#org @gText_punchtutor_Text2
+Ice Punch
+
+#org @gText_punchtutor_Text3
+Thunder Punch
+
+#org @gText_punchtutor_Text4
+Fire Fang 
+
+#org @gText_punchtutor_Text5
+Ice Fang
+
+#org @gText_punchtutor_Text6
+Thunder Fang 
+
+#org @gText_punchtutor_Msg
+Which move shall I teach?
+
+#org @gText_punchtutor_3
+Cool. Who shall I teach it to?
+
+#org @gText_punchtutor_4
+Thank you come again.
+
+#org @gText_punchtutor_Wait
+[.]
+
+#org @gText_ltsurge_EncounterText
+[BLUE]Hey, kid! What do you think you're\ndoing here?\pYou won't live long in combat!\nNot with your puny power!\pI tell you, kid, electric Pok\emon\nsaved me during the war!\pThey zapped my enemies into\nparalysis!\pThe same as I'll do to you!
+
+#org @gText_ltsurge_DefeatText
+Now that's a shocker!\pYou're the real deal, kid!\pFine, then, take the Thunder Badge!
+
+#org @gText_ltsurge_Givetm
+[BLUE]The Thunder Badge lets your Pok\emon\nFly lightning-quick anytime, kid!\pYou're special, kid!\nTake this!
+
+#org @gText_ltsurge_TMInfomsg
+[BLUE]TM92 contains Volt Switch!\pTeach it to an Electric Pok\emon!
+
+#org @gText_ltsurge_Helloagain
+Kid! I was hoping to see you again.\pMy Pok\emon and I haven't forgotten\nthat crazy ride we had with you.\pWe're raring to get another shot at\nya!
+
+#org @gText_ltsurge_Comeback
+Boo[.] Well, whenever you're ready.
+
+#org @gText_ltsurge_Battle
+I'm letting my beasts out!\pHere we go!
+
+#org @gText_ltsurge_Seconddefeat
+Another electrifying defeat!
+
+#org @gText_ltsurge_Won2text
+Heh, my Pok\emon aren't keen on losing,\nbut I can tell they're having a blast\lwith you! You can have these.
+
+#org @gText_ltsurge_Info
+[LIGHT_GREEN]Mega Manectric[BLUE] is a literal beast.\pIt frightens opponents with its Intimidate,\nand threatens them out with its Speed\land Special Attack.\p[LIGHT_BLUE]Light Clay[BLUE] is excellent for support,\nextending the length of screens.
+
+#org @gText_SSAnne_CantForget1
+HM Cut is used to cut small trees. 
