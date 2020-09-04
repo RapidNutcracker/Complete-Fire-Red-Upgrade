@@ -13,6 +13,9 @@ The user throws smoke\nat the foe, lowering\nits Attack.
 #org @DESC_FLASH
 The user flashes a\nbright light, which\nlowers its Attack. 
 
+#org @DESC_DRILLPECK 
+The beak acts as\na drill, boasting\nhigh critical-hit\nratio.
+
 #org @DESC_DARKHOLE 
 The user sends the\nfoe to the shadow\nrealm. It may\ncause sleep.
 

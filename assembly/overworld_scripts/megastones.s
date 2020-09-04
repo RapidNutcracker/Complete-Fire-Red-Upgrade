@@ -53,6 +53,14 @@ EventScript_Route20_Medichamite:
     release
     end
 
+.global EventScript_Route17_Absolite
+EventScript_Route17_Absolite:
+    hidesprite 0x800F
+    giveitem ITEM_ABSOLITE 0x1 MSG_FIND
+    setflag 0x99A
+    release
+    end
+
 .global EventScript_Route18_Roost 
 EventScript_Route18_Roost:
     hidesprite 0x800F
@@ -144,15 +152,24 @@ EventScript_Celadon_DreamBall:
 .global EventScript_ViridianForest_Buterfree
 EventScript_ViridianForest_Buterfree:
     hidesprite 0x800F
-    giveitem 0x1BF 0x1 MSG_FIND 
+    giveitem ITEM_BUTTERFRITE 0x1 MSG_FIND 
     setflag 0x99C
     release 
     end 
 
+.global EventScript_xscissor_Start
+EventScript_xscissor_Start:
+	hidesprite 0x800F
+	giveitem ITEM_TM81 0x1 MSG_FIND
+	setflag 0x939
+	release
+	end
+
+
 .global EventScript_VermilionCity_Machampite
 EventScript_VermilionCity_Machampite:
     hidesprite 0x800F
-    giveitem 0x1C0 0x1 MSG_FIND 
+    giveitem ITEM_MACHAMPITE 0x1 MSG_FIND 
     setflag 0x99D 
     release 
     end 
@@ -186,6 +203,71 @@ EventScript_Route11_StarPiece:
     hidesprite 0x800F
     giveitem ITEM_SOFT_SAND 0x1 MSG_FIND 
     setflag 0x1002
+    release 
+    end 
+
+.global EventScript_GC_BottleCap
+EventScript_GC_BottleCap:
+    hidesprite 0x800F
+    giveitem ITEM_BOTTLE_CAP 0x1 MSG_FIND 
+    setflag 0x16C
+    release 
+    end 
+
+.global EventScript_GC_NewX
+EventScript_GC_NewX:
+    hidesprite 0x800F
+    giveitem ITEM_WIDE_LENS 0x1 MSG_FIND 
+    setflag 0x16E
+    release 
+    end 
+
+.global EventScript_PkmnTower_NewX
+EventScript_PkmnTower_NewX:
+    hidesprite 0x800F
+    giveitem ITEM_TM61 0x1 MSG_FIND 
+    setflag 0x17D
+    release 
+    end 
+
+.global EventScript_PkmnTower_Sablenite
+EventScript_PkmnTower_Sablenite:
+    hidesprite 0x800F
+    giveitem ITEM_SABLENITE 0x1 MSG_FIND 
+    setflag 0x177
+    release 
+    end 
+
+.global EventScript_CyclingRoad_Absolite
+EventScript_CyclingRoad_Absolite:
+    hidesprite 0x800F
+    giveitem ITEM_ABSOLITE 0x1 MSG_FIND 
+    setflag 0x98A
+    release 
+    end 
+
+
+.global EventScript_SilphCo_NewX
+EventScript_SilphCo_NewX:
+    hidesprite 0x800F
+    giveitem ITEM_AUDINITE 0x1 MSG_FIND 
+    setflag 0x194
+    release 
+    end 
+
+.global EventScript_SilphCo_Kang
+EventScript_SilphCo_Kang:
+    hidesprite 0x800F
+    giveitem ITEM_KANGASKHANITE 0x1 MSG_FIND 
+    setflag 0x195
+    release 
+    end 
+
+.global EventScript_SilphCo_HP
+EventScript_SilphCo_HP:
+    hidesprite 0x800F
+    giveitem ITEM_TM10 0x1 MSG_FIND 
+    setflag 0x989
     release 
     end 
 

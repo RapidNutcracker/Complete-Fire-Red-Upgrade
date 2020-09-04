@@ -266,4 +266,56 @@ You received a [LIGHT_GREEN]Floette-Eternal!
 Hey, you came to see me!\pI'm not thirsty like I was in\nthe old games though.\pYou can have this instead!
 
 #org @gText_gardevoirite_2
-That item Mega Evolves [LIGHT_GREEN]Gardevoir[RED]!\pYou'll need a [LIGHT_BLUE]Mega Ring[RED] for it\nto work though.
+That item Mega Evolves [LIGHT_GREEN]Alakazam[RED]!\pYou'll need a [LIGHT_BLUE]Mega Ring[RED] for it\nto work though.
+
+#org @gText_erika_EncounterText
+[RED]Hello[.]\nLovely weather, isn't it?\lIt's so pleasant[.]\p[.]Oh, dear[.]\nI must have dozed off. Welcome.\pMy name is Erika.\nI am the Leader of Celadon Gym.\pI am a student of the art of\nflower arranging.\pMy Pok\emon are solely of the\nGrass type.\p[.]Oh, I'm sorry, I had no idea that\nyou wished to challenge me.\pVery well, but I shall not lose.
+
+#org @gText_erika_DefeatText
+Oh!\nI concede defeat.\lYou are remarkably strong.\pI must confer on you the\nRainbow Badge.
+
+#org @gText_erika_Givetm
+The Rainbow Badge allows\nyou to use Strength outside\lof battle.\pPlease also take this with you.
+
+#org @gText_erika_TMInfomsg
+TM19 contains Giga Drain.\pHalf the damage it inflicts is\ndrained to heal your Pok\emon.\pWouldn't you agree that it's a\nwonderful move?
+
+#org @gText_erika_Helloagain
+Oh hello there.\p[.]I see you've obtained the [LIGHT_BLUE]Mega Ring[RED].\pUnfortunately, my Pok\emon aren't look-\ning to battle at the moment.\pYou see, this [LIGHT_GREEN]Gloom[RED] I've been caring for\nhas become terribly sick.
+
+#org @gText_erika_Helloend
+If you could bring me something\nthat could help my [LIGHT_GREEN]Gloom[RED], that would\lhelp tremendously.
+
+#org @gText_erika_Isit
+Oh my[.]\pThis [LIGHT_BLUE]Medicine[RED][.] is it for [LIGHT_GREEN]Gloom[RED]?!
+
+#org @gText_erika_Thankutext
+Oh my goodness!\pThank you!\pLet me see if it helps [LIGHT_GREEN]Gloom[RED].
+
+#org @gText_erika_Nothing
+[.]
+
+#org @gText_erika_Itworks
+[LIGHT_GREEN]Gloom[RED] is feeling great now!\pI couldn't thank you enough!\pWell, I'm up for a battle now!\pAre you ready? 
+
+#org @gText_erika_No
+Oh, never mind then[.]
+
+#org @gText_erika_Info
+I hope your travels go safely, dear friend.
+
+#org @gText_erika_Snivy
+You received a [LIGHT_GREEN]Snivy[RED]!
+
+#org @gText_erika_StartBattle
+Very well, let's begin!
+
+#org @gText_Erika_DefeatText2
+Ah, you've got me again. 
+
+#org @gText_PostRematch 
+Thank you for the lovely\nbattle, and for helping [LIGHT_GREEN]Gloom![RED]\pPlease, have these. 
+
+#org @gText_checkerikasabrina_1
+[BLACK]I think I'd better get [GREEN]Erika[BLACK] and\n[GREEN]Sabrina's[BLACK] badge before proceeding.
+

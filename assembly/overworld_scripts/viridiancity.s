@@ -258,3 +258,57 @@ EventScript_brendanbattleleft_Comedown:
     .byte 0x10
     .byte 0x10
     .byte 0xFE
+
+.global EventScript_virizion_Start
+EventScript_virizion_Start:
+	sound 0xB3
+	applymovement 0xFF EventScript_virizion_Move
+	waitmovement 0x0
+	checksound
+	msgbox gText_virizion_1 0x6
+	cry 0x2B5 0x0
+	msgbox gText_virizion_2 0x4
+	waitcry
+	closeonkeypress
+	sound 0x15
+	applymovement 0xFF EventScript_virizion_Surprised
+	waitmovement 0x0
+	checksound
+	playsong 0x156 0x0
+	msgbox gText_virizion_3 0x6
+	msgbox gText_virizion_4 0x5
+	compare LASTRESULT 0x0
+	if 0x1 _call EventScript_virizion_Cancelmusic
+	wildbattle 0x2B5 0x32 0x00
+	special2 LASTRESULT 0xB4
+	compare LASTRESULT 0x4
+	if 0x1 _goto EventScript_virizion_Cancel
+	setvar 0x5044 0x1
+	release
+	end
+
+EventScript_virizion_Cancel:
+	applymovement 0xFF EventScript_virizion_Moveup
+	waitmovement 0x0
+	release
+	end
+
+EventScript_virizion_Cancelmusic:
+	fadesong 0x11F
+	applymovement 0xFF EventScript_virizion_Moveup
+	waitmovement 0x0
+	release
+	end
+
+EventScript_virizion_Move:
+.byte 0x63
+.byte 0x0
+.byte 0xFE
+
+EventScript_virizion_Surprised:
+.byte 0x65
+.byte 0xFE
+
+EventScript_virizion_Moveup:
+.byte 0x11
+.byte 0xFE

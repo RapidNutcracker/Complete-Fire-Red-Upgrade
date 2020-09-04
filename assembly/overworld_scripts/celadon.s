@@ -45,13 +45,6 @@ GoDown:
     .byte 0x10
     .byte 0xFE 
 
-.global EventScript_Celadon_StopExploit
-EventScript_Celadon_StopExploit:
-    clearflag 0x913
-    clearflag 0x90F
-    release 
-    end 
-
 .global EventScript_Celadon_IronHead
 EventScript_Celadon_IronHead:
     lock
@@ -123,7 +116,6 @@ EventScript_playrough_Cost:
 	hidemoney 0x0 0x0
 	release
 	end
-
 
 
 EventScript_playrough_Cancel:
@@ -716,11 +708,6 @@ EventScript_gamecornermons_Endofscript:
 	release
 	end
 
-@ givenickname: 
-@	call 0x81A8C27
-@	call 0x81A74EB
-@	return
-
 EventScript_gamecornermons_Checkpayment:
 	checkflag 0x913
 	if 0x1 _call EventScript_gamecornermons_Checkshinypay
@@ -758,7 +745,7 @@ EventScript_gardevoirite_Start:
 	checkflag 0x98B
 	if 0x1 _goto EventScript_gardevoirite_Done
 	msgbox gText_gardevoirite_1 0x6
-	giveitem ITEM_GARDEVOIRITE 0x1 MSG_OBTAIN @Gardevoirite
+	giveitem ITEM_ALAKAZITE 0x1 MSG_OBTAIN @Gardevoirite
 	setflag 0x98B
 	release
 	end
@@ -857,3 +844,138 @@ EventScript_Balls_Values:
     .hword ITEM_HEAVY_BALL
     .hword ITEM_MOON_BALL 
     .hword 0x0
+
+.global EventScript_erika_Start
+EventScript_erika_Start:
+	lock
+	faceplayer
+	checkflag 0x823
+	if 0x1 _goto EventScript_erika_Defeated
+	setflag 0x915
+	trainerbattle1 0x1 0x1A1 0x0 gText_erika_EncounterText gText_erika_DefeatText EventScript_erika_WonPointer
+	release
+	end
+
+EventScript_erika_Defeated:
+	lock
+	faceplayer
+	checkitem ITEM_MEGA_RING 0x1
+	compare 0x800D 0x1
+	if 0x4 _goto EventScript_erika_Rematch
+	msgbox gText_erika_TMInfomsg 0x6
+	release
+	end
+
+EventScript_erika_WonPointer:
+	msgbox gText_erika_Givetm 0x6
+	giveitem 0x133 0x1 MSG_OBTAIN
+	settrainerflag 0x84
+	settrainerflag 0x85
+	settrainerflag 0xA0
+	settrainerflag 0x109
+	settrainerflag 0x10A
+	settrainerflag 0x10B
+	settrainerflag 0x192
+	setflag 0x823
+	clearflag 0x915
+	msgbox gText_erika_TMInfomsg 0x6
+	release
+	end
+
+EventScript_erika_Rematch:
+	lock
+	faceplayer
+	checkitem ITEM_MEDICINE 0x1 @check if player has medicine
+	compare 0x800D 0x1
+	if 0x4 _goto EventScript_erika_Thankyou
+	checkflag 0x948
+	if 0x1 _goto EventScript_erika_Farewell
+	checkflag 0x947
+	if 0x1 _goto EventScript_erika_BattleTwo
+	checkflag 0x945
+	if 0x1 _goto EventScript_erika_Lastmsg
+	msgbox gText_erika_Helloagain 0x6
+	msgbox gText_erika_Helloend 0x6
+	setflag 0x945
+	release
+	end
+
+
+EventScript_erika_Lastmsg:
+	msgbox gText_erika_Helloend 0x6
+	release
+	end
+
+EventScript_erika_Thankyou:
+	msgbox gText_erika_Isit 0x5
+	compare LASTRESULT 0x0
+	if 0x1 _goto EventScript_erika_Cancel
+	removeitem ITEM_MEDICINE 0x1
+	msgbox gText_erika_Thankutext 0x6
+	sound 0x1
+	msgbox gText_erika_Nothing 0x6
+	checksound
+	cry 0x2C 0x0
+	msgbox gText_erika_Itworks 0x6
+	waitcry
+	setflag 0x947
+	goto EventScript_erika_BattleTwo
+	end 
+
+EventScript_erika_BattleTwo:
+	msgbox gText_erika_Itworks MSG_YESNO 
+	compare LASTRESULT NO
+	if equal _goto EventScript_erika_Cancel
+	msgbox gText_erika_StartBattle MSG_NORMAL 
+	trainerbattle3 0x3 0x41 0x0 gText_Erika_DefeatText2
+	msgbox gText_PostRematch MSG_NORMAL 
+	setflag 0x90F
+	giveitem ITEM_TM86 0x1 MSG_OBTAIN
+	givepokemon SPECIES_SNIVY 0x5 0x0 0x0 0x0 0x0
+	clearflag 0x90F
+	fanfare 0x13E
+	msgbox gText_erika_Snivy 0x4
+	waitfanfare
+	closeonkeypress
+	msgbox gText_erika_Info 0x6
+	setflag 0x948 
+	release
+	end
+
+EventScript_erika_Farewell:
+	msgbox gText_erika_Info 0x6
+	release
+	end
+
+EventScript_erika_Cancel:
+	msgbox gText_erika_No 0x6
+	release
+	end
+
+.global EventScript_checkerikasabrina_Start
+EventScript_checkerikasabrina_Start:
+	checkflag 0x823
+	if 0x0 _goto EventScript_checkerikasabrina_Goback
+	checkflag 0x825
+	if 0x0 _goto EventScript_checkerikasabrina_Goback
+	release
+	end
+
+EventScript_checkerikasabrina_Goback:
+	textcolor 0x00
+	applymovement 0xFF EventScript_checkerikasabrina_Stop
+	waitmovement 0x0
+	msgbox gText_checkerikasabrina_1 0x6
+	applymovement 0xFF EventScript_checkerikasabrina_Playermoveback
+	waitmovement 0x0
+	release
+	end
+
+EventScript_checkerikasabrina_Stop:
+.byte 0x5
+.byte 0xFE
+
+
+EventScript_checkerikasabrina_Playermoveback:
+.byte 0x13
+.byte 0xFE

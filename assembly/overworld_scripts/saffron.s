@@ -529,9 +529,6 @@ EventScript_EVSubtracter_Noeffect:
 	end
 
 EventScript_EVSubtracter_Doanother:
-    special2 LASTRESULT 0x7
-	buffernumber 0x1 LASTRESULT
-	msgbox gText_EVSubtracter_NowHas 0x6
 	msgbox gText_EVSubtracter_4 0x5
 	compare LASTRESULT 0x1
 	if 0x1 _goto EventScript_EVSubtracter_MinusEVs
@@ -569,7 +566,6 @@ EventScript_EvChecker_CheckEVs:
 	msgbox gText_EvChecker_3 0x6
 	setvar 0x8005 0x3
 	special2 LASTRESULT 0x7
-    msgbox gText_EvChecker_5 0x6
 	buffernumber 0x2 LASTRESULT @speed evs in buffer 1
 	setvar 0x8005 0x4
 	special2 LASTRESULT 0x7
@@ -588,3 +584,306 @@ EventScript_EvChecker_Cancel:
 	msgbox gText_EvChecker_2 0x6
 	release
 	end
+
+
+.global EventScript_chuck_Start
+EventScript_chuck_Start:
+	lock
+	faceplayer
+	checkflag 0x950
+	if 0x1 _goto EventScript_chuck_Done
+	msgbox gText_chuck_1 0x6
+	goto EventScript_chuck_Battle
+	end
+
+EventScript_chuck_Battle:
+	setflag 0x915
+	setflag 0x90E
+	trainerbattle3 0x3 0x13D 0x0 gText_chuck_Defeat
+	msgbox gText_chuck_6 0x6
+	giveitem ITEM_TM60 0x1 MSG_OBTAIN
+	msgbox gText_chuck_8 0x6
+	giveitem ITEM_FOCUS_SASH 0x1 MSG_OBTAIN
+	msgbox gText_chuck_Take 0x6
+	setflag 0x950
+	setvar 0x4081 0x1 @stop the script tiles
+	release
+	end
+
+EventScript_chuck_Done:
+	lock
+	faceplayer
+	checkitem ITEM_MEGA_RING 0x1
+	compare 0x800D 0x1
+	if 0x4 _goto EventScript_chuck_Givemega
+	msgbox gText_chuck_9 0x6
+	release
+	end
+
+EventScript_chuck_Givemega:
+	lock
+	faceplayer
+	checkflag 0x951
+	if 0x1 _goto EventScript_chuck_Donedone
+	msgbox gText_chuck_10 0x6
+	bufferfirstpokemon 0x00
+	msgbox gText_chuck_11 0x6
+	setvar 0x8003 0x0 @From party
+	setvar 0x8004 0x0 @1st Pokemon
+	setvar 0x8005 0x1
+	special2 LASTRESULT 0x7
+	buffernumber 0x0 LASTRESULT @Buffer attack EVs to [buffer1]
+	compare LASTRESULT 150
+	if 0x4 _goto EventScript_chuck_MaxedHappiness
+	msgbox gText_chuck_13 0x6
+	release
+	end
+
+EventScript_chuck_MaxedHappiness:
+	msgbox gText_chuck_12 0x6
+	giveitem ITEM_GALLADITE 0x1 MSG_OBTAIN
+	msgbox gText_chuck_14 0x6
+	giveitem ITEM_EXPERT_BELT 0x1 MSG_OBTAIN
+	setflag 0x951
+	release
+	end
+
+EventScript_chuck_Donedone:
+	lock
+	faceplayer
+	msgbox gText_chuck_9 0x6
+	release
+	end
+
+.global EventScript_clobbopus_Start
+EventScript_clobbopus_Start:
+	lock
+	faceplayer
+	checkflag 0x952
+	if 0x1 _goto EventScript_clobbopus_Greedy
+	showpokepic SPECIES_CLOBBOPUS 0x0A 0x03
+	cry SPECIES_CLOBBOPUS 0x0
+	waitcry
+	msgbox gText_clobbopus_Uwant 0x5
+	compare LASTRESULT 0x1
+	if 0x1 _goto EventScript_clobbopus_Take
+	hidepokepic
+	release
+	end
+
+EventScript_clobbopus_Greedy:
+	msgbox gText_clobbopus_Msggreedy 0x6
+	release
+	end
+
+EventScript_clobbopus_Take:
+	hidepokepic
+	givepokemon SPECIES_CLOBBOPUS 0x23 0x0 0x0 0x0 0x0
+	fanfare 0x13E
+	msgbox gText_clobbopus_Takemsg 0x4
+	waitfanfare
+	closeonkeypress
+	hidesprite 0x7
+	setflag 0x952
+	setflag 0x954
+	release
+	end
+
+.global EventScript_crabrawler_Start
+EventScript_crabrawler_Start:
+	lock
+	faceplayer
+	checkflag 0x952
+	if 0x1 _goto EventScript_crabrawler_Greedy
+	showpokepic SPECIES_CRABRAWLER 0x0A 0x03
+	cry SPECIES_CRABRAWLER 0x0
+	waitcry
+	msgbox gText_crabrawler_Uwant 0x5
+	compare LASTRESULT 0x1
+	if 0x1 _goto EventScript_crabrawler_Take
+	hidepokepic
+	release
+	end
+
+EventScript_crabrawler_Greedy:
+	msgbox gText_crabrawler_Msggreedy 0x6
+	release
+	end
+
+EventScript_crabrawler_Take:
+	hidepokepic
+	givepokemon SPECIES_CRABRAWLER 0x23 0x0 0x0 0x0 0x0
+	fanfare 0x13E
+	msgbox gText_crabrawler_Takemsg 0x4
+	waitfanfare
+	closeonkeypress
+	hidesprite 0x6
+	setflag 0x952
+	setflag 0x953
+	release
+	end
+
+
+.global EventScript_badjoke_Start
+EventScript_badjoke_Start:
+	lock
+	faceplayer
+	msgbox gText_badjoke_1 0x6
+	release
+	end
+
+.global EventScript_sabrina_Start
+EventScript_sabrina_Start:
+	lock
+	faceplayer
+	checkflag 0x825
+	if 0x1 _goto EventScript_sabrina_Defeated
+	msgbox gText_sabrina_EncounterText MSG_YESNO
+	setflag 0x915
+	setflag 0x913 @set shiny 
+	trainerbattle3 0x3 0x1A4 0x0  gText_sabrina_DefeatText 
+	goto EventScript_sabrina_WonPointer
+	release
+	end
+
+.global EventScript_sabrina_Defeated
+EventScript_sabrina_Defeated:
+	lock
+	faceplayer
+	checkflag 0x958
+	if 0x1 _goto EventScript_sabrina_Done
+	msgbox gText_sabrina_Perfectpokemon 0x6
+	bufferfirstpokemon 0x00
+	msgbox gText_sabrina_Thepokemon 0x6
+	setvar 0x8003 0x0 @From party
+	setvar 0x8004 0x0 @1st 
+	setvar 0x8005 0x0 @hp iv
+	call EventScript_sabrina_Checkiv
+	setvar 0x8005 0x1 @atk iv
+	call EventScript_sabrina_Checkiv
+	setvar 0x8005 0x2 @def iv
+	call EventScript_sabrina_Checkiv
+	setvar 0x8005 0x3 @speed iv
+	call EventScript_sabrina_Checkiv
+	setvar 0x8005 0x4 @special attack iv
+	call EventScript_sabrina_Checkiv
+	setvar 0x8005 0x5 @sp def iv
+	call EventScript_sabrina_Checkiv
+	msgbox gText_sabrina_Perfect 0x6
+	giveitem ITEM_GARDEVOIRITE 0x1 MSG_OBTAIN
+	msgbox gText_sabrina_Charmmsg 0x6
+	giveitem ITEM_SHINY_CHARM 0x1 MSG_OBTAIN
+	setflag 0x958
+	release
+	end
+
+EventScript_sabrina_WonPointer:
+	msgbox gText_sabrina_TMInfomsg 0x6
+	giveitem ITEM_TM116 0x1 MSG_OBTAIN
+	settrainerflag 0x118
+	settrainerflag 0x119
+	settrainerflag 0x11A
+	settrainerflag 0x11B
+	settrainerflag 0x1CE
+	settrainerflag 0x1CF
+	settrainerflag 0x1D0
+	setflag 0x825
+	setmaptile 0xA 0x14 0x293 0x0
+	special 0x8E
+	msgbox gText_sabrina_Givetm 0x6
+	msgbox gText_sabrina_Helloagain 0x6
+	msgbox gText_sabrina_Perfectpokemon 0x6
+	release
+	end
+
+EventScript_sabrina_Done:
+	msgbox gText_sabrina_Donemsg 0x6
+	release
+	end
+
+EventScript_sabrina_Nah:
+	msgbox gText_sabrina_Notquite 0x6
+	release
+	end
+
+EventScript_sabrina_Checkiv:
+	special2 LASTRESULT 0x8
+	buffernumber 0x0 LASTRESULT @Buffer iv val to [buffer1]
+	compare LASTRESULT 0x1F
+	if 0x0 _goto EventScript_sabrina_Nah
+	return
+
+.global EventScript_megaring_Start
+EventScript_megaring_Start:
+	lockall
+	textcolor 0x1
+	clearflag 0x200
+	showsprite 0x10
+	msgbox gText_megaring_1 0x6
+	sound 0xB3
+	applymovement 0xFF EventScript_megaring_Question
+	waitmovement 0x0
+	checksound
+	applymovement 0x10 EventScript_megaring_Come
+	waitmovement 0x0
+	applymovement 0xFF EventScript_megaring_Lookdown
+	waitmovement 0x0
+	msgbox gText_megaring_2 0x6
+	giveitem ITEM_MEGA_RING 0x1 MSG_OBTAIN
+	msgbox gText_megaring_3 0x6
+	applymovement 0x10 EventScript_megaring_Comedown
+	waitmovement 0x0
+	hidesprite 0x10
+	setflag 0x200
+	setvar 0x5042 0x1
+	release
+	end
+
+EventScript_megaring_Question:
+.byte 0x63
+.byte 0xFE
+
+
+EventScript_megaring_Come:
+.byte 0x13
+.byte 0x13
+.byte 0x13
+.byte 0x13
+.byte 0x13
+.byte 0x13
+.byte 0x13
+.byte 0x13
+.byte 0x11
+.byte 0xFE
+
+EventScript_megaring_Comedown:
+.byte 0x10
+.byte 0x12
+.byte 0x12
+.byte 0x12
+.byte 0x12
+.byte 0x12
+.byte 0x12
+.byte 0x12
+.byte 0x12
+.byte 0xFE
+
+
+EventScript_megaring_Lookdown:
+.byte 0x0
+.byte 0xFE
+
+.global EventScript_stopchuck_Start
+EventScript_stopchuck_Start:
+	lockall
+	textcolor 0x0
+	msgbox gText_stopchuck_1 0x6
+	applymovement 0xFF EventScript_stopchuck_Movedown
+	waitmovement 0x0
+	releaseall
+	end
+
+
+EventScript_stopchuck_Movedown:
+.byte 0x10
+.byte 0xFE

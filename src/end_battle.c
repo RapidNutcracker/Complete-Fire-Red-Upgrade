@@ -572,11 +572,11 @@ static void RestoreNonConsumableItems(void)
 {
 	u16 none = ITEM_NONE;
 	u16* items = gNewBS->itemBackup;
-	#ifdef FLAG_KEEP_CONSUMABLE_ITEMS
-	bool8 keepConsumables = FlagGet(FLAG_KEEP_CONSUMABLE_ITEMS);
-	#else
-	bool8 keepConsumables = FALSE;
-	#endif
+	//#ifdef FLAG_KEEP_CONSUMABLE_ITEMS
+	bool8 keepConsumables = TRUE; //FlagGet(FLAG_DISABLE_BAG);
+	//#else
+	//bool8 keepConsumables = FALSE;
+	//#endif
 
 	if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
 	{

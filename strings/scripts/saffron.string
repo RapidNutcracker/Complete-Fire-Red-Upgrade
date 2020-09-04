@@ -263,11 +263,173 @@ Your [BUFFER1] has[.]
 Well, just here to help.
 
 #org @gText_EvChecker_3
-[BUFFER1] HP EVs, [BUFFER2] Atk EVs, [BUFFER3] Def EVs.
+[BUFFER1] HP EVs, [BUFFER2] Atk EVs, [BUFFER3] Def EVs[.]
 
 #org @gText_EvChecker_4
 Shall I check another one?
 
 #org @gText_EvChecker_5
 [BUFFER1] SpAtk EVs, [BUFFER2] SpDef EVs,\n[BUFFER3] Speed EVs.
+
+#org @gText_chuck_1
+[BLUE]Hello there little chump!\pI'm [GREEN]Chuck[BLUE], and I've taken over\nas the Karate Master of this dojo!\pI can put you in a choke-hold in\na matter of seconds if I wanted to!\pWhat?\pIt has nothing to do with Pok\emon?\pHaha! A challenger long ago once\nsaid the same thing!\pCome on, we shall do battle!
+
+#org @gText_chuck_Defeat
+Wha! I lost?!\nIncredible!
+
+#org @gText_chuck_6
+What a crushing defeat!\pIt's back to 24-hour training for\nme!\pBut, I'm impressed, challenger.\pHave this!
+
+#org @gText_chuck_8
+These could help your warriors fight\nbetter as well!
+
+#org @gText_chuck_Take
+If you'd like, you can have one of\nthe Fighting Pok\emon over here as a\ltrophy.
+
+#org @gText_chuck_9
+It's tough getting gains with\n24-Hour Fitness being closed in\lquarantine.
+
+#org @gText_chuck_10
+[.]I see you have your own [LIGHT_BLUE]Mega\nRing[BLUE].\pIf you show me a Pok\emon you've invested\nin Attack, I might just give you a\l[LIGHT_BLUE]Galladite![BLUE].
+
+#org @gText_chuck_11
+Your [BUFFER1][.]
+
+#org @gText_chuck_12
+Woah, this thing's ripped!\pAdmirable!\pWahaha, here you go!
+
+#org @gText_chuck_14
+Take this one as well.
+
+#org @gText_chuck_13
+Eh[.] it could still hit the Gym[.]
+
+#org @gText_clobbopus_Takemsg
+You received the [LIGHT_GREEN]Clobbopus[BLACK]\nfrom [GREEN]Chuck[BLACK]!
+
+#org @gText_clobbopus_Msggreedy
+Better not get greedy[.]
+
+#org @gText_clobbopus_Uwant
+You want the Tantrum Pok\emon\n[LIGHT_GREEN]Clobbopus[BLACK]?
+
+#org @gText_crabrawler_Takemsg
+You received the [LIGHT_GREEN]Crabrawler[BLACK]\nfrom [GREEN]Chuck[BLACK]!
+
+#org @gText_crabrawler_Msggreedy
+Better not get greedy[.]
+
+#org @gText_crabrawler_Uwant
+You want the Judo Pok\emon\n[LIGHT_GREEN]Crabrawler[BLACK]?
+
+#org @gText_badjoke_1
+Pro Smash players love sliding\nin my DMs!
+
+#org @gText_sabrina_EncounterText
+[RED]I had a vision of your arrival.\pI have had psychic powers since\nI was a child.\pIt started when a spoon I\ncarelessly tossed, bent.\pI dislike battling, but if you wish,\nI will show you my powers.\pI prefer fighting in the Doubles\nstyle, are you ready? 
+
+#org @gText_sabrina_DefeatText
+This loss shocks me!\nBut, a loss is a loss.\pI admit, I didn't work hard enough\nto win.\pYour victory has earned you the\nMarsh Badge.
+
+#org @gText_sabrina_Givetm
+TM116 is Trick Room.\pIt flips dimensions to allow\nslower Pok\emon to go first.\pIt's quite a potent strategy\nin Doubles. 
+
+#org @gText_sabrina_TMInfomsg
+Before you go, please,\ntake this TM with you.
+
+#org @gText_sabrina_Helloagain
+[.]Perhaps you're looking for a\n[LIGHT_BLUE]Gardevoirite[RED]?
+
+#org @gText_sabrina_Perfectpokemon
+If you show me a perfect Pok\emon,\nI'll reward you handsomely.
+
+#org @gText_sabrina_Thepokemon
+Your [BUFFER1][.]
+
+#org @gText_sabrina_Notquite
+It's not quite what I'm looking\nfor[.]
+
+#org @gText_sabrina_Perfect
+Ah, yes.\pThis Pok\emon is clearly flawless.\pHere, take it.
+
+#org @gText_sabrina_Donemsg
+Psychic power isn't something that\nonly a few people have.\pEveryone has it to some degree.\nThey just haven't realized it yet.
+
+#org @gText_sabrina_Charmmsg
+I've carried this around for a while,\nbut I have no idea if it actually\ldoes anything.\pYou might like it, though.
+
+#org @gText_silphcoteambattle_1
+[RED]Looks like we found our intruder.
+
+#org @gText_silphcoteambattle_2
+[BLUE]Wait a sec...\pThis is the punk I ran into at\n[LIGHT_GREEN]Mt. Moon!
+
+#org @gText_silphcoteambattle_3
+[RED]Wow, you lost to this loser?\p[BLUE]Quiet, I'm sure my [LIGHT_GREEN]Mightyena[BLUE] gave\nthis punk a scare.
+
+#org @gText_silphcoteambattle_4
+[RED]Your [LIGHT_GREEN]Mightyena[RED] doesn't even have\nIntimidate.
+
+#org @gText_silphcoteambattle_5
+[BLUE]Would you SHUT UP [GREEN]Ari[BLUE]?!\pWe've got things to deal with here.
+
+#org @gText_silphcoteambattle_6
+[RED]Fine[.]\pSorry kid, looks like your fun ends\nhere.
+
+#org @gText_silphcoteambattle_7
+[GREEN]???[BLUE]: Wait a moment!
+
+#org @gText_silphcoteambattle_8
+[GREEN]Brendan:[BLUE] Don't you think two against\none is a little unfair?
+
+#org @gText_silphcoteambattle_9
+[BLUE]Heh, sorry I'm late to the party\n[GREEN][PLAYER][BLUE].\pLet me give you a hand!
+
+#org @gText_silphcoteambattle_10
+[BLUE]Who the hell[.]?\p[RED]The more the merrier I guess.\p[BLUE]Whatever, neither of you will be\nreaching the boss.
+
+#org @gText_silphcoteambattle_11
+[BLUE]Damn it[.]\pI really hate them kids[.]\p[RED]I[.] I'm shocked[.]\nBoss won't be happy about this.
+
+#org @gText_silphcoteambattle_12
+[BLUE]Of course he won't.\nWe ought to scram.
+
+#org @gText_silphcoteambattle_13
+[BLUE]Pray you don't meet me again,\n[GREEN][PLAYER][BLUE].
+
+#org @gText_silphcoteambattle_ArianaDefeat
+I[.] I fought hard[.]\nBut I still lost[.]
+
+#org @gText_silphcoteambattle_ArcherDefeatText
+Again?!\nThis is infuriating!
+
+#org @gText_silphcoteambattle_14
+[BLUE]Whew[.]\pTo be honest, I was quite scared!\pBut, I knew they stood no chance\nwith you on my side.\pYou're simply incredible!
+
+#org @gText_silphcoteambattle_15
+[BLUE]Hm[.]
+
+#org @gText_silphcoteambattle_16
+[BLUE]Sorry looks like I have a text\nmessage on my Pok\enav[.]\p[.]\pAgh! I'm sorry!\pI'd love to help you further, but\nI have something urgent to attend[.]\pHere, let me heal your Pok\emon.
+
+#org @gText_silphcoteambattle_17
+[BLUE]Again, I apologize for needing to\nleave so abruptly[.]\pPlease, take yet another parting gift.
+
+#org @gText_silphcoteambattle_Treecko
+You received a [LIGHT_GREEN]Treecko[BLUE]!
+
+#org @gText_silphcoteambattle_18
+[BLUE]Good luck, friend.
+
+#org @gText_megaring_1
+Wait!
+
+#org @gText_megaring_2
+The President forgot to give you\nthis.\pA lot of trainers have already\ngotten their hands on it, as you may\lhave already noticed.\pBut we're sure this will be of use\nfor you.
+
+#org @gText_megaring_3
+I also thought this would be worth\nmentioning[.]\pMany Gym Leaders have been looking\nfor rematches.\pPerhaps you ought to pay them a\nvisit?\pAnyways, take care!\pAnd once again, thank you.
+
+#org @gText_stopchuck_1
+Hey!\pYou're gonna have to fight me for\nthose!
 

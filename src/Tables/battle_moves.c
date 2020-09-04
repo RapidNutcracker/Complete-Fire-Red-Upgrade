@@ -11576,7 +11576,7 @@ const struct BattleMove gBattleMoves[] =
 
 	[MOVE_METEORBEAM] =
 	{	//ANIM TODO
-		.effect = EFFECT_SKULL_BASH, //EFFECT TODO
+		.effect = EFFECT_SKULL_BASH, 
 		.power = 120,
 		.type = TYPE_ROCK,
 		.accuracy = 90,

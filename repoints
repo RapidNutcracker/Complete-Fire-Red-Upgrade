@@ -225,37 +225,41 @@ arianaPal    8239A4C
 falknerTiles 8239594 
 falknerPal   8239A34
 
-#116
+#116 tested
 brockTiles 823991C 
 brockPal   8239DBC 
 
-#7
+#7 tested 
 bugsyTiles  82395B4 
 bugsyPal    8239A54
 
-#8
+#8 tested 
 whitneyTiles 82395BC
 whitneyPal   8239A5C
 
-#117 3A8 
+#117 3A8 tested 
 mistyTiles  8239924 
 mistyPal    8239DC4    
             
-#118 3B0
+#118 3B0 tested 
 ltsurgeTiles 823992C 
 ltsurgePal   8239DCC
 
-#119 8C8
+#119 8C8 tested 
 erikaTiles   8239E44  
 erikaPal     823A2E4
 
-#9 48
+#9 48 tested 
 mortyTiles 82395C4
 mortyPal   8239A64
 
 #Trainer sprite is 823957C
 #Multiply ID by 8 and add 
 #Trainer palette is at 8239A1C, same direction as above 
+
+#10 chuck 
+chuckTiles 
+chuckPal
 
 #11 58
 jasmineTiles 82395D4
@@ -316,7 +320,7 @@ bugcatcherPal 8239CB4
 burglarTiles 823985C
 burglarPal   8239CFC
 
-#105 black belt 
+#105 black belt  tested 
 blackbeltTiles 82398C4
 blackbeltPal  8239D64
 
@@ -324,15 +328,15 @@ blackbeltPal  8239D64
 nursetrainerTiles 82395FC
 nursetrainerPal 8239A9C
 
-#107 scientist 
+#107 scientist tested 
 scientistTiles 82398D4
 scientistPal 8239D74
 
-#86 camper 
+#86 camper tested 
 camperTiles 823982C
 camperPal   8239CCC
 
-#87 camper girl  
+#87 camper girl  tested 
 campergirlTiles 8239834
 campergirlPal   8239CD4
 
@@ -348,19 +352,19 @@ youngsterPal     8239CAC
 #Multiply ID by 8 and add 
 #Trainer palette is at 8239A1C, same direction as above 
 
-# supernerd 89
+# supernerd 89 tested 
 supernerdTiles 8239844
 supernerdPal   8239CE4
 
-# gentleman 123
+# gentleman 123 tested 
 gentlemanTiles 8239954
 gentlemanPal 8239DF4
 
-#hiker 90
+#hiker 90 tested 
 hikerTiles 823984C
 hikerPal  8239CEC
 
-#juggler 102
+#juggler 102 tested 
 jugglerTiles 82398AC
 jugglerPal   8239D4C
 
@@ -372,15 +376,15 @@ jugglerPal   8239D4C
 birdkeeperTiles 82398BC
 birdkeeperPal   8239D5C
 
-#channeler 126
+#channeler 126 tested 
 channelerTiles 823996C
 channelerPal   8239E0C
  
-#biker 96
+#biker 96 tested 
 bikerTiles     823987C
 bikerPal       8239D1C
 
-#dumbasskid 29 
+#dumbasskid 29 tested 
 dumbasskidTiles 8239664
 dumbasskidPal   8239B04
 
