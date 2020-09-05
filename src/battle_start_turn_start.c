@@ -119,7 +119,10 @@ void BattleBeginFirstTurn(void)
 	int i, j, k;
 	u8* state = &(gBattleStruct->switchInAbilitiesCounter);
 	u8* bank = &(gBattleStruct->switchInItemsCounter);
-	// gBattleScripting.battleStyle = OPTIONS_BATTLE_STYLE_SET; //added to force battle style set
+	// if(gBattleScripting.battleStyle == OPTIONS_BATTLE_STYLE_SHIFT){
+	// 	FlagSet(FLAG_EXPERT_DIFFICULTY); 
+	// }
+	gBattleScripting.battleStyle = OPTIONS_BATTLE_STYLE_SET; //added to force battle style set
 	if (!gBattleExecBuffer) //Inlclude Safari Check Here?
 	{
 		switch(*state) {
@@ -1724,7 +1727,7 @@ s32 BracketCalc(u8 bank)
 {
 	u8 itemEffect = ITEM_EFFECT(bank);
 	u8 itemQuality = ITEM_QUALITY(bank);
-	u8 ability = ABILITY(bank);
+	// u8 ability = ABILITY(bank);
 
 	gNewBS->CustapQuickClawIndicator &= ~(gBitTable[bank]); //Reset the Quick Claw counter just in case
 	if (BATTLER_ALIVE(bank))
@@ -1751,8 +1754,8 @@ s32 BracketCalc(u8 bank)
 				return -2;
 		}
 
-		if (ability == ABILITY_STALL)
-			return -1;
+		// if (ability == ABILITY_STALL)
+		// 	return -1;
 	}
 
 	return 0;

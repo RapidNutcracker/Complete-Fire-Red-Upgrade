@@ -3336,9 +3336,9 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 			break;
 
 		case ABILITY_PUNKROCK:
-		//1.2x Boost
+		//1.3x Boost
 			if (CheckSoundMove(move))
-				power = (power * 12) / 10; //changed
+				power = (power * 13) / 10; //changed
 			break;
 	}
 
@@ -3461,7 +3461,7 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 	#ifdef OLD_TERRAIN_BOOST
 		#define TERRAIN_BOOST 15 //1.5x in Gen 6 & 7
 	#else
-		#define TERRAIN_BOOST 15 //1.3x in Gen 8 changed this cuz im never gonna do 13
+		#define TERRAIN_BOOST 13 //1.3x in Gen 8 
 	#endif
 
 	//Terrain Checks

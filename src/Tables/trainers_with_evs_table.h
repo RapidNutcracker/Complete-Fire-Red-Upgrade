@@ -1342,6 +1342,16 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 		.ball = TRAINER_EV_CLASS_BALL,
 		.ability = Ability_Hidden,
 	},
+	[132] =
+	{ //Bulky Special Attacker - Ability_Hidden
+		.nature = NATURE_BOLD,
+		.ivs = 31,
+		.hpEv = 252,
+		.spAtkEv = 4,
+		.defEv = 252,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_1,
+	},
 };
 #endif
 

@@ -217,6 +217,15 @@ Dreepy
 #org @gText_gamecornermons2_Text7
 Floette-Eternal 
 
+#org @gText_gamecornermons3_Text1
+Honedge 
+
+#org @gText_gamecornermons3_Text2
+Toxel 
+
+#org @gText_gamecornermons3_Text4
+Exit 
+
 #org @gText_gamecornermons2_Itllbefloette
 That'll be \$50000.
 
@@ -261,6 +270,15 @@ You received a [LIGHT_GREEN]Jangmo-o!
 
 #org @gText_gamecornermons2_Gotfloette
 You received a [LIGHT_GREEN]Floette-Eternal!
+
+#org @gText_gamecornermons2_GotDreepy
+You received a [LIGHT_GREEN]Dreepy!
+
+#org @gText_gamecornermons2_GotHonedge
+You received a [LIGHT_GREEN]Honedge! 
+
+#org @gText_gamecornermons2_GotToxel
+You received a [LIGHT_GREEN]Toxel! 
 
 #org @gText_gardevoirite_1
 Hey, you came to see me!\pI'm not thirsty like I was in\nthe old games though.\pYou can have this instead!

@@ -29,6 +29,14 @@ EventScript_Route6_Pinsirite:
     release
     end
 
+.global EventScript_RockTunnel_Aggronite
+EventScript_RockTunnel_Aggronite:
+    hidesprite 0x800F
+    giveitem ITEM_AGGRONITE 0x1 MSG_FIND
+    setflag 0x93B
+    release
+    end
+
 .global EventScript_Route2_ChargeBeam
 EventScript_Route2_ChargeBeam:
     hidesprite 0x800F
@@ -74,14 +82,6 @@ EventScript_Route20_FocusBlast:
     hidesprite 0x800F
     giveitem ITEM_TM52 0x1 MSG_FIND
     setflag 0x94D
-    release
-    end
-
-.global EventScript_PkmnTower_DarkPulse
-EventScript_PkmnTower_DarkPulse:
-    hidesprite 0x800F
-    giveitem ITEM_TM79 0x1 MSG_FIND
-    setflag 0x94E
     release
     end
 
@@ -136,7 +136,7 @@ EventScript_Route6_Venoshock:
 .global EventScript_Route12_TrickRoom
 EventScript_Route12_TrickRoom:
     hidesprite 0x800F
-    giveitem ITEM_TM116 0x1 MSG_FIND 
+    giveitem ITEM_TM04 0x1 MSG_FIND 
     setflag 0x97C
     release 
     end 
@@ -157,6 +157,15 @@ EventScript_ViridianForest_Buterfree:
     release 
     end 
 
+.global EventScript_Route18_Kinglerite
+EventScript_Route18_Kinglerite:
+    hidesprite 0x800F
+    giveitem ITEM_KINGLERITE 0x1 MSG_FIND 
+    setflag 0x94E
+    release 
+    end 
+
+
 .global EventScript_xscissor_Start
 EventScript_xscissor_Start:
 	hidesprite 0x800F
@@ -165,6 +174,45 @@ EventScript_xscissor_Start:
 	release
 	end
 
+.global EventScript_SafariZone_Heracronite
+EventScript_SafariZone_Heracronite:
+    hidesprite 0x800F
+    giveitem ITEM_HERACRONITE 0x1 MSG_FIND 
+    setflag 0x183
+    release 
+    end 
+
+.global EventScript_SafariZone_Beedrilite
+EventScript_SafariZone_Beedrilite:
+    hidesprite 0x800F
+    giveitem ITEM_BEEDRILLITE 0x1 MSG_FIND 
+    setflag 0x1D3
+    release 
+    end 
+
+.global EventScript_SafariZone_Pidgeotite
+EventScript_SafariZone_Pidgeotite:
+    hidesprite 0x800F
+    giveitem ITEM_PIDGEOTITE 0x1 MSG_FIND 
+    setflag 0x186
+    release 
+    end 
+
+.global EventScript_SafariZone_Lopunnite
+EventScript_SafariZone_Lopunnite:
+    hidesprite 0x800F
+    giveitem ITEM_LOPUNNITE 0x1 MSG_FIND 
+    setflag 0x18A
+    release 
+    end 
+
+.global EventScript_Route12_Slowbronite
+EventScript_Route12_Slowbronite:
+    hidesprite 0x800F
+    giveitem ITEM_SLOWBRONITE 0x1 MSG_FIND 
+    setflag 0x965
+    release 
+    end 
 
 .global EventScript_VermilionCity_Machampite
 EventScript_VermilionCity_Machampite:
@@ -260,6 +308,14 @@ EventScript_SilphCo_Kang:
     hidesprite 0x800F
     giveitem ITEM_KANGASKHANITE 0x1 MSG_FIND 
     setflag 0x195
+    release 
+    end 
+
+.global EventScript_SilphCo_Garb
+EventScript_SilphCo_Garb:
+    hidesprite 0x800F
+    giveitem ITEM_GARBODORITE 0x1 MSG_FIND 
+    setflag 0x18E
     release 
     end 
 

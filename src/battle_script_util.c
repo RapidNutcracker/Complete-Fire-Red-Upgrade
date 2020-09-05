@@ -1572,6 +1572,11 @@ void DoProteanTypeChange(void)
 	PREPARE_TYPE_BUFFER(gBattleTextBuff1, moveType);
 }
 
+void SetUpGarbodorAbility(void)
+{
+	gBattleScripting.bank = gBankAttacker;
+}
+
 void HarvestActivateBerry(void)
 {
 	gBattlescriptCurrInstr += 5;

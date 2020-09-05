@@ -76,7 +76,6 @@ EventScript_startersmegastone_Charizard:
 	checkflag 0x967
 	if 0x1 _goto EventScript_startersmegastone_Done
 	msgbox gText_startersmegastone_3 0x6
-	giveitem ITEM_CHARIZARDITE_Y 0x1 MSG_OBTAIN
 	giveitem ITEM_CHARIZARDITE_X 0x1 MSG_OBTAIN
 	setflag 0x967
 	release

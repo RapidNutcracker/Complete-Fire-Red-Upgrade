@@ -25,6 +25,9 @@ tile 1 0 1 EventScript_brendanbattleleft_Start
 tile 1 0 0 EventScript_brendanbattleright_Start
 npc 1 0 16 EventScript_ViridianForest_Buterfree
 tile 1 0 2 EventScript_virizion_Start
+npc 1 0 13 EventScript_RockSmash 
+npc 1 0 14 EventScript_RockSmash 
+npc 1 0 15 EventScript_RockSmash 
 
 # PEWTER CITY
 tile 3 2 7 EventScript_falknercheck_Start
@@ -40,6 +43,10 @@ tile 3 2 2 EventScript_checkbadge1_Start
 npc 6 2 0 EventScript_brock_Start
 npc 3 2 5 EventScript_Cut 
 npc 6 0 5 EventScript_badtantrum_Start
+tile 6 2 1 EventScript_ExpertModeTile 
+tile 6 2 0 EventScript_ExpertModeTileLeft
+tile 6 2 2 EventScript_ExpertModeTileRight
+npc 6 2 2 EventScript_ExpertModeNPC
 
 #ROUTE 3 
 npc 3 21 9 EventScript_Route3Raid 
@@ -57,9 +64,9 @@ npc 1 1 14 EventScript_MtMoonRaid
 npc 1 3 11 EventScript_MtMoon_ScopeLens 
 tile 1 3 1 EventScript_adminmtmoonright
 tile 1 3 2 EventScript_adminmtmoonleft_Start
-# npc 1 2 0 EventScript_RockSmash 
-# npc 1 2 1 EventScript_RockSmash 
-# npc 1 2 2 EventScript_RockSmash 
+npc 1 2 0 EventScript_RockSmash 
+npc 1 2 1 EventScript_RockSmash 
+npc 1 2 2 EventScript_RockSmash 
 
 #CERULEAN 
 npc 7 3 7 EventScript_NatureChanger 
@@ -89,7 +96,7 @@ npc 3 23 0 EventScript_Route5Raid
 npc 3 24 7 EventScript_Route6_Venoshock
 npc 3 24 6 EventScript_Route6Raid
 npc 3 24 9 EventScript_Route6_Pinsirite
-#npc 3 24 8 EventScript_RockSmash 
+npc 3 24 8 EventScript_RockSmash 
 
 #Route 11
 tile 3 29 0 EventScript_secondbrendantop_Start
@@ -101,6 +108,9 @@ npc 22 1 1 EventScript_itemfinder_Start
 npc 3 29 11 EventScript_SSAnne_WorkUp
 #this one is actually soft sand 
 npc 3 29 10 EventScript_Route11_StarPiece 
+
+#Route 12 
+npc 23 2 0 EventScript_sharpedonite_Start
 
 #Digletts Cave
 npc 1 37 0 EventScript_DigletsCaveRaid
@@ -134,6 +144,22 @@ npc 21 0 5 EventScript_NatureChanger
 #Rock Tunnel
 npc 1 82 8 EventScript_rockslide_Start
 npc 1 82 26 EventScript_RockTunnelRaid 
+npc 1 82 11 EventScript_RockSmash 
+npc 1 82 12 EventScript_RockSmash 
+npc 1 82 13 EventScript_RockSmash 
+npc 1 82 14 EventScript_RockSmash 
+npc 1 82 15 EventScript_RockSmash 
+npc 1 82 16 EventScript_RockSmash 
+npc 1 82 17 EventScript_RockSmash 
+npc 1 82 18 EventScript_RockSmash 
+npc 1 82 19 EventScript_RockSmash 
+npc 1 82 20 EventScript_RockSmash 
+npc 1 82 21 EventScript_RockSmash 
+npc 1 82 22 EventScript_RockSmash 
+npc 1 82 23 EventScript_RockSmash 
+npc 1 82 24 EventScript_RockSmash 
+npc 1 82 25 EventScript_RockSmash 
+npc 1 82 27 EventScript_RockTunnel_Aggronite
 
 #Lavender Town 
 npc 8 2 6 EventScript_morty_Start
@@ -162,7 +188,7 @@ npc 10 2 0 EventScript_playrough_Start
 npc 10 5 1 EventScript_gardevoirite_Start
 npc 10 3 2 EventScript_CeladonStones 
 npc 10 1 2 EventScript_CeladonBalls
-npc 10 4 2 EventScript_CeladonTMs
+# npc 10 4 2 EventScript_CeladonTMs
 npc 10 16 8 EventScript_Cut
 npc 10 16 9 EventScript_Cut
 npc 10 16 10 EventScript_Cut
@@ -213,18 +239,21 @@ tile 1 57 3 EventScript_silphcotop_Start
 tile 1 57 4 EventScript_SilphCo_TeamAlert
 tile 1 57 5 EventScript_SilphCo_TeamAlert
 tile 1 57 6 EventScript_SilphCo_TeamAlert
-npc 1 EventScript_SilphCo_HP
+npc 1 47 1 EventScript_SilphCo_HP
+npc 1 50 5 EventScript_SilphCo_Garb
+
 #Route 16
 npc 3 34 6 EventScript_Cut 
 npc 3 34 10 EventScript_Route16Raid 
 npc 25 2 2 EventScript_startersmegastone_Start
-npc 3 30 14 EventScript_Route12_TrickRoom
 tile 3 30 0 EventScript_checkerikasabrina2_Start
 tile 3 30 1 EventScript_checkerikasabrina2_Start
 
 #Route 12
 npc 3 30 8 EventScript_Cut 
 npc 3 30 13 EventScript_Cut 
+npc 3 30 14 EventScript_Route12_TrickRoom
+npc 3 30 15 EventScript_Route12_Slowbronite 
 
 #Route 13
 npc 3 31 10 EventScript_Cut 
@@ -234,6 +263,7 @@ npc 3 31 11 EventScript_Route13_Teleport
 npc 3 32 10 EventScript_Cut 
 npc 3 32 11 EventScript_Cut 
 npc 3 32 12 EventScript_Cut 
+npc 3 32 15 EventScript_powerbelt_Start
 
 #Route 17
 npc 3 35 10 EventScript_CyclingRoad_Absolite
@@ -243,3 +273,58 @@ npc 3 7 10 EventScript_Cut
 npc 3 7 11 EventScript_Cut 
 npc 3 7 12 EventScript_Cut 
 npc 3 7 13 EventScript_Cut 
+npc 11 9 1 EventScript_Fuschia_EggTutor
+npc 11 9 2 EventScript_Fuschia_DoubleBattle
+npc 3 7 14 EventScript_substitute_Start
+tile 3 7 0 EventScript_brendanfuschia_Start
+npc 3 7 17 EventScript_nursegivemedicine_Start
+npc 3 7 18 EventScript_earthpower_start
+npc 24 1 0 EventScript_Fuschia_OakAid
+npc 24 1 1 EventScript_Fuschia_NastyPlot
+npc 11 7 1 EventScript_newstrength_Start
+npc 11 3 6 EventScript_koga_Start
+
+#Route 18
+npc 3 36 3 EventScript_Route18_Kinglerite
+
+#Safari Zone
+npc 1 64 1 EventScript_SafariZone_Heracronite
+npc 1 65 2 EventScript_SafariZone_Beedrilite
+npc 1 65 0 EventScript_SafariZone_Pidgeotite
+npc 1 66 2 EventScript_SafariZone_Lopunnite
+
+#Seafoam Islands
+npc 1 83 0 EventScript_newstrength_Start
+npc 1 83 1 EventScript_newstrength_Start
+npc 1 84 0 EventScript_newstrength_Start
+npc 1 84 1 EventScript_newstrength_Start
+npc 1 85 0 EventScript_newstrength_Start
+npc 1 85 1 EventScript_newstrength_Start
+npc 1 86 2 EventScript_newstrength_Start
+npc 1 86 3 EventScript_newstrength_Start
+npc 1 86 4 EventScript_newstrength_Start
+npc 1 86 5 EventScript_newstrength_Start
+
+#Route 20 
+npc 3 38 11 EventScript_Route20_FocusBlast
+npc 3 38 12 EventScript_Route20_Medichamite
+npc 3 28 13 EventScript_pryce_Start
+
+#Route 22 
+npc 3 41 1 EventScript_Route22_Scizorite
+
+#Cinnabar 
+npc 3 8 1 EventScript_CinnabarMay_Boss
+npc 12 1 1 EventScript_Cinnabar_WeatherRock
+
+#Victory Road 
+npc 1 39 4 EventScript_newstrength_Start
+npc 1 39 5 EventScript_newstrength_Start
+npc 1 39 6 EventScript_newstrength_Start
+npc 1 40 9 EventScript_newstrength_Start
+npc 1 40 10 EventScript_newstrength_Start
+npc 1 40 11 EventScript_newstrength_Start
+npc 1 41 6 EventScript_newstrength_Start
+npc 1 41 7 EventScript_newstrength_Start
+npc 1 41 8 EventScript_newstrength_Start
+npc 1 41 9 EventScript_newstrength_Start

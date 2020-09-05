@@ -739,12 +739,20 @@ EventScript_sabrina_Start:
 	checkflag 0x825
 	if 0x1 _goto EventScript_sabrina_Defeated
 	msgbox gText_sabrina_EncounterText MSG_YESNO
+	compare LASTRESULT NO 
+	if equal _goto CancelSabrina
+	msgbox gText_sabrina_LetsBegin MSG_NORMAL 
 	setflag 0x915
-	setflag 0x913 @set shiny 
+	@ setflag 0x913 @set shiny 
 	trainerbattle3 0x3 0x1A4 0x0  gText_sabrina_DefeatText 
 	goto EventScript_sabrina_WonPointer
 	release
 	end
+
+CancelSabrina:
+	msgbox gText_sabrina_Whenever MSG_NORMAL 
+	release 
+	end 
 
 .global EventScript_sabrina_Defeated
 EventScript_sabrina_Defeated:

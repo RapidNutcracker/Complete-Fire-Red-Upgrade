@@ -218,7 +218,7 @@ archerTiles 82395A4
 archerPal   8239A44
 
 #6 30 
-arianaTiles  823957C  
+arianaTiles  82395AC
 arianaPal    8239A4C
 
 #3 tested 
@@ -257,9 +257,9 @@ mortyPal   8239A64
 #Multiply ID by 8 and add 
 #Trainer palette is at 8239A1C, same direction as above 
 
-#10 chuck 
-chuckTiles 
-chuckPal
+#10 chuck 50
+chuckTiles 82395CC
+chuckPal   8239A6C
 
 #11 58
 jasmineTiles 82395D4

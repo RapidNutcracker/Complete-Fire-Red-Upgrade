@@ -337,10 +337,10 @@ static const struct WildPokemon gRockTunnel1F_LandMonsNight[] =
 	{28, 31, SPECIES_CARBINK},
 	{27, 31, SPECIES_MINIOR_SHIELD},
 	{28, 31, SPECIES_FERROSEED},
-	{30, 31, SPECIES_DURANT},
+	{30, 31, SPECIES_STONJOURNER},
 	{30, 31, SPECIES_HEATMOR},
-	{28, 28, SPECIES_HONEDGE},
-	{28, 28, SPECIES_HONEDGE},
+	{28, 28, SPECIES_DURANT},
+	{28, 28, SPECIES_DURANT},
 };
 
 static const struct WildPokemonInfo gRockTunnel1F_LandMonsInfoNight = {4, gRockTunnel1F_LandMonsNight};
@@ -405,7 +405,7 @@ static const struct WildPokemon gRoute16_LandMonsNight[] =
 	{34, 38, SPECIES_MUDBRAY},
 	{34, 38, SPECIES_GOTHORITA},
 	{35, 38, SPECIES_DODRIO},
-	{34, 36, SPECIES_CRABRAWLER},
+	{34, 36, SPECIES_FALINKS},
 	{35, 35, SPECIES_TRUBBISH},
 	{34, 37, SPECIES_TOGEDEMARU},
 	{35, 35, SPECIES_AUDINO},
@@ -475,6 +475,7 @@ static const struct WildPokemonInfo gRoute18_LandMonsInfoNight = {20, gRoute18_L
 static const struct WildPokemon gRoute13_LandMonsNight[] =
 {
 	{49, 50, SPECIES_TANGROWTH},
+	// {49, 50, SPECIES_GARBODOR},
 	{50, 53, SPECIES_VANILLUXE},
 	{50, 52, SPECIES_NUZLEAF},
 	{49, 51, SPECIES_LURANTIS},

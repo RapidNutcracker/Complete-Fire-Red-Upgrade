@@ -376,8 +376,8 @@ EventScript_gamecornermons_ViewMore:
 	setvar 0x8006 0x5 @6th item
 	loadpointer 0x0 gText_gamecornermons2_Text6
 	special 0x25
-	setvar 0x8006 0x6 @6th item
-	loadpointer 0x0 gText_gamecornermons2_Text7
+	setvar 0x8006 0x6 @7th item
+	loadpointer 0x0 gText_gamecornermons_Text7
 	special 0x25
 	preparemsg gText_gamecornermons2_Whichpkmn
 	waitmsg
@@ -395,10 +395,36 @@ EventScript_gamecornermons_ViewMore:
 	compare LASTRESULT 0x5
 	if 0x1 _goto EventScript_gamecornermons2_Dreepy
 	compare LASTRESULT 0x6
-	if 0x1 _goto EventScript_gamecornermons2_Floette
+	if 0x1 _goto EventScript_gamecornermons_ViewMore2
 	goto FirstList 
 	release
 	end
+
+EventScript_gamecornermons_ViewMore2:
+	setvar 0x8006 0x0 @first item
+	loadpointer 0x0 gText_gamecornermons3_Text1 @Honedge 
+	special 0x25
+	setvar 0x8006 0x1 @second item
+	loadpointer 0x0 gText_gamecornermons3_Text2 @Toxel 
+	special 0x25
+	setvar 0x8006 0x2 @3rd item
+	loadpointer 0x0 gText_gamecornermons2_Text7 @Floette Eternal 
+	special 0x25
+	setvar 0x8006 0x3 @4rd item
+	loadpointer 0x0 gText_gamecornermons3_Text4 @Exit 
+	special 0x25
+	multichoice 0x0 0x0 0x22 0x0 @0x22 is 4 options
+	compare LASTRESULT 0x0
+	if 0x1 _goto EventScript_gamecornermons2_Honedge
+	compare LASTRESULT 0x1
+	if 0x1 _goto EventScript_gamecornermons2_Toxel
+	compare LASTRESULT 0x2
+	if 0x1 _goto EventScript_gamecornermons2_Floette
+	compare LASTRESULT 0x3
+	if 0x1 _goto EventScript_gamecornermons_Cancelhide
+	goto EventScript_gamecornermons_ViewMore
+	release 
+	end 
 
 EventScript_gamecornermons_Cancel:
     clearflag 0x90F 
@@ -516,19 +542,6 @@ EventScript_gamecornermons_Rotom:
 	msgbox gText_gamecornermons_Gotrotom 0x4
 	goto EventScript_gamecornermons_Endofscript
 
-EventScript_gamecornermons_Honedge:
-    msgbox gText_gamecornermons_Text7 0x6
-	msgbox gText_gamecornermons_Itllbe 0x6
-	call EventScript_gamecornermons_Shinyupgrade
-	msgbox gText_gamecornermons_Text7 0x6
-	msgbox gText_gamecornermons_Itllbe 0x6
-	call EventScript_gamecornermons_Checkifcorrect
-	call EventScript_gamecornermons_Checkpayment
-	givepokemon SPECIES_HONEDGE 0x1E 0x0 0x0 0x0 0x0
-	fanfare 0x13E
-	msgbox gText_gamecornermons_Gotriolu 0x4
-	goto EventScript_gamecornermons_Endofscript
-
 EventScript_gamecornermons2_Gible:
 	msgbox gText_gamecornermons2_Text1 0x6
 	msgbox gText_gamecornermons_Itllbe 0x6
@@ -626,7 +639,33 @@ EventScript_gamecornermons2_Dreepy:
 	call EventScript_gamecornermons_Checkpayment
 	givepokemon SPECIES_DREEPY 0x1E 0x0 0x0 0x0 0x0
 	fanfare 0x13E
-	msgbox gText_gamecornermons2_Gotjangmo 0x4
+	msgbox gText_gamecornermons2_GotDreepy 0x4
+	goto EventScript_gamecornermons_Endofscript
+
+EventScript_gamecornermons2_Honedge:
+	msgbox gText_gamecornermons3_Text1 0x6
+	msgbox gText_gamecornermons_Itllbe 0x6
+	call EventScript_gamecornermons_Shinyupgrade
+	msgbox gText_gamecornermons3_Text1 0x6
+	msgbox gText_gamecornermons_Itllbe 0x6
+	call EventScript_gamecornermons_Checkifcorrect
+	call EventScript_gamecornermons_Checkpayment
+	givepokemon SPECIES_HONEDGE 0x1E 0x0 0x0 0x0 0x0
+	fanfare 0x13E
+	msgbox gText_gamecornermons2_GotHonedge 0x4
+	goto EventScript_gamecornermons_Endofscript
+
+EventScript_gamecornermons2_Toxel:
+	msgbox gText_gamecornermons3_Text2 0x6
+	msgbox gText_gamecornermons_Itllbe 0x6
+	call EventScript_gamecornermons_Shinyupgrade
+	msgbox gText_gamecornermons3_Text2 0x6
+	msgbox gText_gamecornermons_Itllbe 0x6
+	call EventScript_gamecornermons_Checkifcorrect
+	call EventScript_gamecornermons_Checkpayment
+	givepokemon SPECIES_TOXEL 0x1E 0x0 0x0 0x0 0x0
+	fanfare 0x13E
+	msgbox gText_gamecornermons2_GotToxel 0x4
 	goto EventScript_gamecornermons_Endofscript
 
 EventScript_gamecornermons_Hatext:

@@ -29,6 +29,7 @@ EventScript_CinnabarMay_Boss:
     msgbox gText_CinnabarMay3 MSG_NORMAL
     msgbox gText_CinnabarMay4 MSG_NORMAL
     setflag 0x200 
+    setflag 0x915
     trainerbattle3 0x3 0x3D 0x0 gText_CinnabarMayDefeat 
     msgbox gText_CinnabarMay5 MSG_NORMAL
     setflag 0x90F
@@ -286,3 +287,66 @@ AlreadyGave:
 ExclamationMark:
     .byte 0x62
     .byte 0xFE 
+
+
+
+EventScript_blaine_Start:
+	lock
+	faceplayer
+	checkflag 0x826
+	if 0x1 _goto EventScript_blaine_Defeated
+	setflag 0x915
+    trainerbattle1 0x1 0x1A3 0x0 gText_blaine_EncounterText gText_blaine_DefeatText EventScript_blaine_WonPointer
+	release
+	end
+
+EventScript_blaine_Defeated:
+	lock
+	faceplayer
+	checkflag 0x96F
+	if 0x1 _goto EventScript_blaine_Done
+	msgbox gText_blaine_Perfectpokemon 0x6
+	bufferfirstpokemon 0x00
+	msgbox gText_blaine_Thepokemon 0x6
+	setvar 0x8003 0x0 @From party
+	setvar 0x8004 0x0 @1st Pok�mon
+	setvar 0x8005 0x4 @check speed EVs
+	special2 LASTRESULT 0x7
+	buffernumber 0x0 LASTRESULT @Buffer spa EVs to [buffer1]
+	compare LASTRESULT 150
+	if 0x4 _goto EventScript_blaine_Veryfast
+	msgbox gText_blaine_Notquite 0x6
+	release
+	end
+
+EventScript_blaine_WonPointer:
+	msgbox gText_blaine_TMInfomsg 0x6
+	giveitem 0x146 0x1 MSG_OBTAIN @fire blast
+	settrainerflag 0xB1
+	settrainerflag 0xB2
+	settrainerflag 0xB3
+	settrainerflag 0xB4
+	settrainerflag 0xD5
+	settrainerflag 0xD6
+	settrainerflag 0xD7
+	setflag 0x826
+	clearflag 0x915
+	msgbox gText_blaine_Givetm 0x6
+	msgbox gText_blaine_Helloagain 0x6
+	msgbox gText_blaine_Perfectpokemon 0x6
+	release
+	end
+
+EventScript_blaine_Done:
+	msgbox gText_blaine_Donemsg 0x6
+	release
+	end
+
+EventScript_blaine_Veryfast:
+	msgbox gText_blaine_Perfect 0x6
+	giveitem ITEM_CHARIZARDITE_Y 0x1 MSG_OBTAIN @Cameruptite
+	msgbox gText_blaine_Charmmsg 0x6
+	giveitem ITEM_CHOICE_SPECS 0x1 MSG_OBTAIN @Choice Specs
+	setflag 0x96F
+	release
+	end

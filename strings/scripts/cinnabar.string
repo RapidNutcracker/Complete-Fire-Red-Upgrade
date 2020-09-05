@@ -117,3 +117,37 @@ And[.]\pYup, the form has been changed!\pLet me know if you're in need\nof my se
 
 #org @gText_SilvallyChanger3
 Ah yes! A [LIGHT_GREEN]Silvally[BLUE]!
+
+#org @gText_blaine_EncounterText
+[BLUE]Hah!\pI am [GREEN]Blaine[BLUE], the red-hot Leader\nof Cinnabar Gym!\pMy fiery Pok\emon are all rough\nand ready with intense heat!\pThey incinerate all challengers!\pHah!\nYou better have Burn Heal!
+
+#org @gText_blaine_DefeatText
+I have burned down to nothing!\nNot even ashes remain!\pYou have earned the Volcano Badge.
+
+#org @gText_blaine_Givetm
+TM38 contains Fire Blast.\nTeach it to Fire-type Pok\emon.\pSpecial Attackers would be ideal\nfor that move.
+
+#org @gText_blaine_TMInfomsg
+Hah! What a fight.\pHere, you can have this, too!
+
+#org @gText_blaine_Helloagain
+[.]You looking for a [LIGHT_BLUE]Charizardite Y[BLUE]?
+
+#org @gText_blaine_Perfectpokemon
+Show me a Pok\emon you've invested\nin Special Attack.\pThen, you'll earn a [LIGHT_BLUE]Charizardite Y[BLUE]!
+
+#org @gText_blaine_Thepokemon
+Your [BUFFER1][.]
+
+#org @gText_blaine_Notquite
+It's not enough, I'm afraid.
+
+#org @gText_blaine_Perfect
+Hah!\nThat's what I wanna see!\pWell then, here it is.
+
+#org @gText_blaine_Donemsg
+Fire-types are to be used with\nutmost respect.\pDon't waste them on Water-types.
+
+#org @gText_blaine_Charmmsg
+This item makes special attacks\neven more fearsome.\pTake it as well.
+

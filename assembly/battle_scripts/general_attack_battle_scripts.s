@@ -102,6 +102,7 @@ BattleScript_PauseResultMessage:
 .global BS_002_SetPoisonChance
 BS_002_SetPoisonChance:
 	setmoveeffect MOVE_EFFECT_POISON
+	jumpifability BANK_ATTACKER ABILITY_PARASITICGOO DrainHPGarbodor
 	goto BS_STANDARD_HIT
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -113,6 +114,18 @@ BS_003_DrainHP:
 	jumpifmove MOVE_STRENGTHSAP StrengthSapBS
 	call STANDARD_DAMAGE
 	negativedamage
+	goto DrainHPBSP2
+
+DrainHPGarbodor:
+	attackcanceler
+	accuracycheck BS_MOVE_MISSED 0x0
+	call STANDARD_DAMAGE
+	callasm SetUpGarbodorAbility
+	call BattleScript_AbilityPopUp
+	playanimation BANK_ATTACKER ANIM_HEALING_SPARKLES 0x0
+	call BattleScript_AbilityPopUpRevert
+	negativedamage
+	goto DrainHPBSP2
 
 DrainHPBSP2:
 	orword HIT_MARKER HITMARKER_IGNORE_SUBSTITUTE

@@ -300,8 +300,8 @@ Ups Water attacks. Prevents burn.
 #org @DESC_WATERCOMPACTION
 Water-type hits raise Defense.
 
-#org @DESC_STALL
-Moves after even slower foes.
+#org @DESC_PARASITICGOO
+Attacks that poison also drain. 
 
 #org @DESC_MULTITYPE
 Changes type to match held Plate.

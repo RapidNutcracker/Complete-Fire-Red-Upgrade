@@ -2852,7 +2852,7 @@ void ShouldDoAIShiftSwitch(void)
 	// #ifdef VAR_GAME_DIFFICULTY
 	if (gBattleTypeFlags & BATTLE_TYPE_TRAINER
 	&& !IS_DOUBLE_BATTLE
-	&& gBattleScripting.battleStyle == OPTIONS_BATTLE_STYLE_SHIFT
+	// && (FlagGet(FLAG_EXPERT_DIFFICULTY)) //gBattleScripting.battleStyle == OPTIONS_BATTLE_STYLE_SHIFT || 
 	&& BATTLER_ALIVE(GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT)))
 	{
 		gActiveBattler = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
