@@ -3,6 +3,7 @@
 
 .include "../xse_commands.s"
 .include "../xse_defines.s"
+.include "../asm_defines.s" 
 
 .global EventScript_FinalCreator_Fight
 EventScript_FinalCreator_Fight:
@@ -27,7 +28,7 @@ EventScript_FinalCreator_Fight:
     applymovement 0x3 JumpUp
     waitmovement 0x0
     msgbox gText_FinalCreatorBattle_2 MSG_FACE 
-    giveitem 0x74 0x1 MSG_OBTAIN
+    giveitem ITEM_METAGROSSITE 0x1 MSG_OBTAIN
     msgbox gText_FinalCreatorBattle_3 MSG_FACE
     applymovement 0x3 CreatorLeave
     waitmovement 0x0 

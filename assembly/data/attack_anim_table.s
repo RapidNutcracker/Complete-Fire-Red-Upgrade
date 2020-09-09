@@ -126,7 +126,8 @@ gMoveAnimations:
 .word 0x81cd570		@MOVE_THUNDER
 .word ANIM_ROCKTHROW
 .word 0x81ca6d1		@MOVE_EARTHQUAKE
-.word 0x81ca71e		@MOVE_FISSURE
+@.word 0x81ca71e		@MOVE_FISSURE
+.word ANIM_SOUL_STRIKE 
 .word 0x81ca841		@MOVE_DIG
 .word 0x81cf131		@MOVE_TOXIC
 .word 0x81cd40b		@MOVE_CONFUSION
@@ -16892,6 +16893,12 @@ STEEL_BEAM_SHOT:
 
 .align 2
 STEEL_BEAM_SHARDS: objtemplate ANIM_TAG_SPIKES ANIM_TAG_SPIKES OAM_NORMAL_16x16 gDummySpriteAnimTable 0x0 0x83e7604 0x80B8CC9
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_SOUL_STRIKE:
+	choosetwoturnanim SPECTRAL_THIEF_STEAL ANIM_G_MAX_GRAVITAS
+	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool

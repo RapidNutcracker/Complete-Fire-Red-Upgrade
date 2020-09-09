@@ -103,7 +103,7 @@ EventScript_misty_Start:
 EventScript_misty_Defeated:
 	lock
 	faceplayer
-	checkitem 0xE2 0x1
+	checkitem ITEM_MEGA_RING 0x1
 	compare 0x800D 0x1
 	if 0x4 _goto EventScript_misty_Rematch
 	msgbox gText_misty_TMInfomsg 0x6
@@ -160,3 +160,90 @@ EventScript_misty_DefeatedRematch:
 	msgbox gText_misty_Info 0x6
 	release
 	end
+
+
+.global EventScript_newdaycare_Start
+EventScript_newdaycare_Start:
+	special 0x187
+	compare LASTRESULT 0x2
+	if 0x1 _goto EventScript_newdaycare_End
+	special 0x188
+	lock
+	faceplayer
+	special 0xB5
+	special2 LASTRESULT 0xB6
+	compare LASTRESULT 0x1
+	if 0x1 _goto EventScript_newdaycare_Theeggshit
+	checkflag 0x266
+	if 0x1 _goto EventScript_newdaycare_Theeggshit
+	compare LASTRESULT 0x2
+	if 0x1 _goto EventScript_newdaycare_Singlemon
+	compare LASTRESULT 0x3
+	if 0x1 _goto EventScript_newdaycare_Telldoingfine
+	msgbox gText_newdaycare_Intro MSG_KEEPOPEN @"I@m the DAY-CARE MAN.\pI help take..."
+	release
+	end
+
+
+EventScript_newdaycare_End:
+	release
+	end
+
+EventScript_newdaycare_Theeggshit:
+	msgbox gText_newdaycare_Ahitsyou MSG_YESNO @"Ah, it@s you!\pWe were raising you..."
+	compare LASTRESULT 0x1
+	if 0x1 _goto EventScript_newdaycare_Getegg @0x8167DD1
+	msgbox gText_newdaycare_Ireallywill MSG_YESNO @"I really will keep it.\nYou do wan..."
+	compare LASTRESULT 0x1
+	if 0x1 _goto EventScript_newdaycare_Getegg
+	msgbox gText_newdaycare_Illkeepit MSG_KEEPOPEN @"Well then, I@ll keep it.\nThanks!"
+	clearflag 0x266
+	special 0xB7
+	release
+	end
+
+	@---------------
+EventScript_newdaycare_Singlemon:
+	special 0xB5
+	msgbox gText_newdaycare_Singlemonmsg MSG_KEEPOPEN @"Ah, it@s you! Good to see you.\nYo..."
+	release
+	end
+
+	@---------------
+EventScript_newdaycare_Telldoingfine:
+	special 0xB5
+	msgbox gText_newdaycare_Twodoingfine MSG_KEEPOPEN @"Ah, it@s you! Your [buffer1] and\n..."
+	special 0xB9
+	special 0x8D
+	waitmsg
+	waitkeypress
+	release
+	end
+
+	@---------------
+EventScript_newdaycare_Getegg:
+	special2 LASTRESULT 0x83
+	compare LASTRESULT 0x6
+	if 0x5 _goto EventScript_newdaycare_Receiveegg
+	msgbox gText_newdaycare_Noroom MSG_KEEPOPEN @"You have no room for it[.]\nCome b..."
+	release
+	end
+
+	@---------------
+EventScript_newdaycare_Receiveegg:
+	textcolor 0x3
+	preparemsg gText_newdaycare_Receiveeggmsg @"[player] received the EGG from\nth..."
+	call EventScript_newdaycare_Copyvar
+	fanfare 0x101
+	waitfanfare
+	waitkeypress
+	msgbox gText_newdaycare_Takegoodcare MSG_KEEPOPEN @"Take good care of it."
+	special 0xB8
+	clearflag 0x266
+	release
+	end
+
+	@---------------
+EventScript_newdaycare_Copyvar:
+	copyvar 0x8012 0x8013
+	return

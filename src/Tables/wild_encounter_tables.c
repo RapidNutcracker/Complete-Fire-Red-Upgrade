@@ -220,7 +220,7 @@ static const struct WildPokemonInfo gRoute25_LandMonsInfoNight = {20, gRoute25_L
 static const struct WildPokemon gRoute5_LandMonsNight[] =
 {
 	{18, 19, SPECIES_MEOWTH_G},
-	{18, 20, SPECIES_SINISTEA},
+	{18, 20, SPECIES_IMPIDIMP},
 	{19, 20, SPECIES_GOTHITA},
 	{19, 21, SPECIES_VULPIX_A},
 	{19, 21, SPECIES_SPRITZEE},
@@ -370,7 +370,7 @@ static const struct WildPokemon gRoute7_LandMonsNight[] =
 	{35, 39, SPECIES_VULLABY},
 	{35, 39, SPECIES_VULLABY},
 	{34, 39, SPECIES_CUTIEFLY},
-	{34, 38, SPECIES_SCRAGGY},
+	{34, 38, SPECIES_APPLIN},
 	{35, 38, SPECIES_ORANGURU},
 	{35, 38, SPECIES_ORANGURU},
 	{35, 38, SPECIES_MIENFOO},
@@ -638,7 +638,7 @@ static const struct WildPokemonInfo gSeafoam2_LandMonsInfoNight = {7, gSeafoam2_
 static const struct WildPokemon gSeafoam3_LandMonsNight[] = 
 {
 	{62, 64, SPECIES_ABOMASNOW},
-	{65, 65, SPECIES_DARMANITAN_G},
+	{65, 65, SPECIES_SNORUNT},
 	{63, 63, SPECIES_NINETALES_A},
 	{63, 63, SPECIES_NINETALES_A},
 	{62, 64, SPECIES_KINGLER},
@@ -656,15 +656,15 @@ static const struct WildPokemonInfo gSeafoam3_LandMonsInfoNight = {7, gSeafoam3_
 static const struct WildPokemon gSeafoam4_LandMonsNight[] = 
 {
 	{62, 64, SPECIES_SANDSLASH_A},
-	{65, 65, SPECIES_SNOVER},
+	{65, 65, SPECIES_DARMANITAN_G},
 	{63, 63, SPECIES_NINETALES_A},
 	{63, 63, SPECIES_NINETALES_A},
 	{62, 64, SPECIES_GOLDUCK},
 	{63, 63, SPECIES_GOLDUCK},
 	{65, 65, SPECIES_GOLBAT},
 	{63, 63, SPECIES_GOLBAT},
-	{65, 65, SPECIES_CRYOGONAL},
-	{66, 66, SPECIES_CRYOGONAL},
+	{65, 65, SPECIES_FROSMOTH},
+	{65, 65, SPECIES_FROSMOTH},
 	{64, 64, SPECIES_DELIBIRD},
 	{64, 64, SPECIES_DELIBIRD},
 };
@@ -674,17 +674,17 @@ static const struct WildPokemonInfo gSeafoam4_LandMonsInfoNight = {7, gSeafoam4_
 static const struct WildPokemon gPkmnMansion1_LandMonsNight[] = 
 {
 	{62, 64, SPECIES_RATICATE_A},
-	{65, 65, SPECIES_WEEZING_G},
+	{68, 68, SPECIES_AUDINO},
 	{63, 63, SPECIES_MUK_A},
 	{63, 63, SPECIES_MUK_A},
-	{62, 64, SPECIES_MAGMAR},
+	{62, 64, SPECIES_WEEZING_G},
 	{63, 63, SPECIES_LIEPARD},
 	{65, 65, SPECIES_NINETALES},
 	{63, 63, SPECIES_NINETALES},
 	{65, 65, SPECIES_SABLEYE},
 	{66, 66, SPECIES_SABLEYE},
-	{64, 64, SPECIES_DITTO},
-	{64, 64, SPECIES_DITTO},
+	{64, 64, SPECIES_CHIMECHO},
+	{64, 64, SPECIES_CHIMECHO},
 };
 
 static const struct WildPokemonInfo gPkmnMansion1_LandMonsInfoNight = {7, gPkmnMansion1_LandMonsNight};
@@ -701,8 +701,8 @@ static const struct WildPokemon gPkmnMansion2_LandMonsNight[] =
 	{63, 63, SPECIES_SALAZZLE},
 	{65, 65, SPECIES_BANETTE},
 	{66, 66, SPECIES_BANETTE},
-	{64, 64, SPECIES_DITTO},
-	{64, 64, SPECIES_DITTO},
+	{64, 64, SPECIES_CHIMECHO},
+	{64, 64, SPECIES_CHIMECHO},
 };
 
 static const struct WildPokemonInfo gPkmnMansion2_LandMonsInfoNight = {7, gPkmnMansion2_LandMonsNight};
@@ -713,14 +713,14 @@ static const struct WildPokemon gPkmnMansion3_LandMonsNight[] =
 	{65, 65, SPECIES_SEVIPER},
 	{63, 63, SPECIES_ARIADOS},
 	{63, 63, SPECIES_ARIADOS},
-	{62, 64, SPECIES_RAPIDASH},
+	{62, 64, SPECIES_RAPIDASH_G},
 	{63, 63, SPECIES_SKUNTANK},
 	{65, 65, SPECIES_CHANDELURE},
 	{63, 63, SPECIES_CHANDELURE},
 	{65, 65, SPECIES_KROOKODILE},
 	{66, 66, SPECIES_KROOKODILE},
-	{64, 64, SPECIES_DITTO},
-	{64, 64, SPECIES_DITTO},
+	{64, 64, SPECIES_CHIMECHO},
+	{64, 64, SPECIES_CHIMECHO},
 };
 
 static const struct WildPokemonInfo gPkmnMansion3_LandMonsInfoNight = {7, gPkmnMansion3_LandMonsNight};
@@ -737,8 +737,8 @@ static const struct WildPokemon gPkmnMansionB1_LandMonsNight[] =
 	{63, 63, SPECIES_NINETALES},
 	{65, 65, SPECIES_BANETTE},
 	{66, 66, SPECIES_BANETTE},
-	{64, 64, SPECIES_DITTO},
-	{64, 64, SPECIES_DITTO},
+	{64, 64, SPECIES_CHIMECHO},
+	{64, 64, SPECIES_CHIMECHO},
 };
 
 static const struct WildPokemonInfo gPkmnMansionB1_LandMonsInfoNight = {7, gPkmnMansionB1_LandMonsNight};
@@ -771,8 +771,8 @@ static const struct WildPokemon gCeruleanCave1_LandMonsNight[] =
 	{69, 70, SPECIES_MAGNETON},
 	{69, 72, SPECIES_SEISMITOAD},
 	{66, 69, SPECIES_SEISMITOAD},
-	{64, 64, SPECIES_DITTO},
-	{64, 64, SPECIES_DITTO},
+	{64, 64, SPECIES_DURALUDON},
+	{64, 64, SPECIES_DURALUDON},
 	{66, 66, SPECIES_TYPE_NULL},
 	{66, 66, SPECIES_TYPE_NULL},
 	// {68, 71, SPECIES_YAMASK_G},
@@ -801,8 +801,8 @@ static const struct WildPokemon gCeruleanCave2_LandMonsNight[] =
 	{70, 71, SPECIES_ELECTRODE},
 	{69, 70, SPECIES_REUNICLUS},
 	{69, 70, SPECIES_REUNICLUS},
-	{64, 64, SPECIES_DITTO},
-	{64, 64, SPECIES_DITTO},
+	{64, 64, SPECIES_DURALUDON},
+	{64, 64, SPECIES_DURALUDON},
 	{68, 68, SPECIES_TYPE_NULL},
 	{68, 68, SPECIES_TYPE_NULL},
 	// {68, 71, SPECIES_STONJOURNER},

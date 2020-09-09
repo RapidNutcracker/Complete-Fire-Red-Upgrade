@@ -1484,7 +1484,8 @@ static bool8 IsYawned(void)
 		//Don't switch if invested in Evasion and it'll hold up
 		if (STAT_STAGE(gActiveBattler, STAT_STAGE_EVASION) >= 6 + 3
 		&& !ABILITY_ON_OPPOSING_FIELD(gActiveBattler, ABILITY_UNAWARE)
-		&& !ABILITY_ON_OPPOSING_FIELD(gActiveBattler, ABILITY_KEENEYE))
+		//&& !ABILITY_ON_OPPOSING_FIELD(gActiveBattler, ABILITY_KEENEYE)
+		)
 			return FALSE;
 
 		//Don't switch if you can fight through the sleep

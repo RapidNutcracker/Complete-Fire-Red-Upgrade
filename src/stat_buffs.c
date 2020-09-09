@@ -154,7 +154,7 @@ void atk48_playstatchangeanimation(void)
 						&& ability != ABILITY_CLEARBODY
 						&& ability != ABILITY_WHITESMOKE
 						//&& ability != ABILITY_FULLMETALBODY
-						&& !(ability == ABILITY_KEENEYE && currStat == STAT_STAGE_ACC)
+						// && !(ability == ABILITY_KEENEYE && currStat == STAT_STAGE_ACC)
 						&& !(ability == ABILITY_HYPERCUTTER && currStat == STAT_STAGE_ATK)
 						&& !(ability == ABILITY_BIGPECKS && currStat == STAT_STAGE_DEF)
 						&& !(ability == ABILITY_INNERFOCUS && gNewBS->intimidateActive)
@@ -368,8 +368,8 @@ u8 ChangeStatBuffs(s8 statValue, u8 statId, u8 flags, const u8* BS_ptr)
 			return STAT_CHANGE_DIDNT_WORK;
 		}
 
-		else if (((ability == ABILITY_KEENEYE && statId == STAT_STAGE_ACC)
-			  ||  (ability == ABILITY_HYPERCUTTER && statId == STAT_STAGE_ATK)
+		else if (( //(ability == ABILITY_KEENEYE && statId == STAT_STAGE_ACC)
+			    (ability == ABILITY_HYPERCUTTER && statId == STAT_STAGE_ATK)
 			  ||  (ability == ABILITY_BIGPECKS && statId == STAT_STAGE_DEF)
 			  ||  (ability == ABILITY_INNERFOCUS && gNewBS->intimidateActive)
 			  ||  (ability == ABILITY_OWNTEMPO && gNewBS->intimidateActive)

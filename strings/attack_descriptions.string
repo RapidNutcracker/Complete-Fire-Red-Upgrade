@@ -7,6 +7,9 @@ No move information.
 #org @DESC_SANDATTACK
 The user throw sand\nat the foe, lowering\nits Attack.
 
+#org @DESC_SOULSTRIKE
+The user consumes the\ntarget's soul,\nstealing the target's\nstat boosts, and\nthen attacks.
+
 #org @DESC_SMOKESCREEN
 The user throws smoke\nat the foe, lowering\nits Attack. 
 

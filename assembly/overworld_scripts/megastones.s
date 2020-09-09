@@ -29,10 +29,10 @@ EventScript_Route6_Pinsirite:
     release
     end
 
-.global EventScript_RockTunnel_Aggronite
-EventScript_RockTunnel_Aggronite:
+.global EventScript_RockTunnel_Coalossalite
+EventScript_RockTunnel_Coalossalite:
     hidesprite 0x800F
-    giveitem ITEM_AGGRONITE 0x1 MSG_FIND
+    giveitem ITEM_COALOSSITE 0x1 MSG_FIND
     setflag 0x93B
     release
     end
@@ -45,6 +45,14 @@ EventScript_Route2_ChargeBeam:
     release
     end
 
+.global EventScript_Route2_Orbeetlite
+EventScript_Route2_Orbeetlite:
+    hidesprite 0x800F
+    giveitem ITEM_ORBEETLITE 0x1 MSG_FIND 
+    setflag 0x93C 
+    release 
+    end 
+
 .global EventScript_Route10_WildCharge
 EventScript_Route10_WildCharge:
     hidesprite 0x800F
@@ -56,7 +64,7 @@ EventScript_Route10_WildCharge:
 .global EventScript_Route20_Medichamite
 EventScript_Route20_Medichamite:
     hidesprite 0x800F
-    giveitem 0xFE 0x1 MSG_FIND
+    giveitem ITEM_MEDICHAMITE 0x1 MSG_FIND
     setflag 0x99A
     release
     end
@@ -98,14 +106,6 @@ EventScript_Route13_Teleport:
     hidesprite 0x800F
     giveitem ITEM_TM34 0x1 MSG_FIND
     setflag 0x95A
-    release
-    end
-
-.global EventScript_SilphCo_Upgrade
-EventScript_SilphCo_Upgrade:
-    hidesprite 0x800F
-    giveitem ITEM_UPGRADE 0x2 MSG_FIND
-    setflag 0x95B
     release
     end
 
@@ -165,6 +165,14 @@ EventScript_Route18_Kinglerite:
     release 
     end 
 
+.global EventScript_Route18_Altariaite
+EventScript_Route18_Altariaite:
+    hidesprite 0x800F
+    giveitem ITEM_ALTARIANITE 0x1 MSG_FIND 
+    setflag 0x95B
+    release 
+    end 
+
 
 .global EventScript_xscissor_Start
 EventScript_xscissor_Start:
@@ -195,6 +203,14 @@ EventScript_SafariZone_Pidgeotite:
     hidesprite 0x800F
     giveitem ITEM_PIDGEOTITE 0x1 MSG_FIND 
     setflag 0x186
+    release 
+    end 
+
+.global EventScript_VictoryRoad_HeavyDuty
+EventScript_VictoryRoad_HeavyDuty:
+    hidesprite 0x800F
+    giveitem ITEM_HEAVY_DUTY_BOOTS 0x1 MSG_FIND 
+    setflag 0x1AB
     release 
     end 
 
@@ -316,6 +332,95 @@ EventScript_SilphCo_Garb:
     hidesprite 0x800F
     giveitem ITEM_GARBODORITE 0x1 MSG_FIND 
     setflag 0x18E
+    release 
+    end 
+
+.global EventScript_Seafoam_Laprasite
+EventScript_Seafoam_Laprasite:
+    hidesprite 0x800F
+    giveitem ITEM_LAPRASITE 0x1 MSG_FIND 
+    setflag 0x1D5 
+    release 
+    end 
+
+.global EventScript_Seafoam_Abomasite
+EventScript_Seafoam_Abomasite:
+    hidesprite 0x800F
+    giveitem ITEM_ABOMASITE 0x1 MSG_FIND 
+    setflag 0x1D7
+    release 
+    end 
+
+.global EventScript_PkmnMansion_Banettite
+EventScript_PkmnMansion_Banettite:
+    hidesprite 0x800F
+    giveitem ITEM_BANETTITE 0x1 MSG_FIND 
+    setflag 0x1A5
+    release 
+    end 
+
+.global EventScript_CeruleanCave_Tyranitarite
+EventScript_CeruleanCave_Tyranitarite:
+    hidesprite 0x800F
+    giveitem ITEM_TYRANITARITE 0x1 MSG_FIND 
+    setflag 0x1B4
+    release 
+    end 
+
+.global EventScript_CeruleanCave_Garchompite
+EventScript_CeruleanCave_Garchompite:
+    hidesprite 0x800F
+    giveitem ITEM_GARCHOMPITE 0x1 MSG_FIND 
+    setflag 0x1B7
+    release 
+    end 
+
+.global EventScript_CeruleanCave_EQ
+EventScript_CeruleanCave_EQ:
+    hidesprite 0x800F
+    giveitem ITEM_TM26 0x1 MSG_FIND 
+    setflag 0x1B6
+    release 
+    end 
+
+.global EventScript_PkmnMansion_Cameruptite
+EventScript_PkmnMansion_Cameruptite:
+    hidesprite 0x800F
+    giveitem ITEM_CAMERUPTITE 0x1 MSG_FIND 
+    setflag 0x19F
+    release 
+    end 
+
+.global EventScript_PkmnMansion_StealthRock
+EventScript_PkmnMansion_StealthRock:
+    hidesprite 0x800F
+    giveitem ITEM_TM76 0x1 MSG_FIND 
+    setflag 0x1A2 
+    release 
+    end 
+
+.global EventScript_PowerPlant_Ampharosite
+EventScript_PowerPlant_Ampharosite:
+    hidesprite 0x800F
+    giveitem ITEM_AMPHAROSITE 0x1 MSG_FIND 
+    setflag 0x19D
+    release 
+    end 
+
+.global EventScript_PowerPlant_TM109
+EventScript_PowerPlant_TM109:
+    hidesprite 0x800F
+    giveitem ITEM_TM109 0x1 MSG_FIND 
+    setflag 0x19B
+    release 
+    end 
+
+
+.global EventScript_Seafoam_TM70
+EventScript_Seafoam_TM70:
+    hidesprite 0x800F
+    giveitem ITEM_TM70 0x1 MSG_FIND 
+    setflag 0x1D6
     release 
     end 
 

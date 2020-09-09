@@ -1376,7 +1376,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			break;
 
 		case EFFECT_PSYCH_UP:
-			if (move != MOVE_SPECTRALTHIEF)
+			if ( (move != MOVE_SPECTRALTHIEF ) && (move != MOVE_SOULSTRIKE))
 			{
 				//Copy positive stat changes
 				for (i = STAT_STAGE_ATK; i < BATTLE_STATS_NO; ++i)

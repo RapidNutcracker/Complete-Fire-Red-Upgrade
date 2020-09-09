@@ -954,18 +954,18 @@ EventScript_erika_Thankyou:
 	sound 0x1
 	msgbox gText_erika_Nothing 0x6
 	checksound
-	cry 0x2C 0x0
-	msgbox gText_erika_Itworks 0x6
-	waitcry
 	setflag 0x947
 	goto EventScript_erika_BattleTwo
 	end 
 
 EventScript_erika_BattleTwo:
+	cry 0x2C 0x0
+	waitcry
 	msgbox gText_erika_Itworks MSG_YESNO 
 	compare LASTRESULT NO
 	if equal _goto EventScript_erika_Cancel
 	msgbox gText_erika_StartBattle MSG_NORMAL 
+	setflag 0x90E
 	trainerbattle3 0x3 0x41 0x0 gText_Erika_DefeatText2
 	msgbox gText_PostRematch MSG_NORMAL 
 	setflag 0x90F

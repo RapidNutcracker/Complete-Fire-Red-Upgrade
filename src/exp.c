@@ -53,8 +53,8 @@ u8 LevelCap_Badges[17] = {
 	68, //Before Koga
 	73, //Before May
 	76, //Before Blaine
-	79, //Before Archer/Ariana B2b
-	80, //Before Giovanni Mewtwo
+	79, //Before Archer/Ariana 
+	80, //Before Giovanni Final
 	81, //Before Claire
 	82, //Before Brendan
 	85, //Before E4

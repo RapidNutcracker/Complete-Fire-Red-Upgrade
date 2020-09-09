@@ -395,7 +395,7 @@ static u32 AccuracyCalcPassDefAbilityItemEffect(u16 move, u8 bankAtk, u8 bankDef
 	if ((gBattleMons[bankDef].status2 & STATUS2_FORESIGHT)
 	||  (gBattleMons[bankDef].status2 & STATUS3_MIRACLE_EYED)
 	||   atkAbility == ABILITY_UNAWARE
-	||   atkAbility == ABILITY_KEENEYE
+	// ||   atkAbility == ABILITY_KEENEYE
 	||   CheckTableForMove(move, gIgnoreStatChangesMoves))
 	{
 		buff = acc;

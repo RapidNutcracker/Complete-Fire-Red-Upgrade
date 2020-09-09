@@ -613,7 +613,8 @@ EventScript_UseSurf:
 	if equal _goto EventScript_UseSurf_SkipAsk @ EventScript_UseSurf_Ask
 	checkflag FLAG_AUTO_HMS
 	if SET _goto EventScript_UseSurf_SkipAsk
-
+	goto EventScript_UseSurf_SkipAsk
+	
 EventScript_UseSurf_Ask:
 	callasm IsCurrentAreaSwampToVar
 	compare LASTRESULT 0x0
@@ -629,6 +630,7 @@ EventScript_UseSurf_SkipAsk:
 	lockall
 	setanimation 0x0 0x8004
 	doanimation 0x9
+
 EventScript_SurfEnd:
 	releaseall
 	end

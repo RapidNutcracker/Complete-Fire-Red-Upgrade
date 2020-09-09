@@ -76,3 +76,57 @@ Do you want learnsets\nrandomized?
 #org @gText_virizion_4
 [BLACK]Do you confront it?
 
+#org @gText_brendantoceruleancave_1
+[GREEN][PLAYER][BLUE]!
+
+#org @gText_brendantoceruleancave_2
+[BLUE]Oh my, I'm so glad to have found\nyou.\p[GREEN]May[BLUE] told me she had just bumped\ninto you here, so I hurried back\lover here.
+
+#org @gText_brendantoceruleancave_3
+[BLUE]I've come looking for your help!\pYou're really the only one I\nknow that could stop this[.]\pTeam Rocket has occupied [LIGHT_GREEN]Cerulean\nCave[BLUE], it seems.\pThere's rumors that a powerful\nlegendary rests there[.]\pCould that be what they're looking\nfor?!\pIt sounds like bad news.\pAnywho, we need to put an end\nto it!\pOh, you'd like a heal? Sure thing[.]
+
+#org @gText_brendantoceruleancave_4
+[BLUE]Okay, off we go.
+
+#org @gText_giovannicheck_1
+[BLACK]I ought to help Brendan in\n[LIGHT_GREEN]Cerulean Cave[.]
+
+#org @gText_claire_EncounterText
+[RED]Ah, a challenger finally arrives.\pI was about to take a nap.\p[RED]Although I'm the newly appointed\nGym Leader of the Kanto region,\lI was once a leader in Johto.\pSo, this is nothing new to me.\p[GREEN]Lance[RED] may be considered the world's\ndragon master, but I'm a close sec-\lond!\pDo you still dare to take me on?\pFine, let's do this!
+
+#org @gText_claire_DefeatText
+Oh, I see[.]\nYour skills are rather mysterious.\pFine, have the Rising Badge.
+
+#org @gText_claire_Givetm
+[RED]TM59 contains Dragon Pulse.\nIt's a huge blast of draconic\nenergy.\pTeach it to a Dragon-type.\pSince you're off to the Pok\emon\nLeague, this may help you.
+
+#org @gText_claire_TMInfomsg
+Years of being defeated as a Gym\nLeader have changed my perspect-\live, although I haven't been\lhumbled like that in a while.\pTake this.
+
+#org @gText_claire_Altarianite
+Mega Duraludon becomes a non-\nstop barrage of Dracos.\pIt is quite satisfying.
+
+#org @gText_claire_Helloagain
+Also[.]
+
+#org @gText_claire_Perfectpokemon
+If you show me a Dragon-type\nI can teach it Draco Meteor.
+
+#org @gText_claire_Afterteaching
+Vanquish foes with the strongest\nDragon-type move!
+
+#org @gText_claire_No
+This move strikes fear in its foes.\pYou don't want to miss it.
+
+#org @gText_roamer_1
+[GREEN][PLAYER][BLUE]!
+
+#org @gText_roamer_2
+[BLUE]Hi, I'm one of Oak's aids!\pWe just wanted to congratulate you\non obtaining all the badges!
+
+#org @gText_roamer_3
+[BLUE]Now that you're strong enough,\ntthis information would be helpful[.]\pRoaming legendaries have appeared!\pYou can view them on your Town\nMap. 
+
+#org @gText_roamer_4
+[BLUE]They're quite powerful mons,\nalthough they may be difficult to\lcatch.\pThat's all from me!\pGood luck!
+

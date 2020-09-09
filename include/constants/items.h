@@ -574,52 +574,52 @@ enum
 #define ITEM_GYARADOSITE 0x220 //done
 #define ITEM_AERODACTYLITE 0x221 //brock
 #define ITEM_MEWTWONITE_X 0x222
-#define ITEM_MEWTWONITE_Y 0x223 
-#define ITEM_AMPHAROSITE 0x224
-#define ITEM_STEELIXITE 0x225 
+#define ITEM_MEWTWONITE_Y 0x223 //done 
+#define ITEM_AMPHAROSITE 0x224 //done power plant
+#define ITEM_STEELIXITE 0x225 //jasmine 
 #define ITEM_SCIZORITE 0x226 //Route 22
 #define ITEM_HERACRONITE 0x227 //safari zone 
-#define ITEM_HOUNDOOMINITE 0x228
-#define ITEM_TYRANITARITE 0x229
+#define ITEM_HOUNDOOMINITE 0x228 //done 
+#define ITEM_TYRANITARITE 0x229 //done 
 #define ITEM_SCEPTILITE 0x22A //done
 #define ITEM_BLAZIKENITE 0x22B //done 
 #define ITEM_SWAMPERTITE 0x22C //done 
 #define ITEM_GARDEVOIRITE 0x22D //done sabrina 
 #define ITEM_SABLENITE 0x22E //done 
-#define ITEM_MAWILITE 0x22F 
+#define ITEM_MAWILITE 0x22F  //done 
 #define ITEM_AGGRONITE 0x230 //rock tunnel 
 #define ITEM_MEDICHAMITE 0x231 //route 20 
 #define ITEM_MANECTITE 0x232 //done
 #define ITEM_SHARPEDONITE 0x233 //route 12 
-#define ITEM_CAMERUPTITE 0x234
-#define ITEM_ALTARIANITE 0x235
-#define ITEM_BANETTITE 0x236
+#define ITEM_CAMERUPTITE 0x234 //mansion 
+#define ITEM_ALTARIANITE 0x235 //route 18 
+#define ITEM_BANETTITE 0x236 //pokemon mansion
 #define ITEM_ABSOLITE 0x237 //cycling road 
-#define ITEM_GLALITITE 0x238 
+#define ITEM_GLALITITE 0x238 //pryce 
 #define ITEM_SALAMENCITE 0x239
 #define ITEM_METAGROSSITE 0x23A //dumbass creator 
 #define ITEM_LATIASITE 0x23B //scientists cinnabar 
 #define ITEM_LATIOSITE 0x23C //scientists cinnabar 
 #define ITEM_LOPUNNITE 0x23D //safari zone 
-#define ITEM_GARCHOMPITE 0x23E
+#define ITEM_GARCHOMPITE 0x23E //done 
 #define ITEM_LUCARIONITE 0x23F //done 
-#define ITEM_ABOMASITE 0x240
+#define ITEM_ABOMASITE 0x240 //seafoam 
 #define ITEM_GALLADITE 0x241 //done
 #define ITEM_AUDINITE 0x242 //done
 #define ITEM_DIANCITE 0x243
-#define ITEM_MACHAMPITE   0x2D8
-#define ITEM_LAPRASITE    0x2D9
+#define ITEM_MACHAMPITE   0x2D8 // power plant dumbass 
+#define ITEM_LAPRASITE    0x2D9 //seafoam 
 #define ITEM_BUTTERFRITE  0x2DA //viridian forest 
 #define ITEM_GARBODORITE  0x2DB //silph co
-#define ITEM_SNORLAXITE   0x2DC
-#define ITEM_KINGLERITE   0x2DD //Route 18, surf 
+#define ITEM_SNORLAXITE   0x2DC 
+#define ITEM_KINGLERITE   0x2DD //Route 20, surf 
 #define ITEM_TOXTRICITITE 0x2DE //koga 
-#define ITEM_COALOSSITE   0x2DF
-#define ITEM_DURALUDONITE 0x2E0
+#define ITEM_COALOSSITE   0x2DF //rock tunnel 
+#define ITEM_DURALUDONITE 0x2E0  //done 
 #define ITEM_DREDNAWITE   0x2E1
 #define ITEM_COPPERAJITE  0x2E2
 #define ITEM_APPLITE      0x2E3
-#define ITEM_ORBEETLITE   0x2E4
+#define ITEM_ORBEETLITE   0x2E4 //route 2 rock smash 
 #define ITEM_GRIMMSNITE   0x2E5
 
 //Z-Crystals

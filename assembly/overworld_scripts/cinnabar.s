@@ -3,6 +3,7 @@
 
 .include "../xse_commands.s"
 .include "../xse_defines.s"
+.include "../asm_defines.s"
 
 .equ VAR_LEVEL, 0x1E
 .equ VAR_DAILY_EVENT, 0x505A
@@ -87,7 +88,7 @@ EventScript_Cinnabar_WeatherRock:
 	faceplayer
 	preparemsg gText_dada_MartGreetingMsg
 	waitmsg
-	pokemart EventScript_dada_MartItemsList
+	pokemartdecor EventScript_dada_MartItemsList
 	msgbox gText_dada_MartLeavingMsg 0x6
 	release
 	end
@@ -97,11 +98,9 @@ EventScript_dada_Snippet1:
 	end
 
 EventScript_dada_MartItemsList:
-    .hword 0x98
-	.hword 0x99
-	.hword 0x9A
-	.hword 0x9B
-    .hword 0x10A @remove later 
+    .hword ITEM_DREAM_BALL @remove later 
+    .hword ITEM_WHITE_HERB
+	.hword ITEM_LUM_BERRY 
     .hword 0x0
 
 .global EventScript_Cinnabar_FossilGuy
@@ -249,8 +248,8 @@ Latias:
     call ExclamationStuff
     bufferpokemon 0x0 0x197
     msgbox gText_CinnabarLatis6 MSG_FACE 
-    giveitem 0x75 0x1 MSG_OBTAIN 
-    giveitem 0xBF 0x1 MSG_OBTAIN 
+    giveitem ITEM_SOUL_DEW 0x1 MSG_OBTAIN 
+    giveitem ITEM_LATIOSITE 0x1 MSG_OBTAIN 
     setflag 0x94A 
     release 
     end 
@@ -261,8 +260,8 @@ Latios:
     call ExclamationStuff
     bufferpokemon 0x0 0x198
     msgbox gText_CinnabarLatis6 MSG_FACE 
-    giveitem 0x76 0x1 MSG_OBTAIN 
-    giveitem 0xBF 0x1 MSG_OBTAIN 
+    giveitem ITEM_SOUL_DEW 0x1 MSG_OBTAIN 
+    giveitem ITEM_LATIOSITE 0x1 MSG_OBTAIN 
     setflag 0x94B
     release 
     end 
@@ -289,7 +288,7 @@ ExclamationMark:
     .byte 0xFE 
 
 
-
+.global EventScript_blaine_Start
 EventScript_blaine_Start:
 	lock
 	faceplayer
@@ -344,9 +343,284 @@ EventScript_blaine_Done:
 
 EventScript_blaine_Veryfast:
 	msgbox gText_blaine_Perfect 0x6
-	giveitem ITEM_CHARIZARDITE_Y 0x1 MSG_OBTAIN @Cameruptite
+	giveitem ITEM_CHARIZARDITE_Y 0x1 MSG_OBTAIN 
 	msgbox gText_blaine_Charmmsg 0x6
-	giveitem ITEM_CHOICE_SPECS 0x1 MSG_OBTAIN @Choice Specs
+	giveitem ITEM_CHOICE_SPECS 0x1 MSG_OBTAIN 
 	setflag 0x96F
+	release
+	end
+
+.global EventScript_jasmine_Start
+EventScript_jasmine_Start:
+	lock
+	faceplayer
+	checkflag 0x96D
+	if 0x1 _goto EventScript_jasmine_Done
+	textcolor 0x1
+	msgbox gText_jasmine_1 0x6
+	msgbox gText_jasmine_2 0x6
+	msgbox gText_jasmine_3 0x5
+	compare LASTRESULT 0x1
+	if 0x1 _goto EventScript_jasmine_Battle
+	release 
+	end
+
+EventScript_jasmine_Battle:
+	msgbox gText_jasmine_4 0x6
+	setflag 0x915
+	setflag 0x90E
+	random 0x3
+	compare 0x800D 0x0
+	if 0x1 _goto EventScript_jasmine_Option1
+	compare 0x800D 0x1
+	if 0x1 _goto EventScript_jasmine_Option2
+	compare 0x800D 0x2
+	if 0x1 _goto EventScript_jasmine_Option3
+	end
+
+
+EventScript_jasmine_Option1:
+	trainerbattle3 0x3 0x3E 0x0 gText_jasmine_Defeat
+	goto EventScript_jasmine_Endbattle
+
+EventScript_jasmine_Option2:
+	trainerbattle3 0x3 0x3F 0x0 gText_jasmine_Defeat
+	goto EventScript_jasmine_Endbattle
+
+EventScript_jasmine_Option3:
+	trainerbattle3 0x3 0x40 0x0 gText_jasmine_Defeat
+	goto EventScript_jasmine_Endbattle
+
+EventScript_jasmine_Endbattle:
+	msgbox gText_jasmine_6 0x6
+	giveitem ITEM_STEELIXITE 0x1 MSG_OBTAIN
+	msgbox gText_jasmine_7 0x6
+	giveitem ITEM_CHOICE_BAND 0x1 MSG_OBTAIN
+	msgbox gText_jasmine_Take 0x6
+	setflag 0x96D
+	release
+	end
+
+
+EventScript_jasmine_Done:
+	checkflag 0x96E
+	if 0x1 _goto EventScript_jasmine_Donedone
+	msgbox gText_jasmine_Take 0x6
+	bufferfirstpokemon 0x00
+	msgbox gText_jasmine_Firstmon 0x6
+	setvar 0x8003 0x0 @From party
+	setvar 0x8004 0x0 @1st Pokemon
+	setvar 0x8005 0x2
+	special2 LASTRESULT 0x7
+	buffernumber 0x0 LASTRESULT @Buffer def EVs to [buffer1]
+	compare LASTRESULT 150
+	if 0x4 _goto EventScript_jasmine_HighDef
+	msgbox gText_jasmine_8 0x6
+	release
+	end
+
+EventScript_jasmine_HighDef:
+	msgbox gText_jasmine_9 0x6
+	giveitem ITEM_ASSAULT_VEST 0x1 MSG_OBTAIN
+    giveitem ITEM_AGGRONITE 0x1 MSG_OBTAIN 
+	setflag 0x96E
+	release
+	end
+
+EventScript_jasmine_Donedone:
+	msgbox gText_jasmine_10 0x6
+	release
+	end
+
+.global EventScript_metatutor_Start
+EventScript_metatutor_Start:
+	lock
+	faceplayer
+	msgbox gText_metatutor_1 0x5
+	compare LASTRESULT 0x0
+	if 0x1 _call EventScript_metatutor_Cancel
+	showmoney 0x35 0x00 0x00
+	setvar 0x8006 0x0 @first item
+	loadpointer 0x0 gText_metatutor_Text1
+	special 0x25
+	setvar 0x8006 0x1 @second item
+	loadpointer 0x0 gText_metatutor_Text2
+	special 0x25
+	setvar 0x8006 0x2 @3rd item
+	loadpointer 0x0 gText_metatutor_Text3
+	special 0x25
+	setvar 0x8006 0x3 @4th item
+	loadpointer 0x0 gText_metatutor_Text4
+	special 0x25
+	setvar 0x8006 0x4 @5th item
+	loadpointer 0x0 gText_metatutor_Text5
+	special 0x25
+	setvar 0x8006 0x5 @6th item
+	loadpointer 0x0 gText_metatutor_Text6
+	special 0x25
+	setvar 0x8006 0x6 @7th item
+	loadpointer 0x0 gText_metatutor_Text7
+	special 0x25
+	preparemsg gText_metatutor_Msg
+	waitmsg
+	multichoice 0x0 0x0 0x25 0x0
+	compare LASTRESULT 0x0
+	if 0x1 _goto EventScript_metatutor_Firstoption
+	compare LASTRESULT 0x1
+	if 0x1 _goto EventScript_metatutor_Secondoption
+	compare LASTRESULT 0x2
+	if 0x1 _goto EventScript_metatutor_Thirdoption
+	compare LASTRESULT 0x3
+	if 0x1 _goto EventScript_metatutor_Fourthoption
+	compare LASTRESULT 0x4
+	if 0x1 _goto EventScript_metatutor_Fifthoption
+	compare LASTRESULT 0x5
+	if 0x1 _goto EventScript_metatutor_Sixthoption
+	compare LASTRESULT 0x6
+	if 0x1 _goto EventScript_metatutor_Seventhoption
+	hidemoney 0x35 0x00
+	release
+	end
+
+EventScript_metatutor_Teach:
+	special 0x18D
+	waitstate
+	lock
+	faceplayer
+	return
+
+EventScript_metatutor_Cancel:
+	release
+	end
+
+EventScript_metatutor_Checkpayment:
+	checkmoney 0x2710 0x00
+	compare 0x800D 0x1
+	if 0x0 _goto EventScript_metatutor_Nomoney
+	return
+
+EventScript_metatutor_Firstoption:
+	setvar 0x8005 0x67
+	call EventScript_metatutor_Checkpayment
+	goto EventScript_metatutor_Endofscript
+
+EventScript_metatutor_Secondoption:
+	setvar 0x8005 0x32
+	call EventScript_metatutor_Checkpayment
+	goto EventScript_metatutor_Endofscript
+
+EventScript_metatutor_Thirdoption:
+	setvar 0x8005 0x7A
+	call EventScript_metatutor_Checkpayment
+	goto EventScript_metatutor_Endofscript
+
+EventScript_metatutor_Fourthoption:
+	setvar 0x8005 0x7E
+	call EventScript_metatutor_Checkpayment
+	goto EventScript_metatutor_Endofscript
+
+EventScript_metatutor_Fifthoption:
+	setvar 0x8005 0x6D
+	call EventScript_metatutor_Checkpayment
+	goto EventScript_metatutor_Endofscript
+
+EventScript_metatutor_Sixthoption:
+	setvar 0x8005 0x69
+	call EventScript_metatutor_Checkpayment
+	goto EventScript_metatutor_Endofscript
+
+EventScript_metatutor_Seventhoption:
+	setvar 0x8005 0x71
+	call EventScript_metatutor_Checkpayment
+	goto EventScript_metatutor_Endofscript
+
+EventScript_metatutor_Nomoney:
+	msgbox gText_metatutor_Poor 0x6
+	hidemoney 0x35 0x00
+	release
+	end
+
+EventScript_metatutor_Endofscript:
+	hidemoney 0x35 0x00
+	msgbox gText_metatutor_3 0x6
+	call EventScript_metatutor_Teach
+	compare LASTRESULT 0x0
+	if 0x1 _goto EventScript_metatutor_Cancel
+	showmoney 0x35 0x00 0x00
+	msgbox gText_metatutor_Wait 0x6
+	removemoney 0x2710 0x00
+	sound 0x58
+	updatemoney 0x35 0x00 0x00
+	lock
+	faceplayer
+	msgbox gText_metatutor_4 0x6
+	checksound
+	hidemoney 0x35 0x00
+	release
+	end
+
+.global EventScript_therianforms_Start
+EventScript_therianforms_Start:
+	lock
+	faceplayer
+	checkflag 0x827
+	if 0x0 _goto EventScript_therianforms_Default
+	checkflag 0x949 
+	if 0x1 _goto EventScript_therianforms_Done 
+	msgbox gText_therianforms_2 0x6
+	msgbox gText_therianforms_3 0x6
+	goto EventScript_therianforms_Reg
+	release
+	end
+
+EventScript_therianforms_Reg:
+	setvar 0x8003 0x0 @From party
+	special 0x9F @choose from party
+	waitstate
+	compare 0x8004 0x6
+	if 0x4 _goto EventScript_therianforms_Cancel
+	special 0x7C @puts the selected mon in party into buffer
+	msgbox gText_therianforms_4 0x6
+	special2 LASTRESULT 0x18
+	compare LASTRESULT 0x2BA
+	if 0x1 _goto EventScript_therianforms_Landorus
+	special2 LASTRESULT 0x18
+	compare LASTRESULT 0x2B7
+	if 0x1 _goto EventScript_therianforms_Landorus
+	special2 LASTRESULT 0x18
+	compare LASTRESULT 0x2B6
+	if 0x1 _goto EventScript_therianforms_Landorus
+	special2 LASTRESULT 0x18
+	compare LASTRESULT 0x2F4
+	if 0x1 _goto EventScript_therianforms_Landorus
+	special2 LASTRESULT 0x18
+	compare LASTRESULT 0x2F3
+	if 0x1 _goto EventScript_therianforms_Landorus
+	special2 LASTRESULT 0x18
+	compare LASTRESULT 0x2F2
+	if 0x1 _goto EventScript_therianforms_Landorus
+	msgbox gText_therianforms_5 0x6
+	release
+	end
+
+EventScript_therianforms_Landorus:
+	msgbox gText_therianforms_7 0x6
+	giveitem ITEM_REVEAL_GLASS 0x1 MSG_OBTAIN 
+	setflag 0x949 
+	release
+	end
+
+
+EventScript_therianforms_Default:
+	msgbox gText_therianforms_2 0x6
+	release
+	end
+
+EventScript_therianforms_Done:
+	msgbox gText_therianforms_8 MSG_FACE 
+	release 
+	end 
+
+EventScript_therianforms_Cancel:
 	release
 	end

@@ -372,14 +372,14 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				}
 				break;
 
-			case ABILITY_KEENEYE:
-				if (moveEffect == EFFECT_ACCURACY_DOWN
-				||  moveEffect == EFFECT_ACCURACY_DOWN_2)
-				{
-					DECREASE_VIABILITY(10);
-					return viability;
-				}
-				break;
+			// case ABILITY_KEENEYE:
+			// 	if (moveEffect == EFFECT_ACCURACY_DOWN
+			// 	||  moveEffect == EFFECT_ACCURACY_DOWN_2)
+			// 	{
+			// 		DECREASE_VIABILITY(10);
+			// 		return viability;
+			// 	}
+			// 	break;
 
 			case ABILITY_BIGPECKS:
 				if (moveEffect == EFFECT_DEFENSE_DOWN
@@ -1733,7 +1733,7 @@ MOVESCR_CHECK_0:
 			break;
 
 		case EFFECT_PSYCH_UP:
-			if (move == MOVE_SPECTRALTHIEF)
+			if (move == MOVE_SPECTRALTHIEF || move == MOVE_SOULSTRIKE)
 				goto AI_STANDARD_DAMAGE;
 			else
 				goto AI_HAZE_CHECK;

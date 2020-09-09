@@ -41,7 +41,7 @@ Which move should I teach?
 [PLAYER] handed over a\n[LIGHT_BLUE]Heart Scale[BLACK] in exchange.
 
 #org @gText_FuschiaDouble1 
-Hey, I can turn on wild double\nbattles for you!\pThis is especially useful for\nfaster EV training.\pJust a fair warning, there are\nsome possible softlocks that can freeze\lthe game with Wild Double Battles.\pThese usually happen with Choice Items\nalong with being low on PP.\pRemember to save often while using this!\pDo you still want to proceed?
+Hey, I can turn on wild double\nbattles for you!\pThis is especially useful for\nfaster EV training.\pJust a fair warning, there are\nsome possible softlocks that can\lfreeze the game with Wild Double\lBattles.\pThese usually happen with Choice Items\nalong with being low on PP.\pRemember to save often while using\nthis!\pDo you still want to proceed?
 
 #org @gText_FuschiaDouble2
 Wild double battles are turned\non! Talk to me again if you want to\lturn them off.

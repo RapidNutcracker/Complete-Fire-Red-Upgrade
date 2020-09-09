@@ -78,3 +78,31 @@ Take care!
 
 #org @gText_RandomEggNotEnough
 Aw, that's not enough money. 
+
+#org @gText_newdaycare_Intro
+I'm the Day-Care Man.\pI help take care of the precious\nPok\emon of trainers.\pIf you'd like me to raise your\nPok\emon, have a word with my wife.
+
+#org @gText_newdaycare_Ahitsyou
+Ah, it's you!\pWe were raising your Pok\emon, and\nmy goodness, were we surprised!\pYour Pok\emon had an egg!\pWe don't know how it got there,\nbut your Pok\emon had it.\pYou do want it, yes?
+
+#org @gText_newdaycare_Ireallywill
+I really will keep it.\nYou do want this, yes?
+
+#org @gText_newdaycare_Illkeepit
+Well then, I'll keep it.\nThanks!
+
+#org @gText_newdaycare_Singlemonmsg
+Ah, it's you! Good to see you.\nYour [BUFFER1]'s doing fine.
+
+#org @gText_newdaycare_Twodoingfine
+Ah, it's you! Your [BUFFER1] and\n[BUFFER2] are doing fine.
+
+#org @gText_newdaycare_Noroom
+You have no room for it[.]\nCome back when you've made room.
+
+#org @gText_newdaycare_Receiveeggmsg
+[PLAYER] received the Egg from\nthe Day-Care Man.
+
+#org @gText_newdaycare_Takegoodcare
+Take good care of it.
+

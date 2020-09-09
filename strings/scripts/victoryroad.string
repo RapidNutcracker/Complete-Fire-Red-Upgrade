@@ -136,6 +136,30 @@ Sure thing!\nAs for payment[.]
 #org @gText_NatureChanger4
 Thank you, the nature has been\nchanged!\pWe hope to see you again!  
 
+#org @gText_nurse_1
+You look tired.\nTake a rest.
 
+#org @gText_nurse_2
+Take care!
 
+#org @gText_closecombat_1
+You should be proud of yourself,\nhaving battled your way through\lVictory Road so courageously.\pIn recognition of your feat,\nI'll teach you Close Combat.\pWould you like me to teach that\ntechnique?
+
+#org @gText_closecombat_2
+It'll cost \$25000 now.
+
+#org @gText_closecombat_3
+Which Pok\emon should I teach\nClose Combat to?
+
+#org @gText_closecombat_4
+Keep that drive going for the\nPok\emon League!\pTake a run at them and knock 'em\nout!
+
+#org @gText_closecombat_No
+I'll teach you the technique\nanytime.
+
+#org @gText_closecombat_Wait
+[.]
+
+#org @gText_closecombat_Poor
+[.]You don't have enough money.
 

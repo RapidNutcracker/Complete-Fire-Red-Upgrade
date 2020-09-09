@@ -96,3 +96,6 @@ The effects of Neutralizing Gas\nwore off!
 
 #org @gText_IcyVeilActivate
 [SCRIPTING_BANK] set up a mini Aurora\nVeil! 
+
+#org @gText_BadCompanyNoDrop
+[ATTACKER]'s stats weren't\nlowered because of Bad Company! 

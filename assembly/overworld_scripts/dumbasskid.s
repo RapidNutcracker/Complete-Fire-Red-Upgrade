@@ -3,6 +3,7 @@
 
 .include "../xse_commands.s"
 .include "../xse_defines.s"
+.include "../asm_defines.s" 
 
 .global EventScript_DumbassKid
 EventScript_DumbassKid:
@@ -66,3 +67,37 @@ JumpUp:
     .byte 0x52
     .byte 0xFE
 
+.global EventScript_PowerPlant_Jotard
+EventScript_PowerPlant_Jotard:
+	lock
+	faceplayer 
+    msgbox gText_Jotard_1 MSG_KEEPOPEN 
+    closeonkeypress 
+    msgbox gText_Jotard_2 MSG_YESNO 
+	compare LASTRESULT NO 
+    if equal _goto DontFight 
+	msgbox gText_Jotard_3 MSG_NORMAL 
+    goto JotardBattle
+	release
+	end
+
+JotardBattle: 
+	setflag 0x915
+    setflag 0x90E 
+	trainerbattle3 0x3 0x42 0x0 gText_Jotard_Defeat
+	msgbox gText_Jotard_4 0x6
+	giveitem ITEM_MACHAMPITE 0x1 MSG_OBTAIN
+	giveitem ITEM_PRISON_BOTTLE 0x1 MSG_OBTAIN
+	msgbox gText_Jotard_5 0x6 
+	fadescreen 0x1
+	hidesprite 0xA
+	sound 0x9
+	checksound
+	fadescreen 0x0
+	setflag 0x93D
+	release
+	end
+
+DontFight:
+    release 
+    end 

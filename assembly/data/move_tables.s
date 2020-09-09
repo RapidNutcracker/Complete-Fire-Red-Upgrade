@@ -240,6 +240,7 @@ gMetronomeBannedMoves:
 .hword MOVE_SHELLTRAP
 .hword MOVE_FLEURCANNON
 .hword MOVE_SPECTRALTHIEF
+.hword MOVE_SOULSTRIKE
 .hword MOVE_SUNSTEELSTRIKE
 .hword MOVE_MOONGEISTBEAM
 .hword MOVE_NATURESMADNESS
@@ -395,7 +396,6 @@ gSkyBattleBannedMoves:
 .hword MOVE_SURF
 .hword MOVE_SEISMICTOSS
 .hword MOVE_EARTHQUAKE
-.hword MOVE_FISSURE
 .hword MOVE_DIG
 .hword MOVE_SUBSTITUTE
 .hword MOVE_SPIKES
@@ -896,6 +896,7 @@ gSubstituteBypassMoves:
 .hword MOVE_SPEEDSWAP
 .hword MOVE_INSTRUCT
 .hword MOVE_SPECTRALTHIEF
+.hword MOVE_SOULSTRIKE
 .hword MOVE_TEATIME
 .hword MOVE_LIFEDEW
 .hword MOVE_JUNGLEHEALING
@@ -1161,7 +1162,6 @@ gIgnoreInAirMoves:
 gIgnoreUndergoundMoves:
 .hword MOVE_EARTHQUAKE
 .hword MOVE_MAGNITUDE
-.hword MOVE_FISSURE
 .hword MOVE_TABLES_TERMIN
 
 gIgnoreUnderwaterMoves:

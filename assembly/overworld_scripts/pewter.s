@@ -184,7 +184,7 @@ EventScript_brock_Start:
 	end
 
 EventScript_brock_Defeated:
-	checkitem 0xE2 0x1
+	checkitem ITEM_MEGA_RING 0x1
 	compare 0x800D 0x1
 	if 0x4 _goto EventScript_brock_Rematch
 	msgbox gText_brock_AfterBattle 0x6

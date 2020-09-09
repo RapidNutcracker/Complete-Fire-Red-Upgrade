@@ -214,6 +214,8 @@ EventScript_brendanfuschia_Movedown2:
 .byte 0x12
 .byte 0x10
 .byte 0x10
+.byte 0x10
+.byte 0x10
 .byte 0xFE
 
 .global EventScript_nursegivemedicine_Start

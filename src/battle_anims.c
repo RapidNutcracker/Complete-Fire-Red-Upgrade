@@ -1027,6 +1027,7 @@ bool8 ShadowSneakAnimHelper(void)
 		case MOVE_HYPERSPACEHOLE:
 		case MOVE_SPECTRALTHIEF:
 		case MOVE_PULVERIZING_PANCAKE:
+		case MOVE_SOULSTRIKE:
 			return TRUE;
 	}
 

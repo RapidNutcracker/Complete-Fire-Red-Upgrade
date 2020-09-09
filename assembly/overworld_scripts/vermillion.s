@@ -127,7 +127,7 @@ EventScript_ltsurge_Start:
 EventScript_ltsurge_Defeated:
 	lock
 	faceplayer
-	checkitem 0xE2 0x1
+	checkitem ITEM_MEGA_RING 0x1
 	compare 0x800D 0x1
 	if 0x4 _goto EventScript_ltsurge_Rematch
 	msgbox gText_ltsurge_TMInfomsg 0x6

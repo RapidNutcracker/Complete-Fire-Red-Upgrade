@@ -3,6 +3,7 @@
 
 .include "../xse_commands.s"
 .include "../xse_defines.s"
+.include "../asm_defines.s" 
 
 .global EventScript_FinalBrendan_Fight
 EventScript_FinalBrendan_Fight:
@@ -42,7 +43,7 @@ EventScript_FinalBrendan_Fight:
     applymovement 0xA FaceUp
     waitmovement 0x0 
     msgbox gText_VRBrendanBattle_8 MSG_FACE 
-    giveitem 0x1A5 0x1 MSG_OBTAIN 
+    giveitem ITEM_DESTINY_KNOT 0x1 MSG_OBTAIN 
     msgbox gText_VRBrendanBattle_9 MSG_FACE  
     applymovement 0xA BrendanDown1
     waitmovement 0x0 
@@ -89,5 +90,20 @@ FaceDown:
 Surprised:
     .byte 0x62
     .byte 0xFE
+
+
+.global EventScript_nurse_Start
+EventScript_nurse_Start:
+	lock
+	faceplayer
+	msgbox gText_nurse_1 0x6
+	special 0x0
+	fadescreen 0x1
+	sound 0x1
+	checksound
+	fadescreen 0x0
+	msgbox gText_nurse_2 0x6
+	release
+	end
 
 

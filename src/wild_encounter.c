@@ -1033,7 +1033,7 @@ static bool8 IsAbilityAllowingEncounter(u8 level)
 		return TRUE;
 
 	ability = GetMonAbility(&gPlayerParty[0]);
-	if (ability == ABILITY_KEENEYE || ability == ABILITY_INTIMIDATE)
+	if (ability == ABILITY_INTIMIDATE)
 	{
 		u8 playerMonLevel = gPlayerParty[0].level;
 		if (playerMonLevel > 5 && level <= playerMonLevel - 5 && !umodsi(Random(), 2))

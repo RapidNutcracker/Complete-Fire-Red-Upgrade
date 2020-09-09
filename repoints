@@ -396,8 +396,11 @@ fishermanPal     8239D0C
 #gEventObjectGraphicsInfo_Falkner 8EB1050
 #gEventObjectPic_FalknerPal 83A5160
 
+#test Rock Smash 
+# EventScript_RockSmash  081BE00C
+
 #offsets 800000 - 80107F reserved for descriptions!  orrrr not 
-DESC_ROOST 08800000
+# DESC_ROOST 08800000
 
 #ifdef UNBOUND
 TestScript 08B7AD70

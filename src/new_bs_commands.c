@@ -707,8 +707,8 @@ void atkFF15_jumpifstatcanbemodified(void)
 			gBattleScripting.bank = PARTNER(gActiveBattler);
 			gFormCounter = 3;
 		}
-		else if ((ability == ABILITY_KEENEYE && currStat == STAT_STAGE_ACC)
-		|| (ability == ABILITY_HYPERCUTTER && currStat == STAT_STAGE_ATK)
+		else if ( //(ability == ABILITY_KEENEYE && currStat == STAT_STAGE_ACC)
+		(ability == ABILITY_HYPERCUTTER && currStat == STAT_STAGE_ATK)
 		|| (ability == ABILITY_BIGPECKS && currStat == STAT_STAGE_DEF))
 			gFormCounter = 4;
 

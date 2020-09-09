@@ -1,5 +1,8 @@
 #include "src/config.h"
 
+#org @DESC_BADCOMPANY
+Prevents self-lowering stats. 
+
 #org @DESC_SHIELDDUST
 Stops added effects/hazard dmg.  
 

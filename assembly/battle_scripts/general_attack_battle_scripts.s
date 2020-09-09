@@ -2967,6 +2967,7 @@ BattleScript_PrintContraryBellyDrumLoweredAttack:
 
 .global BS_143_PsychUp
 BS_143_PsychUp:
+	jumpifmove    MOVE_SOULSTRIKE    SpectralThiefBS
 	jumpifnotmove MOVE_SPECTRALTHIEF 0x81D7A74
 
 SpectralThiefBS:
@@ -4165,8 +4166,23 @@ BS_203_Blank:
 
 .global BS_204_Overheat
 BS_204_Overheat:
+	jumpifability BANK_ATTACKER ABILITY_BADCOMPANY BadCompany
 	setmoveeffect MOVE_EFFECT_SP_ATK_TWO_DOWN | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
 	goto BS_STANDARD_HIT
+
+BadCompany: 
+	attackcanceler
+	accuracycheck BS_MOVE_MISSED 0x0
+	call STANDARD_DAMAGE
+	callasm SetUpGarbodorAbility
+	call BattleScript_AbilityPopUp
+	setword BATTLE_STRING_LOADER gText_BadCompanyNoDrop
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	call BattleScript_AbilityPopUpRevert
+	prefaintmoveendeffects 0x0
+	faintpokemonaftermove
+	goto BS_MOVE_END
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
