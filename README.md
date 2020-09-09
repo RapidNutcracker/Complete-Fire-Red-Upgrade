@@ -80,6 +80,7 @@ unique behaviors of some new attacks.
 * And More!
 
 Some screenshots of Radical Red:
+
 ![The image](https://i.imgur.com/AdPp5WZ.png)
 ![The image](https://cdn.discordapp.com/attachments/734297247193497651/737595918978777168/blademaster.png)
 ![The image](https://i.imgur.com/DYXEhQ4.png)
