@@ -53,7 +53,7 @@
 #define ITEM_RAGE_CANDY_BAR 52
 #define ITEM_OLD_GATEAU 53
 #define ITEM_CASTELIACONE 54
-#define ITEM_LUMIOSE_GALETTE 55
+#define ITEM_DREAM_PILL 55
 #define ITEM_SHALOUR_SABLE 56
 #define ITEM_HEALTH_WING 57
 #define ITEM_MUSCLE_WING 58
@@ -70,7 +70,7 @@
 #define ITEM_PP_UP 69
 #define ITEM_ZINC 70
 #define ITEM_PP_MAX 71
-#define ITEM_DYNAMAX_CANDY 72
+//#define ITEM_DYNAMAX_CANDY 72
 #define ITEM_GUARD_SPEC 73
 #define ITEM_DIRE_HIT 74
 #define ITEM_X_ATTACK 75
@@ -596,7 +596,7 @@ enum
 #define ITEM_BANETTITE 0x236 //pokemon mansion
 #define ITEM_ABSOLITE 0x237 //cycling road 
 #define ITEM_GLALITITE 0x238 //pryce 
-#define ITEM_SALAMENCITE 0x239
+#define ITEM_SALAMENCITE 0x239 //lance
 #define ITEM_METAGROSSITE 0x23A //dumbass creator 
 #define ITEM_LATIASITE 0x23B //scientists cinnabar 
 #define ITEM_LATIOSITE 0x23C //scientists cinnabar 
@@ -696,6 +696,8 @@ enum
 #define ITEM_BOTTLE_CAP 0x27F
 #define ITEM_GOLD_BOTTLE_CAP 0x280
 #define ITEM_WISHING_PIECE 0x281
+#define ITEM_ABILITY_CAPSULE 0x48
+//#define ITEM_DREAM_MIST 0x48
 
 //EV Gain Items
 #define ITEM_POWER_BRACER 0x282

@@ -123,10 +123,10 @@ const u8 gRaidBattleLevelRanges[RAID_STAR_COUNT][2] =
 {
 	[ONE_STAR_RAID]   = {20, 25},
 	[TWO_STAR_RAID]   = {28, 32},
-	[THREE_STAR_RAID] = {40, 45},
-	[FOUR_STAR_RAID]  = {50, 55},
-	[FIVE_STAR_RAID]  = {60, 65},
-	[SIX_STAR_RAID]   = {70, 80},
+	[THREE_STAR_RAID] = {44, 50},
+	[FOUR_STAR_RAID]  = {69, 73},
+	[FIVE_STAR_RAID]  = {75, 80},
+	[SIX_STAR_RAID]   = {80, 90},
 };
 
 //The chance that each move is replaced with an Egg Move

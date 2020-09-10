@@ -75,10 +75,13 @@ EventScript_postgiovannilevelscript_Start:
 	pause 0x10
 	applymovement 0xA EventScript_postgiovannilevelscript_Lookright
 	pause 0x10
+	applymovement 0xC EventScript_postgiovannilevelscript_Lookright @C is Lance 
+	pause 0x10
 	applymovement 0xA EventScript_postgiovannilevelscript_Lookleft
 	waitmovement 0x0
 	sound 0x15
 	applymovement 0xA EventScript_postgiovannilevelscript_Surprised
+	applymovement 0xC EventScript_postgiovannilevelscript_Surprised
 	checksound
 	waitmovement 0x0
 	applymovement 0xFF EventScript_postgiovannilevelscript_Lookright
@@ -100,7 +103,15 @@ EventScript_postgiovannilevelscript_Start:
 	msgbox gText_postgiovannilevelscript_6 0x6
 	applymovement 0xA EventScript_postgiovannilevelscript_Lookleft
 	waitmovement 0x0
+	msgbox gText_postgiovannilevelscript_6_2 MSG_NORMAL 
 	msgbox gText_postgiovannilevelscript_7 0x6
+	applymovement 0xA EventScript_postgiovannilevelscript_Walkleft
+	waitmovement 0x0 
+	applymovement 0xA EventScript_postgiovannilevelscript_Lookdown
+	waitmovement 0x0 
+	applymovement 0xFF EventScript_postgiovannilevelscript_Lookup
+	waitmovement 0x0 
+	msgbox gText_postgiovannilevelscript_7_2 MSG_NORMAL 
 	giveitem ITEM_MEWTWONITE_Y 0x1 MSG_OBTAIN
 	applymovement 0xA EventScript_postgiovannilevelscript_Lookright
 	applymovement 0xA EventScript_postgiovannilevelscript_Movealilright
@@ -112,6 +123,8 @@ EventScript_postgiovannilevelscript_Start:
 	checksound
 	waitmovement 0x0
 	msgbox gText_postgiovannilevelscript_9 0x6
+	applymovement 0xA WalkRight 
+	waitmovement 0x0 
 	applymovement 0x9 EventScript_postgiovannilevelscript_Walkleft2
 	waitmovement 0x0
 	applymovement 0xB EventScript_postgiovannilevelscript_Walkleft2
@@ -141,7 +154,18 @@ EventScript_postgiovannilevelscript_Start:
 	setflag 0x920
 	setflag 0x976
 	setflag 0x977
+	applymovement 0xFF EventScript_postgiovannilevelscript_Lookleft
+	waitmovement 0x0 
+	msgbox gText_postgiovannilevelscript_13 MSG_NORMAL 
+	msgbox gText_postgiovannilevelscript_14 MSG_NORMAL 
+	giveitem ITEM_SALAMENCITE 0x1 MSG_OBTAIN 
+	msgbox gText_postgiovannilevelscript_15 MSG_NORMAL 
+	fadescreen 0x1 
+	sound 0x97
+	checksound 
+	hidesprite 0xC
 	setflag 0x200 
+	fadescreen 0x0
 	setvar 0x5054 0x2
 	end
 
@@ -149,12 +173,18 @@ EventScript_postgiovannilevelscript_Lookleft:
 .byte 0x2
 .byte 0xFE
 
+WalkRight:
+	.byte walk_right 
+	.byte look_left 
+	.byte end_m 
+	
 EventScript_postgiovannilevelscript_Lookright:
 .byte 0x3
 .byte 0xFE
 
 EventScript_postgiovannilevelscript_Lookup:
 .byte 0x1
+.byte 0xFE 
 
 EventScript_postgiovannilevelscript_Lookdown:
 .byte 0x0

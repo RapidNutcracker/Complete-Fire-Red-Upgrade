@@ -408,19 +408,14 @@ EventScript_gamecornermons_ViewMore2:
 	loadpointer 0x0 gText_gamecornermons3_Text2 @Toxel 
 	special 0x25
 	setvar 0x8006 0x2 @3rd item
-	loadpointer 0x0 gText_gamecornermons2_Text7 @Floette Eternal 
-	special 0x25
-	setvar 0x8006 0x3 @4rd item
 	loadpointer 0x0 gText_gamecornermons3_Text4 @Exit 
 	special 0x25
-	multichoice 0x0 0x0 0x22 0x0 @0x22 is 4 options
+	multichoice 0x0 0x0 0x21 0x0 @0x22 is 3 options
 	compare LASTRESULT 0x0
 	if 0x1 _goto EventScript_gamecornermons2_Honedge
 	compare LASTRESULT 0x1
 	if 0x1 _goto EventScript_gamecornermons2_Toxel
 	compare LASTRESULT 0x2
-	if 0x1 _goto EventScript_gamecornermons2_Floette
-	compare LASTRESULT 0x3
 	if 0x1 _goto EventScript_gamecornermons_Cancelhide
 	goto EventScript_gamecornermons_ViewMore
 	release 
@@ -611,22 +606,6 @@ EventScript_gamecornermons2_Jangmo:
 	msgbox gText_gamecornermons2_Gotjangmo 0x4
 	goto EventScript_gamecornermons_Endofscript
 
-EventScript_gamecornermons2_Floette:
-	msgbox gText_gamecornermons2_Text7 0x6
-	msgbox gText_gamecornermons2_Itllbefloette 0x6
-	msgbox gText_gamecornermons2_Isitok 0x5
-	compare LASTRESULT 0x0
-	if 0x1 _goto EventScript_gamecornermons_Cancelhide
-	call EventScript_gamecornermons_Shinyupgrade
-	call EventScript_gamecornermons_Hiddenability
-	msgbox gText_gamecornermons2_Text7 0x6
-	msgbox gText_gamecornermons2_Itllbefloette 0x6
-	call EventScript_gamecornermons2_Checkcorrectfloette
-	call EventScript_gamecornermons2_Checkpaymentfloette
-	givepokemon 0x350 0x1E 0x0 0x0 0x0 0x0
-	fanfare 0x13E
-	msgbox gText_gamecornermons2_Gotfloette 0x4
-	goto EventScript_gamecornermons_Endofscript
 
 EventScript_gamecornermons2_Dreepy:
 	msgbox gText_gamecornermons2_Text6 0x6
@@ -697,43 +676,6 @@ EventScript_gamecornermons_Checkcorrectrotom:
 	compare LASTRESULT 0x0
 	if 0x1 _call EventScript_gamecornermons_Cancelhide
 	return
-
-EventScript_gamecornermons2_Checkcorrectfloette:
-	checkflag 0x90F
-	if 0x1 _call EventScript_gamecornermons_Hatext
-	checkflag 0x913
-	if 0x1 _call EventScript_gamecornermons2_Shinyfloettetxt
-	msgbox gText_gamecornermons2_Correct 0x5
-	compare LASTRESULT 0x0
-	if 0x1 _call EventScript_gamecornermons_Cancelhide
-	return
-
-EventScript_gamecornermons2_Checkpaymentfloette:
-	checkflag 0x913
-	if 0x1 _call EventScript_gamecornermons2_Payshinyfloette
-	checkmoney 0xC350 0x00
-	compare 0x800D 0x1
-	if 0x0 _goto EventScript_gamecornermons_Nomoney
-	msgbox gText_gamecornermons2_Wait 0x6
-	removemoney 0xC350 0x00
-	sound 0x58
-	updatemoney 0x35 0x00 0x00
-	msgbox gText_gamecornermons2_4 0x6
-	checksound
-	return
-
-EventScript_gamecornermons2_Shinyfloettetxt:
-	msgbox gText_gamecornermons2_Floettetxt 0x6
-	return
-
-EventScript_gamecornermons2_Payshinyfloette:
-	checkmoney 0x186A0 0x00
-	compare 0x800D 0x1
-	if 0x0 _goto EventScript_gamecornermons_Nomoney
-	msgbox gText_gamecornermons2_Wait 0x6
-	removemoney 0xC350 0x00
-	return
-
 
 EventScript_gamecornermons_Endofscript:
 	waitfanfare

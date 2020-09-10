@@ -372,14 +372,19 @@ EventScript_ceruleangiovanni_Start:
 	msgbox gText_ceruleangiovanni_8_2 MSG_KEEPOPEN
 	closeonkeypress 
 	setflag 0x200 @pokeball and lance 
-	showsprite 0x13 
 	sound 0xB3
 	applymovement 0xFF Confused  
 	applymovement 0xF Confused 
 	waitmovement 0x0 
 	checksound 
-	applymovement 0x13 Lance_Comeup 
-	waitmovement 0x0 
+	fadescreen 0x1 
+	sound 0x97
+	checksound 
+	showsprite 0x13
+	fadescreen 0x0
+	fadeinbgm 0x2 
+	@ applymovement 0x13 Lance_Comeup 
+	@ waitmovement 0x0 
 	sound 0x15
 	applymovement 0xF Exclamation 
 	waitmovement 0x0 
@@ -422,6 +427,8 @@ EventScript_ceruleangiovanni_Start:
 	applymovement 0xF EventScript_ceruleangiovanni_Surprised
 	checksound
 	waitmovement 0x0
+	applymovement 0x13 EventScript_ceruleangiovanni_Lookdown
+	waitmovement 0x0 
 	applymovement 0xF EventScript_ceruleangiovanni_Lookdown
 	msgbox gText_ceruleangiovanni_13 0x6
 	applymovement 0x12 EventScript_ceruleangiovanni_Movealil
@@ -433,7 +440,7 @@ EventScript_ceruleangiovanni_Start:
 	msgbox gText_ceruleangiovanni_16 0x6
 	msgbox gText_ceruleangiovanni_17 0x6
 	sound 0xA
-	applymovement 0x12 EventScript_ceruleangiovanni_Jumpup@jump
+	applymovement 0x12 EventScript_ceruleangiovanni_Jumpup @jump
 	checksound
 	waitmovement 0x0
 	msgbox gText_ceruleangiovanni_18 0x6
@@ -455,12 +462,14 @@ EventScript_ceruleangiovanni_Start:
 	showsprite 0x3
 	checksound
 	applymovement 0xF EventScript_ceruleangiovanni_Lookup
+	applymovement 0x13 EventScript_ceruleangiovanni_Lookup
 	waitmovement 0x0
 	sound 0x15
 	applymovement 0xF EventScript_ceruleangiovanni_Surprised2
 	applymovement 0xFF EventScript_ceruleangiovanni_Surprised2
 	applymovement 0x11 EventScript_ceruleangiovanni_Surprised2
 	applymovement 0x12 EventScript_ceruleangiovanni_Surprised2
+	applymovement 0x13 EventScript_ceruleangiovanni_Surprised2
 	checksound
 	waitmovement 0x0
 	setflag 0x980

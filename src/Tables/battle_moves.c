@@ -11461,7 +11461,6 @@ const struct BattleMove gBattleMoves[] =
 		.z_move_power = 0,
 		.z_move_effect = Z_EFFECT_DEF_UP_1,
 	},
-
 	[MOVE_FALSESURRENDER] =
 	{	//ANIM TODO
 		.effect = 0,

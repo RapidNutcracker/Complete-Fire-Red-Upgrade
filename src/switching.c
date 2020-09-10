@@ -654,6 +654,7 @@ void atk52_switchineffects(void)
 			if (gSideTimers[SIDE(gActiveBattler)].srAmount > 0
 			&& ability != ABILITY_MAGICGUARD
 			&& ability != ABILITY_SHIELDDUST
+			&& ability != ABILITY_MOUNTAINEER 
 			&& itemEffect != ITEM_EFFECT_HEAVY_DUTY_BOOTS)
 			{
 				gBattleMoveDamage = CalcStealthRockDamage(gActiveBattler);

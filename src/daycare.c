@@ -834,7 +834,7 @@ u8 ModifyBreedingScoreForOvalCharm(u8 score)
 		}
 	}
 	#endif
-	// score = 90;
+	score = 90;
 	return score;
 }
 

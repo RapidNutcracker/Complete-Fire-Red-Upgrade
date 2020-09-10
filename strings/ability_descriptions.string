@@ -432,8 +432,8 @@ Blocks priority moves.
 #org @DESC_GLUTTONY
 Eats Berries early.
 
-#org @DESC_HONEYGATHER
-Picks up Honey after battle.
+#org @DESC_MOUNTAINEER
+Immune to Rock attacks & hazards.
 
 #org @DESC_FRIENDGUARD
 Reduces damage done to allies.

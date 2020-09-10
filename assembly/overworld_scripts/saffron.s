@@ -45,38 +45,30 @@ DontHaveHidden:
 
 .global EventScript_Saffron_Nerd2
 EventScript_Saffron_Nerd2:
-    lock
-    faceplayer
-    msgbox gText_Saffron_Nerd2 MSG_YESNO
-    compare LASTRESULT 0
-    if equal _goto NahImGood
-    setvar 0x8003 0x0 
-    special 0x9F 
-    waitstate 
-    compare 0x8004 0x6
-    if greaterorequal _goto NahImGoood
-    callasm SwitchChosenMonAbility + 1
-    compare LASTRESULT 0x1
-    if equal _goto ItsHidden
-    compare LASTRESULT 0x2 
-    if equal _goto NoDiff
-    msgbox gText_Saffron_NerdAfter MSG_FACE
-    release
-    end
+	special 0x187
+	compare LASTRESULT 0x2
+	if 0x1 _goto EventScript_Saffron_Nerd2End
+	lock
+	faceplayer
+	preparemsg gText_gamecornertms_Hello @"Hi, there!\nMay I help you?"
+	waitmsg
+	pokemart EventScript_pill_Values
+	msgbox gText_gamecornertms_Comeagain MSG_KEEPOPEN @"Please come again!"
+	release
+	end
 
-NahImGoood:
-    release
-    end
+EventScript_Saffron_Nerd2End:
+	release
+	end
 
-ItsHidden:
-    msgbox gText_Saffron_Nerd2_Hidden MSG_FACE 
-    release 
-    end 
-
-NoDiff:
-    msgbox gText_SaffronNerd2_NoDiff MSG_FACE 
-    release 
-    end
+EventScript_pill_Values:
+	.hword ITEM_ABILITY_CAPSULE
+	.hword ITEM_CHERI_BERRY
+	.hword ITEM_CHESTO_BERRY
+	.hword ITEM_RAWST_BERRY
+	.hword ITEM_ASPEAR_BERRY
+	.hword ITEM_PERSIM_BERRY
+    .hword 0x0
 
 .global EventScript_Saffron_Test
 EventScript_Saffron_Test:

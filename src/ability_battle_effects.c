@@ -113,7 +113,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_HEALER] = 0,
 	[ABILITY_HEATPROOF] = 5,
 	[ABILITY_HEAVYMETAL] = -1,
-	[ABILITY_HONEYGATHER] = 0,
+	[ABILITY_MOUNTAINEER] = 6,
 	[ABILITY_HUGEPOWER] = 10,
 	[ABILITY_HUSTLE] = 7,
 	[ABILITY_HYDRATION] = 4,
@@ -318,6 +318,7 @@ const bool8 gMoldBreakerIgnoredAbilities[] =
 	[ABILITY_INSOMNIA] =		TRUE,
 	// [ABILITY_KEENEYE] =			TRUE,
 	[ABILITY_LEAFGUARD] =		TRUE,
+	[ABILITY_MOUNTAINEER] =     TRUE, 
 	[ABILITY_LEVITATE] =		TRUE,
 	[ABILITY_LIGHTNINGROD] =	TRUE,
 	[ABILITY_LIMBER] =			TRUE,
@@ -1693,11 +1694,16 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 					if (moveType == TYPE_FIRE && !(gBattleMons[bank].status1 & STATUS1_FREEZE))
 						effect = 3;
 					break;
-			}
+
+				case ABILITY_MOUNTAINEER:
+					if (moveType == TYPE_ROCK)
+						effect = 1;
+					break; 
+			}	
 
 			switch (effect) {
 				case 1: // Restore HP ability
-					if (BATTLER_MAX_HP(bank) || IsHealBlocked(bank))
+					if (BATTLER_MAX_HP(bank) || IsHealBlocked(bank) || gLastUsedAbility == ABILITY_MOUNTAINEER )
 					{
 						if ((gProtectStructs[gBankAttacker].notFirstStrike))
 							gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless;

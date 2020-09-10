@@ -207,7 +207,7 @@ static const struct WildPokemon gRoute25_LandMonsNight[] =
 	{16, 18, SPECIES_PSYDUCK},
 	{16, 19, SPECIES_BUIZEL},
 	{15, 19, SPECIES_MURKROW},
-	{16, 17, SPECIES_PURRLOIN},
+	{16, 17, SPECIES_AUDINO},
 	{16, 17, SPECIES_PURRLOIN},
 	{15, 17, SPECIES_SLAKOTH},
 	{15, 17, SPECIES_SLAKOTH},
@@ -220,7 +220,7 @@ static const struct WildPokemonInfo gRoute25_LandMonsInfoNight = {20, gRoute25_L
 static const struct WildPokemon gRoute5_LandMonsNight[] =
 {
 	{18, 19, SPECIES_MEOWTH_G},
-	{18, 20, SPECIES_IMPIDIMP},
+	{18, 20, SPECIES_HATENNA},
 	{19, 20, SPECIES_GOTHITA},
 	{19, 21, SPECIES_VULPIX_A},
 	{19, 21, SPECIES_SPRITZEE},
@@ -298,7 +298,7 @@ static const struct WildPokemon gRoute9_LandMonsNight[] =
 	{25, 28, SPECIES_SALANDIT},
 	{25, 28, SPECIES_DEWPIDER},
 	{25, 28, SPECIES_MANKEY},
-	{25, 28, SPECIES_CHATOT},
+	{25, 28, SPECIES_CORVISQUIRE},
 	{24, 27, SPECIES_ESPURR},
 	{27, 27, SPECIES_ESPURR},
 	{24, 27, SPECIES_TROPIUS},

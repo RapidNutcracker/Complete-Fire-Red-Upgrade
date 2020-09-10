@@ -98,7 +98,7 @@ EventScript_dada_Snippet1:
 	end
 
 EventScript_dada_MartItemsList:
-    .hword ITEM_DREAM_BALL @remove later 
+    .hword ITEM_DREAM_BALL 
     .hword ITEM_WHITE_HERB
 	.hword ITEM_LUM_BERRY 
     .hword 0x0
@@ -115,41 +115,17 @@ EventScript_Cinnabar_FossilGuy:
     setvar 0x8000 VAR_DAILY_EVENT 
     msgbox gText_Cinnabar_FossilGuy1 MSG_FACE
     special 0xA1 
-    random 0xA
+    random 0x5
     compare 0x800D 0x0
-    if 0x1 _goto Root 
-    compare 0x800D 0x1 
-    if 0x1 _goto Claw 
-    compare 0x800D 0x2
     if 0x1 _goto Skull
-    compare 0x800D 0x3 
+    compare 0x800D 0x1 
     if 0x1 _goto Armor
-    compare 0x800D 0x4 
-    if 0x1 _goto Cover
-    compare 0x800D 0x5 
-    if 0x1 _goto Plume
-    compare 0x800D 0x6
+    compare 0x800D 0x2 
     if 0x1 _goto Jaw
-    compare 0x800D 0x7
+    compare 0x800D 0x3
     if 0x1 _goto Sail 
-    compare 0x800D 0x8
-    if 0x1 _goto Helix 
-    compare 0x800D 0x9
-    if 0x1 _goto Dome 
-    end 
-
-Root: @Lileep 
-    bufferpokemon 0x00 0x184  
-    msgbox gText_Cinnabar_FossilGuy2 MSG_FACE
-    givepokemon 0x184 VAR_LEVEL 0x0 0x0 0x0
-    release 
-    end
-
-Claw: @Anorith
-    bufferpokemon 0x00 0x186
-    msgbox gText_Cinnabar_FossilGuy2 MSG_FACE
-    givepokemon 0x186 VAR_LEVEL 0x0 0x0 0x0
-    release 
+    compare 0x800D 0x4
+    if 0x1 _goto Kanto
     end 
 
 Skull: @Cranidos
@@ -163,20 +139,6 @@ Armor: @Shieldon
     bufferpokemon 0x00 0x1CF
     msgbox gText_Cinnabar_FossilGuy2 MSG_FACE
     givepokemon 0x1CF VAR_LEVEL 0x0 0x0 0x0
-    release 
-    end 
-
-Cover: @Tirtouga
-    bufferpokemon 0x00 0x269
-    msgbox gText_Cinnabar_FossilGuy2 MSG_FACE
-    givepokemon 0x269 VAR_LEVEL 0x0 0x0 0x0
-    release 
-    end 
-
-Plume: @Archen 
-    bufferpokemon 0x00 0x26B
-    msgbox gText_Cinnabar_FossilGuy2 MSG_FACE
-    givepokemon 0x26B VAR_LEVEL 0x0 0x0 0x0
     release 
     end 
 
@@ -194,18 +156,20 @@ Sail: @Amaura
     release 
     end 
 
-Helix:
-    bufferpokemon 0x00 0x8A
+Kanto:
+	checkflag 0x272
+	if 0x1 _goto Helix 
+	bufferpokemon 0x00 SPECIES_KABUTO
     msgbox gText_Cinnabar_FossilGuy2 MSG_FACE
-    givepokemon 0x8A VAR_LEVEL 0x0 0x0 0x0
+    givepokemon SPECIES_KABUTO VAR_LEVEL 0x0 0x0 0x0
     release 
     end 
 
-Dome:
-    bufferpokemon 0x00 0x8C
-    msgbox gText_Cinnabar_FossilGuy2 MSG_FACE
-    givepokemon 0x8C VAR_LEVEL 0x0 0x0 0x0
-    release 
+Helix: 
+	bufferpokemon 0x00 SPECIES_OMANYTE
+	msgbox gText_Cinnabar_FossilGuy2 MSG_FACE
+	givepokemon SPECIES_OMANYTE VAR_LEVEL 0x0 0x0 0x0
+	release 
     end 
 
 AlreadyDid:
@@ -393,7 +357,7 @@ EventScript_jasmine_Option3:
 
 EventScript_jasmine_Endbattle:
 	msgbox gText_jasmine_6 0x6
-	giveitem ITEM_STEELIXITE 0x1 MSG_OBTAIN
+	giveitem ITEM_AGGRONITE 0x1 MSG_OBTAIN
 	msgbox gText_jasmine_7 0x6
 	giveitem ITEM_CHOICE_BAND 0x1 MSG_OBTAIN
 	msgbox gText_jasmine_Take 0x6
@@ -422,7 +386,7 @@ EventScript_jasmine_Done:
 EventScript_jasmine_HighDef:
 	msgbox gText_jasmine_9 0x6
 	giveitem ITEM_ASSAULT_VEST 0x1 MSG_OBTAIN
-    giveitem ITEM_AGGRONITE 0x1 MSG_OBTAIN 
+    giveitem ITEM_STEELIXITE 0x1 MSG_OBTAIN 
 	setflag 0x96E
 	release
 	end

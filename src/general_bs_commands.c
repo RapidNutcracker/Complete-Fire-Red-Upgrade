@@ -2071,6 +2071,7 @@ void atk77_setprotect(void) {
 		case MOVE_DETECT:
 		case MOVE_ENDURE:
 		case MOVE_KINGSSHIELD:
+		case MOVE_OBSTRUCT:
 		case MOVE_SPIKYSHIELD:
 		case MOVE_BANEFULBUNKER:
 		case MOVE_CRAFTYSHIELD:
@@ -4765,10 +4766,6 @@ void atkE5_pickupitemcalculation(void) {
 				level = MathMin(level, 100); //added this
 				item = ChoosePickupItem(level);
 				break;
-
-			case ABILITY_HONEYGATHER:
-				chance = 5 + 5 * udivsi((level - 1), 10);
-				item = ITEM_HONEY;
 		}
 
 		if (Random() % 100 < chance)
