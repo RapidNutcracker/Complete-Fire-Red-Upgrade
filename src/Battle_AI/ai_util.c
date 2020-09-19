@@ -266,6 +266,11 @@ bool8 MoveKnocksOutPossiblyGoesFirstWithBestAccuracy(u16 move, u8 bankAtk, u8 ba
 				else if (currAcc == bestAcc)
 				{
 					if (PriorityCalc(bankAtk, ACTION_USE_MOVE, currMove) > PriorityCalc(bankAtk, ACTION_USE_MOVE, gBattleMons[bankAtk].moves[bestMoveIndex])) //The better move is still the one with more priority
+						// if (gBattleMoves[currMove].effect == EFFECT_SUCKER_PUNCH){
+						// 	if (Random() % 2 == 0)
+						// 		bestMoveIndex = i;
+						// }
+						// else
 						bestMoveIndex = i;
 				}
 			}
@@ -1013,6 +1018,11 @@ move_t CalcStrongestMove(const u8 bankAtk, const u8 bankDef, const bool8 onlySpr
 				else if (predictedDamage == highestDamage
 				&& PriorityCalc(bankAtk, ACTION_USE_MOVE, move) > PriorityCalc(bankAtk, ACTION_USE_MOVE, strongestMove)) //Use faster of two strongest moves
 				{
+					// if (gBattleMoves[move].effect == EFFECT_SUCKER_PUNCH){
+					// 	if (Random() % 2 == 0)
+					// 		strongestMove = move;
+					// }
+					// else 
 					strongestMove = move;
 				}
 				else if (predictedDamage == highestDamage) //Find which move has better Acc

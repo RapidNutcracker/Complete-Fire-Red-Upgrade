@@ -2126,6 +2126,12 @@ u8 CalcMostSuitableMonToSwitchInto(void)
 								&& MoveKnocksOutXHitsFromParty(move, &party[i], foe, 1, &damageData))
 								{
 									//Priority move that KOs
+									// if( gBattleMoves[move].effect == EFFECT_SUCKER_PUNCH) {
+									// 	if ( Random() % 2 == 0) {
+									// 		scores[i] += SWITCHING_INCREASE_REVENGE_KILL;
+									// 	}
+									// }
+									// else
 									scores[i] += SWITCHING_INCREASE_REVENGE_KILL;
 									break;
 								}

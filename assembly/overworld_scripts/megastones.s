@@ -13,6 +13,22 @@ EventScript_VictoryRoad_Salamencite:
     release
     end
 
+.global EventScript_VictoryRoad_Snorlaxite
+EventScript_VictoryRoad_Snorlaxite:
+    hidesprite 0x800F
+    giveitem ITEM_SNORLAXITE 0x1 MSG_FIND
+    setflag 0x1008
+    release
+    end
+
+.global EventScript_Route19_Drednawite
+EventScript_Route19_Drednawite:
+    hidesprite 0x800F
+    giveitem ITEM_DREDNAWITE 0x1 MSG_FIND
+    setflag 0x1009
+    release
+    end
+
 .global EventScript_Route22_Scizorite
 EventScript_Route22_Scizorite:
     hidesprite 0x800F
@@ -42,6 +58,30 @@ EventScript_Route2_ChargeBeam:
     hidesprite 0x800F
     giveitem ITEM_TM57 0x1 MSG_FIND
     setflag 0x936
+    release
+    end
+
+.global EventScript_Route2_Rest
+EventScript_Route2_Rest:
+    hidesprite 0x800F
+    giveitem ITEM_TM44 0x1 MSG_FIND
+    setflag 0x1007
+    release
+    end
+
+.global EventScript_Route16_BodyPress
+EventScript_Route16_BodyPress:
+    hidesprite 0x800F
+    giveitem ITEM_TM115 0x1 MSG_FIND
+    setflag 0x100B
+    release
+    end
+
+.global EventScript_Route17_HeatCrash
+EventScript_Route17_HeatCrash:
+    hidesprite 0x800F
+    giveitem ITEM_TM114 0x1 MSG_FIND
+    setflag 0x100A
     release
     end
 

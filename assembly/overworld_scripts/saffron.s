@@ -25,7 +25,7 @@ EventScript_Saffron_Nerd:
     if equal _goto DontHaveHidden
     msgbox gText_Saffron_NerdGiveItem MSG_FACE
     msgbox gText_Saffron_NerdAfter MSG_FACE
-    removeitem 0x1AA 0x1
+    removeitem ITEM_BOTTLE_CAP 0x1
     release
     end
 
@@ -578,6 +578,51 @@ EventScript_EvChecker_Cancel:
 	end
 
 
+.global EventScript_IvChecker_Start
+EventScript_IvChecker_Start:
+	lock
+	faceplayer
+	textcolor 0x0
+	msgbox gText_IvChecker_Msg 0x5
+	compare LASTRESULT 0x1
+	if 0x1 _goto EventScript_EvChecker_CheckIVs
+	goto EventScript_EvChecker_Cancel
+	end
+
+EventScript_EvChecker_CheckIVs:
+	setvar 0x8003 0x0 @From party
+	special 0x9F @choose from party
+	waitstate
+	compare 0x8004 0x6
+	if 0x4 _goto EventScript_EvChecker_Cancel
+	special 0x7C @puts the selected mon in party into buffer
+	msgbox gText_EvChecker_1 0x6 @ This is good 
+	setvar 0x8005 0x0
+	special2 LASTRESULT 0x8
+	buffernumber 0x0 LASTRESULT @hp evs in buffer 1
+	setvar 0x8005 0x1
+	special2 LASTRESULT 0x8
+	buffernumber 0x1 LASTRESULT @atk evs in buffer 2
+	setvar 0x8005 0x2
+	special2 LASTRESULT 0x8
+	buffernumber 0x2 LASTRESULT @def evs in buffer 3
+	msgbox gText_IvChecker_3 0x6
+	setvar 0x8005 0x3
+	special2 LASTRESULT 0x8
+	buffernumber 0x2 LASTRESULT @speed evs in buffer 1
+	setvar 0x8005 0x4
+	special2 LASTRESULT 0x8
+	buffernumber 0x0 LASTRESULT @spa evs in buffer 2
+	setvar 0x8005 0x5
+	special2 LASTRESULT 0x8
+	buffernumber 0x1 LASTRESULT @spdef evs in buffer 3
+    msgbox gText_IvChecker_5 0x6
+	msgbox gText_EvChecker_4 0x5 @ this is good 
+	compare LASTRESULT 0x1
+	if 0x1 _goto EventScript_EvChecker_CheckIVs
+	goto EventScript_EvChecker_Cancel
+	end
+
 .global EventScript_chuck_Start
 EventScript_chuck_Start:
 	lock
@@ -788,8 +833,6 @@ EventScript_sabrina_WonPointer:
 	settrainerflag 0x1CF
 	settrainerflag 0x1D0
 	setflag 0x825
-	setmaptile 0xA 0x14 0x293 0x0
-	special 0x8E
 	msgbox gText_sabrina_Givetm 0x6
 	msgbox gText_sabrina_Helloagain 0x6
 	msgbox gText_sabrina_Perfectpokemon 0x6
@@ -812,6 +855,44 @@ EventScript_sabrina_Checkiv:
 	compare LASTRESULT 0x1F
 	if 0x0 _goto EventScript_sabrina_Nah
 	return
+
+.global EventScript_sabrina_SetTile
+EventScript_sabrina_SetTile:
+	special 0x113
+	applymovement 0x7F PanCameraDown 
+	waitmovement 0x0 
+	sound 0x8
+	setmaptile 0xA 0x14 0x293 0x0
+	special 0x8E
+	checksound 
+	applymovement 0x7F PanCameraUp 
+	waitmovement 0x0 
+	special 0x114
+	setvar 0x5102 0x1 
+	release
+	end 
+
+PanCameraDown:
+	.byte walk_down 
+	.byte walk_down 
+	.byte walk_down 
+	.byte walk_down 
+	.byte walk_left
+	.byte walk_left
+	.byte walk_left
+	.byte walk_left
+	.byte end_m 
+	
+PanCameraUp:
+	.byte walk_right
+	.byte walk_right
+	.byte walk_right
+	.byte walk_right
+	.byte walk_up
+	.byte walk_up
+	.byte walk_up
+	.byte walk_up
+	.byte end_m
 
 .global EventScript_megaring_Start
 EventScript_megaring_Start:
@@ -887,3 +968,18 @@ EventScript_stopchuck_Start:
 EventScript_stopchuck_Movedown:
 .byte 0x10
 .byte 0xFE
+
+.global gMapScripts_SaffronGym
+gMapScripts_SaffronGym:
+    mapscript MAP_SCRIPT_ON_LOAD SetmaptileScript_SaffronGym
+    .byte MAP_SCRIPT_TERMIN
+
+.global SetmaptileScript_SaffronGym
+SetmaptileScript_SaffronGym:
+	compare 0x5102 0x1 
+	if greaterorequal _call SetTiles 
+	end 
+
+SetTiles:
+	setmaptile 0xA 0x14 0x293 0x0
+	return 

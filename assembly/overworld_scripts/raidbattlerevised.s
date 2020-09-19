@@ -21,7 +21,7 @@
 .equ VAR_ROUTE25, 0x5084 @also 0x5062
 .equ VAR_ROUTE5, 0x5086 @also 0x5064
 .equ VAR_ROUTE6, 0x5088 @also 0x5066 
-.equ VAR_ROUTE11, 0x5067 @also 0x5068
+.equ VAR_ROUTE11, 0x5098 @also 0x5099
 .equ VAR_DIGLETSSCAVE, 0x5070 @also 0x5071
 .equ VAR_ROUTE2, 0x5072 @also 0x5073
 .equ VAR_ROUTE9, 0x5074 @also 0x5075
@@ -36,6 +36,7 @@
 .equ VAR_ROUTE14, 0x5092
 .equ VAR_ROUTE15, 0x5094
 .equ VAR_PKMNMANSION, 0x5096
+.equ VAR_VIRIDIANFOREST, 0x5104 
 
 .global EventScript_VictoryRoadRaid
 EventScript_VictoryRoadRaid:
@@ -550,6 +551,26 @@ EventScript_SeafoamIslandsRaid:
 
 RaidScript_EndSeafoam:
     setvar 0x8000 VAR_SEAFOAM
+    setvar 0x8001 0x0
+    special 0xA1
+    release 
+    end 
+
+.global EventScript_ViridianForestRaid 
+EventScript_ViridianForestRaid:
+    setvar 0x8000 VAR_VIRIDIANFOREST
+    setvar 0x8001 0x0
+    special2 LASTRESULT 0xA0
+    compare LASTRESULT 0x0 
+    if equal _goto RaidScript_Cancel @If we proceed in script that means it's a new day 
+    call RaidBattle 
+    setvar 0x4000 0x0
+    call RaidScript_GiveReward
+    goto RaidScript_EndViridianForest
+    end 
+
+RaidScript_EndViridianForest:
+    setvar 0x8000 VAR_VIRIDIANFOREST
     setvar 0x8001 0x0
     special 0xA1
     release 

@@ -84,11 +84,23 @@ EventScript_Cinnabar_WeatherRock:
 	special 0x187
 	compare LASTRESULT 0x2
 	if 0x1 _goto EventScript_dada_Snippet1
+	checkflag 0x827
+	if 0x1 _goto Mart2 
 	lock
 	faceplayer
 	preparemsg gText_dada_MartGreetingMsg
 	waitmsg
 	pokemartdecor EventScript_dada_MartItemsList
+	msgbox gText_dada_MartLeavingMsg 0x6
+	release
+	end
+
+Mart2:
+	lock
+	faceplayer
+	preparemsg gText_dada_MartGreetingMsg
+	waitmsg
+	pokemartdecor EventScript_dada_MartItems2List
 	msgbox gText_dada_MartLeavingMsg 0x6
 	release
 	end
@@ -101,6 +113,13 @@ EventScript_dada_MartItemsList:
     .hword ITEM_DREAM_BALL 
     .hword ITEM_WHITE_HERB
 	.hword ITEM_LUM_BERRY 
+    .hword 0x0
+
+EventScript_dada_MartItems2List:
+    .hword ITEM_DREAM_BALL 
+    .hword ITEM_WHITE_HERB
+	.hword ITEM_LUM_BERRY 
+	.hword ITEM_BEAST_BALL
     .hword 0x0
 
 .global EventScript_Cinnabar_FossilGuy
@@ -404,6 +423,9 @@ EventScript_metatutor_Start:
 	compare LASTRESULT 0x0
 	if 0x1 _call EventScript_metatutor_Cancel
 	showmoney 0x35 0x00 0x00
+	goto FirstList 
+
+FirstList: 
 	setvar 0x8006 0x0 @first item
 	loadpointer 0x0 gText_metatutor_Text1
 	special 0x25
@@ -423,7 +445,7 @@ EventScript_metatutor_Start:
 	loadpointer 0x0 gText_metatutor_Text6
 	special 0x25
 	setvar 0x8006 0x6 @7th item
-	loadpointer 0x0 gText_metatutor_Text7
+	loadpointer 0x0 gText_metatutor_TextViewMore
 	special 0x25
 	preparemsg gText_metatutor_Msg
 	waitmsg
@@ -441,8 +463,46 @@ EventScript_metatutor_Start:
 	compare LASTRESULT 0x5
 	if 0x1 _goto EventScript_metatutor_Sixthoption
 	compare LASTRESULT 0x6
-	if 0x1 _goto EventScript_metatutor_Seventhoption
+	if 0x1 _goto SecondList
 	hidemoney 0x35 0x00
+	release
+	end
+
+SecondList: 
+	setvar 0x8006 0x0 @first item
+	loadpointer 0x0 gText_metatutor_Text7 @Phantom Force 
+	special 0x25
+	setvar 0x8006 0x1 @second item
+	loadpointer 0x0 gText_metatutor_Text8 @Flare Blitz 
+	special 0x25
+	setvar 0x8006 0x2 @3rd item
+	loadpointer 0x0 gText_metatutor_Text9 @Stored Power 
+	special 0x25
+	setvar 0x8006 0x3 @4th item
+	loadpointer 0x0 gText_metatutor_Text10 @Gunk Shot 
+	special 0x25
+	setvar 0x8006 0x4 @5th item
+	loadpointer 0x0 gText_metatutor_Text11 @Power Gem 
+	special 0x25
+	setvar 0x8006 0x5 @6th item
+	loadpointer 0x0 gText_metatutor_Exit
+	special 0x25
+	preparemsg gText_metatutor_Msg
+	waitmsg
+	multichoice 0x0 0x0 0x24 0x0
+	compare LASTRESULT 0x0
+	if 0x1 _goto EventScript_metatutor_PhantomForce
+	compare LASTRESULT 0x1
+	if 0x1 _goto EventScript_metatutor_FlareBlitz
+	compare LASTRESULT 0x2
+	if 0x1 _goto EventScript_metatutor_StoredPower
+	compare LASTRESULT 0x3
+	if 0x1 _goto EventScript_metatutor_GunkShot
+	compare LASTRESULT 0x4
+	if 0x1 _goto EventScript_metatutor_PowerGem
+	compare LASTRESULT 0x5
+	if 0x1 _goto EventScript_metatutor_CancelHide 
+	goto FirstList 
 	release
 	end
 
@@ -457,6 +517,10 @@ EventScript_metatutor_Cancel:
 	release
 	end
 
+EventScript_metatutor_CancelHide:
+	hidemoney 0x35 0x00
+	goto EventScript_metatutor_Cancel
+
 EventScript_metatutor_Checkpayment:
 	checkmoney 0x2710 0x00
 	compare 0x800D 0x1
@@ -465,6 +529,31 @@ EventScript_metatutor_Checkpayment:
 
 EventScript_metatutor_Firstoption:
 	setvar 0x8005 0x67
+	call EventScript_metatutor_Checkpayment
+	goto EventScript_metatutor_Endofscript
+
+EventScript_metatutor_PhantomForce:
+	setvar 0x8005 0x71
+	call EventScript_metatutor_Checkpayment
+	goto EventScript_metatutor_Endofscript
+
+EventScript_metatutor_FlareBlitz:
+	setvar 0x8005 0x79
+	call EventScript_metatutor_Checkpayment
+	goto EventScript_metatutor_Endofscript
+
+EventScript_metatutor_StoredPower:
+	setvar 0x8005 0x61
+	call EventScript_metatutor_Checkpayment
+	goto EventScript_metatutor_Endofscript
+
+EventScript_metatutor_GunkShot:
+	setvar 0x8005 0x30
+	call EventScript_metatutor_Checkpayment
+	goto EventScript_metatutor_Endofscript
+
+EventScript_metatutor_PowerGem:
+	setvar 0x8005 0x74
 	call EventScript_metatutor_Checkpayment
 	goto EventScript_metatutor_Endofscript
 
@@ -493,10 +582,6 @@ EventScript_metatutor_Sixthoption:
 	call EventScript_metatutor_Checkpayment
 	goto EventScript_metatutor_Endofscript
 
-EventScript_metatutor_Seventhoption:
-	setvar 0x8005 0x71
-	call EventScript_metatutor_Checkpayment
-	goto EventScript_metatutor_Endofscript
 
 EventScript_metatutor_Nomoney:
 	msgbox gText_metatutor_Poor 0x6

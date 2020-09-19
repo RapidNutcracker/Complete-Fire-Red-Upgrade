@@ -72,3 +72,31 @@ EventScript_closecombat_Nomoney:
 	hidemoney 0x00 0x00
 	release
 	end
+
+.global gMapScripts_PkmnLeague
+gMapScripts_PkmnLeague:
+    mapscript MAP_SCRIPT_ON_TRANSITION MapEntryScript_PkmnLeague
+    .byte MAP_SCRIPT_TERMIN
+
+MapEntryScript_PkmnLeague:
+	sethealingplace 0xA
+    checkflag 0x82C
+    if 0x1 _call MoveShit
+    end 
+
+MoveShit: 
+    movesprite2 0x4 0x4 0x2 
+    return 
+
+.global EventScript_PokemonLeagueChick
+EventScript_PokemonLeagueChick:
+	checkflag 0x82C
+	if 0x1 _goto DoneWGame
+	msgbox gText_ShitsHard1 MSG_FACE 
+	release 
+	end 
+
+DoneWGame:
+	msgbox gText_ShitsHard2 MSG_FACE 
+	release 
+	end 

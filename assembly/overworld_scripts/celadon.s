@@ -291,15 +291,23 @@ EventScript_gamecornertms_End:
 	end
 
 EventScript_gamecornertms_Values:
+	.hword ITEM_TM06
 	.hword ITEM_TM13
+	.hword ITEM_TM16 
+	.hword ITEM_TM17
+	.hword ITEM_TM20 
 	.hword ITEM_TM24
+	.hword ITEM_TM33 
     .hword ITEM_TM35
 	.hword ITEM_TM53 
 	.hword ITEM_TM65 
+	.hword ITEM_TM75
 	.hword ITEM_TM79
+	.hword ITEM_TM82 
 	.hword ITEM_TM83 
     .hword ITEM_TM84 
     .hword ITEM_TM91
+	.hword ITEM_TM93 
 	.hword ITEM_TM102
     .hword 0x0
 
@@ -789,12 +797,11 @@ EventScript_TMs_Values:
 	.hword ITEM_TM17
     .hword ITEM_TM20
 	.hword ITEM_TM33
-	.hword ITEM_TM56 
-    .hword ITEM_TM75
-	.hword ITEM_TM82 
-    .hword ITEM_TM93 
 	.hword 0x0
 
+ReleaseEnd:
+	release 
+	end 
 .global EventScript_CeladonBalls
 EventScript_CeladonBalls:
 	special 0x187
@@ -819,7 +826,6 @@ EventScript_Balls_Values:
     .hword ITEM_QUICK_BALL
     .hword ITEM_DUSK_BALL
     .hword ITEM_LOVE_BALL
-    .hword ITEM_CHERISH_BALL
     .hword ITEM_FAST_BALL
     .hword ITEM_LEVEL_BALL
     .hword ITEM_HEAVY_BALL

@@ -297,7 +297,7 @@ static const struct WildPokemon gRoute9_LandMonsNight[] =
 	{25, 27, SPECIES_EXEGGCUTE_A},
 	{25, 28, SPECIES_SALANDIT},
 	{25, 28, SPECIES_DEWPIDER},
-	{25, 28, SPECIES_MANKEY},
+	{25, 28, SPECIES_INDEEDEE_FEMALE},
 	{25, 28, SPECIES_CORVISQUIRE},
 	{24, 27, SPECIES_ESPURR},
 	{27, 27, SPECIES_ESPURR},
@@ -701,8 +701,8 @@ static const struct WildPokemon gPkmnMansion2_LandMonsNight[] =
 	{63, 63, SPECIES_SALAZZLE},
 	{65, 65, SPECIES_BANETTE},
 	{66, 66, SPECIES_BANETTE},
-	{64, 64, SPECIES_CHIMECHO},
-	{64, 64, SPECIES_CHIMECHO},
+	{64, 64, SPECIES_TORCHIC},
+	{64, 64, SPECIES_TORCHIC},
 };
 
 static const struct WildPokemonInfo gPkmnMansion2_LandMonsInfoNight = {7, gPkmnMansion2_LandMonsNight};

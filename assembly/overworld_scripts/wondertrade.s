@@ -85,23 +85,22 @@ EventScript_WonderTrade2:
     end 
 
 ReceiveEgg2:
-    msgbox gText_RandomEgg2 MSG_NORMAL
+    msgbox gText_RandomEgg2 MSG_FACE
     fanfare 0x101
-    msgbox gText_RandomEgg_ReceivedEgg MSG_KEEPOPEN
     waitfanfare
-    waitkeypress 
+    msgbox gText_RandomEgg_ReceivedEgg MSG_FACE
     setflag 0x943
     giveegg SPECIES_FLOETTE
     clearflag 0x943 
     setflag 0x97E
-    msgbox gText_RandomEgg3 MSG_NORMAL 
+    msgbox gText_RandomEgg3 MSG_FACE
     sound 0x58 
     removemoney 0x1388 0x00
     updatemoney 0x00 0x00 0x00
     checksound
-    msgbox gText_punchtutor_Wait MSG_NORMAL
+    msgbox gText_punchtutor_Wait MSG_FACE
     hidemoney 0x00 0x00 
-    msgbox gText_RandomEgg5 MSG_NORMAL
+    msgbox gText_RandomEgg5 MSG_FACE
     release
     end
 
@@ -132,23 +131,22 @@ EventScript_WonderTrade3:
     end 
 
 ReceiveEgg3:
-    msgbox gText_RandomEgg2 MSG_NORMAL
+    msgbox gText_RandomEgg2 MSG_FACE
     fanfare 0x101
-    msgbox gText_RandomEgg_ReceivedEgg MSG_KEEPOPEN
     waitfanfare
-    waitkeypress 
+    msgbox gText_RandomEgg_ReceivedEgg MSG_FACE
     setflag 0x943
     giveegg SPECIES_GASTLY
     clearflag 0x943 
     setflag 0x97F
-    msgbox gText_RandomEgg3 MSG_NORMAL 
+    msgbox gText_RandomEgg3 MSG_FACE 
     sound 0x58 
     removemoney 0x1388 0x00
     updatemoney 0x00 0x00 0x00
     checksound
-    msgbox gText_punchtutor_Wait MSG_NORMAL
+    msgbox gText_punchtutor_Wait MSG_FACE
     hidemoney 0x00 0x00 
-    msgbox gText_RandomEgg5 MSG_NORMAL
+    msgbox gText_RandomEgg5 MSG_FACE
     release
     end
 

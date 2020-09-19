@@ -46,16 +46,16 @@ EventScript_aidoranberry_Start:
     applymovement 0xFF Stop 
     waitmovement 0x0 
     clearflag 0x200
-    showsprite 0x07
-	applymovement 0x07 EventScript_aidoranberry_Aid
+    showsprite 0x9
+	applymovement 0x9 EventScript_aidoranberry_Aid
 	waitmovement 0x0
     sound 0x15
-	applymovement 0x07 EventScript_aidoranberry_Aid2
+	applymovement 0x9 EventScript_aidoranberry_Aid2
     waitmovement 0x0
     checksound 
 	textcolor 0x00
 	msgbox gText_aidoranberry_1 0x6
-	applymovement 0x07 EventScript_aidoranberry_Aid3
+	applymovement 0x9 EventScript_aidoranberry_Aid3
 	waitmovement 0x0
 	applymovement 0xFF EventScript_aidoranberry_Move
 	waitmovement 0x0
@@ -68,10 +68,10 @@ EventScript_aidoranberry_Start:
 	msgbox gText_aidoranberry_3 0x6
 	giveitem 0x8B 0x5 MSG_OBTAIN
 	msgbox gText_aidoranberry_4 0x6
-	applymovement 0x07 EventScript_aidoranberry_Aid4
+	applymovement 0x9 EventScript_aidoranberry_Aid4
 	waitmovement 0x0
 	setvar 0x4012 0x1
-	hidesprite 0x07
+	hidesprite 0x9
 	setflag 0x200
 	release
 	end

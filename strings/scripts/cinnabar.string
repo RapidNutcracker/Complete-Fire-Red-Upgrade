@@ -188,7 +188,7 @@ Yes, this Pok\emon is quite a\nworthy shield.\pAs promised, here you go.
 The[LIGHT_BLUE] Assault Vest[RED] complements a high\ndefense Pok\emon well, making it an\limpenetrable wall. 
 
 #org @gText_metatutor_1
-I teach some sick moves, but it's\ngoing to cost \$20000.\pYou in?
+I teach some sick moves, but it's\ngoing to cost \$10000.\pYou in?
 
 #org @gText_metatutor_Text1
 Aura Sphere
@@ -210,6 +210,24 @@ Bug Buzz
 
 #org @gText_metatutor_Text7
 Phantom Force 
+
+#org @gText_metatutor_Text8
+Flare Blitz 
+
+#org @gText_metatutor_Text9
+Stored Power
+
+#org @gText_metatutor_Text10
+Gunk Shot
+
+#org @gText_metatutor_Text11
+Power Gem
+
+#org @gText_metatutor_TextViewMore
+View More
+
+#org @gText_metatutor_Exit
+Exit
 
 #org @gText_metatutor_Msg
 \$10000. Which move should I teach?

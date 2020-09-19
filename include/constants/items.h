@@ -611,12 +611,12 @@ enum
 #define ITEM_LAPRASITE    0x2D9 //seafoam 
 #define ITEM_BUTTERFRITE  0x2DA //viridian forest 
 #define ITEM_GARBODORITE  0x2DB //silph co
-#define ITEM_SNORLAXITE   0x2DC 
+#define ITEM_SNORLAXITE   0x2DC  //outside victory road 
 #define ITEM_KINGLERITE   0x2DD //Route 20, surf 
 #define ITEM_TOXTRICITITE 0x2DE //koga 
 #define ITEM_COALOSSITE   0x2DF //rock tunnel 
 #define ITEM_DURALUDONITE 0x2E0  //done 
-#define ITEM_DREDNAWITE   0x2E1
+#define ITEM_DREDNAWITE   0x2E1 //route 19
 #define ITEM_COPPERAJITE  0x2E2
 #define ITEM_APPLITE      0x2E3
 #define ITEM_ORBEETLITE   0x2E4 //route 2 rock smash 

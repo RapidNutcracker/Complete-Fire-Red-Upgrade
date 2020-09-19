@@ -200,7 +200,7 @@ Feel free to come back if you\nneed my assistance.
 Shall I do another Pok\emon?
 
 #org @gText_EVSubtracter_Reduceby
-Reduce by 10, 50, or 100?
+Reduce by 10, 50, 100, or 252?
 
 #org @gText_EVSubtracter_None
 The EVs in that stat are at 0. 
@@ -438,3 +438,132 @@ Whenever you're ready[.]
 
 #org @gText_sabrina_LetsBegin
 Let's begin! 
+
+#org @gText_IvChecker_Msg
+I can check your Pok\emon's IVs at a\nglance. Interested?
+
+#org @gText_IvChecker_3
+[BUFFER1] HP IVs, [BUFFER2] Atk IVs, [BUFFER3] Def IVs[.]
+
+#org @gText_IvChecker_5
+[BUFFER1] SpAtk IVs, [BUFFER2] SpDef IVs,\n[BUFFER3] Speed IVs.
+
+#org @gText_IVSubtracter_Msg
+Hi, I can set the IV of a\nspecific stat to 0.\pThis is mainly useful for getting\nminimum speed for Trick Room.\pInterested? 
+
+#org @gText_IVSubtracter_HP
+Shall I reduce HP to 0 IVs?\nThis can't be undone.
+
+#org @gText_IVSubtracter_Attack
+Shall I reduce Attack to\n0 IVs? This can't be undone.
+
+#org @gText_IVSubtracter_Defense
+Shall I reduce Defense to 0\nIVs? This can't be undone.
+
+#org @gText_IVSubtracter_SpA
+Shall I reduce SpA to 0\nIVs? This can't be undone.
+
+#org @gText_IVSubtracter_SpDef
+Shall I reduce SpDef to 0\nIVs? This can't be undone.
+
+#org @gText_IVSubtracter_Speed
+Shall I reduce Speed to 0\nIVs? This can't be undone.
+
+#org @gText_IVSubtracter_1
+Your [BUFFER1][.]\nWhich stat should I set to 0?
+
+#org @gText_IVSetterDone 
+[.]Okay, it's done!\nCome back if you need more! 
+
+#org @gText_SetBalls1 
+Hi, I can switch the Pok\e Ball\nof your Pok\emon.\pInterested? 
+
+#org @gText_SetBallsMaster 
+Master Ball 
+
+#org @gText_SetBallsUltra
+Ultra Ball
+
+#org @gText_SetBallsGreat
+Great Ball
+
+#org @gText_SetBallsPoke
+Pok\e Ball 
+
+#org @gText_SetBallsSafari
+Safari Ball 
+
+#org @gText_SetBallsNet
+Net Ball 
+
+#org @gText_SetBallsDive
+Dive Ball 
+
+#org @gText_SetBallsNest
+Nest Ball 
+
+#org @gText_SetBallsRepeat
+Repeat Ball 
+
+#org @gText_SetBallsTimer
+Timer Ball 
+
+#org @gText_SetBallsLuxury
+Luxury Ball 
+
+#org @gText_SetBallsPremier
+Premier Ball 
+
+#org @gText_SetBallsDusk
+Dusk Ball 
+
+#org @gText_SetBallsHeal
+Heal Ball 
+
+#org @gText_SetBallsQuick
+Quick Ball
+
+#org @gText_SetBallsCherish
+Cherish Ball
+
+#org @gText_SetBallsPark 
+Park Ball 
+
+#org @gText_SetBallsFast
+Fast Ball 
+
+#org @gText_SetBallsLevel
+Level Ball 
+
+#org @gText_SetBallsLure
+Lure Ball 
+
+#org @gText_SetBallsHeavy
+Heavy Ball 
+
+#org @gText_SetBallsLove
+Love Ball 
+
+#org @gText_SetBallsFriend
+Friend Ball
+
+#org @gText_SetBallsMoon
+Moon Ball 
+
+#org @gText_SetBallsSport
+Sport Ball 
+
+#org @gText_SetBallsBeast
+Beast Ball 
+
+#org @gText_SetBallsDream
+Dream Ball 
+
+#org @gText_SetBallsExit
+Exit 
+
+#org @gText_PokeBall_Which
+Which Ball would you like?
+
+#org @gText_POkeBall_Done
+Aaaaand[.]\nDone! Enjoy. 

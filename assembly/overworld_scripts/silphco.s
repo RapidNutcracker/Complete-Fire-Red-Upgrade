@@ -153,7 +153,7 @@ EventScript_silphcoelevatorthatworks2_Elevatorshit:
 
 .global EventScript_SilphCo_Twave
 EventScript_SilphCo_Twave:
-	checkflag 0x2C8
+	checkflag 0x2C1
     lock
     faceplayer 
 	if 0x1 _goto EventScript_twave_Done
@@ -167,7 +167,7 @@ EventScript_SilphCo_Twave:
 EventScript_twave_Take:
 	msgbox gText_twave_4 0x6
 	giveitem ITEM_TM73 0x1 MSG_OBTAIN
-	setflag 0x2C8
+	setflag 0x2C1
 	msgbox gText_twave_5 0x6
 	release
 	end

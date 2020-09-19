@@ -320,7 +320,7 @@ Oh my goodness!\pThank you!\pLet me see if it helps [LIGHT_GREEN]Gloom[RED].
 Oh, never mind then[.]
 
 #org @gText_erika_Info
-I hope your travels go safely, dear friend.
+I hope your travels go safely, dear\nfriend.
 
 #org @gText_erika_Snivy
 You received a [LIGHT_GREEN]Snivy[RED]!
