@@ -306,3 +306,25 @@ EventScript_badtantrum_Nomoney:
 	hidemoney 0x00 0x00
 	release
 	end
+
+.global EventScript_GiveExpShare
+EventScript_GiveExpShare:
+	lock 
+	faceplayer 
+	checkitem ITEM_EXP_SHARE 0x1
+	compare 0x800D 0x1
+	if lessthan _call GiveExpShare 
+	checkitem ITEM_VS_SEEKER 0x1
+	compare 0x800D 0x1
+	if lessthan _call GiveStatScanner 
+	msgbox gText_Pewter_TalkAboutLevelCap MSG_FACE
+	release 
+	end 
+ 
+GiveExpShare:
+	giveitem ITEM_EXP_SHARE 0x1 MSG_OBTAIN 
+	return 
+
+GiveStatScanner:
+	giveitem ITEM_VS_SEEKER 0x1 MSG_OBTAIN 
+	return 

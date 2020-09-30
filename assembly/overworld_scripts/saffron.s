@@ -92,102 +92,65 @@ StopInPlace:
     .byte look_down
     .byte end_m
 
-.global EventScript_Saffron_ManyTutors
-EventScript_Saffron_ManyTutors:    
+.global EventScript_Saffron_ManyTutors2
+EventScript_Saffron_ManyTutors2:    
     lock
     faceplayer 
     msgbox gText_Saffron_ManyTutors1 MSG_YESNO 
     compare LASTRESULT YES 
     if 0x0 _goto RegCancel 
     showmoney 0x35 0x00 0x00
-    goto FirstList 
+    goto FirstList2
     release 
     end 
 
-FirstList: 
-    setvar 0x8006 0x0
-    loadpointer 0x0 gText_HydroPump
-    special 0x25 
-    setvar 0x8006 0x1 
-    loadpointer 0x0 gText_DrillRun
-    special 0x25 
-    setvar 0x8006 0x2
-    loadpointer 0x0 gText_BlazeKick
-    special 0x25
-    setvar 0x8006 0x3
-    loadpointer 0x0 gText_PSplit 
-    special 0x25 
-    setvar 0x8006 0x4 
-    loadpointer 0x0 gText_ZenHeadbutt
-    special 0x25
-    setvar 0x8006 0x5
-    loadpointer 0x0 gText_WeatherBall 
-    special 0x25
-    setvar 0x8006 0x6
-    loadpointer 0x0 gText_ViewMore 
-    special 0x25 
-    preparemsg gText_Saffron_ManyTutors6
+FirstList2:
+	setvar 0x8000 0x3
+	setvar 0x8001 0x6
+	setvar 0x8004 0x0 
+	preparemsg gText_Saffron_ManyTutors6
     waitmsg
-    multichoice 0x0 0x0 0x25 0x0 
-    compare LASTRESULT 0x0
-    if 0x1 _goto HydroPump
-    compare LASTRESULT 0x1
-    if 0x1 _goto DrillRun
-    compare LASTRESULT 0x2
-    if 0x1 _goto BlazeKick
-    compare LASTRESULT 0x3 
-    if 0x1 _goto PainSplit
-    compare LASTRESULT 0x4
-    if 0x1 _goto ZenButt
-    compare LASTRESULT 0x5 
-    if 0x1 _goto WeatherBall
-    compare LASTRESULT 0x6
-    if 0x1 _goto SecondList
-    hidemoney 0x35 0x00 
+	special 0x158
+	waitstate 
+	compare LASTRESULT 0x0
+	if 0x1 _goto HydroPump
+	compare LASTRESULT 0x1
+	if 0x1 _goto DrillRun
+	compare LASTRESULT 0x2
+	if 0x1 _goto BlazeKick
+	compare LASTRESULT 0x3
+	if 0x1 _goto PainSplit
+	compare LASTRESULT 0x4
+	if 0x1 _goto ZenButt
+	compare LASTRESULT 0x5
+	if 0x1 _goto WeatherBall
+	compare LASTRESULT 0x6
+	if 0x1 _goto AirSlash
+    compare LASTRESULT 0x7
+	if 0x1 _goto Hex
+    compare LASTRESULT 0x8
+    if 0x1 _goto MysticFire
+    compare LASTRESULT 0x9
+    if 0x1 _goto SeedBomb
+    compare LASTRESULT 0xA
+    if 0x1 _goto LeafBlade
+    compare LASTRESULT 0xB
+	if 0x1 _goto KnockOff
+	compare LASTRESULT 0xC
+	if 0x1 _goto PowerGem
+	compare LASTRESULT 0xD
+	if 0x1 _goto RockBlast
+	compare LASTRESULT 0xE
+	if 0x1 _goto PinMissile
+	compare LASTRESULT 0xF
+	if 0x1 _goto IcicleSpear 
+	compare LASTRESULT 0x10
+	if 0x1 _goto TailSlap 
+	compare LASTRESULT 0x11
+	if 0x1 _goto BodySlam
+	hidemoney 0x35 0x00 
     msgbox gText_Saffron_ManyTutors5 MSG_FACE 
     release 
-    end 
-
-SecondList:
-    setvar 0x8006 0x0
-    loadpointer 0x0 gText_AirSlash
-    special 0x25 
-    setvar 0x8006 0x1 
-    loadpointer 0x0 gText_Hex
-    special 0x25 
-    setvar 0x8006 0x2
-    loadpointer 0x0 gText_MysticalFire
-    special 0x25
-    setvar 0x8006 0x3
-    loadpointer 0x0 gText_SeedBomb
-    special 0x25 
-    setvar 0x8006 0x4 
-    loadpointer 0x0 gText_LeafBlade
-    special 0x25
-    setvar 0x8006 0x5
-    loadpointer 0x0 gText_KnockOff
-    special 0x25
-    setvar 0x8006 0x6
-    loadpointer 0x0 gText_Back 
-    special 0x25 
-    preparemsg gText_Saffron_ManyTutors8
-    waitmsg
-    multichoice 0x0 0x0 0x25 0x0 
-    compare LASTRESULT 0x0
-    if 0x1 _goto AirSlash
-    compare LASTRESULT 0x1
-    if 0x1 _goto Hex
-    compare LASTRESULT 0x2
-    if 0x1 _goto MysticFire
-    compare LASTRESULT 0x3 
-    if 0x1 _goto SeedBomb
-    compare LASTRESULT 0x4
-    if 0x1 _goto LeafBlade
-    compare LASTRESULT 0x5
-    if 0x1 _goto KnockOff
-    compare LASTRESULT 0x6 
-    if 0x1 _goto FirstList
-    goto FirstList 
     end 
 
 HydroPump: 
@@ -249,6 +212,36 @@ KnockOff:
     setvar 0x8005 0x35
     goto EndScript 
     end 
+
+PowerGem:
+	setvar 0x8005 0x74
+	goto EndScript
+	end 
+
+RockBlast:
+	setvar 0x8005 0x57
+	goto EndScript 
+	end 
+
+PinMissile:
+	setvar 0x8005 0x54
+	goto EndScript 
+	end 
+
+IcicleSpear:
+	setvar 0x8005 0x55
+	goto EndScript 
+	end 
+
+TailSlap: 
+	setvar 0x8005 0x56
+	goto EndScript 
+	end 
+
+BodySlam:
+	setvar 0x8005 0x5B
+	goto EndScript
+	end 
 
 EndScript:
     checkmoney 0x1D4C 0x0
@@ -396,9 +389,12 @@ EventScript_EVSubtracter_CheckEVs:
 	setvar 0x8006 0x5 @sixth item
 	loadpointer 0x0 gText_EVSubtracter_Speed
 	special 0x25
+	setvar 0x8006 0x6 @7th item
+	loadpointer 0x0 gText_EVSubtracter_AllStats
+	special 0x25
 	preparemsg gText_EVSubtracter_1
 	waitmsg
-	multichoice 0x0 0x0 0x24 0x0
+	multichoice 0x0 0x0 0x25 0x0
 	compare LASTRESULT 0x0
 	if 0x1 _goto EventScript_EVSubtracter_ReduceHP
 	compare LASTRESULT 0x1
@@ -411,6 +407,8 @@ EventScript_EVSubtracter_CheckEVs:
 	if 0x1 _goto EventScript_EVSubtracter_ReduceSpD
 	compare LASTRESULT 0x5
 	if 0x1 _goto EventScript_EVSubtracter_ReduceSpeed
+	compare LASTRESULT 0x6
+	if 0x1 _goto EventScript_EVSubtracter_ReduceAllEVs
 	goto EventScript_EVSubtracter_MinusEVs @means they pressed B, goto previous screen
 	end
 
@@ -449,6 +447,33 @@ EventScript_EVSubtracter_ReduceSpeed:
 	setvar 0x8005 0x3
 	msgbox gText_EVSubtracter_Speed 0x6
 	goto EventScript_EVSubtracter_Statmultichoice
+
+EventScript_EVSubtracter_ReduceAllEVs:
+	msgbox gText_EVSubtracter_DoAll MSG_YESNO 
+	compare LASTRESULT YES 
+	if notequal _goto EventScript_EVSubtracter_CheckEVs
+	setvar 0x8005 0x0
+	setvar 0x8006 0x1FC
+	special 0xF
+	setvar 0x8005 0x1 
+	setvar 0x8006 0x1FC
+	special 0xF
+	setvar 0x8005 0x2
+	setvar 0x8006 0x1FC
+	special 0xF
+	setvar 0x8005 0x3 
+	setvar 0x8006 0x1FC
+	special 0xF
+	setvar 0x8005 0x4 
+	setvar 0x8006 0x1FC
+	special 0xF
+	setvar 0x8005 0x5 
+	setvar 0x8006 0x1FC
+	special 0xF
+	msgbox gText_EVSubtracter_DoAllDone MSG_NORMAL 
+	goto EventScript_EVSubtracter_Doanother
+	end 
+
 
 EventScript_EVSubtracter_Statmultichoice:
 	call EventScript_EVSubtracter_Checkstat0

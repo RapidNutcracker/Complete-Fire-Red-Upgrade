@@ -57,9 +57,30 @@ Air Slash
 Hex
 
 #org @sExampleText_MysticalFire
-Mystic Fire 
+Mystical Fire 
 
 #org @sExampleText_SeedBomb
 Seed Bomb
+
+#org @sExampleText_LeafBlade
+Leaf Blade 
+
+#org @sExampleText_KnockOff
+Knock Off
+
+#org @sExampleText_RockBlast
+Rock Blast
+
+#org @sExampleText_PinMissile
+Pin Missile 
+
+#org @sExampleText_IcicleSpear
+Icicle Spear
+
+#org @sExampleText_TailSlap 
+Tail Slap 
+
+#org @sExampleText_BodySlam
+Body Slam 
 
 #endif

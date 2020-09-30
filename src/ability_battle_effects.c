@@ -153,7 +153,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_MINUS] = 0,
 	[ABILITY_MISTYSURGE] = 8,
 	[ABILITY_MOLDBREAKER] = 7,
-	[ABILITY_MOODY] = 10,
+	[ABILITY_BULLRUSH] = 7,
 	[ABILITY_MOTORDRIVE] = 6,
 	[ABILITY_MOXIE] = 7,
 	[ABILITY_MULTISCALE] = 8,
@@ -409,7 +409,7 @@ static u8 CalcMovePowerForForewarn(u16 move);
 static u8 ActivateWeatherAbility(u16 flags, u16 item, u8 bank, u8 animArg, u8 stringIndex, bool8 moveTurn);
 static u8 TryActivateTerrainAbility(u8 terrain, u8 anim, u8 bank);
 static bool8 ImmunityAbilityCheck(u8 bank, u32 status, u8* string);
-static bool8 AllMainStatsButOneAreMinned(u8 bank);
+// static bool8 AllMainStatsButOneAreMinned(u8 bank);
 
 u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 {
@@ -1442,54 +1442,54 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 					}
 					break;
 
-				case ABILITY_MOODY: ;
-					u8 statToRaise = 0;
-					u8 statToLower = 0;
-					const u8* scriptPtr;
+				// case ABILITY_MOODY: ;
+				// 	u8 statToRaise = 0;
+				// 	u8 statToLower = 0;
+				// 	const u8* scriptPtr;
 
-					if (MainStatsMinned(bank))
-					{	//Raise One Stat
-						statToRaise = RandRange(STAT_ATK, STAT_SPDEF + 1); //Attack, Defense, Sp. Atk, Sp.Def, Speed
-						gBattleScripting.statChanger = statToRaise | INCREASE_2;
-						scriptPtr = BattleScript_MoodySingleStat;
-					}
-					else if (MainStatsMaxed(bank))
-					{	//Lower One Stat
-						statToLower = RandRange(STAT_ATK, STAT_SPDEF + 1); //Attack, Defense, Sp. Atk, Sp.Def, Speed
-						gBattleScripting.statChanger = statToLower | DECREASE_1;
-						scriptPtr = BattleScript_MoodySingleStat;
-					}
-					else
-					{	//Raise One Stat and Lower Another
-						if (!(AllMainStatsButOneAreMinned(bank)))
-						{	//At least two non min stats
-							do
-							{
-								statToRaise = RandRange(STAT_ATK, STAT_SPDEF + 1); //Attack, Defense, Sp. Atk, Sp.Def, Speed
-							} while (STAT_STAGE(bank, statToRaise) == STAT_STAGE_MAX);
-						}
-						else
-						{	//If all stats but one are at min, then raise one of the min ones so the
-							//non min one canned be lowered.
-							do
-							{
-								statToRaise = RandRange(STAT_ATK, STAT_SPDEF + 1); //Attack, Defense, Sp. Atk, Sp.Def, Speed
-							} while (STAT_STAGE(bank, statToRaise) != 0);
-						}
+				// 	if (MainStatsMinned(bank))
+				// 	{	//Raise One Stat
+				// 		statToRaise = RandRange(STAT_ATK, STAT_SPDEF + 1); //Attack, Defense, Sp. Atk, Sp.Def, Speed
+				// 		gBattleScripting.statChanger = statToRaise | INCREASE_2;
+				// 		scriptPtr = BattleScript_MoodySingleStat;
+				// 	}
+				// 	else if (MainStatsMaxed(bank))
+				// 	{	//Lower One Stat
+				// 		statToLower = RandRange(STAT_ATK, STAT_SPDEF + 1); //Attack, Defense, Sp. Atk, Sp.Def, Speed
+				// 		gBattleScripting.statChanger = statToLower | DECREASE_1;
+				// 		scriptPtr = BattleScript_MoodySingleStat;
+				// 	}
+				// 	else
+				// 	{	//Raise One Stat and Lower Another
+				// 		if (!(AllMainStatsButOneAreMinned(bank)))
+				// 		{	//At least two non min stats
+				// 			do
+				// 			{
+				// 				statToRaise = RandRange(STAT_ATK, STAT_SPDEF + 1); //Attack, Defense, Sp. Atk, Sp.Def, Speed
+				// 			} while (STAT_STAGE(bank, statToRaise) == STAT_STAGE_MAX);
+				// 		}
+				// 		else
+				// 		{	//If all stats but one are at min, then raise one of the min ones so the
+				// 			//non min one canned be lowered.
+				// 			do
+				// 			{
+				// 				statToRaise = RandRange(STAT_ATK, STAT_SPDEF + 1); //Attack, Defense, Sp. Atk, Sp.Def, Speed
+				// 			} while (STAT_STAGE(bank, statToRaise) != 0);
+				// 		}
 
-						do
-						{
-							statToLower = RandRange(STAT_ATK, STAT_SPDEF + 1); //Attack, Defense, Sp. Atk, Sp.Def, Speed
-						} while (statToLower == statToRaise || STAT_STAGE(bank, statToLower) == 0);
+				// 		do
+				// 		{
+				// 			statToLower = RandRange(STAT_ATK, STAT_SPDEF + 1); //Attack, Defense, Sp. Atk, Sp.Def, Speed
+				// 		} while (statToLower == statToRaise || STAT_STAGE(bank, statToLower) == 0);
 
-						gBattleScripting.statChanger = statToRaise | INCREASE_2;
-						gBattleCommunication[MOVE_EFFECT_BYTE] = statToLower; //Save stat to lower in move effect byte
-						scriptPtr = BattleScript_MoodyRegular;
-					}
+				// 		gBattleScripting.statChanger = statToRaise | INCREASE_2;
+				// 		gBattleCommunication[MOVE_EFFECT_BYTE] = statToLower; //Save stat to lower in move effect byte
+				// 		scriptPtr = BattleScript_MoodyRegular;
+				// 	}
 
-					BattleScriptPushCursorAndCallback(scriptPtr);
-					effect++;
-					break;
+				// 	BattleScriptPushCursorAndCallback(scriptPtr);
+				// 	effect++;
+				// 	break;
 
 				case ABILITY_BADDREAMS:
 					if (gBattleMons[FOE(bank)].status1 & STATUS_SLEEP
@@ -2561,19 +2561,19 @@ static bool8 ImmunityAbilityCheck(u8 bank, u32 status, u8* string)
 	return FALSE;
 }
 
-static bool8 AllMainStatsButOneAreMinned(bank_t bank)
-{
-	for (u8 i = STAT_ATK, counter = 0; i <= STAT_SPDEF; ++i) //No Acc of Evsn
-	{
-		if (STAT_STAGE(bank, i) > 0)
-		{
-			if (++counter > 1)
-				return FALSE;
-		}
-	}
+// static bool8 AllMainStatsButOneAreMinned(bank_t bank) added
+// {
+// 	for (u8 i = STAT_ATK, counter = 0; i <= STAT_SPDEF; ++i) //No Acc of Evsn
+// 	{
+// 		if (STAT_STAGE(bank, i) > 0)
+// 		{
+// 			if (++counter > 1)
+// 				return FALSE;
+// 		}
+// 	}
 
-	return TRUE;
-}
+// 	return TRUE;
+// }
 
 void LoadProperAbilityBattleData(void)
 {

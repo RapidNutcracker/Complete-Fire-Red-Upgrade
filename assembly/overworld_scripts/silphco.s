@@ -44,6 +44,41 @@ EventScript_silphcoelevatorthatworks_Start:
 	releaseall
 	end
 
+.global EventScript_silphcoelevatorthatworks_StartV2
+EventScript_silphcoelevatorthatworks_StartV2:
+	lockall
+	setvar 0x8000 0x5
+	setvar 0x8001 0x6
+	setvar 0x8004 0x0 
+	preparemsg 0x81A535C @"Which floor do you want?"
+	waitmsg
+	special 0x158
+	waitstate 
+	compare LASTRESULT 0x0
+	if 0x1 _goto EventScript_silphcoelevatorthatworks_Firstfloor
+	compare LASTRESULT 0x1
+	if 0x1 _goto EventScript_silphcoelevatorthatworks_Secondfloor
+	compare LASTRESULT 0x2
+	if 0x1 _goto EventScript_silphcoelevatorthatworks_Thirdfloor
+	compare LASTRESULT 0x3
+	if 0x1 _goto EventScript_silphcoelevatorthatworks_Fourthfloor
+	compare LASTRESULT 0x4
+	if 0x1 _goto EventScript_silphcoelevatorthatworks_Fifthfloor
+	compare LASTRESULT 0x5
+	if 0x1 _goto EventScript_silphcoelevatorthatworks_Sixthfloor
+	compare LASTRESULT 0x6
+	if 0x1 _goto EventScript_silphcoelevatorthatworks2_Seventhfloor
+	compare LASTRESULT 0x7
+	if 0x1 _goto EventScript_silphcoelevatorthatworks2_Eighthfloor
+	compare LASTRESULT 0x8
+	if 0x1 _goto EventScript_silphcoelevatorthatworks2_Ninthfloor
+	compare LASTRESULT 0x9
+	if 0x1 _goto EventScript_silphcoelevatorthatworks2_Tenthfloor
+	compare LASTRESULT 0xA
+	if 0x1 _goto EventScript_silphcoelevatorthatworks2_Eleventhfloor
+	releaseall 
+	end 
+	
 EventScript_silphcoelevatorthatworks_End:
 	releaseall
 	end

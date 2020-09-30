@@ -3070,6 +3070,37 @@ extern const u8	gText_gamecornermons2_Text4[];
 extern const u8	gText_gamecornermons2_Text5[];
 extern const u8	gText_gamecornermons2_Text6[];
 extern const u8	gText_gamecornermons2_Text7[];
+extern const u8 gText_gamecornermons3_Text1[];
+extern const u8 gText_gamecornermons3_Text2[];
+extern const u8	sExampleText_HydroPump[];
+extern const u8	sExampleText_DrillRun[];
+extern const u8	sExampleText_BlazeKick[];
+extern const u8	sExampleText_PSplit[];
+extern const u8	sExampleText_ZenHeadbutt[];
+extern const u8	sExampleText_WeatherBall[];
+extern const u8	sExampleText_AirSlash[];
+extern const u8	sExampleText_Hex[];
+extern const u8	sExampleText_MysticalFire[];
+extern const u8	sExampleText_SeedBomb[];
+extern const u8	sExampleText_LeafBlade[];
+extern const u8 sExampleText_KnockOff[];
+extern const u8 sExampleText_RockBlast[];
+extern const u8 sExampleText_IcicleSpear[];
+extern const u8 sExampleText_RockBlast[];
+extern const u8 sExampleText_TailSlap[];
+extern const u8 sExampleText_PinMissile[];
+extern const u8 sExampleText_BodySlam[];
+extern const u8	gText_metatutor_Text1[];
+extern const u8	gText_metatutor_Text2[];
+extern const u8	gText_metatutor_Text3[];
+extern const u8	gText_metatutor_Text4[];
+extern const u8	gText_metatutor_Text5[];
+extern const u8	gText_metatutor_Text6[];
+extern const u8	gText_metatutor_Text7[];
+extern const u8	gText_metatutor_Text8[];
+extern const u8	gText_metatutor_Text9[];
+extern const u8	gText_metatutor_Text10[];
+extern const u8 gText_metatutor_Text11[];
 extern const u8 sText_1[];
 extern const u8 sText_2[];
 extern const u8 sText_3[];
@@ -3085,6 +3116,35 @@ extern const u8 sText_12[];
 extern const u8 sText_13[];
 extern const u8 sText_14[];
 extern const u8 sText_15[];
+extern const u8 gText_silphcoelevatorthatworks_Floor1[];
+extern const u8 gText_silphcoelevatorthatworks_Floor2[];
+extern const u8 gText_silphcoelevatorthatworks_Floor3[];
+extern const u8 gText_silphcoelevatorthatworks_Floor4[];
+extern const u8 gText_silphcoelevatorthatworks_Floor5[];
+extern const u8 gText_silphcoelevatorthatworks_Floor6[];
+extern const u8 gText_silphcoelevatorthatworks2_Floor7[];
+extern const u8 gText_silphcoelevatorthatworks2_Floor8[];
+extern const u8 gText_silphcoelevatorthatworks2_Floor9[];
+extern const u8 gText_silphcoelevatorthatworks2_Floor10[];
+extern const u8 gText_silphcoelevatorthatworks2_Floor11[];
+extern const u8 gText_Adamant[];
+extern const u8 gText_Modest[];
+extern const u8 gText_Timid[];
+extern const u8 gText_Jolly[];
+extern const u8 gText_Hasty[];
+extern const u8 gText_Naive[];
+extern const u8 gText_Mild[];
+extern const u8 gText_Naughty[];
+extern const u8 gText_Rash[];
+extern const u8 gText_Lonely[];
+extern const u8 gText_Brave[];
+extern const u8 gText_Quiet[];
+extern const u8 gText_Calm[];
+extern const u8 gText_Impish[];
+extern const u8 gText_Sassy[];
+extern const u8 gText_Careful[];
+extern const u8 gText_Relaxed[];
+extern const u8 gText_Bold[];
 
 //Scrolling Lists
 static const u8* sMultichoiceSet1[] =
@@ -3129,8 +3189,83 @@ static const u8* sMultichoiceSet3[] =
 	gText_gamecornermons2_Text4,
 	gText_gamecornermons2_Text5,
 	gText_gamecornermons2_Text6,
-	gText_gamecornermons2_Text7,
+	gText_gamecornermons3_Text1,
+	gText_gamecornermons3_Text2,
 };
+
+static const u8* sMultichoiceSet4[] =
+{
+	sExampleText_HydroPump,
+	sExampleText_DrillRun,
+	sExampleText_BlazeKick,
+	sExampleText_PSplit,
+	sExampleText_ZenHeadbutt,
+	sExampleText_WeatherBall,
+	sExampleText_AirSlash,
+	sExampleText_Hex,
+	sExampleText_MysticalFire,
+	sExampleText_SeedBomb,
+	sExampleText_LeafBlade,
+	sExampleText_KnockOff,
+	gText_metatutor_Text11, //Power Gem 
+	sExampleText_RockBlast,
+	sExampleText_PinMissile,
+	sExampleText_IcicleSpear,
+	sExampleText_TailSlap,
+	sExampleText_BodySlam,
+};
+
+static const u8* sMultichoiceSet5[] =
+{
+	gText_metatutor_Text1,
+	gText_metatutor_Text2,
+	gText_metatutor_Text3,
+	gText_metatutor_Text4,
+	gText_metatutor_Text5,
+	gText_metatutor_Text6,
+	gText_metatutor_Text7,
+	gText_metatutor_Text8,
+	gText_metatutor_Text9,
+	gText_metatutor_Text10,
+};
+
+static const u8* sMultichoiceSet6[] =
+{
+ 	gText_silphcoelevatorthatworks_Floor1,
+	gText_silphcoelevatorthatworks_Floor2,
+	gText_silphcoelevatorthatworks_Floor3,
+	gText_silphcoelevatorthatworks_Floor4,
+	gText_silphcoelevatorthatworks_Floor5,
+	gText_silphcoelevatorthatworks_Floor6,
+	gText_silphcoelevatorthatworks2_Floor7,
+	gText_silphcoelevatorthatworks2_Floor8,
+	gText_silphcoelevatorthatworks2_Floor9,
+	gText_silphcoelevatorthatworks2_Floor10,
+	gText_silphcoelevatorthatworks2_Floor11,
+};
+
+static const u8* sMultichoiceSet7[] =
+{
+ 	gText_Adamant,
+	gText_Modest,
+	gText_Timid,
+	gText_Jolly,
+	gText_Hasty,
+	gText_Naive,
+	gText_Mild,
+	gText_Naughty,
+	gText_Rash,
+	gText_Lonely,
+	gText_Brave,
+	gText_Quiet,
+	gText_Calm,
+	gText_Impish,
+	gText_Sassy,
+	gText_Careful,
+	gText_Relaxed,
+	gText_Bold,
+};
+
 
 // Multichoice Lists
 const struct ScrollingMulti gScrollingSets[] =
@@ -3138,6 +3273,10 @@ const struct ScrollingMulti gScrollingSets[] =
 	{sMultichoiceSet1, ARRAY_COUNT(sMultichoiceSet1)},
 	{sMultichoiceSet2, ARRAY_COUNT(sMultichoiceSet2)},
 	{sMultichoiceSet3, ARRAY_COUNT(sMultichoiceSet3)},
+	{sMultichoiceSet4, ARRAY_COUNT(sMultichoiceSet4)},
+	{sMultichoiceSet5, ARRAY_COUNT(sMultichoiceSet5)},
+	{sMultichoiceSet6, ARRAY_COUNT(sMultichoiceSet6)},
+	{sMultichoiceSet7, ARRAY_COUNT(sMultichoiceSet7)},
 };
 
 //Link number of opts shown at once to the box height

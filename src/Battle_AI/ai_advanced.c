@@ -904,10 +904,10 @@ static bool8 BankHasAbilityUsefulToProtectFor(u8 bankAtk, u8 bankDef)
 	u8 ability = ABILITY(bankAtk);
 
 	switch (ability) {
-		case ABILITY_MOODY:
-			if (!StatsMaxed(bankAtk))
-				return TRUE;
-			break;
+		// case ABILITY_MOODY:
+		// 	if (!StatsMaxed(bankAtk))
+		// 		return TRUE;
+		// 	break;
 
 		case ABILITY_SPEEDBOOST:
 			if (SpeedCalc(bankAtk) <= SpeedCalc(bankDef)

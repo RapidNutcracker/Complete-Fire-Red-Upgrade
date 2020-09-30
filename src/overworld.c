@@ -1367,54 +1367,54 @@ void SetChosenMonHiddenAbility(void) //added this
 	}
 }
 
-void SwitchChosenMonAbility(void) //addedthis 
-{
-	struct Pokemon* mon = &gPlayerParty[Var8004];
-	bool8 doThis = TRUE;
-	if (gPlayerParty[Var8004].hiddenAbility == TRUE)
-		gSpecialVar_LastResult = 0x1;
-	else{
-		u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
-		u8 ability = GetMonAbility(mon);
-		if (ability == gBaseStats[species].ability1)
-		{
-			if (ability == gBaseStats[species].ability2 || gBaseStats[species].ability2 == ABILITY_NONE){
-				gSpecialVar_LastResult = 0x2;
-				doThis = FALSE;
-			}
-		}
-		if(doThis){
-			gSpecialVar_LastResult = 0x0;
-			u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
-			u8 abilityNum = (personality & 1) ^ 1; //Flip ability bit
-			u32 trainerId = GetMonData(mon, MON_DATA_OT_ID, NULL);
-			u16 sid = HIHALF(trainerId);
-			u16 tid = LOHALF(trainerId);
-			u8 nature = GetNatureFromPersonality(personality);
-			u8 gender = GetGenderFromSpeciesAndPersonality(species, personality);
-			bool8 isShiny = IsMonShiny(mon);
+// void SwitchChosenMonAbility(void) //addedthis 
+// {
+// 	struct Pokemon* mon = &gPlayerParty[Var8004];
+// 	bool8 doThis = TRUE;
+// 	if (gPlayerParty[Var8004].hiddenAbility == TRUE)
+// 		gSpecialVar_LastResult = 0x1;
+// 	else{
+// 		u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+// 		u8 ability = GetMonAbility(mon);
+// 		if (ability == gBaseStats[species].ability1)
+// 		{
+// 			if (ability == gBaseStats[species].ability2 || gBaseStats[species].ability2 == ABILITY_NONE){
+// 				gSpecialVar_LastResult = 0x2;
+// 				doThis = FALSE;
+// 			}
+// 		}
+// 		if(doThis){
+// 			gSpecialVar_LastResult = 0x0;
+// 			u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
+// 			u8 abilityNum = (personality & 1) ^ 1; //Flip ability bit
+// 			u32 trainerId = GetMonData(mon, MON_DATA_OT_ID, NULL);
+// 			u16 sid = HIHALF(trainerId);
+// 			u16 tid = LOHALF(trainerId);
+// 			u8 nature = GetNatureFromPersonality(personality);
+// 			u8 gender = GetGenderFromSpeciesAndPersonality(species, personality);
+// 			bool8 isShiny = IsMonShiny(mon);
 
-			do
-			{
-				personality = Random32();
+// 			do
+// 			{
+// 				personality = Random32();
 
-				if (isShiny)
-				{
-					u8 shinyRange = 1;
-					personality = (((shinyRange ^ (sid ^ tid)) ^ LOHALF(personality)) << 16) | LOHALF(personality);
-				}
+// 				if (isShiny)
+// 				{
+// 					u8 shinyRange = 1;
+// 					personality = (((shinyRange ^ (sid ^ tid)) ^ LOHALF(personality)) << 16) | LOHALF(personality);
+// 				}
 
-				personality &= ~(1);
-				personality |= abilityNum; //Either 0 or 1
+// 				personality &= ~(1);
+// 				personality |= abilityNum; //Either 0 or 1
 
-			} while (GetNatureFromPersonality(personality) != nature || GetGenderFromSpeciesAndPersonality(species, personality) != gender);
+// 			} while (GetNatureFromPersonality(personality) != nature || GetGenderFromSpeciesAndPersonality(species, personality) != gender);
 
-			mon->hiddenAbility = FALSE;
-			SetMonData(mon, MON_DATA_PERSONALITY, &personality);
-			CalculateMonStats(mon);
-		}
-	}
-}
+// 			mon->hiddenAbility = FALSE;
+// 			SetMonData(mon, MON_DATA_PERSONALITY, &personality);
+// 			CalculateMonStats(mon);
+// 		}
+// 	}
+// }
 
 void SwitchMonNature(u8 wantedNature){
 	struct Pokemon* mon = &gPlayerParty[Var8004];
@@ -2488,11 +2488,13 @@ const u8* GetInteractedWaterScript(unusedArg u32 unused1, u8 metatileBehavior, u
 			item = ITEM_HM03_SURF;
 			#endif
 
-			u8 partyId = PartyHasMonWithFieldMovePotential(MOVE_SURF, item, SHOULDNT_BE_SURFING);
-			if (partyId < PARTY_SIZE
-			&& (!gFollowerState.inProgress || gFollowerState.flags & FOLLOWER_FLAG_CAN_SURF))
+			//u8 partyId = PartyHasMonWithFieldMovePotential(MOVE_SURF, item, SHOULDNT_BE_SURFING);
+			//if (partyId < PARTY_SIZE && 
+			bool8 hasTM = CheckBagHasItem(item, 1) > 0;
+			if ( (!gFollowerState.inProgress || gFollowerState.flags & FOLLOWER_FLAG_CAN_SURF)
+			&& hasTM)
 			{
-				Var8004 = partyId;
+				//Var8004 = partyId;
 				return EventScript_UseSurf;
 			}
 

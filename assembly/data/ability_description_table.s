@@ -115,7 +115,7 @@ gAbilityDescriptions:
 .word DESC_DOWNLOAD
 .word DESC_POISONHEAL
 .word DESC_ICEBODY
-.word DESC_MOODY
+.word DESC_BULLRUSH
 .word DESC_HYDRATION
 .word DESC_HEALER
 .word DESC_SNOWCLOAK

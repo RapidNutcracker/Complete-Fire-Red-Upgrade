@@ -141,11 +141,19 @@ EventScript_SilphCo_Wisp:
     release
     end
 
-.global EventScript_Route13_Teleport
+.global EventScript_Route13_Teleport @Now Route 3 
 EventScript_Route13_Teleport:
     hidesprite 0x800F
     giveitem ITEM_TM34 0x1 MSG_FIND
     setflag 0x95A
+    release
+    end
+
+.global EventScript_Route13_FutureSight @Now Route 3 
+EventScript_Route13_FutureSight:
+    hidesprite 0x800F
+    giveitem ITEM_TM85 0x1 MSG_FIND
+    setflag 0x961
     release
     end
 
@@ -246,6 +254,38 @@ EventScript_SafariZone_Pidgeotite:
     release 
     end 
 
+.global EventScript_SafariZone_TM54
+EventScript_SafariZone_TM54:
+    hidesprite 0x800F
+    giveitem ITEM_TM54 0x1 MSG_FIND 
+    setflag 0x100C
+    release 
+    end 
+
+.global EventScript_SafariZone_TM55
+EventScript_SafariZone_TM55:
+    hidesprite 0x800F
+    giveitem ITEM_TM55 0x1 MSG_FIND 
+    setflag 0x100D
+    release 
+    end 
+
+.global EventScript_SafariZone_TM58
+EventScript_SafariZone_TM58:
+    hidesprite 0x800F
+    giveitem ITEM_TM58 0x1 MSG_FIND 
+    setflag 0x100E
+    release 
+    end 
+
+.global EventScript_Route5_TM96
+EventScript_Route5_TM96:
+    hidesprite 0x800F
+    giveitem ITEM_TM96 0x1 MSG_FIND 
+    setflag 0x960
+    release 
+    end 
+
 .global EventScript_VictoryRoad_HeavyDuty
 EventScript_VictoryRoad_HeavyDuty:
     hidesprite 0x800F
@@ -291,6 +331,14 @@ EventScript_SSAnne_BrickBreak:
     hidesprite 0x800F
     giveitem ITEM_TM31 0x1 MSG_FIND 
     setflag 0x1000
+    release 
+    end 
+
+.global EventScript_Route7_TM62
+EventScript_Route7_TM62:
+    hidesprite 0x800F
+    giveitem ITEM_TM62 0x1 MSG_FIND 
+    setflag 0x100F
     release 
     end 
 

@@ -548,3 +548,16 @@ EventScript_lance_Delay:
 .byte 0x1C
 .byte 0xFE
 
+
+.global EventScript_E4nurse_Start
+EventScript_E4nurse_Start:
+	lock
+	faceplayer
+	special 0x0
+	fadescreen 0x1
+	sound 0x1
+	checksound
+	fadescreen 0x0
+	msgbox gText_E4nurse_1 0x6 
+	release
+	end

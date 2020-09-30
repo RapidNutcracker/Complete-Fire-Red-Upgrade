@@ -3093,7 +3093,7 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_OCTAZOOKA] =
 	{
 		.effect = EFFECT_SPEED_DOWN_HIT,
-		.power = 95,
+		.power = 80,
 		.type = TYPE_WATER,
 		.accuracy = 100,
 		.pp = 10,
@@ -11592,7 +11592,7 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_SHELLSIDEARM] =
 	{	//ANIM TODO
 		.effect = EFFECT_HIT, //EFFECT TODO
-		.power = 90,
+		.power = 100,
 		.type = TYPE_POISON,
 		.accuracy = 100,
 		.pp = 10,

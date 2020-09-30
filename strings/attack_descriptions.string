@@ -1118,16 +1118,16 @@ It hits two to five\ntimes in a row.\nRaises Speed, but\nlowers Defense.
 In this two-turn move,\nthe user gathers\nspace power and\nincreases Sp. Atk.
 
 #org @DESC_SHELL_SIDE_ARM
-Inflicts the more\neffective of physical\nor special damage. May\npoison the target.
+Deals physical or\nspecial damage based\non user's better stat.\nMay cause poison.
 
 #org @DESC_MISTY_EXPLOSION
 The user explodes,\nfainting in the process.\nIts power doubles\non Misty Terrain.
 
 #org @DESC_GRASSY_GLIDE
-The user glides\non the ground to\nattack. Will move\nfirst on Grassy Terrain.
+The user glides\non the ground to\nattack. Moves first\non Grassy Terrain.
 
 #org @DESC_RISING_VOLTAGE
-The user attacks\nwith voltage from the\nground. It doubles in\npower on Electric Terrain.
+The user attacks\nwith voltage that\ndoubles its power on\nElectric Terrain.
 
 #org @DESC_TERRAIN_PULSE
 The move's type\nand power depends on\nthe terrain currently\nused in battle.

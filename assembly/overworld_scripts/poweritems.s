@@ -7,6 +7,8 @@
 
 .global EventScript_poweranklet_Start
 EventScript_poweranklet_Start:
+	lock
+	faceplayer 
 	textcolor 0x0
 	checkflag 0x971
 	if 0x1 _goto EventScript_poweranklet_Done

@@ -964,6 +964,20 @@ void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
 			++k;
 		}
 	}
+	if(k < MAX_MON_MOVES)
+	{
+		bool8 hasTM = CheckBagHasItem(ITEM_TM34_SHOCK_WAVE, 1) > 0;
+		u16 species = GetMonData(&mons[slotId], MON_DATA_SPECIES2, NULL);
+		
+		if (species != SPECIES_NONE
+		&& species != SPECIES_EGG
+		&& hasTM
+		&& CanMonLearnTMTutor(&mons[slotId], ITEM_TM34_SHOCK_WAVE, 0) == CAN_LEARN_MOVE)
+		{
+			AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_FIELD_MOVES + FIELD_MOVE_TELEPORT);
+			++k;
+		}
+	}
 	#endif
 
 	if (!ShouldDisablePartyMenuItemsBattleTower())
@@ -1000,8 +1014,9 @@ static bool8 SetUpFieldMove_Surf(void)
 	#ifdef ONLY_CHECK_ITEM_FOR_HM_USAGE
 	item = ITEM_HM03_SURF;
 	#endif
-
-	if (PartyHasMonWithFieldMovePotential(MOVE_SURF, item, SHOULDNT_BE_SURFING) < PARTY_SIZE
+	bool8 hasHM = CheckBagHasItem(item, 1) > 0;
+	// if (PartyHasMonWithFieldMovePotential(MOVE_SURF, item, SHOULDNT_BE_SURFING) < PARTY_SIZE
+	if (hasHM
 	&& IsPlayerFacingSurfableFishableWater() == TRUE)
 	{
 		gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;
@@ -2236,6 +2251,12 @@ static u8 GetAbilityCapsuleNewAbility(struct Pokemon* mon)
 		&& gBaseStats[species].hiddenAbility != ABILITY_NONE)
 			changeTo = gBaseStats[species].hiddenAbility;
 	}
+	// else if (item == ITEM_DREAM_PILL)
+	// {
+	// 	if (ability != gBaseStats[species].hiddenAbility
+	// 	&& gBaseStats[species].hiddenAbility != ABILITY_NONE)
+	// 		changeTo = gBaseStats[species].hiddenAbility;
+	// }
 	else //Regular ability capsule
 	{
 		if (ability == gBaseStats[species].ability1)

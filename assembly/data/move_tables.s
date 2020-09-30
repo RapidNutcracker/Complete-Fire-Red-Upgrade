@@ -691,6 +691,8 @@ gPunchingMoves:
 .hword MOVE_ICEHAMMER
 .hword MOVE_PLASMAFISTS
 .hword MOVE_DOUBLEIRONBASH
+.hword MOVE_WICKEDBLOW
+.hword MOVE_SURGINGSTRIKES
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -740,6 +742,9 @@ gPulseAuraMoves:
 .hword MOVE_ORIGINPULSE
 .hword MOVE_TERRAINPULSE
 .hword MOVE_WATERPULSE
+.hword MOVE_SNIPESHOT
+.hword MOVE_FLASHCANNON
+.hword MOVE_OCTAZOOKA
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -786,6 +791,9 @@ gBallBombMoves:
 .hword MOVE_SLUDGEBOMB
 .hword MOVE_WEATHERBALL
 .hword MOVE_ZAPCANNON
+.hword MOVE_FLASHCANNON
+.hword MOVE_SNIPESHOT
+.hword MOVE_SPIKECANNON
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -1010,6 +1018,7 @@ gAlwaysHitWhenMinimizedMoves:
 
 gMoldBreakerMoves:
 .hword MOVE_MOONGEISTBEAM
+.hword MOVE_SHELLSIDEARM
 .hword MOVE_PHOTONGEYSER
 .hword MOVE_SUNSTEELSTRIKE
 .hword MOVE_LIGHT_THAT_BURNS_THE_SKY
@@ -1049,7 +1058,6 @@ gFlinchChanceMoves:
 .hword MOVE_ICICLECRASH @30
 .hword MOVE_ZINGZAP @30
 .hword MOVE_DOUBLEIRONBASH @30
-.hword MOVE_CRUSHGRIP @10 Aqua Fang
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

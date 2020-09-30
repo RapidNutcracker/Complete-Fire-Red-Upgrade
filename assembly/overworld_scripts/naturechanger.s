@@ -7,8 +7,8 @@
 .global EventScript_NatureChanger
 EventScript_NatureChanger:
     lock
-    faceplayer
-	showmoney 0x00 0x00 0x00  
+    faceplayer 
+    showmoney 0x00 0x00 0x00  
     msgbox gText_NatureChanger1 MSG_YESNO 
     compare LASTRESULT YES 
     if 0x0 _goto CancelThis2 
@@ -22,35 +22,18 @@ EventScript_NatureChanger:
     compare 0x8004 0x6
     if greaterorequal _goto RegCancel 
 	showmoney 0x35 0x00 0x00 
-    goto FirstList 
+    goto FirstList2 
 	release 
 	end 
 
-FirstList: 
-	setvar 0x8006 0x0
-    loadpointer 0x0 gText_Adamant
-    special 0x25 
-    setvar 0x8006 0x1 
-    loadpointer 0x0 gText_Modest
-    special 0x25 
-    setvar 0x8006 0x2
-    loadpointer 0x0 gText_Timid
-    special 0x25
-    setvar 0x8006 0x3
-    loadpointer 0x0 gText_Jolly 
-    special 0x25 
-    setvar 0x8006 0x4 
-    loadpointer 0x0 gText_Hasty
-    special 0x25
-    setvar 0x8006 0x5
-    loadpointer 0x0 gText_Naive
-    special 0x25
-    setvar 0x8006 0x6
-    loadpointer 0x0 gText_ViewMore 
-    special 0x25 
+FirstList2:
+    setvar 0x8000 0x6
+    setvar 0x8001 0x6
+    setvar 0x8004 0x0 
     preparemsg gText_NatureChanger2 
     waitmsg
-    multichoice 0x0 0x0 0x25 0x0 
+    special 0x158
+    waitstate 
     compare LASTRESULT 0x0
     if 0x1 _goto Adamant
     compare LASTRESULT 0x1
@@ -64,93 +47,30 @@ FirstList:
     compare LASTRESULT 0x5 
     if 0x1 _goto Naive 
     compare LASTRESULT 0x6
-    if 0x1 _goto SecondList
-	goto CancelThis 
-	end 
-
-
-SecondList:
-    setvar 0x8006 0x0
-    loadpointer 0x0 gText_Mild
-    special 0x25 
-    setvar 0x8006 0x1 
-    loadpointer 0x0 gText_Naughty
-    special 0x25 
-    setvar 0x8006 0x2
-    loadpointer 0x0 gText_Rash
-    special 0x25
-    setvar 0x8006 0x3
-    loadpointer 0x0 gText_Lonely
-    special 0x25 
-    setvar 0x8006 0x4 
-    loadpointer 0x0 gText_Brave 
-    special 0x25
-    setvar 0x8006 0x5
-    loadpointer 0x0 gText_Quiet 
-    special 0x25 
-	setvar 0x8006 0x6
-    loadpointer 0x0 gText_ViewMore 
-    special 0x25 
-    preparemsg gText_NatureChanger2 
-    waitmsg
-    multichoice 0x0 0x0 0x25 0x0 
-    compare LASTRESULT 0x0
     if 0x1 _goto Mild 
-    compare LASTRESULT 0x1
+    compare LASTRESULT 0x7
     if 0x1 _goto Naughty
-    compare LASTRESULT 0x2
+    compare LASTRESULT 0x8
     if 0x1 _goto Rash 
-    compare LASTRESULT 0x3 
+    compare LASTRESULT 0x9
     if 0x1 _goto Lonely
-    compare LASTRESULT 0x4
+    compare LASTRESULT 0xA
     if 0x1 _goto Brave 
-    compare LASTRESULT 0x5 
+    compare LASTRESULT 0xB 
     if 0x1 _goto Quiet 
-	compare LASTRESULT 0x6
-	if 0x1 _goto ThirdList
-    goto FirstList 
-    end 
-	
-ThirdList:
-	setvar 0x8006 0x0
-    loadpointer 0x0 gText_Calm
-    special 0x25 
-    setvar 0x8006 0x1 
-    loadpointer 0x0 gText_Impish
-    special 0x25 
-    setvar 0x8006 0x2
-    loadpointer 0x0 gText_Sassy
-    special 0x25
-    setvar 0x8006 0x3
-    loadpointer 0x0 gText_Careful
-    special 0x25 
-    setvar 0x8006 0x4 
-    loadpointer 0x0 gText_Relaxed 
-    special 0x25
-    setvar 0x8006 0x5
-    loadpointer 0x0 gText_Bold 
-    special 0x25 
-	setvar 0x8006 0x6
-    loadpointer 0x0 gText_Exit 
-    special 0x25 
-    preparemsg gText_NatureChanger2 
-    waitmsg
-    multichoice 0x0 0x0 0x25 0x0 
-    compare LASTRESULT 0x0
+    compare LASTRESULT 0xC
     if 0x1 _goto Calm 
-    compare LASTRESULT 0x1
+    compare LASTRESULT 0xD
     if 0x1 _goto Impish 
-    compare LASTRESULT 0x2
+    compare LASTRESULT 0xE
     if 0x1 _goto Sassy 
-    compare LASTRESULT 0x3 
+    compare LASTRESULT 0xF 
     if 0x1 _goto Careful 
-    compare LASTRESULT 0x4
+    compare LASTRESULT 0x10
     if 0x1 _goto Relaxed 
-    compare LASTRESULT 0x5 
+    compare LASTRESULT 0x11
     if 0x1 _goto Bold 
-	compare LASTRESULT 0x6
-	if 0x1 _goto CancelThis 
-    goto SecondList 
+    goto CancelThis 
     end 
 
 Adamant: 

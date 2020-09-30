@@ -223,6 +223,9 @@ Sp. Def
 #org @gText_EVSubtracter_Speed
 Speed
 
+#org @gText_EVSubtracter_AllStats
+All Stats
+
 #org @gText_EVSubtracter_Ten
 10
 
@@ -246,6 +249,12 @@ Succesfully reduced by 100!
 
 #org @gText_EVSubtracter_ByAll
 Succesfully reduced by 252!
+
+#org @gText_EVSubtracter_DoAllDone
+Sucessfully reset [BUFFER1]'s\nEVs! 
+
+#org @gText_EVSubtracter_DoAll 
+Shall I reduce all of\n[BUFFER1]'s EVs? 
 
 #org @gText_EVSubtracter_Currently
 It currently has [BUFFER2] EVs in that\nstat.

@@ -198,7 +198,7 @@ AlreadyDid:
 
 .global EventScript_Cinnabar_Latis
 EventScript_Cinnabar_Latis:
-    checkflag 0x94A
+    checkflag 0x962
     if 0x0 _goto Start 
     checkflag 0x94B
     if 0x0 _goto Start 
@@ -226,14 +226,14 @@ Start:
     end 
 
 Latias: 
-    checkflag 0x94A
+    checkflag 0x962
     if 0x1 _goto AlreadyGave
     call ExclamationStuff
     bufferpokemon 0x0 0x197
     msgbox gText_CinnabarLatis6 MSG_FACE 
     giveitem ITEM_SOUL_DEW 0x1 MSG_OBTAIN 
-    giveitem ITEM_LATIOSITE 0x1 MSG_OBTAIN 
-    setflag 0x94A 
+    giveitem ITEM_LATIASITE 0x1 MSG_OBTAIN 
+    setflag 0x962 
     release 
     end 
 
@@ -505,6 +505,49 @@ SecondList:
 	goto FirstList 
 	release
 	end
+
+.global EventScript_metatutor_Start2
+EventScript_metatutor_Start2:
+	lock
+	faceplayer
+	msgbox gText_metatutor_1 0x5
+	compare LASTRESULT 0x0
+	if 0x1 _call EventScript_metatutor_Cancel
+	showmoney 0x35 0x00 0x00
+	goto FirstList2
+
+FirstList2: 
+	setvar 0x8000 0x4
+	setvar 0x8001 0x6 
+	setvar 0x8004 0x0 
+	preparemsg gText_metatutor_Msg
+	waitmsg
+	special 0x158
+	waitstate 
+	compare LASTRESULT 0x0
+	if 0x1 _goto EventScript_metatutor_Firstoption
+	compare LASTRESULT 0x1
+	if 0x1 _goto EventScript_metatutor_Secondoption
+	compare LASTRESULT 0x2
+	if 0x1 _goto EventScript_metatutor_Thirdoption
+	compare LASTRESULT 0x3
+	if 0x1 _goto EventScript_metatutor_Fourthoption
+	compare LASTRESULT 0x4
+	if 0x1 _goto EventScript_metatutor_Fifthoption
+	compare LASTRESULT 0x5
+	if 0x1 _goto EventScript_metatutor_Sixthoption
+	compare LASTRESULT 0x6
+	if 0x1 _goto EventScript_metatutor_PhantomForce
+	compare LASTRESULT 0x7
+	if 0x1 _goto EventScript_metatutor_FlareBlitz
+	compare LASTRESULT 0x8
+	if 0x1 _goto EventScript_metatutor_StoredPower
+	compare LASTRESULT 0x9
+	if 0x1 _goto EventScript_metatutor_GunkShot
+	hidemoney 0x35 0x00
+	release
+	end
+
 
 EventScript_metatutor_Teach:
 	special 0x18D

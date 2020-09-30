@@ -208,10 +208,8 @@ EventScript_brendanbattleleft_Start:
 	setflag 0x200
 	trainerbattle3 0x3 0x2C 0x0 gText_brendanbattleleft_Defeat
 	msgbox gText_brendanbattleleft_4 0x6
-	fanfare 0x13E
-	msgbox gText_brendanbattleleft_5 0x6
-	waitfanfare
-	closeonkeypress
+	giveitem ITEM_EXP_SHARE 0x1 MSG_OBTAIN
+	giveitem ITEM_VS_SEEKER 0x1 MSG_OBTAIN
 	setflag 0x906
 	msgbox gText_brendanbattleleft_6 0x6
 	applymovement 0x0D EventScript_brendanbattleleft_Comedown

@@ -2,6 +2,8 @@
 
 # PALLET TOWN 
 tile 4 1 0 EventScript_AskRandomizer
+sign 4 1 2 EventScript_Pallet_AutoRunSign
+npc 3 0 1 EventScript_Pallet_Technology
 
 # VIRIDIAN CITY 
 tile 3 1 4 EventScript_SetFlag
@@ -64,9 +66,11 @@ tile 6 2 0 EventScript_ExpertModeTileLeft
 tile 6 2 2 EventScript_ExpertModeTileRight
 npc 6 2 2 EventScript_ExpertModeNPC
 npc 3 2 8 EventScript_WonderTrade2
+npc 3 2 2 EventScript_GiveExpShare
 
 #ROUTE 3 
 npc 3 21 9 EventScript_Route3Raid 
+npc 3 21 10 EventScript_Route13_Teleport
 
 #ROUTE 4
 npc 16 0 1 EventScript_MagikarpGuy
@@ -114,6 +118,7 @@ npc 3 44 10 EventScript_Cut
 npc 3 23 0 EventScript_Route5Raid 
 npc 3 23 1 EventScript_newdaycare_Start
 map 3 23 gMapScripts_Route5
+npc 3 23 2 EventScript_Route5_TM96
 
 #Route 6
 npc 3 24 7 EventScript_Route6_Venoshock
@@ -146,6 +151,7 @@ npc 9 1 7 EventScript_NatureChanger
 npc 3 5 6 EventScript_Cut 
 npc 9 6 3 EventScript_ExpertModeNPC
 npc 3 5 8 EventScript_WonderTrade3
+# npc 3 5 8 EventScript_Verm_EXPShare
 
 #SS Anne 
 npc 1 20 1 EventScript_SSAnne_CantForget
@@ -210,7 +216,8 @@ npc 10 8 4 EventScript_ivseller_Start
 npc 10 8 3 EventScript_amuletcoin_Start
 npc 10 8 2 EventScript_coinstory_Start
 npc 10 15 2 EventScript_gamecornertms_Start
-npc 10 15 3 EventScript_gamecornermons_Start
+# npc 10 15 3 EventScript_gamecornermons_Start
+npc 10 15 3 EventScript_gamecornermons_Start2
 npc 10 2 0 EventScript_playrough_Start
 npc 10 5 1 EventScript_gardevoirite_Start
 npc 10 3 2 EventScript_CeladonStones 
@@ -232,6 +239,9 @@ npc 3 6 6 EventScript_poweranklet_Start
 npc 1 42 5 EventScript_GC_BottleCap
 npc 1 43 1 EventScript_GC_NewX
 
+#Route 7
+npc 3 25 1 EventScript_Route7_TM62
+
 #Route 8 
 npc 3 26 9 EventScript_Cut 
 npc 3 26 10 EventScript_Cut 
@@ -241,7 +251,8 @@ npc 3 26 15 EventScript_Route8Raid
 npc 14 6 6 EventScript_NatureChanger 
 npc 14 9 11 EventScript_Saffron_Nerd
 npc 14 9 13 EventScript_Saffron_Nerd2
-npc 14 4 4 EventScript_Saffron_ManyTutors
+# npc 14 4 4 EventScript_Saffron_ManyTutors
+npc 14 4 4 EventScript_Saffron_ManyTutors2
 npc 14 9 12 EventScript_EvChecker_Start
 npc 14 9 10 EventScript_EVSubtracter_Start
 npc 14 8 1 EventScript_liquidation_Start
@@ -263,7 +274,8 @@ map 14 3 gMapScripts_SaffronGym
 npc 14 9 16 EventScript_PokeBallSwitcher
 
 #Silph Co 
-sign 1 58 0 EventScript_silphcoelevatorthatworks_Start
+#sign 1 58 0 EventScript_silphcoelevatorthatworks_Start
+sign 1 58 0 EventScript_silphcoelevatorthatworks_StartV2
 sign 1 58 1 EventScript_silphcoelevatorthatworks2_Start
 npc 1 53 9 EventScript_SilphCo_Kang
 npc 1 52 8 EventScript_SilphCo_NewX
@@ -293,7 +305,7 @@ npc 3 30 16 EventScript_Route12Raid
 
 #Route 13
 npc 3 31 10 EventScript_Cut 
-npc 3 31 11 EventScript_Route13_Teleport
+npc 3 31 11 EventScript_Route13_FutureSight
 npc 3 31 12 EventScript_Route13Raid
 
 #Route 14 
@@ -333,10 +345,13 @@ npc 11 3 7 EventScript_ExpertModeNPC
 npc 3 36 3 EventScript_Route18_Altariaite
 
 #Safari Zone
+npc 1 63 0 EventScript_SafariZone_TM54
 npc 1 64 1 EventScript_SafariZone_Heracronite
 npc 1 65 2 EventScript_SafariZone_Beedrilite
 npc 1 65 0 EventScript_SafariZone_Pidgeotite
 npc 1 66 2 EventScript_SafariZone_Lopunnite
+npc 1 66 4 EventScript_SafariZone_TM55
+npc 1 64 4 EventScript_SafariZone_TM58
 
 #Seafoam Islands
 npc 1 83 0 EventScript_newstrength_Start
@@ -375,7 +390,8 @@ npc 3 39 7 EventScript_Route18_Kinglerite
 tile 3 8 1 EventScript_CinnabarMay_Boss
 npc 12 1 1 EventScript_Cinnabar_WeatherRock
 npc 12 2 2 EventScript_Cinnabar_FossilGuy
-npc 12 4 2 EventScript_metatutor_Start
+# npc 12 4 2 EventScript_metatutor_Start
+npc 12 4 2 EventScript_metatutor_Start2
 npc 12 4 3 EventScript_Cinnabar_Latis
 npc 12 1 2 EventScript_jasmine_Start
 npc 12 0 7 EventScript_blaine_Start
@@ -440,6 +456,7 @@ npc 1 74 12 EventScript_healstoptheboss_Start
 npc 1 74 13 EventScript_healstoptheboss_Start
 tile 1 74 0 EventScript_ceruleangiovanni_Start
 tile 1 74 1 EventScript_e4check_Start
+tile 1 74 3 EventScript_e4check_Start
 tile 1 74 2 EventScript_ceruleangiovanni_Left 
 
 #Route 23
@@ -466,6 +483,7 @@ npc 1 40 12 EventScript_closecombat_Start
 npc 1 40 14 EventScript_VictoryRoadRaid
 
 #Elite Four/Indigo Plateau 
+npc 13 0 1 EventScript_E4nurse_Start
 npc 13 0 8 EventScript_NatureChanger 
 tile 3 9 0 EventScript_FinalCreator_Fight
 npc 1 75 0 EventScript_lorelei_Start

@@ -300,7 +300,9 @@ EventScript_gamecornertms_Values:
 	.hword ITEM_TM33 
     .hword ITEM_TM35
 	.hword ITEM_TM53 
+	.hword ITEM_TM64
 	.hword ITEM_TM65 
+	.hword ITEM_TM74
 	.hword ITEM_TM75
 	.hword ITEM_TM79
 	.hword ITEM_TM82 
@@ -428,6 +430,58 @@ EventScript_gamecornermons_ViewMore2:
 	goto EventScript_gamecornermons_ViewMore
 	release 
 	end 
+
+.global EventScript_gamecornermons_Start2
+EventScript_gamecornermons_Start2:
+	lockall
+	faceplayer
+	msgbox gText_gamecornermons_1 0x5
+	compare LASTRESULT 0x0
+	if 0x1 _call EventScript_gamecornermons_Cancel
+	showmoney 0x35 0x00 0x00
+	goto FirstList2 
+
+FirstList2: 
+	setvar 0x8000 0x2 
+    setvar 0x8001 0x6 
+    setvar 0x8004 0x0 
+    preparemsg gText_gamecornermons_Whichpkmn
+	waitmsg
+    special 0x158
+    waitstate 
+    compare LASTRESULT 0x7F 
+    if 0x1 _goto EventScript_gamecornermons_Cancelhide
+	compare LASTRESULT 0x0
+	if 0x1 _goto EventScript_gamecornermons_Dratini
+	compare LASTRESULT 0x1
+	if 0x1 _goto EventScript_gamecornermons_Larvitar
+	compare LASTRESULT 0x2
+	if 0x1 _goto EventScript_gamecornermons_Beldum
+	compare LASTRESULT 0x3
+	if 0x1 _goto EventScript_gamecornermons_Bagon
+	compare LASTRESULT 0x4
+	if 0x1 _goto EventScript_gamecornermons_Riolu
+	compare LASTRESULT 0x5
+	if 0x1 _goto EventScript_gamecornermons_Rotom
+	compare LASTRESULT 0x6
+	if 0x1 _goto EventScript_gamecornermons2_Gible 
+    compare LASTRESULT 0x7
+	if 0x1 _goto EventScript_gamecornermons2_Larvesta 
+    compare LASTRESULT 0x8
+    if 0x1 _goto EventScript_gamecornermons2_Deino
+    compare LASTRESULT 0x9
+    if 0x1 _goto EventScript_gamecornermons2_Goomy 
+    compare LASTRESULT 0xA
+    if 0x1 _goto EventScript_gamecornermons2_Jangmo
+    compare LASTRESULT 0xB
+	if 0x1 _goto EventScript_gamecornermons2_Dreepy
+	compare LASTRESULT 0xC
+	if 0x1 _goto EventScript_gamecornermons2_Honedge
+	compare LASTRESULT 0xD
+	if 0x1 _goto EventScript_gamecornermons2_Toxel
+	hidemoney 0x35 0x00
+	release
+	end
 
 EventScript_gamecornermons_Cancel:
     clearflag 0x90F 

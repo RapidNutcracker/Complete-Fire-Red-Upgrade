@@ -210,7 +210,7 @@ void atk23_getexp(void)
 		//Lucky Egg Boost - e
 		eggBoost = 10;
 		if (holdEffect == ITEM_EFFECT_LUCKY_EGG)
-			eggBoost = 20;
+			eggBoost = 25;
 
 		//Level of Fainted Mon
 		defLevel = gBattleMons[gBankFainted].level;

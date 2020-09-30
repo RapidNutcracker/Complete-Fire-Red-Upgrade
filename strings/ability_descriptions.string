@@ -62,7 +62,7 @@ Boosts moves against rivals.
 Boosts moves in a sandstorm.
 
 #org @DESC_SOLARPOWER
-Trades HP for power in sunshine.
+Trades HP for power in sun.
 
 #org @DESC_HEATPROOF
 Heat protection.
@@ -93,8 +93,8 @@ Restores HP if poisoned.
 #org @DESC_ICEBODY
 Slight HP recovery in hail.
 
-#org @DESC_MOODY
-Raises one stat and lowers another.
+#org @DESC_BULLRUSH
+Powers up first move used. 
 
 #org @DESC_HYDRATION
 Heals status problems in rain.

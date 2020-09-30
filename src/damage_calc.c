@@ -3340,6 +3340,12 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 			if (CheckSoundMove(move))
 				power = (power * 13) / 10; //changed
 			break;
+		
+		case ABILITY_BULLRUSH:
+		//1.5x Boost first turn 
+			if(gDisableStructs[bankAtk].isFirstTurn)
+				power = (power * 15) / 10;
+			break; 
 	}
 
 	//Check attacker partner ability boost

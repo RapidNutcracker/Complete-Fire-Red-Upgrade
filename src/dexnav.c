@@ -862,36 +862,36 @@ static void Task_ManageDexNavHUD(u8 taskId)
 		return;
 	}
 
-	//Caves and water the pokemon moves around
-	if ((sDexNavHudPtr->environment == ENCOUNTER_TYPE_WATER || !IsMapTypeOutdoors(GetCurrentMapType()))
-	#ifdef UNBOUND
-	&& GetCurrentRegionMapSectionId() != MAPSEC_FLOWER_PARADISE
-	#endif
-	&& sDexNavHudPtr->proximity < 2
-	&& sDexNavHudPtr->movementTimes < 2)
-	{
-		switch(sDexNavHudPtr->environment)
-		{
-			case ENCOUNTER_TYPE_LAND:
-				FieldEffectFreeGraphicsResources(&gSprites[sDexNavHudPtr->spriteIdShakingGrass]);
-				FieldEffectActiveListRemove(FLDEFF_CAVE_DUST);
-				FieldEffectActiveListRemove(FLDEFF_REPEATING_SPARKLES);
-				FieldEffectActiveListRemove(FLDEFF_SHAKING_GRASS);
-				FieldEffectActiveListRemove(FLDEFF_SHAKING_LONG_GRASS);
-				FieldEffectActiveListRemove(FLDEFF_SAND_HOLE);
-				break;
-			case ENCOUNTER_TYPE_WATER:
-				FieldEffectFreeGraphicsResources(&gSprites[sDexNavHudPtr->spriteIdShakingGrass]);
-				FieldEffectActiveListRemove(FLDEFF_SPLASHING_WATER);
-				FieldEffectActiveListRemove(FLDEFF_LAVA_BUBBLES);
-				break;
-			default:
-				break;
-		};
+	//Caves and water the pokemon moves around added here
+	// if ((sDexNavHudPtr->environment == ENCOUNTER_TYPE_WATER || !IsMapTypeOutdoors(GetCurrentMapType()))
+	// #ifdef UNBOUND
+	// && GetCurrentRegionMapSectionId() != MAPSEC_FLOWER_PARADISE
+	// #endif
+	// && sDexNavHudPtr->proximity < 2
+	// && sDexNavHudPtr->movementTimes < 2)
+	// {
+	// 	switch(sDexNavHudPtr->environment)
+	// 	{
+	// 		case ENCOUNTER_TYPE_LAND:
+	// 			FieldEffectFreeGraphicsResources(&gSprites[sDexNavHudPtr->spriteIdShakingGrass]);
+	// 			FieldEffectActiveListRemove(FLDEFF_CAVE_DUST);
+	// 			FieldEffectActiveListRemove(FLDEFF_REPEATING_SPARKLES);
+	// 			FieldEffectActiveListRemove(FLDEFF_SHAKING_GRASS);
+	// 			FieldEffectActiveListRemove(FLDEFF_SHAKING_LONG_GRASS);
+	// 			FieldEffectActiveListRemove(FLDEFF_SAND_HOLE);
+	// 			break;
+	// 		case ENCOUNTER_TYPE_WATER:
+	// 			FieldEffectFreeGraphicsResources(&gSprites[sDexNavHudPtr->spriteIdShakingGrass]);
+	// 			FieldEffectActiveListRemove(FLDEFF_SPLASHING_WATER);
+	// 			FieldEffectActiveListRemove(FLDEFF_LAVA_BUBBLES);
+	// 			break;
+	// 		default:
+	// 			break;
+	// 	};
 
-		while(!ShakingGrass(sDexNavHudPtr->environment, 8, 8, 1));
-		sDexNavHudPtr->movementTimes += 1;
-	}
+	// 	while(!ShakingGrass(sDexNavHudPtr->environment, 8, 8, 1));
+	// 	sDexNavHudPtr->movementTimes += 1;
+	// }
 
 	// check for encounter start
 	if (sDexNavHudPtr-> proximity < 1)

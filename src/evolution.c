@@ -28,6 +28,8 @@ u16 GetEvolutionTargetSpecies(struct Pokemon* mon, u8 type, u16 evolutionItem)
 	u8 beauty = mon->beauty;
 	u16 upperPersonality = personality >> 16;
 	u8 holdEffect = ItemId_GetHoldEffect(heldItem);
+	u8 nature; 
+	bool8 canEvolve; 
 
 	if (holdEffect == ITEM_EFFECT_PREVENT_EVOLVE && type != 3)
 		return SPECIES_NONE;
@@ -249,6 +251,38 @@ u16 GetEvolutionTargetSpecies(struct Pokemon* mon, u8 type, u16 evolutionItem)
 				case EVO_FLAG_SET:
 					if (FlagGet(gEvolutionTable[species][i].param))
 						targetSpecies = gEvolutionTable[species][i].targetSpecies;
+					break;
+
+				case EVO_NATURE_TOXTRICITY:
+					nature = GetNatureFromPersonality(personality);
+					canEvolve = FALSE; 
+					u8 amped[13] = {NATURE_HARDY, NATURE_BRAVE, NATURE_ADAMANT, NATURE_NAUGHTY, NATURE_DOCILE, NATURE_IMPISH, NATURE_LAX, NATURE_HASTY, NATURE_JOLLY, NATURE_NAIVE, NATURE_RASH, NATURE_SASSY, NATURE_QUIRKY};
+					for (int j = 0; (j < 13); j ++){
+						if(nature == amped[j]){
+							canEvolve  = TRUE;
+							break;
+						}
+					}
+					if(canEvolve && gEvolutionTable[species][i].param <= level){
+						targetSpecies = gEvolutionTable[species][i].targetSpecies;
+					}
+					break; 
+
+				case EVO_NATURE_LOWKEY:
+					nature = GetNatureFromPersonality(personality);
+					canEvolve = FALSE; 
+					u8 lowkey[12] = {NATURE_LONELY, NATURE_BOLD, NATURE_RELAXED, NATURE_TIMID, NATURE_SERIOUS, NATURE_MODEST, NATURE_MILD, NATURE_QUIET, NATURE_BASHFUL, NATURE_CALM, NATURE_GENTLE, NATURE_CAREFUL};
+					for (int j = 0; (j < 12); j ++){
+						if(nature == lowkey[j]){
+							canEvolve  = TRUE;
+							break;
+						}
+					}
+					if(canEvolve && gEvolutionTable[species][i].param <= level){
+						targetSpecies = gEvolutionTable[species][i].targetSpecies;
+					}
+					break; 
+
 			}
 		}
 		break;
@@ -326,6 +360,8 @@ bool8 IsLevelUpEvolutionMethod(u8 method)
 		case EVO_LEVEL_NIGHT:
 		case EVO_LEVEL_DAY:
 		case EVO_LEVEL_SPECIFIC_TIME_RANGE:
+		case EVO_NATURE_LOWKEY:
+		case EVO_NATURE_TOXTRICITY:
 			return TRUE;
 		default:
 			return FALSE;

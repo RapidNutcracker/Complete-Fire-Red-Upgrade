@@ -195,4 +195,11 @@ EventScript_SSAnne_CantForget:
 	msgbox gText_SSAnne_CantForget1 MSG_FACE 
 	release
 	end
-	
+
+.global EventScript_Verm_EXPShare
+EventScript_Verm_EXPShare:
+	lock
+	faceplayer 
+	giveitem ITEM_GYARADOSITE 0x1 MSG_OBTAIN
+	release 
+	end 

@@ -350,7 +350,7 @@ static const struct WildPokemon gRockTunnelB1F_LandMonsNight[] =
 	{28, 31, SPECIES_SANDSLASH_A},
 	{28, 31, SPECIES_RHYHORN},
 	{27, 31, SPECIES_SWINUB},
-	{28, 32, SPECIES_SWINUB},
+	{28, 32, SPECIES_CUBONE},
 	{27, 32, SPECIES_BONSLY},
 	{28, 32, SPECIES_BRONZOR},
 	{27, 32, SPECIES_ONIX},
@@ -472,6 +472,24 @@ static const struct WildPokemon gRoute18_LandMonsNight[] =
 
 static const struct WildPokemonInfo gRoute18_LandMonsInfoNight = {20, gRoute18_LandMonsNight};
 
+static const struct WildPokemon gRoute12_LandMonsNight[] =
+{
+	{50, 53, SPECIES_MUSHARNA},
+	{50, 53, SPECIES_PIDGEOT},
+	{50, 52, SPECIES_SPRITZEE},
+	{49, 51, SPECIES_CAMERUPT},
+	{50, 50, SPECIES_SIMISEAR},
+	{52, 52, SPECIES_ORICORIO_S},
+	{49, 51, SPECIES_RAPIDASH_G},
+	{50, 50, SPECIES_RAPIDASH_G},
+	{48, 49, SPECIES_DRIFBLIM},
+	{49, 49, SPECIES_DRIFBLIM},
+	{45, 45, SPECIES_BULBASAUR},
+	{45, 45, SPECIES_BULBASAUR},
+};
+
+static const struct WildPokemonInfo gRoute12_LandMonsInfoNight = {20, gRoute12_LandMonsNight};
+
 static const struct WildPokemon gRoute13_LandMonsNight[] =
 {
 	{49, 50, SPECIES_TANGROWTH},
@@ -494,7 +512,7 @@ static const struct WildPokemonInfo gRoute13_LandMonsInfoNight = {20, gRoute13_L
 static const struct WildPokemon gRoute14_LandMonsNight[] =
 {
 	{50, 50, SPECIES_PELIPPER},
-	{50, 53, SPECIES_LEAVANNY},
+	{50, 53, SPECIES_SWADLOON},
 	{50, 52, SPECIES_TORKOAL},
 	{49, 51, SPECIES_TORKOAL},
 	{50, 50, SPECIES_PALOSSAND},
@@ -701,8 +719,8 @@ static const struct WildPokemon gPkmnMansion2_LandMonsNight[] =
 	{63, 63, SPECIES_SALAZZLE},
 	{65, 65, SPECIES_BANETTE},
 	{66, 66, SPECIES_BANETTE},
-	{64, 64, SPECIES_TORCHIC},
-	{64, 64, SPECIES_TORCHIC},
+	{64, 64, SPECIES_CHIMECHO},
+	{64, 64, SPECIES_CHIMECHO},
 };
 
 static const struct WildPokemonInfo gPkmnMansion2_LandMonsInfoNight = {7, gPkmnMansion2_LandMonsNight};
@@ -975,6 +993,14 @@ const struct WildPokemonHeader gWildMonNightHeaders[] =
 		.mapGroup = MAP_GROUP(ROUTE_11),
 		.mapNum = MAP_NUM(ROUTE_11),
 		.landMonsInfo = &gRoute11_LandMonsInfoNight,
+		.waterMonsInfo = NULL,
+		.rockSmashMonsInfo = NULL,
+		.fishingMonsInfo = NULL,
+	},
+	{
+		.mapGroup = MAP_GROUP(ROUTE_12),
+		.mapNum = MAP_NUM(ROUTE_12),
+		.landMonsInfo = &gRoute12_LandMonsInfoNight,
 		.waterMonsInfo = NULL,
 		.rockSmashMonsInfo = NULL,
 		.fishingMonsInfo = NULL,

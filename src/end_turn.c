@@ -1252,7 +1252,7 @@ u8 TurnBasedEffects(void)
 							switch(gLastUsedAbility) {
 								case ABILITY_SPEEDBOOST:
 								case ABILITY_TRUANT:
-								case ABILITY_MOODY:
+								// case ABILITY_MOODY:
 								case ABILITY_BADDREAMS:
 								case ABILITY_SLOWSTART:
 									if (AbilityBattleEffects(ABILITYEFFECT_ENDTURN, gActiveBattler, 0, 0, 0))
