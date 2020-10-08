@@ -23,7 +23,7 @@ The beak acts as\na drill, boasting\nhigh critical-hit\nratio.
 The user sends the\nfoe to the shadow\nrealm. It may\ncause sleep.
 
 #org @DESC_MUDSLAP 
-The user hurls mud at\nthe foe, dealing minimal\ndamage. 
+The user hurls mud at\nthe foe, dealing\nminimal damage. 
 
 #org @DESC_OCTAZOOKA
 Ink is blasted in the\nfoe's face or eyes\nto deal damage.
@@ -1118,7 +1118,7 @@ It hits two to five\ntimes in a row.\nRaises Speed, but\nlowers Defense.
 In this two-turn move,\nthe user gathers\nspace power and\nincreases Sp. Atk.
 
 #org @DESC_SHELL_SIDE_ARM
-Deals physical or\nspecial damage based\non user's better stat.\nMay cause poison.
+Bypasses opponent's\nability. May cause\npoison.
 
 #org @DESC_MISTY_EXPLOSION
 The user explodes,\nfainting in the process.\nIts power doubles\non Misty Terrain.

@@ -3145,6 +3145,43 @@ extern const u8 gText_Sassy[];
 extern const u8 gText_Careful[];
 extern const u8 gText_Relaxed[];
 extern const u8 gText_Bold[];
+extern const u8 sExampleText_Omanyte[];
+extern const u8 sExampleText_Kabuto[];
+extern const u8 sExampleText_Lileep[];
+extern const u8 sExampleText_Anorith[];
+extern const u8 sExampleText_Cranidos[];
+extern const u8 sExampleText_Shieldon[];
+extern const u8 sExampleText_Archen[];
+extern const u8 sExampleText_Tirtouga[];
+extern const u8 sExampleText_Tyrunt[];
+extern const u8 sExampleText_Aurorus[];
+extern const u8 gText_SetBallsMaster[];
+extern const u8	gText_SetBallsUltra[];
+extern const u8	gText_SetBallsGreat[];
+extern const u8	gText_SetBallsPoke[];
+extern const u8	gText_SetBallsSafari[];
+extern const u8	gText_SetBallsNet[];
+extern const u8	gText_SetBallsDive[];
+extern const u8	gText_SetBallsNest[];
+extern const u8	gText_SetBallsRepeat[];
+extern const u8	gText_SetBallsTimer[];
+extern const u8	gText_SetBallsLuxury[];
+extern const u8	gText_SetBallsPremier[];
+extern const u8	gText_SetBallsDusk[];
+extern const u8	gText_SetBallsHeal[];
+extern const u8	gText_SetBallsQuick[];
+extern const u8	gText_SetBallsCherish[];
+extern const u8	gText_SetBallsPark[];
+extern const u8	gText_SetBallsFast[];
+extern const u8	gText_SetBallsLevel[];
+extern const u8	gText_SetBallsLure[];
+extern const u8	gText_SetBallsHeavy[];
+extern const u8	gText_SetBallsLove[];
+extern const u8	gText_SetBallsFriend[];
+extern const u8	gText_SetBallsMoon[];
+extern const u8	gText_SetBallsSport[];
+extern const u8	gText_SetBallsBeast[];
+extern const u8	gText_SetBallsDream[];
 
 //Scrolling Lists
 static const u8* sMultichoiceSet1[] =
@@ -3266,6 +3303,62 @@ static const u8* sMultichoiceSet7[] =
 	gText_Bold,
 };
 
+static const u8* sMultichoiceSet8[] =
+{
+	sExampleText_Kabuto,
+	sExampleText_Lileep,
+	sExampleText_Anorith,
+	sExampleText_Cranidos,
+	sExampleText_Shieldon,
+	sExampleText_Archen,
+	sExampleText_Tirtouga,
+	sExampleText_Tyrunt,
+	sExampleText_Aurorus,
+};
+
+static const u8* sMultichoiceSet9[] =
+{
+	sExampleText_Omanyte,
+	sExampleText_Lileep,
+	sExampleText_Anorith,
+	sExampleText_Cranidos,
+	sExampleText_Shieldon,
+	sExampleText_Archen,
+	sExampleText_Tirtouga,
+	sExampleText_Tyrunt,
+	sExampleText_Aurorus,
+};
+
+static const u8* sMultichoiceSet10[] =
+{
+	gText_SetBallsMaster,
+	gText_SetBallsUltra,
+	gText_SetBallsGreat,
+	gText_SetBallsPoke,
+	gText_SetBallsSafari,
+	gText_SetBallsNet,
+	gText_SetBallsDive,
+	gText_SetBallsNest,
+	gText_SetBallsRepeat,
+	gText_SetBallsTimer,
+	gText_SetBallsLuxury,
+	gText_SetBallsPremier,
+	gText_SetBallsDusk,
+	gText_SetBallsHeal,
+	gText_SetBallsQuick,
+	gText_SetBallsCherish,
+	gText_SetBallsPark,
+	gText_SetBallsFast,
+	gText_SetBallsLevel,
+	gText_SetBallsLure,
+	gText_SetBallsHeavy,
+	gText_SetBallsLove,
+	gText_SetBallsFriend,
+	gText_SetBallsMoon,
+	gText_SetBallsSport,
+	gText_SetBallsBeast,
+	gText_SetBallsDream,
+};
 
 // Multichoice Lists
 const struct ScrollingMulti gScrollingSets[] =
@@ -3277,6 +3370,9 @@ const struct ScrollingMulti gScrollingSets[] =
 	{sMultichoiceSet5, ARRAY_COUNT(sMultichoiceSet5)},
 	{sMultichoiceSet6, ARRAY_COUNT(sMultichoiceSet6)},
 	{sMultichoiceSet7, ARRAY_COUNT(sMultichoiceSet7)},
+	{sMultichoiceSet8, ARRAY_COUNT(sMultichoiceSet8)},
+	{sMultichoiceSet9, ARRAY_COUNT(sMultichoiceSet9)},
+	{sMultichoiceSet10, ARRAY_COUNT(sMultichoiceSet10)},
 };
 
 //Link number of opts shown at once to the box height

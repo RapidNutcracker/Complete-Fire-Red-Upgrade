@@ -1351,21 +1351,6 @@ void TrainerFaceFix(void)
 	if (!GetProperDirection(playerX, playerY, npcX, npcY))
 		gSpecialVar_LastResult = 0xFFFF;
 }
-void SetChosenMonHiddenAbility(void) //added this
-{
-	struct Pokemon* mon = &gPlayerParty[Var8004];
-	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
-	if(gBaseStats[species].hiddenAbility == ABILITY_NONE){
-		gSpecialVar_LastResult = 0x0;
-	}
-	else{
-		gSpecialVar_LastResult = 0x1;
-		if (gPlayerParty[Var8004].hiddenAbility == TRUE)
-			gPlayerParty[Var8004].hiddenAbility = FALSE;
-		else
-			gPlayerParty[Var8004].hiddenAbility = TRUE;
-	}
-}
 
 // void SwitchChosenMonAbility(void) //addedthis 
 // {

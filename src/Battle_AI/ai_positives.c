@@ -420,6 +420,8 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 		AI_RECOVER:
 			if (ShouldRecover(bankAtk, bankDef, move))
 			{
+				if (atkAbility == ABILITY_PRIMALARMOR)
+					INCREASE_VIABILITY(16);
 				if (IsClassStall(class))
 					INCREASE_VIABILITY(4);
 				else if (IsClassDoublesTrickRoomSetup(class))
@@ -1200,7 +1202,10 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 					{
 						if (!BankHasMonToSwitchTo(bankAtk))
 							break; //Can't switch
-
+						if (move == MOVE_TELEPORT && IsTrickRoomActive() )
+						{
+							INCREASE_VIABILITY(18);
+						}
 						if (GetMonAbility(GetBankPartyData(bankAtk)) == ABILITY_INTIMIDATE
 						&&  MoveSplitOnTeam(bankDef, SPLIT_PHYSICAL))
 						{
@@ -1555,10 +1560,10 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			goto AI_SPECIAL_DEFENSE_PLUS;
 
 		case EFFECT_TAUNT:
+			if (StatusMoveInMoveset(bankDef)) //added
+				INCREASE_VIABILITY(10);
 			if (SPLIT(predictedMove) == SPLIT_STATUS)
 				INCREASE_STATUS_VIABILITY(3);
-			else if (StatusMoveInMoveset(bankDef))
-				INCREASE_STATUS_VIABILITY(2);
 			break;
 
 		case EFFECT_TRICK: //+ Bestwo
@@ -2069,10 +2074,10 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 					else if (IsTrickRoomActive()
 					&& GetPokemonOnSideSpeedAverage(bankAtk) >= GetPokemonOnSideSpeedAverage(bankDef))
 					{
-						if (IsClassDoublesTrickRoomer(class))
-							INCREASE_VIABILITY(19);
-						else
-							INCREASE_STATUS_VIABILITY(3);
+						// if (IsClassDoublesTrickRoomer(class))  added
+						// 	INCREASE_VIABILITY(19);
+						// else
+						INCREASE_STATUS_VIABILITY(3);
 					}
 					break;
 

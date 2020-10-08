@@ -132,11 +132,12 @@ EventScript_WonderTrade3:
 
 ReceiveEgg3:
     msgbox gText_RandomEgg2 MSG_FACE
-    fanfare 0x101
-    waitfanfare
+    @ fanfare 0x101
+    @ waitfanfare
     msgbox gText_RandomEgg_ReceivedEgg MSG_FACE
     setflag 0x943
     giveegg SPECIES_GASTLY
+    @ msgbox gText_WhatPokemonItIs MSG_NORMAL 
     clearflag 0x943 
     setflag 0x97F
     msgbox gText_RandomEgg3 MSG_FACE 
@@ -153,9 +154,9 @@ ReceiveEgg3:
 
 .global EventScript_AskRandomizer
 EventScript_AskRandomizer: 
-    @ msgbox gText_DoYouWantRandomizer MSG_YESNO 
-    @ compare LASTRESULT YES 
-    @ if equal _call setrandom 
+    msgbox gText_DoYouWantRandomizer MSG_YESNO 
+    compare LASTRESULT YES 
+    if equal _call setrandom 
     @ msgbox gText_DoYouWantAbility MSG_YESNO 
     @ compare LASTRESULT YES 
     @ if equal _call setability 
@@ -167,6 +168,7 @@ EventScript_AskRandomizer:
     end 
 
 setrandom:
+    msgbox gText_RandomizerSet MSG_NORMAL 
     setflag 0x940 
     return 
  
@@ -177,5 +179,3 @@ setability:
 setlearnsets:
     setflag 0x942
     return 
-
-

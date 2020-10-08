@@ -3528,11 +3528,33 @@ u32 CheckShinyMon(struct Pokemon* mon)
 
 	return personality;
 };
- 
+
+bool8 ShouldTrainerRandomize(u16 trainerClass)
+{
+	// if(gBattleTypeFlags & (BATTLE_TYPE_TRAINER)){
+	// 	return FALSE; 
+	// }
+	if(!(gBattleTypeFlags & (BATTLE_TYPE_TRAINER)) ){
+		return TRUE;
+	}
+
+	if (trainerClass == CLASS_BOSS || trainerClass == CLASS_CHAMPION || trainerClass == CLASS_RUIN_MANIAC_RS || trainerClass == CLASS_RIVAL_2 || trainerClass == CLASS_AQUA_LEADER || trainerClass == CLASS_TEAM_AQUA || trainerClass == CLASS_AROMA_LADY_RS || trainerClass == CLASS_PKMN_TRAINER_2 || trainerClass == CLASS_LEADER || trainerClass == CLASS_ELITE_4)
+	/*|| trainerClass == CLASS_RIVAL_2 || trainerClass == CLASS_RIVAL || trainerClass == CLASS_PKMN_TRAINER_1
+    || trainerClass == CLASS_AQUA_LEADER || trainerClass ==  CLASS_TEAM_AQUA || trainerClass == CLASS_AROMA_LADY_RS 
+	|| trainerClass == CLASS_RUIN_MANIAC_RS){ */
+	{
+		return FALSE; 
+	}
+
+	return TRUE; 
+	
+}
 void TryRandomizeSpecies(unusedArg u16* species)
 {
 	#ifdef FLAG_POKEMON_RANDOMIZER
-	if (FlagGet(FLAG_POKEMON_RANDOMIZER) && !FlagGet(FLAG_DISABLE_BAG) && !FlagGet(FLAG_BATTLE_FACILITY) && *species != SPECIES_NONE && *species < NUM_SPECIES) //&& !(gBattleTypeFlags & BATTLE_TYPE_TRAINER
+	u16 trainerId = gTrainerBattleOpponent_A; //added 
+	u16 trainerClass = gTrainers[trainerId].trainerClass; //added 
+	if (FlagGet(FLAG_POKEMON_RANDOMIZER)   && !FlagGet(FLAG_BATTLE_FACILITY) && *species != SPECIES_NONE && *species < NUM_SPECIES && ShouldTrainerRandomize(trainerClass)) //&& !(gBattleTypeFlags & BATTLE_TYPE_TRAINER
 	{
 		u32 id = MathMax(1, T1_READ_32(gSaveBlock2->playerTrainerId)); //0 id would mean every Pokemon would crash the game
 		u32 newSpecies = *species;
@@ -3543,7 +3565,8 @@ void TryRandomizeSpecies(unusedArg u16* species)
 			newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
 		} while (CheckTableForSpecies(newSpecies, gRandomizerSpeciesBanList));
 		
-		*species = newSpecies;
+		
+		*species = (u16) newSpecies;
 	}
 	if (FlagGet(FLAG_WONDER_TRADE) && !FlagGet(FLAG_BATTLE_FACILITY) && *species != SPECIES_NONE && *species < NUM_SPECIES)
 	{
@@ -3552,11 +3575,12 @@ void TryRandomizeSpecies(unusedArg u16* species)
 
 		do
 		{
+			// newSpecies = Random() % NUM_SPECIES_RANDOMIZER;
 			newSpecies *= id;
 			newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
 		} while (!CheckTableForSpecies(newSpecies, gWonderTradeList));
 		
-		*species = newSpecies;
+		*species = (u16) newSpecies;
 	}
 	#endif
 }

@@ -203,3 +203,9 @@ EventScript_Verm_EXPShare:
 	giveitem ITEM_GYARADOSITE 0x1 MSG_OBTAIN
 	release 
 	end 
+
+.global EventScript_Verm_newTruant
+EventScript_Verm_newTruant:
+	msgbox gText_Vermilion_NewTruant MSG_FACE 
+	release 
+	end 

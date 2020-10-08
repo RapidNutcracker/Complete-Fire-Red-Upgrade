@@ -2213,6 +2213,7 @@ void FieldUseFunc_AbilityCapsule(u8 taskId)
 
 extern const u8 gText_AbilityCapsuleOfferChange[];
 extern const u8 gText_AbilityCapsuleChangedAbility[];
+
 static void ItemUseCB_AbilityCapsule(u8 taskId, TaskFunc func)
 {
 	struct Pokemon* mon = &gPlayerParty[gPartyMenu.slotId];
@@ -2273,6 +2274,47 @@ static u8 GetAbilityCapsuleNewAbility(struct Pokemon* mon)
 	}
 	
 	return changeTo;
+}
+
+void SetChosenMonHiddenAbility(void) //added this
+{
+	struct Pokemon* mon = &gPlayerParty[Var8004];
+	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+	if(gBaseStats[species].hiddenAbility == ABILITY_NONE){
+		gSpecialVar_LastResult = 0x0;
+	}
+	else{
+		gSpecialVar_LastResult = 0x1;
+		if (gPlayerParty[Var8004].hiddenAbility == TRUE)
+			gPlayerParty[Var8004].hiddenAbility = FALSE;
+		else
+			gPlayerParty[Var8004].hiddenAbility = TRUE;
+	}
+}
+
+void CheckChosenMonHiddenAbility(void) //added this
+{
+	struct Pokemon* mon = &gPlayerParty[Var8004];
+	u8 ability = GetMonAbility(mon);
+	u8 changeTo = ABILITY_NONE;
+	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+	if (gPlayerParty[Var8004].hiddenAbility == FALSE
+	&& gBaseStats[species].hiddenAbility != ABILITY_NONE)
+		changeTo = gBaseStats[species].hiddenAbility;
+	if (gPlayerParty[Var8004].hiddenAbility == TRUE){
+		gPlayerParty[Var8004].hiddenAbility = FALSE;
+		struct Pokemon* mon2 = &gPlayerParty[Var8004];
+		changeTo = GetMonAbility(mon2);
+		gPlayerParty[Var8004].hiddenAbility = TRUE;
+	}
+	if(gBaseStats[species].hiddenAbility == ABILITY_NONE ||  ability == changeTo ){
+		gSpecialVar_LastResult = 0x0;
+	}
+	else{
+		gSpecialVar_LastResult = 0x1;
+		GetMonNickname(mon, gStringVar1);
+		CopyAbilityName(gStringVar2, changeTo);
+	}
 }
 
 static void Task_OfferAbilityChange(u8 taskId)

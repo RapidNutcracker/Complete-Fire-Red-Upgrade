@@ -11782,7 +11782,7 @@ const struct BattleMove gBattleMoves[] =
 	},
 
 	[MOVE_TRIPLEAXEL] =
-	{	//ANIM TODO
+	{	
 		.effect = EFFECT_TRIPLE_KICK,
 		.power = 20,
 		.type = TYPE_ICE,
@@ -11798,7 +11798,7 @@ const struct BattleMove gBattleMoves[] =
 	},
 
 	[MOVE_DUALWINGBEAT] =
-	{	//ANIM TODO
+	{	
 		.effect = EFFECT_DOUBLE_HIT,
 		.power = 40,
 		.type = TYPE_FLYING,

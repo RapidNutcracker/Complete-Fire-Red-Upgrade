@@ -2554,6 +2554,12 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 				damage /= 2;
 			break;
 
+		case ABILITY_SOLARPOWER: 
+			if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_SUN_ANY)
+			&& data->defItemEffect != ITEM_EFFECT_UTILITY_UMBRELLA)
+				damage = (damage * 2) / 3;
+			break;
+
 		case ABILITY_FLUFFY:
 		//2x Boost / 0.5x Decrement
 			if (data->moveType == TYPE_FIRE)

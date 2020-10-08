@@ -242,14 +242,14 @@ EventScript_ivseller_Giveivs:
 .global EventScript_amuletcoin_Start
 EventScript_amuletcoin_Start:
 	textcolor 0x0
-	checkflag 0x944
+	checkflag 0x1010
 	if 0x1 _goto EventScript_amuletcoin_Done
     lock 
     faceplayer 
 	msgbox gText_amuletcoin_3 0x6
 	msgbox gText_amuletcoin_4 0x6
 	giveitem 0xBD 0x1 MSG_OBTAIN
-	setflag 0x944
+	setflag 0x1010
 	msgbox gText_amuletcoin_5 0x6
 	release
 	end
@@ -856,6 +856,7 @@ EventScript_TMs_Values:
 ReleaseEnd:
 	release 
 	end 
+
 .global EventScript_CeladonBalls
 EventScript_CeladonBalls:
 	special 0x187
@@ -1020,3 +1021,14 @@ EventScript_checkerikasabrina_Stop:
 EventScript_checkerikasabrina_Playermoveback:
 .byte 0x13
 .byte 0xFE
+
+.global EventScript_Celadon_Friskinfo
+EventScript_Celadon_Friskinfo:
+	lock 
+	faceplayer 
+	msgbox gText_Celadon_Frisk MSG_YESNO 
+	compare LASTRESULT NO 
+	if equal _goto ReleaseEnd 
+	msgbox gText_Celadon_Frisk2 MSG_FACE 
+	release 
+	end 

@@ -105,15 +105,7 @@ EventScript_Route10_WildCharge:
 EventScript_Route20_Medichamite:
     hidesprite 0x800F
     giveitem ITEM_MEDICHAMITE 0x1 MSG_FIND
-    setflag 0x99A
-    release
-    end
-
-.global EventScript_Route17_Absolite
-EventScript_Route17_Absolite:
-    hidesprite 0x800F
-    giveitem ITEM_ABSOLITE 0x1 MSG_FIND
-    setflag 0x99A
+    setflag 0x1011
     release
     end
 

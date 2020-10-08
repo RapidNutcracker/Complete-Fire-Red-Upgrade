@@ -31,12 +31,12 @@
 .equ VAR_ROUTE7, 0x507C @also 0x507D
 .equ VAR_POWERPLANT, 0x508A @also 0x508B 
 .equ VAR_SEAFOAM, 0x508C @also 0x508D
-.equ VAR_ROUTE12, 0x508E
-.equ VAR_ROUTE13, 0x5090 
-.equ VAR_ROUTE14, 0x5092
-.equ VAR_ROUTE15, 0x5094
-.equ VAR_PKMNMANSION, 0x5096
-.equ VAR_VIRIDIANFOREST, 0x5104 
+.equ VAR_ROUTE12, 0x508E @also 0x508F 
+.equ VAR_ROUTE13, 0x5090 @also 0x5091 
+.equ VAR_ROUTE14, 0x5092 @also 0x5093 
+.equ VAR_ROUTE15, 0x5094 @also 0x5095
+.equ VAR_PKMNMANSION, 0x5096 @also 0x5097
+.equ VAR_VIRIDIANFOREST, 0x5104 @also 0x5105
 
 .global EventScript_VictoryRoadRaid
 EventScript_VictoryRoadRaid:

@@ -1673,7 +1673,7 @@ void TransferLastUsedItem(void)
 	else
 	{
 		gActiveBattler = 0;
-		EmitDataTransfer(0, &gLastUsedItem, 2, &gLastUsedItem);
+		EmitDataTransfer(0, &gLastUsedItem, 2, &gLastUsedItem); //added 
 		MarkBufferBankForExecution(gActiveBattler);
 	}
 }

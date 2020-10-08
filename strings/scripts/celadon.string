@@ -337,3 +337,27 @@ Thank you for the lovely\nbattle, and for helping [LIGHT_GREEN]Gloom![RED]\pPlea
 #org @gText_checkerikasabrina_1
 [BLACK]I think I'd better get [GREEN]Erika[BLACK] and\n[GREEN]Sabrina's[BLACK] badge before proceeding.
 
+#org @gText_FossilPokemon_1
+Hi! I offer fossil Pok\emon\nin exchange for shards.\pInterested? 
+
+#org @gText_FossilPokemon_Which
+Which fossil Pok\emon would you\nlike?
+
+#org @gText_FossilPokemon_Dont
+Hm, you don't have enough [LIGHT_BLUE][BUFFER1]s[BLUE].\pCome back with some [LIGHT_BLUE][BUFFER1]s[BLUE]\nif you'd like a [LIGHT_GREEN][BUFFER2][BLUE].
+
+#org @gText_FossilPokemon_Confirm 
+Okay, you'd like to exchange\n[LIGHT_BLUE][BUFFER1]s[BLUE] for [LIGHT_GREEN][BUFFER2][BLUE],\lcorrect?
+
+#org @gText_FossilReceive
+You received a [LIGHT_GREEN][BUFFER2][BLUE]!
+
+#org @gText_FossilThanks
+Thank ya! Enjoy. 
+
+#org @gText_Celadon_Frisk
+Are you looking to farm rare items?
+
+#org @gText_Celadon_Frisk2 
+Leading with a Pok\emon that has either\nSuper Luck, Frisk, or Compound-eyes\las their ability will boost the\lchance of wild Pok\emon holding\litems! 
+

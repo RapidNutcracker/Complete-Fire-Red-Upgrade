@@ -79,6 +79,9 @@ Take care!
 #org @gText_RandomEggNotEnough
 Aw, that's not enough money. 
 
+#org @gText_WhatPokemonItIs
+[BUFFER1], [BUFFER2],\n[BUFFER3].
+
 #org @gText_newdaycare_Intro
 I'm the Day-Care Man.\pI help take care of the precious\nPok\emon of trainers.\pIf you'd like me to raise your\nPok\emon, have a word with my wife.
 
@@ -105,3 +108,9 @@ You have no room for it[.]\nCome back when you've made room.
 
 #org @gText_newdaycare_Takegoodcare
 Take good care of it.
+
+#org @gText_Cerulean_NewThiefInfo
+The move Thief automatically adds\nthe stolen item to the bag.\pConvinient, right? 
+
+#org @gText_Cerulean_RedShardInfo
+I caught a Slugma earlier and it \nwas holding a [LIGHT_BLUE]Red Shard[BLUE]!\nNot sure what to do with this, though[.] 

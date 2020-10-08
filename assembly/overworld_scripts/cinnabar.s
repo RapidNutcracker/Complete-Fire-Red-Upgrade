@@ -415,97 +415,6 @@ EventScript_jasmine_Donedone:
 	release
 	end
 
-.global EventScript_metatutor_Start
-EventScript_metatutor_Start:
-	lock
-	faceplayer
-	msgbox gText_metatutor_1 0x5
-	compare LASTRESULT 0x0
-	if 0x1 _call EventScript_metatutor_Cancel
-	showmoney 0x35 0x00 0x00
-	goto FirstList 
-
-FirstList: 
-	setvar 0x8006 0x0 @first item
-	loadpointer 0x0 gText_metatutor_Text1
-	special 0x25
-	setvar 0x8006 0x1 @second item
-	loadpointer 0x0 gText_metatutor_Text2
-	special 0x25
-	setvar 0x8006 0x2 @3rd item
-	loadpointer 0x0 gText_metatutor_Text3
-	special 0x25
-	setvar 0x8006 0x3 @4th item
-	loadpointer 0x0 gText_metatutor_Text4
-	special 0x25
-	setvar 0x8006 0x4 @5th item
-	loadpointer 0x0 gText_metatutor_Text5
-	special 0x25
-	setvar 0x8006 0x5 @6th item
-	loadpointer 0x0 gText_metatutor_Text6
-	special 0x25
-	setvar 0x8006 0x6 @7th item
-	loadpointer 0x0 gText_metatutor_TextViewMore
-	special 0x25
-	preparemsg gText_metatutor_Msg
-	waitmsg
-	multichoice 0x0 0x0 0x25 0x0
-	compare LASTRESULT 0x0
-	if 0x1 _goto EventScript_metatutor_Firstoption
-	compare LASTRESULT 0x1
-	if 0x1 _goto EventScript_metatutor_Secondoption
-	compare LASTRESULT 0x2
-	if 0x1 _goto EventScript_metatutor_Thirdoption
-	compare LASTRESULT 0x3
-	if 0x1 _goto EventScript_metatutor_Fourthoption
-	compare LASTRESULT 0x4
-	if 0x1 _goto EventScript_metatutor_Fifthoption
-	compare LASTRESULT 0x5
-	if 0x1 _goto EventScript_metatutor_Sixthoption
-	compare LASTRESULT 0x6
-	if 0x1 _goto SecondList
-	hidemoney 0x35 0x00
-	release
-	end
-
-SecondList: 
-	setvar 0x8006 0x0 @first item
-	loadpointer 0x0 gText_metatutor_Text7 @Phantom Force 
-	special 0x25
-	setvar 0x8006 0x1 @second item
-	loadpointer 0x0 gText_metatutor_Text8 @Flare Blitz 
-	special 0x25
-	setvar 0x8006 0x2 @3rd item
-	loadpointer 0x0 gText_metatutor_Text9 @Stored Power 
-	special 0x25
-	setvar 0x8006 0x3 @4th item
-	loadpointer 0x0 gText_metatutor_Text10 @Gunk Shot 
-	special 0x25
-	setvar 0x8006 0x4 @5th item
-	loadpointer 0x0 gText_metatutor_Text11 @Power Gem 
-	special 0x25
-	setvar 0x8006 0x5 @6th item
-	loadpointer 0x0 gText_metatutor_Exit
-	special 0x25
-	preparemsg gText_metatutor_Msg
-	waitmsg
-	multichoice 0x0 0x0 0x24 0x0
-	compare LASTRESULT 0x0
-	if 0x1 _goto EventScript_metatutor_PhantomForce
-	compare LASTRESULT 0x1
-	if 0x1 _goto EventScript_metatutor_FlareBlitz
-	compare LASTRESULT 0x2
-	if 0x1 _goto EventScript_metatutor_StoredPower
-	compare LASTRESULT 0x3
-	if 0x1 _goto EventScript_metatutor_GunkShot
-	compare LASTRESULT 0x4
-	if 0x1 _goto EventScript_metatutor_PowerGem
-	compare LASTRESULT 0x5
-	if 0x1 _goto EventScript_metatutor_CancelHide 
-	goto FirstList 
-	release
-	end
-
 .global EventScript_metatutor_Start2
 EventScript_metatutor_Start2:
 	lock
@@ -650,7 +559,7 @@ EventScript_metatutor_Endofscript:
 	hidemoney 0x35 0x00
 	release
 	end
-
+	
 .global EventScript_therianforms_Start
 EventScript_therianforms_Start:
 	lock

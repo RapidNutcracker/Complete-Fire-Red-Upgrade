@@ -29,11 +29,13 @@ EventScript_NatureChanger:
 FirstList2:
     setvar 0x8000 0x6
     setvar 0x8001 0x6
+    copyvar 0x5106 0x8004
     setvar 0x8004 0x0 
     preparemsg gText_NatureChanger2 
     waitmsg
     special 0x158
     waitstate 
+    copyvar 0x8004 0x5106  
     compare LASTRESULT 0x0
     if 0x1 _goto Adamant
     compare LASTRESULT 0x1

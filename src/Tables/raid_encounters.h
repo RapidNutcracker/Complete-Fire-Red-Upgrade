@@ -102,7 +102,7 @@ static struct Raid sRoute3Raids1Star[] =
 static struct Raid sViridianForestRaids3Star[] =
 {
 	{
-		.species = SPECIES_ANORITH,
+		.species = SPECIES_GOURGEIST_XL,
 		.ability = RAID_ABILITY_HIDDEN,
 		.drops =
 		{
@@ -121,7 +121,7 @@ static struct Raid sViridianForestRaids3Star[] =
 		},
 	},
 	{
-		.species = SPECIES_LILEEP,
+		.species = SPECIES_GOLURK,
 		.ability = RAID_ABILITY_HIDDEN,
 		.drops =
 		{
@@ -1971,8 +1971,8 @@ static struct Raid sRoute15Raids3Star[] =
 static struct Raid sPokemonMansionRaids3Star[] =
 {
 	{
-		.species = SPECIES_ARCHEOPS,
-		.ability = RAID_ABILITY_1,
+		.species = SPECIES_FLOATZEL,
+		.ability = RAID_ABILITY_HIDDEN,
 		.drops =
 		{
 			/*100 %*/ ITEM_STAR_PIECE,
@@ -1990,8 +1990,8 @@ static struct Raid sPokemonMansionRaids3Star[] =
 		},
 	},
 	{
-		.species = SPECIES_CARRACOSTA,
-		.ability = RAID_ABILITY_1,
+		.species = SPECIES_MAGCARGO,
+		.ability = RAID_ABILITY_HIDDEN,
 		.drops =
 		{
 			/*100 %*/ ITEM_STAR_PIECE,

@@ -247,3 +247,15 @@ EventScript_newdaycare_Receiveegg:
 EventScript_newdaycare_Copyvar:
 	copyvar 0x8012 0x8013
 	return
+
+.global EventScript_NewThiefInfo
+EventScript_NewThiefInfo:
+	msgbox gText_Cerulean_NewThiefInfo MSG_FACE 
+	release 
+	end 
+
+.global EventScript_RedShardInfo
+EventScript_RedShardInfo:
+	msgbox gText_Cerulean_RedShardInfo MSG_FACE 
+	release 
+	end 

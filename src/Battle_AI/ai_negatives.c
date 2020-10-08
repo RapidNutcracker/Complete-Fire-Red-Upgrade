@@ -1287,6 +1287,7 @@ MOVESCR_CHECK_0:
 			if (IsOfType(bankDef, TYPE_GRASS)
 			|| data->defStatus3 & STATUS3_LEECHSEED
 			|| data->defAbility == ABILITY_LIQUIDOOZE
+			|| data->defAbility == ABILITY_MAGICGUARD
 			|| PARTNER_MOVE_EFFECT_IS_SAME)
 				DECREASE_VIABILITY(10);
 			break;
@@ -1705,6 +1706,11 @@ MOVESCR_CHECK_0:
 
 				goto AI_LOWER_EVASION;
 			}
+			else if (move == MOVE_RAPID_SPIN && (IsOfType(bankDef, TYPE_GRASS))
+			{
+				DECREASE_VIABILITY(10);
+				break; 
+			}
 			else if ((data->atkStatus2 & STATUS2_WRAPPED) || (data->atkStatus3 & STATUS3_LEECHSEED))
 				goto AI_STANDARD_DAMAGE;
 
@@ -1912,7 +1918,7 @@ MOVESCR_CHECK_0:
 		case EFFECT_TAUNT:
 			if (IsTaunted(bankDef)
 			|| PARTNER_MOVE_EFFECT_IS_SAME)
-				DECREASE_VIABILITY(1);
+				DECREASE_VIABILITY(10); //added 
 			break;
 
 		case EFFECT_FOLLOW_ME:

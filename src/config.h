@@ -135,7 +135,7 @@ enum //These vars need to be one after the other (hence the enum)
 #define NUM_TRAINER_CLASSES 107 //Vanilla FR has 107
 #define EVOS_PER_MON 16 //The number of maximum evolutions per Pokemon. Vanilla FR has 5. DPE has 16!!!
 #define EV_CAP 252 //Also change this in the file "asm_defines.s" found in the root
-#define POWER_ITEM_EV_YIELD 8 //Set to 4 for older mechanic
+#define POWER_ITEM_EV_YIELD 16 //Set to 4 for older mechanic
 
 #define DUSK_BALL_MULTIPLIER 30 //Change this line to 35 to make the catch rate for the Dusk Ball 3.5x like before Gen 7
 #define STANDARD_IV 10 //Change this to be the number of IVs Pokemon owned by random trainers should have (all stats will have this number)
@@ -191,7 +191,7 @@ enum //These vars need to be one after the other (hence the enum)
 #define FLAG_ABILITY_RANDOMIZER 0x942 //Setting randomizes Pokemon abilities.
 #define FLAG_WONDER_TRADE 0x943 
 #define FLAG_EXPERT_DIFFICULTY 0x93A 
-#define NUM_SPECIES_RANDOMIZER NUM_SPECIES //NUM_SPECIES_GEN_7 The final number of Pokemon (+ 1) of species that can appear in the randomizer. Change to NUM_SPECIES for Gen 8
+#define NUM_SPECIES_RANDOMIZER NUM_SPECIES //NUM_SPECIES_GEN_7 The final number of Pokemon (+ 1) of species that can appear in the randomizer
 
 /*===== Pre-existing Offsets =====*/
 //#define EXISTING_FOSSIL_IMAGE_TABLE_ADDRESS 0x81a4600 //Uncomment this if you've already inserted a fossil image table

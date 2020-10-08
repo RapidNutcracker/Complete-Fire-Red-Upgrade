@@ -97,9 +97,10 @@ enum Block_A
 	ET_Grassy_Terrain,
 	ET_Hydration_ShedSkin_Healer,
 	ET_Item_Effects,
+	ET_Switch_Out_Abilities,
+	MAX_CASES_BLOCK_A,
 };
 
-#define MAX_CASES_BLOCK_A 5
 
 enum Block_B
 {
@@ -107,9 +108,10 @@ enum Block_B
 	ET_SpeedBoost_Moody_BadDreams_SlowStart,
 	ET_Orbz,
 	ET_Harvest_Pickup,
+	MAX_CASES_BLOCK_B,
 };
 
-#define MAX_CASES_BLOCK_B 4
+// #define MAX_CASES_BLOCK_B 4
 
 #define TURNBASED_MAX_CASE ET_End
 
@@ -936,7 +938,13 @@ u8 TurnBasedEffects(void)
 					&& --gNewBS->AuroraVeilTimers[gBattleStruct->turnEffectsBank] == 0)
 					{
 						gBankAttacker = gBankTarget = gActiveBattler = gBattleStruct->turnEffectsBank;
-						BattleScriptExecute(BattleScript_AuroraVeilEnd);
+						gBattleStringLoader = gText_SideStatusWoreOff;
+						BattleScriptExecute(BattleScript_PrintCustomStringEnd2);
+						gBattleTextBuff1[0] = B_BUFF_PLACEHOLDER_BEGIN;
+						gBattleTextBuff1[1] = B_TXT_COPY_VAR_1;
+						gBattleTextBuff1[2] = MOVE_AURORAVEIL & 0xFF;
+						gBattleTextBuff1[3] = MOVE_AURORAVEIL >> 8;
+						gBattleTextBuff1[4] = EOS;
 						effect++;
 					}
 					break;

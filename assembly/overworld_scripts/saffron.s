@@ -20,9 +20,15 @@ EventScript_Saffron_Nerd:
     waitstate 
     compare 0x8004 0x6
     if greaterorequal _goto NahImGood
-    callasm SetChosenMonHiddenAbility + 1
-    compare LASTRESULT 0x0 
+	callasm CheckChosenMonHiddenAbility + 1
+	compare LASTRESULT 0x0 
     if equal _goto DontHaveHidden
+	msgbox gText_AbilityCapsuleOfferChange MSG_YESNO 
+	compare LASTRESULT NO 
+	if equal _goto NahImGood
+    callasm SetChosenMonHiddenAbility + 1
+    @ compare LASTRESULT 0x0 
+    @ if equal _goto DontHaveHidden
     msgbox gText_Saffron_NerdGiveItem MSG_FACE
     msgbox gText_Saffron_NerdAfter MSG_FACE
     removeitem ITEM_BOTTLE_CAP 0x1

@@ -863,7 +863,7 @@ bool8 SetMoveEffect2(void)
 				break;
 			}
 			else if (ITEM(gEffectBank) == 0
-			||  ITEM(gBankAttacker) != 0
+			// ||  ITEM(gBankAttacker) != 0
 			||  !CanTransferItem(SPECIES(gEffectBank), ITEM(gEffectBank))
 			||  !CanTransferItem(SPECIES(gBankAttacker), ITEM(gEffectBank))
 			||	!BATTLER_ALIVE(gBankAttacker))
@@ -887,18 +887,18 @@ bool8 SetMoveEffect2(void)
 			{
 				gLastUsedItem = gBattleMons[gEffectBank].item;
 				gBattleMons[gEffectBank].item = 0;
-				gBattleMons[gBankAttacker].item = gLastUsedItem;
+				// gBattleMons[gBankAttacker].item = gLastUsedItem;
 				HandleUnburdenBoost(gEffectBank); //Give target Unburden boost
-				HandleUnburdenBoost(gBankAttacker); //Remove attacker's Unburden boost
+				// HandleUnburdenBoost(gBankAttacker); //Remove attacker's Unburden boost
 
-				gActiveBattler = gBankAttacker;
-				EmitSetMonData(0, REQUEST_HELDITEM_BATTLE, 0, 2, &gLastUsedItem);
-				MarkBufferBankForExecution(gActiveBattler);
+				// gActiveBattler = gBankAttacker;
+				// EmitSetMonData(0, REQUEST_HELDITEM_BATTLE, 0, 2, &gLastUsedItem);
+				// MarkBufferBankForExecution(gActiveBattler);
 
 				gActiveBattler = gEffectBank;
 				EmitSetMonData(0, REQUEST_HELDITEM_BATTLE, 0, 2, &gBattleMons[gActiveBattler].item);
 				MarkBufferBankForExecution(gActiveBattler);
-
+				AddBagItem(gLastUsedItem, 1);
 				BattleScriptPushCursor();
 				gBattlescriptCurrInstr = BattleScript_ItemSteal;
 
