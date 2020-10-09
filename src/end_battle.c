@@ -54,9 +54,9 @@ const u16 gEndBattleFlagClearTable[] =
 #ifdef FLAG_SCALE_WILD_BOSS_LEVEL
 	FLAG_SCALE_WILD_BOSS_LEVEL,
 #endif
-//#ifdef FLAG_DOUBLE_WILD_BATTLE
-	// FLAG_DOUBLE_WILD_BATTLE,
-//#endif
+#ifdef FLAG_DOUBLE_WILD_BATTLE
+	FLAG_DOUBLE_WILD_BATTLE,
+#endif
 #ifdef FLAG_SHINY_CREATION
 	FLAG_SHINY_CREATION,
 #endif
@@ -123,6 +123,20 @@ void HandleEndTurn_BattleWon(void)
 	}
 	else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER && !(gBattleTypeFlags & BATTLE_TYPE_LINK))
 	{
+		u8 count = CalculatePlayerPartyCount();
+		//If any pokemon in party has amulet coin double prize money
+		for (int i = 0; i < count; ++i)
+		{
+			if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG, NULL))
+			{
+				u8 item = GetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, NULL);
+				if (ItemId_GetHoldEffect(item) == ITEM_EFFECT_DOUBLE_PRIZE)
+				{
+					gBattleStruct->moneyMultiplier *= 2;
+					break;
+				}
+			}
+		}
 		BattleStopLowHpSound();
 		gBattlescriptCurrInstr = BattleScript_Victory;
 
@@ -336,8 +350,8 @@ bool8 AreAllKindsOfRunningPrevented(void)
 u8 IsRunningFromBattleImpossible(void)
 {
 	u8 itemEffect;
-	u8 side;
-	int i;
+	// u8 side;
+	// int i;
 
 	itemEffect = ITEM_EFFECT(gActiveBattler);
 	gStringBank = gActiveBattler;
@@ -353,40 +367,40 @@ u8 IsRunningFromBattleImpossible(void)
 	else if (IsOfType(gActiveBattler, TYPE_GHOST))
 		return FALSE;
 
-	side = SIDE(gActiveBattler);
+	// side = SIDE(gActiveBattler);
 
-	for (i = 0; i < gBattlersCount; i++)
-	{
-		if (ABILITY(gActiveBattler) != ABILITY_SHADOWTAG //Shadow Tag's not affected by Shadow Tag
-		&& side != SIDE(i)
-		&& ABILITY(i) == ABILITY_SHADOWTAG)
-		{
-			gBattleScripting.bank = i;
-			gLastUsedAbility = ABILITY(i);
-			gBattleCommunication[MULTISTRING_CHOOSER] = 2;
-			return ABILITY_PREVENTING_ESCAPE;
-		}
+	// for (i = 0; i < gBattlersCount; i++)
+	// {
+	// 	// if (ABILITY(gActiveBattler) != ABILITY_SHADOWTAG //Shadow Tag's not affected by Shadow Tag
+	// 	// && side != SIDE(i)
+	// 	// && ABILITY(i) == ABILITY_SHADOWTAG)
+	// 	// {
+	// 	// 	gBattleScripting.bank = i;
+	// 	// 	gLastUsedAbility = ABILITY(i);
+	// 	// 	gBattleCommunication[MULTISTRING_CHOOSER] = 2;
+	// 	// 	return ABILITY_PREVENTING_ESCAPE;
+	// 	// }
 
-		if (side != SIDE(i)
-		&& ABILITY(i) == ABILITY_ARENATRAP
-		&& CheckGrounding(gActiveBattler))
-		{
-			gBattleScripting.bank = i;
-			gLastUsedAbility = ABILITY(i);
-			gBattleCommunication[MULTISTRING_CHOOSER] = 2;
-			return ABILITY_PREVENTING_ESCAPE;
-		}
+	// 	// if (side != SIDE(i)
+	// 	// && ABILITY(i) == ABILITY_ARENATRAP
+	// 	// && CheckGrounding(gActiveBattler))
+	// 	// {
+	// 	// 	gBattleScripting.bank = i;
+	// 	// 	gLastUsedAbility = ABILITY(i);
+	// 	// 	gBattleCommunication[MULTISTRING_CHOOSER] = 2;
+	// 	// 	return ABILITY_PREVENTING_ESCAPE;
+	// 	// }
 
-		if (i != gActiveBattler
-		&& ABILITY(i) == ABILITY_MAGNETPULL
-		&& IsOfType(gActiveBattler, TYPE_STEEL))
-		{
-			gBattleScripting.bank = i;
-			gLastUsedAbility = ABILITY(i);
-			gBattleCommunication[MULTISTRING_CHOOSER] = 2;
-			return ABILITY_PREVENTING_ESCAPE;
-		}
-	}
+	// 	if (i != gActiveBattler
+	// 	&& ABILITY(i) == ABILITY_MAGNETPULL
+	// 	&& IsOfType(gActiveBattler, TYPE_STEEL))
+	// 	{
+	// 		gBattleScripting.bank = i;
+	// 		gLastUsedAbility = ABILITY(i);
+	// 		gBattleCommunication[MULTISTRING_CHOOSER] = 2;
+	// 		return ABILITY_PREVENTING_ESCAPE;
+	// 	}
+	// }
 
 	if ((gBattleMons[gActiveBattler].status2 & (STATUS2_ESCAPE_PREVENTION | STATUS2_WRAPPED))
 	|| (gStatuses3[gActiveBattler] & STATUS3_SKY_DROP_TARGET))
@@ -739,8 +753,11 @@ static void EndBattleFlagClear(void)
 	&& gCurrentDexNavChain < 100
 	&& (gBattleOutcome == B_OUTCOME_WON || gBattleOutcome == B_OUTCOME_CAUGHT))
 		++gCurrentDexNavChain;
+	else if (gCurrentDexNavChain > 100)
+		gCurrentDexNavChain = 99;
 	else
 		gCurrentDexNavChain = 0;
+		
 	gDexNavStartedBattle = FALSE;
 
 	u16 backup = gTrainerBattleOpponent_B;

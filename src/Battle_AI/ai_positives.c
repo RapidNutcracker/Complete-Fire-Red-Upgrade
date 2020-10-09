@@ -117,6 +117,9 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 					INCREASE_VIABILITY(4); //Counteract the negative check
 				}
 			}
+			else if (AnyUsefulStatIsRaised(bankDef))
+				INCREASE_VIABILITY(5);
+
 			break;
 
 		case EFFECT_MIRROR_MOVE: //May cause issues with priority calcs?

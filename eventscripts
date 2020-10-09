@@ -336,7 +336,7 @@ npc 3 7 11 EventScript_Cut
 npc 3 7 12 EventScript_Cut 
 npc 3 7 13 EventScript_Cut 
 npc 11 9 1 EventScript_Fuschia_EggTutor
-npc 11 9 2 EventScript_Fuschia_DoubleBattle
+# npc 11 9 2 EventScript_Fuschia_DoubleBattle
 npc 3 7 14 EventScript_substitute_Start
 tile 3 7 0 EventScript_brendanfuschia_Start
 npc 3 7 17 EventScript_nursegivemedicine_Start

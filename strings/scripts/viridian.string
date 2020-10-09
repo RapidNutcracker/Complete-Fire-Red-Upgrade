@@ -53,7 +53,7 @@ I haven't had a loss like that in\na while! But, that was rather fun. \p[.][GREE
 I have some errands to run in [LIGHT_GREEN]Vir-\nidian.\p[BLUE]Until we meet again, [GREEN][PLAYER]!
 
 #org @gText_DoYouWantRandomizer
-Do you want to set the\nrandomizer option?\pThis randomizes encounters, trainers,\nand gifts, but not boss battles.\pThis cannot be turned back on\nor off.\pMany legendaries cannot be\nencountered.\pDo you want to set the randomizer\noption? 
+Do you want to set the\nrandomizer option?\pThis randomizes encounters, trainers,\nand gifts, but not boss battles.\pThis cannot be turned back on\nor off.\pMany legendaries cannot be\nencountered.\pBe warned, as this mode is buggy at the\nmoment and can result in freezes.\pDo you want to set the randomizer\noption? 
 
 #org @gText_RandomizerSet
 Randomizer mode has been set! 

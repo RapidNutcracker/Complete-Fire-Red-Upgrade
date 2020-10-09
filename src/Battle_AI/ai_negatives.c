@@ -1706,7 +1706,7 @@ MOVESCR_CHECK_0:
 
 				goto AI_LOWER_EVASION;
 			}
-			else if (move == MOVE_RAPID_SPIN && (IsOfType(bankDef, TYPE_GRASS))
+			else if (move == MOVE_RAPIDSPIN && (IsOfType(bankDef, TYPE_GHOST))) //do not use rapid spin if opponent is a ghost type
 			{
 				DECREASE_VIABILITY(10);
 				break; 
@@ -2208,6 +2208,13 @@ MOVESCR_CHECK_0:
 			{
 				switch (move) {
 					case MOVE_QUIVERDANCE:
+						if(data->defAbility == ABILITY_DANCER)
+							DECREASE_VIABILITY(10);
+						if (STAT_STAGE(bankAtk, STAT_STAGE_SPEED) >= STAT_STAGE_MAX
+						&& (STAT_STAGE(bankAtk, STAT_STAGE_SPATK) >= STAT_STAGE_MAX || !SpecialMoveInMoveset(bankAtk))
+						&&  STAT_STAGE(bankAtk, STAT_STAGE_SPDEF) >= STAT_STAGE_MAX)
+							DECREASE_VIABILITY(10);
+						break; 
 					case MOVE_GEOMANCY:
 						if (STAT_STAGE(bankAtk, STAT_STAGE_SPEED) >= STAT_STAGE_MAX
 						&& (STAT_STAGE(bankAtk, STAT_STAGE_SPATK) >= STAT_STAGE_MAX || !SpecialMoveInMoveset(bankAtk))
@@ -2688,7 +2695,9 @@ MOVESCR_CHECK_0:
 					break;
 				}
 			}
-
+			else if ( Random() % 2 == 0) {
+				DECREASE_VIABILITY(10);
+			}
 			//If the foe has move prediction, assume damage move for now.
 			goto AI_STANDARD_DAMAGE;
 

@@ -7,7 +7,7 @@
  */
 
 //15 seconds is the time out. Max of 1092 seconds allowed
-#define DEXNAV_TIMEOUT 15
+#define DEXNAV_TIMEOUT 20
 
 //Tile amount
 #define SNEAKING_PROXIMITY 5

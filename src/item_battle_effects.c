@@ -103,9 +103,9 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn, bool8 doPluck)
 	switch (caseID) {
 	case ItemEffects_SwitchIn:
 		switch (bankHoldEffect) {
-			case ITEM_EFFECT_DOUBLE_PRIZE:
-				gBattleStruct->moneyMultiplier *= 2;
-				break;
+			// case ITEM_EFFECT_DOUBLE_PRIZE:
+			// 	gBattleStruct->moneyMultiplier *= 2;
+			// 	break;
 
 			case ITEM_EFFECT_RESTORE_STATS:
 				for (i = 0; i < BATTLE_STATS_NO-1; i++) {

@@ -828,39 +828,39 @@ static void Task_ManageDexNavHUD(u8 taskId)
 	gTasks[taskId].data[1]++;
 	if (gTasks[taskId].data[1] > DEXNAV_TIMEOUT * 60)
 	{
-		gCurrentDexNavChain = 0; //A Pokemon running like this resets the chain
+		// gCurrentDexNavChain = 0; //A Pokemon running like this resets the chain
 		DestroyTask(taskId);
 		DexNavFreeHUD();
 		DexNavShowFieldMessage(FIELD_MSG_GOT_AWAY);
 		return;
 	}
 
-	if (sDexNavHudPtr->proximity <= SNEAKING_PROXIMITY && TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_DASH | PLAYER_AVATAR_FLAG_BIKE)) //If player is close and running then the Pokemon should flee
-	{
-		gCurrentDexNavChain = 0; //A Pokemon running like this resets the chain
-		DestroyTask(taskId);
-		DexNavFreeHUD();
-		DexNavShowFieldMessage(FIELD_MSG_SNEAK_NEXT_TIME);
-		return;
-	}
+	// if (sDexNavHudPtr->proximity <= SNEAKING_PROXIMITY && TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_DASH | PLAYER_AVATAR_FLAG_BIKE)) //If player is close and running then the Pokemon should flee
+	// {
+	// 	// gCurrentDexNavChain = 0; //A Pokemon running like this resets the chain
+	// 	DestroyTask(taskId);
+	// 	DexNavFreeHUD();
+	// 	DexNavShowFieldMessage(FIELD_MSG_SNEAK_NEXT_TIME);
+	// 	return;
+	// }
 
-	//Check if script just executed
-	if (ScriptContext2_IsEnabled() == TRUE)
-	{
-		//gCurrentDexNavChain = 0; //Not fair because of the repel pop up
-		DestroyTask(taskId);
-		DexNavFreeHUD();
-		return;
-	}
+	//Check if script just executed removed this
+	// if (ScriptContext2_IsEnabled() == TRUE)
+	// {
+	// 	//gCurrentDexNavChain = 0; //Not fair because of the repel pop up
+	// 	DestroyTask(taskId);
+	// 	DexNavFreeHUD();
+	// 	return;
+	// }
 
-	if (gMain.newKeys & (B_BUTTON | START_BUTTON))
-	{
-		gCurrentDexNavChain = 0; //A Pokemon running like this resets the chain
-		DestroyTask(taskId);
-		DexNavFreeHUD();
-		PlaySE(SE_POKENAV_OFF);
-		return;
-	}
+	// if (gMain.newKeys & (B_BUTTON | START_BUTTON))
+	// {
+	// 	// gCurrentDexNavChain = 0; //A Pokemon running like this resets the chain
+	// 	DestroyTask(taskId);
+	// 	DexNavFreeHUD();
+	// 	PlaySE(SE_POKENAV_OFF);
+	// 	return;
+	// }
 
 	//Caves and water the pokemon moves around added here
 	// if ((sDexNavHudPtr->environment == ENCOUNTER_TYPE_WATER || !IsMapTypeOutdoors(GetCurrentMapType()))
@@ -1585,6 +1585,11 @@ static void PrintDexNavError(void)
 		PrintDexNavMessage(MESSAGE_NO_DATA); //No data in slot
 		PlaySE(SE_ERROR);
 	}
+	// else if (GetCurrentRegionMapSectionId() == MAPSEC_POKEMON_TOWER && !CheckBagHasItem(ITEM_SILPH_SCOPE, 1)) 
+	// {
+	// 	PrintDexNavMessage(MESSAGE_NO_DATA); //No data in slot
+	// 	PlaySE(SE_ERROR);
+	// }
 	else //Selected unidentified Pokemon
 	{
 		if (Overworld_GetFlashLevel() > 0)
@@ -1917,6 +1922,8 @@ static bool8 SpeciesInArray(u16 species, u8 indexCount, u8 unownLetter)
 			{
 				u16 wildSpecies = sDexNavGuiPtr->grassSpecies[i];
 				TryRandomizeSpecies(&wildSpecies);
+				// if (GetCurrentRegionMapSectionId() == MAPSEC_POKEMON_TOWER && !CheckBagHasItem(ITEM_SILPH_SCOPE, 1))
+				// 	return FALSE; 
 				if (SpeciesToNationalPokedexNum(wildSpecies) == dexNum)
 					return TRUE;
 			}
@@ -1945,7 +1952,7 @@ static void DexNavPopulateEncounterList(void)
 
 	sDexNavGuiPtr->hiddenSpecies[0] = SPECIES_TABLES_TERMIN;
 
-	if (landMonsInfo != NULL)
+	if (landMonsInfo != NULL && (GetCurrentRegionMapSectionId() != MAPSEC_POKEMON_TOWER || CheckBagHasItem(ITEM_SILPH_SCOPE, 1)))  //to fix pokemon tower bug 
 	{
 		for (int i = 0; i < NUM_LAND_MONS; ++i)
 		{

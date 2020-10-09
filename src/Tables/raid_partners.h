@@ -1066,7 +1066,7 @@ static const struct BattleTowerSpread sRaidPartnerSpread_Marlon_Rank56[] =
 		.forSingles = TRUE,
 		.forDoubles = TRUE,
 		.modifyMovesDoubles = FALSE,
-		.gigantamax = TRUE,
+		// .gigantamax = TRUE,
 	},
 	{
 		.species = SPECIES_KROOKODILE,
@@ -1418,7 +1418,7 @@ static const struct BattleTowerSpread sRaidPartnerSpread_May_Rank12[] =
 		.forSingles = TRUE,
 		.forDoubles = TRUE,
 		.modifyMovesDoubles = FALSE,
-		.gigantamax = TRUE,
+		// .gigantamax = TRUE,
 	},
 	{
 		.species = SPECIES_ELECTRIKE,
@@ -1501,7 +1501,7 @@ static const struct BattleTowerSpread sRaidPartnerSpread_May_Rank3[] =
 		.forSingles = TRUE,
 		.forDoubles = TRUE,
 		.modifyMovesDoubles = FALSE,
-		.gigantamax = TRUE,
+		// .gigantamax = TRUE,
 	},
 	{
 		.species = SPECIES_MANECTRIC,
@@ -1584,7 +1584,7 @@ static const struct BattleTowerSpread sRaidPartnerSpread_May_Rank6[] =
 		.forSingles = TRUE,
 		.forDoubles = TRUE,
 		.modifyMovesDoubles = FALSE,
-		.gigantamax = TRUE,
+		// .gigantamax = TRUE,
 	},
 	{
 		.species = SPECIES_LATIAS,

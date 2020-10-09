@@ -860,6 +860,7 @@ struct NewBattleStruct
 	bool8 handlingFaintSwitching : 1;
 	bool8 doingPluckItemEffect : 1;
 	bool8 usedXSpDef : 1; //Needed because it's hooked into the X Sp. Atk
+	// bool8 amuletCoinSent : 1;
 
 	//Other
 	u16 LastUsedMove;

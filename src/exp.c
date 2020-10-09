@@ -766,7 +766,7 @@ static void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
 
 		//Check Macho Brace
 		if (holdEffect == ITEM_EFFECT_MACHO_BRACE && itemQuality == QUALITY_MACHO_BRACE)
-			evIncrease *= 2;
+			evIncrease *= 4;
 
 		AddEVs(mon, stat, evIncrease);
 
