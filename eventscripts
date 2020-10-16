@@ -39,13 +39,14 @@ npc 1 0 11 EventScript_viridianforesttutor_Forestmovetutor
 tile 1 0 1 EventScript_brendanbattleleft_Start
 tile 1 0 0 EventScript_brendanbattleright_Start
 npc 1 0 16 EventScript_ViridianForest_Buterfree
-tile 1 0 2 EventScript_virizion_Start
+# tile 1 0 2 EventScript_virizion_Start
 npc 1 0 13 EventScript_RockSmash 
 npc 1 0 14 EventScript_RockSmash 
 npc 1 0 15 EventScript_RockSmash 
 npc 3 1 9 EventScript_giovannicheck_Start
 npc 1 0 17 EventScript_xscissor_Start
 npc 1 0 18 EventScript_ViridianForestRaid 
+npc 1 0 19 EventScript_Virizion_OW
 
 # PEWTER CITY
 tile 3 2 7 EventScript_falknercheck_Start
@@ -89,7 +90,8 @@ tile 1 3 2 EventScript_adminmtmoonleft_Start
 npc 1 2 0 EventScript_RockSmash 
 npc 1 2 1 EventScript_RockSmash 
 npc 1 2 2 EventScript_RockSmash 
-tile 1 3 3 EventScript_cobalion_Start
+# tile 1 3 3 EventScript_cobalion_Start
+npc 1 3 13 EventScript_cobalion_OW
 
 #CERULEAN 
 npc 7 3 7 EventScript_NatureChanger 
@@ -156,6 +158,7 @@ npc 3 5 8 EventScript_WonderTrade3
 # npc 9 7 0 EventScript_WonderTrade3
 # npc 3 5 8 EventScript_Verm_EXPShare
 npc 3 5 0 EventScript_Verm_newTruant
+npc 9 1 1 EventScript_Verm_NewHMs
 
 #SS Anne 
 npc 1 20 1 EventScript_SSAnne_CantForget
@@ -196,7 +199,8 @@ npc 1 82 23 EventScript_RockSmash
 npc 1 82 24 EventScript_RockSmash 
 npc 1 82 25 EventScript_RockSmash 
 npc 1 82 27 EventScript_RockTunnel_Coalossalite
-tile 1 82 0 EventScript_terrakion_Start
+# tile 1 82 0 EventScript_terrakion_Start
+npc 1 82 28 EventScript_terrakion_OW
 
 #Lavender Town 
 npc 8 2 6 EventScript_morty_Start
@@ -301,8 +305,9 @@ npc 3 34 10 EventScript_Route16Raid
 npc 25 2 2 EventScript_startersmegastone_Start
 tile 3 30 0 EventScript_checkerikasabrina2_Start
 tile 3 30 1 EventScript_checkerikasabrina2_Start
-npc 3 34 11 EventScript_Route16_BodyPress
-
+# npc 3 34 11 EventScript_Route16_BodyPress
+npc 3 34 11 EventScript_Route16_TMWingbeat
+npc 3 34 9 EventScript_snorlaxencounter_Start2
 #Route 12
 npc 3 30 8 EventScript_Cut 
 npc 3 30 13 EventScript_Cut 
@@ -321,6 +326,7 @@ npc 3 32 11 EventScript_Cut
 npc 3 32 12 EventScript_Cut 
 npc 3 32 15 EventScript_powerbelt_Start
 npc 3 32 16 EventScript_Route14Raid
+npc 3 30 4 EventScript_snorlaxencounter_Start
 
 #Route 15
 npc 3 33 14 EventScript_Route15Raid
@@ -336,7 +342,7 @@ npc 3 7 11 EventScript_Cut
 npc 3 7 12 EventScript_Cut 
 npc 3 7 13 EventScript_Cut 
 npc 11 9 1 EventScript_Fuschia_EggTutor
-# npc 11 9 2 EventScript_Fuschia_DoubleBattle
+npc 11 9 2 EventScript_Fuschia_DoubleBattle
 npc 3 7 14 EventScript_substitute_Start
 tile 3 7 0 EventScript_brendanfuschia_Start
 npc 3 7 17 EventScript_nursegivemedicine_Start
@@ -371,11 +377,12 @@ npc 1 86 2 EventScript_newstrength_Start
 npc 1 86 3 EventScript_newstrength_Start
 npc 1 86 4 EventScript_newstrength_Start
 npc 1 86 5 EventScript_newstrength_Start
-tile 1 84 0 EventScript_SeafoamIslands_Keldeo
+# tile 1 84 0 EventScript_SeafoamIslands_Keldeo
 npc 1 84 2 EventScript_Seafoam_Laprasite
 npc 1 85 2 EventScript_Seafoam_Abomasite
 npc 1 84 3 EventScript_Seafoam_TM70
 npc 1 83 3 EventScript_SeafoamIslandsRaid 
+npc 1 84 4 EventScript_Keldeo_OW
 
 #Route 19
 npc 3 37 12 EventScript_Route19_Drednawite
@@ -466,6 +473,7 @@ tile 1 74 0 EventScript_ceruleangiovanni_Start
 tile 1 74 1 EventScript_e4check_Start
 tile 1 74 3 EventScript_e4check_Start
 tile 1 74 2 EventScript_ceruleangiovanni_Left 
+npc 1 73 16 EventScript_CeruleanCave_BodyPress
 
 #Route 23
 tile 3 42 42 EventScript_FinalBrendan_Fight
@@ -489,6 +497,7 @@ npc 1 40 5 EventScript_VictoryRoad_HeavyDuty
 npc 1 40 13 EventScript_VictoryRoad_Moltres
 npc 1 40 12 EventScript_closecombat_Start
 npc 1 40 14 EventScript_VictoryRoadRaid
+npc 1 41 12 EventScript_VictoryRoad_TM67
 
 #Elite Four/Indigo Plateau 
 npc 13 0 1 EventScript_E4nurse_Start
@@ -499,4 +508,5 @@ npc 1 76 0 EventScript_bruno_Start
 npc 1 77 0 EventScript_agatha_Start
 npc 1 78 0 EventScript_lance_Start
 npc 13 0 3 EventScript_PokemonLeagueChick
+npc 13 0 6 EventScript_E4LanceInfo_Start
 map 13 0 gMapScripts_PkmnLeague

@@ -1732,8 +1732,8 @@ void DetermineRaidSpecies(void)
 	else if (raid->data != NULL)
 	{
 		index = GetRaidRandomNumber() % raid->amount;
+		// TryRandomizeSpecies(&raid->data[index].species); //added 
 		gRaidBattleSpecies = raid->data[index].species;
-
 		if (ShouldTryGigantamaxRaidMon())
 		{
 			altSpecies = GetGigantamaxSpecies(raid->data[index].species, TRUE);

@@ -358,6 +358,8 @@ void atkEF_handleballthrow(void)
 
 		if (IsRaidBattle()) //Dynamax Raid Pokemon can be caught easier
 			odds *= 4;
+		if (FlagGet(FLAG_SYS_GAME_CLEAR))
+			odds *= 3;
 
 		if (ballType != BALL_TYPE_SAFARI_BALL)
 		{

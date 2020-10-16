@@ -3872,8 +3872,15 @@ RecycleBS:
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-.global BS_185_Blank @;Was Revenge
-BS_185_Blank:
+.global BS_185_Poltergeist @;Was Revenge, now is Poltergeist 
+BS_185_Poltergeist:
+	attackcanceler
+	attackstring
+	ppreduce
+	callasm TryPoltergeist
+	pause DELAY_HALFSECOND
+	printstring 0x184
+	waitmessage DELAY_1SECOND
 	goto BS_STANDARD_HIT
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

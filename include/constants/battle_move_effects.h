@@ -185,7 +185,7 @@
 #define EFFECT_SUPERPOWER 182 //+ Close Combat + Dragon Ascent + Hammer Arm + Ice Hammer + Clanging Scales + V-Create + Hyperspace Hole + Hyperspace Fury
 #define EFFECT_MAGIC_COAT 183
 #define EFFECT_RECYCLE 184 //+ Belch
-#define EFFECT_BLANK_185 185
+#define EFFECT_POLTERGEIST 185
 #define EFFECT_BRICK_BREAK 186
 #define EFFECT_YAWN 187
 #define EFFECT_KNOCK_OFF 188

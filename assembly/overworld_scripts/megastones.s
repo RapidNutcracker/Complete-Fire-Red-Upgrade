@@ -5,14 +5,6 @@
 .include "../xse_defines.s"
 .include "../asm_defines.s" 
 
-.global EventScript_VictoryRoad_Salamencite
-EventScript_VictoryRoad_Salamencite:
-    hidesprite 0x800F
-    giveitem ITEM_SALAMENCITE 0x1 MSG_FIND
-    setflag 0x992
-    release
-    end
-
 .global EventScript_VictoryRoad_Snorlaxite
 EventScript_VictoryRoad_Snorlaxite:
     hidesprite 0x800F
@@ -69,14 +61,22 @@ EventScript_Route2_Rest:
     release
     end
 
-.global EventScript_Route16_BodyPress
-EventScript_Route16_BodyPress:
+.global EventScript_CeruleanCave_BodyPress
+EventScript_CeruleanCave_BodyPress:
     hidesprite 0x800F
     giveitem ITEM_TM115 0x1 MSG_FIND
     setflag 0x100B
     release
     end
 
+.global EventScript_Route16_TMWingbeat
+EventScript_Route16_TMWingbeat:
+    hidesprite 0x800F
+    giveitem ITEM_TM100 0x1 MSG_FIND
+    setflag 0x1016
+    release
+    end
+    
 .global EventScript_Route17_HeatCrash
 EventScript_Route17_HeatCrash:
     hidesprite 0x800F
@@ -504,6 +504,14 @@ EventScript_Seafoam_TM70:
     release 
     end 
 
+.global EventScript_VictoryRoad_TM67
+EventScript_VictoryRoad_TM67:
+    hidesprite 0x800F
+    giveitem ITEM_TM67 0x1 MSG_FIND 
+    setflag 0x1015
+    release 
+    end 
+
 .global EventScript_SilphCo_HP
 EventScript_SilphCo_HP:
     hidesprite 0x800F
@@ -561,6 +569,31 @@ Moveback:
     .byte 0x12
     .byte 0xFE
 
+.global EventScript_Keldeo_OW
+EventScript_Keldeo_OW:
+	lock
+    faceplayer
+    cry SPECIES_KELDEO 0x2
+    preparemsg gText_keldeo_12
+    waitmsg
+    waitcry
+    pause 0xA
+    playsong 0x156 0x0
+    waitkeypress
+    wildbattle SPECIES_KELDEO 0x46 0x00
+    special2 LASTRESULT 0xB4
+    compare LASTRESULT 0x4
+    if 0x1 _goto Moveback2
+    fadescreen 0x1
+    hidesprite 0x800F
+    setflag 0x1014
+    fadescreen 0x0
+    release
+    end
+
+Moveback2:
+    release 
+    end
 
 .global EventScript_VictoryRoad_Moltres
 EventScript_VictoryRoad_Moltres:
@@ -583,8 +616,3 @@ EventScript_VictoryRoad_Moltres:
     fadescreen 0x0
     release
     end
-
-Moveback2:
-    release 
-    end
-

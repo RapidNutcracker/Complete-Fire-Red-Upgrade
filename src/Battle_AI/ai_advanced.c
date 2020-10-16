@@ -409,6 +409,7 @@ u8 PredictFightingStyle(const u16* const moves, const u8 ability, const u8 itemE
 				++attackMoveNum;
 
 			switch (moveEffect) {
+				case EFFECT_ATTACK_UP_HIT:
 				case EFFECT_ATTACK_UP:
 				case EFFECT_DEFENSE_UP:
 				case EFFECT_SPEED_UP:
@@ -1607,6 +1608,7 @@ void IncreaseStatViability(s16* originalViability, u8 class, u8 boost, u8 bankAt
 
 	switch (class) {
 		case FIGHT_CLASS_SWEEPER_KILL:
+
 			break;
 
 		case FIGHT_CLASS_SWEEPER_SETUP_STATS:

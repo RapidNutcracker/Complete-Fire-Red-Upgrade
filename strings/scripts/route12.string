@@ -15,3 +15,18 @@ Hm[.]\pOh?
 
 #org @gText_sharpedonite_6
 Yes! This stone is reacting to your\n[LIGHT_GREEN]Sharpedo[BLUE]!\pPlease, have it.
+
+#org @gText_snorlaxencounter_Pokeflute
+Want to use the Pok\e Flute?
+
+#org @gText_snorlaxencounter_ComfySlumber
+A Pok\emon is sprawled out in\na deep and comfortable slumber.
+
+#org @gText_snorlaxencounter_playflute
+[PLAYER] played the Pok\e Flute.
+
+#org @gText_snorlaxencounter_Wokeup
+Snorlax woke up!\pIt attacked in a grumpy rage!
+
+#org @gText_snorlaxencounter_CalmedDown
+Snorlax calmed down.\nIt gave a huge yawn[.]\lAnd returned to the mountains.

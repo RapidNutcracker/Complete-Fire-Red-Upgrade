@@ -103,8 +103,8 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			break;
 
 		case EFFECT_EXPLOSION:
-			if (predictedMove != MOVE_NONE //If foe isn't going to attack, don't kill yourself now
-			&&  gBattleMoves[predictedMove].effect != EFFECT_PROTECT)
+			if (//predictedMove != MOVE_NONE //If foe isn't going to attack, don't kill yourself now
+			  gBattleMoves[predictedMove].effect != EFFECT_PROTECT)
 			{
 				if (data->atkItemEffect == ITEM_EFFECT_GEM
 				&& data->atkItemQuality == moveType) //AI Was meant to explode
@@ -116,9 +116,11 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				{
 					INCREASE_VIABILITY(4); //Counteract the negative check
 				}
+				else if (AnyUsefulStatIsRaised(bankDef))
+					INCREASE_VIABILITY(5);
 			}
-			else if (AnyUsefulStatIsRaised(bankDef))
-				INCREASE_VIABILITY(5);
+			// else if (AnyUsefulStatIsRaised(bankDef))
+			// 	INCREASE_VIABILITY(10);
 
 			break;
 
@@ -168,8 +170,9 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				AI_ATTACK_PLUS:
 					if (IsMovePredictionPhazingMove(bankDef, bankAtk))
 						break;
-
-					if (PhysicalMoveInMoveset(bankAtk) && atkAbility != ABILITY_CONTRARY)
+					if (PhysicalMoveInMoveset(bankAtk) && move == MOVE_POWERUPPUNCH && STAT_STAGE(bankAtk,STAT_STAGE_ATK) <= 4 && !IsOfType(bankDef, TYPE_GHOST))
+						INCREASE_VIABILITY(8);
+					else if (PhysicalMoveInMoveset(bankAtk) && atkAbility != ABILITY_CONTRARY)
 						INCREASE_STAT_VIABILITY(STAT_STAGE_ATK, 8, 2);
 					/*else if (IsMaxMove(move) && IS_DOUBLE_BATTLE && BATTLER_ALIVE(data->bankAtkPartner)
 						&& PhysicalMoveInMoveset(data->bankAtkPartner) && atkAbility != ABILITY_CONTRARY)
@@ -541,7 +544,9 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				case MOVE_G_MAX_RESONANCE_S:
 					if (ShouldSetUpScreens(bankAtk, bankDef, move))
 					{
-						if (IsClassScreener(class))
+						if(data->atkItem == ITEM_LIGHT_CLAY)
+							INCREASE_VIABILITY(10);
+						else if (IsClassScreener(class))
 							INCREASE_VIABILITY(8);
 						else
 							INCREASE_STATUS_VIABILITY(2);
@@ -939,7 +944,8 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 					#if (defined SPECIES_AEGISLASH && defined SPECIES_AEGISLASH_BLADE)
 					if (atkAbility == ABILITY_STANCECHANGE //Special logic for Aegislash
 					&&  data->atkSpecies == SPECIES_AEGISLASH_BLADE
-					&&  !IsBankIncapacitated(bankDef))
+					&&  !IsBankIncapacitated(bankDef)
+					&& (Random() % 2 == 0) ) //added randomness so that its not abusable
 					{
 						if (IsClassStall(class))
 							INCREASE_VIABILITY(3);
@@ -1564,7 +1570,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 
 		case EFFECT_TAUNT:
 			if (StatusMoveInMoveset(bankDef)) //added
-				INCREASE_VIABILITY(10);
+				INCREASE_VIABILITY(8);
 			if (SPLIT(predictedMove) == SPLIT_STATUS)
 				INCREASE_STATUS_VIABILITY(3);
 			break;
@@ -2080,7 +2086,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 						// if (IsClassDoublesTrickRoomer(class))  added
 						// 	INCREASE_VIABILITY(19);
 						// else
-						INCREASE_STATUS_VIABILITY(3);
+						// INCREASE_STATUS_VIABILITY(3); do not revert trick room anymore shit is stupid
 					}
 					break;
 

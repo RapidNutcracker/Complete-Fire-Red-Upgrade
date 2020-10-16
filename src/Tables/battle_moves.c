@@ -11719,7 +11719,7 @@ const struct BattleMove gBattleMoves[] =
 
 	[MOVE_POLTERGEIST] =
 	{	//ANIM TODO
-		.effect = EFFECT_HIT, //EFFECT TODO
+		.effect = EFFECT_POLTERGEIST, //EEFFECT NEED TO TEST
 		.power = 110,
 		.type = TYPE_GHOST,
 		.accuracy = 90,

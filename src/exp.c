@@ -58,7 +58,7 @@ u8 LevelCap_Badges[17] = {
 	81, //Before Claire
 	82, //Before Brendan
 	85, //Before E4
-	250}; //added here
+	100}; //added here
 //This file's functions:
 static u32 ExpCalculator(u32 a, u32 t, u32 b, u32 e, u32 L, u32 Lp, u32 p, u32 f, u32 v, u32 s);
 static bool8 WasWholeTeamSentIn(u8 bank, u8 sentIn);
@@ -765,13 +765,26 @@ static void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
 		evIncrease *= multiplier;
 
 		//Check Macho Brace
-		if (holdEffect == ITEM_EFFECT_MACHO_BRACE && itemQuality == QUALITY_MACHO_BRACE)
-			evIncrease *= 4;
+		if (holdEffect == ITEM_EFFECT_MACHO_BRACE && itemQuality == QUALITY_MACHO_BRACE){
+			if (FlagGet(FLAG_SYS_GAME_CLEAR)){
+				evIncrease *= 16; 
+			}
+			else{
+				evIncrease *= 4; 
+			}
+		}
+
 
 		AddEVs(mon, stat, evIncrease);
 
 		if (holdEffect == ITEM_EFFECT_MACHO_BRACE && itemQuality > 0 && itemQuality - 1 == stat)
-			AddEVs(mon, stat, POWER_ITEM_EV_YIELD); //Power items always add to requested stat
+		{
+			if (FlagGet(FLAG_SYS_GAME_CLEAR)){
+				AddEVs(mon, stat, 252);
+			}
+			else
+				AddEVs(mon, stat, POWER_ITEM_EV_YIELD); //Power items always add to requested stat
+		}
 	}
 }
 

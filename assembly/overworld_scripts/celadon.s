@@ -159,6 +159,8 @@ EventScript_ivseller_Start:
 	lock
 	faceplayer
 	textcolor 0x0
+	@ checkflag 0x82C
+	@ if equal _goto NowChampion
 	showmoney 0x0 0x00 0x00
 	msgbox gText_ivseller_1 0x5
 	compare LASTRESULT 0x0
@@ -311,6 +313,7 @@ EventScript_gamecornertms_Values:
     .hword ITEM_TM91
 	.hword ITEM_TM93 
 	.hword ITEM_TM102
+	.hword ITEM_TM110
     .hword 0x0
 
 @damn this script was written when i was stupid af so it's veeerrry messy and i'm way too lazy to clean it up so rip 

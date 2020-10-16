@@ -218,9 +218,9 @@ static void UpdateBestDoublesKillingMoves(void);
 static u32 GetMaxByteIndexInList(const u8 array[], const u32 size);
 // static u8 GetAI_ItemType(u16 itemId, const u8 *itemEffect); //Fixed from vanilla
 // static bool8 ShouldAIUseItem(void);
-//#ifdef VAR_GAME_DIFFICULTY
+#ifdef VAR_GAME_DIFFICULTY
 static bool8 IsGoodIdeaToDoShiftSwitch(u8 switchBank, u8 foe);
-//#endif
+#endif
 
 void __attribute__((long_call)) RecordLastUsedMoveByTarget(void);
 
@@ -2837,7 +2837,7 @@ static u32 GetMaxByteIndexInList(const u8 array[], const u32 size)
 // 	return FALSE;
 // }
 
-// #ifdef VAR_GAME_DIFFICULTY
+#ifdef VAR_GAME_DIFFICULTY
 static bool8 IsGoodIdeaToDoShiftSwitch(u8 switchBank, u8 foe)
 {
 	if (!CanKnockOut(switchBank, foe) //Current mon out can't KO new mon being switched in
@@ -2857,11 +2857,11 @@ static bool8 IsGoodIdeaToDoShiftSwitch(u8 switchBank, u8 foe)
 
 	return FALSE; //Don't switch
 }
-// #endif
+#endif
 
 void ShouldDoAIShiftSwitch(void)
 {
-	// #ifdef VAR_GAME_DIFFICULTY
+	#ifdef VAR_GAME_DIFFICULTY
 	if (gBattleTypeFlags & BATTLE_TYPE_TRAINER
 	&& !IS_DOUBLE_BATTLE
 	// && (FlagGet(FLAG_EXPERT_DIFFICULTY)) //gBattleScripting.battleStyle == OPTIONS_BATTLE_STYLE_SHIFT || 
@@ -2874,7 +2874,7 @@ void ShouldDoAIShiftSwitch(void)
 		if (IsGoodIdeaToDoShiftSwitch(gActiveBattler, foe))
 			return; //Continue in script
 	}
-	// #endif
+	#endif
 
 	gBattlescriptCurrInstr = BattleScript_FaintedMonChooseAnotherRejoin - 5;
 }

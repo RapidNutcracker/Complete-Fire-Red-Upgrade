@@ -8,7 +8,7 @@ Hi, I'm excavating for fossils here\nunder [LIGHT_GREEN]Mt. Moon[BLUE].\pSometim
 HEY YOU! Wait right there!
 
 #org @gText_adminmtmoonleft_2
-Are you the twerp messing with my\ngrunts?\p[.]Little kid thinks he's so brave,\neh?\pI'll teach you a valuable lesson.
+Are you the twerp messing with my\ngrunts?\p[.]Little kid, you think you're brave,\neh?\pI'll teach you a valuable lesson.
 
 #org @gText_adminmtmoonleft_Defeat
 What a shameful blunder...
@@ -28,3 +28,5 @@ Whatever, we've done everything we\nneeded.\pI won't be as nice to you next\ntim
 #org @gText_cobalion_4
 [BLACK]Do you confront it?
 
+#org @gText_cobalion_12
+Kawbraa!

@@ -116,6 +116,7 @@ extern const u8 gClassPokeBalls[NUM_TRAINER_CLASSES];
 extern const u8 gRandomizerAbilityBanList[];
 extern const species_t gRandomizerSpeciesBanList[];
 extern const species_t gWonderTradeList[];
+extern const species_t gBadRandomizerList[];
 extern const species_t gSetPerfectXIvList[];
 extern const species_t gDeerlingForms[];
 extern const species_t gSawsbuckForms[];
@@ -3554,35 +3555,102 @@ void TryRandomizeSpecies(unusedArg u16* species)
 	#ifdef FLAG_POKEMON_RANDOMIZER
 	u16 trainerId = gTrainerBattleOpponent_A; //added 
 	u16 trainerClass = gTrainers[trainerId].trainerClass; //added 
-	if (FlagGet(FLAG_POKEMON_RANDOMIZER)   && !FlagGet(FLAG_BATTLE_FACILITY) && *species != SPECIES_NONE && *species < NUM_SPECIES && ShouldTrainerRandomize(trainerClass)) //&& !(gBattleTypeFlags & BATTLE_TYPE_TRAINER
+	if (FlagGet(FLAG_EXPERT_DIFFICULTY) && FlagGet(FLAG_POKEMON_RANDOMIZER) && !FlagGet(FLAG_BATTLE_FACILITY) && *species != SPECIES_NONE && *species < NUM_SPECIES && ShouldTrainerRandomize(trainerClass))
 	{
 		u32 id = MathMax(1, T1_READ_32(gSaveBlock2->playerTrainerId)); //0 id would mean every Pokemon would crash the game
-		u32 newSpecies = *species;
-
+        u32 newSpecies = *species;
+        u32 prevNewSpecies = SPECIES_NONE; //Helps prevent infinite loop
+        u32 offset = 1; //Used in case of an infinite loop
+		u32 checkHowMany = 0; 
 		do
-		{
-			newSpecies *= id;
-			newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
+        {
+            newSpecies *= id;
+            newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
+			checkHowMany++;
+			if (checkHowMany >= 25){
+				newSpecies = (newSpecies + offset++) * id; //Offset the new species by an increasing number to fix problem
+                newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
+			}
+            while (newSpecies == prevNewSpecies) //Entered into an infinite loop
+            {
+                newSpecies = (newSpecies + offset++) * id; //Offset the new species by an increasing number to fix problem
+                newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
+            }
+
+            prevNewSpecies = newSpecies; //Record the current attempted species in case of infinite loop
+		} while (!CheckTableForSpecies(newSpecies, gBadRandomizerList));
+		
+		*species = newSpecies;
+		// *species = (u16) newSpecies;
+	} 
+	else if (FlagGet(FLAG_POKEMON_RANDOMIZER) && !FlagGet(FLAG_BATTLE_FACILITY) && *species != SPECIES_NONE && *species < NUM_SPECIES && ShouldTrainerRandomize(trainerClass)) //&& !(gBattleTypeFlags & BATTLE_TYPE_TRAINER
+	{
+		// u32 id = MathMax(1, T1_READ_32(gSaveBlock2->playerTrainerId)); //0 id would mean every Pokemon would crash the game
+		// u32 newSpecies = *species;
+
+		// do
+		// {
+		// 	newSpecies *= id;
+		// 	newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
+		u32 id = MathMax(1, T1_READ_32(gSaveBlock2->playerTrainerId)); //0 id would mean every Pokemon would crash the game
+        u32 newSpecies = *species;
+        u32 prevNewSpecies = SPECIES_NONE; //Helps prevent infinite loop
+        u32 offset = 1; //Used in case of an infinite loop
+		u32 checkHowMany = 0; 
+        do
+        {
+            newSpecies *= id;
+            newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
+			checkHowMany++;
+			if (checkHowMany >= 20){
+				newSpecies = (newSpecies + offset++) * id; //Offset the new species by an increasing number to fix problem
+                newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
+			}
+            while (newSpecies == prevNewSpecies) //Entered into an infinite loop
+            {
+                newSpecies = (newSpecies + offset++) * id; //Offset the new species by an increasing number to fix problem
+                newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
+            }
+			// if (checkHowMany >= 20)
+			// 	newSpecies = SPECIES_DITTO;
+
+            prevNewSpecies = newSpecies; //Record the current attempted species in case of infinite loop
 		} while (CheckTableForSpecies(newSpecies, gRandomizerSpeciesBanList));
 		
-		
-		*species = (u16) newSpecies;
+		*species = newSpecies;
+		// *species = (u16) newSpecies;
 	}
-	if (FlagGet(FLAG_WONDER_TRADE) && !FlagGet(FLAG_BATTLE_FACILITY) && *species != SPECIES_NONE && *species < NUM_SPECIES)
+	else if (FlagGet(FLAG_WONDER_TRADE) && !FlagGet(FLAG_BATTLE_FACILITY) && *species != SPECIES_NONE && *species < NUM_SPECIES)
 	{
 		u32 id = MathMax(1, T1_READ_32(gSaveBlock2->playerTrainerId)); //0 id would mean every Pokemon would crash the game
-		u32 newSpecies = *species;
-
+        u32 newSpecies = *species;
+        u32 prevNewSpecies = SPECIES_NONE; //Helps prevent infinite loop
+        u32 offset = 1; //Used in case of an infinite loop
+		u32 checkHowMany = 0; 
 		do
-		{
-			// newSpecies = Random() % NUM_SPECIES_RANDOMIZER;
-			newSpecies *= id;
-			newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
+        {
+            newSpecies *= id;
+            newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
+			checkHowMany++;
+			if (checkHowMany >= 20){
+				newSpecies = (newSpecies + offset++) * id; //Offset the new species by an increasing number to fix problem
+                newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
+			}
+            while (newSpecies == prevNewSpecies) //Entered into an infinite loop
+            {
+                newSpecies = (newSpecies + offset++) * id; //Offset the new species by an increasing number to fix problem
+                newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
+            }
+			// if (checkHowMany >= 20)
+			// 	newSpecies = SPECIES_DITTO;
+
+            prevNewSpecies = newSpecies; //Record the current attempted species in case of infinite loop
 		} while (!CheckTableForSpecies(newSpecies, gWonderTradeList));
 		
-		*species = (u16) newSpecies;
-	}
-	#endif
+		*species = newSpecies;
+		// *species = (u16) newSpecies;
+	} 
+	#endif 
 }
 
 u16 GetRandomizedSpecies(u16 species)
@@ -3671,6 +3739,15 @@ void CreateBoxMon(struct BoxPokemon* boxMon, u16 species, u8 level, u8 fixedIV, 
 
 		#ifdef CREATE_WITH_X_PERFECT_IVS
 		{
+			// if (FlagGet(FLAG_SYS_GAME_CLEAR))
+			// {
+			// 	u8 perfect = 31;
+			// 	for (u8 numPerfectStats = 0; numPerfectStats < NUM_STATS; numPerfectStats++)
+			// 	{
+			// 		SetBoxMonData(boxMon, MON_DATA_HP_IV + numPerfectStats, &perfect);
+			// 	}
+
+			// }
 			if (CheckTableForSpecies(species, gSetPerfectXIvList))
 			{
 				u8 numPerfectStats = 0;

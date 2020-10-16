@@ -2412,6 +2412,8 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 			if (data->defStatus3 & STATUS3_UNDERWATER)
 				damage *= 2;
 			break;
+			// if (data->atkSpecies ) //change this
+			// break;
 
 		case MOVE_KNOCKOFF:
 			if ((!useMonDef && CanKnockOffItem(bankDef))

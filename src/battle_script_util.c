@@ -1577,6 +1577,21 @@ void SetUpGarbodorAbility(void)
 	gBattleScripting.bank = gBankAttacker;
 }
 
+void SetUpGulpMissile(void)
+{
+	gBattleScripting.bank = gBankTarget;
+}
+
+void TryPoltergeist(void)
+{
+	if(ITEM(gBankTarget) == 0 || IsMagicRoomActive() || ABILITY(gBankTarget) == ABILITY_KLUTZ ) //check to see if it can poltergeist
+		gBattlescriptCurrInstr = BattleScript_ButItFailed - 5;
+	else{
+		gLastUsedItem = ITEM(gBankTarget);
+		// gBattleScripting.bank = bank;
+		gBattleStringLoader = gText_CheckPoltergeist;
+	}
+}
 void HarvestActivateBerry(void)
 {
 	gBattlescriptCurrInstr += 5;

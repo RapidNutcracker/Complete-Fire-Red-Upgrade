@@ -50,7 +50,7 @@ Wild double battles are turned\non! Talk to me again if you want to\lturn them o
 Do you want to turn off\nwild double battles? 
 
 #org @gText_FuschiaDouble4
-Wild double battles are turned\noff! Talk to me again if you want\lthem back on. 
+Wild double battles are turned\noff! 
 
 #org @gText_FuschiaDouble5
 I'll be here if my service\nwill ever be of use!
@@ -145,3 +145,5 @@ Continue terrorizing foes, child.\pYou have the capacity to do so.
 #org @gText_koga_Charmmsg
 Have one of my favorite items as\nwell.
 
+#org @gText_FuschiaDoubleOof
+Sorry, double battles aren't\nworking at the moment.

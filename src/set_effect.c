@@ -858,7 +858,7 @@ bool8 SetMoveEffect2(void)
 			{
 				break;
 			}
-			else if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)) //no steal effect in battle_type_trainer 
+			else if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER) || (gBattleTypeFlags & BATTLE_TYPE_DYNAMAX)) //no steal effect in battle_type_trainer or raid battles
 			{
 				break;
 			}

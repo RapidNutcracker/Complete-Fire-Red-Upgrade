@@ -153,6 +153,7 @@ CancelThis:
 	end 
 
 CancelThis2:
+    msgbox gText_NatureChanger4 MSG_NORMAL 
 	hidemoney 0x00 0x00
 	release 
 	end 
@@ -163,8 +164,8 @@ EndThisScript:
     removemoney 0x1D4C 0x00
     updatemoney 0x35 0x00 0x00
     checksound 
-    hidemoney 0x35 0x00
 	msgbox gText_NatureChanger4 MSG_NORMAL 
+    hidemoney 0x35 0x00
 	release 
 	end 
 

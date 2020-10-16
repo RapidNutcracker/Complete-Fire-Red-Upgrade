@@ -53,13 +53,13 @@ Anyway, thanks for playing my ROM\nhack [GREEN][PLAYER][BLUE], even if you didn'
 Gyaoo!
 
 #org @gText_StartRaidBattle
-This vibrant red jewel overflows\nwith strange energy.\pWould you like to look inside it?
+This strange den exuberates\npowerful energy.\pWould you like to look inside it?
 
 #org @gText_RaidTeamUp
 A powerful wild Pok\emon came\nout!
 
 #org @gText_StartRaidBattle2
-It's a dull red jewel. 
+It's an empty den.
 
 #org @gText_StartRaidBattle3
 It's a dull red jewel222.
@@ -68,58 +68,58 @@ It's a dull red jewel222.
 Got here. 
 
 #org @gText_Adamant
-Adamant +Atk -SpA
+Adamant [SHRINK][RED]+Atk [BLUE]-SpA
 
 #org @gText_Modest 
-Modest  +SpA -Atk
+Modest  [SHRINK][RED]+SpA [BLUE]-Atk
 
 #org @gText_Timid 
-Timid   +Speed -Atk
+Timid    [SHRINK][RED]+Speed [BLUE]-Atk
 
 #org @gText_Jolly 
-Jolly   +Speed -SpA
+Jolly   [SHRINK][RED]+Speed [BLUE]-SpA
 
 #org @gText_Hasty 
-Hasty   +Speed -Def
+Hasty   [SHRINK][RED]+Speed [BLUE]-Def
 
 #org @gText_Naive 
-Naive   +Speed -SpD
+Naive   [SHRINK][RED]+Speed [BLUE]-SpD
 
 #org @gText_Mild 
-Mild     +SpA -Def
+Mild    [SHRINK][RED]+SpA [BLUE]-Def
 
 #org @gText_Naughty
-Naughty +Atk -SpD
+Naughty [SHRINK][RED]+Atk [BLUE]-SpD
 
 #org @gText_Rash 
-Rash     +SpA -SpDef
+Rash     [SHRINK][RED]+SpA [BLUE]-SpDef
 
 #org @gText_Lonely 
-Lonely   +Atk -Def 
+Lonely   [SHRINK][RED]+Atk [BLUE]-Def 
 
 #org @gText_Brave 
-Brave    +Atk -Speed 
+Brave    [SHRINK][RED]+Atk [BLUE]-Speed 
 
 #org @gText_Quiet 
-Quiet    +SpA -Speed 
+Quiet    [SHRINK][RED]+SpA [BLUE]-Speed 
 
 #org @gText_Calm
-Calm    +SpD -Atk
+Calm    [SHRINK][RED]+SpD [BLUE]-Atk
 
 #org @gText_Impish
-Impish  +Def -SpA 
+Impish  [SHRINK][RED]+Def [BLUE]-SpA 
 
 #org @gText_Sassy
-Sassy   +SpD -Speed
+Sassy   [SHRINK][RED]+SpD [BLUE]-Speed
 
 #org @gText_Careful
-Careful +SpD -SpA
+Careful [SHRINK][RED]+SpD [BLUE]-SpA
 
 #org @gText_Relaxed
-Relaxed +Def -Speed
+Relaxed [SHRINK][RED]+Def [BLUE]-Speed
 
 #org @gText_Bold 
-Bold    +Def -Atk
+Bold     [SHRINK][RED]+Def [BLUE]-Atk
 
 #org @gText_Exit 
 Exit 

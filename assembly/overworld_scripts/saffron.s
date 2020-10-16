@@ -154,6 +154,8 @@ FirstList2:
 	if 0x1 _goto TailSlap 
 	compare LASTRESULT 0x11
 	if 0x1 _goto BodySlam
+	compare LASTRESULT 0x12
+	if 0x1 _goto FoulPlay
 	hidemoney 0x35 0x00 
     msgbox gText_Saffron_ManyTutors5 MSG_FACE 
     release 
@@ -246,6 +248,11 @@ TailSlap:
 
 BodySlam:
 	setvar 0x8005 0x5B
+	goto EndScript
+	end 
+
+FoulPlay:
+	setvar 0x8005 0x29
 	goto EndScript
 	end 
 

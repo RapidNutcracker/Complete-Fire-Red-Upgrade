@@ -834,7 +834,17 @@ u8 ModifyBreedingScoreForOvalCharm(u8 score)
 		}
 	}
 	#endif
-	score = 90;
+	switch (score) { //This is the easy way of doing this
+		case 20:
+			score = 90;
+			break;
+		case 50:
+			score = 90;
+			break;
+		case 70:
+			score = 90;
+			break;
+	}
 	return score;
 }
 

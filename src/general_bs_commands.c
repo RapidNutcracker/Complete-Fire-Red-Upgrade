@@ -2967,7 +2967,7 @@ u32 GetHailDamage(u8 bank)
 	u32 damage = 0;
 
 	if (TakesDamageFromHail(bank))
-		damage = MathMax(1, GetBaseMaxHP(bank) / 12);
+		damage = MathMax(1, GetBaseMaxHP(bank) / 16);
 
 	return damage;
 }

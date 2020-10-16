@@ -37,7 +37,11 @@ static const struct TrainerSlide sTrainerSlides[] =
 	{0x34, NULL, sText_MortyLastSwitchIn, NULL},
 	{0x13D, NULL, sText_ChuckLastSwitchIn, NULL},
 	{0x2E, NULL, sText_ArcherOneLastSwitchIn, NULL},
-
+	{0x18, sText_SoupFirstMonDown, sText_SoupLastMonDown, NULL}, //Dumbass Creator
+	{0x1A2, NULL, sText_KogaLastSwitchIn, NULL}, //Koga
+	{0x1A3, NULL, sText_BlaineLastSwitchIn, NULL}, //Blaine
+	{0x4A, NULL, sText_ClairLastSwitchIn, NULL}, //Clair 
+	{0x42, NULL, sText_JotardLastSwitchIn, NULL},
 	#ifdef UNBOUND //For Pokemon Unbound - Feel free to remove
 	{0x6, sText_MirskleFirstMonDown, NULL, NULL},
 	{0x2CF, sText_MirskleFirstMonDown, NULL, NULL},

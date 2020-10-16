@@ -3090,6 +3090,7 @@ extern const u8 sExampleText_RockBlast[];
 extern const u8 sExampleText_TailSlap[];
 extern const u8 sExampleText_PinMissile[];
 extern const u8 sExampleText_BodySlam[];
+extern const u8 sExampleText_FoulPlay[];
 extern const u8	gText_metatutor_Text1[];
 extern const u8	gText_metatutor_Text2[];
 extern const u8	gText_metatutor_Text3[];
@@ -3101,6 +3102,9 @@ extern const u8	gText_metatutor_Text8[];
 extern const u8	gText_metatutor_Text9[];
 extern const u8	gText_metatutor_Text10[];
 extern const u8 gText_metatutor_Text11[];
+extern const u8 gText_metatutor_Tailwind[];
+extern const u8 gText_metatutor_Megahorn[];
+// extern const u8 gText_metatutor_SteelBeam[];
 extern const u8 sText_1[];
 extern const u8 sText_2[];
 extern const u8 sText_3[];
@@ -3250,6 +3254,7 @@ static const u8* sMultichoiceSet4[] =
 	sExampleText_IcicleSpear,
 	sExampleText_TailSlap,
 	sExampleText_BodySlam,
+	sExampleText_FoulPlay,
 };
 
 static const u8* sMultichoiceSet5[] =
@@ -3264,6 +3269,9 @@ static const u8* sMultichoiceSet5[] =
 	gText_metatutor_Text8,
 	gText_metatutor_Text9,
 	gText_metatutor_Text10,
+	gText_metatutor_Tailwind,
+	gText_metatutor_Megahorn,
+	//gText_metatutor_SteelBeam,
 };
 
 static const u8* sMultichoiceSet6[] =

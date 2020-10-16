@@ -93,6 +93,7 @@ ability_battle_scripts.s
 .global BattleScript_AvoidedMoveWithAbility
 .global BattleScript_MimicryTransformed
 .global BattleScript_MimicryReturnedToNormal
+.global BattleScript_GulpMissileActivate
 
 .global BattleScript_AbilityPopUp
 .global BattleScript_AbilityPopUpRevert
@@ -626,6 +627,8 @@ BattleScript_AbilityApplySecondaryEffect:
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 BattleScript_RoughSkinActivates:
+	@ jumpifability BANK_TARGET ABILITY_GULPMISSILE SetUpGulpMissile
+	callasm SetUpGulpMissile
 	call BattleScript_AbilityPopUp
 	orword HIT_MARKER, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_NON_ATTACK_DMG
 	healthbarupdate BANK_ATTACKER
@@ -635,6 +638,10 @@ BattleScript_RoughSkinActivates:
 	call BattleScript_AbilityPopUpRevert
 	faintpokemon BANK_ATTACKER 0x0 0x0
 	return
+
+@ SetUpGulpMissile: 
+@	callasm SetUpGulpMissile
+@	return 
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -1197,6 +1204,12 @@ BattleScript_MimicryReturnedToNormal:
 	waitmessage DELAY_1SECOND
 	call BattleScript_AbilityPopUpRevert
 	return
+
+@;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+BattleScript_GulpMissileActivate:
+	call BattleScript_AbilityPopUp
+	setword BATTLE_STRING_LOADER gText_AbilityChangedType
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 

@@ -110,6 +110,7 @@ extern const u8 gText_CriticalHitTarget[];
 extern const u8 gText_CriticalHitTwoFoes[];
 extern const u8 CraftyShieldProtectedString[];
 extern const u8 MatBlockProtectedString[];
+extern const u8 gText_CheckPoltergeist[];
 extern const u8 QuickGuardProtectedString[];
 extern const u8 WideGuardProtectedString[];
 extern const u8 gText_RaidShieldProtected[];

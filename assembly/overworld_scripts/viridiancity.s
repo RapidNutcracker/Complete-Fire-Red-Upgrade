@@ -308,6 +308,33 @@ EventScript_virizion_Moveup:
 .byte 0x11
 .byte 0xFE
 
+
+.global EventScript_Virizion_OW
+EventScript_Virizion_OW:
+    lock
+    faceplayer
+    cry SPECIES_VIRIZION 0x2
+    preparemsg gText_virizion_1
+    waitmsg
+    waitcry
+    pause 0xA
+    playsong 0x156 0x0
+    waitkeypress
+    wildbattle SPECIES_VIRIZION 0x46 0x00
+    special2 LASTRESULT 0xB4
+    compare LASTRESULT 0x4
+    if 0x1 _goto Moveback2
+    fadescreen 0x1
+    hidesprite 0x800F
+    setflag 0x992
+    fadescreen 0x0
+    release
+    end
+
+Moveback2:
+    release 
+    end
+
 .global EventScript_brendantoceruleancave_Start
 EventScript_brendantoceruleancave_Start:
 	checkflag 0x826

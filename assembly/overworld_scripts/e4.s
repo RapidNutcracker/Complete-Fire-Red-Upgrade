@@ -561,3 +561,12 @@ EventScript_E4nurse_Start:
 	msgbox gText_E4nurse_1 0x6 
 	release
 	end
+
+.global EventScript_E4LanceInfo_Start
+EventScript_E4LanceInfo_Start:
+	setvar 0x8004 0xC
+	setvar 0x8005 0x5
+	special 0x173
+	msgbox gText_E4LanceInfo MSG_FACE 
+	release 
+	end 

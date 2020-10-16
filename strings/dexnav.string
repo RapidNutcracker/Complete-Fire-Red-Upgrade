@@ -44,7 +44,7 @@ Magma
 Sand
 
 #org @gText_DexNavDescription
-Search for wild Pok\emon in the area\nwith potential special qualities!
+Search for special wild Pok\emon in the area!\nPress Left to exit this menu. 
 
 #org @gText_GotAway
 [BUFFER1] got away!
@@ -92,7 +92,7 @@ It's too dark to search for a Pok\emon!
 Cube
 
 #org @gText_OptionBugDescription
-Don't try to switch to Shift.\nIt won't work :)
+Don't even try to switch to Shift.\nIt won't work :)
 
 #org @gText_VersionNumber
-Radical Red Version 2.0f Randomizer test.\nDiscord: /invite/umqCXMv
+Radical Red Version 2.1.\nDiscord: /invite/umqCXMv

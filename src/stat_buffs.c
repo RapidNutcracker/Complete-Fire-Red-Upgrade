@@ -49,10 +49,10 @@ bool8 DefiantActivation(void)
 			gBattleScripting.statChanger = INCREASE_2 | STAT_STAGE_SPATK;
 			break;
 
-		case ABILITY_RATTLED:
-			if (gNewBS->intimidateActive)
-				gBattleScripting.statChanger = INCREASE_1 | STAT_STAGE_SPEED;
-			break;
+		// case ABILITY_RATTLED:
+		// 	if (gNewBS->intimidateActive)
+		// 		gBattleScripting.statChanger = INCREASE_1 | STAT_STAGE_SPEED;
+		// 	break;
 
 		default:
 			return FALSE;

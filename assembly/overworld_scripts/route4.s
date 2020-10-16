@@ -10,8 +10,10 @@ EventScript_givepoweruppunch_Start:
 	textcolor 0x0
 	lock 
 	faceplayer 
-	checkflag 0x202
-	if 0x1 _goto EventScript_givepoweruppunch_Done
+	@ checkflag 0x202 
+	checkitem ITEM_TM101 0x1 
+	compare 0x800D 0x1
+	if greaterorequal _goto EventScript_givepoweruppunch_Done
 	msgbox gText_givepoweruppunch_3 0x6
 	msgbox gText_givepoweruppunch_4 0x5
 	compare LASTRESULT 0x1
@@ -23,7 +25,7 @@ EventScript_givepoweruppunch_Start:
 EventScript_givepoweruppunch_Take:
 	msgbox gText_givepoweruppunch_5 0x6
 	giveitem ITEM_TM101 0x1 MSG_OBTAIN
-	setflag 0x202
+	@ setflag 0x202
 	msgbox gText_givepoweruppunch_7 0x6
 	release
 	end

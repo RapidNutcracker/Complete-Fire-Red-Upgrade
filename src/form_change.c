@@ -41,6 +41,9 @@ static const species_t sBannedBackupSpecies[] =
 	SPECIES_WISHIWASHI_S,
 	SPECIES_MIMIKYU_BUSTED,
 	SPECIES_MINIOR_SHIELD,
+	SPECIES_CRAMORANT_GULPING,
+	SPECIES_CRAMORANT_GORGING,
+	SPECIES_EISCUE_NOICE,
 	SPECIES_TABLES_TERMIN
 };
 
@@ -159,6 +162,15 @@ void SwitchOutFormsRevert(u8 bank)
 				DoFormChange(bank, GetMiniorCoreSpecies(mon), FALSE, TRUE, FALSE);
 			break;
 		#endif
+		#if  (defined SPECIES_CRAMORANT_GORGING && defined SPECIES_CRAMORANT_GULPING && defined SPECIES_CRAMORANT_GORGING)
+		case SPECIES_CRAMORANT_GORGING:
+		case SPECIES_CRAMORANT_GULPING:
+			if (backupSpecies != SPECIES_NONE)
+				DoFormChange(bank, backupSpecies, FALSE, TRUE, FALSE);
+			else
+				DoFormChange(bank, SPECIES_CRAMORANT, FALSE, TRUE, FALSE);
+			break;
+		#endif 
 	}
 }
 

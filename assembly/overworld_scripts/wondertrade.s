@@ -168,10 +168,18 @@ EventScript_AskRandomizer:
     end 
 
 setrandom:
-    msgbox gText_RandomizerSet MSG_NORMAL 
     setflag 0x940 
+    msgbox gText_RandomizerHard MSG_YESNO 
+    compare LASTRESULT YES 
+    if equal _goto SetHard 
+    msgbox gText_RandomizerSet MSG_NORMAL 
     return 
  
+SetHard: 
+    setflag 0x93A 
+    msgbox gText_RandomizerSetHard MSG_NORMAL 
+    return 
+
 setability:
     setflag 0x941
     return 

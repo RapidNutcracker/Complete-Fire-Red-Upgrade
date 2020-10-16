@@ -17,6 +17,7 @@
 #include "../include/new/battle_util.h"
 #include "../include/new/catching.h"
 #include "../include/new/cmd49.h"
+#include "../include/new/cmd49_battle_scripts.h" //added 
 #include "../include/new/damage_calc.h"
 #include "../include/new/dynamax.h"
 #include "../include/new/form_change.h"
@@ -119,7 +120,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_HYDRATION] = 4,
 	[ABILITY_HYPERCUTTER] = 3,
 	[ABILITY_ICEBODY] = 3,
-	[ABILITY_ILLUMINATE] = 0,
+	[ABILITY_GULPMISSILE] = 4,
 	[ABILITY_ILLUSION] = 8,
 	[ABILITY_IMMUNITY] = 4,
 	[ABILITY_IMPOSTER] = 9,
@@ -188,7 +189,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_QUEENLYMAJESTY] = 6,
 	[ABILITY_QUICKFEET] = 5,
 	[ABILITY_RAINDISH] = 3,
-	[ABILITY_RATTLED] = 3,
+	[ABILITY_UNSEENFIST] = 5,
 	[ABILITY_RECEIVER] = 0,
 	[ABILITY_RECKLESS] = 6,
 	[ABILITY_REFRIGERATE] = 8,
@@ -761,7 +762,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			{
 				if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_HAIL_ANY))
 				{
-					if (gNewBS->AuroraVeilTimers[SIDE(gBankAttacker)] < 3){ //If aurora veil is less than 3, we should set it to 3 as it will be beneficial 
+					if (gNewBS->AuroraVeilTimers[SIDE(gBankAttacker)] == 0){ //If aurora veil is less than 3, we should set it to 3 as it will be beneficial 
 						SetAuroraVeil();
 						gBattleStringLoader = gText_IcyVeilActivate; 
 						BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
@@ -1779,6 +1780,63 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				}
 				break;
 
+			case ABILITY_GULPMISSILE: //for cramorant
+				if (MOVE_HAD_EFFECT
+				&& TOOK_DAMAGE(bank)
+				&& move != MOVE_STRUGGLE
+				&& SPLIT(move) != SPLIT_STATUS
+				// && BATTLER_ALIVE(bank) we change forms even if the battler dies, we just dont deal damage/paralysis
+				&& gBankAttacker != bank
+				&& (SPECIES(bank) == SPECIES_CRAMORANT_GORGING || SPECIES(bank) == SPECIES_CRAMORANT_GULPING))
+				{
+					if (ABILITY(gBankAttacker) != ABILITY_MAGICGUARD && BATTLER_ALIVE(bank)){
+						gBattleMoveDamage = MathMax(1, GetBaseMaxHP(gBankAttacker) / 4);
+						BattleScriptPushCursor();
+						gBattlescriptCurrInstr = BattleScript_RoughSkinActivates;
+						effect++;
+					}
+					if (SPECIES(bank) == SPECIES_CRAMORANT_GORGING 
+					&& CanBeParalyzed(gBankAttacker, TRUE)
+					&& BATTLER_ALIVE(bank)) {
+						gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_PARALYSIS;
+						BattleScriptPushCursor();
+						gBattlescriptCurrInstr = BattleScript_AbilityApplySecondaryEffect;
+						gHitMarker |= HITMARKER_IGNORE_SAFEGUARD; //Safeguard checked earlier
+						effect++;
+					}
+					else if (SPECIES(bank) == SPECIES_CRAMORANT_GULPING 
+					&& (STAT_CAN_FALL(gBankAttacker, STAT_SPEED) || ABILITY(gBankAttacker) == ABILITY_MIRRORARMOR)
+					&& BATTLER_ALIVE(bank)){
+						gBattleScripting.statChanger = STAT_SPEED | DECREASE_1;
+						BattleScriptPushCursor();
+						gBattlescriptCurrInstr = BattleScript_GooeyActivates;
+						effect++;
+					}
+					DoFormChange(bank, SPECIES_CRAMORANT, TRUE, TRUE, FALSE);
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_AbilityTransformed;
+					effect++;
+				}
+				// else if (MOVE_HAD_EFFECT
+				// && TOOK_DAMAGE(bank)
+				// && move != MOVE_STRUGGLE
+				// && SPLIT(move) != SPLIT_STATUS
+				// // && !IsOfType(bank, moveType)
+				// && BATTLER_ALIVE(bank)
+				// && gBankAttacker != bank
+				// && SPECIES(bank) == SPECIES_CRAMORANT_GULPING)
+				// {
+				// 	gBattleMoveDamage = MathMax(1, GetBaseMaxHP(gBankAttacker) / 8);
+				// 	BattleScriptPushCursor();
+				// 	gBattlescriptCurrInstr = BattleScript_RoughSkinActivates;
+				// 	effect++;
+				// 	DoFormChange(bank, SPECIES_CRAMORANT, TRUE, TRUE, FALSE);
+				// 	BattleScriptPushCursor();
+				// 	gBattlescriptCurrInstr = BattleScript_AbilityTransformed;
+				// 	effect++;
+				// }
+				break;
+
 			case ABILITY_IRONBARBS:
 			case ABILITY_ROUGHSKIN:
 				if (MOVE_HAD_EFFECT
@@ -1926,20 +1984,20 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				}
 				break;
 
-			case ABILITY_RATTLED:
-				if (MOVE_HAD_EFFECT
-				&& TOOK_DAMAGE(bank)
-				&& BATTLER_ALIVE(bank)
-				&& gBankAttacker != bank
-				&& (moveType == TYPE_DARK || moveType == TYPE_BUG || moveType == TYPE_GHOST)
-				&& gBattleMons[bank].statStages[STAT_SPEED - 1] < 12)
-				{
-					gBattleScripting.statChanger = STAT_SPEED | INCREASE_1;
-					BattleScriptPushCursor();
-					gBattlescriptCurrInstr = BattleScript_TargetAbilityStatRaise;
-					effect++;
-				}
-				break;
+			// case ABILITY_RATTLED:
+			// 	if (MOVE_HAD_EFFECT
+			// 	&& TOOK_DAMAGE(bank)
+			// 	&& BATTLER_ALIVE(bank)
+			// 	&& gBankAttacker != bank
+			// 	&& (moveType == TYPE_DARK || moveType == TYPE_BUG || moveType == TYPE_GHOST)
+			// 	&& gBattleMons[bank].statStages[STAT_SPEED - 1] < 12)
+			// 	{
+			// 		gBattleScripting.statChanger = STAT_SPEED | INCREASE_1;
+			// 		BattleScriptPushCursor();
+			// 		gBattlescriptCurrInstr = BattleScript_TargetAbilityStatRaise;
+			// 		effect++;
+			// 	}
+			// 	break;
 
 			case ABILITY_WEAKARMOR:
 				if (MOVE_HAD_EFFECT

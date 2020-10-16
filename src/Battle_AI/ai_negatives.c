@@ -141,6 +141,12 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			DECREASE_VIABILITY(20);
 			return viability;
 		}
+		else if(MoveInMoveset(MOVE_WIDEGUARD, bankAtk))
+		{
+			DECREASE_VIABILITY(5);
+			return viability;
+		}
+			// added here
 	}
 
 	#ifdef AI_TRY_TO_KILL_RATE
@@ -271,17 +277,17 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				break;
 
 			//Multiple move types
-			case ABILITY_RATTLED:
-				if ((moveSplit != SPLIT_STATUS)
-				&& (moveType == TYPE_DARK || moveType == TYPE_GHOST || moveType == TYPE_BUG))
-				{
-					if (!TARGETING_PARTNER) //Good idea to attack partner
-					{
-						DECREASE_VIABILITY(9);
-						return viability;
-					}
-				}
-				break;
+			// case ABILITY_RATTLED:
+			// 	if ((moveSplit != SPLIT_STATUS)
+			// 	&& (moveType == TYPE_DARK || moveType == TYPE_GHOST || moveType == TYPE_BUG))
+			// 	{
+			// 		if (!TARGETING_PARTNER) //Good idea to attack partner
+			// 		{
+			// 			DECREASE_VIABILITY(9);
+			// 			return viability;
+			// 		}
+			// 	}
+			// 	break;
 
 			//Move category checks
 			case ABILITY_SOUNDPROOF:
@@ -650,8 +656,8 @@ MOVESCR_CHECK_0:
 					else if (CanKnockOutWithoutMove(move, bankAtk, bankDef, FALSE))
 						DECREASE_VIABILITY(4); //Better to use a different move to knock out
 				}
-				else
-					DECREASE_VIABILITY(4);
+				// else
+				// 	DECREASE_VIABILITY(4); removed this here
 			}
 		#else
 			DECREASE_VIABILITY(10);
@@ -790,6 +796,8 @@ MOVESCR_CHECK_0:
 		case EFFECT_SPEED_UP:
 		case EFFECT_SPEED_UP_2:
 			if (data->atkAbility == ABILITY_CONTRARY || !STAT_CAN_RISE(bankAtk, STAT_STAGE_SPEED))
+				DECREASE_VIABILITY(10);
+			else if(IsTrickRoomActive())
 				DECREASE_VIABILITY(10);
 			break;
 
@@ -1117,6 +1125,8 @@ MOVESCR_CHECK_0:
 				goto AI_STANDARD_DAMAGE;
 			else if (moveAcc < 75)
 				DECREASE_VIABILITY(6);
+			else if (IsOfType(bankDef, TYPE_GHOST))
+				DECREASE_VIABILITY(10);
 			break;
 
 		case EFFECT_MIST:
@@ -1238,6 +1248,14 @@ MOVESCR_CHECK_0:
 			{
 				DECREASE_VIABILITY(10);
 			}
+			else if (MoveInMoveset(MOVE_REST, bankDef))
+			{
+				DECREASE_VIABILITY(5);
+			}
+			else if (GetPokemonOnSideSpeedAverage(bankAtk) > GetPokemonOnSideSpeedAverage(bankDef)) //if we are faster already thunder wave is less useful
+			{
+				DECREASE_VIABILITY(2);
+			}
 			break;
 
 		case EFFECT_RAZOR_WIND:
@@ -1285,9 +1303,11 @@ MOVESCR_CHECK_0:
 
 		case EFFECT_LEECH_SEED:
 			if (IsOfType(bankDef, TYPE_GRASS)
+			|| data->defStatus2 & STATUS2_SUBSTITUTE
 			|| data->defStatus3 & STATUS3_LEECHSEED
 			|| data->defAbility == ABILITY_LIQUIDOOZE
 			|| data->defAbility == ABILITY_MAGICGUARD
+			|| MoveInMoveset(MOVE_SUBSTITUTE, bankDef) //don't use leech seed if they have sub 
 			|| PARTNER_MOVE_EFFECT_IS_SAME)
 				DECREASE_VIABILITY(10);
 			break;
@@ -2210,15 +2230,19 @@ MOVESCR_CHECK_0:
 					case MOVE_QUIVERDANCE:
 						if(data->defAbility == ABILITY_DANCER)
 							DECREASE_VIABILITY(10);
-						if (STAT_STAGE(bankAtk, STAT_STAGE_SPEED) >= STAT_STAGE_MAX
+						else if (STAT_STAGE(bankAtk, STAT_STAGE_SPEED) >= STAT_STAGE_MAX
 						&& (STAT_STAGE(bankAtk, STAT_STAGE_SPATK) >= STAT_STAGE_MAX || !SpecialMoveInMoveset(bankAtk))
 						&&  STAT_STAGE(bankAtk, STAT_STAGE_SPDEF) >= STAT_STAGE_MAX)
+							DECREASE_VIABILITY(10);
+						else if (IsTrickRoomActive())
 							DECREASE_VIABILITY(10);
 						break; 
 					case MOVE_GEOMANCY:
 						if (STAT_STAGE(bankAtk, STAT_STAGE_SPEED) >= STAT_STAGE_MAX
 						&& (STAT_STAGE(bankAtk, STAT_STAGE_SPATK) >= STAT_STAGE_MAX || !SpecialMoveInMoveset(bankAtk))
 						&&  STAT_STAGE(bankAtk, STAT_STAGE_SPDEF) >= STAT_STAGE_MAX)
+							DECREASE_VIABILITY(10);
+						else if (IsTrickRoomActive())
 							DECREASE_VIABILITY(10);
 						break;
 
@@ -2240,6 +2264,8 @@ MOVESCR_CHECK_0:
 					&&  (STAT_STAGE(bankAtk, STAT_STAGE_ATK) >= STAT_STAGE_MAX || !PhysicalMoveInMoveset(bankAtk))
 					&&  (STAT_STAGE(bankAtk, STAT_STAGE_SPEED) >= STAT_STAGE_MAX))
 						DECREASE_VIABILITY(10);
+					else if (IsTrickRoomActive())
+						DECREASE_VIABILITY(10);
 					break;
 
 				default: //Dragon Dance + Shift Gear
@@ -2249,6 +2275,10 @@ MOVESCR_CHECK_0:
 					{
 						if ((STAT_STAGE(bankAtk, STAT_STAGE_ATK) >= STAT_STAGE_MAX || !PhysicalMoveInMoveset(bankAtk))
 						&&  (STAT_STAGE(bankAtk, STAT_STAGE_SPEED) >= STAT_STAGE_MAX))
+							DECREASE_VIABILITY(10);
+						else if(move == MOVE_DRAGONDANCE && data->defAbility == ABILITY_DANCER)
+							DECREASE_VIABILITY(10);
+						else if (IsTrickRoomActive())
 							DECREASE_VIABILITY(10);
 					}
 			}
@@ -2694,10 +2724,13 @@ MOVESCR_CHECK_0:
 					DECREASE_VIABILITY(10);
 					break;
 				}
+				else if ( Random() % 2 == 0) {
+					DECREASE_VIABILITY(5); //don't always spam sucker punch, can be easily abused
+				}
 			}
-			else if ( Random() % 2 == 0) {
-				DECREASE_VIABILITY(10);
-			}
+			// else if ( Random() % 2 == 0) {
+			// 	DECREASE_VIABILITY(10);
+			// }
 			//If the foe has move prediction, assume damage move for now.
 			goto AI_STANDARD_DAMAGE;
 

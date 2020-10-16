@@ -187,6 +187,8 @@ bool8 ProtectAffects(u16 move, u8 bankAtk, u8 bankDef, bool8 set)
 	u8 target = gBattleMoves[move].target;
 	u8 defSide = SIDE(bankDef);
 
+	if (ABILITY(bankAtk) == ABILITY_UNSEENFIST && contact) //added 
+		return effect;
 	if (ProtectedByMaxGuard(bankDef, move))
 	{
 		effect = 1;
@@ -281,7 +283,7 @@ bool8 DoesProtectionMoveBlockMove(u8 bankAtk, u8 bankDef, u16 atkMove, u16 prote
 	u8 split = SPLIT(atkMove);
 	u8 target = gBattleMoves[atkMove].target;
 
-	if (!CheckTableForMove(atkMove, gMovesThatLiftProtectTable))
+	if (!CheckTableForMove(atkMove, gMovesThatLiftProtectTable) || ( !(ABILITY(bankAtk) == ABILITY_UNSEENFIST) ) )
 	{
 		switch (protectMove) {
 			case MOVE_PROTECT:

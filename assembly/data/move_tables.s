@@ -730,6 +730,7 @@ gSwordMoves:
 .hword MOVE_SMARTSTRIKE
 .hword MOVE_RAZORSHELL
 .hword MOVE_SHADOWCLAW
+.hword MOVE_BEHEMOTHBLADE
 .hword MOVE_TABLES_TERMIN 
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

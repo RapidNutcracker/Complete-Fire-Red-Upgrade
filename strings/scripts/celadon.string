@@ -344,7 +344,7 @@ Hi! I offer fossil Pok\emon\nin exchange for shards.\pInterested?
 Which fossil Pok\emon would you\nlike?
 
 #org @gText_FossilPokemon_Dont
-Hm, you don't have enough [LIGHT_BLUE][BUFFER1]s[BLUE].\pCome back with some [LIGHT_BLUE][BUFFER1]s[BLUE]\nif you'd like a [LIGHT_GREEN][BUFFER2][BLUE].
+Hm, you don't have enough\n[LIGHT_BLUE][BUFFER1]s[BLUE].\pCome back with some [LIGHT_BLUE][BUFFER1]s[BLUE]\nif you'd like a [LIGHT_GREEN][BUFFER2][BLUE].
 
 #org @gText_FossilPokemon_Confirm 
 Okay, you'd like to exchange\n[LIGHT_BLUE][BUFFER1]s[BLUE] for [LIGHT_GREEN][BUFFER2][BLUE],\lcorrect?

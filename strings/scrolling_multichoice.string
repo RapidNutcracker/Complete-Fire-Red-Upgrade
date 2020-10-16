@@ -44,6 +44,9 @@ Blaze Kick
 #org @sExampleText_PSplit
 Pain Split
 
+#org @gText_metatutor_SteelBeam
+Steel Beam 
+
 #org @sExampleText_ZenHeadbutt
 Zen Headbutt
 
@@ -83,34 +86,37 @@ Tail Slap
 #org @sExampleText_BodySlam
 Body Slam 
 
+#org @sExampleText_FoulPlay
+Foul Play 
+
 #org @sExampleText_Omanyte
-Omanyte   2 Blue Shards
+Omanyte   [SHRINK][BLUE]2 Blue Shards
 
 #org @sExampleText_Kabuto 
-Kabuto    2 Blue Shards 
+Kabuto   [SHRINK][BLUE]2 Blue Shards 
 
 #org @sExampleText_Lileep
-Lileep     1 Green Shard 
+Lileep    [SHRINK][GREEN]1 Green Shard 
 
 #org @sExampleText_Anorith 
-Anorith    2 Yellow Shards 
+Anorith   [SHRINK][ORANGE]2 Yellow Shards 
 
 #org @sExampleText_Cranidos
-Cranidos   2 Red Shards 
+Cranidos  [SHRINK][RED]2 Red Shards 
 
 #org @sExampleText_Shieldon
-Shieldon   1 Yellow Shard 
+Shieldon   [SHRINK][ORANGE]1 Yellow Shard 
 
 #org @sExampleText_Archen
-Archen     2 Green Shard 
+Archen     [SHRINK][GREEN]2 Green Shard 
 
 #org @sExampleText_Tirtouga
-Tirtouga   1 Blue Shard 
+Tirtouga  [SHRINK][BLUE]1 Blue Shard 
 
 #org @sExampleText_Tyrunt
-Tyrunt     2 Red Shards
+Tyrunt    [SHRINK][RED]2 Red Shards
 
 #org @sExampleText_Aurorus
-Amaura     2 Yellow Shard
+Amaura    [SHRINK][ORANGE]2 Yellow Shard
 
 #endif

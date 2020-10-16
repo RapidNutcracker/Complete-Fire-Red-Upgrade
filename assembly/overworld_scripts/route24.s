@@ -128,7 +128,7 @@ EventScript_nuggetbridge_Trainer:
 YouBeGood: 
 	lock 
 	faceplayer 
-	msgbox gText_nuggetbridge_4 MSG_NORMAL
+	msgbox gText_nuggetbridge_5 MSG_NORMAL
 	release 
 	end 
 	

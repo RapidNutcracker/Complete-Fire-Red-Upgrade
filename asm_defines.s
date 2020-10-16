@@ -4,7 +4,8 @@
 .equ rom, 0x8000000
 
 @Custom Defines
-.equ MAX_LEVEL, 250
+@was 250 max level went back down to 100
+.equ MAX_LEVEL, 100 
 .equ fossilImageTable, 0x081a4600
 .equ pcSelect_StateTracker, 0x0203b7ac
 .equ gCreateSpriteTableSetter, 0x0203b7ad
@@ -411,7 +412,7 @@
 .equ ABILITY_SERENEGRACE, 0x20
 .equ ABILITY_SWIFTSWIM, 0x21
 .equ ABILITY_CHLOROPHYLL, 0x22
-.equ ABILITY_ILLUMINATE, 0x23
+.equ ABILITY_GULPMISSILE, 0x23
 .equ ABILITY_TRACE, 0x24
 .equ ABILITY_HUGEPOWER, 0x25 @;Also Pure Power
 .equ ABILITY_POISONPOINT, 0x26

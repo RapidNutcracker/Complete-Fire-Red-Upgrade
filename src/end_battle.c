@@ -54,9 +54,9 @@ const u16 gEndBattleFlagClearTable[] =
 #ifdef FLAG_SCALE_WILD_BOSS_LEVEL
 	FLAG_SCALE_WILD_BOSS_LEVEL,
 #endif
-#ifdef FLAG_DOUBLE_WILD_BATTLE
-	FLAG_DOUBLE_WILD_BATTLE,
-#endif
+// #ifdef FLAG_DOUBLE_WILD_BATTLE
+// 	FLAG_DOUBLE_WILD_BATTLE,
+// #endif
 #ifdef FLAG_SHINY_CREATION
 	FLAG_SHINY_CREATION,
 #endif
@@ -753,7 +753,7 @@ static void EndBattleFlagClear(void)
 	&& gCurrentDexNavChain < 100
 	&& (gBattleOutcome == B_OUTCOME_WON || gBattleOutcome == B_OUTCOME_CAUGHT))
 		++gCurrentDexNavChain;
-	else if (gCurrentDexNavChain > 100)
+	else if (gCurrentDexNavChain >= 100)
 		gCurrentDexNavChain = 99;
 	else
 		gCurrentDexNavChain = 0;

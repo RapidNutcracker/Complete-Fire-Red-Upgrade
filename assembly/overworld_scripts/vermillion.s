@@ -200,12 +200,42 @@ EventScript_SSAnne_CantForget:
 EventScript_Verm_EXPShare:
 	lock
 	faceplayer 
-	giveitem ITEM_GYARADOSITE 0x1 MSG_OBTAIN
-	release 
-	end 
+	msgbox gText_DoYouWantRandomizer MSG_YESNO 
+    compare LASTRESULT YES 
+    if equal _call setrandom 
+    @ msgbox gText_DoYouWantAbility MSG_YESNO 
+    @ compare LASTRESULT YES 
+    @ if equal _call setability 
+    @ msgbox gText_DoYouWantLearnsets MSG_YESNO 
+    @ compare LASTRESULT YES 
+    @ if equal _call setlearnsets 
+    @ setvar 0x5100 0x1
+    release 
+    end 
+
+setrandom:
+    setflag 0x940 
+    msgbox gText_RandomizerHard MSG_YESNO 
+    compare LASTRESULT YES 
+    if equal _goto SetHard 
+    msgbox gText_RandomizerSet MSG_NORMAL 
+    return 
+ 
+SetHard: 
+    clearflag 0x93A 
+	setflag 0x943
+    msgbox gText_RandomizerSetHard MSG_NORMAL 
+    return 
 
 .global EventScript_Verm_newTruant
 EventScript_Verm_newTruant:
 	msgbox gText_Vermilion_NewTruant MSG_FACE 
 	release 
 	end 
+
+.global EventScript_Verm_NewHMs
+EventScript_Verm_NewHMs:
+	msgbox gText_Vermilion_NewHM MSG_FACE 
+	release 
+	end 
+	

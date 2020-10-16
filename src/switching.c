@@ -499,7 +499,6 @@ void atk51_switchhandleorder(void)
 			}
 			else if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)
 				SwitchPartyOrderInGameMulti(gActiveBattler, gBattleStruct->monToSwitchIntoId[gActiveBattler]);
-
 			else
 				SwitchPartyOrder(gActiveBattler);
 

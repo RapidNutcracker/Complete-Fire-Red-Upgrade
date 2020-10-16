@@ -8,10 +8,10 @@
 [BLUE]The professor forgot to give you\nthe Dynamax Band.
 
 #org @gText_Pewter_GiveDynamaxEnd
-[BLUE]It, obviously, allows you to\nDynamax, although it can only be\ldone in Raid Battles.\pYou can find them by talking\nto red jewels.\pGood luck, and take care! 
+[BLUE]It, obviously, allows you to\nDynamax, although it can only be\ldone in Raid Battles.\pYou can find them by talking\nto raid dens.\pGood luck, and take care! 
 
 #org @gText_falknercheck_1
-It appears the Gym is closed[.]
+It appears the Gym is closed[.]\pIt could be wise to pay the museum\na visit. 
 
 #org @gText_falkner_1
 Hmm... There doesn't seem to be\nany information on Mega Stones[.]
@@ -92,4 +92,4 @@ Well, come back whenever.
 I hope you took good care of\nthe egg! 
 
 #org @gText_Pewter_TalkAboutLevelCap
-Scrubs be complaining this game\nis too hard[.]\pIt really ain't that bad[.]\nY'all just used to playing Pok\emon\lgames made for babies. 
+Scrubs like complaining this game\nis too hard[.]\pIt really ain't that bad[.]\nY'all just used to playing Pok\emon\lgames made for babies. 

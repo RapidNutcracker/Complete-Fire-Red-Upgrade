@@ -200,7 +200,7 @@ gBattleScriptsForMoveEffects:
 .word BS_182_Superpower
 .word BS_183_MagicCoat
 .word BS_184_Recycle
-.word BS_185_Blank	@was revenge
+.word BS_185_Poltergeist	@was revenge
 .word BS_186_BrickBreak
 .word BS_187_Yawn
 .word BS_188_KnockOff

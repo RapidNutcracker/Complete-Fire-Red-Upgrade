@@ -123,6 +123,7 @@ EventScript_Fuschia_DoubleBattle:
     if NO _goto CancelThis
     setflag 0x910
     msgbox gText_FuschiaDouble2 MSG_NORMAL
+	@ msgbox gText_FuschiaDoubleOof MSG_FACE 
     release 
     end 
 

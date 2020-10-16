@@ -16901,6 +16901,7 @@ ANIM_SOUL_STRIKE:
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
 .pool
 ANIM_EXPANDING_FORCE:
 	goto 0x81cd46c @MOVE_PSYCHIC
@@ -16986,8 +16987,30 @@ ANIM_LASH_OUT:
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
 ANIM_POLTERGEIST:
-	goto 0x81d4a0f @MOVE_KNOCKOFF
-	endanimation
+	loadparticle ANIM_TAG_PURPLE_FLAME
+	loadparticle ANIM_TAG_FLAT_ROCK @rocks
+	loadparticle ANIM_TAG_IMPACT @pound particles
+	loadparticle ANIM_TAG_EXPLOSION @Explosion
+	pokespritetoBG bank_target
+	loadBG1 BG_GHOST
+	playsound2 0xb6 SOUND_PAN_ATTACKER 
+	waitbgfadein 
+	launchtask AnimTask_PurpleFlamesOnTarget 0x3 0x0
+	launchtask AnimTask_move_bank 0x5 0x5 bank_target 0x2 0x0 0x25 0x1
+	@Psystrike stuff starts here 
+	launchtask AnimTask_move_bank 0x2 0x5 bank_target 0x0 0x5 0x32 0x1
+	playsound2 0x7C SOUND_PAN_TARGET
+	launchtemplate PSYSTRIKE_ROCKHITS 0x82 0x5 0x1 0x0 0x0 0xFFE0 0x10 @up
+	pause 0x1
+	call PSYSTRIKE_DESTROY
+	call PSYSTRIKE_DESTROY
+	waitanimation
+	resetblends
+	pokespritefromBG side_target
+	loaddefaultBG
+	waitbgfadein
+	waitanimation
+	endanimation 
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool

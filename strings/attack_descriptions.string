@@ -1142,7 +1142,7 @@ Inflicts a burn\non targets who's stats\nwere boosted during the\nturn when it i
 The move's power\ndoubles if the user's\nstats have been lowered\nduring the turn.
 
 #org @DESC_POLTERGEIST
-The user controls\nthe target's item to\nattack. Fails if\nthe target has no item.
+The user controls\nthe target's item to\nattack. Fails if the\ntarget has no item.
 
 #org @DESC_CORROSIVE_GAS
 The user cloaks\nitself in acidic gas.\nIt melts away the\ntarget's held item.
@@ -1160,7 +1160,7 @@ A 3-kick attack\nthat becomes more\npowerful with each\nsuccessive hit.
 The user slams\nthe target with its\nwings. The target is\nhit twice in a row.
 
 #org @DESC_SCORCHING_SANDS
-The user throws\nscorching sand at the\ntarget. It may also\ninflict burns.
+The user throws\nscorching sand at the\ntarget. It may also\ninflict burn.
 
 #org @DESC_JUNGLE_HEALING
 The user restores\nHP and the status\nof itself and its\nally in battle.

@@ -1018,11 +1018,6 @@ move_t CalcStrongestMove(const u8 bankAtk, const u8 bankDef, const bool8 onlySpr
 				else if (predictedDamage == highestDamage
 				&& PriorityCalc(bankAtk, ACTION_USE_MOVE, move) > PriorityCalc(bankAtk, ACTION_USE_MOVE, strongestMove)) //Use faster of two strongest moves
 				{
-					// if (gBattleMoves[move].effect == EFFECT_SUCKER_PUNCH){
-					// 	if (Random() % 2 == 0)
-					// 		strongestMove = move;
-					// }
-					// else 
 					strongestMove = move;
 				}
 				else if (predictedDamage == highestDamage) //Find which move has better Acc
@@ -2931,6 +2926,8 @@ bool8 AnyUsefulStatIsRaised(u8 bank)
 					break;
 				case STAT_STAGE_DEF:
 					if (MoveSplitOnTeam(FOE(bank), SPLIT_PHYSICAL))
+						return TRUE;
+					if(MoveInMoveset(MOVE_BODYPRESS, FOE(bank)))
 						return TRUE;
 					break;
 				case STAT_STAGE_SPATK:

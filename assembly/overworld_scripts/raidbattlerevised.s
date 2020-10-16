@@ -55,7 +55,6 @@ RaidBattle:
     setvar 0x8000 0x0  @Clear Raid Script flag 
     special 0x11A
     lock
-    faceplayer 
     special SPECIAL_IS_RAID_BATTLE_AVAILABLE
     compare LASTRESULT 0x0 
     if equal _goto RaidScript_Cancel 

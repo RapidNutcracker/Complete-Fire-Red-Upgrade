@@ -453,6 +453,12 @@ FirstList2:
 	if 0x1 _goto EventScript_metatutor_StoredPower
 	compare LASTRESULT 0x9
 	if 0x1 _goto EventScript_metatutor_GunkShot
+	compare LASTRESULT 0xA 
+	if 0x1 _goto EventScript_metatutor_Tailwind
+	compare LASTRESULT 0xB
+	if 0x1 _goto EventScript_metatutor_Megahorn
+	@ compare LASTRESULT 0xC
+	@ if 0x1 _goto EventScript_metatutor_Steelbeam
 	hidemoney 0x35 0x00
 	release
 	end
@@ -489,6 +495,11 @@ EventScript_metatutor_PhantomForce:
 	call EventScript_metatutor_Checkpayment
 	goto EventScript_metatutor_Endofscript
 
+EventScript_metatutor_Steelbeam:
+	setvar 0x8005 0x88
+	call EventScript_metatutor_Checkpayment
+	goto EventScript_metatutor_Endofscript
+
 EventScript_metatutor_FlareBlitz:
 	setvar 0x8005 0x79
 	call EventScript_metatutor_Checkpayment
@@ -504,8 +515,13 @@ EventScript_metatutor_GunkShot:
 	call EventScript_metatutor_Checkpayment
 	goto EventScript_metatutor_Endofscript
 
-EventScript_metatutor_PowerGem:
-	setvar 0x8005 0x74
+EventScript_metatutor_Tailwind:
+	setvar 0x8005 0x1C
+	call EventScript_metatutor_Checkpayment
+	goto EventScript_metatutor_Endofscript
+
+EventScript_metatutor_Megahorn:
+	setvar 0x8005 0x7D
 	call EventScript_metatutor_Checkpayment
 	goto EventScript_metatutor_Endofscript
 

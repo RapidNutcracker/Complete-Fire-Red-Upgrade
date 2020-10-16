@@ -117,6 +117,9 @@ Crafty Shield protected\n[FD][36] team!
 #org @MatBlockSetString
 [ATTACKER] intends to flip\nup a mat and block incoming attacks!
 
+#org @gText_CheckPoltergeist
+[TARGET] is about to be\nattacked by its [LAST_ITEM]!
+
 #org @QuickGuardSetString
 Quick Guard protected\n[FD][36] team!
 

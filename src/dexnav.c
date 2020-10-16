@@ -845,22 +845,22 @@ static void Task_ManageDexNavHUD(u8 taskId)
 	// }
 
 	//Check if script just executed removed this
-	// if (ScriptContext2_IsEnabled() == TRUE)
-	// {
-	// 	//gCurrentDexNavChain = 0; //Not fair because of the repel pop up
-	// 	DestroyTask(taskId);
-	// 	DexNavFreeHUD();
-	// 	return;
-	// }
+	if (ScriptContext2_IsEnabled() == TRUE)
+	{
+		//gCurrentDexNavChain = 0; //Not fair because of the repel pop up
+		DestroyTask(taskId);
+		DexNavFreeHUD();
+		return;
+	}
 
-	// if (gMain.newKeys & (B_BUTTON | START_BUTTON))
-	// {
-	// 	// gCurrentDexNavChain = 0; //A Pokemon running like this resets the chain
-	// 	DestroyTask(taskId);
-	// 	DexNavFreeHUD();
-	// 	PlaySE(SE_POKENAV_OFF);
-	// 	return;
-	// }
+	if (gMain.newKeys & (B_BUTTON | START_BUTTON))
+	{
+		// gCurrentDexNavChain = 0; //A Pokemon running like this resets the chain
+		DestroyTask(taskId);
+		DexNavFreeHUD();
+		PlaySE(SE_POKENAV_OFF);
+		return;
+	}
 
 	//Caves and water the pokemon moves around added here
 	// if ((sDexNavHudPtr->environment == ENCOUNTER_TYPE_WATER || !IsMapTypeOutdoors(GetCurrentMapType()))

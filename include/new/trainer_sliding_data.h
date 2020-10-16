@@ -25,6 +25,12 @@ extern u8 sText_ErikaLastSwitchIn[];
 extern u8 sText_SabrinaLastSwitchIn[];
 extern u8 sText_ChuckLastSwitchIn[];
 extern u8 sText_ArcherOneLastSwitchIn[];
+extern u8 sText_SoupFirstMonDown[];
+extern u8 sText_SoupLastMonDown[];
+extern u8 sText_KogaLastSwitchIn[];
+extern u8 sText_BlaineLastSwitchIn[];
+extern u8 sText_ClairLastSwitchIn[];
+extern u8 sText_JotardLastSwitchIn[];
 
 //For Unbound
 

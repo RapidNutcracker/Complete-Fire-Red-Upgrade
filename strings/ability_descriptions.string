@@ -6,6 +6,9 @@ Prevents self-lowering stats.
 #org @DESC_SHIELDDUST
 Stops added effects/hazard dmg.  
 
+#org @DESC_GULPMISSILE
+Spits prey if damaged after a swim.
+
 #org @DESC_SWEETVEIL
 Keeps user and allies awake.
 
@@ -71,7 +74,7 @@ Heat protection.
 Prefers the rain to heat.
 
 #org @DESC_TINTEDLENS
-Boosts "not very effective\" moves.
+Boosts not very effective moves.
 
 #org @DESC_SOLIDROCK
 #org @DESC_FILTER
@@ -363,8 +366,8 @@ Transforms upon entering battle.
 #org @DESC_JUSTIFIED
 Dark-type hits raise Attack.
 
-#org @DESC_RATTLED
-Scary move types raise Speed.
+#org @DESC_UNSEENFIST
+Contact moves bypass Protect.
 
 #org @DESC_MERCILESS
 Critically hits poisoned foes.
