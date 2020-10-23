@@ -211,7 +211,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_SHADOWTAG] = 10,
 	[ABILITY_SHEDSKIN] = 7,
 	[ABILITY_SHEERFORCE] = 8,
-	[ABILITY_SHELLARMOR] = 2,
+	[ABILITY_LETHALPRECISION] = 7,
 	[ABILITY_SHIELDDUST] = 5,
 	[ABILITY_SHIELDSDOWN] = 6,
 	[ABILITY_SIMPLE] = 8,
@@ -317,7 +317,6 @@ const bool8 gMoldBreakerIgnoredAbilities[] =
 	[ABILITY_IMMUNITY] =		TRUE,
 	[ABILITY_INNERFOCUS] =		TRUE,
 	[ABILITY_INSOMNIA] =		TRUE,
-	// [ABILITY_KEENEYE] =			TRUE,
 	[ABILITY_LEAFGUARD] =		TRUE,
 	[ABILITY_MOUNTAINEER] =     TRUE, 
 	[ABILITY_LEVITATE] =		TRUE,
@@ -329,7 +328,6 @@ const bool8 gMoldBreakerIgnoredAbilities[] =
 	[ABILITY_OBLIVIOUS] =		TRUE,
 	[ABILITY_OWNTEMPO] =		TRUE,
 	[ABILITY_SANDVEIL] =		TRUE,
-	[ABILITY_SHELLARMOR] =		TRUE,
 	[ABILITY_SHIELDDUST] =		TRUE,
 	[ABILITY_SIMPLE] =			TRUE,
 	[ABILITY_SNOWCLOAK] =		TRUE,
@@ -618,38 +616,41 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 
 		//added here
 		case ABILITY_FORECAST:
-			if(ITEM_EFFECT(bank) == ITEM_EFFECT_ICY_ROCK)
+			if (!ABILITY_PRESENT(ABILITY_CLOUDNINE) && !ABILITY_PRESENT(ABILITY_NEUTRALIZINGGAS) && !ABILITY_PRESENT(ABILITY_AIRLOCK))
 			{
-				if (!(gBattleWeather & (WEATHER_HAIL_ANY | WEATHER_PRIMAL_ANY | WEATHER_CIRCUS)))
+				if(ITEM_EFFECT(bank) == ITEM_EFFECT_ICY_ROCK)
+				{
+					if (!(gBattleWeather & (WEATHER_HAIL_ANY | WEATHER_PRIMAL_ANY | WEATHER_CIRCUS)))
+						{
+							gBattleScripting.animArg1 = B_ANIM_HAIL_CONTINUES;
+							effect = ActivateWeatherAbility(WEATHER_HAIL_PERMANENT | WEATHER_HAIL_TEMPORARY,
+															ITEM_EFFECT_ICY_ROCK, bank, B_ANIM_HAIL_CONTINUES, 3, FALSE);
+						}
+				}
+				else if(ITEM_EFFECT(bank) == ITEM_EFFECT_HEAT_ROCK)
+				{
+					if (!(gBattleWeather & (WEATHER_SUN_ANY | WEATHER_PRIMAL_ANY | WEATHER_CIRCUS)))
 					{
-						gBattleScripting.animArg1 = B_ANIM_HAIL_CONTINUES;
-						effect = ActivateWeatherAbility(WEATHER_HAIL_PERMANENT | WEATHER_HAIL_TEMPORARY,
-														ITEM_EFFECT_ICY_ROCK, bank, B_ANIM_HAIL_CONTINUES, 3, FALSE);
+						effect = ActivateWeatherAbility(WEATHER_SUN_PERMANENT | WEATHER_SUN_TEMPORARY,
+													ITEM_EFFECT_HEAT_ROCK, bank, B_ANIM_SUN_CONTINUES, 2, FALSE);
 					}
-			}
-			else if(ITEM_EFFECT(bank) == ITEM_EFFECT_HEAT_ROCK)
-			{
-				if (!(gBattleWeather & (WEATHER_SUN_ANY | WEATHER_PRIMAL_ANY | WEATHER_CIRCUS)))
-				{
-					effect = ActivateWeatherAbility(WEATHER_SUN_PERMANENT | WEATHER_SUN_TEMPORARY,
-												ITEM_EFFECT_HEAT_ROCK, bank, B_ANIM_SUN_CONTINUES, 2, FALSE);
-				}
 
-			}
-			else if(ITEM_EFFECT(bank) == ITEM_EFFECT_SMOOTH_ROCK)
-			{
-				if (!(gBattleWeather & (WEATHER_SANDSTORM_ANY | WEATHER_PRIMAL_ANY | WEATHER_CIRCUS)))
-				{
-					effect = ActivateWeatherAbility(WEATHER_SANDSTORM_PERMANENT | WEATHER_SANDSTORM_TEMPORARY,
-												ITEM_EFFECT_SMOOTH_ROCK, bank, B_ANIM_SANDSTORM_CONTINUES, 1, FALSE);
 				}
-			}
-			else if(ITEM_EFFECT(bank) == ITEM_EFFECT_DAMP_ROCK)
-			{
-				if (!(gBattleWeather & (WEATHER_RAIN_ANY | WEATHER_PRIMAL_ANY | WEATHER_CIRCUS)))
+				else if(ITEM_EFFECT(bank) == ITEM_EFFECT_SMOOTH_ROCK)
 				{
-					effect = ActivateWeatherAbility(WEATHER_RAIN_PERMANENT | WEATHER_RAIN_TEMPORARY,
-												ITEM_EFFECT_DAMP_ROCK, bank, B_ANIM_RAIN_CONTINUES, 0, FALSE);
+					if (!(gBattleWeather & (WEATHER_SANDSTORM_ANY | WEATHER_PRIMAL_ANY | WEATHER_CIRCUS)))
+					{
+						effect = ActivateWeatherAbility(WEATHER_SANDSTORM_PERMANENT | WEATHER_SANDSTORM_TEMPORARY,
+													ITEM_EFFECT_SMOOTH_ROCK, bank, B_ANIM_SANDSTORM_CONTINUES, 1, FALSE);
+					}
+				}
+				else if(ITEM_EFFECT(bank) == ITEM_EFFECT_DAMP_ROCK)
+				{
+					if (!(gBattleWeather & (WEATHER_RAIN_ANY | WEATHER_PRIMAL_ANY | WEATHER_CIRCUS)))
+					{
+						effect = ActivateWeatherAbility(WEATHER_RAIN_PERMANENT | WEATHER_RAIN_TEMPORARY,
+													ITEM_EFFECT_DAMP_ROCK, bank, B_ANIM_RAIN_CONTINUES, 0, FALSE);
+					}
 				}
 			}
 			effect = CastformDataTypeChange(bank);
@@ -1817,24 +1818,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 					gBattlescriptCurrInstr = BattleScript_AbilityTransformed;
 					effect++;
 				}
-				// else if (MOVE_HAD_EFFECT
-				// && TOOK_DAMAGE(bank)
-				// && move != MOVE_STRUGGLE
-				// && SPLIT(move) != SPLIT_STATUS
-				// // && !IsOfType(bank, moveType)
-				// && BATTLER_ALIVE(bank)
-				// && gBankAttacker != bank
-				// && SPECIES(bank) == SPECIES_CRAMORANT_GULPING)
-				// {
-				// 	gBattleMoveDamage = MathMax(1, GetBaseMaxHP(gBankAttacker) / 8);
-				// 	BattleScriptPushCursor();
-				// 	gBattlescriptCurrInstr = BattleScript_RoughSkinActivates;
-				// 	effect++;
-				// 	DoFormChange(bank, SPECIES_CRAMORANT, TRUE, TRUE, FALSE);
-				// 	BattleScriptPushCursor();
-				// 	gBattlescriptCurrInstr = BattleScript_AbilityTransformed;
-				// 	effect++;
-				// }
 				break;
 
 			case ABILITY_IRONBARBS:

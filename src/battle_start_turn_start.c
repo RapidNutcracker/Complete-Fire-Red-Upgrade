@@ -721,7 +721,8 @@ void RunTurnActionsFunctions(void)
 					const u8* script = DoMegaEvolution(bank);
 					if (script != NULL)
 					{
-						if (!(gBattleTypeFlags & BATTLE_TYPE_MEGA_BRAWL)) //As many mons can Mega Evolve as you want
+						if ( (!(gBattleTypeFlags & BATTLE_TYPE_MEGA_BRAWL) )
+						     && !(SIDE(bank) == B_SIDE_OPPONENT)) //As many mons can Mega Evolve as you want added here
 							gNewBS->megaData.done[bank] = TRUE;
 
 						gNewBS->megaData.chosen[bank] = 0;
@@ -734,7 +735,7 @@ void RunTurnActionsFunctions(void)
 							gNewBS->megaData.done[PARTNER(bank)] = TRUE;
 						}
 						else if (!(gBattleTypeFlags & (BATTLE_TYPE_TWO_OPPONENTS | BATTLE_TYPE_MULTI | BATTLE_TYPE_MEGA_BRAWL))
-						&& SIDE(bank) == B_SIDE_OPPONENT)
+						&& SIDE(bank) == B_SIDE_OPPONENT && !(FlagGet(FLAG_SYS_GAME_CLEAR) )) 
 						{
 							gNewBS->megaData.chosen[PARTNER(bank)] = 0;
 							gNewBS->megaData.done[PARTNER(bank)] = TRUE;

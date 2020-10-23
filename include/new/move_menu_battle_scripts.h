@@ -27,6 +27,27 @@ extern const u8 StringNull[];
 extern const u8 gText_Power[];
 extern const u8 gText_Acc[];
 extern const u8 gText_NoMiss[];
+extern const u8 gText_TrickRoom[]; //added from here 
+extern const u8 gText_SunText[];
+extern const u8 gText_RainText[];
+extern const u8 gText_HailText[];
+extern const u8 gText_SandstormText[];
+extern const u8 gText_NoWeather[];
+extern const u8 gText_InfText[];
+extern const u8 gText_GrassyTerrainText[];
+extern const u8 gText_MistyTerrainText[];
+extern const u8 gText_PsychicTerrainText[];
+extern const u8 gText_ElectricTerrainText[];
+extern const u8 gText_NoTerrain[];
+extern const u8 gText_LightScreen[]; 
+extern const u8 gText_Reflect[];
+extern const u8 gText_AuroraVeilText[];
+extern const u8 gText_NoAuroraVeilText[];
+extern const u8 gText_PP[];
+//to here
+
+// extern const u8 gText_Empty[];
+extern const u8 gText_OffMoveMenu[]; 
 extern const u8 gText_Physical[];
 extern const u8 gText_Special[];
 extern const u8 gText_Status[];

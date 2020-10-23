@@ -1121,7 +1121,7 @@ In this two-turn move,\nthe user gathers\nspace power and\nincreases Sp. Atk.
 Bypasses opponent's\nability. May cause\npoison.
 
 #org @DESC_MISTY_EXPLOSION
-The user explodes,\nfainting in the process.\nIts power doubles\non Misty Terrain.
+The user explodes.\nIt halves SpecDef,\nand becomes stronger\nin Misty Terrain.
 
 #org @DESC_GRASSY_GLIDE
 The user glides\non the ground to\nattack. Moves first\non Grassy Terrain.

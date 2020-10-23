@@ -269,7 +269,7 @@ void atk23_getexp(void)
 		u8 badgeCount = GetBadgeCount(); //added
 		u8 lvlCap = LevelCap_Badges[badgeCount]; //added
 		if(pokeLevel >= lvlCap){ //added
-			calculatedExp = calculatedExp / 20; //added
+			calculatedExp = calculatedExp / 30; //added
 		} //added
 		gBattleMoveDamage = calculatedExp;
 

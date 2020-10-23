@@ -3300,7 +3300,8 @@ static u8 GetHighestMonLevel(const struct Pokemon* const party)
 		if (max == MAX_LEVEL)
 			return max;
 		if(species == SPECIES_NONE){
-			max = max - 2;
+			if(!FlagGet(FLAG_SYS_GAME_CLEAR))
+				max = max - 2;
 			return max;
 		}
 
@@ -3313,7 +3314,8 @@ static u8 GetHighestMonLevel(const struct Pokemon* const party)
 			max = 41;
 		}
 	}
-	max = max - 2; 
+	if(!FlagGet(FLAG_SYS_GAME_CLEAR))
+		max = max - 2; 
 
 	return max;
 }

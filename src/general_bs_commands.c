@@ -2674,8 +2674,18 @@ void atk91_givepaydaymoney(void)
 
 	if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_TRAINER_TOWER)))
 	{
-		for (i = 0; i < PARTY_SIZE; ++i)
+		for (i = 0; i < PARTY_SIZE; ++i){
 			money += (gPlayerParty[i].level * 5) * gNewBS->PayDayByPartyIndices[i];
+			if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG, NULL))
+			{
+				u8 item = GetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, NULL);
+				if (ItemId_GetHoldEffect(item) == ITEM_EFFECT_DOUBLE_PRIZE)
+				{
+					gBattleStruct->moneyMultiplier *= 2;
+					break;
+				}
+			}
+		}
 		money *= gBattleStruct->moneyMultiplier;
 		money += MathMin(gNewBS->maxGoldrushMoney * gBattleStruct->moneyMultiplier, 99999); //Gold Rush caps at $99 999
 

@@ -3,7 +3,10 @@
 # PALLET TOWN 
 tile 4 1 0 EventScript_AskRandomizer
 sign 4 1 2 EventScript_Pallet_AutoRunSign
+# sign 4 1 2 EventScript_Pallet_Varrio
 npc 3 0 1 EventScript_Pallet_Technology
+map 4 0 gMapScripts_PalletTownHome
+npc 4 0 0 EventScript_mom_Start
 
 # VIRIDIAN CITY 
 tile 3 1 4 EventScript_SetFlag
@@ -39,7 +42,6 @@ npc 1 0 11 EventScript_viridianforesttutor_Forestmovetutor
 tile 1 0 1 EventScript_brendanbattleleft_Start
 tile 1 0 0 EventScript_brendanbattleright_Start
 npc 1 0 16 EventScript_ViridianForest_Buterfree
-# tile 1 0 2 EventScript_virizion_Start
 npc 1 0 13 EventScript_RockSmash 
 npc 1 0 14 EventScript_RockSmash 
 npc 1 0 15 EventScript_RockSmash 
@@ -90,7 +92,6 @@ tile 1 3 2 EventScript_adminmtmoonleft_Start
 npc 1 2 0 EventScript_RockSmash 
 npc 1 2 1 EventScript_RockSmash 
 npc 1 2 2 EventScript_RockSmash 
-# tile 1 3 3 EventScript_cobalion_Start
 npc 1 3 13 EventScript_cobalion_OW
 
 #CERULEAN 
@@ -104,6 +105,9 @@ npc 3 3 8 EventScript_Cut
 npc 7 5 3 EventScript_ExpertModeNPC
 npc 3 3 3 EventScript_NewThiefInfo
 npc 3 3 6 EventScript_RedShardInfo
+tile 3 3 0 EventScript_redogaryrival_Startlefttile
+tile 3 3 1 EventScript_redogaryrival_Startmiddletile
+tile 3 3 2 EventScript_redogaryrival_StartRightTile
 
 #Route 24 
 npc 3 43 8 EventScript_Route24Raid
@@ -199,7 +203,6 @@ npc 1 82 23 EventScript_RockSmash
 npc 1 82 24 EventScript_RockSmash 
 npc 1 82 25 EventScript_RockSmash 
 npc 1 82 27 EventScript_RockTunnel_Coalossalite
-# tile 1 82 0 EventScript_terrakion_Start
 npc 1 82 28 EventScript_terrakion_OW
 
 #Lavender Town 
@@ -331,7 +334,9 @@ npc 3 30 4 EventScript_snorlaxencounter_Start
 #Route 15
 npc 3 33 14 EventScript_Route15Raid
 
-
+#Route 16
+npc 25 0 0 EventScript_Route16_PsychicGirl
+npc 25 0 1 EventScript_Route16_Absol
 #Route 17
 npc 3 35 10 EventScript_CyclingRoad_Absolite
 npc 3 35 11 EventScript_Route17_HeatCrash
@@ -474,6 +479,7 @@ tile 1 74 1 EventScript_e4check_Start
 tile 1 74 3 EventScript_e4check_Start
 tile 1 74 2 EventScript_ceruleangiovanni_Left 
 npc 1 73 16 EventScript_CeruleanCave_BodyPress
+# npc 1 74 2 EventScript_MewtwoTotem
 
 #Route 23
 tile 3 42 42 EventScript_FinalBrendan_Fight
@@ -510,3 +516,56 @@ npc 1 78 0 EventScript_lance_Start
 npc 13 0 3 EventScript_PokemonLeagueChick
 npc 13 0 6 EventScript_E4LanceInfo_Start
 map 13 0 gMapScripts_PkmnLeague
+
+#One Island
+npc 32 0 6 EventScript_NatureChanger
+npc 3 12 3 EventScript_TeleportToKanto
+map 3 12 gMapScripts_OneIsland
+npc 1 97 0 EventScript_MtEmber_MistyExplode
+npc 2 57 4 EventScript_waterfallhm_Start
+
+#Kindle Road 
+npc 3 45 22 EventScript_RockSmash 
+npc 3 45 13 EventScript_RockSmash 
+npc 3 45 15 EventScript_RockSmash 
+npc 3 45 16 EventScript_RockSmash 
+npc 3 45 14 EventScript_RockSmash 
+npc 3 45 23 EventScript_RockSmash 
+npc 3 45 19 EventScript_RockSmash 
+npc 3 45 18 EventScript_RockSmash 
+
+#Mt Ember 
+npc 1 97 8 EventScript_newstrength_Start
+npc 1 97 9 EventScript_newstrength_Start
+npc 1 97 6 EventScript_RockSmash 
+npc 1 97 7 EventScript_RockSmash 
+npc 1 97 15 EventScript_RockSmash 
+npc 1 97 16 EventScript_RockSmash 
+npc 1 97 12 EventScript_RockSmash 
+npc 1 97 11 EventScript_RockSmash 
+npc 1 97 10 EventScript_newstrength_Start
+npc 1 97 13 EventScript_newstrength_Start
+npc 1 97 14 EventScript_newstrength_Start
+npc 1 97 5 EventScript_mtembergrunt1_Start
+npc 1 97 3 EventScript_mtembergrunt2_Start
+npc 1 97 4 EventScript_mtembergrunt3_Start
+npc 1 97 20 EventScript_MtEmber_Courtney
+npc 1 97 19 EventScript_MtEmber_Scaleshot
+npc 1 99 0 EventScript_RockSmash 
+npc 1 99 1 EventScript_RockSmash 
+npc 1 99 2 EventScript_RockSmash 
+npc 1 99 3 EventScript_RockSmash 
+npc 1 99 4 EventScript_RockSmash 
+npc 1 99 5 EventScript_RockSmash 
+npc 1 99 6 EventScript_RockSmash 
+npc 1 99 7 EventScript_RockSmash 
+npc 1 99 8 EventScript_RockSmash 
+
+npc 1 101 1 EventScript_newstrength_Start
+npc 1 101 2 EventScript_newstrength_Start
+npc 1 101 3 EventScript_newstrength_Start
+npc 1 101 4 EventScript_newstrength_Start
+
+tile 1 101 0 EventScript_MtEmber_Maxie_Fight
+tile 1 101 1 EventScript_MtEmber_Maxie_Fight_Right
+npc 1 101 0 EventScript_MtEmber_MoltresG

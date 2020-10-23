@@ -2090,7 +2090,7 @@ static struct Raid sPokemonMansionRaids6Star[] =
 		},
 	},
 	{
-		.species = SPECIES_AZELF,
+		.species = SPECIES_TAPU_LELE,
 		.ability = RAID_ABILITY_HIDDEN,
 		.drops =
 		{

@@ -19,6 +19,9 @@ Ice Fang
 #org @gText_punchtutor_Text6
 Thunder Fang 
 
+#org @gText_punchTutor_psychicfang
+Psychic Fangs
+
 #org @gText_punchtutor_Msg
 Which move shall I teach?
 
@@ -38,7 +41,7 @@ Thank you come again.
 Now that's a shocker!\pYou're the real deal, kid!\pFine, then, take the Thunder Badge!
 
 #org @gText_ltsurge_Givetm
-[BLUE]The Thunder Badge lets your Pok\emon\nFly lightning-quick anytime, kid!\pYou're special, kid!\nTake this!
+[BLUE]You're special, kid!\nTake this!
 
 #org @gText_ltsurge_TMInfomsg
 [BLUE]TM92 contains Volt Switch!\pTeach it to an Electric Pok\emon!
@@ -59,13 +62,13 @@ Another electrifying defeat!
 Heh, my Pok\emon aren't keen on losing,\nbut I can tell they're having a blast\lwith you! You can have these.
 
 #org @gText_ltsurge_Info
-[LIGHT_GREEN]Mega Manectric[BLUE] is a literal beast.\pIt frightens opponents with its Intimidate,\nand threatens them out with its Speed\land Special Attack.\p[LIGHT_BLUE]Light Clay[BLUE] is excellent for support,\nextending the length of screens.
+[GREEN]Mega Manectric[BLUE] is a literal beast.\pIt frightens opponents with its Intimidate,\nand threatens them out with its Speed\land Special Attack.\p[LIGHT_BLUE]Light Clay[BLUE] is excellent for support,\nextending the length of screens.
 
 #org @gText_SSAnne_CantForget1
 HM Cut is used to cut small trees. 
 
 #org @gText_Vermilion_NewTruant
-Did you know [LIGHT_GREEN]Slaking[RED] can use Slack\nOff on turns it loafs around?\pIt's quite powerful, don't you\nthink?! 
+Did you know [GREEN]Slaking[RED] can use Slack\nOff on turns it loafs around?\pIt's quite powerful, don't you\nthink?! 
 
 #org @gText_Vermilion_NewHM
 Hidden Machines, like Cut, don't\nneed to be taught anymore.\nHow convenient!

@@ -35,13 +35,13 @@ Until next time, [GREEN][PLAYER].
 Don't even think about leaving until\nyou beat [GREEN]Brock, [BLUE]you bumbo!
 
 #org @gText_brock_EncounterText
-So, you're here. I'm [GREEN]Brock.\n[BLUE]I'm [LIGHT_GREEN]Pewter's [BLUE]Gym Leader.\pMy rock-hard willpower is evident\neven in my Pok\emon.\pMy Pok\emon are all rock hard, and\nhave true-grit determination.\pThat's right - my Pok\emon are all\nthe rock type!\pFuhaha! You're going to challenge\nme knowing that you'll lose?\pThat's the trainer's honor that\ncompels you to challenge me.\pFine, then!\nShow me your best!
+So, you're here. I'm [GREEN]Brock.\n[BLUE]I'm [GREEN]Pewter's [BLUE]Gym Leader.\pMy rock-hard willpower is evident\neven in my Pok\emon.\pMy Pok\emon are all rock hard, and\nhave true-grit determination.\pThat's right - my Pok\emon are all\nthe rock type!\pFuhaha! You're going to challenge\nme knowing that you'll lose?\pThat's the trainer's honor that\ncompels you to challenge me.\pFine, then!\nShow me your best!
 
 #org @gText_brock_DefeatText
 I took you for granted, and so\nI lost.\pAs proof of your victory, I confer\non you this[.]the official Pok\emon\lLeague Boulder Badge.\p[PLAYER] received the Boulder Badge\nfrom Brock!\pThe badge enables the use of the\nmove Flash outside of battle.\pOf course, you must have the HM in\nyour bag along with a Pok\emon that\lis able to learn it.
 
 #org @gText_brock_AfterBattle
-There are all kinds of trainers in\nthis huge world of ours.\pYou appear to be very gifted as a\nPok\emon trainer.\pSo let me make a suggestion.\pGo to the gym in [LIGHT_GREEN]Cerulean[BLUE] and test\nyour abilities.
+There are all kinds of trainers in\nthis huge world of ours.\pYou appear to be very gifted as a\nPok\emon trainer.\pSo let me make a suggestion.\pGo to the gym in [GREEN]Cerulean[BLUE] and test\nyour abilities.
 
 #org @gText_brock_Givetm
 Wait!\nTake this with you.
@@ -50,7 +50,7 @@ Wait!\nTake this with you.
 A TM, Technical Machine, contains a\ntechnique for Pok\emon.\pUsing a TM teaches the move it\ncontains to a Pok\emon.\pA TM is good for multiple uses.\pSo, don't hesitate to use them on\nyour Pok\emon.\pAnyways[.]\nTM39 contains Rock Tomb.\pIt hurls boulders at the foe and\nlowers its Speed.
 
 #org @gText_brock_Helloagain
-Well, if it isn't my favorite chal-\nlenger from [LIGHT_GREEN]Pallet Town[BLUE].\pI'd love to see how much stronger\nyou've gotten.\pPerhaps I might impress you a little\ntoo!\pWhat do you say?
+Well, if it isn't my favorite chal-\nlenger from [GREEN]Pallet Town[BLUE].\pI'd love to see how much stronger\nyou've gotten.\pPerhaps I might impress you a little\ntoo!\pWhat do you say?
 
 #org @gText_brock_Comeback
 Hm[.] that's disappointing.
@@ -65,7 +65,7 @@ Ah, you crushed me again!\pBut[.] I'm not at all surprised.
 You've grown far greater than I\ncould've possibly imagined.\pI've heard the news of a hero stop-\nping Team Rocket[.]\pI was immediately reminded of you.\pI hope these gifts can further aid\nyou on your journey.
 
 #org @gText_brock_Info
-Stone Edge is far stronger than Rock\nSlide, at the cost of less accuracy.\p[LIGHT_GREEN]Aerodactyl[BLUE] turns from a speedy ass-\nassin into an absolute menace with\lits Mega Form.\pYou'd be wise to use him.
+Stone Edge is far stronger than Rock\nSlide, at the cost of less accuracy.\p[GREEN]Aerodactyl[BLUE] turns from a speedy ass-\nassin into an absolute menace with\lits Mega Form.\pYou'd be wise to use him.
 
 #org @gText_badtantrum_1
 The secrets of space[.]\nThe mysteries of earth[.]\pThere are so many things about\nwhich we know so little.\pBut that should spur us to study\nharder, not throw tantrums.\pWell, how about Bad Tantrum?\nShould I teach that to a Pok\emon?

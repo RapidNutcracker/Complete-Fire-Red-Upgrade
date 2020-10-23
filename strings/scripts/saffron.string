@@ -92,7 +92,7 @@ mud... kip...\p:(
 Well[.]\pMudkips are still cool[.]\pI will share the love XD 
 
 #org @gText_DumbassKid_GetMudkip
-[BLACK]You received a [LIGHT_GREEN]Mudkip[BLACK]!
+[BLACK]You received a [GREEN]Mudkip[BLACK]!
 
 #org @gText_DumbassKid_LastMsg
 THIS GAME WON'T LET ME OVERLEVEL\nREEEEEEEEEEEEEEEEEEEEEEEEEEE-\lEEEEEEEEEEEE!!!
@@ -314,22 +314,22 @@ Take this one as well.
 Eh[.] it could still hit the Gym[.]
 
 #org @gText_clobbopus_Takemsg
-You received the [LIGHT_GREEN]Clobbopus[BLACK]\nfrom [GREEN]Chuck[BLACK]!
+You received the [GREEN]Clobbopus[BLACK]\nfrom [GREEN]Chuck[BLACK]!
 
 #org @gText_clobbopus_Msggreedy
 Better not get greedy[.]
 
 #org @gText_clobbopus_Uwant
-You want the Tantrum Pok\emon\n[LIGHT_GREEN]Clobbopus[BLACK]?
+You want the Tantrum Pok\emon\n[GREEN]Clobbopus[BLACK]?
 
 #org @gText_crabrawler_Takemsg
-You received the [LIGHT_GREEN]Crabrawler[BLACK]\nfrom [GREEN]Chuck[BLACK]!
+You received the [GREEN]Crabrawler[BLACK]\nfrom [GREEN]Chuck[BLACK]!
 
 #org @gText_crabrawler_Msggreedy
 Better not get greedy[.]
 
 #org @gText_crabrawler_Uwant
-You want the Judo Pok\emon\n[LIGHT_GREEN]Crabrawler[BLACK]?
+You want the Judo Pok\emon\n[GREEN]Crabrawler[BLACK]?
 
 #org @gText_badjoke_1
 Pro Smash players love sliding\nin my DMs!
@@ -371,13 +371,13 @@ I've carried this around for a while,\nbut I have no idea if it actually\ldoes a
 [RED]Looks like we found our intruder.
 
 #org @gText_silphcoteambattle_2
-[BLUE]Wait a sec...\pThis is the punk I ran into at\n[LIGHT_GREEN]Mt. Moon!
+[BLUE]Wait a sec...\pThis is the punk I ran into at\n[GREEN]Mt. Moon!
 
 #org @gText_silphcoteambattle_3
-[RED]Wow, you lost to this loser?\p[BLUE]Quiet, I'm sure my [LIGHT_GREEN]Mightyena[BLUE] gave\nthis punk a scare.
+[RED]Wow, you lost to this loser?\p[BLUE]Quiet, I'm sure my [GREEN]Mightyena[BLUE] gave\nthis punk a scare.
 
 #org @gText_silphcoteambattle_4
-[RED]Your [LIGHT_GREEN]Mightyena[RED] doesn't even have\nIntimidate.
+[RED]Your [GREEN]Mightyena[RED] doesn't even have\nIntimidate.
 
 #org @gText_silphcoteambattle_5
 [BLUE]Would you SHUT UP [GREEN]Ari[BLUE]?!\pWe've got things to deal with here.
@@ -425,7 +425,7 @@ Again?!\nThis is infuriating!
 [BLUE]Again, I apologize for needing to\nleave so abruptly[.]\pPlease, take yet another parting gift.
 
 #org @gText_silphcoteambattle_Treecko
-You received a [LIGHT_GREEN]Treecko[BLUE]!
+You received a [GREEN]Treecko[BLUE]!
 
 #org @gText_silphcoteambattle_18
 [BLUE]Good luck, friend.

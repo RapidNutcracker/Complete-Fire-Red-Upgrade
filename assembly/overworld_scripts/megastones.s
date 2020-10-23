@@ -511,6 +511,14 @@ EventScript_VictoryRoad_TM67:
     setflag 0x1015
     release 
     end 
+    
+.global EventScript_MtEmber_Scaleshot
+EventScript_MtEmber_Scaleshot:
+    hidesprite 0x800F
+    giveitem ITEM_TM94 0x1 MSG_FIND
+    setflag 0x1EE
+    release
+    end
 
 .global EventScript_SilphCo_HP
 EventScript_SilphCo_HP:
@@ -519,55 +527,6 @@ EventScript_SilphCo_HP:
     setflag 0x989
     release 
     end 
-
-.global EventScript_SeafoamIslands_Keldeo
-EventScript_SeafoamIslands_Keldeo:
-    sound 0xB3 
-    applymovement 0xFF StopMove
-    waitmovement 0x0
-    checksound
-    msgbox gText_SeafoamIslands_1 MSG_FACE
-    cry 0x2BC 0x0
-    msgbox gText_SeafoamIslands_2 MSG_KEEPOPEN
-    waitcry
-    closeonkeypress
-    sound 0x15
-    applymovement 0xFF Surprised
-    waitmovement 0x0
-    checksound
-    playsong 0x156 0x0
-    msgbox gText_SeafoamIslands_3 MSG_FACE
-    msgbox gText_SeafoamIslands_4 MSG_YESNO
-    compare LASTRESULT 0x0
-    if 0x1 _goto CancelMusic
-    wildbattle 0x2BC 0x32 0x00
-    special2 LASTRESULT 0xB4
-    compare LASTRESULT 0x4
-    if 0x1 _goto Moveback
-    setvar 0x5059 0x1
-    release
-    end
-
-
-CancelMusic:
-    fadesong 0x120
-    applymovement 0xFF Moveback
-    waitmovement 0x0
-    release
-    end
-
-StopMove:
-    .byte 0x3
-    .byte 0x63  @question mark
-    .byte 0xFE 
-
-Surprised:
-    .byte 0x65
-    .byte 0xFE
-
-Moveback:
-    .byte 0x12
-    .byte 0xFE
 
 .global EventScript_Keldeo_OW
 EventScript_Keldeo_OW:

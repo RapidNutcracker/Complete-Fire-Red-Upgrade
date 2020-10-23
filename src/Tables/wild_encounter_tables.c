@@ -782,9 +782,8 @@ static const struct WildPokemonInfo gPowerPlant_LandMonsInfoNight = {7, gPowerPl
 static const struct WildPokemon gCeruleanCave1_LandMonsNight[] = 
 {
 	{68, 71, SPECIES_PARASECT},
+	// {68, 71, SPECIES_ARTICUNO_G},
 	{68, 71, SPECIES_GOLBAT},
-	// {68, 71, SPECIES_URSHIFU_SINGLE},
-	// {68, 71, SPECIES_URSHIFU_RAPID},
 	{67, 67, SPECIES_CONKELDURR},
 	{67, 68, SPECIES_CONKELDURR},
 	{69, 70, SPECIES_MAGNETON},
@@ -795,18 +794,6 @@ static const struct WildPokemon gCeruleanCave1_LandMonsNight[] =
 	{64, 64, SPECIES_DURALUDON},
 	{66, 66, SPECIES_TYPE_NULL},
 	{66, 66, SPECIES_TYPE_NULL},
-	// {68, 71, SPECIES_YAMASK_G},
-	// {68, 71, SPECIES_MR_MIME_G},
-	// {67, 67, SPECIES_FALINKS},
-	// {67, 68, SPECIES_PINCURCHIN},
-	// {69, 70, SPECIES_PINCURCHIN},
-	// {69, 70, SPECIES_FALINKS},
-	// {69, 72, SPECIES_SNOM},
-	// {66, 69, SPECIES_SNOM},
-	// {64, 64, SPECIES_DITTO},
-	// {64, 64, SPECIES_DITTO},
-	// {66, 66, SPECIES_TYPE_NULL},
-	// {66, 66, SPECIES_TYPE_NULL},
 };
 
 static const struct WildPokemonInfo gCeruleanCave1_LandMonsInfoNight = {7, gCeruleanCave1_LandMonsNight};
@@ -860,6 +847,122 @@ static const struct WildPokemon gCeruleanCave3_LandMonsNight[] =
 static const struct WildPokemonInfo gCeruleanCave3_LandMonsInfoNight = {7, gCeruleanCave3_LandMonsNight};
 
 
+static const struct WildPokemon gKindleRoad_LandMons[] =
+{
+	{83, 85, SPECIES_ABSOL},
+	{83, 85, SPECIES_SMEARGLE},
+	{83, 85, SPECIES_ALCREMIE_STRAWBERRY},
+	{83, 85, SPECIES_ALCREMIE_STRAWBERRY},
+	{83, 85, SPECIES_CENTISKORCH},
+	{83, 85, SPECIES_CENTISKORCH},
+	{83, 85, SPECIES_GARDEVOIR}, //GRIMMSNARL FOR NIGHT
+	{83, 85, SPECIES_GARDEVOIR},
+	{83, 85, SPECIES_SEVIPER}, //EELEKTROSS AT NIGHT
+	{83, 85, SPECIES_SEVIPER},
+	{83, 85, SPECIES_SEVIPER},
+	{83, 85, SPECIES_SEVIPER},
+};
+
+static const struct WildPokemonInfo gKindleRoad_LandMonsInfo = {18, gKindleRoad_LandMons};
+
+static const struct WildPokemon gKindleRoad_LandMonsNight[] =
+{
+	{83, 85, SPECIES_ABSOL},
+	{87, 87, SPECIES_AUDINO},
+	{83, 85, SPECIES_ALCREMIE_STRAWBERRY},
+	{83, 85, SPECIES_ALCREMIE_STRAWBERRY},
+	{83, 85, SPECIES_CENTISKORCH},
+	{83, 85, SPECIES_CENTISKORCH},
+	{83, 85, SPECIES_GRIMMSNARL}, 
+	{83, 85, SPECIES_GRIMMSNARL},
+	{83, 85, SPECIES_EELEKTROSS}, 
+	{83, 85, SPECIES_EELEKTROSS},
+	{83, 85, SPECIES_EELEKTROSS},
+	{83, 85, SPECIES_EELEKTROSS},
+};
+
+static const struct WildPokemonInfo gKindleRoad_LandMonsInfoNight = {18, gKindleRoad_LandMonsNight};
+
+static const struct WildPokemon gKindleRoad_SurfMons[] = 
+{
+	{83, 85, SPECIES_PYUKUMUKU},
+	{83, 85, SPECIES_CRAMORANT},
+	{83, 85, SPECIES_CRAMORANT},
+	{83, 85, SPECIES_TOXAPEX},
+	{83, 85, SPECIES_TOXAPEX},
+};
+
+static const struct WildPokemonInfo gKindleRoad_SurfMonsInfo = {5, gKindleRoad_SurfMons};
+
+static const struct WildPokemon gKindleRoad_FishingMons[] =
+{
+	{83, 85, SPECIES_FEEBAS},
+	{83, 85, SPECIES_REMORAID},
+	{83, 85, SPECIES_CORSOLA_G},
+	{83, 85, SPECIES_QWILFISH},
+	{83, 85, SPECIES_QWILFISH},
+	{83, 85, SPECIES_LUVDISC},
+	{83, 85, SPECIES_LUVDISC},
+	{83, 85, SPECIES_GOREBYSS},
+	{83, 85, SPECIES_HUNTAIL},
+	{83, 85, SPECIES_HUNTAIL},
+};
+
+static const struct WildPokemonInfo gKindleRoad_FishingMonsInfo = {5, gKindleRoad_FishingMons};
+
+static const struct WildPokemon MtEmberExterior_LandMonsNight[] =
+{
+	{83, 85, SPECIES_TURTONATOR},
+	{83, 85, SPECIES_COALOSSAL},
+	{83, 85, SPECIES_CAMERUPT},
+	{83, 85, SPECIES_CAMERUPT},
+	{83, 85, SPECIES_HOUNDOOM},
+	{83, 85, SPECIES_HOUNDOOM},
+	{83, 85, SPECIES_RAPIDASH_G}, 
+	{83, 85, SPECIES_RAPIDASH_G},
+	{83, 85, SPECIES_SEVIPER}, 
+	{83, 85, SPECIES_SEVIPER},
+	{83, 85, SPECIES_SEVIPER},
+	{83, 85, SPECIES_SEVIPER},
+};
+
+static const struct WildPokemonInfo MtEmberExterior_LandMonsInfoNight = {15, MtEmberExterior_LandMonsNight};
+
+static const struct WildPokemon MtEmberExterior_LandMonsDay[] =
+{
+	{83, 85, SPECIES_TURTONATOR},
+	{83, 85, SPECIES_COALOSSAL},
+	{83, 85, SPECIES_CAMERUPT},
+	{83, 85, SPECIES_CAMERUPT},
+	{83, 85, SPECIES_PYROAR},
+	{83, 85, SPECIES_PYROAR},
+	{83, 85, SPECIES_RAPIDASH}, 
+	{83, 85, SPECIES_RAPIDASH},
+	{83, 85, SPECIES_HEATMOR}, 
+	{83, 85, SPECIES_HEATMOR},
+	{83, 85, SPECIES_HEATMOR},
+	{83, 85, SPECIES_HEATMOR},
+};
+
+static const struct WildPokemonInfo MtEmberExterior_LandMonsInfoDay = {15, MtEmberExterior_LandMonsDay};
+
+static const struct WildPokemon MtEmber1F_LandMonsNight[] =
+{
+	{85, 85, SPECIES_TORKOAL},
+	{84, 85, SPECIES_MAGCARGO},
+	{84, 85, SPECIES_NINETALES},
+	{84, 85, SPECIES_NINETALES},
+	{84, 85, SPECIES_PYROAR},
+	{83, 85, SPECIES_PYROAR},
+	{83, 85, SPECIES_DARMANITAN}, 
+	{83, 85, SPECIES_DARMANITAN},
+	{83, 85, SPECIES_ARCANINE}, 
+	{83, 85, SPECIES_ARCANINE},
+	{83, 85, SPECIES_ARCANINE},
+	{83, 85, SPECIES_ARCANINE},
+};
+
+static const struct WildPokemonInfo MtEmber1F_LandMonsInfoNight = {5, MtEmber1F_LandMonsNight};
 
 const struct WildPokemonHeader gWildMonMorningHeaders[] =
 {
@@ -871,6 +974,58 @@ const struct WildPokemonHeader gWildMonMorningHeaders[] =
 		.rockSmashMonsInfo = NULL,
 		.fishingMonsInfo = NULL,
 	}
+};
+
+const struct WildPokemonHeader gWildMonNewDaytimeHeaders[] =
+{
+	{
+		.mapGroup = MAP_GROUP(ONE_ISLAND_KINDLE_ROAD),
+		.mapNum = MAP_NUM(ONE_ISLAND_KINDLE_ROAD),
+		.landMonsInfo = &gKindleRoad_LandMonsInfo,
+		.waterMonsInfo = &gKindleRoad_SurfMonsInfo,
+		.rockSmashMonsInfo = NULL,
+		.fishingMonsInfo = &gKindleRoad_FishingMonsInfo,
+	},
+	{
+		.mapGroup = MAP_GROUP(MT_EMBER_EXTERIOR),
+		.mapNum = MAP_NUM(MT_EMBER_EXTERIOR),
+		.landMonsInfo = &MtEmberExterior_LandMonsInfoDay,
+		.waterMonsInfo = NULL,
+		.rockSmashMonsInfo = NULL,
+		.fishingMonsInfo = NULL,
+	},
+	{
+		.mapGroup = 0xFF,
+		.mapNum = 0xFF,
+		.landMonsInfo = NULL,
+		.waterMonsInfo = NULL,
+		.rockSmashMonsInfo = NULL,
+		.fishingMonsInfo = NULL,
+	},
+	{
+		.mapGroup = MAP_GROUP(MT_EMBER_SUMMIT_PATH_1F),
+		.mapNum = MAP_NUM(MT_EMBER_SUMMIT_PATH_1F),
+		.landMonsInfo = &MtEmber1F_LandMonsInfoNight,
+		.waterMonsInfo = NULL,
+		.rockSmashMonsInfo = NULL,
+		.fishingMonsInfo = NULL,
+	},
+	{
+		.mapGroup = MAP_GROUP(MT_EMBER_SUMMIT_PATH_2F),
+		.mapNum = MAP_NUM(MT_EMBER_SUMMIT_PATH_2F),
+		.landMonsInfo = &MtEmber1F_LandMonsInfoNight,
+		.waterMonsInfo = NULL,
+		.rockSmashMonsInfo = NULL,
+		.fishingMonsInfo = NULL,
+	},
+	{
+		.mapGroup = MAP_GROUP(MT_EMBER_SUMMIT_PATH_3F),
+		.mapNum = MAP_NUM(MT_EMBER_SUMMIT_PATH_3F),
+		.landMonsInfo = &MtEmber1F_LandMonsInfoNight,
+		.waterMonsInfo = NULL,
+		.rockSmashMonsInfo = NULL,
+		.fishingMonsInfo = NULL,
+	},
 };
 
 const struct WildPokemonHeader gWildMonEveningHeaders[] =
@@ -1275,6 +1430,38 @@ const struct WildPokemonHeader gWildMonNightHeaders[] =
 		.mapGroup = MAP_GROUP(CERULEAN_CAVE_B1F),
 		.mapNum = MAP_NUM(CERULEAN_CAVE_B1F),
 		.landMonsInfo = &gCeruleanCave3_LandMonsInfoNight,
+		.waterMonsInfo = NULL,
+		.rockSmashMonsInfo = NULL,
+		.fishingMonsInfo = NULL,
+	},
+	{
+		.mapGroup = MAP_GROUP(ONE_ISLAND_KINDLE_ROAD),
+		.mapNum = MAP_NUM(ONE_ISLAND_KINDLE_ROAD),
+		.landMonsInfo = &gKindleRoad_LandMonsInfoNight,
+		.waterMonsInfo = &gKindleRoad_SurfMonsInfo,
+		.rockSmashMonsInfo = NULL,
+		.fishingMonsInfo = &gKindleRoad_FishingMonsInfo,
+	},
+	{
+		.mapGroup = MAP_GROUP(MT_EMBER_SUMMIT_PATH_1F),
+		.mapNum = MAP_NUM(MT_EMBER_SUMMIT_PATH_1F),
+		.landMonsInfo = &MtEmber1F_LandMonsInfoNight,
+		.waterMonsInfo = NULL,
+		.rockSmashMonsInfo = NULL,
+		.fishingMonsInfo = NULL,
+	},
+	{
+		.mapGroup = MAP_GROUP(MT_EMBER_SUMMIT_PATH_2F),
+		.mapNum = MAP_NUM(MT_EMBER_SUMMIT_PATH_2F),
+		.landMonsInfo = &MtEmber1F_LandMonsInfoNight,
+		.waterMonsInfo = NULL,
+		.rockSmashMonsInfo = NULL,
+		.fishingMonsInfo = NULL,
+	},
+	{
+		.mapGroup = MAP_GROUP(MT_EMBER_SUMMIT_PATH_3F),
+		.mapNum = MAP_NUM(MT_EMBER_SUMMIT_PATH_3F),
+		.landMonsInfo = &MtEmber1F_LandMonsInfoNight,
 		.waterMonsInfo = NULL,
 		.rockSmashMonsInfo = NULL,
 		.fishingMonsInfo = NULL,

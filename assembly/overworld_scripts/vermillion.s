@@ -31,9 +31,12 @@ EventScript_punchtutor_Start:
     setvar 0x8006 0x5 
 	loadpointer 0x0 gText_punchtutor_Text6
 	special 0x25
+	setvar 0x8006 0x6
+	loadpointer 0x0 gText_punchTutor_psychicfang
+	special 0x25
 	preparemsg gText_punchtutor_Msg
 	waitmsg
-	multichoice 0x0 0x0 0x24 0x0
+	multichoice 0x0 0x0 0x25 0x0
 	compare LASTRESULT 0x0
 	if 0x1 _goto EventScript_punchtutor_Firstoption
 	compare LASTRESULT 0x1
@@ -46,6 +49,8 @@ EventScript_punchtutor_Start:
     if 0x1 _goto EventScript_IceFang 
     compare LASTRESULT 0x5
     if 0x1 _goto EventScript_ThunderFang 
+	compare LASTRESULT 0x6
+	if 0x1 _goto EventScript_PsychicFangs
 	hidemoney 0x35 0x00
 	release
 	end
@@ -73,6 +78,10 @@ EventScript_ThunderFang:
 	setvar 0x8005 0x58
 	goto EventScript_punchtutor_Endofscript
 
+EventScript_PsychicFangs:
+	setvar 0x8005 0x75
+	goto EventScript_punchtutor_Endofscript
+	
 EventScript_punchtutor_Firstoption:
 	setvar 0x8005 0x0
 	goto EventScript_punchtutor_Endofscript

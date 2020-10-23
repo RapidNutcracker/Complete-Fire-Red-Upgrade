@@ -94,7 +94,6 @@ void atk04_critcalc(void)
 		u8 defAbility = ABILITY(bankDef);
 
 		if (defAbility == ABILITY_BATTLEARMOR
-		||  defAbility == ABILITY_SHELLARMOR
 		||  CantScoreACrit(gBankAttacker, NULL)
 		||  gBattleTypeFlags & (BATTLE_TYPE_OLD_MAN | BATTLE_TYPE_OAK_TUTORIAL | BATTLE_TYPE_POKE_DUDE)
 		||  gNewBS->LuckyChantTimers[SIDE(bankDef)])
@@ -185,7 +184,6 @@ static u8 CalcPossibleCritChance(u8 bankAtk, u8 bankDef, u16 move, struct Pokemo
 	}
 
 	if (defAbility == ABILITY_BATTLEARMOR
-	||  defAbility == ABILITY_SHELLARMOR
 	||  CantScoreACrit(bankAtk, monAtk)
 	||  gBattleTypeFlags & (BATTLE_TYPE_OLD_MAN | BATTLE_TYPE_OAK_TUTORIAL)
 	||  gNewBS->LuckyChantTimers[SIDE(bankDef)])
@@ -2324,6 +2322,8 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 	#ifdef OLD_EXPLOSION_BOOST
 		if (move == MOVE_SELFDESTRUCT || move == MOVE_EXPLOSION)
 			data->defense /= 2;
+		if (move == MOVE_MISTYEXPLOSION)
+			data->spDefense /= 2;
 	#endif
 
 //Stat Buffs - Attacker
@@ -3088,7 +3088,7 @@ static u16 GetBasePower(struct DamageCalc* data)
 
 		case MOVE_BEATUP:
 			if (useMonAtk || (data->specialFlags & (FLAG_CHECKING_FROM_MENU | FLAG_AI_CALC)))
-				power = (gBaseStats[data->atkSpecies].baseAttack / 10) + 5;
+				power = (gBaseStats[data->atkSpecies].baseAttack / 10) + 10; //added used to be +5
 			else
 			{
 				struct Pokemon* party;
@@ -3097,7 +3097,7 @@ static u16 GetBasePower(struct DamageCalc* data)
 				else
 					party = gEnemyParty;
 
-				power = (gBaseStats[party[gBattleCommunication[0] - 1].species].baseAttack / 10) + 5;
+				power = (gBaseStats[party[gBattleCommunication[0] - 1].species].baseAttack / 10) + 10; //added used to be +5
 			}
 			break;
 
@@ -3481,13 +3481,13 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 	//Terrain Checks
 	switch (gTerrainType) {
 		case ELECTRIC_TERRAIN:
-		//1.5x Boost
+		//1.3x Boost
 			if (data->atkIsGrounded && data->moveType == TYPE_ELECTRIC)
 				power = (power * TERRAIN_BOOST) / 10;
 			break;
 
 		case GRASSY_TERRAIN:
-		//1.5x / 0.5 Boost
+		//1.3x / 0.5 Boost
 			if (data->atkIsGrounded && data->moveType == TYPE_GRASS)
 				power = (power * TERRAIN_BOOST) / 10;
 

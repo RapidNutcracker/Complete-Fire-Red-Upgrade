@@ -41,7 +41,8 @@ static const struct TrainerSlide sTrainerSlides[] =
 	{0x1A2, NULL, sText_KogaLastSwitchIn, NULL}, //Koga
 	{0x1A3, NULL, sText_BlaineLastSwitchIn, NULL}, //Blaine
 	{0x4A, NULL, sText_ClairLastSwitchIn, NULL}, //Clair 
-	{0x42, NULL, sText_JotardLastSwitchIn, NULL},
+	{0x42, NULL, sText_JotardLastSwitchIn, NULL}, //power plant
+	{0x28, NULL, sText_JotardLastSwitchIn, NULL}, //one island
 	#ifdef UNBOUND //For Pokemon Unbound - Feel free to remove
 	{0x6, sText_MirskleFirstMonDown, NULL, NULL},
 	{0x2CF, sText_MirskleFirstMonDown, NULL, NULL},

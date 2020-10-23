@@ -53,10 +53,10 @@ Washed again...
 As I thought, you're a super talent-\ned trainer! As promised, here you go.
 
 #org @gText_misty_Info
-[LIGHT_GREEN]Mega Gyarados[RED] is a huge threat.\pIt changes from Flying to Dark type,\nand boasts an even higher Attack\lstat!\pThe[LIGHT_GREEN] Froakie[RED] I've given has its Hidden\nAbility Protean, one of the best\labilities out there!\pWith these, you should be able to\nreach greater heights!
+[GREEN]Mega Gyarados[RED] is a huge threat.\pIt changes from Flying to Dark type,\nand boasts an even higher Attack\lstat!\pThe[GREEN] Froakie[RED] I've given has its Hidden\nAbility Protean, one of the best\labilities out there!\pWith these, you should be able to\nreach greater heights!
 
 #org @gText_misty_Froakie
-You received a [LIGHT_GREEN]Froakie!
+You received a [GREEN]Froakie!
 
 #org @gText_RandomEgg
 Hi there! You're a trainer, arent\nyou?\pI have an egg sent to me by a\nfriend.\pEven he doesn't know where it's\nfrom!\pWould you like it for \$5000?
@@ -114,3 +114,19 @@ The move Thief automatically adds\nthe stolen item to the bag.\pConvinient, righ
 
 #org @gText_Cerulean_RedShardInfo
 I caught a Slugma earlier and it \nwas holding a [LIGHT_BLUE]Red Shard[BLUE]!\nNot sure what to do with this, though[.] 
+
+#org @gText_redogaryrival_Startmsg
+[RIVAL]: Yo! [GREEN][PLAYER][BLUE]!\pYou're still struggling along back\nhere?\pI'm doing great! I caught a bunch\nof strong and smart Pok\emon!\pHere, let me see what you caught,\n[PLAYER]!
+
+#org @gText_redogaryrival_Billmsg
+[RIVAL]: Hey, guess what?\pI went to Bill's and got him to\nshow me his rare Pok\emon.\pThat added a lot of pages to my\nPok\edex!\pAfter all, Bill's world famous as a\nPok\emaniac.\pHe invented the Pok\emon Storage\nSystem on PC, too.\pSince you're using his system,\nyou should go thank him.\pWell, I better get rolling!\nSmell ya later!
+
+#org @gText_redogaryrival_Apresent
+Oh, yeah, right.\pI feel sorry for you. No, really.\nYou're always plodding behind me.\pSo here, I'll give you a little\npresent as a favor.
+
+#org @gText_redogaryrival_Chattygossip
+A slow little slob like you[.]\pThis item will help you travel to\ncities instantly so you'll finally be\lable catch up to me.\pI have an extra, so take it as a\nconsolation prize.\pAll right, this time I really am\ngone. Smell ya!
+
+#org @gText_redogaryrival_Uwonalready
+Hey!\nTake it easy!\lYou won already!
+

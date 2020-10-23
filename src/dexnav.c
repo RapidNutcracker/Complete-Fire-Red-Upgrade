@@ -844,7 +844,7 @@ static void Task_ManageDexNavHUD(u8 taskId)
 	// 	return;
 	// }
 
-	//Check if script just executed removed this
+	//Check if script just executed 
 	if (ScriptContext2_IsEnabled() == TRUE)
 	{
 		//gCurrentDexNavChain = 0; //Not fair because of the repel pop up

@@ -59,6 +59,7 @@ static void ZMoveSelectionDisplayPpNumber(void);
 static void ZMoveSelectionDisplayPower(void);
 static void MaxMoveSelectionDisplayPower(void);
 static void MoveSelectionDisplayDetails(void);
+static void MoveSelectionMetaDetails(void);
 static void ReloadMoveNamesIfNecessary(void);
 static void CloseZMoveDetails(void);
 static void CloseMaxMoveDetails(void);
@@ -220,7 +221,7 @@ void HandleInputChooseMove(void)
 
 	sub_8033AC8();
 
-	if (gMain.newKeys & A_BUTTON)
+	if (gMain.newKeys & A_BUTTON && gNewBS->zMoveData.viewingDetails == FALSE) //added 
 	{
 		u8 moveTarget;
 		u16 chosenMove = moveInfo->moves[gMoveSelectionCursor[gActiveBattler]];
@@ -384,7 +385,7 @@ void HandleInputChooseMove(void)
 			gBattlerControllerFuncs[gActiveBattler] = HandleMoveSwitching; //0x802EF58
 		}
 	}
-	else if (gMain.newKeys & (START_BUTTON | R_BUTTON))
+	else if (gMain.newKeys & (START_BUTTON)) //| R_BUTTON))
 	{
 		if (!MoveSelectionDisplayZMove()) //Only one is allowed at a time
 		{
@@ -396,6 +397,11 @@ void HandleInputChooseMove(void)
 	{
 		if (!gNewBS->zMoveData.viewing && !gNewBS->dynamaxData.viewing)
 			MoveSelectionDisplayDetails();
+	}
+	else if (gMain.newKeys & R_BUTTON)
+	{
+		if (!gNewBS->zMoveData.viewing && !gNewBS->dynamaxData.viewing)
+			MoveSelectionMetaDetails();
 	}
 }
 
@@ -659,6 +665,9 @@ static void MoveSelectionDisplayMoveNames(void)
         if (moveInfo->moves[i] != MOVE_NONE)
             gNumberOfMovesToChoose++;
     }
+	//added this
+	StringCopy(gDisplayedStringBattle, gText_PP);
+	BattlePutTextOnWindow(gDisplayedStringBattle, 7); //Slot of PP?
 }
 
 #define SUPER_EFFECTIVE_COLOURS 0
@@ -1191,7 +1200,7 @@ static void MoveSelectionDisplayDetails(void)
 		BattlePutTextOnWindow(gDisplayedStringBattle, i + 3);
 	}
 
-//Diaplay Move Name
+//Display Move Name
 	MoveNameToDisplayedStringBattle(gMoveSelectionCursor[gActiveBattler]);
 	BattlePutTextOnWindow(gDisplayedStringBattle, 3);
 
@@ -1243,6 +1252,148 @@ static void MoveSelectionDisplayDetails(void)
 	MoveSelectionCreateCursorAt(0, 0);
 	gNewBS->zMoveData.viewingDetails = TRUE;
 }
+
+static void MoveSelectionMetaDetails(void)
+{
+	u8 *txtPtr;
+	// struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct*)(&gBattleBufferA[gActiveBattler][4]);
+	if (gNewBS->zMoveData.viewingDetails)
+	{
+		ReloadMoveNamesIfNecessary();
+		return;
+	}
+
+	for (int i = 0; i < MAX_MON_MOVES; ++i) //destroy current information
+	{
+		MoveSelectionDestroyCursorAt(i);
+		StringCopy(gDisplayedStringBattle, StringNull);
+		BattlePutTextOnWindow(gDisplayedStringBattle, i + 3);
+	}
+
+//Display Trick Room Timer in first slot
+	txtPtr = StringCopy(gDisplayedStringBattle, gText_TrickRoom);
+	if (gNewBS->TrickRoomTimer == 0)
+		StringCopy(txtPtr, gText_OffMoveMenu);
+	else
+		ConvertIntToDecimalStringN(txtPtr, gNewBS->TrickRoomTimer, STR_CONV_MODE_LEFT_ALIGN, 3); 
+	BattlePutTextOnWindow(gDisplayedStringBattle, 3);
+
+//Display Weather Info (slot 2)
+
+	if (gBattleWeather & WEATHER_SUN_ANY)
+	{
+		txtPtr = StringCopy(gDisplayedStringBattle, gText_SunText);
+		if (!(gBattleWeather & WEATHER_SUN_PERMANENT)) 
+			ConvertIntToDecimalStringN(txtPtr, gWishFutureKnock.weatherDuration, STR_CONV_MODE_LEFT_ALIGN, 3);
+		else //means its desolate land
+			StringCopy(txtPtr, gText_InfText);
+	}
+	else if (gBattleWeather & WEATHER_RAIN_ANY)
+	{
+		txtPtr = StringCopy(gDisplayedStringBattle, gText_RainText);
+		if (!(gBattleWeather & WEATHER_RAIN_PERMANENT)) 
+			ConvertIntToDecimalStringN(txtPtr, gWishFutureKnock.weatherDuration, STR_CONV_MODE_LEFT_ALIGN, 3);
+		else //means its primal kyogre
+			StringCopy(txtPtr, gText_InfText);
+	}
+	else if (gBattleWeather & WEATHER_SANDSTORM_ANY)
+	{
+		txtPtr = StringCopy(gDisplayedStringBattle, gText_SandstormText);
+		ConvertIntToDecimalStringN(txtPtr, gWishFutureKnock.weatherDuration, STR_CONV_MODE_LEFT_ALIGN, 3);
+	}
+	else if (gBattleWeather & WEATHER_HAIL_ANY)
+	{
+		txtPtr = StringCopy(gDisplayedStringBattle, gText_HailText);
+		ConvertIntToDecimalStringN(txtPtr, gWishFutureKnock.weatherDuration, STR_CONV_MODE_LEFT_ALIGN, 3);
+	}
+	else{
+		txtPtr = StringCopy(gDisplayedStringBattle, gText_NoWeather);
+	}
+	BattlePutTextOnWindow(gDisplayedStringBattle, 3 + 1); //Slot of Move 2
+
+//Display Terrain Info (Slot 3)
+	if (gTerrainType == GRASSY_TERRAIN)
+	{
+		txtPtr = StringCopy(gDisplayedStringBattle, gText_GrassyTerrainText);
+		ConvertIntToDecimalStringN(txtPtr, gNewBS->TerrainTimer, STR_CONV_MODE_LEFT_ALIGN, 3);
+	}
+	else if (gTerrainType == MISTY_TERRAIN)
+	{
+		txtPtr = StringCopy(gDisplayedStringBattle, gText_MistyTerrainText);
+		ConvertIntToDecimalStringN(txtPtr, gNewBS->TerrainTimer, STR_CONV_MODE_LEFT_ALIGN, 3);
+	}
+	else if (gTerrainType == ELECTRIC_TERRAIN)
+	{
+		txtPtr = StringCopy(gDisplayedStringBattle, gText_ElectricTerrainText);
+		ConvertIntToDecimalStringN(txtPtr, gNewBS->TerrainTimer, STR_CONV_MODE_LEFT_ALIGN, 3);
+	}
+	else if (gTerrainType == PSYCHIC_TERRAIN)
+	{
+		txtPtr = StringCopy(gDisplayedStringBattle, gText_PsychicTerrainText);
+		ConvertIntToDecimalStringN(txtPtr, gNewBS->TerrainTimer, STR_CONV_MODE_LEFT_ALIGN, 3);
+	}
+	else{
+		txtPtr = StringCopy(gDisplayedStringBattle, gText_NoTerrain);
+	}
+	BattlePutTextOnWindow(gDisplayedStringBattle, 3 + 2); //Slot of Move 3 
+
+//Display Move Split
+	// switch(SPLIT(moveInfo->moves[gMoveSelectionCursor[gActiveBattler]])) {
+	// 	case SPLIT_SPECIAL:
+	// 		StringCopy(gDisplayedStringBattle, gText_Special);
+	// 		break;
+	// 	case SPLIT_STATUS:
+	// 		StringCopy(gDisplayedStringBattle, gText_Status);
+	// 		break;
+	// 	default:
+	// 		StringCopy(gDisplayedStringBattle, gText_Physical);
+	// }
+	if (gNewBS->AuroraVeilTimers[SIDE(gBankTarget)] > 0)
+	{
+		txtPtr = StringCopy(gDisplayedStringBattle, gText_AuroraVeilText);
+		ConvertIntToDecimalStringN(txtPtr, gNewBS->AuroraVeilTimers[SIDE(gBankTarget)], STR_CONV_MODE_LEFT_ALIGN, 3);
+	}
+	else{
+		txtPtr = StringCopy(gDisplayedStringBattle, gText_NoAuroraVeilText);
+	}
+	BattlePutTextOnWindow(gDisplayedStringBattle, 3 + 3); //Slot of Move 4 
+	// remove palette fading on PP
+	const u16* palPtr = Pal_PPDisplay;
+
+	//Remove Palette Fading On The PP
+	gPlttBufferUnfaded[92] = palPtr[(3 * 2) + 0];
+	gPlttBufferUnfaded[91] = palPtr[(3 * 2) + 1];
+
+	CpuCopy16(&gPlttBufferUnfaded[92], &gPlttBufferFaded[92], sizeof(u16));
+	CpuCopy16(&gPlttBufferUnfaded[91], &gPlttBufferFaded[91], sizeof(u16));
+
+	//Load PP Text
+	txtPtr = StringCopy(gDisplayedStringBattle, gText_Reflect);
+	BattlePutTextOnWindow(gDisplayedStringBattle, 7); //Slot of PP?
+	txtPtr = ConvertIntToDecimalStringN(gDisplayedStringBattle, gSideTimers[SIDE(gBankTarget)].reflectTimer, STR_CONV_MODE_LEFT_ALIGN, 3);
+	BattlePutTextOnWindow(gDisplayedStringBattle, 9); //Slot of PP numbers
+	
+	txtPtr = StringCopy(gDisplayedStringBattle, gText_LightScreen);
+	ConvertIntToDecimalStringN(txtPtr, gSideTimers[SIDE(gBankTarget)].lightscreenTimer, STR_CONV_MODE_LEFT_ALIGN, 3);
+	BattlePutTextOnWindow(gDisplayedStringBattle, 8); //Slot of PP numbers
+	MoveSelectionCreateCursorAt(0, 0);
+	gNewBS->zMoveData.viewingDetails = TRUE;
+}
+
+// static void MoveSelectionMetaDisplayTurns(void)
+// {
+// 	u8 *txtPtr;
+// 	txtPtr = StringCopy(gDisplayedStringBattle, gText_Turns);
+// 	txtPtr[0] = EXT_CTRL_CODE_BEGIN;
+// 	txtPtr++;
+// 	txtPtr[0] = 6;
+// 	txtPtr++;
+// 	txtPtr[0] = 1;
+// 	txtPtr++;
+// 	ConvertIntToDecimalStringN(txtPtr, turns, STR_CONV_MODE_LEFT_ALIGN, 3);
+// 	BattlePutTextOnWindow(gDisplayedStringBattle, 8); //Where Move Type goes
+// 	txtPtr = StringCopy(gDisplayedStringBattle, gText_LightScreen);
+// }
 
 static void ReloadMoveNamesIfNecessary(void)
 {
@@ -1909,6 +2060,12 @@ void HandleInputChooseAction(void)
 			PlaySE(SE_SELECT);
 			EmitTwoReturnValues(1, ACTION_CANCEL_PARTNER, 0);
 			PlayerBufferExecCompleted();
+		}
+		else{
+			PlaySE(SE_SELECT);
+			ActionSelectionDestroyCursorAt(gActionSelectionCursor[gActiveBattler]);
+			gActionSelectionCursor[gActiveBattler] = 3;
+			ActionSelectionCreateCursorAt(gActionSelectionCursor[gActiveBattler], 0);
 		}
 	}
 	else if (gMain.newKeys & START_BUTTON)

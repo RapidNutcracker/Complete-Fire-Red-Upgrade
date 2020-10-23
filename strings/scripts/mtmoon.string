@@ -1,5 +1,5 @@
 #org @gText_MtMoon_MuscleBand1
-Hi, I'm excavating for fossils here\nunder [LIGHT_GREEN]Mt. Moon[BLUE].\pSometimes, [GREEN]Brock[BLUE] of [LIGHT_GREEN]Pewter Gym[BLUE] lends\nme a hand.
+Hi, I'm excavating for fossils here\nunder [GREEN]Mt. Moon[BLUE].\pSometimes, [GREEN]Brock[BLUE] of [GREEN]Pewter Gym[BLUE] lends\nme a hand.
 
 #org @gText_MtMoon_MuscleBand2
 [.]Oh? You beat him?!\nThat's admirable!\pPerhaps you could make use out of\nthis. 
@@ -15,18 +15,6 @@ What a shameful blunder...
 
 #org @gText_adminmtmoonleft_4
 Whatever, we've done everything we\nneeded.\pI won't be as nice to you next\ntime.\p[.]I'll be seeing you, [GREEN][PLAYER].
-
-#org @gText_cobalion_1
-[BLACK]An exceedingly powerful force\napproaches[.]
-
-#org @gText_cobalion_2
-[BLACK][.]
-
-#org @gText_cobalion_3
-[BLACK]It's a [LIGHT_GREEN]Cobalion[BLACK]!
-
-#org @gText_cobalion_4
-[BLACK]Do you confront it?
 
 #org @gText_cobalion_12
 Kawbraa!

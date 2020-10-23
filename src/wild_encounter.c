@@ -54,6 +54,7 @@ extern u8 sUnownLetterSlots[NUM_TANOBY_CHAMBERS][12]; //[NUM_ROOMS][NUM_WILD_IND
 extern const struct WildPokemonHeader gWildMonMorningHeaders[];
 extern const struct WildPokemonHeader gWildMonEveningHeaders[];
 extern const struct WildPokemonHeader gWildMonNightHeaders[];
+extern const struct WildPokemonHeader gWildMonNewDaytimeHeaders[];
 extern const struct SwarmData gSwarmTable[];
 extern const u16 gSwarmTableLength;
 
@@ -165,10 +166,13 @@ static const struct WildPokemonHeader* GetCurrentMapWildMonHeader(void)
 
 		if (IsNightTime())
 			headerTable = gWildMonNightHeaders;
-		else if (IsMorning())
-			headerTable = gWildMonMorningHeaders;
+		// else if (IsMorning() || IsDaytime())
+		// 	headerTable = gWildMonMorningHeaders;
 		else if (IsEvening())
-			headerTable = gWildMonEveningHeaders;
+			// headerTable = gWildMonEveningHeaders;
+			headerTable = gWildMonNightHeaders;
+		else //means its daytime or moning added 
+			headerTable = gWildMonNewDaytimeHeaders;
 
 		if (headerTable != NULL) //Not Daytime
 		{

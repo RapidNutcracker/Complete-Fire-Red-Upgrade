@@ -1,5 +1,5 @@
 #org @gText_RandomPika_1
-I'm a [LIGHT_BLUE]Yellow Shard[BLUE] collector!\pIf you hand me one, I can\nexchange give a random costume\l[LIGHT_GREEN]Pikachu.
+I'm a [LIGHT_BLUE]Yellow Shard[BLUE] collector!\pIf you hand me one, I can\nexchange give a random costume\l[GREEN]Pikachu.
 
 #org @gText_RandomPika_2
 Ah! I see a [LIGHT_BLUE]Yellow Shard[BLUE]!\pWould you like to exchange it?
@@ -83,7 +83,7 @@ The grind don't stop, right?
 Life sure is tough in the city[.]\nI learned it the hard way,\nnothing is free!
 
 #org @gText_amuletcoin_4
-[.]You came from [LIGHT_GREEN]Pallet Town[BLUE]?!\pHoly cow!\pYou'd make better use of this than\nme.
+[.]You came from [GREEN]Pallet Town[BLUE]?!\pHoly cow!\pYou'd make better use of this than\nme.
 
 #org @gText_amuletcoin_5
 The [LIGHT_BLUE]Amulet Coin[BLUE] ain't a money tree,\nbut it's the next closest thing.
@@ -173,25 +173,25 @@ Thank you partner!\pEnjoy!
 [.]You don't have enough money.
 
 #org @gText_gamecornermons_Gotdratini
-You received a [LIGHT_GREEN]Dratini!
+You received a [GREEN]Dratini!
 
 #org @gText_gamecornermons_Gotlarvitar
-You received a [LIGHT_GREEN]Larvitar!
+You received a [GREEN]Larvitar!
 
 #org @gText_gamecornermons_Gotbeldum
-You received a [LIGHT_GREEN]Beldum!
+You received a [GREEN]Beldum!
 
 #org @gText_gamecornermons_Gotbagon
-You received a [LIGHT_GREEN]Bagon!
+You received a [GREEN]Bagon!
 
 #org @gText_gamecornermons_Gotriolu
-You received a [LIGHT_GREEN]Riolu!
+You received a [GREEN]Riolu!
 
 #org @gText_gamecornermons_Gotrotom
-You received a [LIGHT_GREEN]Rotom!
+You received a [GREEN]Rotom!
 
 #org @gText_gamecornermons_GotToxel
-You received a [LIGHT_GREEN]Toxel!
+You received a [GREEN]Toxel!
 
 #org @gText_giveNickname 
 Give it a Nickname?
@@ -254,37 +254,37 @@ Thank you partner!\pEnjoy!
 [.]You don't have enough money.
 
 #org @gText_gamecornermons2_Gotgible
-You received a [LIGHT_GREEN]Gible!
+You received a [GREEN]Gible!
 
 #org @gText_gamecornermons2_GotLarvesta
-You received a [LIGHT_GREEN]Larvesta!
+You received a [GREEN]Larvesta!
 
 #org @gText_gamecornermons2_GotDeino
-You received a [LIGHT_GREEN]Deino!
+You received a [GREEN]Deino!
 
 #org @gText_gamecornermons2_GotGoomy
-You received a [LIGHT_GREEN]Goomy!
+You received a [GREEN]Goomy!
 
 #org @gText_gamecornermons2_Gotjangmo
-You received a [LIGHT_GREEN]Jangmo-o!
+You received a [GREEN]Jangmo-o!
 
 #org @gText_gamecornermons2_Gotfloette
-You received a [LIGHT_GREEN]Floette-Eternal!
+You received a [GREEN]Floette-Eternal!
 
 #org @gText_gamecornermons2_GotDreepy
-You received a [LIGHT_GREEN]Dreepy!
+You received a [GREEN]Dreepy!
 
 #org @gText_gamecornermons2_GotHonedge
-You received a [LIGHT_GREEN]Honedge! 
+You received a [GREEN]Honedge! 
 
 #org @gText_gamecornermons2_GotToxel
-You received a [LIGHT_GREEN]Toxel! 
+You received a [GREEN]Toxel! 
 
 #org @gText_gardevoirite_1
 Hey, you came to see me!\pI'm not thirsty like I was in\nthe old games though.\pYou can have this instead!
 
 #org @gText_gardevoirite_2
-That item Mega Evolves [LIGHT_GREEN]Alakazam[RED]!\pYou'll need a [LIGHT_BLUE]Mega Ring[RED] for it\nto work though.
+That item Mega Evolves [GREEN]Alakazam[RED]!\pYou'll need a [LIGHT_BLUE]Mega Ring[RED] for it\nto work though.
 
 #org @gText_erika_EncounterText
 [RED]Hello[.]\nLovely weather, isn't it?\lIt's so pleasant[.]\p[.]Oh, dear[.]\nI must have dozed off. Welcome.\pMy name is Erika.\nI am the Leader of Celadon Gym.\pI am a student of the art of\nflower arranging.\pMy Pok\emon are solely of the\nGrass type.\p[.]Oh, I'm sorry, I had no idea that\nyou wished to challenge me.\pVery well, but I shall not lose.
@@ -299,22 +299,22 @@ The Rainbow Badge allows\nyou to use Strength outside\lof battle.\pPlease also t
 TM19 contains Giga Drain.\pHalf the damage it inflicts is\ndrained to heal your Pok\emon.\pWouldn't you agree that it's a\nwonderful move?
 
 #org @gText_erika_Helloagain
-Oh hello there.\p[.]I see you've obtained the [LIGHT_BLUE]Mega Ring[RED].\pUnfortunately, my Pok\emon aren't look-\ning to battle at the moment.\pYou see, this [LIGHT_GREEN]Gloom[RED] I've been caring for\nhas become terribly sick.
+Oh hello there.\p[.]I see you've obtained the [LIGHT_BLUE]Mega Ring[RED].\pUnfortunately, my Pok\emon aren't look-\ning to battle at the moment.\pYou see, this [GREEN]Gloom[RED] I've been caring for\nhas become terribly sick.
 
 #org @gText_erika_Helloend
-If you could bring me something\nthat could help my [LIGHT_GREEN]Gloom[RED], that would\lhelp tremendously.
+If you could bring me something\nthat could help my [GREEN]Gloom[RED], that would\lhelp tremendously.
 
 #org @gText_erika_Isit
-Oh my[.]\pThis [LIGHT_BLUE]Medicine[RED][.] is it for [LIGHT_GREEN]Gloom[RED]?!
+Oh my[.]\pThis [LIGHT_BLUE]Medicine[RED][.] is it for [GREEN]Gloom[RED]?!
 
 #org @gText_erika_Thankutext
-Oh my goodness!\pThank you!\pLet me see if it helps [LIGHT_GREEN]Gloom[RED].
+Oh my goodness!\pThank you!\pLet me see if it helps [GREEN]Gloom[RED].
 
 #org @gText_erika_Nothing
 [.]
 
 #org @gText_erika_Itworks
-[LIGHT_GREEN]Gloom[RED] is feeling great now!\pI couldn't thank you enough!\pWell, I'm up for a battle now!\pAre you ready? 
+[GREEN]Gloom[RED] is feeling great now!\pI couldn't thank you enough!\pWell, I'm up for a battle now!\pAre you ready? 
 
 #org @gText_erika_No
 Oh, never mind then[.]
@@ -323,7 +323,7 @@ Oh, never mind then[.]
 I hope your travels go safely, dear\nfriend.
 
 #org @gText_erika_Snivy
-You received a [LIGHT_GREEN]Snivy[RED]!
+You received a [GREEN]Snivy[RED]!
 
 #org @gText_erika_StartBattle
 Very well, let's begin!
@@ -332,7 +332,7 @@ Very well, let's begin!
 Ah, you've got me again. 
 
 #org @gText_PostRematch 
-Thank you for the lovely\nbattle, and for helping [LIGHT_GREEN]Gloom![RED]\pPlease, have these. 
+Thank you for the lovely\nbattle, and for helping [GREEN]Gloom![RED]\pPlease, have these. 
 
 #org @gText_checkerikasabrina_1
 [BLACK]I think I'd better get [GREEN]Erika[BLACK] and\n[GREEN]Sabrina's[BLACK] badge before proceeding.
@@ -344,13 +344,13 @@ Hi! I offer fossil Pok\emon\nin exchange for shards.\pInterested?
 Which fossil Pok\emon would you\nlike?
 
 #org @gText_FossilPokemon_Dont
-Hm, you don't have enough\n[LIGHT_BLUE][BUFFER1]s[BLUE].\pCome back with some [LIGHT_BLUE][BUFFER1]s[BLUE]\nif you'd like a [LIGHT_GREEN][BUFFER2][BLUE].
+Hm, you don't have enough\n[LIGHT_BLUE][BUFFER1]s[BLUE].\pCome back with some [LIGHT_BLUE][BUFFER1]s[BLUE]\nif you'd like a [GREEN][BUFFER2][BLUE].
 
 #org @gText_FossilPokemon_Confirm 
-Okay, you'd like to exchange\n[LIGHT_BLUE][BUFFER1]s[BLUE] for [LIGHT_GREEN][BUFFER2][BLUE],\lcorrect?
+Okay, you'd like to exchange\n[LIGHT_BLUE][BUFFER1]s[BLUE] for [GREEN][BUFFER2][BLUE],\lcorrect?
 
 #org @gText_FossilReceive
-You received a [LIGHT_GREEN][BUFFER2][BLUE]!
+You received a [GREEN][BUFFER2][BLUE]!
 
 #org @gText_FossilThanks
 Thank ya! Enjoy. 

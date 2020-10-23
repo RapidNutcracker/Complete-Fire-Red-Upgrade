@@ -792,6 +792,7 @@ struct
 	[MENU_TRADE1] =	{(void*) 0x84169bc, (void*) 0x8124491},
 	[MENU_TRADE2] =	{(void*) 0x84169bc, (void*) 0x81245a1},
 	[MENU_MOVE_ITEM] = {gMenuText_Move, CursorCb_MoveItem},
+	//[MENU_NICKNAME] = {gMenuText_NickName, CursorCb_MoveItem}
 
 	//Field Moves
 	[MENU_FIELD_MOVES + FIELD_MOVE_FLASH] =	      {gMoveNames[MOVE_FLASH], CursorCb_FieldMove},
@@ -932,23 +933,23 @@ void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
 
 	//Try to give the mon fly
 	#ifdef ONLY_CHECK_ITEM_FOR_HM_USAGE
-	if (k < MAX_MON_MOVES) //Doesn't know 4 field moves
-	{
-		#ifndef DEBUG_HMS
-		bool8 hasHM = CheckBagHasItem(ITEM_HM02_FLY, 1) > 0;
-		u16 species = GetMonData(&mons[slotId], MON_DATA_SPECIES2, NULL);
+	// if (k < MAX_MON_MOVES) //Doesn't know 4 field moves
+	// {
+	// 	#ifndef DEBUG_HMS
+	// 	bool8 hasHM = CheckBagHasItem(ITEM_HM02_FLY, 1) > 0;
+	// 	u16 species = GetMonData(&mons[slotId], MON_DATA_SPECIES2, NULL);
 		
-		if (species != SPECIES_NONE
-		&& species != SPECIES_EGG
-		&& hasHM
-		&& HasBadgeToUseFieldMove(FIELD_MOVE_FLY)
-		&& CanMonLearnTMTutor(&mons[slotId], ITEM_HM02_FLY, 0) == CAN_LEARN_MOVE)
-		#endif
-		{
-			AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_FIELD_MOVES + FIELD_MOVE_FLY);
-			++k;
-		}
-	}
+	// 	if (species != SPECIES_NONE
+	// 	&& species != SPECIES_EGG
+	// 	&& hasHM
+	// 	&& HasBadgeToUseFieldMove(FIELD_MOVE_FLY)
+	// 	&& CanMonLearnTMTutor(&mons[slotId], ITEM_HM02_FLY, 0) == CAN_LEARN_MOVE)
+	// 	#endif
+	// 	{
+	// 		AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_FIELD_MOVES + FIELD_MOVE_FLY);
+	// 		++k;
+	// 	}
+	// }
 	if (k < MAX_MON_MOVES) //Doesn't know 4 field moves
 	{
 		bool8 hasTM = CheckBagHasItem(ITEM_TM28_DIG, 1) > 0;
@@ -1051,12 +1052,12 @@ static bool8 SetUpFieldMove_Teleport(void)
 	if (gFollowerState.inProgress && !(gFollowerState.flags & FOLLOWER_FLAG_CAN_LEAVE_ROUTE))
 		return FALSE;
 
-	if (Overworld_MapTypeAllowsTeleportAndFly(gMapHeader.mapType) == TRUE)
-	{
+	// if (Overworld_MapTypeAllowsTeleportAndFly(gMapHeader.mapType) == TRUE) changed this
+	// {
 		gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;
 		gPostMenuFieldCallback = FieldCallback_Teleport;
 		return TRUE;
-	}
+	// }
 
 	return FALSE;
 }

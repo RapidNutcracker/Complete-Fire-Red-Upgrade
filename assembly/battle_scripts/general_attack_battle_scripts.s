@@ -872,6 +872,7 @@ BS_028_Roar:
 	attackcanceler
 	jumpifmove MOVE_DRAGONTAIL DragonTailBS
 	jumpifmove MOVE_CIRCLETHROW DragonTailBS
+	jumpifmove MOVE_ROAROFTIME DragonTailBS
 
 RoarBS:
 	attackstring @;Still activates Protean even if move fails

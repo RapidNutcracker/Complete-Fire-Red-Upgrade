@@ -375,3 +375,57 @@ The storm is getting too strong to\nwithstand!
 
 #org @gText_RaidMonRanAway
 [PLAY_SE][11][00][FD][06] disappeared\nsomewhere[.]\p
+
+#org @gText_TrickRoom
+TrickRoom: 
+
+#org @gText_OffMoveMenu
+OFF
+
+#org @gText_SunText
+Sun: 
+
+#org @gText_RainText
+Rain: 
+
+#org @gText_HailText
+Hail: 
+
+#org @gText_SandstormText
+Sand: 
+
+#org @gText_NoWeather
+No Weather
+
+#org @gText_InfText
+INF
+
+#org @gText_GrassyTerrainText
+Grassy: 
+
+#org @gText_MistyTerrainText
+Misty: 
+
+#org @gText_ElectricTerrainText
+Electric: 
+
+#org @gText_PsychicTerrainText
+Psychic: 
+
+#org @gText_NoTerrain
+No Terrain
+
+#org @gText_LightScreen
+L. Screen: 
+
+#org @gText_Reflect
+Refl:
+
+#org @gText_AuroraVeilText
+A. Veil: 
+
+#org @gText_NoAuroraVeilText
+No A. Veil
+
+#org @gText_PP
+PP

@@ -17,13 +17,13 @@
 [RED]Tsk, whatever.\pYou won't be able to stop the boss\nanyway.
 
 #org @gText_arianaceruelancave_1
-[LIGHT_GREEN]Mawile, [RED]use Play Rough!
+[GREEN]Mawile, [RED]use Play Rough!
 
 #org @gText_arianaceruelancave_2
 What the hell are you looking at?\pI'll take care of you after.
 
 #org @gText_brendanceruleancave_1
-[LIGHT_GREEN]Sceptile, [BLUE]use Focus Blast!
+[GREEN]Sceptile, [BLUE]use Focus Blast!
 
 #org @gText_brendanceruleancave_2
 [GREEN][PLAYER][BLUE], go on\nahead!\pI'll catch up with you later!
@@ -88,9 +88,6 @@ Most Team Rocket members left\nafter the latest ordeal.\pI have no idea why I'm 
 #org @gText_ceruleanarcherariana_8
 [RED]But[.] orders are orders.
 
-#org @gText_ceruleanarcherariana_9
-[GREEN]Ariana[BLACK] took your bag!
-
 #org @gText_ceruleanarcherariana_10
 [BLUE]We're loyal to the boss,\nperhaps to a fault.\pYou aren't getting to him.
 
@@ -101,7 +98,7 @@ Most Team Rocket members left\nafter the latest ordeal.\pI have no idea why I'm 
 [BLUE]You might be the strongest trainer\nI've ever faced.\pPerhaps you may be able to\ntalk some sense into our boss[.]\pIt'd be nice if he could have some\nfaith in us, but he won't listen to\lme.
 
 #org @gText_ceruleanarcherariana_13
-[RED]Not me, either.\pBut, we're still concerned for him.\pWe're really sorry for the trouble.\pHere's your bag back.\pAnd please, have this.
+[RED]Not me, either.\pBut, we're still concerned for him.\pWe're really sorry for the trouble.\pAnd please, have this.
 
 #org @gText_ceruleanarcherariana_14
 [BLUE]I would apologize too,\nbut I know we were always just\lpushovers for you[.]\p[.]Hah! You're smiling.\pI knew it.\pFrom me, then.
@@ -128,7 +125,7 @@ Please[.] stop the boss.
 [BLUE]Unfortunately, you won't be the hero\nthis time.\pYou're too late.
 
 #org @gText_ceruleangiovanni_3
-[LIGHT_GREEN]Mewtwo![BLUE] You're mine!
+[GREEN]Mewtwo![BLUE] You're mine!
 
 #org @gText_ceruleangiovanni_4
 [BLACK]Mew!
@@ -146,7 +143,7 @@ W-what?!\nImpossible[.]
 [BLUE]Aha! The Master Ball my scientists\nmade works!\pAnd attaching this Mega Stone that\nwe've worked hard on[.]\pI'm practically invincible!
 
 #org @gText_ceruleangiovanni_8
-[BLUE]You still dare to stop me\nknowing I have [LIGHT_GREEN]Mega Mewtwo[BLUE]?\pWell, the honor is mine, you insolent\nchild!
+[BLUE]You still dare to stop me\nknowing I have [GREEN]Mega Mewtwo[BLUE]?\pWell, the honor is mine, you insolent\nchild!
 
 #org @gText_ceruleangiovanni_8_2 
 [GREEN]???[BLUE]: Woah, things are getting out\nof hand here[.]
@@ -164,7 +161,7 @@ W-what?!\nImpossible[.]
 [GREEN]Giovanni[BLUE]: Have at me then, you fools! 
 
 #org @gText_ceruleangiovanni_9
-[BLUE]Even with [LIGHT_GREEN]Mega Mewtwo[BLUE],\nI've fallen by your hands.\pI[.]
+[BLUE]Even with [GREEN]Mega Mewtwo[BLUE],\nI've fallen by your hands.\pI[.]
 
 #org @gText_ceruleangiovanni_Awaydialogue
 [BLUE]I am truly humbled.\pMy plan for world domination is\nbut a dream.
@@ -217,3 +214,5 @@ W-what?!\nImpossible[.]
 #org @gText_e4check_1
 [BLACK]Mewtwo: No [PLAYER][.]\pYou are not worthy yet.
 
+#org @gText_MewtwoBattle
+I see you've returned,\neven more capable.\pFine, let me unleash my full\npotential to see if you're truly\lworthy!

@@ -259,3 +259,160 @@ EventScript_RedShardInfo:
 	msgbox gText_Cerulean_RedShardInfo MSG_FACE 
 	release 
 	end 
+
+.global EventScript_redogaryrival_Startmiddletile
+EventScript_redogaryrival_Startmiddletile:
+	lockall
+	setvar 0x4001 0x1
+	movesprite2 0x8 0x17 0x0
+	goto EventScript_redogaryrival_Rivalbattle
+
+.global EventScript_redogaryrival_Startlefttile
+EventScript_redogaryrival_Startlefttile:
+	lockall
+	setvar 0x4001 0x0
+	goto EventScript_redogaryrival_Rivalbattle
+
+.global EventScript_redogaryrival_StartRightTile
+EventScript_redogaryrival_StartRightTile:
+	lockall
+	setvar 0x4001 0x2
+	movesprite2 0x8 0x18 0x0
+	goto EventScript_redogaryrival_Rivalbattle
+
+EventScript_redogaryrival_Rivalbattle:
+	textcolor 0x0
+	setvar 0x4054 0x2
+	playsong 0x13B 0x0
+	showsprite 0x8
+	applymovement 0x8 EventScript_redogaryrival_Comedown
+	waitmovement 0x0
+	msgbox gText_redogaryrival_Startmsg MSG_KEEPOPEN @"[rival]: Yo! [player]!\pYou@re sti..."
+	setvar LASTTALKED 0x8
+	compare 0x4031 0x2
+	if 0x1 _call EventScript_redogaryrival_Trainerbattle1
+	compare 0x4031 0x1
+	if 0x1 _call EventScript_redogaryrival_Trainerbattle2
+	compare 0x4031 0x0
+	if 0x1 _call EventScript_redogaryrival_Trianerbattle3
+	setvar 0x8004 0xD
+	setvar 0x8005 0x0
+	special 0x173
+	msgbox gText_redogaryrival_Billmsg MSG_KEEPOPEN @"[rival]: Hey, guess what?\pI went ..."
+	closeonkeypress
+	playsong 0x13C 0x0
+	compare 0x4001 0x0
+	if 0x1 _call EventScript_redogaryrival_Leftmovement
+	compare 0x4001 0x1
+	if 0x1 _call EventScript_redogaryrival_Leftmovement
+	compare 0x4001 0x2
+	if 0x1 _call EventScript_redogaryrival_Rightmovement
+	msgbox gText_redogaryrival_Apresent MSG_KEEPOPEN @"Oh, yeah, right.\pI feel sorry for..."
+	setvar 0x4052 0x1
+	setflag 0x29B
+	giveitem 0x16B 0x1 MSG_OBTAIN
+	msgbox gText_redogaryrival_Chattygossip MSG_KEEPOPEN @"A chatty gossip like you[.]\nThat ..."
+	closeonkeypress
+	applymovement 0x8 EventScript_redogaryrival_Garyleave
+	waitmovement 0x0
+	fadedefault
+	hidesprite 0x8
+	releaseall
+	end
+
+EventScript_redogaryrival_Trainerbattle1:
+	trainerbattle3 0x3 0x14C 0x0 gText_redogaryrival_Uwonalready
+	return
+
+EventScript_redogaryrival_Trainerbattle2:
+	trainerbattle3 0x3 0x14D 0x0 gText_redogaryrival_Uwonalready
+	return
+
+EventScript_redogaryrival_Trianerbattle3:
+	trainerbattle3 0x3 0x14E 0x0 gText_redogaryrival_Uwonalready
+	return
+
+EventScript_redogaryrival_Leftmovement:
+	applymovement 0xFF EventScript_redogaryrival_Moveplayer1
+	applymovement 0x8 EventScript_redogaryrival_Movegary1
+	waitmovement 0x0
+	return
+
+EventScript_redogaryrival_Rightmovement:
+	applymovement 0xFF EventScript_redogaryrival_Moveplayer2
+	applymovement 0x8 EventScript_redogaryrival_Movegary2
+	waitmovement 0x0
+	return
+
+EventScript_redogaryrival_Comedown:
+.byte 0x10
+.byte 0x10
+.byte 0x10
+.byte 0x10
+.byte 0x10
+.byte 0xFE
+
+EventScript_redogaryrival_Garyleave:
+.byte 0x10
+.byte 0x10
+.byte 0x10
+.byte 0x10
+.byte 0x10
+.byte 0x10
+.byte 0x10
+.byte 0xFE
+
+EventScript_redogaryrival_Moveplayer1:
+.byte 0x1C
+.byte 0x1B
+.byte 0x30
+.byte 0x1C
+.byte 0x2D
+.byte 0xFE
+
+EventScript_redogaryrival_Movegary1:
+.byte 0x13
+.byte 0x10
+.byte 0x10
+.byte 0x10
+.byte 0x10
+.byte 0x10
+.byte 0x10
+.byte 0x10
+.byte 0x1C
+.byte 0x1C
+.byte 0x12
+.byte 0x11
+.byte 0x11
+.byte 0x11
+.byte 0x11
+.byte 0x11
+.byte 0xFE
+
+EventScript_redogaryrival_Moveplayer2:
+.byte 0x1C
+.byte 0x1B
+.byte 0x2F
+.byte 0x1C
+.byte 0x2D
+.byte 0xFE
+
+EventScript_redogaryrival_Movegary2:
+.byte 0x12
+.byte 0x10
+.byte 0x10
+.byte 0x10
+.byte 0x10
+.byte 0x10
+.byte 0x10
+.byte 0x10
+.byte 0x1C
+.byte 0x1C
+.byte 0x13
+.byte 0x11
+.byte 0x11
+.byte 0x11
+.byte 0x11
+.byte 0x11
+.byte 0xFE
+

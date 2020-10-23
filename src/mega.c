@@ -287,7 +287,6 @@ static item_t FindBankKeystone(u8 bank)
 {
 	if (gBattleTypeFlags & BATTLE_TYPE_LINK)
 		return ITEM_MEGA_RING; //You can always Mega Evolve in a link battle
-
 	#ifdef DEBUG_MEGA
 		if (bank + 1)
 			return ITEM_MEGA_RING;
@@ -338,6 +337,8 @@ bool8 MegaEvolutionEnabled(u8 bank)
 
 bool8 BankMegaEvolved(u8 bank, bool8 checkUB)
 {
+	// if ((SIDE(bank) == B_SIDE_OPPONENT))
+	// 	return FALSE;
 	if ((SIDE(bank) == B_SIDE_PLAYER && gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)
 	||  (SIDE(bank) == B_SIDE_OPPONENT && gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS))
 	{

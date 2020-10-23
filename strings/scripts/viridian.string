@@ -35,7 +35,7 @@ My Weedle is pleased. Thanks!
 Aw okay[.]
 
 #org @gText_brendanbattleleft_1
-Hm... There should be a [LIGHT_GREEN]Joltik\n[BLUE]somewhere here...
+Hm... There should be a [GREEN]Joltik\n[BLUE]somewhere here...
 
 #org @gText_brendanbattleleft_2
 Oh hello!\pI'm just trying to catch some Pok\e-\nmon before I challenge [GREEN]Brock.
@@ -50,7 +50,7 @@ Oof, I'm missing something...
 I haven't had a loss like that in\na while! But, that was rather fun. \p[.][GREEN][PLAYER], [BLUE]huh...\pHere, I have an extra of these,\nthey'll surely help you.
 
 #org @gText_brendanbattleleft_6
-I have some errands to run in [LIGHT_GREEN]Vir-\nidian.\p[BLUE]Until we meet again, [GREEN][PLAYER]!
+I have some errands to run in [GREEN]Vir-\nidian.\p[BLUE]Until we meet again, [GREEN][PLAYER]!
 
 #org @gText_DoYouWantRandomizer
 Do you want to set the\nrandomizer option?\pThis randomizes encounters, trainers,\nand gifts, but not boss battles.\pThis cannot be turned back on or\noff.\pMany legendaries cannot be\nencountered.\pDo you want to set the randomizer\noption? 
@@ -74,7 +74,7 @@ Randomizer mode on Hard has been\nset!
 [BLACK][.]
 
 #org @gText_virizion_3
-[BLACK]It's a [LIGHT_GREEN]Virizion[BLACK]!
+[BLACK]It's a [GREEN]Virizion[BLACK]!
 
 #org @gText_virizion_4
 [BLACK]Do you confront it?
@@ -86,13 +86,13 @@ Randomizer mode on Hard has been\nset!
 [BLUE]Oh my, I'm so glad to have found\nyou.\p[GREEN]May[BLUE] told me she had just bumped\ninto you here, so I hurried back\lover here.
 
 #org @gText_brendantoceruleancave_3
-[BLUE]I've come looking for your help!\pYou're really the only one I\nknow that could stop this[.]\pTeam Rocket has occupied [LIGHT_GREEN]Cerulean\nCave[BLUE], it seems.\pThere's rumors that a powerful\nlegendary rests there[.]\pCould that be what they're looking\nfor?!\pIt sounds like bad news.\pAnywho, we need to put an end\nto it!\pOh, you'd like a heal? Sure thing[.]
+[BLUE]I've come looking for your help!\pYou're really the only one I\nknow that could stop this[.]\pTeam Rocket has occupied [GREEN]Cerulean\nCave[BLUE], it seems.\pThere's rumors that a powerful\nlegendary rests there[.]\pCould that be what they're looking\nfor?!\pIt sounds like bad news.\pAnywho, we need to put an end\nto it!\pOh, you'd like a heal? Sure thing[.]
 
 #org @gText_brendantoceruleancave_4
 [BLUE]Okay, off we go.
 
 #org @gText_giovannicheck_1
-[BLACK]I ought to help Brendan in\n[LIGHT_GREEN]Cerulean Cave[.]
+[BLACK]I ought to help Brendan in\n[GREEN]Cerulean Cave[.]
 
 #org @gText_claire_EncounterText
 [RED]Ah, a challenger finally arrives.\pI was about to take a nap.\p[RED]Although I'm the newly appointed\nGym Leader of the Kanto region,\lI was once a leader in Johto.\pSo, this is nothing new to me.\p[GREEN]Lance[RED] may be considered the world's\ndragon master, but I'm a close sec-\lond!\pDo you still dare to take me on?\pFine, let's do this!

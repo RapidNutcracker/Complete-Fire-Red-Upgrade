@@ -17,7 +17,7 @@ Woah, that was great!\nYou lived up to the hype!
 I see why [GREEN]Brendan[RED] looks up\nto you now.\pI don't know if we'll bump into each\nother again, so please, have this.
 
 #org @gText_CinnabarMay6
-You received a [LIGHT_GREEN]Torchic[RED]!
+You received a [GREEN]Torchic[RED]!
 
 #org @gText_CinnabarMay7
 Take care!
@@ -26,7 +26,7 @@ Take care!
 I'm a fossil collector!\pHere, have one. 
 
 #org @gText_Cinnabar_FossilGuy2 
-[BLACK]You received a [LIGHT_GREEN][BUFFER1][BLACK].
+[BLACK]You received a [GREEN][BUFFER1][BLACK].
 
 #org @gText_Cinnabar_FossilGuy3
 Hmm[.] I'm out of fossils today.\nCome back tomorrow!
@@ -47,7 +47,7 @@ Ah yes, you already showed\nme that one!
 Thank you for helping me\ncomplete my research!\pYou must be a strong trainer!
 
 #org @gText_CinnabarLatis6
-Yes! It's for [LIGHT_GREEN][BUFFER1][BLACK]!\pThank you for helping me with\nthis discovery!\pPlease, have them! 
+Yes! It's for [GREEN][BUFFER1][BLACK]!\pThank you for helping me with\nthis discovery!\pPlease, have them! 
 
 #org @gText_Normal 
 Normal
@@ -104,19 +104,19 @@ Dark
 Fairy
 
 #org @gText_NoSilvally
-Hm, that's not a [LIGHT_GREEN]Silvally[BLUE]. 
+Hm, that's not a [GREEN]Silvally[BLUE]. 
 
 #org @gText_SilvallyChanger1
 I can switch your Silvally's\nform! Is that something you're\linterested in? 
 
 #org @gText_WhichForm
-Which [LIGHT_GREEN]Silvally[BLUE] form do you want? 
+Which [GREEN]Silvally[BLUE] form do you want? 
 
 #org @gText_SilvallyChanger2 
 And[.]\pYup, the form has been changed!\pLet me know if you're in need\nof my services again! 
 
 #org @gText_SilvallyChanger3
-Ah yes! A [LIGHT_GREEN]Silvally[BLUE]!
+Ah yes! A [GREEN]Silvally[BLUE]!
 
 #org @gText_blaine_EncounterText
 [BLUE]Hah!\pI am [GREEN]Blaine[BLUE], the red-hot Leader\nof Cinnabar Gym!\pMy fiery Pok\emon are all rough\nand ready with intense heat!\pThey incinerate all challengers!\pHah!\nYou better have Burn Heal!
@@ -152,7 +152,7 @@ Fire-types are to be used with\nutmost respect.\pDon't waste them on Water-types
 This item makes special attacks\neven more fearsome.\pTake it as well.
 
 #org @gText_jasmine_1
-Hmm[.][LIGHT_GREEN] Mega Aggron[RED] or [LIGHT_GREEN]Mega Steelix[RED][.]
+Hmm[.][GREEN] Mega Aggron[RED] or [GREEN]Mega Steelix[RED][.]
 
 #org @gText_jasmine_2
 Ah, hello.\pI've only recently acquainted myself\nwith Mega Evolution, so I'm still\lfiguring things out.
@@ -185,7 +185,7 @@ Your [BUFFER1][.]
 Yes, this Pok\emon is quite a\nworthy shield.\pAs promised, here you go.
 
 #org @gText_jasmine_10
-The[LIGHT_BLUE] Assault Vest[RED] complements a high\ndefense Pok\emon well, making it an\limpenetrable wall. 
+[RED]The[LIGHT_BLUE] Assault Vest[RED] complements a high\ndefense Pok\emon well, making it an\limpenetrable wall. 
 
 #org @gText_metatutor_1
 I teach some sick moves, but it's\ngoing to cost \$10000.\pYou in?
@@ -269,4 +269,4 @@ Yes, that's it!\nHere you go!
 I hope you're wreaking havoc\nwith the Therian Formes. 
 
 #org @gText_Cinnabar_Eevee
-[LIGHT_GREEN]Eevee[BLUE] can evolve into one of eight\nkinds of Pok\emon. 
+[GREEN]Eevee[BLUE] can evolve into one of eight\nkinds of Pok\emon. 

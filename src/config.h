@@ -158,7 +158,7 @@ enum //These vars need to be one after the other (hence the enum)
 #define MAX_COINS_DIGITS 9	//Max number of digits for game corner coins (eg. 4 = 9999, 9 = 999,999,999). maximum of 9
 
 /*===== Badge Obedience Options =====*/
-#define BASE_OBEDIENCE_LEVEL	15
+#define BASE_OBEDIENCE_LEVEL	16
 #define BADGE_1_OBEDIENCE_LEVEL	30
 #define BADGE_2_OBEDIENCE_LEVEL 38
 #define BADGE_3_OBEDIENCE_LEVEL 46
@@ -276,7 +276,7 @@ enum //These vars need to be one after the other (hence the enum)
 //#define BADGE_BOOSTS //Uncomment this line to allow Badges to give stat boosts
 //#define OLD_ATE_BOOST //Uncomment this line to make 'ate' abilities give a 1.3 boost instead of 1.2
 //#define OLD_GEM_BOOST //Uncomment this line to make Gems give a 1.5 boost instead of 1.3
-#define OLD_TERRAIN_BOOST //Uncomment this line to make Terrains give a 1.5 boost instead of 1.3
+//#define OLD_TERRAIN_BOOST //Uncomment this line to make Terrains give a 1.5 boost instead of 1.3
 #define OLD_EXPLOSION_BOOST //Uncomment this line to make Exploding moves halve the target's defense
 //#define OLD_HIDDEN_POWER_BP //Uncomment this line for Hidden Power to have its Base Power calculated from the Pokemon's IVs
 //#define PORTAL_POWER //Uncomment this line to enable Hoopa-Unbound's special ability in Pokemon Unbound, Portal Power (reduces power of non-contact moves by 25%)

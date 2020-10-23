@@ -1213,7 +1213,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 							break; //Can't switch
 						if (move == MOVE_TELEPORT && IsTrickRoomActive() )
 						{
-							INCREASE_VIABILITY(18);
+							INCREASE_VIABILITY(9);
 						}
 						if (GetMonAbility(GetBankPartyData(bankAtk)) == ABILITY_INTIMIDATE
 						&&  MoveSplitOnTeam(bankDef, SPLIT_PHYSICAL))

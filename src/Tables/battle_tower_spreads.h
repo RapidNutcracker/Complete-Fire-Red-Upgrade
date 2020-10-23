@@ -7399,7 +7399,7 @@ const struct BattleTowerSpread gFrontierSpreads[] =
 		.hpEv = 248,
 		.defEv = 252,
 		.spDefEv = 8,
-		.ability = FRONTIER_ABILITY_2, //ABILITY_SHELLARMOR
+		.ability = FRONTIER_ABILITY_2, //ABILITY_BATTLEARMOR
 		.item = ITEM_QUICK_CLAW,
 		.moves =
 		{

@@ -1688,6 +1688,7 @@ bool8 GoodIdeaToLowerAttack(u8 bankDef, u8 bankAtk, u16 move)
 		&& defAbility != ABILITY_CONTRARY
 		&& defAbility != ABILITY_CLEARBODY
 		&& defAbility != ABILITY_WHITESMOKE
+		&& defAbility != ABILITY_DEFIANT
 		//&& defAbility != ABILITY_FULLMETALBODY
 		&& defAbility != ABILITY_HYPERCUTTER;
 }

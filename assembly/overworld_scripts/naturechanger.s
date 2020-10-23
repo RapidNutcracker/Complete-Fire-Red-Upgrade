@@ -11,7 +11,7 @@ EventScript_NatureChanger:
     showmoney 0x00 0x00 0x00  
     msgbox gText_NatureChanger1 MSG_YESNO 
     compare LASTRESULT YES 
-    if 0x0 _goto CancelThis2 
+    if 0x0 _goto CancelThis
 	checkmoney 0x1D4C 0x0
     compare LASTRESULT 0x1
     if 0x0 _goto NotEnoughMoney

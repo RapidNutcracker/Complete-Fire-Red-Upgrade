@@ -545,6 +545,9 @@ Ups Attack, but allows one move.
 #org @DESC_NEUTRALISINGGAS
 All Abilities are nullified.
 
+#org @DESC_LETHALPRECISION
+Can't miss super-effective moves.
+
 #org @DESC_PASTEL_VEIL
 Protects team from poison.
 

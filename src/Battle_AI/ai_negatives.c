@@ -1379,7 +1379,7 @@ MOVESCR_CHECK_0:
 				case MOVE_LASERFOCUS:
 					if (IsLaserFocused(bankAtk))
 						DECREASE_VIABILITY(10);
-					else if (data->defAbility == ABILITY_SHELLARMOR || data->defAbility == ABILITY_BATTLEARMOR)
+					else if (data->defAbility == ABILITY_BATTLEARMOR)
 						DECREASE_VIABILITY(8);
 					break;
 
@@ -1545,7 +1545,7 @@ MOVESCR_CHECK_0:
 			}
 			else
 			{
-				if (ViableMonCountFromBank(bankDef) <= 1)
+				if (ViableMonCountFromBank(bankDef) <= 3)
 				{
 					DECREASE_VIABILITY(10);
 					break;
@@ -2725,12 +2725,12 @@ MOVESCR_CHECK_0:
 					break;
 				}
 				else if ( Random() % 2 == 0) {
-					DECREASE_VIABILITY(5); //don't always spam sucker punch, can be easily abused
+					DECREASE_VIABILITY(10); //don't always spam sucker punch, can be easily abused
 				}
 			}
-			// else if ( Random() % 2 == 0) {
-			// 	DECREASE_VIABILITY(10);
-			// }
+			else if ( Random() % 2 == 0) {
+				DECREASE_VIABILITY(10);
+			}
 			//If the foe has move prediction, assume damage move for now.
 			goto AI_STANDARD_DAMAGE;
 

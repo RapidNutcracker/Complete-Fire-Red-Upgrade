@@ -584,3 +584,19 @@ EventScript_e4check_Stop:
 EventScript_e4check_Goback:
 .byte 0x10
 .byte 0xFE
+
+.global EventScript_MewtwoTotem
+EventScript_MewtwoTotem:
+	setflag 0x90B
+	setflag 0x90C
+	setvar 0x8000 MOVE_PSYCHOCUT 
+	setvar 0x8001 MOVE_ROCKSLIDE
+	setvar 0x8002 MOVE_DRAINPUNCH
+	setvar 0x8003 MOVE_BULKUP
+	setvar 0x5002 0xFFFF @raises speed by 4 stages
+	setflag 0x915
+	setwildbattle SPECIES_MEWTWO_MEGA_X 0x64 ITEM_MEWTWONITE_X
+	msgbox gText_MewtwoBattle MSG_FACE
+	dowildbattle
+	release 
+	end 

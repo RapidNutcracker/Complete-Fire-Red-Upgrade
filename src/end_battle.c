@@ -468,6 +468,10 @@ bool8 TryRunFromBattle(u8 bank)
 		gProtectStructs[bank].fleeFlag = 2;
 		++effect;
 	}
+	else if (FlagGet(FLAG_SYS_GAME_CLEAR))
+	{
+		++effect; //automatic run if you're champion
+	}
 	#ifndef NO_GHOST_BATTLES
 	else if ((gBattleTypeFlags & (BATTLE_TYPE_SCRIPTED_WILD_1 | BATTLE_TYPE_GHOST)) == BATTLE_TYPE_GHOST)
 	{

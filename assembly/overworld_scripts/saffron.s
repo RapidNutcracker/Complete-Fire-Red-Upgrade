@@ -27,8 +27,6 @@ EventScript_Saffron_Nerd:
 	compare LASTRESULT NO 
 	if equal _goto NahImGood
     callasm SetChosenMonHiddenAbility + 1
-    @ compare LASTRESULT 0x0 
-    @ if equal _goto DontHaveHidden
     msgbox gText_Saffron_NerdGiveItem MSG_FACE
     msgbox gText_Saffron_NerdAfter MSG_FACE
     removeitem ITEM_BOTTLE_CAP 0x1
@@ -819,7 +817,7 @@ EventScript_sabrina_Start:
 	msgbox gText_sabrina_LetsBegin MSG_NORMAL 
 	setflag 0x915
 	@ setflag 0x913 @set shiny 
-	trainerbattle3 0x3 0x1A4 0x0  gText_sabrina_DefeatText 
+	trainerbattle3 0x3 0x1A4 0x0 gText_sabrina_DefeatText 
 	goto EventScript_sabrina_WonPointer
 	release
 	end

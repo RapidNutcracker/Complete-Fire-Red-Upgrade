@@ -1109,6 +1109,7 @@ gTwoToFiveStrikesMoves:
 .hword MOVE_TAILSLAP
 .hword MOVE_WATERSHURIKEN
 .hword MOVE_SURGINGSTRIKES
+.hword MOVE_BEATUP
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
