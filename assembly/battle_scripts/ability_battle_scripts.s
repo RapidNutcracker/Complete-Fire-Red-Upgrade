@@ -44,6 +44,7 @@ ability_battle_scripts.s
 .global BattleScript_Harvest
 .global BattleScript_Pickup
 .global BattleScript_BallFetch
+.global BattleScript_EmergencyExitEnd3
 .global BattleScript_AttackerCantUseMove
 .global BattleScript_FlashFireBoost_PPLoss
 .global BattleScript_FlashFireBoost
@@ -522,6 +523,8 @@ BattleScript_Pickup:
 	call BattleScript_AbilityPopUpRevert
 	end3
 
+@;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
 BattleScript_BallFetch:
 	call BattleScript_AbilityPopUp
 	playanimation BANK_SCRIPTING ANIM_SNATCH_GRAB_STAT_BOOST 0x0
@@ -529,6 +532,12 @@ BattleScript_BallFetch:
 	printstring 0x184
 	waitmessage DELAY_1SECOND
 	call BattleScript_AbilityPopUpRevert
+	end3
+
+@;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+BattleScript_EmergencyExitEnd3:
+	call BattleScript_EmergencyExit
 	end3
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
