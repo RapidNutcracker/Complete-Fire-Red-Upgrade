@@ -1,0 +1,35 @@
+#org @gText_Pallet_Technology1
+Technology is incredible!\pYou can now sort items in the bag\nusing the Start button!
+
+#org @gText_Pallet_AutoRunSign1 
+It's a posted notice[.]\pPress the L button to toggle auto-\nrun! 
+
+#org @gText_Pallet_Mom
+[GREEN]Mom: [RED]Hi sweetie!\pCongratulations on becoming champ-\nion!\pFor the first time ever, I can final-\nly say I'm proud of you!\pGreat job! If you're looking for more\ntrainers to fight, I hear a seer\lon Route 16 gives tickets to the\lSevii Islands to those worthy[.]\pPerhaps you ought to give her a\nvisit?\pAlso[.]
+
+#org @gText_Pallet_Mom2
+[RED]There are a lot of new perks after\nbecoming Champion. You can always\lflee from Wild Pok\emon, for one.\pThe EV training gear also instantly max\nout the EVs for the respective stat.\pOh, and the prize money from trainers\nis doubled!\pThe rich just get richer, am I right?\pWell, good luck [GREEN][PLAYER]!
+
+#org @gText_mom_RestText
+[GREEN]Mom: [PLAYER]![RED]\nYou should take a quick rest.
+
+#org @gText_mom_LookGreat
+[GREEN]Mom[RED]: Oh, good! You and your\nPok\emon are looking great.\lTake care now!
+
+#org @gText_mom_AllBoysTxt
+[GREEN]Mom:[RED] [.]Right.\nAll boys leave home someday.\lIt said so on TV.\pOh, yes. [GREEN]Prof. Oak[RED], next door, was\nlooking for you.
+
+#org @gText_mom_AllGirlsTxt
+[GREEN]Mom:[RED] [.]Right.\nAll girls dream of traveling.\lIt said so on TV.\pOh, yes. [GREEN]Prof. Oak[RED], next door, was\nlooking for you.
+
+#org @gText_mom_RestText2
+[GREEN]Mom:[RED] My champion [GREEN][PLAYER]!\n[RED]Take a quick rest.
+
+#org @gText_mom_LetsCelebrate
+[GREEN]Mom:[RED] To commemorate your fine\naccomplishment, shall I teach a Pok\e-\lmon Celebrate?
+
+#org @gText_mom_WhyCelebrate
+[RED]Ah. It may seem like a useless move,\nbut it's a great stat booster when\lused in tandem with Normalium-Z.
+
+#org @gText_mom_GreatJob
+[RED]Yay! Great job sweetie.
