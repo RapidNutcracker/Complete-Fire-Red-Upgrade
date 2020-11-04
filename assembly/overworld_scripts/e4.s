@@ -15,6 +15,7 @@ EventScript_lorelei_Start:
 	special 0x174
 	checkflag 0x4B8
 	if 0x1 _goto EventScript_lorelei_Defeat
+	special 0x0
 	setvar 0x8004 0x9
 	setvar 0x8005 0x0
 	special 0x173

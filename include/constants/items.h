@@ -627,12 +627,12 @@ enum
 {
 	ITEM_NORMALIUM_Z = 0x244, //added mt ember		//All items after this will be 0x244 + 1, 0x244 + 2...
 	ITEM_FIGHTINIUM_Z, 		//0x245 //Put the Z-Crystals in order jotard
-	ITEM_FLYINIUM_Z,		//0x246
+	ITEM_FLYINIUM_Z,		//0x246 added falkner
 	ITEM_POISONIUM_Z,		//0x247
 	ITEM_GROUNDIUM_Z,		//0x248
 	ITEM_ROCKIUM_Z,			//0x249
-	ITEM_BUGINIUM_Z,		//0x24A
-	ITEM_GHOSTIUM_Z,		//0x24B
+	ITEM_BUGINIUM_Z,		//0x24A bugsy
+	ITEM_GHOSTIUM_Z,		//0x24B morty 
 	ITEM_STEELIUM_Z,		//0x24C
 	ITEM_FIRIUM_Z,			//0x24D team magma 
 	ITEM_WATERIUM_Z,		//0x24E
@@ -642,7 +642,7 @@ enum
 	ITEM_ICIUM_Z,			//0x252
 	ITEM_DRAGONIUM_Z,		//0x253
 	ITEM_DARKINIUM_Z,		//0x254
-	ITEM_FAIRIUM_Z,			//0x255
+	ITEM_FAIRIUM_Z,			//0x255 mt ember
 	ITEM_ALORAICHIUM_Z,	//0x256
 	ITEM_DECIDIUM_Z,		//0x257
 	ITEM_EEVIUM_Z,			//0x258

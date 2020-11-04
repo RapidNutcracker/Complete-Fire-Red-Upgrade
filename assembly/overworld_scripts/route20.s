@@ -20,6 +20,7 @@ EventScript_pryce_Battle:
 	msgbox gText_pryce_3 0x6
 	setflag 0x915
 	setflag 0x90E
+	special 0x0
 	random 0x3
 	compare 0x800D 0x0
 	if 0x1 _goto EventScript_pryce_Option1

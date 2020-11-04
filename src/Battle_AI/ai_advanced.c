@@ -474,13 +474,13 @@ u8 PredictFightingStyle(const u16* const moves, const u8 ability, const u8 itemE
 				else
 					class = FIGHT_CLASS_SWEEPER_KILL;
 			}
-			else if (attackMoveNum >= 2 && (boostingMove))
+			else if (attackMoveNum >= 2 && (boostingMove || statusMoveNum > 0))
 			{
 				//A class should always be assigned here because of the conditions to enter this scope
-				if (boostingMove)
+				if (boostingMove && statusMoveNum == 0)
 					class = FIGHT_CLASS_SWEEPER_SETUP_STATS;
-				// else if (statusMoveNum > 0)
-				// 	class = FIGHT_CLASS_SWEEPER_SETUP_STATUS;
+				else if (statusMoveNum > 0)
+					class = FIGHT_CLASS_SWEEPER_SETUP_STATUS;
 			}
 			else if (healingMove)
 				class = FIGHT_CLASS_STALL;
@@ -928,6 +928,9 @@ enum ProtectQueries ShouldProtect(u8 bankAtk, u8 bankDef, u16 move)
 	bool8 isAtkDynamaxed = IsDynamaxed(bankAtk);
 
 	if (WillFaintFromSecondaryDamage(bankAtk)
+	&&  defAbility != ABILITY_GRIMNEIGH
+	&&  defAbility != ABILITY_ASONEICE
+	&&  defAbility != ABILITY_ASONESHADOW
 	&&  defAbility != ABILITY_MOXIE
 	&&  defAbility != ABILITY_BEASTBOOST)
 		return FALSE; //Don't protect if you're going to faint after protecting and foe can't get boosts from your KO
@@ -1453,7 +1456,7 @@ void IncreaseStatusViability(s16* originalViability, u8 class, u8 boost, u8 bank
 
 		case FIGHT_CLASS_SWEEPER_SETUP_STATS:
 			if (!Can2HKO(bankDef, bankAtk))
-				INCREASE_VIABILITY(3);
+				INCREASE_VIABILITY(3 + boost);
 			break;
 
 		case FIGHT_CLASS_SWEEPER_SETUP_STATUS:
@@ -1764,15 +1767,15 @@ void IncreaseSleepViability(s16* originalViability, u8 class, u8 bankAtk, u8 ban
 			break;
 
 		case FIGHT_CLASS_SWEEPER_SETUP_STATS:
-			if (AccuracyCalc(move, bankAtk, bankDef) >= 80) //Decent chance of hitting
+			if (AccuracyCalc(move, bankAtk, bankDef) >= 75) //Decent chance of hitting
 				INCREASE_STATUS_VIABILITY(9);
 			else
 				INCREASE_STATUS_VIABILITY(3);
 			break;
 
 		case FIGHT_CLASS_SWEEPER_SETUP_STATUS:
-			if (AccuracyCalc(move, bankAtk, bankDef) >= 80) //Decent chance of hitting
-				INCREASE_STATUS_VIABILITY(8);
+			if (AccuracyCalc(move, bankAtk, bankDef) >= 75) //Decent chance of hitting
+				INCREASE_STATUS_VIABILITY(9);
 			else
 				INCREASE_STATUS_VIABILITY(3);
 			break;
@@ -1782,35 +1785,35 @@ void IncreaseSleepViability(s16* originalViability, u8 class, u8 bankAtk, u8 ban
 			break;
 
 		case FIGHT_CLASS_TEAM_SUPPORT_BATON_PASS:
-			if (AccuracyCalc(move, bankAtk, bankDef) >= 80) //Decent chance of hitting
+			if (AccuracyCalc(move, bankAtk, bankDef) >= 75) //Decent chance of hitting
 				INCREASE_STATUS_VIABILITY(9);
 			else
 				INCREASE_STATUS_VIABILITY(3);
 			break;
 
 		case FIGHT_CLASS_TEAM_SUPPORT_CLERIC:
-			if (AccuracyCalc(move, bankAtk, bankDef) >= 80) //Decent chance of hitting
+			if (AccuracyCalc(move, bankAtk, bankDef) >= 75) //Decent chance of hitting
 				INCREASE_STATUS_VIABILITY(7);
 			else
 				INCREASE_STATUS_VIABILITY(3);
 			break;
 
 		case FIGHT_CLASS_TEAM_SUPPORT_SCREENS:
-			if (AccuracyCalc(move, bankAtk, bankDef) >= 80) //Decent chance of hitting
+			if (AccuracyCalc(move, bankAtk, bankDef) >= 75) //Decent chance of hitting
 				INCREASE_STATUS_VIABILITY(8);
 			else
 				INCREASE_STATUS_VIABILITY(3);
 			break;
 
 		case FIGHT_CLASS_TEAM_SUPPORT_PHAZING:
-			if (AccuracyCalc(move, bankAtk, bankDef) >= 80) //Decent chance of hitting
+			if (AccuracyCalc(move, bankAtk, bankDef) >= 75) //Decent chance of hitting
 				INCREASE_STATUS_VIABILITY(9);
 			else
 				INCREASE_STATUS_VIABILITY(3);
 			break;
 
 		case FIGHT_CLASS_ENTRY_HAZARDS:
-			if (AccuracyCalc(move, bankAtk, bankDef) >= 80) //Decent chance of hitting
+			if (AccuracyCalc(move, bankAtk, bankDef) >= 75) //Decent chance of hitting
 				INCREASE_STATUS_VIABILITY(8);
 			else
 				INCREASE_STATUS_VIABILITY(3);

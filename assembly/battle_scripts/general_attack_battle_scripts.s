@@ -2761,7 +2761,6 @@ BS_128_Pursuit:
 .global BattleScript_SideStatusWoreOffRet
 BS_129_RapidSpin:
 	jumpifmove MOVE_DEFOG DefogBS
-	
 RapidSpinBS:
 	setmoveeffect MOVE_EFFECT_RAPIDSPIN | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
 	goto BS_STANDARD_HIT
@@ -3096,7 +3095,6 @@ BS_150_Blank:
 .global BS_151_Solarbeam
 BS_151_Solarbeam:
 	jumpifabilitypresent ABILITY_CLOUDNINE, BSSolarbeamDecideTurn
-	jumpifabilitypresent ABILITY_AIRLOCK, BSSolarbeamDecideTurn
 	jumpifhelditemeffect BANK_ATTACKER, ITEM_EFFECT_UTILITY_UMBRELLA, BSSolarbeamDecideTurn
 	jumpifweather WEATHER_SUN_ANY BSSolarbeamOnFirstTurn
 

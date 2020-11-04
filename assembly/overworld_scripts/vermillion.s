@@ -129,6 +129,7 @@ EventScript_ltsurge_Start:
 	checkflag 0x822
 	if 0x1 _goto EventScript_ltsurge_Defeated
 	setflag 0x915
+	special 0x0
 	trainerbattle1 0x1 0x1A0 0x0 gText_ltsurge_EncounterText gText_ltsurge_DefeatText EventScript_ltsurge_WonPointer
 	release
 	end
@@ -169,6 +170,7 @@ EventScript_ltsurge_Rematch:
 	if 0x1 _goto EventScript_ltsurge_Cancel
 	setflag 0x915
 	setflag 0x90E
+	special 0x0
 	trainerbattle1 0x1 0x33 0x0 gText_ltsurge_Battle gText_ltsurge_Seconddefeat EventScript_ltsurge_Rematchwon
 	release
 	end

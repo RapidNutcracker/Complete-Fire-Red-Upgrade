@@ -6827,7 +6827,7 @@ const struct BattleTowerSpread gSpecialTowerSpread_Skeli[] =
 		.atkEv = 252,
 		.defEv = 252,
 		.spdEv = 4,
-		.ability = FRONTIER_ABILITY_HIDDEN, //ABILITY_PORTALPOWER
+		.ability = FRONTIER_ABILITY_HIDDEN, 
 		.item = ITEM_DARKINIUM_Z,
 		.moves =
 		{

@@ -25,5 +25,16 @@ EventScript_aideverstone_Done:
 	release
 	end
 
+.global EventScript_Route10MapScripts
+EventScript_Route10MapScripts:
+    mapscript MAP_SCRIPT_ON_LOAD SetmaptileScript_Route10
+    .byte MAP_SCRIPT_TERMIN
 
+SetmaptileScript_Route10:
+	checkflag 0x82C
+	if SET _call SetTiles 
+	end 
 
+SetTiles:
+	setmaptile 0x1 0x23 0xA9 0x0
+	return 

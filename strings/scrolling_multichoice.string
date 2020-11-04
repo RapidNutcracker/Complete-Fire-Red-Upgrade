@@ -119,4 +119,53 @@ Tyrunt    [SHRINK][RED]2 Red Shards
 #org @sExampleText_Aurorus
 Amaura    [SHRINK][ORANGE]2 Yellow Shard
 
+#org @gText_TypeFighting
+Fighting
+
+#org @gText_TypeFlying
+Flying
+
+#org @gText_TypePoison
+Poison
+
+#org @gText_TypeGround
+Ground
+
+#org @gText_TypeRock
+Rock
+
+#org @gText_TypeBug
+Bug
+
+#org @gText_TypeGhost
+Ghost
+
+#org @gText_TypeSteel
+Steel
+
+#org @gText_TypeFire
+Fire
+
+#org @gText_TypeWater
+Water
+
+#org @gText_TypeGrass
+Grass
+
+#org @gText_TypeElectric
+Electric
+
+#org @gText_TypePsychic
+Psychic
+
+#org @gText_TypeIce
+Ice
+
+#org @gText_TypeDragon
+Dragon
+
+#org @gText_TypeDark
+Dark
+
+
 #endif

@@ -9,6 +9,7 @@
 #include "../include/new/ai_util.h"
 #include "../include/new/battle_indicators.h"
 #include "../include/new/battle_util.h"
+#include "../include/new/build_pokemon.h"
 #include "../include/new/damage_calc.h"
 #include "../include/new/dynamax.h"
 #include "../include/new/general_bs_commands.h"
@@ -71,21 +72,21 @@ static const struct Coords16 sTypeIconPositions[][/*IS_SINGLE_BATTLE*/2] =
 #ifndef UNBOUND //MODIFY THIS
 	[B_POSITION_PLAYER_LEFT] =
 	{
-		[TRUE] = {221, 86}, 	//Single Battle
-		[FALSE] = {144, 70},	//Double Battle
+		[TRUE] = {221, 86}, 	//Single Battle //used to be 221, 86
+		[FALSE] = {133, 70},	//Double Battle //used to be 144, 70
 	},
 	[B_POSITION_OPPONENT_LEFT] =
 	{
 		[TRUE] = {20, 26}, 		//Single Battle
-		[FALSE] = {97, 14},		//Double Battle
+		[FALSE] = {109, 14},		//Double Battle 97
 	},
 	[B_POSITION_PLAYER_RIGHT] =
 	{
-		[FALSE] = {156, 96},	//Double Battle
+		[FALSE] = {145, 96},	//Double Battle used to be 156
 	},
 	[B_POSITION_OPPONENT_RIGHT] =
 	{
-		[FALSE] = {85, 39},		//Double Battle
+		[FALSE] = {97, 39},		//Double Battle 85
 	},
 #else //For Pokemon Unbound
 	[B_POSITION_PLAYER_LEFT] =
@@ -2061,12 +2062,21 @@ void HandleInputChooseAction(void)
 			EmitTwoReturnValues(1, ACTION_CANCEL_PARTNER, 0);
 			PlayerBufferExecCompleted();
 		}
-		else{
-			PlaySE(SE_SELECT);
-			ActionSelectionDestroyCursorAt(gActionSelectionCursor[gActiveBattler]);
-			gActionSelectionCursor[gActiveBattler] = 3;
-			ActionSelectionCreateCursorAt(gActionSelectionCursor[gActiveBattler], 0);
-		}
+		// else{
+		// 	PlaySE(SE_SELECT);
+		// 	ActionSelectionDestroyCursorAt(gActionSelectionCursor[gActiveBattler]);
+		// 	gActionSelectionCursor[gActiveBattler] = 3;
+		// 	ActionSelectionCreateCursorAt(gActionSelectionCursor[gActiveBattler], 0);
+		// }
+	}
+	else if (gMain.newKeys & R_BUTTON)
+	{
+		PlaySE(SE_SELECT);
+		// ActionSelectionDestroyCursorAt(gActionSelectionCursor[gActiveBattler]);
+		// gActionSelectionCursor[gActiveBattler] = 3;
+		// ActionSelectionCreateCursorAt(gActionSelectionCursor[gActiveBattler], 0);
+		EmitTwoReturnValues(1, ACTION_RUN, 0);
+		PlayerBufferExecCompleted();
 	}
 	else if (gMain.newKeys & START_BUTTON)
 	{
@@ -2086,22 +2096,26 @@ bool8 CheckCantMoveThisTurn(void)
 
 bool8 IsBagDisabled(void)
 {
-	#ifdef VAR_GAME_DIFFICULTY
-	u8 difficulty = VarGet(VAR_GAME_DIFFICULTY);
+	// #ifdef VAR_GAME_DIFFICULTY
+	// u8 difficulty = VarGet(VAR_GAME_DIFFICULTY);
 	
-	if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
-	{
-		if (difficulty == OPTIONS_HARD_DIFFICULTY)
-		{
-			if (gNewBS->playerItemUsedCount >= 4) //Max four items can be used
-				return FALSE;
-		}
-		if (difficulty >= OPTIONS_EXPERT_DIFFICULTY) //No items in battles for Experts
-			return FALSE;
-	}
-	#endif
-
-	return FlagGet(FLAG_DISABLE_BAG) || (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_TRAINER));
+	// if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+	// {
+	// 	if (difficulty == OPTIONS_HARD_DIFFICULTY)
+	// 	{
+	// 		if (gNewBS->playerItemUsedCount >= 4) //Max four items can be used
+	// 			return FALSE;
+	// 	}
+	// 	if (difficulty >= OPTIONS_EXPERT_DIFFICULTY) //No items in battles for Experts
+	// 		return FALSE;
+	// }
+	// #endif
+	if (FlagGet(FLAG_DISABLE_BAG) )
+		return TRUE;
+	if (ShouldTrainerRandomize())
+		return FALSE;
+	return TRUE;
+	// return (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_TRAINER));
 }
 
 static void TryLoadTypeIcons(void)

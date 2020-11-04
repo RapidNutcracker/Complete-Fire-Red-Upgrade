@@ -253,13 +253,7 @@ void TrainerSlideOut(void)
 
 void SetAuroraVeil(void)
 {
-	if (gBattleWeather & WEATHER_HAIL_ANY
-	&& WEATHER_HAS_EFFECT
-	&& ABILITY(gBankAttacker) == ABILITY_ICYPROTECTOR )
-	{
-		gNewBS->AuroraVeilTimers[SIDE(gBankAttacker)] = 3;
-	}
-	else if (!gNewBS->AuroraVeilTimers[SIDE(gBankAttacker)]
+	if (!gNewBS->AuroraVeilTimers[SIDE(gBankAttacker)]
 	&& gBattleWeather & WEATHER_HAIL_ANY
 	&& WEATHER_HAS_EFFECT)
 	{

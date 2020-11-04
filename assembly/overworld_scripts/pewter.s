@@ -179,6 +179,7 @@ EventScript_brock_Start:
 	checkflag 0x820
 	if 0x1 _goto EventScript_brock_Defeated
 	setflag 0x915
+	special 0x0
 	trainerbattle1 0x1 0x19E 0x0 gText_brock_EncounterText gText_brock_DefeatText EventScript_brock_WonPointer
 	release
 	end
@@ -211,6 +212,7 @@ EventScript_brock_Rematch:
 	msgbox gText_brock_Helloagain 0x5
 	compare LASTRESULT 0x0
 	if 0x1 _goto EventScript_brock_Cancel
+	special 0x0
 	setflag 0x915
 	setflag 0x90E @scale levels
 	trainerbattle1 0x1 0x38 0x0 gText_brock_Battle gText_brock_Seconddefeat EventScript_brock_Rematchwon

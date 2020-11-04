@@ -897,6 +897,7 @@ EventScript_erika_Start:
 	checkflag 0x823
 	if 0x1 _goto EventScript_erika_Defeated
 	setflag 0x915
+	special 0x0
 	trainerbattle1 0x1 0x1A1 0x0 gText_erika_EncounterText gText_erika_DefeatText EventScript_erika_WonPointer
 	release
 	end
@@ -972,6 +973,7 @@ EventScript_erika_BattleTwo:
 	if equal _goto EventScript_erika_Cancel
 	msgbox gText_erika_StartBattle MSG_NORMAL 
 	setflag 0x90E
+	special 0x0
 	trainerbattle3 0x3 0x41 0x0 gText_Erika_DefeatText2
 	msgbox gText_PostRematch MSG_NORMAL 
 	setflag 0x90F

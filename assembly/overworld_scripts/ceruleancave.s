@@ -52,10 +52,6 @@ LevelScript_CeruleanCave:
 	setvar 0x5049 0x1
 	end
 
-EventScript_ceruleancavelevelscript_Done:
-	release
-	end
-
 EventScript_ceruleancavelevelscript_Look:
 .byte 0x62
 .byte 0xFE
@@ -225,6 +221,7 @@ EventScript_ceruleanarcherariana_Start:
 	setflag 0x200
 	setflag 0x980
 	setflag 0x915
+	special 0x0 
 	trainerbattle3 0x3 0x43 0x0 gText_ceruleanarcherariana_Archerloss
 	setflag 0x915
 	applymovement 0x10 EventScript_ceruleanarcherariana_Movealil @this one as well

@@ -709,7 +709,6 @@ u8 GetAbilityEncounterRateModType(void)
         u8 ability = GetMonAbility(&gPlayerParty[0]);
 
 		switch (ability) {
-			case ABILITY_WHITESMOKE:
 			case ABILITY_STENCH:
 			case ABILITY_QUICKFEET:
 			case ABILITY_INFILTRATOR:

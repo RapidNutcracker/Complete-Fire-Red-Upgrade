@@ -1486,7 +1486,6 @@ void SwitchMonNatureSassy(void){
 void SwitchMonNatureCareful(void){
 	SwitchMonNature(NATURE_CAREFUL); }
 
-	
 static bool8 GetProperDirection(u16 currentX, u16 currentY, u16 toX, u16 toY)
 {
 	u8 ret = FALSE;
@@ -1789,6 +1788,8 @@ const u8* LoadProperWhiteoutString(const u8* string)
 bool8 IsAutoRunEnabled(void)
 {
 	#ifdef FLAG_AUTO_RUN
+		// if (gMain.newKeys & B_BUTTON)
+		// 	return FALSE;
 		return FlagGet(FLAG_AUTO_RUN);
 	#else
 		return FALSE;
@@ -1875,7 +1876,7 @@ s16 GetPlayerSpeed(void)
 	#endif
 	if (gPlayerAvatar->flags & PLAYER_AVATAR_FLAG_MACH_BIKE)
 		return exp[gPlayerAvatar->bikeFrameCounter];
-	else if (gPlayerAvatar->flags & PLAYER_AVATAR_FLAG_ACRO_BIKE)
+	else if (gPlayerAvatar->flags & (PLAYER_AVATAR_FLAG_ACRO_BIKE))
 		return 3;
 	else if (gPlayerAvatar->flags & (PLAYER_AVATAR_FLAG_SURFING | PLAYER_AVATAR_FLAG_DASH))
 		return 2;

@@ -229,7 +229,10 @@ void atk03_ppreduce(void) {
 
 static bool8 TryActivateWeakenessBerry(u8 bank, u8 resultFlags)
 {
-	if (ITEM_EFFECT(bank) == ITEM_EFFECT_WEAKNESS_BERRY && !AbilityBattleEffects(ABILITYEFFECT_CHECK_OTHER_SIDE, bank, ABILITY_UNNERVE, 0, 0))
+	if (ITEM_EFFECT(bank) == ITEM_EFFECT_WEAKNESS_BERRY 
+	&& !AbilityBattleEffects(ABILITYEFFECT_CHECK_OTHER_SIDE, bank, ABILITY_UNNERVE, 0, 0)
+	&& !AbilityBattleEffects(ABILITYEFFECT_CHECK_OTHER_SIDE, bank, ABILITY_ASONEICE, 0, 0)
+	&& !AbilityBattleEffects(ABILITYEFFECT_CHECK_OTHER_SIDE, bank, ABILITY_ASONESHADOW, 0, 0))
 	{
 		if ((resultFlags & MOVE_RESULT_SUPER_EFFECTIVE && ITEM_QUALITY(bank) == gBattleStruct->dynamicMoveType && !DoesBankNegateDamage(bank, gCurrentMove))
 		||  (ITEM_QUALITY(bank) == TYPE_NORMAL && gBattleStruct->dynamicMoveType == TYPE_NORMAL)) //Chilan Berry
@@ -1300,7 +1303,7 @@ void atk1B_cleareffectsonfaint(void) {
 				for (; *gSeedHelper < gBattlersCount; ++*gSeedHelper)
 				{
 					u8 bank = *gSeedHelper;
-					if (ABILITY(bank) == ABILITY_SOULHEART
+					if ((ABILITY(bank) == ABILITY_SOULHEART )
 					&&  bank != gActiveBattler
 					&&  gBattleMons[bank].hp != 0
 					&&  STAT_CAN_RISE(bank, STAT_SPATK)
@@ -4114,7 +4117,64 @@ void atkBE_rapidspinfree(void)
 				gBattlescriptCurrInstr++;
 		}
 	}
-	else //Defog + G-Max Windrage
+	// else if (gCurrentMove == MOVE_COURTCHANGE) 
+	// {
+	// 	// u8 spikesAmountAtk = gSideTimers[sideAtk].spikesAmount;
+	// 	// u8 tspikesAmountAtk = gSideTimers[sideAtk].tspikesAmount;
+	// 	// u8 srAmountAtk = gSideTimers[sideAtk].srAmount;
+	// 	// u8 stickyWebAtk = gSideTimers[sideAtk].stickyWeb;
+	// 	// u8 tailWindAtk = gNewBS->TailwindTimers[SIDE(bankAtk);
+	// 	// u8 sideStatusAtk = gSideStatuses[sideAtk];
+	// 	u8 spikesAmountDef = gSideTimers[sideDef].spikesAmount;
+	// 	u8 tspikesAmountDef = gSideTimers[sideDef].tspikesAmount;
+	// 	u8 srAmountDef = gSideTimers[sideDef].srAmount;
+	// 	u8 stickyWebDef = gSideTimers[sideDef].stickyWeb;
+	// 	u8 sideStatusDef = gSideStatuses[sideDef];
+	// 	u8 tailWindDef = gNewBS->TailwindTimers[sideDef];
+	// 	u8 mistDef = gSideTimers[sideDef].mistTimer;
+	// 	u8 safeguardDef = gSideTimers[sideDef].safeguardTimer;
+	// 	u8 seaofFireDef = gNewBS->SeaOfFireTimers[sideDef];
+	// 	u8 rainbowDef = gNewBS->RainbowTimers[sideDef];
+	// 	u8 swampDef = gNewBS->SwampTimers[sideDef];
+	// 	u8 aVeilDef =  gNewBS->AuroraVeilTimers[sideDef];
+
+	// 	// set for target side 
+	// 	gSideStatuses[sideDef] = gSideStatuses[sideAtk];
+	// 	gSideTimers[sideDef].spikesAmount = gSideTimers[sideAtk].spikesAmount;
+	// 	gSideTimers[sideDef].tspikesAmount = gSideTimers[sideAtk].tspikesAmount;
+	// 	gSideTimers[sideDef].srAmount = gSideTimers[sideAtk].srAmount;
+	// 	gSideTimers[sideDef].stickyWeb = gSideTimers[sideAtk].stickyWeb;
+	// 	gSideStatuses[sideDef] = gSideStatuses[sideAtk];
+	// 	gSideTimers[sideDef].mistTimer = gSideTimers[sideAtk].mistTimer;
+	// 	gSideTimers[sideDef].safeguardTimer = gSideTimers[sideAtk].safeguardTimer;
+	// 	gNewBS->SeaOfFireTimers[sideDef] = gNewBS->SeaOfFireTimers[sideAtk];
+	// 	gNewBS->RainbowTimers[sideDef] = gNewBS->RainbowTimers[sideAtk];
+	// 	gNewBS->SwampTimers[sideDef] = gNewBS->SwampTimers[sideAtk];
+	// 	gNewBS->TailwindTimers[sideDef] = gNewBS->TailwindTimers[sideAtk];
+	// 	gNewBS->AuroraVeilTimers[sideDef] = gNewBS->AuroraVeilTimers[sideAtk];
+
+
+	// 	//set for attacking side 
+	// 	gSideStatuses[sideAtk] = sideStatusDef;
+	// 	gSideTimers[sideAtk].spikesAmount = spikesAmountDef;
+	// 	gSideTimers[sideAtk].tspikesAmount = tspikesAmountDef;
+	// 	gSideTimers[sideAtk].srAmount = srAmountDef;
+	// 	gSideTimers[sideAtk].stickyWeb = stickyWebDef;
+	// 	gSideStatuses[sideAtk] = sideStatusDef;
+	// 	gSideTimers[sideAtk].mistTimer = mistDef;
+	// 	gSideTimers[sideAtk].safeguardTimer = safeguardDef;
+	// 	gNewBS->SeaOfFireTimers[sideAtk] = seaofFireDef;
+	// 	gNewBS->RainbowTimers[sideAtk] = rainbowDef ;
+	// 	gNewBS->SwampTimers[sideAtk] = swampDef;
+	// 	gNewBS->TailwindTimers[sideAtk] = tailWindDef;
+	// 	gNewBS->AuroraVeilTimers[sideAtk] = aVeilDef;
+
+
+	// 	BattleScriptPushCursor();
+	// 	gBattlescriptCurrInstr = BattleScript_PrintCustomString;
+	// 	gBattleStringLoader = RemovedEntryHazardsString;
+	// }
+	else //defog or gmax thingy 
 	{
 		if (gSideStatuses[sideAtk] & SIDE_STATUS_SPIKES)
 		{

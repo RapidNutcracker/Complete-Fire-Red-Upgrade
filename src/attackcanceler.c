@@ -1020,27 +1020,27 @@ static u8 AtkCanceller_UnableToUseMove(void)
 				gMultiHitCounter = 3;
 				PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
 			}
-			else if (gBattleMoves[gCurrentMove].effect == EFFECT_BEAT_UP)
-			{
-				struct Pokemon* party;
+			// else if (gBattleMoves[gCurrentMove].effect == EFFECT_BEAT_UP)
+			// {
+			// 	struct Pokemon* party;
 
-				if (SIDE(gBankAttacker) == B_SIDE_PLAYER)
-					party = gPlayerParty;
-				else
-					party = gEnemyParty;
+			// 	if (SIDE(gBankAttacker) == B_SIDE_PLAYER)
+			// 		party = gPlayerParty;
+			// 	else
+			// 		party = gEnemyParty;
 
-				for (int i = 0; i < PARTY_SIZE; ++i)
-				{
-					if (GetMonData(&party[i], MON_DATA_HP, 0)
-					&& GetMonData(&party[i], MON_DATA_SPECIES, 0) != SPECIES_NONE
-					&& !GetMonData(&party[i], MON_DATA_IS_EGG, 0)
-					&& !GetMonData(&party[i], MON_DATA_STATUS, 0))
-						++gMultiHitCounter;
-				}
+			// 	for (int i = 0; i < PARTY_SIZE; ++i)
+			// 	{
+			// 		if (GetMonData(&party[i], MON_DATA_HP, 0)
+			// 		&& GetMonData(&party[i], MON_DATA_SPECIES, 0) != SPECIES_NONE
+			// 		&& !GetMonData(&party[i], MON_DATA_IS_EGG, 0)
+			// 		&& !GetMonData(&party[i], MON_DATA_STATUS, 0))
+			// 			++gMultiHitCounter;
+			// 	}
 
-				gBattleCommunication[0] = 0; //For later
-				PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
-			}
+			// 	gBattleCommunication[0] = 0; //For later
+			// 	PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
+			// }
 
 			gBattleStruct->atkCancellerTracker++;
 			break;

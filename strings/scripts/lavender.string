@@ -63,3 +63,36 @@ The ghost was the restless spirit\nof Cubone's mother!
 
 #org @gText_amarowak_Calmdown
 The mother's spirit was calmed.\pIt departed to the afterlife[.]
+
+#org @gText_AudinoSlayer_1
+Hi there! I offer a very special\nservice.\pFor a measly \$17500, you can slaughter\na family of Audinos!\pHow about it?
+
+#org @gText_AudinoSlayer_2
+Very well. Let's begin.
+
+#org @gText_AudinoSlayer_3
+Yeah, I feel you.\nIt do seem kinda unethical.
+
+#org @gText_AudinoSlayer_Defeat
+What a lovely massacre!
+
+#org @gText_AudinoSlayer_4
+Well, it appears these Audinos will\nlive to see another day!\pYou don't have enough money!
+
+#org @gText_AudinoSlayer_5
+Come back any time.
+
+#org @gText_AudniSlayer_Wait
+[.]
+
+#org @gText_morty_Rematch_1
+[BLUE]Oh, hello [GREEN][PLAYER]![BLUE]\nNice of you to visit me!\pI've actually travelled a bit\nand honed my skills since we've last\lbattled.\pHow about another go at it?
+
+#org @gText_morty_Rematch_2
+[BLUE]Brilliant.\nPush me to my limits, champion!
+
+#org @gText_morty_Rematch_3
+[BLUE]Ah, I really expected nothing less\nfrom you. How impressive!\pI'd like to thank you for taking\nyour time to visit me; you must be\lquite the busy bee now.\pFor a well-fought battle, have this.
+
+#org @gText_morty_Rematch_4
+[BLUE]Your discipline is admirable.\pKeep being you, [GREEN][PLAYER][BLUE].

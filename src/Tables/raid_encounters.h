@@ -121,8 +121,8 @@ static struct Raid sViridianForestRaids3Star[] =
 		},
 	},
 	{
-		.species = SPECIES_GOLURK,
-		.ability = RAID_ABILITY_HIDDEN,
+		.species = SPECIES_CALYREX,
+		.ability = RAID_ABILITY_1,
 		.drops =
 		{
 			/*100 %*/ ITEM_STAR_PIECE,
@@ -1472,8 +1472,8 @@ static struct Raid sRoute7Raids2Star[] =
 		},
 	},
 	{
-		.species = SPECIES_KRABBY,
-		.ability = RAID_ABILITY_HIDDEN,
+		.species = SPECIES_CRAMORANT,
+		.ability = RAID_ABILITY_1,
 		.drops =
 		{
 			/*100 %*/ ITEM_STARDUST,
@@ -1590,7 +1590,7 @@ static struct Raid sRoute8Raids2Star[] =
 		},
 	},
 	{
-		.species = SPECIES_TAUROS,
+		.species = SPECIES_STARYU,
 		.ability = RAID_ABILITY_HIDDEN,
 		.drops =
 		{
@@ -2109,7 +2109,7 @@ static struct Raid sPokemonMansionRaids6Star[] =
 		},
 	},
 	{
-		.species = SPECIES_DIANCIE,
+		.species = SPECIES_SPECTRIER,
 		.ability = RAID_ABILITY_HIDDEN,
 		.drops =
 		{
@@ -2233,7 +2233,7 @@ static struct Raid sPowerPlantRaids6Star[] =
 		},
 	},
 	{
-		.species = SPECIES_GENESECT,
+		.species = SPECIES_REGIELEKI,
 		.ability = RAID_ABILITY_1,
 		.drops =
 		{
@@ -2357,7 +2357,7 @@ static struct Raid sSeafoamRaids6Star[] =
 		},
 	},
 	{
-		.species = SPECIES_MANAPHY,
+		.species = SPECIES_GLASTRIER,
 		.ability = RAID_ABILITY_1,
 		.drops =
 		{
@@ -2656,7 +2656,7 @@ static struct Raid sVictoryRoadRaids6Star[] =
 		},
 	},
 	{
-		.species = SPECIES_VOLCANION,
+		.species = SPECIES_REGIDRAGO,
 		.ability = RAID_ABILITY_1,
 		.drops =
 		{

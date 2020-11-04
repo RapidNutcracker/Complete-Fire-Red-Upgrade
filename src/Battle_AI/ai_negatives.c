@@ -360,8 +360,6 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				break;
 
 			case ABILITY_CLEARBODY:
-			//case ABILITY_FULLMETALBODY:
-			case ABILITY_WHITESMOKE:
 				if (CheckTableForMoveEffect(move, gStatLoweringMoveEffects))
 				{
 					DECREASE_VIABILITY(10);
@@ -377,15 +375,6 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 					return viability;
 				}
 				break;
-
-			// case ABILITY_KEENEYE:
-			// 	if (moveEffect == EFFECT_ACCURACY_DOWN
-			// 	||  moveEffect == EFFECT_ACCURACY_DOWN_2)
-			// 	{
-			// 		DECREASE_VIABILITY(10);
-			// 		return viability;
-			// 	}
-			// 	break;
 
 			case ABILITY_BIGPECKS:
 				if (moveEffect == EFFECT_DEFENSE_DOWN
@@ -1110,7 +1099,7 @@ MOVESCR_CHECK_0:
 			break;
 
 		case EFFECT_LIGHT_SCREEN:
-			if (gSideStatuses[SIDE(bankAtk)] & SIDE_STATUS_LIGHTSCREEN)
+			if (gSideStatuses[SIDE(bankAtk)] & SIDE_STATUS_LIGHTSCREEN || (MoveInMoveset(MOVE_BRICKBREAK, bankDef) || (MoveInMoveset(MOVE_DEFOG, bankDef) )))
 				DECREASE_VIABILITY(10);
 			break;
 
@@ -1127,6 +1116,28 @@ MOVESCR_CHECK_0:
 				DECREASE_VIABILITY(6);
 			else if (IsOfType(bankDef, TYPE_GHOST))
 				DECREASE_VIABILITY(10);
+			else if(HasProtectionMoveInMoveset(bankDef, 0) && gDisableStructs[bankDef].protectUses < 1) //check for protect, and that their protect timer is at 0
+				DECREASE_VIABILITY(6);
+			// else
+			// {
+			// 	u8 firstId, lastId;
+			// 	struct Pokemon* defParty = LoadPartyRange(bankDef, &firstId, &lastId);					
+			// 	for (i = 0; i < PARTY_SIZE; ++i)
+			// 	{
+			// 		if (GetMonData(&defParty[i], MON_DATA_SPECIES, NULL) != SPECIES_NONE
+			// 		&& !GetMonData(&defParty[i], MON_DATA_IS_EGG, NULL)
+			// 		&&  GetMonData(&defParty[i], MON_DATA_HP, NULL) > 0
+			// 		&&  IsOfType(&defParty[i], TYPE_GHOST)
+			// 		&&  i != gBattlerPartyIndexes[data->foe1]
+			// 		&&  i != gBattlerPartyIndexes[data->foe2])
+			// 		{
+			// 			DECREASE_VIABILITY(6);
+			// 			break; //deprioritize if ghost type on team
+			// 		}
+			// 	}
+			// break;
+			// }
+
 			break;
 
 		case EFFECT_MIST:
@@ -1226,13 +1237,15 @@ MOVESCR_CHECK_0:
 					if (gNewBS->AuroraVeilTimers[SIDE(bankAtk)]
 					|| !(gBattleWeather & WEATHER_HAIL_ANY)
 					|| PARTNER_MOVE_EFFECT_IS_SAME_NO_TARGET
-					|| PARTNER_MOVE_IS_MAX_MOVE_WITH_EFFECT(MAX_EFFECT_AURORA_VEIL))
+					|| PARTNER_MOVE_IS_MAX_MOVE_WITH_EFFECT(MAX_EFFECT_AURORA_VEIL)
+					|| (MoveInMoveset(MOVE_BRICKBREAK, bankDef) || (MoveInMoveset(MOVE_DEFOG, bankDef))))
 						DECREASE_VIABILITY(10);
 					break;
 
 				default:
 					if (gSideStatuses[SIDE(bankAtk)] & SIDE_STATUS_REFLECT
-					|| PARTNER_MOVE_EFFECT_IS_SAME_NO_TARGET)
+					|| PARTNER_MOVE_EFFECT_IS_SAME_NO_TARGET
+					|| (MoveInMoveset(MOVE_BRICKBREAK, bankDef) || (MoveInMoveset(MOVE_DEFOG, bankDef)))) 
 						DECREASE_VIABILITY(10);
 			}
 			break;
@@ -1507,6 +1520,9 @@ MOVESCR_CHECK_0:
 			&&  move != MOVE_CRAFTYSHIELD) //These moves have infinite usage
 			{
 				if (WillFaintFromSecondaryDamage(bankAtk)
+				&&  data->defAbility != ABILITY_ASONEICE
+				&&  data->defAbility != ABILITY_ASONESHADOW
+				&&  data->defAbility != ABILITY_GRIMNEIGH
 				&&  data->defAbility != ABILITY_MOXIE
 				&&  data->defAbility != ABILITY_BEASTBOOST)
 				{

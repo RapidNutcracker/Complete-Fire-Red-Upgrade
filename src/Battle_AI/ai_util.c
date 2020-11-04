@@ -1009,7 +1009,6 @@ move_t CalcStrongestMove(const u8 bankAtk, const u8 bankDef, const bool8 onlySpr
 			else
 			{
 				predictedDamage = CalcFinalAIMoveDamage(move, bankAtk, bankDef, 1, &damageData);
-
 				if (predictedDamage > (u32) highestDamage)
 				{
 					strongestMove = move;
@@ -1025,7 +1024,7 @@ move_t CalcStrongestMove(const u8 bankAtk, const u8 bankDef, const bool8 onlySpr
 					u16 currAcc = CalcAIAccuracy(move, bankAtk, bankDef);
 					u16 bestMoveAcc = CalcAIAccuracy(strongestMove, bankAtk, bankDef);
 
-					if (currAcc > bestMoveAcc)
+					if (currAcc > bestMoveAcc && bestMoveAcc < 100)
 					{
 						strongestMove = move;
 						highestDamage = predictedDamage;
@@ -1687,9 +1686,7 @@ bool8 GoodIdeaToLowerAttack(u8 bankDef, u8 bankAtk, u16 move)
 	return STAT_STAGE(bankDef, STAT_STAGE_ATK) > 4 && PhysicalMoveInMoveset(bankDef)
 		&& defAbility != ABILITY_CONTRARY
 		&& defAbility != ABILITY_CLEARBODY
-		&& defAbility != ABILITY_WHITESMOKE
 		&& defAbility != ABILITY_DEFIANT
-		//&& defAbility != ABILITY_FULLMETALBODY
 		&& defAbility != ABILITY_HYPERCUTTER;
 }
 
@@ -1704,7 +1701,7 @@ bool8 GoodIdeaToLowerDefense(u8 bankDef, u8 bankAtk, u16 move)
 		&& PhysicalMoveInMoveset(bankAtk)
 		&& defAbility != ABILITY_CONTRARY
 		&& defAbility != ABILITY_CLEARBODY
-		&& defAbility != ABILITY_WHITESMOKE
+		&& defAbility != ABILITY_DEFIANT
 		//&& defAbility != ABILITY_FULLMETALBODY
 		&& defAbility != ABILITY_BIGPECKS;
 }
@@ -1718,9 +1715,8 @@ bool8 GoodIdeaToLowerSpAtk(u8 bankDef, u8 bankAtk, u16 move)
 
 	return STAT_STAGE(bankDef, STAT_STAGE_SPATK) > 4 && SpecialMoveInMoveset(bankDef)
 		&& defAbility != ABILITY_CONTRARY
-		&& defAbility != ABILITY_CLEARBODY
-		//&& defAbility != ABILITY_FULLMETALBODY
-		&& defAbility != ABILITY_WHITESMOKE;
+		&& defAbility != ABILITY_DEFIANT
+		&& defAbility != ABILITY_CLEARBODY;
 }
 
 bool8 GoodIdeaToLowerSpDef(u8 bankDef, u8 bankAtk, u16 move)
@@ -1731,10 +1727,9 @@ bool8 GoodIdeaToLowerSpDef(u8 bankDef, u8 bankAtk, u16 move)
 	u8 defAbility = ABILITY(bankDef);
 
 	return STAT_STAGE(bankDef, STAT_STAGE_SPDEF) > 4 && SpecialMoveInMoveset(bankAtk)
+	    && defAbility != ABILITY_DEFIANT
 		&& defAbility != ABILITY_CONTRARY
-		&& defAbility != ABILITY_CLEARBODY
-		//&& defAbility != ABILITY_FULLMETALBODY
-		&& defAbility != ABILITY_WHITESMOKE;
+		&& defAbility != ABILITY_CLEARBODY;
 }
 
 bool8 GoodIdeaToLowerSpeed(u8 bankDef, u8 bankAtk, u16 move)
@@ -1746,9 +1741,7 @@ bool8 GoodIdeaToLowerSpeed(u8 bankDef, u8 bankAtk, u16 move)
 
 	return SpeedCalc(bankAtk) <= SpeedCalc(bankDef)
 		&& defAbility != ABILITY_CONTRARY
-		&& defAbility != ABILITY_CLEARBODY
-		//&& defAbility != ABILITY_FULLMETALBODY
-		&& defAbility != ABILITY_WHITESMOKE;
+		&& defAbility != ABILITY_CLEARBODY;
 }
 
 bool8 GoodIdeaToLowerAccuracy(u8 bankDef, u8 bankAtk, u16 move)
@@ -1759,10 +1752,7 @@ bool8 GoodIdeaToLowerAccuracy(u8 bankDef, u8 bankAtk, u16 move)
 	u8 defAbility = ABILITY(bankDef);
 
 	return defAbility != ABILITY_CONTRARY
-		&& defAbility != ABILITY_CLEARBODY
-		&& defAbility != ABILITY_WHITESMOKE;
-		//&& defAbility != ABILITY_FULLMETALBODY
-		// && defAbility != ABILITY_KEENEYE;
+		&& defAbility != ABILITY_CLEARBODY;
 }
 
 bool8 GoodIdeaToLowerEvasion(u8 bankDef, u8 bankAtk, unusedArg u16 move)
@@ -1771,9 +1761,7 @@ bool8 GoodIdeaToLowerEvasion(u8 bankDef, u8 bankAtk, unusedArg u16 move)
 
 	return (STAT_STAGE(bankDef, STAT_STAGE_EVASION) > 6 || MoveInMovesetWithAccuracyLessThan(bankAtk, bankDef, 90, TRUE))
 		&& defAbility != ABILITY_CONTRARY
-		&& defAbility != ABILITY_CLEARBODY
-		//&& defAbility != ABILITY_FULLMETALBODY
-		&& defAbility != ABILITY_WHITESMOKE;
+		&& defAbility != ABILITY_CLEARBODY;
 }
 
 //Move Prediction Code
@@ -3064,8 +3052,8 @@ bool8 ShouldAIUseZMove(u8 bankAtk, u8 bankDef, u16 move)
 					return TRUE;
 			}
 
-			if (MoveKnocksOutXHits(move, bankAtk, bankDef, 1))
-				return FALSE; //If the base move can KO, don't turn it into a Z-Move
+			if (MoveKnocksOutXHits(move, bankAtk, bankDef, 1) && AccuracyCalc(move, bankAtk, bankDef) >= 90 )
+				return FALSE; //If the base move can KO and is above 90 accuracy, don't turn it into a Z-Move
 
 			return TRUE;
 		}

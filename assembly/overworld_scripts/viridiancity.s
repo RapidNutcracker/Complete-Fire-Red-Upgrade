@@ -399,6 +399,7 @@ EventScript_claire_Start:
 	checkflag 0x827
 	if 0x1 _goto EventScript_claire_Defeated
 	setflag 0x915
+	special 0x0
     goto EventScript_claire_Option1
 	release
 	end
@@ -442,7 +443,7 @@ EventScript_claire_Cancel:
 .global EventScript_roamerbottom_Start
 EventScript_roamerbottom_Start:
 	checkflag 0x827
-	if 0x0 _goto EventScript_roamer_Done @ only trigger this script if we have clair@s badge
+	if 0x0 _goto EventScript_roamer_Done @ only trigger this script if we have clairs badge
 	applymovement 0xFF EventScript_roamerbottom_Goup
 	waitmovement 0x0
 	goto EventScript_roamer_Start
@@ -451,7 +452,7 @@ EventScript_roamerbottom_Start:
 .global EventScript_roamertop_Start
 EventScript_roamertop_Start:
 	checkflag 0x827
-	if 0x0 _goto EventScript_roamer_Done  @ only trigger this script if we have clair@s badge
+	if 0x0 _goto EventScript_roamer_Done  @ only trigger this script if we have clairs badge
 	applymovement 0xFF EventScript_roamertop_Godown
 	waitmovement 0x0
 	goto EventScript_roamer_Start
@@ -470,7 +471,7 @@ EventScript_roamerbottom_Goup:
 .global EventScript_roamer_Start
 EventScript_roamer_Start:
 	checkflag 0x827
-	if 0x0 _goto EventScript_roamer_Done @ only trigger this script if we have clair@s badge
+	if 0x0 _goto EventScript_roamer_Done @ only trigger this script if we have clairs badge
 	goto EventScript_roamer_Beginning
 	end
 

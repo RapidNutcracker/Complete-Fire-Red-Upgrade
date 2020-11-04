@@ -328,10 +328,19 @@ bool8 StartCB_HandleInput(void)
 	}
 	else if (JOY_NEW(B_BUTTON | START_BUTTON))
 	{
-		DestroySafariZoneStatsWindow();
-		DestroyHelpMessageWindow_();
-		CloseStartMenu();
-		return TRUE;
+		if (sStartMenuOpen == START_MENU_TOOLS && JOY_NEW(B_BUTTON))
+		{
+			PlaySE(SE_SELECT);
+			sStartMenuCursorPos = 0; //Reset cursor position
+			sStartMenuOpen = START_MENU_NORMAL;
+			sStartMenuCallback = CloseAndReloadStartMenu;
+		}
+		else{
+			DestroySafariZoneStatsWindow();
+			DestroyHelpMessageWindow_();
+			CloseStartMenu();
+			return TRUE;
+		}
 	}
 
 	return FALSE;

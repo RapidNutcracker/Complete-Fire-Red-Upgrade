@@ -3186,6 +3186,22 @@ extern const u8	gText_SetBallsMoon[];
 extern const u8	gText_SetBallsSport[];
 extern const u8	gText_SetBallsBeast[];
 extern const u8	gText_SetBallsDream[];
+extern const u8 gText_TypeFighting[];
+extern const u8	gText_TypeFlying[];
+extern const u8	gText_TypePoison[];
+extern const u8	gText_TypeGround[];
+extern const u8	gText_TypeRock[];
+extern const u8	gText_TypeBug[];
+extern const u8	gText_TypeGhost[];
+extern const u8	gText_TypeSteel[];
+extern const u8	gText_TypeFire[];
+extern const u8	gText_TypeWater[];
+extern const u8	gText_TypeGrass[];
+extern const u8	gText_TypeElectric[];
+extern const u8	gText_TypePsychic[];
+extern const u8	gText_TypeIce[];
+extern const u8	gText_TypeDragon[];
+extern const u8	gText_TypeDark[];
 
 //Scrolling Lists
 static const u8* sMultichoiceSet1[] =
@@ -3368,6 +3384,26 @@ static const u8* sMultichoiceSet10[] =
 	gText_SetBallsDream,
 };
 
+static const u8* sMultichoiceSet11[] =
+{
+	gText_TypeFighting,
+	gText_TypeFlying,
+	gText_TypePoison,
+	gText_TypeGround,
+	gText_TypeRock,
+	gText_TypeBug,
+	gText_TypeGhost,
+	gText_TypeSteel,
+	gText_TypeFire,
+	gText_TypeWater,
+	gText_TypeGrass,
+	gText_TypeElectric,
+	gText_TypePsychic,
+	gText_TypeIce,
+	gText_TypeDragon,
+	gText_TypeDark,
+};
+
 // Multichoice Lists
 const struct ScrollingMulti gScrollingSets[] =
 {
@@ -3381,6 +3417,7 @@ const struct ScrollingMulti gScrollingSets[] =
 	{sMultichoiceSet8, ARRAY_COUNT(sMultichoiceSet8)},
 	{sMultichoiceSet9, ARRAY_COUNT(sMultichoiceSet9)},
 	{sMultichoiceSet10, ARRAY_COUNT(sMultichoiceSet10)},
+	{sMultichoiceSet11, ARRAY_COUNT(sMultichoiceSet11)},
 };
 
 //Link number of opts shown at once to the box height

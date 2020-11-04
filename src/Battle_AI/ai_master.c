@@ -861,7 +861,7 @@ static bool8 ShouldSwitch(void)
 		return TRUE;
 	if (CanStopLockedMove())
 		return TRUE;
-	if (IsYawned())
+	if (IsYawned()) //add sleep check to isyawned
 		return TRUE;
 	if (IsTakingAnnoyingSecondaryDamage())
 		return TRUE;
@@ -1015,8 +1015,8 @@ static bool8 FindMonThatAbsorbsOpponentsMove(void)
 			return FALSE;
 	}
 
-	if (STAT_STAGE(gActiveBattler, STAT_STAGE_EVASION) >= 6 + 3)
-		return FALSE; //Invested in Evasion so don't switch
+	// if (STAT_STAGE(gActiveBattler, STAT_STAGE_EVASION) >= 6 + 3)
+	// 	return FALSE; //Invested in Evasion so don't switch
 
 	if (((predictedMove1 == MOVE_NONE || predictedMove1 == MOVE_PREDICTION_SWITCH) && (predictedMove2 == MOVE_NONE || predictedMove2 == MOVE_PREDICTION_SWITCH))
 	|| (SPLIT(predictedMove1) == SPLIT_STATUS && SPLIT(predictedMove2) == SPLIT_STATUS))
@@ -1448,6 +1448,20 @@ static bool8 CanStopLockedMove(void)
 
 static bool8 IsYawned(void)
 {
+	bool8 isAsleep = IsBankAsleep(gActiveBattler);
+	if(isAsleep) //added 
+	{
+		u8 ability = ABILITY(gActiveBattler);
+		if (ability == ABILITY_EARLYBIRD
+		|| ability == ABILITY_SHEDSKIN
+		|| MoveEffectInMoveset(EFFECT_SLEEP_TALK, gActiveBattler) ) 
+			return FALSE;
+		else {
+			gBattleStruct->switchoutIndex[SIDE(gActiveBattler)] = PARTY_SIZE;
+			EmitTwoReturnValues(1, ACTION_SWITCH, 0);
+			return TRUE;
+		}
+	}
 	if (ABILITY(gActiveBattler) != ABILITY_NATURALCURE
 	&& gStatuses3[gActiveBattler] & STATUS3_YAWN
 	&& CanBePutToSleep(gActiveBattler, FALSE) //Could have been yawned and then afflicted with another status condition
@@ -1486,12 +1500,11 @@ static bool8 IsYawned(void)
 			}
 		}
 
-		//Don't switch if invested in Evasion and it'll hold up
-		if (STAT_STAGE(gActiveBattler, STAT_STAGE_EVASION) >= 6 + 3
-		&& !ABILITY_ON_OPPOSING_FIELD(gActiveBattler, ABILITY_UNAWARE)
-		//&& !ABILITY_ON_OPPOSING_FIELD(gActiveBattler, ABILITY_KEENEYE)
-		)
-			return FALSE;
+		//Don't switch if invested in Evasion and it'll hold up remove this cuz no evasion
+		// if (STAT_STAGE(gActiveBattler, STAT_STAGE_EVASION) >= 6 + 3
+		// && !ABILITY_ON_OPPOSING_FIELD(gActiveBattler, ABILITY_UNAWARE)
+		// )
+		// 	return FALSE;
 
 		//Don't switch if you can fight through the sleep
 		u8 ability = ABILITY(gActiveBattler);
@@ -1583,7 +1596,8 @@ static bool8 ShouldSwitchToAvoidDeath(void)
 		&& (atkMove == MOVE_NONE || !MoveWouldHitFirst(atkMove, gActiveBattler, FOE(gActiveBattler))) //Attacker wouldn't go first
 		&& (!IS_BEHIND_SUBSTITUTE(gActiveBattler) || !MoveBlockedBySubstitute(defMove, FOE(gActiveBattler), gActiveBattler))
 		&&  MoveKnocksOutXHits(defMove, FOE(gActiveBattler), gActiveBattler, 1) //Foe will kill
-		&& !WillTakeSignificantDamageFromEntryHazards(gActiveBattler, 2)) //50% health loss
+		&& !WillTakeSignificantDamageFromEntryHazards(gActiveBattler, 3) //33% health loss
+		&& GetHealthPercentage(gActiveBattler) > 20) //Have more than 20% health
 		{
 			u8 firstId, lastId;
 			struct Pokemon* party = LoadPartyRange(gActiveBattler, &firstId, &lastId);
@@ -2095,6 +2109,9 @@ u8 CalcMostSuitableMonToSwitchInto(void)
 
 						if (ability == ABILITY_MOXIE
 						||  ability == ABILITY_SOULHEART
+						||  ability == ABILITY_ASONESHADOW
+						||  ability == ABILITY_ASONEICE
+						||  ability == ABILITY_GRIMNEIGH
 						||  ability == ABILITY_BEASTBOOST)
 							scores[i] += SWITCHING_INCREASE_REVENGE_KILL;
 						else

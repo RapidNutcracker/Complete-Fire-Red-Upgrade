@@ -4068,8 +4068,8 @@ const struct BattleMove gBattleMoves[] =
 
 	[MOVE_BEATUP] =
 	{
-		.effect = EFFECT_MULTI_HIT, //EFFECT_BEAT_UP,
-		.power = 1,
+		.effect = EFFECT_MULTI_HIT,
+		.power = 25,
 		.type = TYPE_DARK,
 		.accuracy = 100,
 		.pp = 10,
@@ -10012,7 +10012,7 @@ const struct BattleMove gBattleMoves[] =
 		.power = 0,
 		.type = TYPE_GRASS,
 		.accuracy = 100,
-		.pp = 10,
+		.pp = 5,
 		.secondaryEffectChance = 0,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
@@ -11160,7 +11160,7 @@ const struct BattleMove gBattleMoves[] =
 
 	[MOVE_COURTCHANGE] =
 	{	//TODO
-		.effect = EFFECT_FIELD_EFFECTS,
+		.effect = EFFECT_RAPID_SPIN,
 		.power = 0,
 		.type = TYPE_NORMAL,
 		.accuracy = 100,
@@ -11880,12 +11880,12 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_FREEZINGGLARE] =
 	{	//ANIM TODO
 		.effect = EFFECT_FREEZE_HIT,
-		.power = 40, //PLACEHOLDERS
+		.power = 90, 
 		.type = TYPE_PSYCHIC,
 		.accuracy = 100,
-		.pp = 35,
-		.secondaryEffectChance = 20,
-		.target = MOVE_TARGET_SELECTED,
+		.pp = 10,
+		.secondaryEffectChance = 10,
+		.target = MOVE_TARGET_FOES_AND_ALLY,
 		.priority = 0,
 		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
 		.z_move_power = 100,
@@ -11896,12 +11896,12 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_THUNDEROUSKICK] =
 	{	//ANIM TODO
 		.effect = EFFECT_DEFENSE_DOWN_HIT,
-		.power = 40, //PLACEHOLDER DATA
+		.power = 90, 
 		.type = TYPE_FIGHTING,
 		.accuracy = 100,
-		.pp = 35,
+		.pp = 10,
 		.secondaryEffectChance = 100,
-		.target = MOVE_TARGET_SELECTED,
+		.target = MOVE_TARGET_FOES_AND_ALLY,
 		.priority = 0,
 		.flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
 		.z_move_power = 100,
@@ -11912,12 +11912,12 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_FIERYWRATH] =
 	{	//ANIM TODO
 		.effect = EFFECT_FLINCH_HIT,
-		.power = 40, //PLACEHOLDER DATA
+		.power = 90, 
 		.type = TYPE_DARK,
 		.accuracy = 100,
-		.pp = 35,
+		.pp = 10,
 		.secondaryEffectChance = 20,
-		.target = MOVE_TARGET_SELECTED,
+		.target = MOVE_TARGET_BOTH,
 		.priority = 0,
 		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
 		.z_move_power = 100,
@@ -11927,11 +11927,11 @@ const struct BattleMove gBattleMoves[] =
 
 	[MOVE_THUNDERCAGE] =
 	{	//ANIM TODO
-		.effect = EFFECT_TRAP, //EFFECT TODO?
-		.power = 40, //PLACEHOLDER DATA
+		.effect = EFFECT_TRAP, 
+		.power = 80, 
 		.type = TYPE_ELECTRIC,
-		.accuracy = 100,
-		.pp = 35,
+		.accuracy = 90,
+		.pp = 15,
 		.secondaryEffectChance = 0,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
@@ -11944,10 +11944,10 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_DRAGONENERGY] =
 	{	//ANIM TODO
 		.effect = EFFECT_HIT,
-		.power = 40, //PLACEHOLDER DATA
+		.power = 150, 
 		.type = TYPE_DRAGON,
 		.accuracy = 100,
-		.pp = 35,
+		.pp = 5,
 		.secondaryEffectChance = 0,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,

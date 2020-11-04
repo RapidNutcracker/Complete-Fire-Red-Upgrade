@@ -116,8 +116,8 @@ Trace
 #org @NAME_HUGE_POWER
 Huge Power
 
-#org @NAME_POISON_POINT
-Poison Point
+#org @NAME_DRAGONS_MAW
+Dragon's Maw
 
 #org @NAME_INNER_FOCUS
 Inner Focus
@@ -221,8 +221,8 @@ Arena Trap
 #org @NAME_VITAL_SPIRIT
 Vital Spirit
 
-#org @NAME_WHITE_SMOKE
-White Smoke
+#org @NAME_AS_ONE_SHADOW
+As One
 
 #org @NAME_NEUTRALISING_GAS
 Neutralize Gas
@@ -233,8 +233,8 @@ Fatal Precision
 #org @NAME_HUNGER_SWITCH
 Hunger Switch
 
-#org @NAME_AIR_LOCK
-Air Lock
+#org @NAME_AS_ONE_ICE
+As One
 
 #org @NAME_SWEET_VEIL
 Sweet Veil
@@ -623,11 +623,11 @@ Flower Gift
 #org @NAME_BAD_DREAMS
 Bad Dreams
 
-#org @NAME_ICYPROTECTOR
-Icy Protector
+#org @NAME_GRIM_NEIGH
+Grim Neigh
 
-#org @NAME_PORTAL_POWER
-Portal Power
+#org @NAME_TRANSISTOR
+Transistor
 
 #org @NAME_POISON_TOUCH
 Poison Touch

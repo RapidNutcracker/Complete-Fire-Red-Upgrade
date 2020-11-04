@@ -122,80 +122,6 @@ EventScript_dada_MartItems2List:
 	.hword ITEM_BEAST_BALL
     .hword 0x0
 
-.global EventScript_Cinnabar_FossilGuy
-EventScript_Cinnabar_FossilGuy:
-    lockall 
-    faceplayer
-    setvar 0x8000 VAR_DAILY_EVENT
-    setvar 0x8001 0x0
-    special2 LASTRESULT 0xA0
-    compare LASTRESULT 0x0 
-    if equal _goto AlreadyDid
-    setvar 0x8000 VAR_DAILY_EVENT 
-    msgbox gText_Cinnabar_FossilGuy1 MSG_FACE
-    special 0xA1 
-    random 0x5
-    compare 0x800D 0x0
-    if 0x1 _goto Skull
-    compare 0x800D 0x1 
-    if 0x1 _goto Armor
-    compare 0x800D 0x2 
-    if 0x1 _goto Jaw
-    compare 0x800D 0x3
-    if 0x1 _goto Sail 
-    compare 0x800D 0x4
-    if 0x1 _goto Kanto
-    end 
-
-Skull: @Cranidos
-    bufferpokemon 0x00 0x1CD
-    msgbox gText_Cinnabar_FossilGuy2 MSG_FACE
-    givepokemon 0x1CD VAR_LEVEL 0x0 0x0 0x0
-    release 
-    end 
-
-Armor: @Shieldon 
-    bufferpokemon 0x00 0x1CF
-    msgbox gText_Cinnabar_FossilGuy2 MSG_FACE
-    givepokemon 0x1CF VAR_LEVEL 0x0 0x0 0x0
-    release 
-    end 
-
-Jaw: @Tyrantrum
-    bufferpokemon 0x00 0x324
-    msgbox gText_Cinnabar_FossilGuy2 MSG_FACE
-    givepokemon 0x324 VAR_LEVEL 0x0 0x0 0x0
-    release 
-    end 
-
-Sail: @Amaura
-    bufferpokemon 0x00 0x326
-    msgbox gText_Cinnabar_FossilGuy2 MSG_FACE
-    givepokemon 0x326 VAR_LEVEL 0x0 0x0 0x0
-    release 
-    end 
-
-Kanto:
-	checkflag 0x272
-	if 0x1 _goto Helix 
-	bufferpokemon 0x00 SPECIES_KABUTO
-    msgbox gText_Cinnabar_FossilGuy2 MSG_FACE
-    givepokemon SPECIES_KABUTO VAR_LEVEL 0x0 0x0 0x0
-    release 
-    end 
-
-Helix: 
-	bufferpokemon 0x00 SPECIES_OMANYTE
-	msgbox gText_Cinnabar_FossilGuy2 MSG_FACE
-	givepokemon SPECIES_OMANYTE VAR_LEVEL 0x0 0x0 0x0
-	release 
-    end 
-
-AlreadyDid:
-    msgbox gText_Cinnabar_FossilGuy3 MSG_FACE 
-    release 
-    end 
-
 .global EventScript_Cinnabar_Latis
 EventScript_Cinnabar_Latis:
     checkflag 0x962
@@ -278,6 +204,7 @@ EventScript_blaine_Start:
 	checkflag 0x826
 	if 0x1 _goto EventScript_blaine_Defeated
 	setflag 0x915
+	special 0x0
     trainerbattle1 0x1 0x1A3 0x0 gText_blaine_EncounterText gText_blaine_DefeatText EventScript_blaine_WonPointer
 	release
 	end
@@ -352,6 +279,7 @@ EventScript_jasmine_Battle:
 	msgbox gText_jasmine_4 0x6
 	setflag 0x915
 	setflag 0x90E
+	special 0x0
 	random 0x3
 	compare 0x800D 0x0
 	if 0x1 _goto EventScript_jasmine_Option1
@@ -411,7 +339,47 @@ EventScript_jasmine_HighDef:
 	end
 
 EventScript_jasmine_Donedone:
+	checkitem ITEM_TRI_PASS 0x1
+	compare 0x800D 0x1
+	if 0x4 _goto EventScript_jasmine_RematchAgain
 	msgbox gText_jasmine_10 0x6
+	release
+	end
+
+DoneMsg2:
+	lock
+    faceplayer 
+	msgbox gText_TwoIsland_SteelBeam1 MSG_YESNO
+    compare LASTRESULT YES 
+    if NO _goto CancelSteel
+    setvar 0x8005 0x88
+    special 0x18D
+    waitstate
+    compare LASTRESULT 0x0
+    if 0x1 _goto Cancel
+    msgbox gText_TwoIsland_SteelBeam2 MSG_FACE 
+    release 
+	end
+
+CancelSteel:
+    msgbox gText_TwoIsland_SteelBeam3 MSG_FACE 
+    release 
+    end 
+	
+EventScript_jasmine_RematchAgain:
+	checkflag 0x1021
+	if 0x1 _goto DoneMsg2
+	msgbox gText_jasminere_1 MSG_YESNO
+	compare LASTRESULT YES
+	if equal _goto jasmine_RematchStart
+	release
+	end
+
+jasmine_RematchStart:
+	trainerbattle3 0x3 0x1D 0x0 gText_jasmine_Defeat
+	msgbox gText_jasminere_2 MSG_NORMAL
+	giveitem ITEM_STEELIUM_Z 0x1 MSG_OBTAIN
+	msgbox gText_jasminere_3 MSG_NORMAL
 	release
 	end
 
@@ -457,8 +425,6 @@ FirstList2:
 	if 0x1 _goto EventScript_metatutor_Tailwind
 	compare LASTRESULT 0xB
 	if 0x1 _goto EventScript_metatutor_Megahorn
-	@ compare LASTRESULT 0xC
-	@ if 0x1 _goto EventScript_metatutor_Steelbeam
 	hidemoney 0x35 0x00
 	release
 	end
@@ -492,11 +458,6 @@ EventScript_metatutor_Firstoption:
 
 EventScript_metatutor_PhantomForce:
 	setvar 0x8005 0x71
-	call EventScript_metatutor_Checkpayment
-	goto EventScript_metatutor_Endofscript
-
-EventScript_metatutor_Steelbeam:
-	setvar 0x8005 0x88
 	call EventScript_metatutor_Checkpayment
 	goto EventScript_metatutor_Endofscript
 
@@ -549,7 +510,6 @@ EventScript_metatutor_Sixthoption:
 	setvar 0x8005 0x69
 	call EventScript_metatutor_Checkpayment
 	goto EventScript_metatutor_Endofscript
-
 
 EventScript_metatutor_Nomoney:
 	msgbox gText_metatutor_Poor 0x6

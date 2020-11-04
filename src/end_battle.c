@@ -116,7 +116,7 @@ void HandleEndTurn_BattleWon(void)
 	else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER
 		  && gBattleTypeFlags & (BATTLE_TYPE_FRONTIER | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_TRAINER_TOWER))
 	{
-		BattleStopLowHpSound();
+		BattleStopLowHpSound(); //add something here to stop randomizer
 		gBattlescriptCurrInstr = BattleScript_Victory;
 
 		PlayBGM(BGM_VICTORY_TRAINER_BATTLE);
@@ -137,6 +137,8 @@ void HandleEndTurn_BattleWon(void)
 				}
 			}
 		}
+		if(FlagGet(FLAG_SYS_GAME_CLEAR))
+			gBattleStruct->moneyMultiplier *= 2;
 		BattleStopLowHpSound();
 		gBattlescriptCurrInstr = BattleScript_Victory;
 
@@ -596,7 +598,7 @@ static void RestoreNonConsumableItems(void)
 	//bool8 keepConsumables = FALSE;
 	//#endif
 
-	if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+	if (gBattleTypeFlags & BATTLE_TYPE_TRAINER || (FlagGet(FLAG_RAID_BATTLE)) )
 	{
 		for (int i = 0; i < PARTY_SIZE; ++i)
 		{

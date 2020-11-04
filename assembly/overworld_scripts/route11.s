@@ -70,7 +70,7 @@ EventScript_secondbrendantop_Battle:
 	setflag 0x200
 	trainerbattle3 0x3 0x32 0x0 gText_secondbrendantop_Defeat
 	msgbox gText_secondbrendantop_4 0x6
-	giveitem 0xC5 0x1 MSG_OBTAIN
+	giveitem 0xC5 0x2 MSG_OBTAIN
 	msgbox gText_secondbrendantop_6 0x6
 	return
 
@@ -175,7 +175,9 @@ EventScript_whitney_Start:
 
 EventScript_whitney_Battle:
 	setflag 0x915
+	setflag 0x90E
 	msgbox gText_whitney_5 0x6
+	special 0x0
 	trainerbattle3 0x3 0x31 0x0 gText_whitney_Defeat
 	msgbox gText_whitney_6 0x6
 	giveitem ITEM_MOOMOO_MILK 0x8 MSG_OBTAIN

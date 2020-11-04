@@ -183,6 +183,7 @@ npc 3 28 8 EventScript_Cut
 npc 3 28 9 EventScript_Cut 
 npc 21 0 4 EventScript_aideverstone_Start
 npc 21 0 5 EventScript_NatureChanger
+map 3 28 EventScript_Route10MapScripts
 
 #Rock Tunnel
 npc 1 82 8 EventScript_rockslide_Start
@@ -204,6 +205,10 @@ npc 1 82 24 EventScript_RockSmash
 npc 1 82 25 EventScript_RockSmash 
 npc 1 82 27 EventScript_RockTunnel_Coalossalite
 npc 1 82 28 EventScript_terrakion_OW
+map 1 123 gMapScripts_RockTunnelZap
+npc 1 123 0 EventScript_ZapdosG_OW
+npc 1 123 1 EventScript_RockTunnel_BraveBird
+npc 1 123 2 EventScript_RockTunnel_MentalHerb
 
 #Lavender Town 
 npc 8 2 6 EventScript_morty_Start
@@ -212,6 +217,7 @@ tile 1 93 0 EventScript_amarowak_Start
 tile 1 93 1 EventScript_amarowak_Start
 npc 1 93 4 EventScript_PkmnTower_NewX
 npc 1 90 3 EventScript_PkmnTower_Sablenite
+npc 8 4 0 EventScript_AudinoSlayer
 
 #Celadon City 
 npc 3 6 9 EventScript_Cut
@@ -286,6 +292,7 @@ tile 14 3 0 EventScript_sabrina_SetTile
 tile 14 3 1 EventScript_sabrina_SetTile
 map 14 3 gMapScripts_SaffronGym
 npc 14 9 16 EventScript_PokeBallSwitcher
+npc 14 9 17 Saffron_HiddenPowerChanger
 
 #Silph Co 
 #sign 1 58 0 EventScript_silphcoelevatorthatworks_Start
@@ -533,6 +540,7 @@ npc 3 45 14 EventScript_RockSmash
 npc 3 45 23 EventScript_RockSmash 
 npc 3 45 19 EventScript_RockSmash 
 npc 3 45 18 EventScript_RockSmash 
+npc 3 45 29 EventScript_KindleRoadBugsy
 
 #Mt Ember 
 npc 1 97 8 EventScript_newstrength_Start
@@ -550,7 +558,7 @@ npc 1 97 5 EventScript_mtembergrunt1_Start
 npc 1 97 3 EventScript_mtembergrunt2_Start
 npc 1 97 4 EventScript_mtembergrunt3_Start
 npc 1 97 20 EventScript_MtEmber_Courtney
-npc 1 97 19 EventScript_MtEmber_Scaleshot
+npc 1 97 18 EventScript_MtEmber_Scaleshot
 npc 1 99 0 EventScript_RockSmash 
 npc 1 99 1 EventScript_RockSmash 
 npc 1 99 2 EventScript_RockSmash 
@@ -569,3 +577,6 @@ npc 1 101 4 EventScript_newstrength_Start
 tile 1 101 0 EventScript_MtEmber_Maxie_Fight
 tile 1 101 1 EventScript_MtEmber_Maxie_Fight_Right
 npc 1 101 0 EventScript_MtEmber_MoltresG
+
+# Two Island
+npc 33 1 0 EventScript_TwoIsland_Whitney

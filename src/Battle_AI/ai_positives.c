@@ -605,8 +605,6 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				{
 					if (defAbility != ABILITY_CONTRARY
 					&& defAbility != ABILITY_CLEARBODY
-					&& defAbility != ABILITY_WHITESMOKE
-					//&& defAbility != ABILITY_FULLMETALBODY
 					&& STAT_STAGE(bankDef, STAT_STAGE_SPEED) > 0)
 						IncreaseViabilityForSpeedControl(&viability, class, bankAtk, bankDef);
 				}
@@ -1072,24 +1070,23 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			break;
 
 		case EFFECT_FORESIGHT:
-			if (move == MOVE_MIRACLEEYE)
-			{
-				if (STAT_STAGE(bankDef, STAT_STAGE_EVASION) > 6
-				|| (IsOfType(bankDef, TYPE_DARK) && (MoveTypeInMoveset(TYPE_PSYCHIC, bankAtk))))
-					INCREASE_STATUS_VIABILITY(2);
+			// if (move == MOVE_MIRACLEEYE)
+			// {
+			// 	if (STAT_STAGE(bankDef, STAT_STAGE_EVASION) > 6
+			// 	|| (IsOfType(bankDef, TYPE_DARK) && (MoveTypeInMoveset(TYPE_PSYCHIC, bankAtk))))
+			// 		INCREASE_STATUS_VIABILITY(2);
+			// 	break;
+			// }
+			// else
+			// {
+			if (atkAbility == ABILITY_SCRAPPY)
 				break;
-			}
-			else
-			{
-				if (atkAbility == ABILITY_SCRAPPY)
-					break;
-				else if (STAT_STAGE(bankDef, STAT_STAGE_EVASION) > 6
-				|| (IsOfType(bankDef, TYPE_GHOST)
-				 && (MoveTypeInMoveset(TYPE_NORMAL, bankAtk)
-				  || MoveTypeInMoveset(TYPE_FIGHTING, bankAtk))))
-					INCREASE_STATUS_VIABILITY(2);
-				break;
-			}
+			else if ((IsOfType(bankDef, TYPE_GHOST)
+				&& (MoveTypeInMoveset(TYPE_NORMAL, bankAtk)
+				|| MoveTypeInMoveset(TYPE_FIGHTING, bankAtk))))
+				INCREASE_STATUS_VIABILITY(2);
+			break;
+			// }
 			break;
 
 		case EFFECT_PERISH_SONG:
@@ -1407,7 +1404,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 							INCREASE_STATUS_VIABILITY(1);
 							break;
 						}
-						else if (i == STAT_STAGE_ACC || i == STAT_STAGE_EVASION || i == STAT_STAGE_SPEED)
+						else if (i == STAT_STAGE_ACC || i == STAT_STAGE_SPEED)
 						{
 							INCREASE_STATUS_VIABILITY(1);
 							break;
@@ -2379,6 +2376,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				|| !WillFaintFromSecondaryDamage(bankDef)
 				|| IsMovePredictionHealingMove(bankDef, bankAtk)
 				|| atkAbility == ABILITY_MOXIE
+				|| atkAbility == ABILITY_ASONEICE
 				|| atkAbility == ABILITY_BEASTBOOST)
 					INCREASE_VIABILITY(2);
 			}
@@ -2520,6 +2518,7 @@ u8 AIScript_SemiSmart(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				|| !WillFaintFromSecondaryDamage(bankDef)
 				|| IsMovePredictionHealingMove(bankDef, bankAtk)
 				|| data->atkAbility == ABILITY_MOXIE
+				|| data->atkAbility == ABILITY_ASONEICE
 				|| data->atkAbility == ABILITY_BEASTBOOST)
 					INCREASE_VIABILITY(2);
 			}

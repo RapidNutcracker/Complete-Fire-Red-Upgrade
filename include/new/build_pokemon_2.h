@@ -85,6 +85,7 @@
 struct TrainersWithEvs
 {
     u8 nature;
+	u8 hiddenPower;
     u8 ivs;
     u8 hpEv;
 	u8 atkEv;

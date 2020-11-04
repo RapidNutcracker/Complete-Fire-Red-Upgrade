@@ -33,7 +33,7 @@ EventScript_Cerulean_Haircut:
     setvar 0x8001 0x0
     special 0xA1
     showmoney 0x0 0x0 0x0
-    setvar 0x8005 0x01E @add 50 to happiness 
+    setvar 0x8005 0x1E @add 30 to happiness 
     special 0x13 @change happiness 
     special 0x7C @buffer nickname 
     msgbox gText_Cerulean_Haircut3 MSG_KEEPOPEN
@@ -96,6 +96,7 @@ EventScript_misty_Start:
 	checkflag 0x821
 	if 0x1 _goto EventScript_misty_Defeated
 	setflag 0x915
+	special 0x0
 	trainerbattle1 0x1 0x19F 0x0 gText_misty_EncounterText gText_misty_DefeatText EventScript_misty_WonPointer
 	release
 	end
@@ -131,6 +132,7 @@ EventScript_misty_Rematch:
 	if 0x1 _goto EventScript_misty_Cancel
 	setflag 0x915
 	setflag 0x90E
+	special 0x0
 	trainerbattle1 0x1 0x30 0x0 gText_misty_Battle gText_misty_Seconddefeat EventScript_misty_Rematchwon
 	release
 	end

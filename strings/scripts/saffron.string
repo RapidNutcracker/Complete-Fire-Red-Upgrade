@@ -576,3 +576,21 @@ Which Ball would you like?
 
 #org @gText_POkeBall_Done
 Aaaaand[.]\nDone! Enjoy. 
+
+#org @gText_Saffron_HPChanger_1
+Hi! I can configure your Pok\emon's\nIVs for a specific Hidden Power\lType!\pThe catch is each of its IVs\nmust be at least 30.\pAre you interested?
+
+#org @gText_Saffron_HpChanger_Which
+Which Hidden Power type would\nyou like?
+
+#org @gText_SettingIVs
+For this Hidden Power, I need\nto set your IVs to[.]\p[BUFFER1] HP IVs, [BUFFER2] Atk IVs, [BUFFER3] Def IVs,\n[BUFFER4] SpA IVs, [BUFFER5] SpD IVs, [BUFFER6] Speed IVs.
+
+#org @gText_SettingIVs_2
+Is that okay?
+
+#org @gText_HPChanger_Done
+[.]And all done!\nEnjoy!
+
+#org @gText_SaffronHPChanger_No
+Hm[.]\nI don't think this Pok\emon follows\lthe critera I requested. Sorry.

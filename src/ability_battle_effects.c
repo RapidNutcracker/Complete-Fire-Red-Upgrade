@@ -44,12 +44,13 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_ADAPTABILITY] = 8,
 	[ABILITY_AFTERMATH] = 5,
 	[ABILITY_AERILATE] = 8,
-	[ABILITY_AIRLOCK] = 5,
 	[ABILITY_ANALYTIC] = 5,
 	[ABILITY_ANGERPOINT] = 4,
 	[ABILITY_ANTICIPATION] = 2,
 	[ABILITY_ARENATRAP] = 9,
 	[ABILITY_AROMAVEIL] = 3,
+	[ABILITY_ASONEICE] = 7,
+	[ABILITY_ASONESHADOW] = 7,
 	[ABILITY_AURABREAK] = 3,
 	[ABILITY_BADDREAMS] = 4,
 	[ABILITY_BATTERY] = 0,
@@ -82,6 +83,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_DESOLATELAND] = 10,
 	[ABILITY_DISGUISE] = 8,
 	[ABILITY_DOWNLOAD] = 7,
+	[ABILITY_DRAGONSMAW] = 6,
 	[ABILITY_DRIZZLE] = 9,
 	[ABILITY_DROUGHT] = 9,
 	[ABILITY_DRYSKIN] = 6,
@@ -132,10 +134,10 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_IRONBARBS] = 6,
 	[ABILITY_IRONFIST] = 6,
 	[ABILITY_JUSTIFIED] = 4,
-	// [ABILITY_KEENEYE] = 1,
 	[ABILITY_BADCOMPANY] = 7,
 	[ABILITY_KLUTZ] = -1,
 	[ABILITY_LEAFGUARD] = 2,
+	[ABILITY_LETHALPRECISION] = 7,
 	[ABILITY_LEVITATE] = 7,
 	[ABILITY_LIGHTMETAL] = 2,
 	[ABILITY_LIGHTNINGROD] = 7,
@@ -170,13 +172,10 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_OWNTEMPO] = 3,
 	[ABILITY_PARENTALBOND] = 10,
 	[ABILITY_PICKUP] = 1,
-	// [ABILITY_PICKPOCKET] = 3,
 	[ABILITY_PIXILATE] = 8,
 	[ABILITY_PLUS] = 0,
 	[ABILITY_POISONHEAL] = 8,
-	[ABILITY_POISONPOINT] = 4,
 	[ABILITY_POISONTOUCH] = 4,
-	[ABILITY_PORTALPOWER] = 8,
 	[ABILITY_POWERCONSTRUCT] = 10,
 	[ABILITY_POWEROFALCHEMY] = 0,
 	[ABILITY_PRANKSTER] = 8,
@@ -185,7 +184,6 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_PRISMARMOR] = 6,
 	[ABILITY_PROTEAN] = 8,
 	[ABILITY_PSYCHICSURGE] = 8,
-//	[ABILITY_PUREPOWER] = 10,
 	[ABILITY_QUEENLYMAJESTY] = 6,
 	[ABILITY_QUICKFEET] = 5,
 	[ABILITY_RAINDISH] = 3,
@@ -211,7 +209,6 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_SHADOWTAG] = 10,
 	[ABILITY_SHEDSKIN] = 7,
 	[ABILITY_SHEERFORCE] = 8,
-	[ABILITY_LETHALPRECISION] = 7,
 	[ABILITY_SHIELDDUST] = 5,
 	[ABILITY_SHIELDSDOWN] = 6,
 	[ABILITY_SIMPLE] = 8,
@@ -227,7 +224,6 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_SOUNDPROOF] = 4,
 	[ABILITY_SPEEDBOOST] = 9,
 	[ABILITY_STAKEOUT] = 6,
-	// [ABILITY_STALL] = -1,
 	[ABILITY_STAMINA] = 6,
 	[ABILITY_STANCECHANGE] = 10,
 	[ABILITY_STATIC] = 4,
@@ -257,6 +253,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_TOXICBOOST] = 6,
 	[ABILITY_TOUGHCLAWS] = 7,
 	[ABILITY_TRACE] = 6,
+	[ABILITY_TRANSISTOR] = 6,
 	[ABILITY_TRIAGE] = 7,
 	[ABILITY_TRUANT] = -2,
 	[ABILITY_TURBOBLAZE] = 7,
@@ -271,18 +268,15 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_WATERCOMPACTION] = 4,
 	[ABILITY_WATERVEIL] = 4,
 	[ABILITY_WEAKARMOR] = 2,
-	[ABILITY_WHITESMOKE] = 4,
-//	[ABILITY_WIMPOUT] = 3,
 	[ABILITY_WONDERGUARD] = 10,
 	[ABILITY_WONDERSKIN] = 4,
 	[ABILITY_ZENMODE] = -1,
 	[ABILITY_INTREPIDSWORD] = 3,
 	[ABILITY_DAUNTLESSSHIELD] = 3,
-	// [ABILITY_BALLFETCH] = 0, modified 
 	[ABILITY_COTTONDOWN] = 3,
 	[ABILITY_MIRRORARMOR] = 6,
 	[ABILITY_BLADEMASTER] = 8,
-	[ABILITY_SURPRISE] = 2, //Aadded
+	[ABILITY_SURPRISE] = 5, //Aadded
 	[ABILITY_STEAMENGINE] = 3,
 	[ABILITY_PUNKROCK] = 2,
 	[ABILITY_SANDSPIT] = 5,
@@ -344,7 +338,6 @@ const bool8 gMoldBreakerIgnoredAbilities[] =
 	[ABILITY_VOLTABSORB] =		TRUE,
 	[ABILITY_WATERABSORB] =		TRUE,
 	[ABILITY_WATERVEIL] =		TRUE,
-	[ABILITY_WHITESMOKE] =		TRUE,
 	[ABILITY_WONDERGUARD] =		TRUE,
 	[ABILITY_BIGPECKS] =		TRUE,
 	[ABILITY_CONTRARY] =		TRUE,
@@ -367,7 +360,6 @@ const bool8 gMoldBreakerIgnoredAbilities[] =
 	[ABILITY_FLUFFY] =			TRUE,
 	[ABILITY_QUEENLYMAJESTY] =	TRUE,
 	[ABILITY_WATERBUBBLE] =		TRUE,
-	[ABILITY_PORTALPOWER] =		TRUE,
 	[ABILITY_MIRRORARMOR] =		TRUE,
 	[ABILITY_PUNKROCK] =		TRUE,
 	[ABILITY_ICESCALES] =		TRUE,
@@ -458,6 +450,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				case ABILITY_TRACE:			//Trace were included in this list. It has thus been
 				case ABILITY_DOWNLOAD:		//been expanded to support newer abilities.
 				case ABILITY_UNNERVE:
+				case ABILITY_ASONEICE:
+				case ABILITY_ASONESHADOW:
 				case ABILITY_ANTICIPATION:
 				case ABILITY_FOREWARN:
 				case ABILITY_FRISK:
@@ -616,7 +610,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 
 		//added here
 		case ABILITY_FORECAST:
-			if (!ABILITY_PRESENT(ABILITY_CLOUDNINE) && !ABILITY_PRESENT(ABILITY_NEUTRALIZINGGAS) && !ABILITY_PRESENT(ABILITY_AIRLOCK))
+			if (!ABILITY_PRESENT(ABILITY_CLOUDNINE) && !ABILITY_PRESENT(ABILITY_NEUTRALIZINGGAS))
 			{
 				if(ITEM_EFFECT(bank) == ITEM_EFFECT_ICY_ROCK)
 				{
@@ -763,7 +757,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			{
 				if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_HAIL_ANY))
 				{
-					if (gNewBS->AuroraVeilTimers[SIDE(gBankAttacker)] == 0){ //If aurora veil is less than 3, we should set it to 3 as it will be beneficial 
+					if (gNewBS->AuroraVeilTimers[SIDE(gBankAttacker)] == 0){ 
 						SetAuroraVeil();
 						gBattleStringLoader = gText_IcyVeilActivate; 
 						BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
@@ -840,7 +834,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			break;
 
 		case ABILITY_CLOUDNINE:
-		case ABILITY_AIRLOCK:
 			gBattleStringLoader = gText_AirLockActivate;
 			BattleScriptPushCursorAndCallback(BattleScript_AirLock);
 			effect++;
@@ -878,6 +871,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			break;
 
 		case ABILITY_UNNERVE:
+		case ABILITY_ASONEICE:
+		case ABILITY_ASONESHADOW:
 			gBankAttacker = bank;
 			gBattleStringLoader = gText_UnnerveActivate;
 			BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
@@ -1878,23 +1873,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				}
 				break;
 
-			case ABILITY_POISONPOINT:
-				if (MOVE_HAD_EFFECT
-				&& TOOK_DAMAGE(bank)
-				&& BATTLER_ALIVE(gBankAttacker)
-				&& gBankAttacker != bank
-				&& CheckContact(move, gBankAttacker)
-				&& CanBePoisoned(gBankAttacker, gBankTarget, TRUE)
-				&& umodsi(Random(), 3) == 0)
-				{
-					gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_POISON;
-					BattleScriptPushCursor();
-					gBattlescriptCurrInstr = BattleScript_AbilityApplySecondaryEffect;
-					gHitMarker |= HITMARKER_IGNORE_SAFEGUARD; //Safeguard checked earlier
-					effect++;
-				}
-				break;
-
 			case ABILITY_STATIC:
 				if (MOVE_HAD_EFFECT
 				&& TOOK_DAMAGE(bank)
@@ -2474,6 +2452,7 @@ static u8 CalcMovePowerForForewarn(u16 move)
 				break;
 
 			// case MOVE_CRUSHGRIP:
+			case MOVE_DRAGONENERGY:
 			case MOVE_DRAGONRAGE:
 			case MOVE_ELECTROBALL:
 			case MOVE_ENDEAVOR:

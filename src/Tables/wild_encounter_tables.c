@@ -781,11 +781,14 @@ static const struct WildPokemonInfo gPowerPlant_LandMonsInfoNight = {7, gPowerPl
 
 static const struct WildPokemon gCeruleanCave1_LandMonsNight[] = 
 {
-	{68, 71, SPECIES_PARASECT},
-	// {68, 71, SPECIES_ARTICUNO_G},
-	{68, 71, SPECIES_GOLBAT},
-	{67, 67, SPECIES_CONKELDURR},
-	{67, 68, SPECIES_CONKELDURR},
+	// {68, 71, SPECIES_PARASECT},
+	// {68, 71, SPECIES_GOLBAT},
+	// {67, 67, SPECIES_CONKELDURR},
+	// {67, 68, SPECIES_CONKELDURR},
+	{68, 71, SPECIES_REGIELEKI},
+	{68, 71, SPECIES_REGIDRAGO},
+	{67, 67, SPECIES_CALYREX_SHADOW},
+	{67, 68, SPECIES_CALYREX_SHADOW},
 	{69, 70, SPECIES_MAGNETON},
 	{69, 70, SPECIES_MAGNETON},
 	{69, 72, SPECIES_SEISMITOAD},
@@ -868,7 +871,7 @@ static const struct WildPokemonInfo gKindleRoad_LandMonsInfo = {18, gKindleRoad_
 static const struct WildPokemon gKindleRoad_LandMonsNight[] =
 {
 	{83, 85, SPECIES_ABSOL},
-	{87, 87, SPECIES_AUDINO},
+	{83, 85, SPECIES_SMEARGLE},
 	{83, 85, SPECIES_ALCREMIE_STRAWBERRY},
 	{83, 85, SPECIES_ALCREMIE_STRAWBERRY},
 	{83, 85, SPECIES_CENTISKORCH},
@@ -964,6 +967,42 @@ static const struct WildPokemon MtEmber1F_LandMonsNight[] =
 
 static const struct WildPokemonInfo MtEmber1F_LandMonsInfoNight = {5, MtEmber1F_LandMonsNight};
 
+static const struct WildPokemon TreasureBeach_LandMonsNight[] =
+{
+	{85, 85, SPECIES_SIRFETCHD},
+	{84, 85, SPECIES_SIRFETCHD},
+	{84, 85, SPECIES_CARNIVINE},
+	{84, 85, SPECIES_CARNIVINE},
+	{84, 85, SPECIES_PERSIAN_A},
+	{83, 85, SPECIES_PERSIAN_A},
+	{83, 85, SPECIES_KLEFKI}, 
+	{83, 85, SPECIES_KLEFKI},
+	{83, 85, SPECIES_CRAWDAUNT}, 
+	{83, 85, SPECIES_CRAWDAUNT},
+	{83, 85, SPECIES_MELTAN},
+	{83, 85, SPECIES_MELTAN},
+};
+
+static const struct WildPokemonInfo TreasureBeach_LandMonsInfoNight = {9, TreasureBeach_LandMonsNight};
+
+static const struct WildPokemon TreasureBeach_LandMonsDay[] =
+{
+	{85, 85, SPECIES_SIRFETCHD},
+	{84, 85, SPECIES_SIRFETCHD},
+	{84, 85, SPECIES_CARNIVINE},
+	{84, 85, SPECIES_CARNIVINE},
+	{84, 85, SPECIES_PERSIAN},
+	{83, 85, SPECIES_PERSIAN},
+	{83, 85, SPECIES_KLEFKI}, 
+	{83, 85, SPECIES_KLEFKI},
+	{83, 85, SPECIES_KINGLER}, 
+	{83, 85, SPECIES_KINGLER},
+	{83, 85, SPECIES_MELTAN},
+	{83, 85, SPECIES_MELTAN},
+};
+
+static const struct WildPokemonInfo TreasureBeach_LandMonsInfoDay = {9, TreasureBeach_LandMonsDay};
+
 const struct WildPokemonHeader gWildMonMorningHeaders[] =
 {
 	{
@@ -995,14 +1034,6 @@ const struct WildPokemonHeader gWildMonNewDaytimeHeaders[] =
 		.fishingMonsInfo = NULL,
 	},
 	{
-		.mapGroup = 0xFF,
-		.mapNum = 0xFF,
-		.landMonsInfo = NULL,
-		.waterMonsInfo = NULL,
-		.rockSmashMonsInfo = NULL,
-		.fishingMonsInfo = NULL,
-	},
-	{
 		.mapGroup = MAP_GROUP(MT_EMBER_SUMMIT_PATH_1F),
 		.mapNum = MAP_NUM(MT_EMBER_SUMMIT_PATH_1F),
 		.landMonsInfo = &MtEmber1F_LandMonsInfoNight,
@@ -1022,6 +1053,22 @@ const struct WildPokemonHeader gWildMonNewDaytimeHeaders[] =
 		.mapGroup = MAP_GROUP(MT_EMBER_SUMMIT_PATH_3F),
 		.mapNum = MAP_NUM(MT_EMBER_SUMMIT_PATH_3F),
 		.landMonsInfo = &MtEmber1F_LandMonsInfoNight,
+		.waterMonsInfo = NULL,
+		.rockSmashMonsInfo = NULL,
+		.fishingMonsInfo = NULL,
+	},
+	{
+		.mapGroup = MAP_GROUP(ONE_ISLAND_TREASURE_BEACH),
+		.mapNum = MAP_NUM(ONE_ISLAND_TREASURE_BEACH),
+		.landMonsInfo = &TreasureBeach_LandMonsInfoDay,
+		.waterMonsInfo = &gKindleRoad_SurfMonsInfo,
+		.rockSmashMonsInfo = NULL,
+		.fishingMonsInfo = NULL,
+	},
+	{
+		.mapGroup = 0xFF,
+		.mapNum = 0xFF,
+		.landMonsInfo = NULL,
 		.waterMonsInfo = NULL,
 		.rockSmashMonsInfo = NULL,
 		.fishingMonsInfo = NULL,
@@ -1443,6 +1490,14 @@ const struct WildPokemonHeader gWildMonNightHeaders[] =
 		.fishingMonsInfo = &gKindleRoad_FishingMonsInfo,
 	},
 	{
+		.mapGroup = MAP_GROUP(MT_EMBER_EXTERIOR),
+		.mapNum = MAP_NUM(MT_EMBER_EXTERIOR),
+		.landMonsInfo = &MtEmberExterior_LandMonsInfoNight,
+		.waterMonsInfo = NULL,
+		.rockSmashMonsInfo = NULL,
+		.fishingMonsInfo = NULL,
+	},
+	{
 		.mapGroup = MAP_GROUP(MT_EMBER_SUMMIT_PATH_1F),
 		.mapNum = MAP_NUM(MT_EMBER_SUMMIT_PATH_1F),
 		.landMonsInfo = &MtEmber1F_LandMonsInfoNight,
@@ -1463,6 +1518,14 @@ const struct WildPokemonHeader gWildMonNightHeaders[] =
 		.mapNum = MAP_NUM(MT_EMBER_SUMMIT_PATH_3F),
 		.landMonsInfo = &MtEmber1F_LandMonsInfoNight,
 		.waterMonsInfo = NULL,
+		.rockSmashMonsInfo = NULL,
+		.fishingMonsInfo = NULL,
+	},
+	{
+		.mapGroup = MAP_GROUP(ONE_ISLAND_TREASURE_BEACH),
+		.mapNum = MAP_NUM(ONE_ISLAND_TREASURE_BEACH),
+		.landMonsInfo = &TreasureBeach_LandMonsInfoNight,
+		.waterMonsInfo = &gKindleRoad_SurfMonsInfo,
 		.rockSmashMonsInfo = NULL,
 		.fishingMonsInfo = NULL,
 	},

@@ -1353,12 +1353,90 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 		.ability = Ability_1,
 	},
 	[133] =
-	{ //Bulky Special Attacker - Ability_Hidden
+	{ //Bulky Defense Trick Room - Ability_Hidden
 		.nature = NATURE_RELAXED,
 		.ivs = 31,
 		.hpEv = 252,
 		.defEv = 252,
 		.spAtkEv = 4,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_Hidden,
+	},
+	[134] = //rotom-c surge rematch
+	{
+		.nature = NATURE_TIMID,
+		.hiddenPower = TYPE_ICE,
+		.ivs = 31,
+		.spdEv = 252,
+		.spAtkEv = 252,
+		.spDefEv = 4,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_Hidden,
+	},
+	[135] = 
+	{
+		.nature = NATURE_TIMID,
+		.hiddenPower = TYPE_GRASS,
+		.ivs = 31,
+		.spdEv = 252,
+		.spAtkEv = 252,
+		.spDefEv = 4,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_Hidden,
+	},
+	[136] =
+	{ //Lt Surge Manectric
+		.nature = NATURE_BASHFUL,
+		.hiddenPower = TYPE_GRASS,
+		.ivs = 31,
+		.hpEv = 4,
+		.atkEv = 100,
+		.spAtkEv = 100,
+		.spdEv = 100,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_Random_1_2,
+	},
+	[137] = //erika serperior 
+	{
+		.nature = NATURE_TIMID,
+		.hiddenPower = TYPE_FIRE,
+		.ivs = 31,
+		.spdEv = 252,
+		.spAtkEv = 252,
+		.spDefEv = 4,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_Hidden,
+	},
+	[138] =
+	{ //Bulky Special Attacker - Ability_Hidden erika meganium
+		.nature = NATURE_MODEST,
+		.hiddenPower = TYPE_FIRE,
+		.ivs = 31,
+		.hpEv = 252,
+		.spdEv = 6,
+		.spAtkEv = 252,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_Hidden,
+	},
+	[139] =
+	{ //Special Sweeper: Typhlosion Blaine, Jotard Simisear
+		.nature = NATURE_MODEST,
+		.hiddenPower = TYPE_ICE,
+		.ivs = 31,
+		.hpEv = 6,
+		.spdEv = 252,
+		.spAtkEv = 252,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_Hidden,
+	},
+	[140] =
+	{ //Special Sweeper: Typhlosion Blaine, Jotard Simisear
+		.nature = NATURE_MODEST,
+		.hiddenPower = TYPE_FIGHTING,
+		.ivs = 31,
+		.hpEv = 6,
+		.spdEv = 252,
+		.spAtkEv = 252,
 		.ball = TRAINER_EV_CLASS_BALL,
 		.ability = Ability_Hidden,
 	},

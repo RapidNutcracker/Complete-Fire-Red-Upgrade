@@ -22,7 +22,9 @@ EventScript_bugsy_Start:
 
 EventScript_bugsy_Battle:
 	setflag 0x915
+	setflag 0x90E
 	msgbox gText_bugsy_5 0x6
+	special 0x0
 	trainerbattle3 0x3 0x2F 0x0 gText_bugsy_Defeat
 	msgbox gText_bugsy_6 0x6
 	giveitem ITEM_TM89 0x1 MSG_OBTAIN

@@ -520,6 +520,23 @@ EventScript_MtEmber_Scaleshot:
     release
     end
 
+.global EventScript_RockTunnel_BraveBird
+EventScript_RockTunnel_BraveBird:
+    hidesprite 0x800F
+    giveitem ITEM_TM117 0x1 MSG_FIND
+    setflag 0x101B
+    release
+    end
+
+.global EventScript_RockTunnel_MentalHerb
+EventScript_RockTunnel_MentalHerb:
+    hidesprite 0x800F
+    giveitem ITEM_MENTAL_HERB 0x1 MSG_FIND
+    setflag 0x101C
+    release
+    end
+
+
 .global EventScript_SilphCo_HP
 EventScript_SilphCo_HP:
     hidesprite 0x800F

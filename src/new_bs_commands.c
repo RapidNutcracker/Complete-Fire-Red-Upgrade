@@ -694,8 +694,6 @@ void atkFF15_jumpifstatcanbemodified(void)
 			gFormCounter = 2;
 
 		else if (ability == ABILITY_CLEARBODY
-		|| ability == ABILITY_WHITESMOKE
-		//|| ability == ABILITY_FULLMETALBODY
 		|| (ability == ABILITY_FLOWERVEIL && IsOfType(gActiveBattler, TYPE_GRASS)))
 		{
 			gBattleScripting.bank = gActiveBattler;

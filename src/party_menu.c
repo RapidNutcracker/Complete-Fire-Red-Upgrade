@@ -11,6 +11,7 @@
 #include "../include/menu.h"
 #include "../include/metatile_behavior.h"
 #include "../include/overworld.h"
+#include "../include/naming_screen.h"
 #include "../include/party_menu.h"
 #include "../include/pokemon_icon.h"
 #include "../include/pokemon_storage_system.h"
@@ -49,6 +50,8 @@ party_menu.c
 #define MENU_DOWN 1
 #define MENU_LEFT -2
 #define MENU_RIGHT 2
+
+#define MENU_NICKNAME 6
 
 struct PartyMenuBoxInfoRects
 {
@@ -141,6 +144,10 @@ static void FieldCallback_Defog(void);
 static bool8 SetUpFieldMove_Defog(void);
 static void CursorCb_MoveItemCallback(u8 taskId);
 static void CursorCb_MoveItem(u8 taskId);
+
+static void CursorCb_NicknameCallback(u8 taskId);
+static void CursorCb_Nickname(u8 taskId);
+static u8 uniTaskid; //added 
 
 //*highlightedMon = 0 is Player's Pokemon out
 //*highlightedMon = 1 is Link Partner's Pokemon out
@@ -737,6 +744,7 @@ u8 CanPokemonSelectedBeEnteredInBattleTower(void)
 extern u8 gMoveNames[][MOVE_NAME_LENGTH + 1];
 
 extern const u8 gMenuText_Move[];
+extern const u8 gMenuText_NickName[];
 extern const u8 gText_FieldMoveDesc_RockClimb[];
 extern const u8 gText_FieldMoveDesc_Defog[];
 extern const u8 gText_FieldMoveDesc_Dive[];
@@ -779,7 +787,7 @@ struct
 	[MENU_ITEM] =	  {(void*) 0x84161d4, (void*) 0x81236a1},
 	[MENU_GIVE] =	  {(void*) 0x84161b2, (void*) 0x8123705},
 	[MENU_TAKE_ITEM] = {(void*) 0x84161de, (void*) 0x8123c39},
-	[MENU_MAIL] =	  {(void*) 0x84161d9, (void*) 0x8123cf5},
+	// [MENU_MAIL] =	  {(void*) 0x84161d9, (void*) 0x8123cf5},
 	[MENU_TAKE_MAIL] = {(void*) 0x84169b2, (void*) 0x8123e0d},
 	[MENU_READ] =	  {(void*) 0x84169b7, (void*) 0x8123d59},
 	[MENU_CANCEL2] =   {(void*) 0x84161c1, (void*) 0x8124065},
@@ -792,7 +800,7 @@ struct
 	[MENU_TRADE1] =	{(void*) 0x84169bc, (void*) 0x8124491},
 	[MENU_TRADE2] =	{(void*) 0x84169bc, (void*) 0x81245a1},
 	[MENU_MOVE_ITEM] = {gMenuText_Move, CursorCb_MoveItem},
-	//[MENU_NICKNAME] = {gMenuText_NickName, CursorCb_MoveItem}
+	[MENU_NICKNAME] = {gMenuText_NickName, CursorCb_Nickname},
 
 	//Field Moves
 	[MENU_FIELD_MOVES + FIELD_MOVE_FLASH] =	      {gMoveNames[MOVE_FLASH], CursorCb_FieldMove},
@@ -991,6 +999,7 @@ void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
 			AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_ITEM);
 	}
 
+	AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_NICKNAME); //added
 	AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_CANCEL1);
 }
 
@@ -1347,6 +1356,34 @@ static void CursorCb_MoveItemCallback(u8 taskId)
 	}
 }
 
+void NicknameFunc2()
+{
+	SetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_NICKNAME, gStringVar2);
+	// ScheduleBgCopyTilemapToVram(2);
+	// gPartyMenuUseExitCallback = FALSE;
+	// ClearStdWindowAndFrameToTransparent(6, 0);
+	// ScheduleBgCopyTilemapToVram(2);
+	// DestroyTask(uniTaskid);
+	CB2_ReturnToFieldContinueScriptPlayMapMusic();
+	// ReturnToUseOnWhichMon(taskId);
+	// gTasks[unitaskid].func = func;
+}
+
+static void CursorCb_NicknameCallback(unusedArg u8 taskid)
+{
+	void* src =  &gPlayerParty[gPartyMenu.slotId];
+
+	GetMonData(src, MON_DATA_NICKNAME, gStringVar3);
+	GetMonData(src, MON_DATA_NICKNAME, gStringVar2);
+	u16 species = GetMonData(src, MON_DATA_SPECIES, 0);
+	u8 gender = GetMonGender(src);
+	u16 PID = GetMonData(src, MON_DATA_PERSONALITY, 0);
+	uniTaskid = taskid;
+	DoNamingScreen(3, gStringVar2, species, gender, PID, (void*) NicknameFunc2);
+}
+
+
+
 static void CursorCb_MoveItem(u8 taskId)
 {
 	struct Pokemon* mon = &gPlayerParty[gPartyMenu.slotId];
@@ -1382,6 +1419,20 @@ static void CursorCb_MoveItem(u8 taskId)
 		gTasks[taskId].func = Task_UpdatePartyMenuHeldItemSprite;
 	}
 }
+
+static void CursorCb_Nickname(u8 taskId)
+{
+	// struct Pokemon* mon = &gPlayerParty[gPartyMenu.slotId];
+
+	PlaySE(SE_SELECT);
+
+	//Delete old windows
+	PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
+	PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+	gTasks[taskId].func = CursorCb_NicknameCallback;
+
+}
+
 
 //Functions relating to staying on the party screen after an item is used
 static bool8 IsUsePartyMenuItemHPEVModifier(struct Pokemon* mon, u16 oldHP, u16 item);

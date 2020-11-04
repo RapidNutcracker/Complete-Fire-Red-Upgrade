@@ -774,7 +774,60 @@ static u8 CreateNPCTrainerParty(struct Pokemon* const party, const u16 trainerId
 				const struct TrainersWithEvs* spread = &gTrainersWithEvsSpreads[spreadNum];
 
 				SET_EVS(spread);
-				SET_IVS_SINGLE_VALUE(MathMin(31, spread->ivs));
+				if (spread->hiddenPower){
+					switch (spread->hiddenPower){
+						case TYPE_FIGHTING:
+							party[i].hpIV = 31;			
+							party[i].attackIV = 31;		
+							party[i].defenseIV = 30;			
+							party[i].speedIV = 30;		
+							party[i].spAttackIV = 30;		
+							party[i].spDefenseIV = 30;	
+							break;
+
+						case TYPE_FIRE:
+							party[i].hpIV = 31;			
+							party[i].attackIV = 30;			
+							party[i].defenseIV = 31;			
+							party[i].speedIV = 30;		
+							party[i].spAttackIV = 30;		
+							party[i].spDefenseIV = 31;
+							break;
+
+						case TYPE_ICE:
+							party[i].hpIV = 31;			
+							party[i].attackIV = 0;			
+							party[i].defenseIV = 30;			
+							party[i].speedIV = 31;		
+							party[i].spAttackIV = 31;		
+							party[i].spDefenseIV = 31;	
+							break;
+
+						case TYPE_GRASS:
+							party[i].hpIV = 30;			
+							party[i].attackIV = 31;			
+							party[i].defenseIV = 31;			
+							party[i].speedIV = 31;		
+							party[i].spAttackIV = 30;		
+							party[i].spDefenseIV = 31;	
+							break;
+
+						case TYPE_GROUND:
+							party[i].hpIV = 31;			
+							party[i].attackIV = 31;			
+							party[i].defenseIV = 31;			
+							party[i].speedIV = 31;		
+							party[i].spAttackIV = 30;		
+							party[i].spDefenseIV = 30;	
+							break;
+
+						default:
+							SET_IVS_SINGLE_VALUE(MathMin(31, spread->ivs));
+
+					}
+				}
+				else 
+					SET_IVS_SINGLE_VALUE(MathMin(31, spread->ivs));
 
 				u8 ballType;
 				switch(spread->ball) {
@@ -3310,8 +3363,8 @@ static u8 GetHighestMonLevel(const struct Pokemon* const party)
 		level = GetMonData(&party[i], MON_DATA_LEVEL, NULL);
 		if (level > max)
 			max = level;
-		if (max < 39){
-			max = 41;
+		if (max < 24){
+			max = 26;
 		}
 	}
 	if(!FlagGet(FLAG_SYS_GAME_CLEAR))
@@ -3532,8 +3585,10 @@ u32 CheckShinyMon(struct Pokemon* mon)
 	return personality;
 };
 
-bool8 ShouldTrainerRandomize(u16 trainerClass)
+bool8 ShouldTrainerRandomize()
 {
+	u16 trainerId = gTrainerBattleOpponent_A; //added 
+	u16 trainerClass = gTrainers[trainerId].trainerClass; //added 
 	// if(gBattleTypeFlags & (BATTLE_TYPE_TRAINER)){
 	// 	return FALSE; 
 	// }
@@ -3541,7 +3596,8 @@ bool8 ShouldTrainerRandomize(u16 trainerClass)
 		return TRUE;
 	}
 
-	if (trainerClass == CLASS_BOSS || trainerClass == CLASS_CHAMPION || trainerClass == CLASS_RUIN_MANIAC_RS || trainerClass == CLASS_RIVAL_2 || trainerClass == CLASS_AQUA_LEADER || trainerClass == CLASS_TEAM_AQUA || trainerClass == CLASS_AROMA_LADY_RS || trainerClass == CLASS_PKMN_TRAINER_2 || trainerClass == CLASS_LEADER || trainerClass == CLASS_ELITE_4)
+	if (trainerClass == CLASS_BOSS || trainerClass == CLASS_CHAMPION || trainerClass == CLASS_RUIN_MANIAC_RS || trainerClass == CLASS_RIVAL_2 || trainerClass == CLASS_AQUA_LEADER || trainerClass == CLASS_TEAM_AQUA || trainerClass == CLASS_AROMA_LADY_RS || trainerClass == CLASS_PKMN_TRAINER_2 || trainerClass == CLASS_LEADER || trainerClass == CLASS_ELITE_4 
+	    || trainerClass == CLASS_MAGMA_ADMIN || trainerClass == CLASS_MAGMA_LEADER)
 	/*|| trainerClass == CLASS_RIVAL_2 || trainerClass == CLASS_RIVAL || trainerClass == CLASS_PKMN_TRAINER_1
     || trainerClass == CLASS_AQUA_LEADER || trainerClass ==  CLASS_TEAM_AQUA || trainerClass == CLASS_AROMA_LADY_RS 
 	|| trainerClass == CLASS_RUIN_MANIAC_RS){ */
@@ -3555,9 +3611,9 @@ bool8 ShouldTrainerRandomize(u16 trainerClass)
 void TryRandomizeSpecies(unusedArg u16* species)
 {
 	#ifdef FLAG_POKEMON_RANDOMIZER
-	u16 trainerId = gTrainerBattleOpponent_A; //added 
-	u16 trainerClass = gTrainers[trainerId].trainerClass; //added 
-	if (FlagGet(FLAG_EXPERT_DIFFICULTY) && FlagGet(FLAG_POKEMON_RANDOMIZER) && !FlagGet(FLAG_BATTLE_FACILITY) && *species != SPECIES_NONE && *species < NUM_SPECIES && ShouldTrainerRandomize(trainerClass))
+	// u16 trainerId = gTrainerBattleOpponent_A; //added 
+
+	if (FlagGet(FLAG_EXPERT_DIFFICULTY) && FlagGet(FLAG_POKEMON_RANDOMIZER) && !FlagGet(FLAG_BATTLE_FACILITY) && *species != SPECIES_NONE && *species < NUM_SPECIES && ShouldTrainerRandomize())
 	{
 		u32 id = MathMax(1, T1_READ_32(gSaveBlock2->playerTrainerId)); //0 id would mean every Pokemon would crash the game
         u32 newSpecies = *species;
@@ -3585,7 +3641,7 @@ void TryRandomizeSpecies(unusedArg u16* species)
 		*species = newSpecies;
 		// *species = (u16) newSpecies;
 	} 
-	else if (FlagGet(FLAG_POKEMON_RANDOMIZER) && !FlagGet(FLAG_BATTLE_FACILITY) && *species != SPECIES_NONE && *species < NUM_SPECIES && ShouldTrainerRandomize(trainerClass)) //&& !(gBattleTypeFlags & BATTLE_TYPE_TRAINER
+	else if (FlagGet(FLAG_POKEMON_RANDOMIZER) && !FlagGet(FLAG_BATTLE_FACILITY) && *species != SPECIES_NONE && *species < NUM_SPECIES && ShouldTrainerRandomize()) //&& !(gBattleTypeFlags & BATTLE_TYPE_TRAINER
 	{
 		// u32 id = MathMax(1, T1_READ_32(gSaveBlock2->playerTrainerId)); //0 id would mean every Pokemon would crash the game
 		// u32 newSpecies = *species;

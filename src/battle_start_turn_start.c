@@ -14,6 +14,7 @@
 #include "../include/new/battle_start_turn_start_battle_scripts.h"
 #include "../include/new/battle_transition.h"
 #include "../include/new/battle_util.h"
+#include "../include/new/build_pokemon.h"
 #include "../include/new/cmd49.h"
 #include "../include/new/damage_calc.h"
 #include "../include/new/dexnav.h"
@@ -122,8 +123,12 @@ void BattleBeginFirstTurn(void)
 	// if(gBattleScripting.battleStyle == OPTIONS_BATTLE_STYLE_SHIFT){
 	// 	FlagSet(FLAG_EXPERT_DIFFICULTY); 
 	// }
-	gBattleScripting.battleStyle = OPTIONS_BATTLE_STYLE_SET; //added to force battle style set
-
+	if (gBattleTypeFlags & BATTLE_TYPE_TRAINER){
+		if (!ShouldTrainerRandomize())
+			gBattleScripting.battleStyle = OPTIONS_BATTLE_STYLE_SET; //added to force battle style set
+		else
+			gBattleScripting.battleStyle = OPTIONS_BATTLE_STYLE_SHIFT;
+	}
 	// if (gBattleTypeFlags & BATTLE_TYPE_TRAINER){
 
 	// 	u8 count = CalculatePlayerPartyCount();
@@ -1762,6 +1767,8 @@ s32 BracketCalc(u8 bank)
 
 			case ITEM_EFFECT_CUSTAP_BERRY:
 				if (!AbilityBattleEffects(ABILITYEFFECT_CHECK_OTHER_SIDE, bank, ABILITY_UNNERVE, 0, 0)
+				&& !AbilityBattleEffects(ABILITYEFFECT_CHECK_OTHER_SIDE, bank, ABILITY_ASONEICE, 0, 0)
+				&& !AbilityBattleEffects(ABILITYEFFECT_CHECK_OTHER_SIDE, bank, ABILITY_ASONESHADOW, 0, 0)
 				&& PINCH_BERRY_CHECK(bank))
 				{
 					gNewBS->CustapQuickClawIndicator |= gBitTable[bank];

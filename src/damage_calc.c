@@ -2178,18 +2178,7 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		//2x Boost
 			data->defense *= 2;
 			break;
-
-		case ABILITY_PORTALPOWER:
-		//0.75x Decrement
-		#ifdef PORTAL_POWER
-			if ((useMonAtk && !CheckContactByMon(move, data->monAtk))
-			|| (!useMonAtk && !CheckContact(move, bankAtk)))
-			{
-				attack = (attack * 75) / 100;
-				spAttack = (spAttack * 75) / 100;
-			}
-		#endif
-			break;
+			
 	}
 
 //Attacker Item Checks
@@ -2592,7 +2581,9 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 	//Second Target Item Checks
 	switch (data->defItemEffect) {
 		case ITEM_EFFECT_WEAKNESS_BERRY:
-			if (!AbilityBattleEffects(ABILITYEFFECT_CHECK_OTHER_SIDE, bankDef, ABILITY_UNNERVE, 0, 0) && data->atkAbility != ABILITY_UNNERVE)
+			if ((!AbilityBattleEffects(ABILITYEFFECT_CHECK_OTHER_SIDE, bankDef, ABILITY_UNNERVE, 0, 0) && data->atkAbility != ABILITY_UNNERVE)
+				&& (!AbilityBattleEffects(ABILITYEFFECT_CHECK_OTHER_SIDE, bankDef, ABILITY_ASONEICE, 0, 0) && data->atkAbility != ABILITY_ASONEICE)
+				&& (!AbilityBattleEffects(ABILITYEFFECT_CHECK_OTHER_SIDE, bankDef, ABILITY_ASONESHADOW, 0, 0) && data->atkAbility != ABILITY_ASONESHADOW))
 			{
 				if ((data->resultFlags & MOVE_RESULT_SUPER_EFFECTIVE && data->defItemQuality == data->moveType)
 				|| (data->defItemQuality == TYPE_NORMAL && data->moveType == TYPE_NORMAL)) //Chilan Berry
@@ -2946,6 +2937,7 @@ static u16 GetBasePower(struct DamageCalc* data)
 
 		case MOVE_ERUPTION:
 		case MOVE_WATERSPOUT:
+		case MOVE_DRAGONENERGY:
 			power = MathMax(1, (150 * data->atkHP) / data->atkMaxHP);
 			break;
 
@@ -2976,11 +2968,11 @@ static u16 GetBasePower(struct DamageCalc* data)
 
 		// case MOVE_CRUSHGRIP:
 		case MOVE_WRINGOUT:
-		case MOVE_DRAGONENERGY:
+		// case MOVE_DRAGONENERGY:
 			if (!(data->specialFlags & FLAG_IGNORE_TARGET))
 				power = MathMax(1, (data->defHP * 120) / data->defMaxHP);
 			break;
-
+			
 		case MOVE_TRUMPCARD: ;
 			u8 index, pp;
 			bool8 decrement = FALSE;
@@ -3086,20 +3078,20 @@ static u16 GetBasePower(struct DamageCalc* data)
 				power = (10 * (255 - gBattleMons[bankAtk].friendship)) / 25;
 			break;
 
-		case MOVE_BEATUP:
-			if (useMonAtk || (data->specialFlags & (FLAG_CHECKING_FROM_MENU | FLAG_AI_CALC)))
-				power = (gBaseStats[data->atkSpecies].baseAttack / 10) + 10; //added used to be +5
-			else
-			{
-				struct Pokemon* party;
-				if (SIDE(bankAtk) == B_SIDE_PLAYER)
-					party = gPlayerParty;
-				else
-					party = gEnemyParty;
+		// case MOVE_BEATUP:
+		// 	if (useMonAtk || (data->specialFlags & (FLAG_CHECKING_FROM_MENU | FLAG_AI_CALC)))
+		// 		power = (gBaseStats[data->atkSpecies].baseAttack / 10) + 10; //added used to be +5
+		// 	else
+		// 	{
+		// 		struct Pokemon* party;
+		// 		if (SIDE(bankAtk) == B_SIDE_PLAYER)
+		// 			party = gPlayerParty;
+		// 		else
+		// 			party = gEnemyParty;
 
-				power = (gBaseStats[party[gBattleCommunication[0] - 1].species].baseAttack / 10) + 10; //added used to be +5
-			}
-			break;
+		// 		power = (gBaseStats[party[gBattleCommunication[0] - 1].species].baseAttack / 10) + 10; //added used to be +5
+		// 	}
+		// 	break;
 
 		case MOVE_HIDDENPOWER:
 		#ifdef OLD_HIDDEN_POWER_BP
@@ -3330,7 +3322,16 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 			if (data->moveType == TYPE_STEEL)
 				power = (power * 15) / 10;
 			break;
-
+		case ABILITY_TRANSISTOR:
+			if (data->moveType == TYPE_ELECTRIC)
+				power = (power * 15) / 10;
+			break;
+		
+		case ABILITY_DRAGONSMAW:
+			if (data->moveType == TYPE_DRAGON)
+				power = (power * 15) / 10;
+			break;
+			
 		case ABILITY_WATERBUBBLE:
 		//2x Boost
 			if (data->moveType == TYPE_WATER)

@@ -51,6 +51,8 @@ EventScript_morty_Battle:
 	setflag 0x915
 	setflag 0x90E
 	msgbox gText_morty_5 0x6
+	special 0x0
+    setflag 0x90E
 	trainerbattle3 0x3 0x34 0x0 gText_morty_Defeat
 	msgbox gText_morty_6 0x6
 	giveitem 0x13E 0x1 MSG_OBTAIN
@@ -100,7 +102,34 @@ EventScript_morty_MaxedHappiness:
 EventScript_morty_Donedone:
 	lock
 	faceplayer
+	checkitem ITEM_TRI_PASS 0x1 
+	compare 0x800D 0x1
+	if 0x4 _goto EventScript_Morty_Rematch
+	goto EventScript_mortyEndDone
+
+EventScript_mortyEndDone:
 	msgbox gText_morty_9 0x6
+	release
+	end
+
+EventScript_Morty_Rematch:
+	checkflag 0x101D
+	if 0x1 _goto EventScript_mortyEndDone
+	msgbox gText_morty_Rematch_1 MSG_YESNO
+	compare LASTRESULT NO
+	if equal _goto EventScript_morty_rematchreject
+	msgbox gText_morty_Rematch_2 MSG_NORMAL
+	trainerbattle3 0x3 0x1C 0x0 gText_morty_Defeat
+	msgbox gText_morty_Rematch_3 MSG_NORMAL
+	giveitem ITEM_GHOSTIUM_Z 0x1 MSG_OBTAIN
+	msgbox gText_morty_Rematch_4 MSG_NORMAL 
+	setflag 0x101D 
+	release
+	end
+
+
+EventScript_morty_rematchreject:
+	msgbox gText_morty_4 0x6
 	release
 	end
 
@@ -153,3 +182,39 @@ EventScript_amarowak_Move:
 .byte 0x11
 .byte 0xFE
 
+
+.global EventScript_AudinoSlayer
+EventScript_AudinoSlayer:
+	lock
+	faceplayer
+	showmoney 0x0 0x0 0x0
+	msgbox gText_AudinoSlayer_1 MSG_YESNO
+	compare LASTRESULT NO
+	if equal _goto AudinoReject
+	checkmoney 0x445C 0x0
+    compare LASTRESULT 0x1
+    if 0x0 _goto NotEnoughMoneyAudino
+	sound 0x58 
+    msgbox gText_AudniSlayer_Wait MSG_KEEPOPEN
+    removemoney 0x445C 0x00
+    updatemoney 0x00 0x00 0x00
+    checksound
+	closeonkeypress
+	msgbox gText_AudinoSlayer_2 MSG_NORMAL
+	setflag 0x90E
+	trainerbattle3 0x3 0x1B 0x0 gText_AudinoSlayer_Defeat
+	msgbox gText_AudinoSlayer_5 MSG_NORMAL
+	release
+	end
+
+AudinoReject:
+	msgbox gText_AudinoSlayer_3 MSG_NORMAL
+	hidemoney 0x0 0x0 
+	release
+	end
+
+NotEnoughMoneyAudino:
+	msgbox gText_AudinoSlayer_4 MSG_NORMAL
+	hidemoney 0x0 0x0 
+	release
+	end

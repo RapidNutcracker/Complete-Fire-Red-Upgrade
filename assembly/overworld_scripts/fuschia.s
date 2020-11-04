@@ -330,6 +330,7 @@ EventScript_koga_Start:
 	checkflag 0x824
 	if 0x1 _goto EventScript_koga_Defeated
 	setflag 0x915
+	special 0x0
 	trainerbattle1 0x1 0x1A2 0x0 gText_koga_EncounterText gText_koga_DefeatText EventScript_koga_WonPointer
 	release
 	end

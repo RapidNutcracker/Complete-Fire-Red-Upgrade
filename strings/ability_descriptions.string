@@ -1,10 +1,19 @@
 #include "src/config.h"
 
+#org @DESC_DRAGONSMAW
+Powers up Dragon-type moves.
+
 #org @DESC_BADCOMPANY
 Prevents self-lowering stats. 
 
 #org @DESC_SHIELDDUST
 Stops added effects/hazard dmg.  
+
+#org @DESC_AS_ONE_SHADOW
+Both Unnerve and Grim Neigh.
+
+#org @DESC_AS_ONE_ICE
+Both Unnerve and Moxie.
 
 #org @DESC_GULPMISSILE
 Spits prey if damaged after a swim.
@@ -390,11 +399,11 @@ Powers up team when sunny.
 #org @DESC_BADDREAMS
 Hurts sleeping foes.
 
-#org @DESC_ICYPROTECTOR
-Sets a mini-veil in hail.
+#org @DESC_GRIMNEIGH
+Knockouts boost Sp Atk.
 
-#org @DESC_PORTALPOWER
-Weakens non-contact moves.
+#org @DESC_TRANSISTOR
+Powers up Electric-type moves.
 
 #org @DESC_POISONTOUCH
 Can poison foe on contact.
