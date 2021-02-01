@@ -11,7 +11,7 @@ Oh, you must be [GREEN][PLAYER][BLUE]!
 Sorry, I almost didn't recognize\nyou!\pI'm one of [GREEN]Oak's [BLUE]aids. I was just\npicking up some packages for the\lprofessor.\pI think he wanted to give you this but\ndidn't manage to get it on time.
 
 #org @gText_aidoranberry_3
-[BLUE]While I'm here, I may as well give\nyou these too.
+[BLUE]To access DexNav on the Start Menu, click\nthe [ARROW_RIGHT] button.\pI've also upgraded your Pok\edex to\nthe National Dex.\pWhile I'm here, I may as well give\nyou these too.
 
 #org @gText_aidoranberry_4
 Take care!
@@ -59,10 +59,16 @@ Do you want to set the\nrandomizer option?\pThis randomizes encounters, trainers
 Normal randomizer mode has been\nset! 
 
 #org @gText_DoYouWantAbility
-Do you want abilities\nrandomized?
+Do you want abilities randomized?
+
+#org @gText_RandomAbilitySet
+Randomized abilities have been\nturned on!
 
 #org @gText_DoYouWantLearnsets
-Do you want learnsets\nrandomized? 
+Do you want learnsets randomized? 
+
+#org @gText_RandomLearnsets
+Randomized learnsets have been\nturned on!
 
 #org @gText_RandomizerHard
 Do you want to set Hard Mode\nfor randomizer? This restricts you\lfrom encountering better Pok\emon. 
@@ -135,3 +141,6 @@ This move strikes fear in its foes.\pYou don't want to miss it.
 
 #org @gText_virizion_1
 Aeepraaa!
+
+#org @gText_Viridian_GirlTip 
+Here's a neat trick!\pPressing [R_BUTTON] in the main fight menu\nallows you to instantly click the\lRun button!

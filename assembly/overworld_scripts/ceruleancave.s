@@ -400,6 +400,7 @@ EventScript_ceruleangiovanni_Start:
 	setvar VAR_PARTNER 0x27 @Lance partner 
 	setvar VAR_PARTNER_BACKSPRITE 0x6 @Lance Backsprite 
 	clearflag 0x81 @mewtwo
+	special 0x0
 	setflag 0x915 @disable bag
 	trainerbattle3 0x3 0x45 0x0 gText_ceruleangiovanni_Defeated
 	fadeoutbgm 0x1

@@ -121,3 +121,79 @@ AnotherTime:
     msgbox gText_TwoIslandWhitney7 MSG_NORMAL
     release
     end
+
+.global EventScript_OfficerJenny_Jail
+EventScript_OfficerJenny_Jail:
+    lock
+    faceplayer
+    checkitem ITEM_POWDER_JAR 0x1 
+    compare 0x800D 0x1
+	if 0x4 _goto EventScript_OfficerJennyGivenItem
+    msgbox gText_OfficerJenny_1 MSG_KEEPOPEN
+    sound 0x15
+    applymovement 0x4 Surprised
+    waitmovement 0x0
+    pause 0x5
+    closeonkeypress
+    msgbox gText_OfficerJenny_2 MSG_YESNO
+    compare LASTRESULT NO
+    if equal _call CantFoolMe
+    msgbox gText_OfficerJenny_2_2 MSG_NORMAL
+    msgbox gText_OfficerJenny_3 MSG_NORMAL
+    goto StartOfAsk
+    end
+
+CantFoolMe:
+    msgbox gText_OfficerJenny_CantFool MSG_NORMAL
+    return
+
+RepeatAsk:
+    msgbox gText_OfficerJenny_Cmon MSG_NORMAL
+    goto StartOfAsk
+    end
+
+StartOfAsk:
+    msgbox gText_OfficerJenny_3_2 MSG_YESNO
+    compare LASTRESULT NO
+    if equal _goto RepeatAsk
+    msgbox gText_OfficerJenny_3_3 MSG_NORMAL
+    giveitem ITEM_POWDER_JAR 0x1 MSG_OBTAIN
+    msgbox gText_OfficerJenny_4 MSG_NORMAL
+    release
+    end
+
+EventScript_OfficerJennyGivenItem:
+    msgbox gText_OfficerJenny_4 MSG_NORMAL
+    release
+    end
+
+.global EventScript_TwoIslandJail_NPC
+EventScript_TwoIslandJail_NPC:
+    lock
+    faceplayer
+    msgbox gText_TwoIslandJail_NPC_1 MSG_KEEPOPEN
+    pause 0x3
+    closeonkeypress 
+    msgbox gText_TwoIslandJail_NPC_2 MSG_FACE
+    release
+    end
+
+.global EventScript_TwoIslandJail_Sign
+EventScript_TwoIslandJail_Sign:
+    lock
+    msgbox gText_TwoIslandJail_Sign MSG_SIGN
+    release
+    end
+
+.global EventScript_TwoIslandPC_NPC
+EventScript_TwoIslandPC_NPC:
+    lock
+    msgbox gText_TwoIslandPC_NPC_1 MSG_FACE
+    applymovement 0x800F LookDown
+    waitmovement 0x0
+    release
+    end
+
+LookDown:
+    .byte look_down
+    .byte end_m

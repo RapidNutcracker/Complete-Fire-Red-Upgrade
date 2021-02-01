@@ -1781,11 +1781,11 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				&& TOOK_DAMAGE(bank)
 				&& move != MOVE_STRUGGLE
 				&& SPLIT(move) != SPLIT_STATUS
-				// && BATTLER_ALIVE(bank) we change forms even if the battler dies, we just dont deal damage/paralysis
+				&& BATTLER_ALIVE(bank) // we deal damage even if we die
 				&& gBankAttacker != bank
 				&& (SPECIES(bank) == SPECIES_CRAMORANT_GORGING || SPECIES(bank) == SPECIES_CRAMORANT_GULPING))
 				{
-					if (ABILITY(gBankAttacker) != ABILITY_MAGICGUARD && BATTLER_ALIVE(bank)){
+					if (ABILITY(gBankAttacker) != ABILITY_MAGICGUARD && BATTLER_ALIVE(gBankAttacker)){
 						gBattleMoveDamage = MathMax(1, GetBaseMaxHP(gBankAttacker) / 4);
 						BattleScriptPushCursor();
 						gBattlescriptCurrInstr = BattleScript_RoughSkinActivates;
@@ -1793,7 +1793,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 					}
 					if (SPECIES(bank) == SPECIES_CRAMORANT_GORGING 
 					&& CanBeParalyzed(gBankAttacker, TRUE)
-					&& BATTLER_ALIVE(bank)) {
+					&& BATTLER_ALIVE(gBankAttacker)) {
 						gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_PARALYSIS;
 						BattleScriptPushCursor();
 						gBattlescriptCurrInstr = BattleScript_AbilityApplySecondaryEffect;
@@ -1802,7 +1802,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 					}
 					else if (SPECIES(bank) == SPECIES_CRAMORANT_GULPING 
 					&& (STAT_CAN_FALL(gBankAttacker, STAT_SPEED) || ABILITY(gBankAttacker) == ABILITY_MIRRORARMOR)
-					&& BATTLER_ALIVE(bank)){
+					&& BATTLER_ALIVE(gBankAttacker)){
 						gBattleScripting.statChanger = STAT_SPEED | DECREASE_1;
 						BattleScriptPushCursor();
 						gBattlescriptCurrInstr = BattleScript_GooeyActivates;

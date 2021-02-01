@@ -981,7 +981,7 @@ void DoFairyLockHappyHourFunc(void)
 			if (!gNewBS->HappyHourByte)
 			{
 				gNewBS->HappyHourByte = TRUE;
-				gBattleStruct->moneyMultiplier *= 2;
+				gBattleStruct->moneyMultiplier *= 3;
 			}
 			gBattleStringLoader = HappyHourString;
 			break;

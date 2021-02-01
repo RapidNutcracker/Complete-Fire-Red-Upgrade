@@ -24,6 +24,7 @@ tile 3 1 8 EventScript_roamer_Start
 tile 3 1 6 EventScript_roamertop_Start
 tile 3 1 7 EventScript_roamerbottom_Start
 npc 5 1 9 EventScript_ExpertModeNPC
+npc 15 0 1 EventScript_ViridianForestGirlTip
 
 #ROUTE 2
 npc 3 20 2 EventScript_Cut
@@ -163,6 +164,7 @@ npc 3 5 8 EventScript_WonderTrade3
 # npc 3 5 8 EventScript_Verm_EXPShare
 npc 3 5 0 EventScript_Verm_newTruant
 npc 9 1 1 EventScript_Verm_NewHMs
+npc 3 5 9 EventScript_Vermilion_Copperajite
 
 #SS Anne 
 npc 1 20 1 EventScript_SSAnne_CantForget
@@ -232,8 +234,8 @@ npc 10 7 4 EventScript_Random_GivePika
 npc 10 8 4 EventScript_ivseller_Start
 npc 10 8 3 EventScript_amuletcoin_Start
 npc 10 8 2 EventScript_coinstory_Start
-npc 10 15 2 EventScript_gamecornertms_Start
-# npc 10 15 3 EventScript_gamecornermons_Start
+# npc 10 15 2 EventScript_gamecornertms_Start
+# npc 10 15 2 EventScript_gamecornertms_test
 npc 10 15 3 EventScript_gamecornermons_Start2
 npc 10 2 0 EventScript_playrough_Start
 npc 10 5 1 EventScript_gardevoirite_Start
@@ -415,7 +417,7 @@ npc 3 39 7 EventScript_Route18_Kinglerite
 #Cinnabar 
 tile 3 8 1 EventScript_CinnabarMay_Boss
 npc 12 1 1 EventScript_Cinnabar_WeatherRock
-npc 12 2 2 EventScript_Cinnabar_FossilGuy
+# npc 12 2 2 EventScript_Cinnabar_FossilGuy
 # npc 12 4 2 EventScript_metatutor_Start
 npc 12 4 2 EventScript_metatutor_Start2
 npc 12 4 3 EventScript_Cinnabar_Latis
@@ -426,7 +428,7 @@ npc 12 5 7 EventScript_NatureChanger
 # npc 12 5 7 EventScript_Viridian_GiveTestItem
 npc 12 4 5 EventScript_therianforms_Start
 npc 12 0 8 EventScript_ExpertModeNPC
-npc 12 3 0 EventScript_Eevee_scientist
+npc 12 3 1 EventScript_Eevee_scientist
 
 #Pokemon Mansion
 npc 1 62 4 EventScript_PkmnMansion_Banettite
@@ -523,11 +525,12 @@ npc 1 78 0 EventScript_lance_Start
 npc 13 0 3 EventScript_PokemonLeagueChick
 npc 13 0 6 EventScript_E4LanceInfo_Start
 map 13 0 gMapScripts_PkmnLeague
+tile 1 78 0 EventScript_TileProcScale
 
 #One Island
 npc 32 0 6 EventScript_NatureChanger
-npc 3 12 3 EventScript_TeleportToKanto
-map 3 12 gMapScripts_OneIsland
+# npc 3 12 3 EventScript_TeleportToKanto
+# map 3 12 gMapScripts_OneIsland
 npc 1 97 0 EventScript_MtEmber_MistyExplode
 npc 2 57 4 EventScript_waterfallhm_Start
 
@@ -540,7 +543,7 @@ npc 3 45 14 EventScript_RockSmash
 npc 3 45 23 EventScript_RockSmash 
 npc 3 45 19 EventScript_RockSmash 
 npc 3 45 18 EventScript_RockSmash 
-npc 3 45 29 EventScript_KindleRoadBugsy
+# npc 3 45 29 EventScript_KindleRoadBugsy
 
 #Mt Ember 
 npc 1 97 8 EventScript_newstrength_Start
@@ -554,11 +557,11 @@ npc 1 97 11 EventScript_RockSmash
 npc 1 97 10 EventScript_newstrength_Start
 npc 1 97 13 EventScript_newstrength_Start
 npc 1 97 14 EventScript_newstrength_Start
-npc 1 97 5 EventScript_mtembergrunt1_Start
-npc 1 97 3 EventScript_mtembergrunt2_Start
-npc 1 97 4 EventScript_mtembergrunt3_Start
-npc 1 97 20 EventScript_MtEmber_Courtney
-npc 1 97 18 EventScript_MtEmber_Scaleshot
+# npc 1 97 5 EventScript_mtembergrunt1_Start
+# npc 1 97 3 EventScript_mtembergrunt2_Start
+# npc 1 97 4 EventScript_mtembergrunt3_Start
+# npc 1 97 20 EventScript_MtEmber_Courtney
+# npc 1 97 18 EventScript_MtEmber_Scaleshot
 npc 1 99 0 EventScript_RockSmash 
 npc 1 99 1 EventScript_RockSmash 
 npc 1 99 2 EventScript_RockSmash 
@@ -574,9 +577,16 @@ npc 1 101 2 EventScript_newstrength_Start
 npc 1 101 3 EventScript_newstrength_Start
 npc 1 101 4 EventScript_newstrength_Start
 
-tile 1 101 0 EventScript_MtEmber_Maxie_Fight
-tile 1 101 1 EventScript_MtEmber_Maxie_Fight_Right
-npc 1 101 0 EventScript_MtEmber_MoltresG
+# tile 1 101 0 EventScript_MtEmber_Maxie_Fight
+# tile 1 101 1 EventScript_MtEmber_Maxie_Fight_Right
+# npc 1 101 0 EventScript_MtEmber_MoltresG
 
 # Two Island
-npc 33 1 0 EventScript_TwoIsland_Whitney
+# npc 33 1 0 EventScript_TwoIsland_Whitney
+npc 3 13 5 EventScript_Cut
+# map 33 0 gMapScripts_TwoIslandJail
+# npc 33 0 3 EventScript_OfficerJenny_Jail
+npc 33 0 0 EventScript_TwoIslandJail_NPC
+npc 33 2 3 EventScript_NatureChanger
+npc 33 2 1 EventScript_TwoIslandPC_NPC
+sign 3 13 1 EventScript_TwoIslandJail_Sign

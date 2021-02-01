@@ -102,9 +102,9 @@ EventScript_morty_MaxedHappiness:
 EventScript_morty_Donedone:
 	lock
 	faceplayer
-	checkitem ITEM_TRI_PASS 0x1 
-	compare 0x800D 0x1
-	if 0x4 _goto EventScript_Morty_Rematch
+	@ checkitem ITEM_TRI_PASS 0x1 
+	@ compare 0x800D 0x1
+	@ if 0x4 _goto EventScript_Morty_Rematch
 	goto EventScript_mortyEndDone
 
 EventScript_mortyEndDone:
@@ -191,12 +191,12 @@ EventScript_AudinoSlayer:
 	msgbox gText_AudinoSlayer_1 MSG_YESNO
 	compare LASTRESULT NO
 	if equal _goto AudinoReject
-	checkmoney 0x445C 0x0
+	checkmoney 0x2710 0x0
     compare LASTRESULT 0x1
     if 0x0 _goto NotEnoughMoneyAudino
 	sound 0x58 
     msgbox gText_AudniSlayer_Wait MSG_KEEPOPEN
-    removemoney 0x445C 0x00
+    removemoney 0x2710 0x00
     updatemoney 0x00 0x00 0x00
     checksound
 	closeonkeypress

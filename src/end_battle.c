@@ -139,6 +139,7 @@ void HandleEndTurn_BattleWon(void)
 		}
 		if(FlagGet(FLAG_SYS_GAME_CLEAR))
 			gBattleStruct->moneyMultiplier *= 2;
+		// gBattleTypeFlags = BATTLE_TYPE_WILD; //added this to clear trainer bit for randomizer mode
 		BattleStopLowHpSound();
 		gBattlescriptCurrInstr = BattleScript_Victory;
 
@@ -369,41 +370,6 @@ u8 IsRunningFromBattleImpossible(void)
 	else if (IsOfType(gActiveBattler, TYPE_GHOST))
 		return FALSE;
 
-	// side = SIDE(gActiveBattler);
-
-	// for (i = 0; i < gBattlersCount; i++)
-	// {
-	// 	// if (ABILITY(gActiveBattler) != ABILITY_SHADOWTAG //Shadow Tag's not affected by Shadow Tag
-	// 	// && side != SIDE(i)
-	// 	// && ABILITY(i) == ABILITY_SHADOWTAG)
-	// 	// {
-	// 	// 	gBattleScripting.bank = i;
-	// 	// 	gLastUsedAbility = ABILITY(i);
-	// 	// 	gBattleCommunication[MULTISTRING_CHOOSER] = 2;
-	// 	// 	return ABILITY_PREVENTING_ESCAPE;
-	// 	// }
-
-	// 	// if (side != SIDE(i)
-	// 	// && ABILITY(i) == ABILITY_ARENATRAP
-	// 	// && CheckGrounding(gActiveBattler))
-	// 	// {
-	// 	// 	gBattleScripting.bank = i;
-	// 	// 	gLastUsedAbility = ABILITY(i);
-	// 	// 	gBattleCommunication[MULTISTRING_CHOOSER] = 2;
-	// 	// 	return ABILITY_PREVENTING_ESCAPE;
-	// 	// }
-
-	// 	if (i != gActiveBattler
-	// 	&& ABILITY(i) == ABILITY_MAGNETPULL
-	// 	&& IsOfType(gActiveBattler, TYPE_STEEL))
-	// 	{
-	// 		gBattleScripting.bank = i;
-	// 		gLastUsedAbility = ABILITY(i);
-	// 		gBattleCommunication[MULTISTRING_CHOOSER] = 2;
-	// 		return ABILITY_PREVENTING_ESCAPE;
-	// 	}
-	// }
-
 	if ((gBattleMons[gActiveBattler].status2 & (STATUS2_ESCAPE_PREVENTION | STATUS2_WRAPPED))
 	|| (gStatuses3[gActiveBattler] & STATUS3_SKY_DROP_TARGET))
 	{
@@ -469,10 +435,6 @@ bool8 TryRunFromBattle(u8 bank)
 		gLastUsedAbility = ABILITY_RUNAWAY;
 		gProtectStructs[bank].fleeFlag = 2;
 		++effect;
-	}
-	else if (FlagGet(FLAG_SYS_GAME_CLEAR))
-	{
-		++effect; //automatic run if you're champion
 	}
 	#ifndef NO_GHOST_BATTLES
 	else if ((gBattleTypeFlags & (BATTLE_TYPE_SCRIPTED_WILD_1 | BATTLE_TYPE_GHOST)) == BATTLE_TYPE_GHOST)
@@ -561,7 +523,7 @@ void EndOfBattleThings(void)
 		HealPokemonInFrontier();
 		gTerrainType = 0; //Reset now b/c normal reset is after BG is loaded
 		CalculatePlayerPartyCount(); //Party size can change after multi battle is over
-
+		gBattleTypeFlags = 0; //added this to clear trainer bit for randomizer mode
 		#ifdef UNBOUND
 		u8 weather = GetCurrentWeather();
 		if (gBattleTypeFlags & BATTLE_TYPE_BATTLE_SANDS)
@@ -592,11 +554,8 @@ static void RestoreNonConsumableItems(void)
 {
 	u16 none = ITEM_NONE;
 	u16* items = gNewBS->itemBackup;
-	//#ifdef FLAG_KEEP_CONSUMABLE_ITEMS
-	bool8 keepConsumables = TRUE; //FlagGet(FLAG_DISABLE_BAG);
-	//#else
-	//bool8 keepConsumables = FALSE;
-	//#endif
+	bool8 keepConsumables = TRUE; 
+
 
 	if (gBattleTypeFlags & BATTLE_TYPE_TRAINER || (FlagGet(FLAG_RAID_BATTLE)) )
 	{

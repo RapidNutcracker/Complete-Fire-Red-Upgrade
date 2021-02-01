@@ -577,3 +577,10 @@ EventScript_roamer_Look:
 .byte 0x3
 .byte 0x62
 .byte 0xFE
+
+.global EventScript_ViridianForestGirlTip
+EventScript_ViridianForestGirlTip:
+	msgbox gText_Viridian_GirlTip MSG_FACE 
+	release 
+	end 
+	

@@ -270,6 +270,7 @@ move_t CanUseZMove(u8 bank, u8 moveIndex, u16 move)
 	#endif
 
 	if (IsMegaZMoveBannedBattle()
+	|| !(FlagGet(FLAG_SYS_GAME_CLEAR))
 	|| IsMega(bank)
 	|| IsRedPrimal(bank)
 	|| IsBluePrimal(bank))

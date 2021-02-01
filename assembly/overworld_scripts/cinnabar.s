@@ -339,9 +339,9 @@ EventScript_jasmine_HighDef:
 	end
 
 EventScript_jasmine_Donedone:
-	checkitem ITEM_TRI_PASS 0x1
-	compare 0x800D 0x1
-	if 0x4 _goto EventScript_jasmine_RematchAgain
+	@ checkitem ITEM_TRI_PASS 0x1
+	@ compare 0x800D 0x1
+	@ if 0x4 _goto EventScript_jasmine_RematchAgain
 	msgbox gText_jasmine_10 0x6
 	release
 	end
@@ -356,7 +356,7 @@ DoneMsg2:
     special 0x18D
     waitstate
     compare LASTRESULT 0x0
-    if 0x1 _goto Cancel
+    if 0x1 _goto CancelSteel
     msgbox gText_TwoIsland_SteelBeam2 MSG_FACE 
     release 
 	end
@@ -380,6 +380,7 @@ jasmine_RematchStart:
 	msgbox gText_jasminere_2 MSG_NORMAL
 	giveitem ITEM_STEELIUM_Z 0x1 MSG_OBTAIN
 	msgbox gText_jasminere_3 MSG_NORMAL
+	setflag 0x1021
 	release
 	end
 

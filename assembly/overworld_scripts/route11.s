@@ -68,6 +68,8 @@ EventScript_secondbrendantop_Bottom:
 EventScript_secondbrendantop_Battle:
 	msgbox gText_secondbrendantop_2 0x6
 	setflag 0x200
+	special 0x0
+	setflag 0x90E
 	trainerbattle3 0x3 0x32 0x0 gText_secondbrendantop_Defeat
 	msgbox gText_secondbrendantop_4 0x6
 	giveitem 0xC5 0x2 MSG_OBTAIN

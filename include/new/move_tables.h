@@ -65,3 +65,4 @@ extern const move_t gAromaVeilProtectedMoves[];
 extern const move_t gMovesThatLiftProtectTable[];
 extern const move_t gKickingMoves[];
 extern const move_t gSwordMoves[];
+extern const move_t gRandomizerBannedMoves[];

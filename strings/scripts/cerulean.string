@@ -26,7 +26,7 @@ Hello. I can evaluate your\nPok\emon's happiness.
 Your [BUFFER1]'s happiness\nvalue is [BUFFER2].
 
 #org @gText_misty_EncounterText
-Hi, you're a new face!\pOnly those trainer who have a\npolicy about Pok\emon can turn pro.\pWhat is your approach when you\ncatch and train Pok\emon?\pMy policy is an all-out offensive\nwith Water-type Pok\emon!
+Hi, you're a new face!\pOnly those trainers who have a\npolicy about Pok\emon can turn pro.\pWhat is your approach when you\ncatch and train Pok\emon?\pMy policy is an all-out offensive\nwith Water-type Pok\emon!
 
 #org @gText_misty_DefeatText
 Wow!\nYou're too much!\pAll right!\pYou can have the Cascade Badge to\nshow you beat me.

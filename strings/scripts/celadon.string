@@ -50,7 +50,7 @@ I can't stay a gambling addict[.]\pTake my money so I don't do it\nanymore[.]
 Game Corner has been fueling my\ngambling addiction in quarantine.
 
 #org @gText_ivseller_1
-Psst[.] I have a crazy proposition.\pI can max one of your Pok\emon's\nIVs for \$350000.\pIt's crazy expensive, but this is\ntechnically illegal!\pHow about it?
+Psst[.] I have a crazy proposition.\pI can max one of your Pok\emon's\nIVs for \$350000.\pOr I can do a single stat for\n\$70000.\pIt's crazy expensive, but this is\ntechnically illegal!\pHow about it?
 
 #org @gText_ivseller_2
 Boo. You don't have enough money.\pCome back when you got stacks.
@@ -62,10 +62,58 @@ Don't you want OP Pok\emon?\pEspecially in a screwed up ROM hack\nlike this?\pYo
 Sweet. Who wants it?
 
 #org @gText_ivseller_4
-So, [BUFFER1] will have its IVs\nmaxed.
+So, [BUFFER1] will have its IVs\nmaxed. \$350000.
+
+#org @gText_ivseller_4_1
+So, [BUFFER1] will have its HP IVs\nmaxed. \$70000.
+
+#org @gText_ivseller_4_2
+So, [BUFFER1] will have its Attack\nIVs maxed. \$70000.
+
+#org @gText_ivseller_4_3
+So, [BUFFER1] will have its Defense\nIVs maxed. \$70000.
+
+#org @gText_ivseller_4_4
+So, [BUFFER1] will have its Sp. Atk\nIVs maxed. \$70000.
+
+#org @gText_ivseller_4_5
+So, [BUFFER1] will have its Sp. Def\nIVs maxed. \$70000.
+
+#org @gText_ivseller_4_6
+So, [BUFFER1] will have its Speed\nIVs maxed. \$70000.
 
 #org @gText_ivseller_5
 Is that correct?
+
+#org @gText_ivseller_bust_1 
+Heyyo welcome back Champ[.]
+
+#org @gText_ivseller_bust_2
+Uhh[.] whachu doing with that\ntracker?\p[BLACK]Reach for your Locater?
+
+#org @gText_ivseller_bust_3
+Yee, I knew we were good!\nLet's get started with ya[.]
+
+#org @gText_ivseller_bust_4
+GUYS, HE'S REACHING FOR IT!\nGET HIM!
+
+#org @gText_ivseller_bust_5
+[BLUE]Really now?\nWe don't gotta do this, but fine.
+
+#org @gText_Thug2DefeatTxt
+Tsk, screw this! 
+
+#org @gText_Thug1DefeatTxt
+But[.] why though[.]
+
+#org @gText_ivseller_bust_6
+[BLUE]You damn scumbag[.]\nWe got a harmless business going on\nhere, and you ruin it. For what?\pBeing champion wasn't enough?\pFine. You get what you deserve.
+
+#org @gText_ThugBossDefeatTxt
+What the hell[.]\nBetrayed[.] by you?
+
+#org @gText_ivseller_bust_call
+[BLACK]You free yourself from the thugs,\nand use the Locater to alert Officer Jenny!\p[BLUE]Whatever, kiddo.\pWe were practically born in jail.  
 
 #org @gText_ivseller_Wtf
 Yo, I don't operate on eggs.
@@ -361,3 +409,5 @@ Are you looking to farm rare items?
 #org @gText_Celadon_Frisk2 
 Leading with a Pok\emon that has either\nSuper Luck, Frisk, or Compound-eyes\las their ability will boost the\lchance of wild Pok\emon holding\litems! 
 
+#org @gText_IVPerfecterPreparemsg_1
+Which stat should I perfect? 

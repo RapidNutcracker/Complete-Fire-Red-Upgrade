@@ -650,6 +650,13 @@ void CreateEgg(struct Pokemon *mon, u16 species) //The function used by the give
 	SetMonData(mon, MON_DATA_MET_LOCATION, &metLocation);
 	SetMonData(mon, MON_DATA_LANGUAGE, &language);
 	SetMonData(mon, MON_DATA_IS_EGG, &isEgg);
+	u8 maxIV = 31;
+	if (FlagGet(0x94F)){
+		mon->hiddenAbility = 1; 
+		SetMonData(mon, MON_DATA_ATK_IV, &maxIV);
+		SetMonData(mon, MON_DATA_SPATK_IV, &maxIV);
+		SetMonData(mon, MON_DATA_SPEED_IV, &maxIV);
+	}
 	
 }
 

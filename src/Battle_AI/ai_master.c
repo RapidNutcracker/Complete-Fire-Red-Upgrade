@@ -370,22 +370,22 @@ u8 BattleAI_ChooseMoveOrAction(void)
 	struct AIScript aiScriptData = {0}; //Do this now to save time during the processing
 	PopulateAIScriptStructWithBaseAttackerData(&aiScriptData, gBankAttacker);
 
-	struct BattlePokemon backupMonAtk, backupMonDef;
-	u8 backupAbilityAtk = ABILITY_NONE; u8 backupAbilityDef = ABILITY_NONE;
-	u16 backupSpeciesAtk = SPECIES_NONE; u16 backupSpeciesDef = SPECIES_NONE;
+	struct BattlePokemon backupMonAtk; // backupMonDef;
+	u8 backupAbilityAtk = ABILITY_NONE;  //u8 backupAbilityDef = ABILITY_NONE;
+	u16 backupSpeciesAtk = SPECIES_NONE;  //u16 backupSpeciesDef = SPECIES_NONE;
 
 	TryTempMegaEvolveBank(gBankAttacker, &backupMonAtk, &backupSpeciesAtk, &backupAbilityAtk);
 
 	if (IS_SINGLE_BATTLE)
 	{
-		TryTempMegaEvolveBank(gBankTarget, &backupMonDef, &backupSpeciesDef, &backupAbilityDef);
+		// TryTempMegaEvolveBank(gBankTarget, &backupMonDef, &backupSpeciesDef, &backupAbilityDef); stop predict mega evolve
 		ret = ChooseMoveOrAction_Singles(&aiScriptData);
 	}
 	else
 		ret = ChooseMoveOrAction_Doubles(&aiScriptData);
 
 	TryRevertTempMegaEvolveBank(gBankAttacker, &backupMonAtk, &backupSpeciesAtk, &backupAbilityAtk);
-	TryRevertTempMegaEvolveBank(gBankTarget, &backupMonDef, &backupSpeciesDef, &backupAbilityDef);
+	// TryRevertTempMegaEvolveBank(gBankTarget, &backupMonDef, &backupSpeciesDef, &backupAbilityDef);
 
 	gCurrentMove = savedCurrentMove;
 	return ret;
@@ -2618,17 +2618,17 @@ static void UpdateStrongestMoves(void)
 				if (bankAtk == bankDef || bankDef == PARTNER(bankAtk))
 					continue; //Don't bother calculating for these Pokemon. Never used
 
-				struct BattlePokemon backupMonDef;
-				u8 backupAbilityDef = ABILITY_NONE;
-				u16 backupSpeciesDef = SPECIES_NONE;
-				TryTempMegaEvolveBank(bankDef, &backupMonDef, &backupSpeciesDef, &backupAbilityDef);
+				//struct BattlePokemon backupMonDef;
+				//u8 backupAbilityDef = ABILITY_NONE;
+				//u16 backupSpeciesDef = SPECIES_NONE;
+				// TryTempMegaEvolveBank(bankDef, &backupMonDef, &backupSpeciesDef, &backupAbilityDef); removed to hopefully stop predicting mega evo
 
 				gNewBS->ai.strongestMove[bankAtk][bankDef] = CalcStrongestMove(bankAtk, bankDef, FALSE);
 				gNewBS->ai.canKnockOut[bankAtk][bankDef] = MoveKnocksOutXHits(gNewBS->ai.strongestMove[bankAtk][bankDef], bankAtk, bankDef, 1);
 				gNewBS->ai.can2HKO[bankAtk][bankDef] = (gNewBS->ai.canKnockOut[bankAtk][bankDef]) ? TRUE
 													  : MoveKnocksOutXHits(gNewBS->ai.strongestMove[bankAtk][bankDef], bankAtk, bankDef, 2); //If you can KO in 1 hit you can KO in 2
 
-				TryRevertTempMegaEvolveBank(bankDef, &backupMonDef, &backupSpeciesDef, &backupAbilityDef);
+				// TryRevertTempMegaEvolveBank(bankDef, &backupMonDef, &backupSpeciesDef, &backupAbilityDef);
 			}
 
 			TryRevertTempMegaEvolveBank(bankAtk, &backupMonAtk, &backupSpeciesAtk, &backupAbilityAtk);

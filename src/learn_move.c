@@ -10,12 +10,15 @@
 #include "../include/new/item.h"
 #include "../include/new/learn_move.h"
 #include "../include/new/move_reminder_data.h"
+#include "../include/new/util.h"
+
 /*
 learn_move.c
 	handles functions for pokemon trying to learn moves
 */
 
 extern const u8 gMoveNames[][MOVE_NAME_LENGTH + 1];
+extern const move_t gRandomizerBannedMoves[];
 
 #ifdef EXPAND_MOVESETS
 	extern const struct LevelUpMove* const gLevelUpLearnsets[];
@@ -228,12 +231,18 @@ u8 GetNumberOfRelearnableMoves(struct Pokemon* mon)
 #ifdef FLAG_POKEMON_LEARNSET_RANDOMIZER
 static move_t RandomizeMove(u16 move)
 {
-	move = (move * T1_READ_32(gSaveBlock2->playerTrainerId));
+	move = (move * (T1_READ_32(gSaveBlock2->playerTrainerId) + gClock.dayOfWeek) );
 	move %= NON_Z_MOVE_COUNT;
 
 	if (move == MOVE_NONE || move == MOVE_STRUGGLE)
 		return move + 1;
 
+	while (CheckTableForMove(move, gRandomizerBannedMoves))
+	{
+		move++;
+		move += gClock.dayOfWeek; 
+		move %= NON_Z_MOVE_COUNT;
+	} 
 	return move;
 }
 #endif

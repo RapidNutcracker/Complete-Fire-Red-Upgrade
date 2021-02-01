@@ -346,9 +346,9 @@ static bool8 AccuracyCalcHelper(u16 move, u8 bankDef)
 	//then stomp on a minimized target,
 	//then always hitting telekinesis except 0HKO moves,
 	//then 0 acc moves
-	if (((gStatuses3[bankDef] & STATUS3_ALWAYS_HITS) && gDisableStructs[bankDef].bankWithSureHit == gBankAttacker)
+	if (((gStatuses3[bankDef] & STATUS3_ALWAYS_HITS) && gDisableStructs[bankDef].bankWithSureHit == gBankAttacker) //added this else 
 	||   (ABILITY(gBankAttacker) == ABILITY_NOGUARD) || (ABILITY(bankDef) == ABILITY_NOGUARD)
-	|| (ABILITY(gBankAttacker) == ABILITY_LETHALPRECISION && (gNewBS->ResultFlags[bankDef] & MOVE_RESULT_SUPER_EFFECTIVE)) //added here 
+	// || (ABILITY(gBankAttacker) == ABILITY_LETHALPRECISION && (gNewBS->ResultFlags[bankDef] & MOVE_RESULT_SUPER_EFFECTIVE)) //added here 
 	||   (move == MOVE_TOXIC && IsOfType(gBankAttacker, TYPE_POISON))
 	||   (CheckTableForMove(move, gAlwaysHitWhenMinimizedMoves) && gStatuses3[bankDef] & STATUS3_MINIMIZED)
 	||  ((gStatuses3[bankDef] & STATUS3_TELEKINESIS) && gBattleMoves[move].effect != EFFECT_0HKO)
@@ -356,6 +356,12 @@ static bool8 AccuracyCalcHelper(u16 move, u8 bankDef)
 	{
 		//JumpIfMoveFailed(7, move);
 		doneStatus = TRUE;
+	}
+	else if(ABILITY(gBankAttacker) == ABILITY_LETHALPRECISION) //added here )
+	{
+		u8 moveResult = VisualTypeCalc(move, gBankAttacker, gBankTarget);
+		if(moveResult & MOVE_RESULT_SUPER_EFFECTIVE)
+			doneStatus = TRUE;
 	}
 	else if (WEATHER_HAS_EFFECT)
 	{

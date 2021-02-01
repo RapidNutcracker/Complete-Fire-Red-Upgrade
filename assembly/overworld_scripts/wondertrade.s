@@ -33,8 +33,10 @@ ReceiveEgg:
     waitfanfare
     waitkeypress 
     setflag 0x943
+    setflag 0x94F
     giveegg SPECIES_MUDKIP
     clearflag 0x943 
+    clearflag 0x94F
     setflag 0x99E
     msgbox gText_RandomEgg3 MSG_NORMAL 
     sound 0x58 
@@ -90,7 +92,9 @@ ReceiveEgg2:
     waitfanfare
     msgbox gText_RandomEgg_ReceivedEgg MSG_FACE
     setflag 0x943
+    setflag 0x94F
     giveegg SPECIES_FLOETTE
+    clearflag 0x94F
     clearflag 0x943 
     setflag 0x97E
     msgbox gText_RandomEgg3 MSG_FACE
@@ -132,12 +136,13 @@ EventScript_WonderTrade3:
 
 ReceiveEgg3:
     msgbox gText_RandomEgg2 MSG_FACE
-    @ fanfare 0x101
-    @ waitfanfare
+    fanfare 0x101
+    waitfanfare
     msgbox gText_RandomEgg_ReceivedEgg MSG_FACE
     setflag 0x943
+    setflag 0x94F
     giveegg SPECIES_GASTLY
-    @ msgbox gText_WhatPokemonItIs MSG_NORMAL 
+    clearflag 0x94F
     clearflag 0x943 
     setflag 0x97F
     msgbox gText_RandomEgg3 MSG_FACE 
@@ -154,15 +159,20 @@ ReceiveEgg3:
 
 .global EventScript_AskRandomizer
 EventScript_AskRandomizer: 
+    applymovement 0xFF StopInPlace
+    waitmovement 0x0
+    msgbox gText_PleaseStop MSG_KEEPOPEN
+    pause 0x10
+    closeonkeypress
     msgbox gText_DoYouWantRandomizer MSG_YESNO 
     compare LASTRESULT YES 
     if equal _call setrandom 
-    @ msgbox gText_DoYouWantAbility MSG_YESNO 
-    @ compare LASTRESULT YES 
-    @ if equal _call setability 
-    @ msgbox gText_DoYouWantLearnsets MSG_YESNO 
-    @ compare LASTRESULT YES 
-    @ if equal _call setlearnsets 
+    msgbox gText_DoYouWantAbility MSG_YESNO 
+    compare LASTRESULT YES 
+    if equal _call setability 
+    msgbox gText_DoYouWantLearnsets MSG_YESNO 
+    compare LASTRESULT YES 
+    if equal _call setlearnsets 
     setvar 0x5100 0x1
     release 
     end 
@@ -182,8 +192,14 @@ SetHard:
 
 setability:
     setflag 0x941
+    msgbox gText_RandomAbilitySet MSG_NORMAL
     return 
 
 setlearnsets:
     setflag 0x942
+    msgbox gText_RandomLearnsets MSG_NORMAL
     return 
+
+StopInPlace:
+    .byte look_left
+    .byte end_m

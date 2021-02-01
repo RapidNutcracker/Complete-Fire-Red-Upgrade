@@ -897,22 +897,6 @@ const u8 gFieldMoveBadgeRequirements[FIELD_MOVE_COUNT] =
 	[FIELD_MOVE_DIVE] = 0,
 };
 
-#else //For Pokemon Unbound
-
-const u8 gFieldMoveBadgeRequirements[FIELD_MOVE_COUNT] =
-{
-	[FIELD_MOVE_DEFOG] = 1,
-	[FIELD_MOVE_CUT] = 2,
-	[FIELD_MOVE_ROCK_SMASH] = 3,
-	[FIELD_MOVE_STRENGTH] = 4,
-	[FIELD_MOVE_SURF] = 5,
-	[FIELD_MOVE_ROCK_CLIMB] = 6,
-	[FIELD_MOVE_WATERFALL] = 7,
-	[FIELD_MOVE_DIVE] = 8,
-	[FIELD_MOVE_FLY] = 1,
-	[FIELD_MOVE_FLASH] = 0,
-};
-
 #endif
 
 void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
@@ -1061,12 +1045,12 @@ static bool8 SetUpFieldMove_Teleport(void)
 	if (gFollowerState.inProgress && !(gFollowerState.flags & FOLLOWER_FLAG_CAN_LEAVE_ROUTE))
 		return FALSE;
 
-	// if (Overworld_MapTypeAllowsTeleportAndFly(gMapHeader.mapType) == TRUE) changed this
-	// {
+	if (gMapHeader.mapType != 8) //8 is map_type_indoor, to prevent teleporting in e4 
+	{
 		gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;
 		gPostMenuFieldCallback = FieldCallback_Teleport;
 		return TRUE;
-	// }
+	}
 
 	return FALSE;
 }

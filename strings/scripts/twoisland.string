@@ -57,3 +57,42 @@ I wouldn't expect any less from you!
 
 #org @gText_TwoIslandWhitney11
 [RED]Miltank[.] your sacrifice won't be\nin vain[.]\pI'm so sorry[.]
+
+#org @gText_OfficerJenny_1
+[RED]Hi, there's no walk in visitations at\nthe moment, you need an appointment[.]
+
+#org @gText_OfficerJenny_2
+[RED]Wait a sec! You're the Champion!\nAren't you?
+
+#org @gText_OfficerJenny_2_2
+[RED]I so knew it!\pThis is exciting, we don't see folk\nlike you around here often. 
+
+#org @gText_OfficerJenny_CantFool
+[RED]Haha, you can't fool me!\nI know who you are, [GREEN][PLAYER]!
+
+#org @gText_OfficerJenny_3
+[RED]Look, we could use some help crackin\ndown on criminals. I'm sure you've\lhad your run in with some sketchy\lindividuals.\pWe really could use some help!\nWe'd reward you handsomely, of\ncourse. 
+
+#org @gText_OfficerJenny_3_2
+[RED]Help us catch some thugs, yeah? 
+
+#org @gText_OfficerJenny_3_3
+[RED]Great, I knew you'd be willing to help!\nHere's a tracker you can use to ping\lus if you witness any illegal activity.
+
+#org @gText_OfficerJenny_Cmon
+[RED]C'mon now, don't be like that!
+
+#org @gText_OfficerJenny_4
+[RED]Go do your thang!\nWe appreciate you!
+
+#org @gText_TwoIslandJail_NPC_1
+I'm waiting to see my son.\nHis crime? Oh boy[.]\pHe brought a Stall team to the Elite\nFour[.]
+
+#org @gText_TwoIslandJail_NPC_2
+I don't think I'd ever forgive him\nfor such a treacherous crime, but he\lis still my son. So, I'm here.
+
+#org @gText_TwoIslandJail_Sign
+Two Island Jail\nOpress those who deserve it least! 
+
+#org @gText_TwoIslandPC_NPC_1
+Have you visited the Two Island jail\nalready?\pOfficer Jenny's pretty damn annoying.\pI hear it's easy to break into,\nfor what it's worth.

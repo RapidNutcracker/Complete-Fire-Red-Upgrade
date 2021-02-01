@@ -781,14 +781,14 @@ static const struct WildPokemonInfo gPowerPlant_LandMonsInfoNight = {7, gPowerPl
 
 static const struct WildPokemon gCeruleanCave1_LandMonsNight[] = 
 {
-	// {68, 71, SPECIES_PARASECT},
-	// {68, 71, SPECIES_GOLBAT},
-	// {67, 67, SPECIES_CONKELDURR},
-	// {67, 68, SPECIES_CONKELDURR},
-	{68, 71, SPECIES_REGIELEKI},
-	{68, 71, SPECIES_REGIDRAGO},
-	{67, 67, SPECIES_CALYREX_SHADOW},
-	{67, 68, SPECIES_CALYREX_SHADOW},
+	{68, 71, SPECIES_PARASECT},
+	{68, 71, SPECIES_GOLBAT},
+	{67, 67, SPECIES_CONKELDURR},
+	{67, 68, SPECIES_CONKELDURR},
+	// {68, 71, SPECIES_REGIELEKI},
+	// {68, 71, SPECIES_REGIDRAGO},
+	// {67, 67, SPECIES_CALYREX_SHADOW},
+	// {67, 68, SPECIES_CALYREX_SHADOW},
 	{69, 70, SPECIES_MAGNETON},
 	{69, 70, SPECIES_MAGNETON},
 	{69, 72, SPECIES_SEISMITOAD},
@@ -815,18 +815,6 @@ static const struct WildPokemon gCeruleanCave2_LandMonsNight[] =
 	{64, 64, SPECIES_DURALUDON},
 	{68, 68, SPECIES_TYPE_NULL},
 	{68, 68, SPECIES_TYPE_NULL},
-	// {68, 71, SPECIES_STONJOURNER},
-	// {68, 71, SPECIES_INDEEDEE},
-	// {67, 67, SPECIES_INDEEDEE_FEMALE},
-	// {67, 68, SPECIES_INDEEDEE_FEMALE},
-	// {69, 70, SPECIES_CUFANT},
-	// {69, 70, SPECIES_CUFANT},
-	// {69, 72, SPECIES_SLOWPOKE_G},
-	// {66, 69, SPECIES_SLOWPOKE_G},
-	// {64, 64, SPECIES_DITTO},
-	// {64, 64, SPECIES_DITTO},
-	// {66, 66, SPECIES_TYPE_NULL},
-	// {66, 66, SPECIES_TYPE_NULL},
 };
 
 static const struct WildPokemonInfo gCeruleanCave2_LandMonsInfoNight = {7, gCeruleanCave2_LandMonsNight};

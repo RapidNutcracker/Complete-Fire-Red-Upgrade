@@ -125,14 +125,6 @@ EventScript_Route20_FocusBlast:
     release
     end
 
-.global EventScript_SilphCo_Wisp
-EventScript_SilphCo_Wisp:
-    hidesprite 0x800F
-    giveitem ITEM_TM61 0x1 MSG_FIND
-    setflag 0x94F
-    release
-    end
-
 .global EventScript_Route13_Teleport @Now Route 3 
 EventScript_Route13_Teleport:
     hidesprite 0x800F
@@ -536,6 +528,14 @@ EventScript_RockTunnel_MentalHerb:
     release
     end
 
+
+.global EventScript_Vermilion_Copperajite
+EventScript_Vermilion_Copperajite:
+    hidesprite 0x800F
+    giveitem ITEM_COPPERAJITE 0x1 MSG_FIND
+    setflag 0x1022
+    release
+    end
 
 .global EventScript_SilphCo_HP
 EventScript_SilphCo_HP:

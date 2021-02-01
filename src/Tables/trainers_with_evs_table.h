@@ -1333,7 +1333,7 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 		.ability = Ability_Hidden,
 	},
 	[131] =
-	{ //Bulky Special Attacker - Ability_Hidden
+	{ //Bulky Physical Attacker - Ability_Hidden
 		.nature = NATURE_BRAVE,
 		.ivs = 31,
 		.hpEv = 252,
@@ -1392,11 +1392,11 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 		.hpEv = 4,
 		.atkEv = 100,
 		.spAtkEv = 100,
-		.spdEv = 100,
+		.spdEv = 40,
 		.ball = TRAINER_EV_CLASS_BALL,
-		.ability = Ability_Random_1_2,
+		.ability = Ability_Hidden,
 	},
-	[137] = //erika serperior 
+	[137] = //erika serperior , lorelei abomasnow
 	{
 		.nature = NATURE_TIMID,
 		.hiddenPower = TYPE_FIRE,
@@ -1413,7 +1413,7 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 		.hiddenPower = TYPE_FIRE,
 		.ivs = 31,
 		.hpEv = 252,
-		.spdEv = 6,
+		.defEv = 6,
 		.spAtkEv = 252,
 		.ball = TRAINER_EV_CLASS_BALL,
 		.ability = Ability_Hidden,

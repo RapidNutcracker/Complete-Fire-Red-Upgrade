@@ -670,6 +670,7 @@ EventScript_chuck_Start:
 	end
 
 EventScript_chuck_Battle:
+	special 0x0
 	setflag 0x915
 	setflag 0x90E
 	trainerbattle3 0x3 0x13D 0x0 gText_chuck_Defeat

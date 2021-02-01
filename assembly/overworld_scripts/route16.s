@@ -45,16 +45,16 @@ EventScript_Route16_PsychicGirl:
     if 0x0 _goto FightJotard
     checkflag 0x82C
     if 0x0 _goto FightLeague
-    msgbox gText_Route16_PsychicGirlReady MSG_FACE @if we got here that means we are ready for postgame!
-    giveitem ITEM_TRI_PASS 0x1 MSG_OBTAIN
-    @ giveitem ITEM_RAINBOW_PASS 0x1 MSG_OBTAIN
-    lock
-    faceplayer
-    setvar 0x4076 0x1 @allows you to go to Seviis
-    @ setvar 0x4076 0x5
-    setflag 0x846
-    copyvar 0x8012 0x8013
-    goto WorthyChallenger
+    @ msgbox gText_Route16_PsychicGirlReady MSG_FACE @if we got here that means we are ready for postgame!
+    @ giveitem ITEM_TRI_PASS 0x1 MSG_OBTAIN
+    @ lock
+    @ faceplayer
+    @ setvar 0x4076 0x1 @allows you to go to Seviis
+    @ setvar 0x4071 0x4
+    @ setflag 0x846
+    @ copyvar 0x8012 0x8013
+    @ goto WorthyChallenger
+    goto NoMore
     end 
 
 FightBugsy:
@@ -124,6 +124,11 @@ FightLeague:
 
 WorthyChallenger:
     msgbox gText_Route16_PsychicGirlWorthy MSG_FACE
+    release
+    end
+
+NoMore:
+    msgbox gText_Route16_PsychicGirlNoMore MSG_FACE
     release
     end
 

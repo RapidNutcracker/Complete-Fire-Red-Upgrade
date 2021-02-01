@@ -120,32 +120,9 @@ void BattleBeginFirstTurn(void)
 	int i, j, k;
 	u8* state = &(gBattleStruct->switchInAbilitiesCounter);
 	u8* bank = &(gBattleStruct->switchInItemsCounter);
-	// if(gBattleScripting.battleStyle == OPTIONS_BATTLE_STYLE_SHIFT){
-	// 	FlagSet(FLAG_EXPERT_DIFFICULTY); 
-	// }
 	if (gBattleTypeFlags & BATTLE_TYPE_TRAINER){
-		if (!ShouldTrainerRandomize())
-			gBattleScripting.battleStyle = OPTIONS_BATTLE_STYLE_SET; //added to force battle style set
-		else
-			gBattleScripting.battleStyle = OPTIONS_BATTLE_STYLE_SHIFT;
+		gBattleScripting.battleStyle = OPTIONS_BATTLE_STYLE_SET; //added to force battle style set
 	}
-	// if (gBattleTypeFlags & BATTLE_TYPE_TRAINER){
-
-	// 	u8 count = CalculatePlayerPartyCount();
-	// 	//If any pokemon in party has amulet coin double prize money
-	// 	for (i = 0; i < count; ++i)
-	// 	{
-	// 		if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG, NULL))
-	// 		{
-	// 			u8 item = GetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, NULL);
-	// 			if (ItemId_GetHoldEffect(item) == ITEM_EFFECT_DOUBLE_PRIZE)
-	// 			{
-	// 				gBattleStruct->moneyMultiplier *= 2;
-	// 				break;
-	// 			}
-	// 		}
-	// 	}
-	// }
 	if (!gBattleExecBuffer) //Inlclude Safari Check Here?
 	{
 		switch(*state) {

@@ -141,9 +141,9 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			DECREASE_VIABILITY(20);
 			return viability;
 		}
-		else if(MoveInMoveset(MOVE_WIDEGUARD, bankAtk))
+		else if(MoveInMoveset(MOVE_WIDEGUARD, bankAtk) && IS_DOUBLE_BATTLE)
 		{
-			DECREASE_VIABILITY(5);
+			DECREASE_VIABILITY(20);
 			return viability;
 		}
 			// added here
@@ -728,10 +728,14 @@ MOVESCR_CHECK_0:
 						if (STAT_STAGE(bankAtk, STAT_STAGE_ATK) >= STAT_STAGE_MAX
 						&& (STAT_STAGE(bankAtk, STAT_STAGE_ACC) >= STAT_STAGE_MAX || !PhysicalMoveInMoveset(bankAtk)))
 							DECREASE_VIABILITY(10);
+						else if(data->atkStatus1 & STATUS_TOXIC_POISON)
+							DECREASE_VIABILITY(10);
 						break;
 
 					default:
 						if (STAT_STAGE(bankAtk, STAT_STAGE_ATK) >= STAT_STAGE_MAX || !PhysicalMoveInMoveset(bankAtk))
+							DECREASE_VIABILITY(10);
+						else if(data->atkStatus1 & STATUS_TOXIC_POISON)
 							DECREASE_VIABILITY(10);
 				}
 			}
@@ -787,6 +791,8 @@ MOVESCR_CHECK_0:
 			if (data->atkAbility == ABILITY_CONTRARY || !STAT_CAN_RISE(bankAtk, STAT_STAGE_SPEED))
 				DECREASE_VIABILITY(10);
 			else if(IsTrickRoomActive())
+				DECREASE_VIABILITY(10);
+			else if(data->atkStatus1 & STATUS_TOXIC_POISON)
 				DECREASE_VIABILITY(10);
 			break;
 
@@ -844,6 +850,8 @@ MOVESCR_CHECK_0:
 				default:
 					if (data->atkAbility == ABILITY_CONTRARY || !STAT_CAN_RISE(bankAtk, STAT_STAGE_SPATK) || !SpecialMoveInMoveset(bankAtk))
 						DECREASE_VIABILITY(10);
+				else if(data->atkStatus1 & STATUS_TOXIC_POISON)
+					DECREASE_VIABILITY(10);
 			}
 			break;
 
@@ -2252,6 +2260,8 @@ MOVESCR_CHECK_0:
 							DECREASE_VIABILITY(10);
 						else if (IsTrickRoomActive())
 							DECREASE_VIABILITY(10);
+						else if(data->atkStatus1 & STATUS_TOXIC_POISON)
+							DECREASE_VIABILITY(10);
 						break; 
 					case MOVE_GEOMANCY:
 						if (STAT_STAGE(bankAtk, STAT_STAGE_SPEED) >= STAT_STAGE_MAX
@@ -2265,6 +2275,8 @@ MOVESCR_CHECK_0:
 					default:
 						if ((STAT_STAGE(bankAtk, STAT_STAGE_SPATK) >= STAT_STAGE_MAX || !SpecialMoveInMoveset(bankAtk))
 						&&  STAT_STAGE(bankAtk, STAT_STAGE_SPDEF) >= STAT_STAGE_MAX)
+							DECREASE_VIABILITY(10);
+						else if(data->atkStatus1 & STATUS_TOXIC_POISON)
 							DECREASE_VIABILITY(10);
 				}
 			}
@@ -2282,6 +2294,8 @@ MOVESCR_CHECK_0:
 						DECREASE_VIABILITY(10);
 					else if (IsTrickRoomActive())
 						DECREASE_VIABILITY(10);
+					else if(data->atkStatus1 & STATUS_TOXIC_POISON)
+						DECREASE_VIABILITY(10);
 					break;
 
 				default: //Dragon Dance + Shift Gear
@@ -2295,6 +2309,8 @@ MOVESCR_CHECK_0:
 						else if(move == MOVE_DRAGONDANCE && data->defAbility == ABILITY_DANCER)
 							DECREASE_VIABILITY(10);
 						else if (IsTrickRoomActive())
+							DECREASE_VIABILITY(10);
+						else if(data->atkStatus1 & STATUS_TOXIC_POISON)
 							DECREASE_VIABILITY(10);
 					}
 			}

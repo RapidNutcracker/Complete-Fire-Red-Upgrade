@@ -68,13 +68,19 @@ EventScript_lorelei_Option2:
 
 EventScript_lorelei_Rematchbattle:
 	setflag 0x915
-	random 0x3
+	setflag 0x90E
+	random 0x2
 	compare 0x800D 0x0
-	if 0x1 _goto EventScript_lorelei_Option4
+	if 0x1 _goto EventScript_lorelei_Option1
 	compare 0x800D 0x1
-	if 0x1 _goto EventScript_lorelei_Option5
-	compare 0x800D 0x2
-	if 0x1 _goto EventScript_lorelei_Option6
+	if 0x1 _goto EventScript_lorelei_Option2
+	@ random 0x3
+	@ compare 0x800D 0x0
+	@ if 0x1 _goto EventScript_lorelei_Option4
+	@ compare 0x800D 0x1
+	@if 0x1 _goto EventScript_lorelei_Option5
+	@ compare 0x800D 0x2
+	@ if 0x1 _goto EventScript_lorelei_Option6
 	end 
 
 EventScript_lorelei_Option4:
@@ -192,13 +198,15 @@ EventScript_bruno_Option2:
 
 EventScript_bruno_Rematch:
 	setflag 0x915
-	random 0x3
-	compare 0x800D 0x0
-	if 0x1 _goto EventScript_bruno_Option4
-	compare 0x800D 0x1
-	if 0x1 _goto EventScript_bruno_Option5
-	compare 0x800D 0x2
-	if 0x1 _goto EventScript_bruno_Option6
+	setflag 0x90E
+	goto EventScript_bruno_Firstbattle
+	@ random 0x3
+	@ compare 0x800D 0x0
+	@ if 0x1 _goto EventScript_bruno_Option4
+	@ compare 0x800D 0x1
+	@ if 0x1 _goto EventScript_bruno_Option5
+	@ compare 0x800D 0x2
+	@ if 0x1 _goto EventScript_bruno_Option6
 	end
 
 EventScript_bruno_Option4:
@@ -360,13 +368,15 @@ EventScript_agatha_Option2:
 	@---------------
 EventScript_agatha_Rematch:
 	setflag 0x915
-	random 0x3
-	compare 0x800D 0x0
-	if 0x1 _goto EventScript_agatha_Option4
-	compare 0x800D 0x1
-	if 0x1 _goto EventScript_agatha_Option5
-	compare 0x800D 0x2
-	if 0x1 _goto EventScript_agatha_Option6
+	setflag 0x90E
+	goto EventScript_agatha_Firstbattle
+	@ random 0x3
+	@ compare 0x800D 0x0
+	@ if 0x1 _goto EventScript_agatha_Option4
+	@ compare 0x800D 0x1
+	@ if 0x1 _goto EventScript_agatha_Option5
+	@ compare 0x800D 0x2
+	@ if 0x1 _goto EventScript_agatha_Option6
 	end
 
 EventScript_agatha_Option4:
@@ -488,13 +498,15 @@ EventScript_lance_Option2:
 	@---------------
 EventScript_lance_Rematch:
 	setflag 0x915
-	random 0x3
-	compare 0x800D 0x0
-	if 0x1 _goto EventScript_lance_Option4
-	compare 0x800D 0x1
-	if 0x1 _goto EventScript_lance_Option5
-	compare 0x800D 0x2
-	if 0x1 _goto EventScript_lance_Option6
+	setflag 0x90E 
+	goto EventScript_lance_Firstbattle
+	@ random 0x3
+	@ compare 0x800D 0x0
+	@ if 0x1 _goto EventScript_lance_Option4
+	@ compare 0x800D 0x1
+	@ if 0x1 _goto EventScript_lance_Option5
+	@ compare 0x800D 0x2
+	@ if 0x1 _goto EventScript_lance_Option6
 	end
 
 EventScript_lance_Option4:
@@ -571,3 +583,14 @@ EventScript_E4LanceInfo_Start:
 	msgbox gText_E4LanceInfo MSG_FACE 
 	release 
 	end 
+
+.global EventScript_TileProcScale
+EventScript_TileProcScale:
+	checkflag 0x82C
+	if 0x1 _call SetScaleFlag
+	release
+	end
+
+SetScaleFlag:
+	setflag 0x90E
+	return

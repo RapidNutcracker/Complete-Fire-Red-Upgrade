@@ -2586,7 +2586,7 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 				&& (!AbilityBattleEffects(ABILITYEFFECT_CHECK_OTHER_SIDE, bankDef, ABILITY_ASONESHADOW, 0, 0) && data->atkAbility != ABILITY_ASONESHADOW))
 			{
 				if ((data->resultFlags & MOVE_RESULT_SUPER_EFFECTIVE && data->defItemQuality == data->moveType)
-				|| (data->defItemQuality == TYPE_NORMAL && data->moveType == TYPE_NORMAL)) //Chilan Berry
+				|| (data->defItemQuality == TYPE_NORMAL && data->moveType == TYPE_NORMAL && data->moveSplit != SPLIT_STATUS)) //Chilan Berry, fixed so it doesnt proc on protect
 				{
 					if (data->defAbility == ABILITY_RIPEN)
 						damage /= 3;
@@ -3308,6 +3308,11 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 		//1.25x Boost
 			if (data->resultFlags & MOVE_RESULT_SUPER_EFFECTIVE)
 				power = (power * 125) / 100;
+			break;
+
+		case ABILITY_LETHALPRECISION:
+			if (data->resultFlags & MOVE_RESULT_SUPER_EFFECTIVE)
+				power = (power * 11) / 10;
 			break;
 
 		case ABILITY_STAKEOUT:

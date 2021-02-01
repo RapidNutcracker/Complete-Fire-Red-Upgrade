@@ -16940,7 +16940,7 @@ METEOR_BEAM_ATTACK:
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
 ANIM_SHELL_SIDE_ARM:
-	goto 0x81cf1e2 @MOVE_SLUDGEBOMB
+	goto ANIM_POISONJAB @MOVE_SLUDGEBOMB
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

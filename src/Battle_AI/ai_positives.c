@@ -1731,8 +1731,8 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 					case ITEM_EFFECT_STICKY_BARB:
 						break;
 
-					default:
-						INCREASE_VIABILITY(3); //Increase past strongest move
+					// default: tried removing this so that ai doesnt always click knock off
+					// 	INCREASE_VIABILITY(3); //Increase past strongest move
 				}
 			}
 			break;

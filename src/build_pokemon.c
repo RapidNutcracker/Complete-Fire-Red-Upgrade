@@ -804,8 +804,8 @@ static u8 CreateNPCTrainerParty(struct Pokemon* const party, const u16 trainerId
 							break;
 
 						case TYPE_GRASS:
-							party[i].hpIV = 30;			
-							party[i].attackIV = 31;			
+							party[i].hpIV = 31;			
+							party[i].attackIV = 30;			
 							party[i].defenseIV = 31;			
 							party[i].speedIV = 31;		
 							party[i].spAttackIV = 30;		
@@ -3589,15 +3589,12 @@ bool8 ShouldTrainerRandomize()
 {
 	u16 trainerId = gTrainerBattleOpponent_A; //added 
 	u16 trainerClass = gTrainers[trainerId].trainerClass; //added 
-	// if(gBattleTypeFlags & (BATTLE_TYPE_TRAINER)){
-	// 	return FALSE; 
-	// }
 	if(!(gBattleTypeFlags & (BATTLE_TYPE_TRAINER)) ){
 		return TRUE;
 	}
 
 	if (trainerClass == CLASS_BOSS || trainerClass == CLASS_CHAMPION || trainerClass == CLASS_RUIN_MANIAC_RS || trainerClass == CLASS_RIVAL_2 || trainerClass == CLASS_AQUA_LEADER || trainerClass == CLASS_TEAM_AQUA || trainerClass == CLASS_AROMA_LADY_RS || trainerClass == CLASS_PKMN_TRAINER_2 || trainerClass == CLASS_LEADER || trainerClass == CLASS_ELITE_4 
-	    || trainerClass == CLASS_MAGMA_ADMIN || trainerClass == CLASS_MAGMA_LEADER)
+	    || trainerClass == CLASS_MAGMA_ADMIN || trainerClass == CLASS_MAGMA_LEADER || trainerClass == CLASS_BUG_MANIAC)
 	/*|| trainerClass == CLASS_RIVAL_2 || trainerClass == CLASS_RIVAL || trainerClass == CLASS_PKMN_TRAINER_1
     || trainerClass == CLASS_AQUA_LEADER || trainerClass ==  CLASS_TEAM_AQUA || trainerClass == CLASS_AROMA_LADY_RS 
 	|| trainerClass == CLASS_RUIN_MANIAC_RS){ */
@@ -3620,6 +3617,8 @@ void TryRandomizeSpecies(unusedArg u16* species)
         u32 prevNewSpecies = SPECIES_NONE; //Helps prevent infinite loop
         u32 offset = 1; //Used in case of an infinite loop
 		u32 checkHowMany = 0; 
+		id = id + (u32) gClock.dayOfWeek; 
+
 		do
         {
             newSpecies *= id;
@@ -3639,22 +3638,16 @@ void TryRandomizeSpecies(unusedArg u16* species)
 		} while (!CheckTableForSpecies(newSpecies, gBadRandomizerList));
 		
 		*species = newSpecies;
-		// *species = (u16) newSpecies;
 	} 
 	else if (FlagGet(FLAG_POKEMON_RANDOMIZER) && !FlagGet(FLAG_BATTLE_FACILITY) && *species != SPECIES_NONE && *species < NUM_SPECIES && ShouldTrainerRandomize()) //&& !(gBattleTypeFlags & BATTLE_TYPE_TRAINER
 	{
-		// u32 id = MathMax(1, T1_READ_32(gSaveBlock2->playerTrainerId)); //0 id would mean every Pokemon would crash the game
-		// u32 newSpecies = *species;
-
-		// do
-		// {
-		// 	newSpecies *= id;
-		// 	newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
 		u32 id = MathMax(1, T1_READ_32(gSaveBlock2->playerTrainerId)); //0 id would mean every Pokemon would crash the game
         u32 newSpecies = *species;
         u32 prevNewSpecies = SPECIES_NONE; //Helps prevent infinite loop
         u32 offset = 1; //Used in case of an infinite loop
 		u32 checkHowMany = 0; 
+		id = id + (u32) gClock.dayOfWeek; 
+		
         do
         {
             newSpecies *= id;
@@ -3669,14 +3662,11 @@ void TryRandomizeSpecies(unusedArg u16* species)
                 newSpecies = (newSpecies + offset++) * id; //Offset the new species by an increasing number to fix problem
                 newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
             }
-			// if (checkHowMany >= 20)
-			// 	newSpecies = SPECIES_DITTO;
 
             prevNewSpecies = newSpecies; //Record the current attempted species in case of infinite loop
 		} while (CheckTableForSpecies(newSpecies, gRandomizerSpeciesBanList));
 		
 		*species = newSpecies;
-		// *species = (u16) newSpecies;
 	}
 	else if (FlagGet(FLAG_WONDER_TRADE) && !FlagGet(FLAG_BATTLE_FACILITY) && *species != SPECIES_NONE && *species < NUM_SPECIES)
 	{
@@ -3702,11 +3692,10 @@ void TryRandomizeSpecies(unusedArg u16* species)
 			// if (checkHowMany >= 20)
 			// 	newSpecies = SPECIES_DITTO;
 
-            prevNewSpecies = newSpecies; //Record the current attempted species in case of infinite loop
+            prevNewSpecies = newSpecies; 
 		} while (!CheckTableForSpecies(newSpecies, gWonderTradeList));
 		
 		*species = newSpecies;
-		// *species = (u16) newSpecies;
 	} 
 	#endif 
 }
@@ -4004,6 +3993,7 @@ u8 TryRandomizeAbility(u8 ability, unusedArg u16 species)
 	if (FlagGet(FLAG_ABILITY_RANDOMIZER) && !FlagGet(FLAG_BATTLE_FACILITY))
 	{
 		u32 id = MathMax(1, T1_READ_32(gSaveBlock2->playerTrainerId)); //0 id would mean Pokemon wouldn't have ability
+		id = id + (u32) gClock.dayOfWeek; 
 
 		do
 		{

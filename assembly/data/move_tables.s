@@ -64,6 +64,7 @@ move_tables.s
 .global gKickingMoves
 .global gSwordMoves
 .global gMovesWithQuietBGM
+.global gRandomizerBannedMoves
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -273,6 +274,20 @@ gMetronomeBannedMoves:
 .hword MOVE_STEELBEAM
 .hword MOVE_DARKVOID
 .hword MOVE_COURTCHANGE 
+.hword MOVE_TABLES_TERMIN
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+gRandomizerBannedMoves:
+.hword MOVE_TRANSFORM
+.hword MOVE_STRUGGLE
+.hword MOVE_SKETCH
+.hword MOVE_DECORATE
+.hword MOVE_COURTCHANGE 
+.hword MOVE_JUNGLEHEALING
+.hword MOVE_CORROSIVEGAS
+.hword MOVE_COACHING
+.hword MOVE_BURNINGJEALOUSY
+.hword MOVE_TEATIME
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

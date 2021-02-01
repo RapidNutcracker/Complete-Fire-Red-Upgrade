@@ -161,15 +161,18 @@ EventScript_ivseller_Start:
 	textcolor 0x0
 	@ checkflag 0x82C
 	@ if equal _goto NowChampion
+	@ checkitem ITEM_POWDER_JAR 0x1
+	@ compare 0x800D 0x1
+	@ if 0x4 _goto EventScript_IvSeller_bustEm
 	showmoney 0x0 0x00 0x00
 	msgbox gText_ivseller_1 0x5
 	compare LASTRESULT 0x0
 	if 0x1 _call EventScript_ivseller_Cancel
-	checkmoney 0x55730 0x0
-	compare 0x800D 0x1
-	if 0x0 _goto EventScript_ivseller_Poor @means player doesn@t ahve enuf money
 	msgbox gText_ivseller_3 0x6 @who wants it?
 	hidemoney 0x0 0x0
+	goto PickPokemon
+
+PickPokemon:
 	setvar 0x8003 0x0
 	special 0x9F @choose from party
 	waitstate
@@ -178,29 +181,160 @@ EventScript_ivseller_Start:
 	special2 LASTRESULT 0x147 @check if it@s an egg
 	compare LASTRESULT 0x19C
 	if 0x1 _goto EventScript_ivseller_Thatsegg
+	showmoney 0x35 0x00
 	special 0x7C @puts the selected mon in party into buffer
+	goto ChooseStat
+	end
+
+ChooseStat:
+	setvar 0x8006 0x0 @first item
+	loadpointer 0x0 gText_EVSubtracter_HP
+	special 0x25
+	setvar 0x8006 0x1 @second item
+	loadpointer 0x0 gText_EVSubtracter_Attack
+	special 0x25
+	setvar 0x8006 0x2 @third item
+	loadpointer 0x0 gText_EVSubtracter_Defense
+	special 0x25
+	setvar 0x8006 0x3 @fourth item
+	loadpointer 0x0 gText_EVSubtracter_SpA
+	special 0x25
+	setvar 0x8006 0x4 @fifth item
+	loadpointer 0x0 gText_EVSubtracter_SpDef
+	special 0x25
+	setvar 0x8006 0x5 @sixth item
+	loadpointer 0x0 gText_EVSubtracter_Speed
+	special 0x25
+	setvar 0x8006 0x6 @7th item
+	loadpointer 0x0 gText_EVSubtracter_AllStats
+	special 0x25
+	preparemsg gText_IVPerfecterPreparemsg_1
+	waitmsg
+	multichoice 0x0 0x0 0x25 0x0
+	compare LASTRESULT 0x0
+	if 0x1 _goto PerfectHP
+	compare LASTRESULT 0x1
+	if 0x1 _goto PerfectAtk
+	compare LASTRESULT 0x2
+	if 0x1 _goto PerfectDef
+	compare LASTRESULT 0x3
+	if 0x1 _goto PerfectSpA
+	compare LASTRESULT 0x4
+	if 0x1 _goto PerfectSpDef
+	compare LASTRESULT 0x5
+	if 0x1 _goto PerfectSpeed
+	compare LASTRESULT 0x6
+	if 0x1 _goto PerfectAll
+	goto EventScript_ivseller_Cancel
+	end
+
+CheckMoney:
+	checkmoney 0x11170 0x0
+	compare 0x800D 0x1 
+	if 0x0 _goto EventScript_ivseller_Poor
+	return
+
+PerfectHP:
+	call CheckMoney
+	msgbox gText_ivseller_4_1 MSG_YESNO
+	compare LASTRESULT NO 
+	if equal _goto ChooseStat
+	setvar 0x8005 0x0
+	setvar 0x8006 0x1F @31
+	special 0x10
+	goto RemoveEnd
+
+PerfectAtk:
+	call CheckMoney
+	msgbox gText_ivseller_4_2 MSG_YESNO
+	compare LASTRESULT NO 
+	if equal _goto ChooseStat
+	setvar 0x8005 0x1
+	setvar 0x8006 0x1F @31
+	special 0x10
+	goto RemoveEnd
+
+PerfectDef:
+	call CheckMoney
+	msgbox gText_ivseller_4_3 MSG_YESNO
+	compare LASTRESULT NO 
+	if equal _goto ChooseStat
+	setvar 0x8005 0x2
+	setvar 0x8006 0x1F @31
+	special 0x10
+	goto RemoveEnd
+
+PerfectSpA:
+	call CheckMoney
+	msgbox gText_ivseller_4_4 MSG_YESNO
+	compare LASTRESULT NO 
+	if equal _goto ChooseStat
+	setvar 0x8005 0x4
+	setvar 0x8006 0x1F @31
+	special 0x10
+	goto RemoveEnd
+
+PerfectSpDef:
+	call CheckMoney
+	msgbox gText_ivseller_4_5 MSG_YESNO
+	compare LASTRESULT NO 
+	if equal _goto ChooseStat
+	setvar 0x8005 0x5
+	setvar 0x8006 0x1F @31
+	special 0x10
+	goto RemoveEnd
+
+PerfectSpeed:
+	call CheckMoney
+	msgbox gText_ivseller_4_6 MSG_YESNO
+	compare LASTRESULT NO 
+	if equal _goto ChooseStat
+	setvar 0x8005 0x3
+	setvar 0x8006 0x1F @31
+	special 0x10
+	goto RemoveEnd
+
+RemoveEnd:
+	removemoney 0x11170 0x00
+	sound 0x58
+	msgbox gText_ivseller_Wait 0x6
+	updatemoney 0x35 0x00 0x00
+	msgbox gText_ivseller_Done 0x6
+	checksound
+	hidemoney 0x35 0x0
+	msgbox gText_ivseller_Grind 0x6
+	release
+	end
+
+PerfectAll: 
+	checkmoney 0x55730 0x0
+	compare 0x800D 0x1
+	if 0x0 _goto EventScript_ivseller_Poor @means player doesn@t ahve enuf money
 	msgbox gText_ivseller_4 0x6
-	showmoney 0x0 0x00 0x00
 	msgbox gText_ivseller_5 0x5
 	compare LASTRESULT 0x0
-	if 0x1 _call EventScript_ivseller_Cancel
+	if 0x1 _call EventScript_ivseller_Cancel2
 	removemoney 0x55730 0x00
 	call EventScript_ivseller_Giveivs
 	sound 0x58
 	msgbox gText_ivseller_Wait 0x6
-	updatemoney 0x00 0x00 0x00
+	updatemoney 0x35 0x00 0x00
 	msgbox gText_ivseller_Done 0x6
 	checksound
-	hidemoney 0x0 0x0
+	hidemoney 0x35 0x0
 	msgbox gText_ivseller_Grind 0x6
 	release
 	end
 
 EventScript_ivseller_Cancel:
 	hidemoney 0x0 0x0
-	msgbox gText_ivseller_Op 0x6
-	release
+    goto EventScript_ivseller_Cancelnohide
 	end
+
+EventScript_ivseller_Cancel2:
+	hidemoney 0x35 0x0
+	goto EventScript_ivseller_Cancelnohide
+	end 
 
 EventScript_ivseller_Cancelnohide:
 	msgbox gText_ivseller_Op 0x6
@@ -240,6 +374,65 @@ EventScript_ivseller_Giveivs:
 	setvar 0x8006 0x1F
 	special 0x10
 	return
+
+EventScript_IvSeller_bustEm:
+	msgbox gText_ivseller_bust_1 MSG_KEEPOPEN
+	pause 0x5
+	closeonkeypress
+	sound 0x15 
+	applymovement 0x4 Surprised
+	applymovement 0x3 Surprised
+	waitmovement 0x0
+	checksound
+	msgbox gText_ivseller_bust_2 MSG_YESNO
+	compare LASTRESULT NO
+	if equal _goto GoBack
+	msgbox gText_ivseller_bust_4 MSG_NORMAL
+	getplayerpos 0x5109 0x510A
+	applymovement 0x4 TalkOnRightThug4
+	applymovement 0x3 TalkOnRightThug3
+	applymovement 0xFF LookRight
+	waitmovement 0x0 
+	msgbox gText_ivseller_bust_5 MSG_NORMAL 
+	special 0x0
+	setflag 0x90E
+	setflag 0x909 @Set up two opponent battle
+	loadpointer 0x0 gText_Thug2DefeatTxt
+	trainerbattle3 0x3 0x15 0x0 gText_Thug1DefeatTxt
+	applymovement 0xFF LookUp
+	waitmovement 0x0
+	msgbox gText_ivseller_bust_6 MSG_NORMAL
+	trainerbattle3 0x3 0x17 0x0 gText_ThugBossDefeatTxt
+	msgbox gText_ivseller_bust_call MSG_NORMAL
+	release
+	end
+
+GoBack:
+	msgbox gText_ivseller_bust_3 MSG_NORMAL
+	goto PickPokemon
+	end
+
+TalkOnRightThug4:
+	.byte run_up
+	.byte run_up
+	.byte run_left
+	.byte run_left
+	.byte end_m
+
+TalkOnRightThug3:
+	.byte run_up
+	.byte run_up
+	.byte run_left
+	.byte end_m
+
+LookRight:
+	.byte look_right
+	.byte end_m
+	
+Surprised:
+	.byte look_up 
+	.byte exclaim
+	.byte end_m
 
 .global EventScript_amuletcoin_Start
 EventScript_amuletcoin_Start:

@@ -69,6 +69,7 @@ JotardLeave:
 EventScript_TeleportToKanto:
     lock
     faceplayer
+    setvar 0x4071 0x4
     msgbox gText_TeleportToKanto MSG_YESNO
     compare LASTRESULT NO
     if equal _goto End
