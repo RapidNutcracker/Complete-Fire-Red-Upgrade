@@ -13,6 +13,9 @@ build/*
 *.ss1
 *.ss2
 *.ss3
+*.ss4
+*.ss5
+
 Multi Target Moves Plan.txt
 generatedrepoints
 *__pycache__

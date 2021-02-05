@@ -627,7 +627,6 @@ BattleScript_AbilityApplySecondaryEffect:
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 BattleScript_RoughSkinActivates:
-	@ jumpifability BANK_TARGET ABILITY_GULPMISSILE SetUpGulpMissile
 	callasm SetUpGulpMissile
 	call BattleScript_AbilityPopUp
 	orword HIT_MARKER, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_NON_ATTACK_DMG
@@ -639,9 +638,6 @@ BattleScript_RoughSkinActivates:
 	faintpokemon BANK_ATTACKER 0x0 0x0
 	return
 
-@ SetUpGulpMissile: 
-@	callasm SetUpGulpMissile
-@	return 
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 

@@ -318,3 +318,5 @@ enum //These vars need to be one after the other (hence the enum)
 
 /* DexNav Options */
 //See "include/new/dexnav_config.h"
+
+// #define INSTANT_TEXT

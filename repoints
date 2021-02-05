@@ -213,6 +213,13 @@ sStartMenuActionTable 0806F3F8
 sStartMenuDescPointers 0806F138
 sStartMenuDescPointers 0806F368
 
+#ifdef INSTANT_TEXT
+gUnknown_841F428 080f78dc
+gText_TextSpeedMid 083cc330
+gText_TextSpeedFast 083cc334
+gText_TextSpeedInstant 083cc338
+#endif
+
 #5  tested 
 archerTiles 82395A4 
 archerPal   8239A44
