@@ -71,6 +71,7 @@ tile 6 2 2 EventScript_ExpertModeTileRight
 npc 6 2 2 EventScript_ExpertModeNPC
 npc 3 2 8 EventScript_WonderTrade2
 npc 3 2 2 EventScript_GiveExpShare
+sign 3 2 3 EventScript_TrainerTipsPewter
 
 #ROUTE 3 
 npc 3 21 9 EventScript_Route3Raid 

@@ -656,6 +656,8 @@ void CreateEgg(struct Pokemon *mon, u16 species) //The function used by the give
 		SetMonData(mon, MON_DATA_ATK_IV, &maxIV);
 		SetMonData(mon, MON_DATA_SPATK_IV, &maxIV);
 		SetMonData(mon, MON_DATA_SPEED_IV, &maxIV);
+		ball = BALL_TYPE_CHERISH_BALL;
+		SetMonData(mon, MON_DATA_POKEBALL, &ball);
 	}
 	
 }

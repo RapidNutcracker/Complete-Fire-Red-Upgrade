@@ -56,19 +56,19 @@ BattleScript_PoisonTouch:
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 BattleScript_KingsShield:
-	setstatchanger STAT_ATK | DECREASE_1
+	@setstatchanger STAT_ATK | DECREASE_1
 	
 BattleScript_KingsShieldPostDecrementSet:
-	swapattackerwithtarget @;Allows for abilities like Defiant and Mirror Armor to have their proper effect
-	statbuffchange STAT_TARGET | STAT_NOT_PROTECT_AFFECTED | STAT_BS_PTR KingsShieldReturn
-	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 KingsShieldReturn
-	setgraphicalstatchangevalues
-	playanimation BANK_TARGET ANIM_STAT_BUFF ANIM_ARG_1
-	printfromtable 0x83FE588
-	waitmessage DELAY_1SECOND
+	@swapattackerwithtarget @;Allows for abilities like Defiant and Mirror Armor to have their proper effect
+	@statbuffchange STAT_TARGET | STAT_NOT_PROTECT_AFFECTED | STAT_BS_PTR KingsShieldReturn
+	@jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 KingsShieldReturn
+	@setgraphicalstatchangevalues
+	@playanimation BANK_TARGET ANIM_STAT_BUFF ANIM_ARG_1
+	@printfromtable 0x83FE588
+	@waitmessage DELAY_1SECOND
 
 KingsShieldReturn:
-	swapattackerwithtarget
+	@swapattackerwithtarget
 	return
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

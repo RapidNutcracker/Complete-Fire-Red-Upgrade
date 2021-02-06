@@ -1018,7 +1018,7 @@ static struct Raid sDiglettsCaveRaids2Star[] =
 static struct Raid sRoute2Raids2Star[] =
 {
 	{
-		.species = SPECIES_SHINX,
+		.species = SPECIES_SEVIPER,
 		.ability = RAID_ABILITY_HIDDEN,
 		.drops =
 		{
@@ -1571,7 +1571,7 @@ static struct Raid sRoute8Raids2Star[] =
 		},
 	},
 	{
-		.species = SPECIES_VENONAT,
+		.species = SPECIES_DRAMPA,
 		.ability = RAID_ABILITY_HIDDEN,
 		.drops =
 		{

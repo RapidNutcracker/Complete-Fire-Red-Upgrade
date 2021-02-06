@@ -548,7 +548,7 @@ Using its psychic\npower of suggestion,\nthe user transfers\nits status problems
 The user powerfully\nwrings the target.\nThe more HP the\ntarget has, the\ngreater the power.
 
 #org @DESC_KINGSSHIELD
-The user protects\nitself from damage,\nand lowers the\nfoe's Attack if it\nmakes contact.
+The user protects\nitself from damage,\nand changes the\nuser's form if\napplicable.
 
 #org @DESC_PSYSTRIKE
 An odd psychic wave\nattacks the target.\nThis attack does\nphysical damage.

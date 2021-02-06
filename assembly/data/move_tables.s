@@ -708,6 +708,7 @@ gPunchingMoves:
 .hword MOVE_DOUBLEIRONBASH
 .hword MOVE_WICKEDBLOW
 .hword MOVE_SURGINGSTRIKES
+.hword MOVE_SUCKERPUNCH
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
