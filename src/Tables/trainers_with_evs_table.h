@@ -445,6 +445,7 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 		.nature = NATURE_CAREFUL,
 		.ivs = 31,
 		.hpEv = 252,
+		.defEv = 4, 
 		.spDefEv = 252,
 		.ball = TRAINER_EV_CLASS_BALL,
 		.ability = Ability_1,
@@ -1253,7 +1254,7 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 	{ //Early mons, just max IVs not much investment otherwise 
 		.nature = NATURE_BASHFUL,
 		.ivs = 31,
-		.hpEv = 4,
+		.hpEv = 100,
 		.spdEv = 40,
 		.ball = TRAINER_EV_CLASS_BALL,
 		.ability = Ability_2,
@@ -1291,7 +1292,7 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 		.ability = Ability_2,
 	},
 	[127] =
-	{ //Mixed Attacker: Attack Based, Less Defense - Ability_Hidden floatzel
+	{ //Mixed Attacker: Attack Based, Less Defense - Ability_Hidden Old floatzel
 		.nature = NATURE_BASHFUL,
 		.ivs = 31,
 		.atkEv = 8,
@@ -1315,7 +1316,7 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 	{ //Early mons, just max IVs not much investment otherwise vikavolt
 		.nature = NATURE_BASHFUL,
 		.ivs = 31,
-		.hpEv = 20,
+		.hpEv = 200,
 		.atkEv = 0,
 		.spAtkEv = 100,
 		.spdEv = 4,
@@ -1389,7 +1390,7 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 		.nature = NATURE_BASHFUL,
 		.hiddenPower = TYPE_GRASS,
 		.ivs = 31,
-		.hpEv = 4,
+		.hpEv = 100,
 		.atkEv = 100,
 		.spAtkEv = 100,
 		.spdEv = 40,
@@ -1439,6 +1440,39 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 		.spAtkEv = 252,
 		.ball = TRAINER_EV_CLASS_BALL,
 		.ability = Ability_Hidden,
+	},
+	[141] =
+	{ //Mixed Attacker: Attack Based, Less Defense - Ability_Hidden, HP electric Misty floatzel
+		.nature = NATURE_BASHFUL,
+		.hiddenPower = TYPE_ELECTRIC,
+		.ivs = 31,
+		.atkEv = 8,
+		.spdEv = 252,
+		.spAtkEv = 8,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_Hidden,
+	},
+	[142] =
+	{ //Early mons, just max IVs. Falkner Emolga
+		.nature = NATURE_BASHFUL,
+		.hiddenPower = TYPE_GROUND, 
+		.ivs = 31,
+		.hpEv = 4,
+		.spdEv = 40,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_Random_1_2,
+	},
+	[143] =
+	{ //Archer Houndour, Brock Vulpix
+		.nature = NATURE_BASHFUL,
+		.hiddenPower = TYPE_GRASS,
+		.ivs = 31,
+		.hpEv = 60,
+		.atkEv = 100,
+		.spAtkEv = 100,
+		.spdEv = 40,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_Random_1_2,
 	},
 };
 #endif

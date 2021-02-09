@@ -167,12 +167,12 @@ EventScript_AskRandomizer:
     msgbox gText_DoYouWantRandomizer MSG_YESNO 
     compare LASTRESULT YES 
     if equal _call setrandom 
-    msgbox gText_DoYouWantAbility MSG_YESNO 
-    compare LASTRESULT YES 
-    if equal _call setability 
-    msgbox gText_DoYouWantLearnsets MSG_YESNO 
-    compare LASTRESULT YES 
-    if equal _call setlearnsets 
+    @ msgbox gText_DoYouWantAbility MSG_YESNO 
+    @ compare LASTRESULT YES 
+    @ if equal _call setability 
+    @ msgbox gText_DoYouWantLearnsets MSG_YESNO 
+    @ compare LASTRESULT YES 
+    @ if equal _call setlearnsets 
     setvar 0x5100 0x1
     release 
     end 

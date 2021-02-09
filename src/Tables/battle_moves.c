@@ -253,10 +253,10 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_CUT] =
 	{
 		.effect = EFFECT_HIT,
-		.power = 50,
-		.type = TYPE_NORMAL,
-		.accuracy = 95,
-		.pp = 30,
+		.power = 75,
+		.type = TYPE_STEEL,
+		.accuracy = 100,
+		.pp = 25,
 		.secondaryEffectChance = 0,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
@@ -1704,7 +1704,7 @@ const struct BattleMove gBattleMoves[] =
 
 	[MOVE_DOUBLETEAM] =
 	{
-		.effect = EFFECT_EVASION_UP,
+		.effect = EFFECT_ATTACK_UP,
 		.power = 0,
 		.type = TYPE_NORMAL,
 		.accuracy = 0,
@@ -1752,7 +1752,7 @@ const struct BattleMove gBattleMoves[] =
 
 	[MOVE_MINIMIZE] =
 	{
-		.effect = EFFECT_MINIMIZE,
+		.effect = EFFECT_ATTACK_UP,
 		.power = 0,
 		.type = TYPE_NORMAL,
 		.accuracy = 0,
@@ -2420,12 +2420,12 @@ const struct BattleMove gBattleMoves[] =
 
 	[MOVE_FLASH] =
 	{
-		.effect = EFFECT_ATTACK_DOWN,
-		.power = 0,
-		.type = TYPE_NORMAL,
+		.effect = EFFECT_ATTACK_DOWN_HIT,
+		.power = 50,
+		.type = TYPE_ELECTRIC,
 		.accuracy = 100,
 		.pp = 20,
-		.secondaryEffectChance = 0,
+		.secondaryEffectChance = 50,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
 		.flags = FLAG_PROTECT_AFFECTED | FLAG_MAGIC_COAT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
@@ -3668,8 +3668,8 @@ const struct BattleMove gBattleMoves[] =
 
 	[MOVE_BATONPASS] =
 	{
-		.effect = EFFECT_BATON_PASS,
-		.power = 0,
+		.effect = EFFECT_HIT,
+		.power = 40,
 		.type = TYPE_NORMAL,
 		.accuracy = 0,
 		.pp = 40,
@@ -4037,7 +4037,7 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_ROCKSMASH] =
 	{
 		.effect = EFFECT_DEFENSE_DOWN_HIT,
-		.power = 40,
+		.power = 60,
 		.type = TYPE_FIGHTING,
 		.accuracy = 100,
 		.pp = 15,
@@ -7820,7 +7820,7 @@ const struct BattleMove gBattleMoves[] =
 
 	[MOVE_ACUPRESSURE] =
 	{
-		.effect = EFFECT_EVASION_UP,
+		.effect = EFFECT_ATTACK_UP,
 		.power = 0,
 		.type = TYPE_NORMAL,
 		.accuracy = 0,
@@ -11953,6 +11953,38 @@ const struct BattleMove gBattleMoves[] =
 		.priority = 0,
 		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
 		.z_move_power = 100,
+		.split = SPLIT_SPECIAL,
+		.z_move_effect = 0
+	},
+
+	[MOVE_ASTRALBARRAGE] =
+	{
+		.effect = EFFECT_HIT,
+		.power = 120,
+		.type = TYPE_GHOST,
+		.accuracy = 100,
+		.pp = 5,
+		.secondaryEffectChance = 0,
+		.target = MOVE_TARGET_BOTH,
+		.priority = 0,
+		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
+		.z_move_power = 190,
+		.split = SPLIT_SPECIAL,
+		.z_move_effect = 0
+	},
+
+	[MOVE_GLACIALLANCE] =
+	{
+		.effect = EFFECT_HIT,
+		.power = 130,
+		.type = TYPE_ICE,
+		.accuracy = 100,
+		.pp = 5,
+		.secondaryEffectChance = 0,
+		.target = MOVE_TARGET_BOTH,
+		.priority = 0,
+		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
+		.z_move_power = 190,
 		.split = SPLIT_SPECIAL,
 		.z_move_effect = 0
 	},

@@ -556,25 +556,24 @@ static void RestoreNonConsumableItems(void)
 	u16* items = gNewBS->itemBackup;
 	bool8 keepConsumables = TRUE; 
 
-
-	if (gBattleTypeFlags & BATTLE_TYPE_TRAINER || (FlagGet(FLAG_RAID_BATTLE)) )
+	// if (gBattleTypeFlags & BATTLE_TYPE_TRAINER || (FlagGet(FLAG_RAID_BATTLE))  |)
+	// {
+	for (int i = 0; i < PARTY_SIZE; ++i)
 	{
-		for (int i = 0; i < PARTY_SIZE; ++i)
+		if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER
+		||  keepConsumables
+		||  items[i] == ITEM_NONE
+		||  !IsConsumable(items[i]))
 		{
-			if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER
-			||  keepConsumables
-			||  items[i] == ITEM_NONE
-			||  !IsConsumable(items[i]))
-			{
-				SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &items[i]);
-			}
-			else if (gPlayerParty[i].item != items[i] //The player consumed their item, and then picked up another one
-			&& IsConsumable(items[i]))
-			{
-				SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &none);
-			}
+			SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &items[i]);
+		}
+		else if (gPlayerParty[i].item != items[i] //The player consumed their item, and then picked up another one
+		&& IsConsumable(items[i]))
+		{
+			SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &none);
 		}
 	}
+	// }
 }
 
 static void RevertDynamax(void)
