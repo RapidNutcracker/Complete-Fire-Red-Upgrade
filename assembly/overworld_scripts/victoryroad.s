@@ -5,6 +5,8 @@
 .include "../xse_defines.s"
 .include "../asm_defines.s" 
 
+.equ VAR_GMOLTRES_DAILY, 0x5116
+
 .global EventScript_closecombat_Start
 EventScript_closecombat_Start:
 	lock
@@ -100,3 +102,80 @@ DoneWGame:
 	msgbox gText_ShitsHard2 MSG_FACE 
 	release 
 	end 
+
+Moveback2:
+    release 
+    end
+
+.global EventScript_VictoryRoad_Moltres
+EventScript_VictoryRoad_Moltres:
+    lock
+    faceplayer
+    cry 0x92 0x2
+    preparemsg gText_VictoryRoad_Moltres1 
+    waitmsg
+    waitcry
+    pause 0xA
+    playsong 0x156 0x0
+    waitkeypress
+    wildbattle 0x92 0x46 0x00
+    special2 LASTRESULT 0xB4
+    compare LASTRESULT 0x4
+    if 0x1 _goto Moveback2
+    fadescreen 0x1
+    hidesprite 0x800F
+    setflag 0x99B
+	setvar 0x8000 VAR_GMOLTRES_DAILY
+    setvar 0x8001 0x0
+    special 0xA1
+    fadescreen 0x0
+    release
+    end
+
+.global EventScript_VictoryRoad_GalarMoltres
+EventScript_VictoryRoad_GalarMoltres:
+    lock
+    faceplayer
+    cry 0x92 0x2
+    preparemsg gText_PowerPlant_Zapdos1 
+    waitmsg
+    waitcry
+    pause 0xA
+    playsong 0x156 0x0
+    waitkeypress
+    wildbattle SPECIES_ZAPDOS_G 0x46 0x00
+    special2 LASTRESULT 0xB4
+    compare LASTRESULT 0x4
+    if 0x1 _goto Moveback2
+    fadescreen 0x1
+    hidesprite 0x800F
+    setflag 0x102A
+	setflag 0x102B
+    fadescreen 0x0
+    release
+    end
+
+.global gMapScripts_VictoryRoad
+gMapScripts_VictoryRoad:
+    mapscript MAP_SCRIPT_ON_TRANSITION HideGMoltresIfNotReady
+    .byte MAP_SCRIPT_TERMIN
+
+HideGMoltresIfNotReady:
+	checkflag 0x99B
+	if 0x0 _goto HideGMoltres
+	checkflag 0x102B
+	if 0x1 _goto HideGMoltres
+	setvar 0x8000 VAR_GMOLTRES_DAILY
+    setvar 0x8001 0x0
+    special2 LASTRESULT 0xA0
+    compare LASTRESULT 0x0 
+    if equal _goto HideGMoltres
+	clearflag 0x102A
+	showsprite 0x10
+	end 
+
+HideGMoltres:
+	hidesprite 0x10
+	setflag 0x102A
+	end
+	

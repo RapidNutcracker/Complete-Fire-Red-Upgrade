@@ -45,8 +45,8 @@ static const struct WildPokemon gRoute2_LandMonsNight[] =
 	{4, 4, SPECIES_MAREEP},
 	{3, 3, SPECIES_ODDISH},
 	{3, 4, SPECIES_HOUNDOUR},
-	{5, 5, SPECIES_PIDOVE},
-	{5, 5, SPECIES_PATRAT},
+	{5, 5, SPECIES_PHANPY},
+	{5, 5, SPECIES_SILICOBRA},
 	{5, 5, SPECIES_BURMY},
 	{5, 6, SPECIES_SKWOVET},
 	{5, 5, SPECIES_PANSAGE},
@@ -57,13 +57,13 @@ static const struct WildPokemonInfo gRoute2_LandMonsInfoNight = {20, gRoute2_Lan
 
 static const struct WildPokemon gRoute22_LandMonsNight[] =
 {
-	{4, 4, SPECIES_WOOLOO},
+	{4, 4, SPECIES_YUNGOOS},
 	{3, 3, SPECIES_MANKEY},
 	{4, 4, SPECIES_SPEAROW},
 	{4, 4, SPECIES_STARLY},
-	{3, 3, SPECIES_HOOTHOOT},
-	{2, 3, SPECIES_KRICKETOT},
-	{5, 5, SPECIES_SPINARAK},
+	{3, 3, SPECIES_SKIDDO},
+	{2, 3, SPECIES_SLOWPOKE},
+	{5, 5, SPECIES_BURMY_TRASH},
 	{5, 5, SPECIES_ROOKIDEE},
 	{4, 4, SPECIES_ROOKIDEE},
 	{4, 4, SPECIES_ROCKRUFF},
@@ -165,7 +165,7 @@ static const struct WildPokemonInfo gMtMoonBase_LandMonsInfoNight = {4, gMtMoonB
 
 static const struct WildPokemon gRoute4_LandMonsNight[] =
 {
-	{15, 15, SPECIES_SANDSHREW},
+	{15, 15, SPECIES_PIDOVE},
 	{14, 15, SPECIES_ODDISH},
 	{14, 15, SPECIES_MAREEP},
 	{14, 15, SPECIES_PACHIRISU},

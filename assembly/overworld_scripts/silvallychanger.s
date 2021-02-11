@@ -70,6 +70,8 @@ EventScript_SilvallyChanger:
     if YES _goto ThatsSilvally 
     compare LASTRESULT SPECIES_SILVALLY_FAIRY
     if YES _goto ThatsSilvally 
+    compare LASTRESULT SPECIES_SILVALLY_POISON
+    if YES _goto ThatsSilvally 
     msgbox gText_NoSilvally MSG_NORMAL 
 	release 
 	end 

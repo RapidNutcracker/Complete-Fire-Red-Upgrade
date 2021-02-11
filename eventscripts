@@ -392,12 +392,14 @@ npc 1 86 2 EventScript_newstrength_Start
 npc 1 86 3 EventScript_newstrength_Start
 npc 1 86 4 EventScript_newstrength_Start
 npc 1 86 5 EventScript_newstrength_Start
-# tile 1 84 0 EventScript_SeafoamIslands_Keldeo
 npc 1 84 2 EventScript_Seafoam_Laprasite
 npc 1 85 2 EventScript_Seafoam_Abomasite
 npc 1 84 3 EventScript_Seafoam_TM70
 npc 1 83 3 EventScript_SeafoamIslandsRaid 
 npc 1 84 4 EventScript_Keldeo_OW
+map 1 87 gMapScripts_SeafoamIslands
+npc 1 87 4 EventScript_SeafoamIslands_GalarArticuno
+npc 1 87 2 EventScript_SeafoamIslands_Articuno
 
 #Route 19
 npc 3 37 12 EventScript_Route19_Drednawite
@@ -442,9 +444,13 @@ npc 1 95 8 EventScript_PowerPlantRaid
 npc 1 95 3 EventScript_PowerPlant_Ampharosite
 npc 1 95 1 EventScript_PowerPlant_TM109
 npc 1 95 9 EventScript_PowerPlant_Jotard
+npc 1 95 10 EventScript_PowerPlant_GalarZapdos
+npc 1 95 5 EventScript_PowerPlant_Zapdos
+map 1 95 gMapScripts_PowerPlant
 
 #Cerulean Cave 
 map 1 72 gMapScripts_CeruleanCave
+map 1 73 EventScript_CeruleanCaveKubfuMapScript
 npc 1 72 11 EventScript_arianaceruelancave_Start
 npc 1 72 9 EventScript_brendanceruleancave_Start
 npc 1 73 13 EventScript_ceruleangrunt1_Start
@@ -490,6 +496,7 @@ tile 1 74 3 EventScript_e4check_Start
 tile 1 74 2 EventScript_ceruleangiovanni_Left 
 npc 1 73 16 EventScript_CeruleanCave_BodyPress
 # npc 1 74 2 EventScript_MewtwoTotem
+npc 1 73 17 EventScript_KubfuMaster
 
 #Route 23
 tile 3 42 42 EventScript_FinalBrendan_Fight
@@ -511,6 +518,8 @@ npc 1 41 8 EventScript_newstrength_Start
 npc 1 41 9 EventScript_newstrength_Start
 npc 1 40 5 EventScript_VictoryRoad_HeavyDuty
 npc 1 40 13 EventScript_VictoryRoad_Moltres
+npc 1 40 15 EventScript_VictoryRoad_GalarMoltres
+map 1 40 gMapScripts_VictoryRoad
 npc 1 40 12 EventScript_closecombat_Start
 npc 1 40 14 EventScript_VictoryRoadRaid
 npc 1 41 12 EventScript_VictoryRoad_TM67

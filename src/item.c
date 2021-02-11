@@ -42,6 +42,8 @@ struct BagMenuAlloc
 };
 
 extern const u8 gMoveNames[][MOVE_NAME_LENGTH + 1];
+extern const u8 gLongMoveNames[][MOVE_NAME_LENGTH + 1];
+
 extern const u8 gText_ThrowInOnePremierBall[];
 extern const u8 gText_ThrowInPremierBalls[];
 extern const u16 gItemsByType[]; //add a comment idk
@@ -538,6 +540,7 @@ void LoadTMNameWithNo(u8* dst, u16 itemId)
 	else
 		StringAppend(gStringVar4, gMoveNames[ItemIdToBattleMoveId(itemId)]);
 
+	// StringAppendFullMoveName(gStringVar4, gLongMoveNames[ItemIdToBattleMoveId(itemId)]);
 	StringCopy(dst, gStringVar4);
 }
 
@@ -679,7 +682,7 @@ u8 TmHMDiscPosition(unusedArg struct Sprite* disc, u8 tmId)
 bool8 CheckReusableTMs(u16 item)
 {
 	#ifdef REUSABLE_TMS
-		if (TMIdFromItemId(item) != 0)
+		if (TMIdFromItemId(item) != 0 || item == ITEM_TM101_POWER_UP_PUNCH || item == ITEM_TM01_FOCUS_PUNCH )
 			return TRUE;
 		else
 			return FALSE;

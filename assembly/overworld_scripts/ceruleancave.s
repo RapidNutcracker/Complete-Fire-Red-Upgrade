@@ -8,6 +8,10 @@
 .equ FLAG_TAG_BATTLE, 0x908
 .equ VAR_PARTNER_BACKSPRITE, 0x5012 
 .equ VAR_PARTNER, 0x5011 
+.equ VAR_KUBFU_DAILY, 0x5110 
+
+.equ SPECIES_KUBFU, 0x49F
+.equ ITEM_BLACK_BELT, 207
 
 .global gMapScripts_CeruleanCave
 gMapScripts_CeruleanCave:
@@ -557,6 +561,23 @@ EventScript_ceruleangiovanni_Jumpup:
 .byte 0x53
 .byte 0xFE
 
+.global EventScript_CeruleanCaveKubfuMapScript
+EventScript_CeruleanCaveKubfuMapScript:
+    mapscript MAP_SCRIPT_ON_TRANSITION HideKubfuIfNotReady
+    .byte MAP_SCRIPT_TERMIN
+
+HideKubfuIfNotReady:
+	checkflag 0x982
+	if 0x0 _goto HideKubfuTrainer
+	clearflag 0x1025
+	showsprite 0x12
+	end 
+
+HideKubfuTrainer:
+	hidesprite 0x12
+	setflag 0x1025
+	end 
+
 .global EventScript_e4check_Start
 EventScript_e4check_Start:
 	checkflag 0x82C @dont trigger if we havent got blaines badge yet
@@ -576,12 +597,12 @@ EventScript_e4check_Done:
 	end
 
 EventScript_e4check_Stop:
-.byte 0x1
-.byte 0xFE
+	.byte 0x1
+	.byte 0xFE
 
 EventScript_e4check_Goback:
-.byte 0x10
-.byte 0xFE
+	.byte 0x10
+	.byte 0xFE
 
 .global EventScript_MewtwoTotem
 EventScript_MewtwoTotem:
@@ -598,3 +619,121 @@ EventScript_MewtwoTotem:
 	dowildbattle
 	release 
 	end 
+
+.global EventScript_KubfuMaster
+EventScript_KubfuMaster:
+	lock
+	faceplayer
+	checkflag 0x1023
+	if equal _goto RepeatBattle
+	msgbox gText_KubfuMaster_1 MSG_FACE
+	msgbox gText_KubfuMaster_2 MSG_YESNO
+	compare LASTRESULT NO
+	if equal _goto RejectKubfu
+	msgbox gText_KubfuMaster_PreFight MSG_NORMAL
+	call KubfuBattle
+	trainerbattle3 0x3 0x14 0x0 gText_KubfuMaster_FightLoss
+	msgbox gText_KubfuMaster_4 MSG_NORMAL
+	givepokemon SPECIES_KUBFU 0x1E ITEM_LIECHI_BERRY 0x0 0x0 0x0
+	call KubfuBattleEnd
+	goto EndKubfuFirst
+	end 
+
+KubfuBattle:
+	setflag 0x915
+	setflag 0x90E
+	return 
+
+KubfuBattleEnd:
+	fanfare 0x13E
+	msgbox gText_ReceivedKubfu MSG_KEEPOPEN
+	waitfanfare
+	closeonkeypress
+	setvar 0x8000 VAR_KUBFU_DAILY
+    setvar 0x8001 0x0
+    special 0xA1
+	return
+
+EndKubfuFirst:
+	setflag 0x1023
+	msgbox gText_KubfuMaster_GoodLuck MSG_NORMAL
+	msgbox gText_KubfuMaster_DoneForToday MSG_NORMAL
+	goto EndKubfu
+	end 
+	
+RepeatBattle:
+	setvar 0x8000 VAR_KUBFU_DAILY
+    setvar 0x8001 0x0
+    special2 LASTRESULT 0xA0
+    compare LASTRESULT 0x0 
+    if equal _goto AlreadyDid
+	checkflag 0x1024
+	if 0x1 _goto RepeatBattle2
+	msgbox gText_KubfuMaster_DownAgain MSG_YESNO
+	compare LASTRESULT NO
+	if equal _goto RejectKubfu
+	msgbox gText_KubfuMaster_PreFight MSG_NORMAL
+	call KubfuBattle
+	trainerbattle3 0x3 0x13 0x0 gText_KubfuMaster_FightLoss
+	msgbox gText_KubfuMaster_5 MSG_NORMAL
+	givepokemon SPECIES_KUBFU 0x1E ITEM_SALAC_BERRY 0x0 0x0 0x0
+	call KubfuBattleEnd
+	goto EndKubfuSecond
+	end
+
+RepeatBattle2: 
+	msgbox gText_KubfuMaster_DownAgain2 MSG_YESNO
+	compare LASTRESULT NO
+	if equal _goto RejectKubfu
+	msgbox gText_KubfuMaster_PreFight MSG_NORMAL
+	call KubfuBattle
+	random 0x2
+	compare 0x800D 0x0 
+	if 0x1 _call Battle1
+	compare 0x800D 0x1
+	if 0x1 _call Battle2
+	msgbox gText_KubfuMaster_5_2 MSG_NORMAL
+	call GiveNuggets
+	goto EndKubfuSecond
+	end
+
+Battle1:
+	trainerbattle3 0x3 0x13 0x0 gText_KubfuMaster_FightLoss
+	return
+
+Battle2:
+	trainerbattle3 0x3 0x14 0x0 gText_KubfuMaster_FightLoss
+	return
+
+GiveNuggets:
+	giveitem ITEM_BIG_NUGGET 0x5 MSG_OBTAIN
+	setvar 0x8000 VAR_KUBFU_DAILY
+    setvar 0x8001 0x0
+    special 0xA1
+	return
+
+EndKubfuSecond:
+	setflag 0x1024
+	msgbox gText_KubfuMaster_DoneForToday MSG_NORMAL
+	goto EndKubfu
+	end 
+
+RejectKubfu:
+	msgbox gText_KubfuMaster_3 MSG_NORMAL
+	goto EndKubfu
+	end
+
+EndKubfu:
+	applymovement 0x12 FaceUp
+	waitmovement 0x0
+	release
+	end
+
+AlreadyDid:
+	msgbox gText_KubfuMaster_DoneForToday MSG_FACE
+	goto EndKubfu
+	end
+
+FaceUp:
+	.byte look_up 
+	.byte end_m

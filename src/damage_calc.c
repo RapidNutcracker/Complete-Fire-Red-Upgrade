@@ -3401,14 +3401,6 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 				power = (power * 12) / 10;
 			break;
 
-		// #ifdef SPECIES_DIALGA removed
-		// // case ITEM_EFFECT_ADAMANT_ORB:
-		// // //1.2x Boost
-		// // 	if (data->atkSpecies == SPECIES_DIALGA && (data->moveType == TYPE_STEEL || data->moveType == TYPE_DRAGON))
-		// // 		power = (power * 12) / 10;
-		// // 	break;
-		// #endif
-
 		#ifdef SPECIES_PALKIA
 		case ITEM_EFFECT_LUSTROUS_ORB:
 		//1.2x Boost

@@ -2090,7 +2090,7 @@ void atk77_setprotect(void) {
 	if (gCurrentTurnActionNumber == (gBattlersCount - 1))
 		notLastTurn = FALSE;
 
-	if (gCurrentMove == MOVE_WIDEGUARD || gCurrentMove == MOVE_QUICKGUARD || gCurrentMove == MOVE_CRAFTYSHIELD || gCurrentMove == MOVE_MATBLOCK)
+	if (/*gCurrentMove == MOVE_WIDEGUARD ||*/ gCurrentMove == MOVE_QUICKGUARD || gCurrentMove == MOVE_CRAFTYSHIELD || gCurrentMove == MOVE_MATBLOCK)
 		divisor = 1; //These moves increase the fail rate, but can't fail themselves
 	else
 	{

@@ -32,10 +32,8 @@ ReceiveEgg:
     msgbox gText_RandomEgg_ReceivedEgg MSG_KEEPOPEN
     waitfanfare
     waitkeypress 
-    setflag 0x943
     setflag 0x94F
     giveegg SPECIES_MUDKIP
-    clearflag 0x943 
     clearflag 0x94F
     setflag 0x99E
     msgbox gText_RandomEgg3 MSG_NORMAL 
@@ -48,6 +46,7 @@ ReceiveEgg:
     msgbox gText_RandomEgg5 MSG_NORMAL
     release
     end
+
 
 AlreadyDone: 
     msgbox gText_RandomEgg4 MSG_FACE 
@@ -73,8 +72,8 @@ EventScript_WonderTrade2:
     if 0x1 _goto AlreadyDone2
     showmoney 0x0 0x0 0x0
     msgbox gText_RandomEgg MSG_YESNO 
-    compare LASTRESULT NO 
-    if equal _goto CancelEgg 
+    compare LASTRESULT NO
+    if equal _goto CancelEgg
     checkmoney 0x1388 0x0
     compare LASTRESULT 0x1
     if 0x0 _goto NotEnoughMoney
@@ -91,11 +90,9 @@ ReceiveEgg2:
     fanfare 0x101
     waitfanfare
     msgbox gText_RandomEgg_ReceivedEgg MSG_FACE
-    setflag 0x943
     setflag 0x94F
     giveegg SPECIES_FLOETTE
     clearflag 0x94F
-    clearflag 0x943 
     setflag 0x97E
     msgbox gText_RandomEgg3 MSG_FACE
     sound 0x58 
@@ -139,11 +136,9 @@ ReceiveEgg3:
     fanfare 0x101
     waitfanfare
     msgbox gText_RandomEgg_ReceivedEgg MSG_FACE
-    setflag 0x943
     setflag 0x94F
     giveegg SPECIES_GASTLY
     clearflag 0x94F
-    clearflag 0x943 
     setflag 0x97F
     msgbox gText_RandomEgg3 MSG_FACE 
     sound 0x58 

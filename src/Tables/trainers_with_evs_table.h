@@ -140,6 +140,7 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 		.ivs = 31,
 		.hpEv = 252,
 		.spDefEv = 252,
+		.atkEv = 4,
 		.ball = TRAINER_EV_CLASS_BALL,
 		.ability = Ability_Random_1_2,
 	},

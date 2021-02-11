@@ -141,11 +141,11 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			DECREASE_VIABILITY(20);
 			return viability;
 		}
-		else if(MoveInMoveset(MOVE_WIDEGUARD, bankAtk) && IS_DOUBLE_BATTLE)
-		{
-			DECREASE_VIABILITY(20);
-			return viability;
-		}
+		// else if(MoveInMoveset(MOVE_WIDEGUARD, bankAtk) && IS_DOUBLE_BATTLE)
+		// {
+		// 	DECREASE_VIABILITY(20);
+		// 	return viability;
+		// }
 			// added here
 	}
 
@@ -1524,7 +1524,7 @@ MOVESCR_CHECK_0:
 
 			if (gBattleMoves[gLastResultingMoves[bankAtk]].effect == EFFECT_PROTECT
 			&&  move != MOVE_QUICKGUARD
-			&&  move != MOVE_WIDEGUARD
+			// &&  move != MOVE_WIDEGUARD
 			&&  move != MOVE_CRAFTYSHIELD) //These moves have infinite usage
 			{
 				if (WillFaintFromSecondaryDamage(bankAtk)

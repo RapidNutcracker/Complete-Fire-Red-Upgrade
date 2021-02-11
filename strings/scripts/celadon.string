@@ -65,22 +65,22 @@ Sweet. Who wants it?
 So, [BUFFER1] will have its IVs\nmaxed. \$350000.
 
 #org @gText_ivseller_4_1
-So, [BUFFER1] will have its HP IVs\nmaxed. \$70000.
+So, [BUFFER1] will have its HP IVs\nmaxed. It currently has [BUFFER2] HP\lIVs. It'll be \$70000.
 
 #org @gText_ivseller_4_2
-So, [BUFFER1] will have its Attack\nIVs maxed. \$70000.
+So, [BUFFER1] will have its Atk IVs\nmaxed. It currently has [BUFFER2] Atk\lIVs. It'll be \$70000.
 
 #org @gText_ivseller_4_3
-So, [BUFFER1] will have its Defense\nIVs maxed. \$70000.
+So, [BUFFER1] will have its Def IVs\nmaxed. It currently has [BUFFER2]Def\lIVs. It'll be \$70000.
 
 #org @gText_ivseller_4_4
-So, [BUFFER1] will have its Sp. Atk\nIVs maxed. \$70000.
+So, [BUFFER1] will have its Sp. Atk\nIVs maxed. It currently has [BUFFER2]\lSp. Atk IVs. It'll be \$70000.
 
 #org @gText_ivseller_4_5
-So, [BUFFER1] will have its Sp. Def\nIVs maxed. \$70000.
+So, [BUFFER1] will have its Sp. Def\nIVs maxed. It currently has [BUFFER2]\lSp. Def IVs. It'll be \$70000.
 
 #org @gText_ivseller_4_6
-So, [BUFFER1] will have its Speed\nIVs maxed. \$70000.
+So, [BUFFER1] will have its Speed\nIVs maxed. It currently has [BUFFER2]\lSpeed IVs. It'll be \$70000.
 
 #org @gText_ivseller_5
 Is that correct?

@@ -216,3 +216,42 @@ W-what?!\nImpossible[.]
 
 #org @gText_MewtwoBattle
 I see you've returned,\neven more capable.\pFine, let me unleash my full\npotential to see if you're truly\lworthy!
+
+#org @gText_KubfuMaster_1 
+Hi there. I've been training here\nto try and chase the glory my grand-\lfather [GREEN]Mustard[BLUE]once held.\pA while ago in the Galar region he\nheld his status as Champion for\lover 15 years.\pAs his greatest prodigy I've always\nwanted to live up his standards[.]\pYet, I'm still so far away.
+
+#org @gText_KubfuMaster_2
+I saw you completely dismantle a\nformidable foe with the help of the\lone-and-only,[GREEN] Lance!\p[BLUE]You must be a worthy training\npartner!\pSo, what do you say?\pCan you help me in my quest? 
+
+#org @gText_KubfuMaster_3
+No worries.\pI shall continue my training.
+
+#org @gText_KubfuMaster_PreFight
+Very well then.\nI'm giving it my all!
+
+#org @gText_KubfuMaster_FightLoss
+Hm, I guess that's a wrap.
+
+#org @gText_KubfuMaster_4
+That was a well fought battle.\pPlease, have my Grandpa's sig-\nnature Pok\emon.
+
+#org @gText_ReceivedKubfu
+You received a [GREEN]Kubfu![BLUE]
+
+#org @gText_KubfuMaster_GoodLuck
+[GREEN]Kubfu[BLUE] can evolve into two separate\nforms using either the Water or\lDusk Stone.\pBoth are very capable Pok\emon,\neven in the hands of the most\lirresponsible trainer.
+
+#org @gText_KubfuMaster_DoneForToday
+Well, that's it from me for today.\pTalk to me again tomorrow,\nand I may be ready to spar again.
+
+#org @gText_KubfuMaster_DownAgain
+Hello again! Are you here to spar?\pI do have one last [GREEN]Kubfu\nto offer if you end up victorious.\pWhat do you say?
+
+#org @gText_KubfuMaster_5
+Impressive, I never stood a chance!\pYet, I do feel new know-\nledge coming to light.\pPlease take one, yet again!
+
+#org @gText_KubfuMaster_DownAgain2
+Welcome back, partner!\nAre you here to spar?\pUnfortunately, I have no [GREEN]Kubfus[BLUE]\nleft to offer.\pStill, I hope you find value in\nbattling with me!\pWhat do you say?
+
+#org @gText_KubfuMaster_5_2
+Ha ha ha! As expected!\nBut, i still find losing to you\lworthwhile.\pWell, I at least have these\lto give.

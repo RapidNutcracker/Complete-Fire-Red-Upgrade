@@ -1,6 +1,7 @@
 #include "defines.h"
 #include "defines_battle.h"
 
+#include "../include/constants/items.h"
 #include "../include/new/battle_terrain.h"
 #include "../include/new/battle_util.h"
 #include "../include/new/dns.h"
@@ -172,6 +173,13 @@ void SwitchOutFormsRevert(u8 bank)
 				DoFormChange(bank, SPECIES_CRAMORANT, FALSE, TRUE, FALSE);
 			break;
 		#endif 
+		case SPECIES_MORPEKO_HANGRY:
+			if (backupSpecies != SPECIES_NONE)
+				DoFormChange(bank, backupSpecies, FALSE, TRUE, FALSE);
+			else
+				DoFormChange(bank, SPECIES_MORPEKO, FALSE, TRUE, FALSE);
+			break;
+
 	}
 }
 
@@ -347,30 +355,6 @@ static u16 sTypeToArceusForm[NUMBER_OF_MON_TYPES] =
 	[TYPE_FAIRY] =		SPECIES_ARCEUS_FAIRY
 };
 
-// static u16 sTypeToSilvallyForm[NUMBER_OF_MON_TYPES] =
-// {
-// 	[TYPE_NORMAL] = 	0,
-// 	[TYPE_FIGHTING] = 	SPECIES_SILVALLY_FIGHT,
-// 	[TYPE_FLYING] = 	SPECIES_SILVALLY_FLYING,
-// 	[TYPE_POISON] = 	SPECIES_SILVALLY_POISON,
-// 	[TYPE_GROUND] = 	SPECIES_SILVALLY_GROUND,
-// 	[TYPE_ROCK] = 		SPECIES_SILVALLY_ROCK,
-// 	[TYPE_BUG] = 		SPECIES_SILVALLY_BUG,
-// 	[TYPE_GHOST] =		SPECIES_SILVALLY_GHOST,
-// 	[TYPE_STEEL] =		SPECIES_SILVALLY_STEEL,
-// 	[TYPE_MYSTERY] = 	0,
-// 	[TYPE_FIRE] = 		SPECIES_SILVALLY_FIRE,
-// 	[TYPE_WATER] =		SPECIES_SILVALLY_WATER,
-// 	[TYPE_GRASS] =		SPECIES_SILVALLY_GRASS,
-// 	[TYPE_ELECTRIC] = 	SPECIES_SILVALLY_ELECTRIC,
-// 	[TYPE_PSYCHIC] = 	SPECIES_SILVALLY_PSYCHIC,
-// 	[TYPE_ICE] = 		SPECIES_SILVALLY_ICE,
-// 	[TYPE_DRAGON] = 	SPECIES_SILVALLY_DRAGON,
-// 	[TYPE_DARK] =		SPECIES_SILVALLY_DARK,
-// 	[TYPE_ROOSTLESS] =	SPECIES_SILVALLY_FLYING, //This Silvally should stay in the proper form
-
-// 	[TYPE_FAIRY] =		SPECIES_SILVALLY_FAIRY
-// };
 
 void HoldItemFormChange(struct Pokemon* mon, u16 item)
 {
@@ -454,35 +438,23 @@ void HoldItemFormChange(struct Pokemon* mon, u16 item)
 			break;
 		#endif
 
-		#ifdef SPECIES_SILVALLY
-		// case SPECIES_SILVALLY: removed this
-		// case SPECIES_SILVALLY_FIGHT:
-		// case SPECIES_SILVALLY_FLYING:
-		// case SPECIES_SILVALLY_POISON:
-		// case SPECIES_SILVALLY_GROUND:
-		// case SPECIES_SILVALLY_ROCK:
-		// case SPECIES_SILVALLY_BUG:
-		// case SPECIES_SILVALLY_GHOST:
-		// case SPECIES_SILVALLY_STEEL:
-		// case SPECIES_SILVALLY_FIRE:
-		// case SPECIES_SILVALLY_WATER:
-		// case SPECIES_SILVALLY_GRASS:
-		// case SPECIES_SILVALLY_ELECTRIC:
-		// case SPECIES_SILVALLY_PSYCHIC:
-		// case SPECIES_SILVALLY_ICE:
-		// case SPECIES_SILVALLY_DRAGON:
-		// case SPECIES_SILVALLY_DARK:
-		// case SPECIES_SILVALLY_FAIRY:
-		// 	if (ability == ABILITY_RKS_SYSTEM) //Only transform if set with proper ability
-		// 	{
-		// 		if (itemEffect == ITEM_EFFECT_MEMORY)
-		// 			targetSpecies = sTypeToSilvallyForm[type];
+		case SPECIES_ZACIAN:
+		case SPECIES_ZACIAN_CROWNED:
+			if(item == ITEM_RUSTED_SWORD){
+				targetSpecies = SPECIES_ZACIAN_CROWNED;
+			}
+			else if (targetSpecies == SPECIES_NONE)
+					targetSpecies = SPECIES_ZACIAN;
+			break;
 
-		// 		// if (targetSpecies == SPECIES_NONE)
-		// 		// 	targetSpecies = SPECIES_SILVALLY; //changed this
-		// 	}
-		// 	break;
-		#endif
+		case SPECIES_ZAMAZENTA:
+		case SPECIES_ZAMAZENTA_CROWNED:
+			if (item == ITEM_RUSTED_SHIELD) {
+				targetSpecies = SPECIES_ZAMAZENTA_CROWNED;
+			}
+			else if (targetSpecies == SPECIES_NONE)
+				targetSpecies = SPECIES_ZAMAZENTA; 
+			break;
 	}
 
 	if (targetSpecies != SPECIES_NONE && targetSpecies != species)

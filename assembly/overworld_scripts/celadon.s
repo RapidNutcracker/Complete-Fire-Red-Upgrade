@@ -236,6 +236,9 @@ CheckMoney:
 
 PerfectHP:
 	call CheckMoney
+	setvar 0x8005 0x0
+	special2 LASTRESULT 0x8 
+	buffernumber 0x1 LASTRESULT
 	msgbox gText_ivseller_4_1 MSG_YESNO
 	compare LASTRESULT NO 
 	if equal _goto ChooseStat
@@ -246,6 +249,9 @@ PerfectHP:
 
 PerfectAtk:
 	call CheckMoney
+	setvar 0x8005 0x1
+	special2 LASTRESULT 0x8 
+	buffernumber 0x1 LASTRESULT
 	msgbox gText_ivseller_4_2 MSG_YESNO
 	compare LASTRESULT NO 
 	if equal _goto ChooseStat
@@ -256,6 +262,9 @@ PerfectAtk:
 
 PerfectDef:
 	call CheckMoney
+	setvar 0x8005 0x2
+	special2 LASTRESULT 0x8 
+	buffernumber 0x1 LASTRESULT
 	msgbox gText_ivseller_4_3 MSG_YESNO
 	compare LASTRESULT NO 
 	if equal _goto ChooseStat
@@ -266,6 +275,9 @@ PerfectDef:
 
 PerfectSpA:
 	call CheckMoney
+	setvar 0x8005 0x4
+	special2 LASTRESULT 0x8 
+	buffernumber 0x1 LASTRESULT
 	msgbox gText_ivseller_4_4 MSG_YESNO
 	compare LASTRESULT NO 
 	if equal _goto ChooseStat
@@ -276,6 +288,9 @@ PerfectSpA:
 
 PerfectSpDef:
 	call CheckMoney
+	setvar 0x8005 0x5
+	special2 LASTRESULT 0x8 
+	buffernumber 0x1 LASTRESULT
 	msgbox gText_ivseller_4_5 MSG_YESNO
 	compare LASTRESULT NO 
 	if equal _goto ChooseStat
@@ -286,6 +301,9 @@ PerfectSpDef:
 
 PerfectSpeed:
 	call CheckMoney
+	setvar 0x8005 0x3
+	special2 LASTRESULT 0x8 
+	buffernumber 0x1 LASTRESULT
 	msgbox gText_ivseller_4_6 MSG_YESNO
 	compare LASTRESULT NO 
 	if equal _goto ChooseStat
