@@ -1248,3 +1248,95 @@ EventScript_Celadon_Friskinfo:
 	msgbox gText_Celadon_Frisk2 MSG_FACE 
 	release 
 	end 
+
+.global EventScript_Celadon_FlappleTrainers1
+EventScript_Celadon_FlappleTrainers1:
+	lock
+	checkflag 0x102E
+	if 0x1 _goto FlappleTrainersEnd
+	goto FlappleTrainersContinue
+	end
+
+FlappleTrainersContinue:
+	applymovement 0x5 FaceDown
+	waitmovement 0x0
+	msgbox gText_CeladonFlappleTrainers_1 MSG_NORMAL
+	applymovement 0x6 FaceUp 
+	waitmovement 0x0
+	msgbox gText_CeladonFlappleTrainers_1_1 MSG_NORMAL
+	checkitem ITEM_MEGA_RING 0x1
+	compare 0x800D 0x1
+	if lessthan _goto Celadon_FlappleTrainersEnd
+	sound 0x15
+	applymovement 0x800F Exclaim
+	waitmovement 0x0
+	checksound
+	applymovement 0x5 FaceYou
+	applymovement 0x6 FaceYou
+	waitmovement 0x0 
+	msgbox gText_CeladonFlappleTrainers_3 MSG_YESNO
+	compare LASTRESULT NO 
+	if equal _goto Celadon_FlappleReject
+	setflag 0x90E
+	msgbox gText_CeladonFlappleTrainers_4 MSG_NORMAL
+	trainerbattle3 0x3 0x10 0x0 gText_flappletrainer1_loss
+	msgbox gText_CeladonFlappleTrainers_5 MSG_NORMAL
+	setflag 0x90E
+	trainerbattle3 0x3 0x11 0x0 gText_flappletrainer2_loss
+	msgbox gText_CeladonFlappleTrainers_6 MSG_NORMAL 
+	giveitem ITEM_APPLITE 0x1 MSG_OBTAIN
+	msgbox gText_CeladonFlappleTrainers_7 MSG_NORMAL
+	msgbox gText_CeladonFlappleTrainers8 MSG_NORMAL
+	giveitem ITEM_TM117 0x1 MSG_OBTAIN
+	setflag 0x102E
+	release
+	end
+
+.global EventScript_Celadon_FlappleTrainers2
+EventScript_Celadon_FlappleTrainers2:
+	lock
+	checkflag 0x102E
+	if 0x1 _goto FlappleTrainersEnd2
+	goto FlappleTrainersContinue
+	end
+
+FlappleTrainersEnd:
+	msgbox gText_CeladonFlappleTrainers_7 MSG_FACE
+	release
+	end 
+
+FlappleTrainersEnd2:
+	msgbox gText_CeladonFlappleTrainers_9 MSG_FACE
+	release
+	end
+
+FaceYou:
+	.byte face_player
+	.byte end_m
+
+FaceDown:
+	.byte look_down
+	.byte end_m
+
+FaceUp:
+	.byte look_up
+	.byte end_m
+
+FaceLeft:
+	.byte look_left
+	.byte end_m
+
+Exclaim:
+	.byte exclaim
+	.byte end_m
+
+Celadon_FlappleReject:
+	msgbox gText_CeladonFlappleTrainers_Boring MSG_NORMAL
+	goto Celadon_FlappleTrainersEnd
+
+Celadon_FlappleTrainersEnd:
+	applymovement 0x5 FaceLeft
+	applymovement 0x6 FaceLeft 
+	waitmovement 0x0
+	release
+	end

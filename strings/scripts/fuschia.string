@@ -14,10 +14,10 @@ May your suspicious schemes go\nby smoothly.
 Hmm[.] perhaps I'm too sus. 
 
 #org @gText_Fuschia_Egg1
-Hi[.]I'm a special move tutor.\pI teach Egg moves, so you don't have\nto go through the trouble of\lbreeding.\pI'll need a [LIGHT_BLUE]Heart Scale[BLUE] though.
+Hi[.]I'm a special move tutor.\pI teach Egg moves, so you don't have\nto go through the trouble of\lbreeding.\pI'll need a [GREEN]Heart Scale[BLUE] though.
 
 #org @gText_Fuschia_Egg2
-Ah, a [LIGHT_BLUE]Heart Scale[BLUE].\pWould you like me to teach\nan egg move?
+Ah, a [GREEN]Heart Scale[BLUE].\pWould you like me to teach\nan egg move?
 
 #org @gText_Fuschia_Egg3
 Alright, who wants it?
@@ -38,7 +38,7 @@ Sorry[.] that's an egg.
 Which move should I teach?
 
 #org @gText_FuschiaHandOver
-[PLAYER] handed over a\n[LIGHT_BLUE]Heart Scale[BLACK] in exchange.
+[PLAYER] handed over a\n[GREEN]Heart Scale[BLACK] in exchange.
 
 #org @gText_FuschiaDouble1 
 Hey, I can turn on wild double\nbattles for you!\pThis is especially useful for\nfaster EV training.\pJust a fair warning, there are\nsome possible softlocks that can\lfreeze the game with Wild Double\lBattles.\pThese usually happen with Choice Items\nalong with being low on PP.\pRemember to save often while using\nthis!\pDo you still want to proceed?
@@ -56,7 +56,7 @@ Wild double battles are turned\noff!
 I'll be here if my service\nwill ever be of use!
 
 #org @gText_brendanfuschia_1
-Oh hey [GREEN][PLAYER][BLUE]!\pFancy meeting you here.\p[.]You took down the boss, huh?\pI'm really sorry I couldn't be there\nfor it, but I was never really worried\labout you.\pI've recently obtained the [LIGHT_BLUE]Mega Ring[BLUE],\nso I'd like to put myself to the test!\p[.]I see you've got one too!\pLet's not hold back then!
+Oh hey [GREEN][PLAYER][BLUE]!\pFancy meeting you here.\p[.]You took down the boss, huh?\pI'm really sorry I couldn't be there\nfor it, but I was never really worried\labout you.\pI've recently obtained the [GREEN]Mega Ring[BLUE],\nso I'd like to put myself to the test!\p[.]I see you've got one too!\pLet's not hold back then!
 
 #org @gText_brendanfuschia_Defeat
 Heh[.] not bad[.]\n
@@ -125,7 +125,7 @@ TM36 is Sludge Bomb.\pThe foe is drenched in toxins,\ninflicting damage with a c
 Now that you have the Soul Badge,\nyou can Surf outside of battle.\pAh!\nTake this, too!
 
 #org @gText_koga_Helloagain
-[.]You want a [LIGHT_BLUE]Toxtricitite[BLUE]?
+[.]You want a [GREEN]Toxtricitite[BLUE]?
 
 #org @gText_koga_Perfectpokemon
 Show me a Pok\emon you've invested\nin Speed.\pI'll gladly hand one over.
@@ -147,3 +147,24 @@ Have one of my favorite items as\nwell.
 
 #org @gText_FuschiaDoubleOof
 Sorry, double battles aren't\nworking at the moment.
+
+#org @gText_Fuschia_Sandaconda1
+Hey! I've recently learned of a new\npowerful strategy!\pIt's such a blast using it!\pWould you like to help me test it\nout?
+
+#org @gText_Fuschia_Sandaconda2
+Woohoo, exciting! Let's begin. 
+
+#org @gText_Fuschia_SandacondaReject
+Hm, see you later then.
+
+#org @gText_Fuschia_SandacondaDefeat
+Wow, you withstood my onslaught!
+
+#org @gText_Fuschia_Sandaconda3
+Hmm, perhaps I'm a bit tunnel-visioned\nwith my new strategy[.]\pI'll do some more practice!\pThanks for the help!\pTake the [GREEN]Sandacondite!
+
+#org @gText_Fuschia_Sandaconda4
+[RED][.] ah, you want the item I've been\nplaying around with too?\pAlright, fine.
+
+#org @gText_Fuschia_Sandaconda5
+[GREEN]Power Herb Meteor Beam!\n[RED]Watch your foes cower in terror as\lthe stars fall! 

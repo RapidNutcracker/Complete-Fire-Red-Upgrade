@@ -634,7 +634,7 @@ void atk06_typecalc(void)
 			}
 
 			//Check Special Ground Immunities
-			if (moveType == TYPE_GROUND && !CheckGrounding(bankDef) && gCurrentMove != MOVE_THOUSANDARROWS)
+			if (moveType == TYPE_GROUND && !CheckGrounding(bankDef) && gCurrentMove != MOVE_THOUSANDARROWS &&  !((atkAbility == ABILITY_BONEZONE) && CheckTableForMove(gCurrentMove, gBoneMoves) ))
 			{
 				if (defAbility == ABILITY_LEVITATE)
 				{
@@ -741,7 +741,7 @@ void atk4A_typecalc2(void)
 	u8 defEffect = ITEM_EFFECT(gBankTarget);
 
 	//Check Special Ground Immunities
-	if (moveType == TYPE_GROUND && !CheckGrounding(gBankTarget) && gCurrentMove != MOVE_THOUSANDARROWS)
+	if (moveType == TYPE_GROUND && !CheckGrounding(gBankTarget) && gCurrentMove != MOVE_THOUSANDARROWS &&  !((atkAbility == ABILITY_BONEZONE) && CheckTableForMove(gCurrentMove, gBoneMoves)))
 	{
 		if (defAbility == ABILITY_LEVITATE)
 		{
@@ -864,7 +864,7 @@ u8 TypeCalc(u16 move, u8 bankAtk, u8 bankDef, struct Pokemon* monAtk, bool8 Chec
 	if (moveType == TYPE_GROUND
 	&& !CheckGrounding(bankDef)
 	&& ((defAbility == ABILITY_LEVITATE && NO_MOLD_BREAKERS(atkAbility, move)) || defEffect == ITEM_EFFECT_AIR_BALLOON || (gStatuses3[bankDef] & (STATUS3_LEVITATING | STATUS3_TELEKINESIS)))
-	&& move != MOVE_THOUSANDARROWS)
+	&& move != MOVE_THOUSANDARROWS &&  !((atkAbility == ABILITY_BONEZONE) && CheckTableForMove(move, gBoneMoves) ))
 	{
 		flags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
 	}
@@ -930,7 +930,7 @@ u8 AI_TypeCalc(u16 move, u8 bankAtk, struct Pokemon* monDef) {
 	if (moveType == TYPE_GROUND
 	&& !CheckGroundingFromPartyData(monDef)
 	&& ((defAbility == ABILITY_LEVITATE && NO_MOLD_BREAKERS(atkAbility, move)) || (defEffect == ITEM_EFFECT_AIR_BALLOON && defAbility != ABILITY_KLUTZ))
-	&& move != MOVE_THOUSANDARROWS)
+	&& move != MOVE_THOUSANDARROWS && !((atkAbility == ABILITY_BONEZONE) && CheckTableForMove(move, gBoneMoves) ))
 	{
 		flags = MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE;
 	}
@@ -1007,7 +1007,7 @@ u8 AI_SpecialTypeCalc(u16 move, u8 bankAtk, u8 bankDef)
 	if (moveType == TYPE_GROUND
 	&& !CheckGrounding(bankDef)
 	&& ((defAbility == ABILITY_LEVITATE && NO_MOLD_BREAKERS(atkAbility, move)) || defEffect == ITEM_EFFECT_AIR_BALLOON || (gStatuses3[bankDef] & (STATUS3_LEVITATING | STATUS3_TELEKINESIS)))
-	&& move != MOVE_THOUSANDARROWS)
+	&& move != MOVE_THOUSANDARROWS && !((atkAbility == ABILITY_BONEZONE) && CheckTableForMove(move, gBoneMoves) ))
 	{
 		flags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
 	}
@@ -1073,7 +1073,7 @@ u8 VisualTypeCalc(u16 move, u8 bankAtk, u8 bankDef)
 	if (moveType == TYPE_GROUND
 	&& !NonInvasiveCheckGrounding(bankDef)
 	&& ((defAbility == ABILITY_LEVITATE && NO_MOLD_BREAKERS(atkAbility, move)) || defEffect == ITEM_EFFECT_AIR_BALLOON || (gStatuses3[bankDef] & (STATUS3_LEVITATING | STATUS3_TELEKINESIS)))
-	&& move != MOVE_THOUSANDARROWS)
+	&& move != MOVE_THOUSANDARROWS && !((atkAbility == ABILITY_BONEZONE) && CheckTableForMove(move, gBoneMoves) ) ) 
 	{
 		flags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
 	}
@@ -1184,6 +1184,12 @@ static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, 
 		if ((defType == TYPE_STEEL && (moveType == TYPE_POISON) )
 		&& (atkAbility == ABILITY_CORROSION))
 			return; //Corrosion now affects steel types
+		if ((defType == TYPE_FLYING) &&  (moveType == TYPE_GROUND) 
+		&& (atkAbility == ABILITY_BONEZONE) && CheckTableForMove(move, gBoneMoves)  )
+			return; //Bone Zone Ground moves affect flying/levitate immunities
+		if ((defType == TYPE_NORMAL && (moveType == TYPE_GHOST) 
+		&& (atkAbility == ABILITY_BONEZONE) && CheckTableForMove(move, gBoneMoves)  ))
+			return; //Shadow Bone Bone Zone affects normal types 
 	}
 	else if (checkMonDef)
 	{
@@ -1203,7 +1209,8 @@ static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, 
 		if (multiplier == TYPE_MUL_NO_EFFECT && GetMonItemEffect(monDef) == ITEM_EFFECT_RING_TARGET)
 			multiplier = TYPE_MUL_NORMAL;
 		else if (multiplier == TYPE_MUL_NO_EFFECT && moveType == TYPE_GROUND
-		&& (CheckGroundingFromPartyData(monDef) || move == MOVE_THOUSANDARROWS))
+		&& (CheckGroundingFromPartyData(monDef) || move == MOVE_THOUSANDARROWS || ( (moveType == TYPE_GROUND) 
+		&& (atkAbility == ABILITY_BONEZONE) && CheckTableForMove(move, gBoneMoves) )))
 			multiplier = TYPE_MUL_NORMAL;
 	}
 	else
@@ -1211,7 +1218,8 @@ static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, 
 		if (multiplier == TYPE_MUL_NO_EFFECT && ITEM_EFFECT(bankDef) == ITEM_EFFECT_RING_TARGET)
 			multiplier = TYPE_MUL_NORMAL;
 		else if (multiplier == TYPE_MUL_NO_EFFECT && moveType == TYPE_GROUND
-		&& (CheckGrounding(bankDef) || move == MOVE_THOUSANDARROWS))
+		&& (CheckGrounding(bankDef) || move == MOVE_THOUSANDARROWS || ( (moveType == TYPE_GROUND) 
+		&& (atkAbility == ABILITY_BONEZONE) && CheckTableForMove(move, gBoneMoves) )) )
 			multiplier = TYPE_MUL_NORMAL;
 	}
 
@@ -3364,12 +3372,6 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 
 	//Check attacker partner ability boost
 	switch (data->atkPartnerAbility) {
-		case ABILITY_BATTERY:
-		//1.3x Boost
-			if (data->moveSplit == SPLIT_SPECIAL)
-				power = (power * 13) / 10;
-			break;
-
 		case ABILITY_STEELY_SPIRIT:
 		//1.5x Boost
 			if (data->moveType == TYPE_STEEL)

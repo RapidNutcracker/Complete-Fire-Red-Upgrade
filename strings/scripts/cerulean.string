@@ -110,10 +110,10 @@ You have no room for it[.]\nCome back when you've made room.
 Take good care of it.
 
 #org @gText_Cerulean_NewThiefInfo
-The move Thief automatically adds\nthe stolen item to the bag.\pConvinient, right? 
+The move Thief automatically adds\nthe stolen item to the bag.\pConvenient, right? 
 
 #org @gText_Cerulean_RedShardInfo
-I caught a Slugma earlier and it \nwas holding a [LIGHT_BLUE]Red Shard[BLUE]!\nNot sure what to do with this, though[.] 
+I caught a Slugma earlier and it \nwas holding a [GREEN]Red Shard[BLUE]!\nNot sure what to do with this, though[.] 
 
 #org @gText_redogaryrival_Startmsg
 [RIVAL]: Yo! [GREEN][PLAYER][BLUE]!\pYou're still struggling along back\nhere?\pI'm doing great! I caught a bunch\nof strong and smart Pok\emon!\pHere, let me see what you caught,\n[PLAYER]!

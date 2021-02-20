@@ -384,3 +384,42 @@ EventScript_koga_Veryfast:
 	setflag 0x964
 	release
 	end
+
+.global EventScript_Fuschia_SandacondaBattle
+EventScript_Fuschia_SandacondaBattle:
+	checkflag 0x102F
+	if 0x1 _goto SandacondaDone
+	lock
+	faceplayer
+	applymovement 0x800F FacePlayer
+	waitmovement 0x0
+	msgbox gText_Fuschia_Sandaconda1 MSG_YESNO 
+	compare LASTRESULT NO
+	if equal _goto SandacondaReject
+	msgbox gText_Fuschia_Sandaconda2 MSG_FACE
+	setflag 0x90E
+	trainerbattle3 0x3 0xF 0x0 gText_Fuschia_SandacondaDefeat
+	applymovement 0x800F FacePlayer
+	waitmovement 0x0
+	msgbox gText_Fuschia_Sandaconda3 MSG_FACE
+	giveitem ITEM_SANDACONDITE 0x1 MSG_OBTAIN
+	msgbox gText_Fuschia_Sandaconda4 MSG_FACE
+	giveitem ITEM_POWER_HERB 0x1 MSG_OBTAIN
+	faceplayer 
+	setflag 0x102F
+	goto SandacondaDone
+	end
+
+SandacondaDone:
+	msgbox gText_Fuschia_Sandaconda5 MSG_FACE
+	release
+	end
+
+SandacondaReject:
+	msgbox gText_Fuschia_SandacondaReject MSG_FACE
+	release
+	end
+
+FacePlayer:
+	.byte face_player
+	.byte end_m

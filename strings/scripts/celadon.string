@@ -1,8 +1,8 @@
 #org @gText_RandomPika_1
-I'm a [LIGHT_BLUE]Yellow Shard[BLUE] collector!\pIf you hand me one, I can\nexchange give a random costume\l[GREEN]Pikachu.
+I'm a [GREEN]Yellow Shard[BLUE] collector!\pIf you hand me one, I can\nexchange give a random costume\l[GREEN]Pikachu.
 
 #org @gText_RandomPika_2
-Ah! I see a [LIGHT_BLUE]Yellow Shard[BLUE]!\pWould you like to exchange it?
+Ah! I see a [GREEN]Yellow Shard[BLUE]!\pWould you like to exchange it?
 
 #org @gText_RandomPika_AwOkay
 Well, come back if you change\nyour mind.
@@ -41,7 +41,7 @@ You're not interested? Come see\nme if you change your mind.
 [.]You don't have enough money.
 
 #org @gText_coincasenugget_3
-I used to give out[LIGHT_BLUE] Coin Cases[BLUE] to\nminors that approached me,\lbut then it became illegal.\pYou can have these instead.
+I used to give out[GREEN] Coin Cases[BLUE] to\nminors that approached me,\lbut then it became illegal.\pYou can have these instead.
 
 #org @gText_coincasenugget_4
 I can't stay a gambling addict[.]\pTake my money so I don't do it\nanymore[.]
@@ -134,16 +134,16 @@ Life sure is tough in the city[.]\nI learned it the hard way,\nnothing is free!
 [.]You came from [GREEN]Pallet Town[BLUE]?!\pHoly cow!\pYou'd make better use of this than\nme.
 
 #org @gText_amuletcoin_5
-The [LIGHT_BLUE]Amulet Coin[BLUE] ain't a money tree,\nbut it's the next closest thing.
+The [GREEN]Amulet Coin[BLUE] ain't a money tree,\nbut it's the next closest thing.
 
 #org @gText_coinstory_6
-Way back in the day, me and my\nsquad here hustled money using the\l[LIGHT_BLUE]Amulet Coin[BLUE].\pWe'd keep note of all the weak train-\ners that paid well, and repeatedly\lbattled them with the [LIGHT_BLUE]VS Seeker[BLUE].
+Way back in the day, me and my\nsquad here hustled money using the\l[GREEN]Amulet Coin[BLUE].\pWe'd keep note of all the weak train-\ners that paid well, and repeatedly\lbattled them with the [GREEN]VS Seeker[BLUE].
 
 #org @gText_coinstory_7
 It was a scummy way of making money,\ntaking money from weak children and\lwhat not.\pBut, it was a business nonetheless.
 
 #org @gText_coinstory_8
-Eventually, the League caught wind\nof it, and rather than banning the\l[LIGHT_BLUE]Amulet Coin[BLUE], they banned the [LIGHT_BLUE]VS\lSeeker[BLUE].
+Eventually, the League caught wind\nof it, and rather than banning the\l[GREEN]Amulet Coin[BLUE], they banned the [GREEN]VS\lSeeker[BLUE].
 
 #org @gText_coinstory_9
 Funny, isn't it?\pUs chumps caused an item to be\noutlawed!\pIt was a big hit for us at the time,\nbut now we're making bank thanks to\lour new services.
@@ -332,7 +332,7 @@ You received a [GREEN]Toxel!
 Hey, you came to see me!\pI'm not thirsty like I was in\nthe old games though.\pYou can have this instead!
 
 #org @gText_gardevoirite_2
-That item Mega Evolves [GREEN]Alakazam[RED]!\pYou'll need a [LIGHT_BLUE]Mega Ring[RED] for it\nto work though.
+That item Mega Evolves [GREEN]Alakazam[RED]!\pYou'll need a [GREEN]Mega Ring[RED] for it\nto work though.
 
 #org @gText_erika_EncounterText
 [RED]Hello[.]\nLovely weather, isn't it?\lIt's so pleasant[.]\p[.]Oh, dear[.]\nI must have dozed off. Welcome.\pMy name is Erika.\nI am the Leader of Celadon Gym.\pI am a student of the art of\nflower arranging.\pMy Pok\emon are solely of the\nGrass type.\p[.]Oh, I'm sorry, I had no idea that\nyou wished to challenge me.\pVery well, but I shall not lose.
@@ -347,13 +347,13 @@ The Rainbow Badge allows\nyou to use Strength outside\lof battle.\pPlease also t
 TM19 contains Giga Drain.\pHalf the damage it inflicts is\ndrained to heal your Pok\emon.\pWouldn't you agree that it's a\nwonderful move?
 
 #org @gText_erika_Helloagain
-Oh hello there.\p[.]I see you've obtained the [LIGHT_BLUE]Mega Ring[RED].\pUnfortunately, my Pok\emon aren't look-\ning to battle at the moment.\pYou see, this [GREEN]Gloom[RED] I've been caring for\nhas become terribly sick.
+Oh hello there.\p[.]I see you've obtained the [GREEN]Mega Ring[RED].\pUnfortunately, my Pok\emon aren't look-\ning to battle at the moment.\pYou see, this [GREEN]Gloom[RED] I've been caring for\nhas become terribly sick.
 
 #org @gText_erika_Helloend
 If you could bring me something\nthat could help my [GREEN]Gloom[RED], that would\lhelp tremendously.
 
 #org @gText_erika_Isit
-Oh my[.]\pThis [LIGHT_BLUE]Medicine[RED][.] is it for [GREEN]Gloom[RED]?!
+Oh my[.]\pThis [GREEN]Medicine[RED][.] is it for [GREEN]Gloom[RED]?!
 
 #org @gText_erika_Thankutext
 Oh my goodness!\pThank you!\pLet me see if it helps [GREEN]Gloom[RED].
@@ -392,10 +392,10 @@ Hi! I offer fossil Pok\emon\nin exchange for shards.\pInterested?
 Which fossil Pok\emon would you\nlike?
 
 #org @gText_FossilPokemon_Dont
-Hm, you don't have enough\n[LIGHT_BLUE][BUFFER1]s[BLUE].\pCome back with some [LIGHT_BLUE][BUFFER1]s[BLUE]\nif you'd like a [GREEN][BUFFER2][BLUE].
+Hm, you don't have enough\n[GREEN][BUFFER1]s[BLUE].\pCome back with some [GREEN][BUFFER1]s[BLUE]\nif you'd like a [GREEN][BUFFER2][BLUE].
 
 #org @gText_FossilPokemon_Confirm 
-Okay, you'd like to exchange\n[LIGHT_BLUE][BUFFER1]s[BLUE] for [GREEN][BUFFER2][BLUE],\lcorrect?
+Okay, you'd like to exchange\n[GREEN][BUFFER1]s[BLUE] for [GREEN][BUFFER2][BLUE],\lcorrect?
 
 #org @gText_FossilReceive
 You received a [GREEN][BUFFER2][BLUE]!
@@ -411,3 +411,42 @@ Leading with a Pok\emon that has either\nSuper Luck, Frisk, or Compound-eyes\las
 
 #org @gText_IVPerfecterPreparemsg_1
 Which stat should I perfect? 
+
+#org @gText_CeladonFlappleTrainers_1
+Jeez[.] who would've thought a\ntrip to Celadon would be so boring!
+
+#org @gText_CeladonFlappleTrainers_1_1
+Yeah[.] I didn't expect our dates\nto flake on us[.]\pIt's quite unfortunate.
+
+#org @gText_CeladonFlappleTrainers_2
+For real[.] This is disappointing[.]
+
+#org @gText_CeladonFlappleTrainers_3
+That item in your bag[.]\nYou got a Mega Ring don't you?\pSay[.] help us out here!\pWe're just two super bored gals[.]\pCould you entertain us with a battle?
+
+#org @gText_CeladonFlappleTrainers_4
+Alright, no holding back!
+
+#org @gText_CeladonFlappleTrainers_Boring
+An uneventful vacation it is[.]
+
+#org @gText_CeladonFlappleTrainers_5
+[RED]Okay, I'll go next I'll go next!
+
+#org @gText_flappletrainer1_loss
+Woah, how unexpected!
+
+#org @gText_flappletrainer2_loss
+Heh, I guess I deserved that.
+
+#org @gText_CeladonFlappleTrainers_6
+[RED]Those were some battles!\nSorry if it felt like we ganged\lup on you. We were just very\leager to battle, sitting here doing\lnothing.\pPlease, have one of our signature\nitems!
+
+#org @gText_CeladonFlappleTrainers_7
+The [GREEN]Applite[RED] can actually Mega Evolve\nboth Flapple and Appletun!\pAlthough they both have the same\nappearance, their stats and abilities\lare quite distinct!
+
+#org @gText_CeladonFlappleTrainers8
+And if that wasn't enough, you can\nhave our favorite TM as well!
+
+#org @gText_CeladonFlappleTrainers_9
+I personally prefer [GREEN]Mega Appletun.\p[RED]Contrary Draco Meteor is so satisfy-\ning!

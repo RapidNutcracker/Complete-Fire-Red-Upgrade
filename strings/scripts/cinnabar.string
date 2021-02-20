@@ -131,10 +131,10 @@ TM38 contains Fire Blast.\nTeach it to Fire-type Pok\emon.\pSpecial Attackers wo
 Hah! What a fight.\pHere, you can have this, too!
 
 #org @gText_blaine_Helloagain
-[.]You looking for a [LIGHT_BLUE]Charizardite Y[BLUE]?
+[.]You looking for a [GREEN]Charizardite Y[BLUE]?
 
 #org @gText_blaine_Perfectpokemon
-Show me a Pok\emon you've invested\nin Special Attack.\pThen, you'll earn a [LIGHT_BLUE]Charizardite Y[BLUE]!
+Show me a Pok\emon you've invested\nin Special Attack.\pThen, you'll earn a [GREEN]Charizardite Y[BLUE]!
 
 #org @gText_blaine_Thepokemon
 Your [BUFFER1][.]
@@ -185,7 +185,7 @@ Your [BUFFER1][.]
 Yes, this Pok\emon is quite a\nworthy shield.\pAs promised, here you go.
 
 #org @gText_jasmine_10
-[RED]The[LIGHT_BLUE] Assault Vest[RED] complements a high\ndefense Pok\emon well, making it an\limpenetrable wall. 
+[RED]The[GREEN] Assault Vest[RED] complements a high\ndefense Pok\emon well, making it an\limpenetrable wall. 
 
 #org @gText_metatutor_1
 I teach some sick moves, but it's\ngoing to cost \$10000.\pYou in?

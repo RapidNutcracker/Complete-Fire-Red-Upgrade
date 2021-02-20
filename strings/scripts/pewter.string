@@ -5,10 +5,10 @@
 [BLUE]Ah, I'm glad I was able to\nfind you.\pNormally, I'd be here to send a gift\nfrom your mother, but it appears\lshe doesn't love you in this game.\pAnyway[.]
 
 #org @gText_Pewter_GiveDmax3
-[BLUE]The professor forgot to give you\nthe Dynamax Band.
+[BLUE]The professor forgot to give you\nthe [GREEN]Dynamax Band[BLUE].
 
 #org @gText_Pewter_GiveDynamaxEnd
-[BLUE]It, obviously, allows you to\nDynamax, although it can only be\ldone in Raid Battles.\pYou can find them by talking\nto raid dens.\pGood luck, and take care! 
+[BLUE]It, obviously, allows you to\nDynamax, although it can only be\ldone in Raid Battles.\pYou can find them by taking on\nraid dens.\pGood luck, and take care! 
 
 #org @gText_falknercheck_1
 It appears the Gym is closed[.]\pIt could be wise to pay the museum\na visit. 
@@ -93,6 +93,3 @@ I hope you took good care of\nthe egg!
 
 #org @gText_Pewter_TalkAboutLevelCap
 Scrubs like complaining this game\nis too hard[.]\pIt really ain't that bad[.]\nY'all just used to playing Pok\emon\lgames made for babies. 
-
-#org @gText_Pewter_TrainerTips
-Trainer Tips\pAll Pok\emon present in the party\nearn EVs if the Exp. Share is en-\labled, even if they didn't partipate\lin battle.

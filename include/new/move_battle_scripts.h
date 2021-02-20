@@ -61,6 +61,7 @@ extern const u8 BattleScript_ButItFailedAttackstring[];
 extern const u8 BattleScript_EnduredMsg[];
 extern const u8 BattleScript_SideStatusWoreOffRet[];
 extern const u8 RecoverBS[];
+extern const u8 RecoverJungleBS[];
 extern const u8 BattleScript_LifeDewFail[];
 extern const u8 BattleScript_CouldntFullyProtect[];
 extern const u8 BattleScript_TeleportSwitch[];

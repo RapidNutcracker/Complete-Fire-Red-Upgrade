@@ -1006,7 +1006,7 @@ BS_032_Recover:
 	ppreduce
 	jumpifmove MOVE_ROOST RoostBS
 	jumpifmove MOVE_LIFEDEW LifeDewBS
-	jumpifmove MOVE_JUNGLEHEALING LifeDewBS @TODO
+	jumpifmove MOVE_JUNGLEHEALING JungleHealingBS @TODO
 
 RecoverBS:
 	setdamageasrestorehalfmaxhp 0x81D7DD1 BANK_ATTACKER @;BattleScript_AlreadyAtFullHp
@@ -1085,6 +1085,67 @@ LifeDewAttackerFullHealthBS:
 LifeDewMissedPartnerBS:
 	orbyte OUTCOME OUTCOME_MISSED
 	goto BS_MOVE_MISSED_PAUSE + 4
+	
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+JungleHealingBS:
+	callasm TryFailLifeDew
+	setdamageasrestorehalfmaxhp JungleHealFullHealthBS BANK_ATTACKER
+	attackanimation
+	waitanimation
+	orword HIT_MARKER HITMARKER_IGNORE_SUBSTITUTE
+	graphicalhpupdate BANK_ATTACKER
+	datahpupdate BANK_ATTACKER
+	printstring 0x4B @;STRINGID_PKMNREGAINEDHEALTH
+	waitmessage DELAY_1SECOND
+	attackstringnoprotean
+	cureifburnedparalysedorpoisoned JungleHealPartner_BS
+	tryactivateprotean
+	printstring 0xA7 @;STRINGID_PKMNSTATUSNORMAL
+	waitmessage DELAY_1SECOND
+	refreshhpbar BANK_ATTACKER
+	goto JungleHealPartner_BS
+
+JungleHealPartner_BS:
+	callasm SetTargetPartner
+	jumpiffainted BANK_TARGET BS_MOVE_END
+	jumpifcounter BANK_TARGET HEAL_BLOCK_TIMERS NOTEQUALS 0x0 BattleScript_NoHealTargetAfterHealBlock
+	accuracycheck LifeDewMissedPartnerBS 0x0
+	setdamageasrestorehalfmaxhp LifeDewPartnerFullHealthBS BANK_TARGET
+	orword HIT_MARKER HITMARKER_IGNORE_SUBSTITUTE
+	graphicalhpupdate BANK_TARGET
+	datahpupdate BANK_TARGET
+	printstring 0x4B @;STRINGID_PKMNREGAINEDHEALTH
+	waitmessage DELAY_1SECOND
+	cureprimarystatus BANK_TARGET BS_MOVE_END
+	tryactivateprotean
+	setword BATTLE_STRING_LOADER PurifyString
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	refreshhpbar BANK_TARGET
+	goto BS_MOVE_END
+
+.global RecoverJungleBS
+RecoverJungleBS:
+	setdamageasrestorehalfmaxhp JungleHealFullHealthBS BANK_ATTACKER
+	attackanimation
+	waitanimation
+	orword HIT_MARKER HITMARKER_IGNORE_SUBSTITUTE
+	graphicalhpupdate BANK_ATTACKER
+	datahpupdate BANK_ATTACKER
+	printstring 0x4B @;STRINGID_PKMNREGAINEDHEALTH
+	waitmessage DELAY_1SECOND
+	attackstringnoprotean
+	cureifburnedparalysedorpoisoned BS_MOVE_END
+	tryactivateprotean
+	printstring 0xA7 @;STRINGID_PKMNSTATUSNORMAL
+	waitmessage DELAY_1SECOND
+	refreshhpbar BANK_ATTACKER
+	goto BS_MOVE_END
+
+JungleHealFullHealthBS:
+	printstring 0x4C @;STRINGID_PKMNHPFULL
+	waitmessage DELAY_1SECOND
+	goto JungleHealPartner_BS
 
 .global BattleScript_LifeDewFail
 BattleScript_LifeDewFail:

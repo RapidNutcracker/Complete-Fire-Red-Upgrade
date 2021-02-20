@@ -63,6 +63,7 @@ move_tables.s
 .global gMovesThatLiftProtectTable
 .global gKickingMoves
 .global gSwordMoves
+.global gBoneMoves
 .global gMovesWithQuietBGM
 .global gRandomizerBannedMoves
 
@@ -531,7 +532,6 @@ gSheerForceBoostedMoves:
 .hword MOVE_CROSSPOISON
 .hword MOVE_CRUNCH
 .hword MOVE_CRUSHCLAW
-.hword MOVE_CRUSHGRIP @Aqua Fang
 .hword MOVE_DARKPULSE
 .hword MOVE_DIAMONDSTORM
 .hword MOVE_DISCHARGE
@@ -750,6 +750,15 @@ gSwordMoves:
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
+gBoneMoves:
+.hword MOVE_BONECLUB
+.hword MOVE_BONEMERANG
+.hword MOVE_BONERUSH
+.hword MOVE_SHADOWBONE
+.hword MOVE_TABLES_TERMIN 
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
 gPulseAuraMoves:
 .hword MOVE_AURASPHERE
 .hword MOVE_DARKPULSE
@@ -776,7 +785,7 @@ gBitingMoves:
 .hword MOVE_THUNDERFANG
 .hword MOVE_JAWLOCK
 .hword MOVE_FISHIOUSREND
-.hword MOVE_CRUSHGRIP @Aqua Fang
+.hword MOVE_AQUAFANG @Aqua Fang
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

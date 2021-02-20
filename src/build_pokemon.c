@@ -3594,7 +3594,7 @@ bool8 ShouldTrainerRandomize()
 	}
 
 	if (trainerClass == CLASS_BOSS || trainerClass == CLASS_CHAMPION || trainerClass == CLASS_RUIN_MANIAC_RS || trainerClass == CLASS_RIVAL_2 || trainerClass == CLASS_AQUA_LEADER || trainerClass == CLASS_TEAM_AQUA || trainerClass == CLASS_AROMA_LADY_RS || trainerClass == CLASS_PKMN_TRAINER_2 || trainerClass == CLASS_LEADER || trainerClass == CLASS_ELITE_4 
-	    || trainerClass == CLASS_MAGMA_ADMIN || trainerClass == CLASS_MAGMA_LEADER || trainerClass == CLASS_BUG_MANIAC)
+	    || trainerClass == CLASS_MAGMA_ADMIN || trainerClass == CLASS_MAGMA_LEADER || trainerClass == CLASS_BUG_MANIAC || trainerClass == CLASS_COOLTRAINER)
 	/*|| trainerClass == CLASS_RIVAL_2 || trainerClass == CLASS_RIVAL || trainerClass == CLASS_PKMN_TRAINER_1
     || trainerClass == CLASS_AQUA_LEADER || trainerClass ==  CLASS_TEAM_AQUA || trainerClass == CLASS_AROMA_LADY_RS 
 	|| trainerClass == CLASS_RUIN_MANIAC_RS){ */

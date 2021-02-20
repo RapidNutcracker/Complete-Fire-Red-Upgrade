@@ -53,7 +53,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_ASONESHADOW] = 7,
 	[ABILITY_AURABREAK] = 3,
 	[ABILITY_BADDREAMS] = 4,
-	[ABILITY_BATTERY] = 0,
+	[ABILITY_BONEZONE] = 6,
 	[ABILITY_BATTLEARMOR] = 2,
 	[ABILITY_BATTLEBOND] = 6,
 	[ABILITY_BEASTBOOST] = 7,
@@ -177,7 +177,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_POISONHEAL] = 8,
 	[ABILITY_POISONTOUCH] = 4,
 	[ABILITY_POWERCONSTRUCT] = 10,
-	[ABILITY_POWEROFALCHEMY] = 0,
+	[ABILITY_SELFSUFFICIENT] = 0,
 	[ABILITY_PRANKSTER] = 8,
 	[ABILITY_PRESSURE] = 5,
 	[ABILITY_PRIMORDIALSEA] = 10,
@@ -1382,12 +1382,12 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 					}
 					break;
 
-				case ABILITY_SOLARPOWER:
-					if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_SUN_ANY)
-					&& ITEM_EFFECT(bank) != ITEM_EFFECT_UTILITY_UMBRELLA)
+				case ABILITY_SELFSUFFICIENT:
+					if (!BATTLER_MAX_HP(bank))
 					{
-						gBattleMoveDamage = MathMax(1, GetBaseMaxHP(bank) / 8);
-						BattleScriptExecute(BattleScript_SolarPowerDamage);
+						gBattleMoveDamage = MathMax(1, GetBaseMaxHP(bank) / 16);
+						gBattleMoveDamage *= -1;
+						BattleScriptExecute(BattleScript_RainDishActivates);
 						effect++;
 					}
 					break;
@@ -1832,7 +1832,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				break;
 
 			case ABILITY_EFFECTSPORE:
-				if (MOVE_HAD_EFFECT
+				if ((gBattleTypeFlags & (BATTLE_TYPE_TRAINER))
+				&&	MOVE_HAD_EFFECT
 				&& TOOK_DAMAGE(bank)
 				&& BATTLER_ALIVE(gBankAttacker)
 				&& gBankAttacker != bank
@@ -1874,7 +1875,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				break;
 
 			case ABILITY_STATIC:
-				if (MOVE_HAD_EFFECT
+				if ( (gBattleTypeFlags & (BATTLE_TYPE_TRAINER)) 
+				&& MOVE_HAD_EFFECT
 				&& TOOK_DAMAGE(bank)
 				&& BATTLER_ALIVE(gBankAttacker)
 				&& gBankAttacker != bank
@@ -1891,13 +1893,14 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				break;
 
 			case ABILITY_FLAMEBODY:
-				if (MOVE_HAD_EFFECT
+				if ((gBattleTypeFlags & (BATTLE_TYPE_TRAINER))
+				&& MOVE_HAD_EFFECT
 				&& TOOK_DAMAGE(bank)
 				&& BATTLER_ALIVE(gBankAttacker)
 				&& gBankAttacker != bank
 				&& CheckContact(move, gBankAttacker)
 				&& CanBeBurned(gBankAttacker, TRUE)
-				&& umodsi(Random(), 3) == 0)
+				&& umodsi(Random(), 3) == 0) 
 				{
 					gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_BURN;
 					BattleScriptPushCursor();
@@ -1945,21 +1948,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				}
 				break;
 
-			// case ABILITY_RATTLED:
-			// 	if (MOVE_HAD_EFFECT
-			// 	&& TOOK_DAMAGE(bank)
-			// 	&& BATTLER_ALIVE(bank)
-			// 	&& gBankAttacker != bank
-			// 	&& (moveType == TYPE_DARK || moveType == TYPE_BUG || moveType == TYPE_GHOST)
-			// 	&& gBattleMons[bank].statStages[STAT_SPEED - 1] < 12)
-			// 	{
-			// 		gBattleScripting.statChanger = STAT_SPEED | INCREASE_1;
-			// 		BattleScriptPushCursor();
-			// 		gBattlescriptCurrInstr = BattleScript_TargetAbilityStatRaise;
-			// 		effect++;
-			// 	}
-			// 	break;
-
 			case ABILITY_WEAKARMOR:
 				if (MOVE_HAD_EFFECT
 				&& TOOK_DAMAGE(bank)
@@ -2003,7 +1991,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 						case ABILITY_DISGUISE:
 						case ABILITY_MULTITYPE:
 						case ABILITY_POWERCONSTRUCT:
-						// case ABILITY_RKS_SYSTEM:
 						case ABILITY_SCHOOLING:
 						case ABILITY_SHIELDSDOWN:
 						case ABILITY_STANCECHANGE:

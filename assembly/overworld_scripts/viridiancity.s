@@ -115,6 +115,7 @@ EventScript_aidoranberry_Aid4:
     .byte 0x10
     .byte 0x10
     .byte 0x10
+	.byte 0x10
     .byte 0xFE
 
 EventScript_aidoranberry_Done:
@@ -188,11 +189,22 @@ WalkLeftB:
     .byte walk_left 
     .byte end_m
 
+.global EventScript_brendanbattleleftsetup
+EventScript_brendanbattleleftsetup:
+	applymovement 0xFF WalkRightB 
+    waitmovement 0x0 
+    goto EventScript_brendanbattleleft_Start
+    end 
+
+WalkRightB:
+    .byte walk_right
+    .byte end_m
+
 .global EventScript_brendanbattleleft_Start
 EventScript_brendanbattleleft_Start:
 	clearflag 0x200
 	showsprite 0x0D
-	applymovement 0xFF EventScript_brendanbattleleft_Down
+	applymovement 0xFF EventScript_brendanbattleleft_Up
 	applymovement 0x0D EventScript_brendanbattleleft_Lookaround
 	waitmovement 0x0
 	textcolor 0x00
@@ -221,16 +233,16 @@ EventScript_brendanbattleleft_Start:
 	end
 
 EventScript_brendanbattleleft_Lookaround:
-    .byte 0x11
-    .byte 0x11
+    .byte walk_down
+    .byte walk_down
     .byte 0x13
     .byte 0x12
     .byte 0x12
     .byte 0x13
     .byte 0xFE
 
-EventScript_brendanbattleleft_Down:
-    .byte 0x0
+EventScript_brendanbattleleft_Up:
+    .byte look_up
     .byte 0xFE
 
 EventScript_brendanExclamation:
@@ -239,19 +251,20 @@ EventScript_brendanExclamation:
     .byte end_m 
 
 EventScript_brendanbattleleft_Comeup:
-    .byte 0x11
-    .byte 0x11
-    .byte 0x12
-    .byte 0x11
+    .byte walk_down
+    .byte walk_down
+    .byte walk_down
     .byte 0xFE
 
 EventScript_brendanbattleleft_Comedown:
-    .byte 0x10
-    .byte 0x10
-    .byte 0x10
-    .byte 0x10
-    .byte 0x10
-    .byte 0x10
+    .byte walk_right
+    .byte walk_down
+    .byte walk_down
+    .byte walk_down
+    .byte walk_down
+    .byte walk_down
+	.byte walk_down
+	.byte walk_down
     .byte 0xFE
 
 .global EventScript_Virizion_OW

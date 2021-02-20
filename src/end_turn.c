@@ -315,10 +315,11 @@ u8 TurnBasedEffects(void)
 						case ABILITY_RAINDISH:
 						case ABILITY_DRYSKIN:
 						case ABILITY_ICEBODY:
-						case ABILITY_SOLARPOWER:
+						case ABILITY_SELFSUFFICIENT:
 							if (AbilityBattleEffects(ABILITYEFFECT_ENDTURN, gActiveBattler, 0, 0, 0))
 								effect++;
 							break;
+
 						case ABILITY_FORECAST:
 							if (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, gActiveBattler, 0, 0, 0))
 								effect++;

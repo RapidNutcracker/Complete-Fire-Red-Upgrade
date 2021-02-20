@@ -881,7 +881,7 @@ Using a pulled-up\nmat as a shield,\nthe user protects\nitself and its allies\nf
 The user protects\nitself and its\nallies from priority\nmoves.
 
 #org @DESC_WIDEGUARD
-The user protects\nitself and its\nallies from wide-\nranged attacks.
+The user protects\nitself and its\nallies from wide-\nranged attacks.\nIt may fail.
 
 #org @DESC_AQUARING
 The user envelops\nitself in a veil\nmade of water. It\nregains some HP\nevery turn.

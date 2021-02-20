@@ -31,7 +31,7 @@ Fire Punch
 Ice Punch
 
 #org @NAME_LONG_THUNDERPUNCH
-ThunderPunch
+Thunder Punch
 
 #org @NAME_LONG_SCRATCH
 Scratch
@@ -235,7 +235,7 @@ Razor Leaf
 Solar Beam
 
 #org @NAME_LONG_POISONPOWDER
-PoisonPowder
+Poison Powder
 
 #org @NAME_LONG_STUN_SPORE
 Stun Spore
@@ -256,7 +256,7 @@ Dragon Rage
 Fire Spin
 
 #org @NAME_LONG_THUNDERSHOCK
-ThunderShock
+Thunder Shock
 
 #org @NAME_LONG_THUNDERBOLT
 Thunderbolt
@@ -412,7 +412,7 @@ Kinesis
 Soft-Boiled
 
 #org @NAME_LONG_HI_JUMP_KICK
-Hi Jump Kick
+High Jump Kick
 
 #org @NAME_LONG_GLARE
 Glare
@@ -673,13 +673,13 @@ Sacred Fire
 Magnitude
 
 #org @NAME_LONG_DYNAMICPUNCH
-DynamicPunch
+Dynamic Punch
 
 #org @NAME_LONG_MEGAHORN
 Megahorn
 
 #org @NAME_LONG_DRAGONBREATH
-DragonBreath
+Dragon Breath
 
 #org @NAME_LONG_BATON_PASS
 Baton Pass
@@ -739,10 +739,10 @@ Mirror Coat
 Psych Up
 
 #org @NAME_LONG_EXTREMESPEED
-Extremespeed
+Extreme Speed
 
 #org @NAME_LONG_ANCIENTPOWER
-AncientPower
+Ancient Power
 
 #org @NAME_LONG_SHADOW_BALL
 Shadow Ball
@@ -799,7 +799,7 @@ Facade
 Focus Punch
 
 #org @NAME_LONG_SMELLINGSALT
-SmellingSalt
+Smelling Salts
 
 #org @NAME_LONG_FOLLOW_ME
 Follow Me
@@ -1390,7 +1390,7 @@ Brine
 Fairy Wind
 
 #org @NAME_LONG_DOLL_EYES
-Doll Eyes
+Baby-Doll Eyes
 
 #org @NAME_LONG_PLAY_ROUGH
 Play Rough
@@ -1402,7 +1402,7 @@ Moonblast
 Drain Kiss
 
 #org @NAME_LONG_DAZZLE_GLEAM
-Dazzle Gleam
+Dazzling Gleam
 
 #org @NAME_LONG_DISARM_CRY
 Disarm Cry

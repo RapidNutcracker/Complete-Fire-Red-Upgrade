@@ -2010,7 +2010,10 @@ void SetScriptingBankToItsPartner(void)
 
 void TryFailLifeDew(void)
 {
-	if (!IS_DOUBLE_BATTLE || !BATTLER_ALIVE(PARTNER(gBankAttacker)))
+	if(gCurrentMove == MOVE_JUNGLEHEALING && (!IS_DOUBLE_BATTLE || !BATTLER_ALIVE(PARTNER(gBankAttacker)))){
+		gBattlescriptCurrInstr = RecoverJungleBS - 5;
+	}
+	else if (!IS_DOUBLE_BATTLE || !BATTLER_ALIVE(PARTNER(gBankAttacker)))
 		gBattlescriptCurrInstr = RecoverBS - 5;
 	else if (BATTLER_MAX_HP(gBankAttacker) && BATTLER_MAX_HP(PARTNER(gBankAttacker)))
 		gBattlescriptCurrInstr = BattleScript_LifeDewFail - 5;

@@ -510,10 +510,9 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 	{ //Mixed Attacker: Speed Based, Less Sp. Defense - Ability_1
 		.nature = NATURE_NAIVE,
 		.ivs = 31,
-		.hpEv = 6,
 		.atkEv = 128,
 		.spdEv = 252,
-		.spAtkEv = 128,
+		.spAtkEv = 132,
 		.ball = TRAINER_EV_CLASS_BALL,
 		.ability = Ability_1,
 	},
@@ -1469,12 +1468,23 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 		.hiddenPower = TYPE_GRASS,
 		.ivs = 31,
 		.hpEv = 60,
-		.atkEv = 100,
-		.spAtkEv = 100,
+		.atkEv = 0,
+		.spAtkEv = 0,
 		.spdEv = 40,
 		.ball = TRAINER_EV_CLASS_BALL,
 		.ability = Ability_Random_1_2,
 	},
+	[144] =
+	{ //Bulky Special Attacker Ability 2 - Magnezone HP Fire Sturdy
+		.nature = NATURE_MODEST,
+		.hiddenPower = TYPE_FIRE,
+		.ivs = 31,
+		.hpEv = 252,
+		.defEv = 6,
+		.spAtkEv = 252,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_2,
+	}
 };
 #endif
 

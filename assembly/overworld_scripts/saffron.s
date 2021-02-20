@@ -677,7 +677,7 @@ EventScript_chuck_Battle:
 	msgbox gText_chuck_6 0x6
 	giveitem ITEM_TM60 0x1 MSG_OBTAIN
 	msgbox gText_chuck_8 0x6
-	giveitem ITEM_FOCUS_SASH 0x1 MSG_OBTAIN
+	giveitem ITEM_EXPERT_BELT 0x1 MSG_OBTAIN
 	msgbox gText_chuck_Take 0x6
 	setflag 0x950
 	setvar 0x4081 0x1 @stop the script tiles
@@ -717,7 +717,7 @@ EventScript_chuck_MaxedHappiness:
 	msgbox gText_chuck_12 0x6
 	giveitem ITEM_GALLADITE 0x1 MSG_OBTAIN
 	msgbox gText_chuck_14 0x6
-	giveitem ITEM_EXPERT_BELT 0x1 MSG_OBTAIN
+	giveitem ITEM_FOCUS_SASH 0x1 MSG_OBTAIN
 	setflag 0x951
 	release
 	end
@@ -1728,5 +1728,66 @@ SetUpSteel:
 
 EndOfHPScript:
 	msgbox gText_HPChanger_Done MSG_NORMAL
+	release
+	end
+
+.global EventScript_Saffron_CakeMaker
+EventScript_Saffron_CakeMaker:
+	lock
+	checkflag 0x102D
+	if 0x1 _goto AlcremieEnd
+	msgbox gText_SaffronCake1 MSG_NORMAL
+	applymovement 0x800F FaceYou
+	waitmovement 0x0
+	msgbox gText_SaffronCake2 MSG_YESNO
+	compare LASTRESULT YES
+	if equal _goto TryCake
+	goto CakeIllImprovise
+	end
+
+FaceYou:
+	.byte face_player
+	.byte end_m
+
+FaceUp:
+	.byte look_up
+	.byte end_m
+
+TryCake:
+	checkitem ITEM_MOOMOO_MILK 0x2
+    compare 0x800D 0x1
+    if lessthan _goto YouDontHaveCake
+	checkitem ITEM_RAWST_BERRY 0x1
+	compare 0x800D 0x1
+	if lessthan _goto YouDontHaveCake
+	checkitem ITEM_ASPEAR_BERRY 0x1
+	compare 0x800D 0x1
+	if lessthan _goto YouDontHaveCake
+	msgbox gText_SaffronCake3 MSG_NORMAL
+	removeitem ITEM_MOOMOO_MILK 0x2
+	removeitem ITEM_RAWST_BERRY 0x1
+	removeitem ITEM_ASPEAR_BERRY 0x1
+	giveitem ITEM_ALCREMITE 0x1 MSG_OBTAIN
+	setflag 0x102D
+	msgbox gText_SaffronCake4 MSG_NORMAL
+	msgbox gText_SaffronCake5 MSG_NORMAL
+	giveitem ITEM_METRONOME 0x1 MSG_OBTAIN
+	release
+	end
+
+AlcremieEnd:
+	msgbox gText_SaffronCake4 MSG_FACE
+	release
+	end
+
+YouDontHaveCake:
+	msgbox gText_SaffronCakeDontHave MSG_NORMAL
+	goto CakeIllImprovise
+	end
+
+CakeIllImprovise:
+	msgbox gText_SaffronCakeImprovise MSG_NORMAL
+	applymovement 0x800F FaceUp
+	waitmovement 0x0
 	release
 	end

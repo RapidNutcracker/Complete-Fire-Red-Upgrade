@@ -474,14 +474,14 @@ Acts as if asleep.
 #org @DESC_DANCER
 Copies dance moves.
 
-#org @DESC_BATTERY
-Powers up allies.
+#org @DESC_BONE_ZONE
+Bone moves ignore immunities.
 
 #org @DESC_RECEIVER
 Takes over a KOed ally's Ability.
 
-#org @DESC_POWEROFALCHEMY
-Takes over a KOed ally's Ability.
+#org @DESC_SELFSUFFICIENT
+Slight HP recovery at end of turn.
 
 #org @DESC_NEUROFORCE
 Powers up super-effective hits.

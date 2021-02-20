@@ -1,5 +1,5 @@
 #org @gText_Saffron_Nerd
-Hi, I can swap to a Pok\emon's\nhidden ability and vice versa.\pI'll need a [LIGHT_BLUE]Bottle Cap[BLUE] though.\pHow about it?
+Hi, I can swap to a Pok\emon's\nhidden ability and vice versa.\pI'll need a [GREEN]Bottle Cap[BLUE] though.\pHow about it?
 
 #org @gText_Saffron_NerdGiveItem
 [BLACK][PLAYER] handed over a Bottle Cap.[BLUE]
@@ -8,7 +8,7 @@ Hi, I can swap to a Pok\emon's\nhidden ability and vice versa.\pI'll need a [LIG
 Thank you!\pAbilities have been swapped.
 
 #org @gText_Saffron_NerdReject
-Uh, you don't have a [LIGHT_BLUE]Bottle Cap[BLUE].
+Uh, you don't have a [GREEN]Bottle Cap[BLUE].
 
 #org @gText_Saffron_Nerd2
 I can change a Pok\emon's ability.\pYou in?
@@ -299,7 +299,7 @@ If you'd like, you can have one of\nthe Fighting Pok\emon over here as a\ltrophy
 It's tough getting gains with\n24-Hour Fitness being closed in\lquarantine.
 
 #org @gText_chuck_10
-[.]I see you have your own [LIGHT_BLUE]Mega\nRing[BLUE].\pIf you show me a Pok\emon you've invested\nin Attack, I might just give you a\l[LIGHT_BLUE]Galladite![BLUE].
+[.]I see you have your own [GREEN]Mega\nRing[BLUE].\pIf you show me a Pok\emon you've invested\nin Attack, I might just give you a\l[GREEN]Galladite![BLUE].
 
 #org @gText_chuck_11
 Your [BUFFER1][.]
@@ -347,7 +347,7 @@ TM116 is Trick Room.\pIt flips dimensions to allow\nslower Pok\emon to go first.
 Before you go, please,\ntake this TM with you.
 
 #org @gText_sabrina_Helloagain
-[.]Perhaps you're looking for a\n[LIGHT_BLUE]Gardevoirite[RED]?
+[.]Perhaps you're looking for a\n[GREEN]Gardevoirite[RED]?
 
 #org @gText_sabrina_Perfectpokemon
 If you show me a perfect Pok\emon,\nI'll reward you handsomely.
@@ -594,3 +594,24 @@ Is that okay?
 
 #org @gText_SaffronHPChanger_No
 Hm[.]\nI don't think this Pok\emon follows\lthe critera I requested. Sorry.
+
+#org @gText_SaffronCake1
+Hm[.] I need some ingredients\nfor this cake I'm making.
+
+#org @gText_SaffronCake2
+Oh! Hello there! Would you be\nwilling to help me with some\lcake ingredients?\pI'll need 2 [GREEN]Moomoo Milks, a Rawst Berry,\n[RED]and an [GREEN]Aspear Berry. 
+
+#org @gText_SaffronCake3
+[RED]Ah yes! That would be a great\nhelp! Thank you so much!\pPlease, have this!
+
+#org @gText_SaffronCake4
+[GREEN]Mega Alcremie[RED] looks like a delicious\ncake, but it's actually quite a bulky\lPok\emon too!
+
+#org @gText_SaffronCake5
+You can have this too. I needed\nthis back when I was a musician,\lbut those days are long gone.
+
+#org @gText_SaffronCakeDontHave
+Eh[.] you don't have all the ingredients[.]
+
+#org @gText_SaffronCakeImprovise
+Perhaps I'll just improvise with\nwhat I have[.]

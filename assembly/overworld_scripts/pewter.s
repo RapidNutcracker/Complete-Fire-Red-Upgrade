@@ -331,9 +331,3 @@ GiveStatScanner:
 	giveitem ITEM_VS_SEEKER 0x1 MSG_OBTAIN 
 	return 
 
-.global EventScript_TrainerTipsPewter
-EventScript_TrainerTipsPewter:
-	msgbox gText_Pewter_TrainerTips MSG_SIGN
-	release
-	end
- 

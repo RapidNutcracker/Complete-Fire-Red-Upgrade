@@ -25,6 +25,8 @@ tile 3 1 6 EventScript_roamertop_Start
 tile 3 1 7 EventScript_roamerbottom_Start
 npc 5 1 9 EventScript_ExpertModeNPC
 npc 15 0 1 EventScript_ViridianForestGirlTip
+sign 3 1 2 EventScript_TrainerTipsViridian1
+sign 3 1 0 EventScript_TrainerTipsViridian2
 
 #ROUTE 2
 npc 3 20 2 EventScript_Cut
@@ -42,6 +44,7 @@ npc 3 20 7 EventScript_Route2_Orbeetlite
 npc 1 0 11 EventScript_viridianforesttutor_Forestmovetutor
 tile 1 0 1 EventScript_brendanbattleleft_Start
 tile 1 0 0 EventScript_brendanbattleright_Start
+tile 1 0 3 EventScript_brendanbattleleftsetup
 npc 1 0 16 EventScript_ViridianForest_Buterfree
 npc 1 0 13 EventScript_RockSmash 
 npc 1 0 14 EventScript_RockSmash 
@@ -50,6 +53,10 @@ npc 3 1 9 EventScript_giovannicheck_Start
 npc 1 0 17 EventScript_xscissor_Start
 npc 1 0 18 EventScript_ViridianForestRaid 
 npc 1 0 19 EventScript_Virizion_OW
+sign 1 0 5 EventScript_TrainerTipsViridianForest1
+sign 1 0 0 EventScript_TrainerTipsViridianForest2
+sign 1 0 1 EventScript_TrainerTipsViridianForest3
+sign 1 0 2 EventScript_TrainerTipsViridianForest4
 
 # PEWTER CITY
 tile 3 2 7 EventScript_falknercheck_Start
@@ -110,6 +117,7 @@ npc 3 3 6 EventScript_RedShardInfo
 tile 3 3 0 EventScript_redogaryrival_Startlefttile
 tile 3 3 1 EventScript_redogaryrival_Startmiddletile
 tile 3 3 2 EventScript_redogaryrival_StartRightTile
+sign 3 3 3 EventScript_TrainerTipsCerulean1
 
 #Route 24 
 npc 3 43 8 EventScript_Route24Raid
@@ -257,6 +265,10 @@ npc 3 6 6 EventScript_poweranklet_Start
 npc 10 7 6 EventScript_FossilPokemon
 tile 10 7 0 EventScript_FossilSet 
 npc 3 6 5 EventScript_Celadon_Friskinfo
+sign 3 6 5 EventScript_TrainerTipsCeladon1
+sign 3 6 0 EventScript_TrainerTipsCeladon2
+npc 10 19 5 EventScript_Celadon_FlappleTrainers1
+npc 10 19 4 EventScript_Celadon_FlappleTrainers2 
 
 #Rocket Game Corner 
 npc 1 42 5 EventScript_GC_BottleCap
@@ -269,6 +281,7 @@ npc 3 25 1 EventScript_Route7_TM62
 npc 3 26 9 EventScript_Cut 
 npc 3 26 10 EventScript_Cut 
 npc 3 26 15 EventScript_Route8Raid 
+npc 3 26 16 EventScript_Route8_AceTrainer
 
 #Saffron City 
 npc 14 6 6 EventScript_NatureChanger 
@@ -296,6 +309,9 @@ tile 14 3 1 EventScript_sabrina_SetTile
 map 14 3 gMapScripts_SaffronGym
 npc 14 9 16 EventScript_PokeBallSwitcher
 npc 14 9 17 Saffron_HiddenPowerChanger
+sign 3 10 3 EventScript_TrainerTipsSaffron1
+sign 3 10 5 EventScript_TrainerTipsSaffron2
+npc 14 4 5 EventScript_Saffron_CakeMaker
 
 #Silph Co 
 #sign 1 58 0 EventScript_silphcoelevatorthatworks_Start
@@ -321,6 +337,7 @@ tile 3 30 1 EventScript_checkerikasabrina2_Start
 # npc 3 34 11 EventScript_Route16_BodyPress
 npc 3 34 11 EventScript_Route16_TMWingbeat
 npc 3 34 9 EventScript_snorlaxencounter_Start2
+
 #Route 12
 npc 3 30 8 EventScript_Cut 
 npc 3 30 13 EventScript_Cut 
@@ -332,6 +349,7 @@ npc 3 30 16 EventScript_Route12Raid
 npc 3 31 10 EventScript_Cut 
 npc 3 31 11 EventScript_Route13_FutureSight
 npc 3 31 12 EventScript_Route13Raid
+sign 3 31 1 EventScript_TrainerTipsRoute13_1
 
 #Route 14 
 npc 3 32 10 EventScript_Cut 
@@ -343,6 +361,7 @@ npc 3 30 4 EventScript_snorlaxencounter_Start
 
 #Route 15
 npc 3 33 14 EventScript_Route15Raid
+npc 3 33 15 EventScript_Fuschia_SandacondaBattle
 
 #Route 16
 npc 25 0 0 EventScript_Route16_PsychicGirl

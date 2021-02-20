@@ -11,16 +11,16 @@ Oh, you must be [GREEN][PLAYER][BLUE]!
 Sorry, I almost didn't recognize\nyou!\pI'm one of [GREEN]Oak's [BLUE]aids. I was just\npicking up some packages for the\lprofessor.\pI think he wanted to give you this but\ndidn't manage to get it on time.
 
 #org @gText_aidoranberry_3
-[BLUE]To access DexNav on the Start Menu, click\nthe [ARROW_RIGHT] button.\pI've also upgraded your Pok\edex to\nthe National Dex.\pWhile I'm here, I may as well give\nyou these too.
+[BLUE]To access DexNav on the Start Menu,\nclick the [ARROW_RIGHT] button.\pI've also upgraded your Pok\edex to\nthe National Dex.\pWhile I'm here, I may as well give\nyou these too.
 
 #org @gText_aidoranberry_4
 Take care!
 
 #org @gText_aidoranberry_Getnav
-You received the [LIGHT_BLUE]Dex Nav!
+You received the [GREEN]Dex Nav!
 
 #org @gText_viridianforesttutor_Forestmovetutor1
-Hello! My Bug type Pok\emon LOVE\n[LIGHT_BLUE]Oran Berries!\p[BLUE]If you give me one, I can teach\nBug Bite to one of your Pok\emon.
+Hello! My Bug type Pok\emon LOVE\n[GREEN]Oran Berries!\p[BLUE]If you give me one, I can teach\nBug Bite to one of your Pok\emon.
 
 #org @gText_viridianforesttutor_Forestmovetutor2
 Oh! An Oran Berry! I can teach Bug\nBite in exchange for one of those!
