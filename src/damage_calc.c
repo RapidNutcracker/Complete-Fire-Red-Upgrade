@@ -205,7 +205,7 @@ static u8 CalcPossibleCritChance(u8 bankAtk, u8 bankDef, u16 move, struct Pokemo
 					+ 2 * (atkEffect == ITEM_EFFECT_LUCKY_PUNCH && atkSpecies == SPECIES_CHANSEY)
 					#endif
 					#ifdef SPECIES_FARFETCHD
-					+ 2 * (atkEffect == ITEM_EFFECT_STICK && atkSpecies == SPECIES_FARFETCHD)
+					+ 1 * (atkEffect == ITEM_EFFECT_STICK && (atkSpecies == SPECIES_FARFETCHD || atkSpecies == SPECIES_FARFETCHD_G) ) 
 					#endif
 					+ 2 * (move == MOVE_10000000_VOLT_THUNDERBOLT);
 
@@ -1942,6 +1942,9 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		switch (data->move) {
 			case MOVE_BODYPRESS:
 				attack = monAtk->defense;
+				if(data->atkAbility == ABILITY_FURCOAT){
+					attack = attack*2; 
+				}
 				spAttack = monAtk->spDefense;
 				break;
 			default:
@@ -2471,17 +2474,6 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 					break;
 			}
 		}
-
-		// else if (gBattleWeather & WEATHER_HAIL_ANY) added this here
-		// {
-		// 	u8 atkType1 = gBattleMons[gBankAttacker].type1;
-		// 	u8 atkType2 = gBattleMons[gBankAttacker].type2;
-		// 	u8 atkType3 = gBattleMons[gBankAttacker].type3;
-		// 	if(atkType1 == TYPE_ICE || atkType2 == TYPE_ICE || atkType3 == TYPE_ICE )
-		// 	{
-		// 		damage = (damage * 12) / 10;
-		// 	}
-		// }
 	}
 
 	//Aura Abilities
@@ -2503,10 +2495,16 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 				damage *= 2;
 			break;
 
+		case ABILITY_BONEZONE:
+			if (data->resultFlags & MOVE_RESULT_NOT_VERY_EFFECTIVE && CheckTableForMove(gCurrentMove, gBoneMoves))
+				damage *= 2;
+			break;
+
 		case ABILITY_SNIPER:
 			if (gCritMultiplier > BASE_CRIT_MULTIPLIER)
 				damage = (damage * 15) / 10;
 			break;
+		
 	}
 
 	//Second Attacker Item Checks

@@ -97,7 +97,20 @@ BattleScript_BanefulBunker:
 
 BattleScript_ObstructStatDecrement:
 	setstatchanger STAT_DEF | DECREASE_2
-	goto BattleScript_KingsShieldPostDecrementSet
+	goto BattleScript_ObstructPostDecrementSet
+
+BattleScript_ObstructPostDecrementSet:
+	swapattackerwithtarget @;Allows for abilities like Defiant and Mirror Armor to have their proper effect
+	statbuffchange STAT_TARGET | STAT_NOT_PROTECT_AFFECTED | STAT_BS_PTR KingsShieldReturn
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 KingsShieldReturn
+	setgraphicalstatchangevalues
+	playanimation BANK_TARGET ANIM_STAT_BUFF ANIM_ARG_1
+	printfromtable 0x83FE588
+	waitmessage DELAY_1SECOND
+
+ObstructReturn:
+	swapattackerwithtarget
+	return
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 

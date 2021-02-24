@@ -79,6 +79,7 @@ npc 6 2 2 EventScript_ExpertModeNPC
 npc 3 2 8 EventScript_WonderTrade2
 npc 3 2 2 EventScript_GiveExpShare
 sign 3 2 3 EventScript_TrainerTipsPewter
+npc 6 7 1 EventScript_Pewter_RandomizerInfo
 
 #ROUTE 3 
 npc 3 21 9 EventScript_Route3Raid 
@@ -194,7 +195,7 @@ npc 3 28 8 EventScript_Cut
 npc 3 28 9 EventScript_Cut 
 npc 21 0 4 EventScript_aideverstone_Start
 npc 21 0 5 EventScript_NatureChanger
-map 3 28 EventScript_Route10MapScripts
+# map 3 28 EventScript_Route10MapScripts
 
 #Rock Tunnel
 npc 1 82 8 EventScript_rockslide_Start
@@ -216,10 +217,10 @@ npc 1 82 24 EventScript_RockSmash
 npc 1 82 25 EventScript_RockSmash 
 npc 1 82 27 EventScript_RockTunnel_Coalossalite
 npc 1 82 28 EventScript_terrakion_OW
-map 1 123 gMapScripts_RockTunnelZap
-npc 1 123 0 EventScript_ZapdosG_OW
-npc 1 123 1 EventScript_RockTunnel_BraveBird
-npc 1 123 2 EventScript_RockTunnel_MentalHerb
+# map 1 123 gMapScripts_RockTunnelZap
+# npc 1 123 0 EventScript_ZapdosG_OW
+# npc 1 123 1 EventScript_RockTunnel_BraveBird
+# npc 1 123 2 EventScript_RockTunnel_MentalHerb
 
 #Lavender Town 
 npc 8 2 6 EventScript_morty_Start
@@ -229,6 +230,9 @@ tile 1 93 1 EventScript_amarowak_Start
 npc 1 93 4 EventScript_PkmnTower_NewX
 npc 1 90 3 EventScript_PkmnTower_Sablenite
 npc 8 4 0 EventScript_AudinoSlayer
+npc 1 93 7 EventScript_PkmnTower_ReaperCloth
+npc 1 93 6 EventScript_RockSmash 
+npc 1 93 5 EventScript_RockSmash 
 
 #Celadon City 
 npc 3 6 9 EventScript_Cut
@@ -282,6 +286,7 @@ npc 3 26 9 EventScript_Cut
 npc 3 26 10 EventScript_Cut 
 npc 3 26 15 EventScript_Route8Raid 
 npc 3 26 16 EventScript_Route8_AceTrainer
+npc 3 26 17 EventScript_Route8_SmartStrike
 
 #Saffron City 
 npc 14 6 6 EventScript_NatureChanger 
@@ -439,8 +444,6 @@ npc 3 39 7 EventScript_Route18_Kinglerite
 #Cinnabar 
 tile 3 8 1 EventScript_CinnabarMay_Boss
 npc 12 1 1 EventScript_Cinnabar_WeatherRock
-# npc 12 2 2 EventScript_Cinnabar_FossilGuy
-# npc 12 4 2 EventScript_metatutor_Start
 npc 12 4 2 EventScript_metatutor_Start2
 npc 12 4 3 EventScript_Cinnabar_Latis
 npc 12 1 2 EventScript_jasmine_Start
@@ -546,6 +549,7 @@ npc 1 41 12 EventScript_VictoryRoad_TM67
 #Elite Four/Indigo Plateau 
 npc 13 0 1 EventScript_E4nurse_Start
 npc 13 0 8 EventScript_NatureChanger 
+# npc 13 0 8 EventScript_MeadowPlate
 tile 3 9 0 EventScript_FinalCreator_Fight
 npc 1 75 0 EventScript_lorelei_Start
 npc 1 76 0 EventScript_bruno_Start

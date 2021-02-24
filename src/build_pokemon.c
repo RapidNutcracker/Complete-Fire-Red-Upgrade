@@ -3315,7 +3315,7 @@ bool8 IsMonAllowedInBattleTower(struct Pokemon* mon)
 				return FALSE;
 		}
 	}
-	else if (mon->hp == 0) //Regular multi battle probably
+	else if (mon->hp == 0 || GetMonData(mon, MON_DATA_IS_EGG, NULL)) //Regular multi battle probably
 		return FALSE;
 
 	return TRUE;
@@ -3604,6 +3604,27 @@ bool8 ShouldTrainerRandomize()
 
 	return TRUE; 
 	
+}
+
+void CheckViableMons()
+{
+	int i;
+	u8 count = 0;
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL) 
+				&& !GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG, NULL)
+				&&  GetMonData(&gPlayerParty[i], MON_DATA_HP, NULL) > 0) 
+        {
+            count++;
+        }
+    }
+	if (count == 1){
+		gSpecialVar_LastResult = TRUE;
+	}
+	else {
+		gSpecialVar_LastResult = FALSE;
+	}
 }
 void TryRandomizeSpecies(unusedArg u16* species)
 {

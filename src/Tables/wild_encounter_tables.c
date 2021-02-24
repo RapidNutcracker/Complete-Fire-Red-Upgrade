@@ -84,7 +84,7 @@ static const struct WildPokemon gViridianFor_LandMonsNight[] =
 	{5, 6, SPECIES_PIKACHU},
 	{5, 5, SPECIES_SPINARAK},
 	{5, 6, SPECIES_GRUBBIN},
-	{5, 6, SPECIES_SHROOMISH},
+	{5, 6, SPECIES_PUMPKABOO_XL},
 	{6, 6, SPECIES_SNOM},
 	{7, 7, SPECIES_SNOM},
 };
@@ -173,8 +173,8 @@ static const struct WildPokemon gRoute4_LandMonsNight[] =
 	{14, 15, SPECIES_BUNEARY},
 	{14, 16, SPECIES_PHANTUMP},
 	{14, 14, SPECIES_FLABEBE},
-	{15, 15, SPECIES_SHROOMISH},
-	{15, 15, SPECIES_SHROOMISH},
+	{15, 15, SPECIES_PUMPKABOO_L},
+	{15, 15, SPECIES_PUMPKABOO_L},
 	{15, 15, SPECIES_YANMA},
 	{15, 15, SPECIES_YANMA},
 };
@@ -352,7 +352,7 @@ static const struct WildPokemon gRockTunnelB1F_LandMonsNight[] =
 	{27, 31, SPECIES_SWINUB},
 	{28, 32, SPECIES_CUBONE},
 	{27, 32, SPECIES_BONSLY},
-	{28, 32, SPECIES_BRONZOR},
+	{28, 32, SPECIES_NOSEPASS},
 	{27, 32, SPECIES_ONIX},
 	{28, 32, SPECIES_ONIX},
 	{30, 31, SPECIES_SNEASEL},
@@ -531,7 +531,7 @@ static const struct WildPokemon gRoute15_LandMonsNight[] =
 {
 	{50, 52, SPECIES_AMOONGUSS},
 	{50, 53, SPECIES_AMBIPOM},
-	{50, 52, SPECIES_BEEDRILL},
+	{50, 52, SPECIES_TSAREENA},
 	{49, 51, SPECIES_GALVANTULA},
 	{52, 52, SPECIES_SIMIPOUR},
 	{49, 51, SPECIES_ORICORIO},

@@ -69,6 +69,13 @@ RaidBattle:
     waitstate
     compare LASTRESULT 0x0 
     if equal _goto RaidScript_EndClear
+    msgbox gText_SelectThree MSG_NORMAL
+    special 0x27
+	special 0xF5
+	waitstate
+    compare LASTRESULT NO
+	if equal _goto Cancel
+	special 0x28
     setflag FLAG_TAG_BATTLE 
     msgbox gText_RaidTeamUp MSG_NORMAL
     special SPECIAL_CREATE_RAID_MON 
@@ -82,6 +89,10 @@ RaidBattle:
     special SPECIAL_SET_RAID_BATTLE_FLAG 
     @ goto RaidScript_GiveReward
     return 
+
+Cancel:
+    release
+    end
 
 RaidScript_GiveReward:
     special SPECIAL_GIVE_RAID_BATTLE_REWARDS 

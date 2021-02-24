@@ -592,7 +592,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			break;
 
 		case EFFECT_DEFENSE_DOWN_HIT:
-			if (IS_SINGLE_BATTLE && CalcSecondaryEffectChance(bankAtk, move) >= 50)
+			if (IS_SINGLE_BATTLE && CalcSecondaryEffectChance(bankAtk, move) >= 60)
 				goto AI_DEFENSE_MINUS;
 			break;
 
@@ -1243,7 +1243,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 		case EFFECT_RAPID_SPIN:
 			if (gSideStatuses[SIDE(bankAtk)] & SIDE_STATUS_SPIKES)
 			{
-				if ((IS_SINGLE_BATTLE && ViableMonCountFromBank(bankAtk) >= 2) //Pokemon to switch out to in singles
+				if ((IS_SINGLE_BATTLE && ViableMonCountFromBank(bankAtk) >= 4) //Pokemon to switch out to in singles
 				||  (IS_DOUBLE_BATTLE && ViableMonCountFromBank(bankAtk) >= 3)) //Pokemon to switch out to in doubles
 				{
 					if (IS_DOUBLE_BATTLE)

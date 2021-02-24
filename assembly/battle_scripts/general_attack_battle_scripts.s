@@ -138,6 +138,7 @@ StrengthSapBS:
 	jumpifstat BANK_TARGET EQUALS STAT_ATK STAT_MIN FAILED_PRE
 	attackstring
 	ppreduce
+	ppreduce
 	attackanimation
 	waitanimation
 	setgraphicalstatchangevalues

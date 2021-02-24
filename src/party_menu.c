@@ -601,14 +601,15 @@ void CursorCb_NoEntry(u8 taskId)
 {
 	int i, j;
 	u8 max = ChoosePokemon_LoadMaxPKMNStr(NULL, FALSE);
-
 	PlaySE(SE_SELECT);
 	PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
 	PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
 
-	bool8 eligibleIndices[PARTY_SIZE] = {FALSE};
+	bool8 eligibleIndices[PARTY_SIZE] = {TRUE};
 	for (i = 0; i < PARTY_SIZE; ++i)
 		eligibleIndices[i] = IsMonAllowedInBattleTower(&gPlayerParty[i]); //Record who's currently eligible
+	for (i = 0; i < PARTY_SIZE; ++i)
+		eligibleIndices[i] = TRUE; //Record who's currently eligible
 
 	for (i = 0; i < max; ++i) //Remove chosen mon
 	{
@@ -744,6 +745,7 @@ u8 CanPokemonSelectedBeEnteredInBattleTower(void)
 extern u8 gMoveNames[][MOVE_NAME_LENGTH + 1];
 
 extern const u8 gMenuText_Move[];
+extern const u8 gMenuText_MoveItem[];
 extern const u8 gMenuText_NickName[];
 extern const u8 gText_FieldMoveDesc_RockClimb[];
 extern const u8 gText_FieldMoveDesc_Defog[];
@@ -794,7 +796,8 @@ struct
 	[MENU_SHIFT] =	 {(void*) 0x841697e, (void*) 0x81240f5},
 	[MENU_SEND_OUT] =  {(void*) 0x8416984, (void*) 0x81240f5},
 	[MENU_ENTER] =	 {(void*) 0x84169a3, (void*) 0x8124155},
-	[MENU_NO_ENTRY] =  {(void*) 0x84169a9, (void*) 0x8124279},
+	// [MENU_NO_ENTRY] =  {(void*) 0x84169a9, (void*) 0x8124279},
+    [MENU_NO_ENTRY] =  {gMenuText_MoveItem, CursorCb_MoveItem},
 	[MENU_STORE] =	 {(void*) 0x84161e3, (void*) 0x8124355},
 	[MENU_REGISTER] =  {(void*) 0x841b6f4, (void*) 0x8124385},
 	[MENU_TRADE1] =	{(void*) 0x84169bc, (void*) 0x8124491},
@@ -864,21 +867,21 @@ const u8* const gFieldMoveDescriptions[] =
 
 const u16 gFieldMoves[FIELD_MOVE_COUNT] =
 {
-	[FIELD_MOVE_FLASH] = MOVE_FLASH,
-	[FIELD_MOVE_CUT] = MOVE_CUT,
-	[FIELD_MOVE_FLY] = MOVE_FLY,
-	[FIELD_MOVE_STRENGTH] = MOVE_STRENGTH,
-	[FIELD_MOVE_SURF] = MOVE_SURF,
-	[FIELD_MOVE_ROCK_SMASH] = MOVE_ROCKSMASH,
-	[FIELD_MOVE_WATERFALL] = MOVE_WATERFALL,
+	// [FIELD_MOVE_FLASH] = MOVE_FLASH,
+	// [FIELD_MOVE_CUT] = MOVE_CUT,
+	// [FIELD_MOVE_FLY] = MOVE_FLY,
+	// [FIELD_MOVE_STRENGTH] = MOVE_STRENGTH,
+	// [FIELD_MOVE_SURF] = MOVE_SURF,
+	// [FIELD_MOVE_ROCK_SMASH] = MOVE_ROCKSMASH,
+	// [FIELD_MOVE_WATERFALL] = MOVE_WATERFALL,
 	[FIELD_MOVE_TELEPORT] = MOVE_TELEPORT,
 	[FIELD_MOVE_DIG] = MOVE_DIG,
-	[FIELD_MOVE_MILK_DRINK] = MOVE_MILKDRINK,
-	[FIELD_MOVE_SOFT_BOILED] = MOVE_SOFTBOILED,
-	[FIELD_MOVE_SWEET_SCENT] = MOVE_SWEETSCENT,
-	[FIELD_MOVE_ROCK_CLIMB] = MOVE_ROCKCLIMB,
-	[FIELD_MOVE_DEFOG] = MOVE_DEFOG,
-	[FIELD_MOVE_DIVE] = MOVE_DIVE,
+	// [FIELD_MOVE_MILK_DRINK] = MOVE_MILKDRINK,
+	// [FIELD_MOVE_SOFT_BOILED] = MOVE_SOFTBOILED,
+	// [FIELD_MOVE_SWEET_SCENT] = MOVE_SWEETSCENT,
+	// [FIELD_MOVE_ROCK_CLIMB] = MOVE_ROCKCLIMB,
+	// [FIELD_MOVE_DEFOG] = MOVE_DEFOG,
+	// [FIELD_MOVE_DIVE] = MOVE_DIVE,
 };
 
 #ifndef UNBOUND //MODIFY THIS
@@ -902,7 +905,7 @@ const u8 gFieldMoveBadgeRequirements[FIELD_MOVE_COUNT] =
 void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
 {
 	u8 i, j, k;
-
+	k = 0;
 	sPartyMenuInternal->numActions = 0;
 	AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_SUMMARY);
 
@@ -911,9 +914,18 @@ void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
 	{
 		for (j = 0; j < NELEMS(gFieldMoves); ++j)
 		{
-			if (GetMonData(&mons[slotId], i + MON_DATA_MOVE1, NULL) == gFieldMoves[j])
+			if (GetMonData(&mons[slotId], i + MON_DATA_MOVE1, NULL) == MOVE_DIG)
 			{
-				AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, j + MENU_FIELD_MOVES);
+				AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_FIELD_MOVES + FIELD_MOVE_DIG);
+				++k;
+
+				if (gFieldMoves[j] == MOVE_FLY)
+					k = MAX_MON_MOVES; //No point in appending Fly if it is already there
+				break;
+			}
+			else if (GetMonData(&mons[slotId], i + MON_DATA_MOVE1, NULL) == MOVE_TELEPORT)
+			{
+				AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_FIELD_MOVES + FIELD_MOVE_TELEPORT);
 				++k;
 
 				if (gFieldMoves[j] == MOVE_FLY)

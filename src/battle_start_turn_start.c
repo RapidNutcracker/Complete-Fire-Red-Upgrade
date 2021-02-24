@@ -889,6 +889,7 @@ void RunTurnActionsFunctions(void)
 				}
 				return;
 			}
+			
 		}
 	}
 
@@ -1112,7 +1113,12 @@ void HandleAction_UseMove(void)
 			gCurrentMove = GetMaxMove(gBankAttacker, gCurrMovePos);
 		}
 	}
-
+	else if (SPECIES(gBankAttacker) == SPECIES_ZACIAN_CROWNED && gCurrentMove == MOVE_IRONHEAD){
+		gCurrentMove = MOVE_BEHEMOTHBLADE;
+	}
+	else if (SPECIES(gBankAttacker) == SPECIES_ZAMAZENTA_CROWNED && gCurrentMove == MOVE_IRONHEAD){
+		gCurrentMove = MOVE_BEHEMOTHBASH;
+	}
 	gBattleStruct->dynamicMoveType = GetMoveTypeSpecial(gBankAttacker, gCurrentMove);
 	moveType = gBattleStruct->dynamicMoveType;
 

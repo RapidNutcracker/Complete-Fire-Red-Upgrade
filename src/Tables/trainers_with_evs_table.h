@@ -1460,7 +1460,7 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 		.hpEv = 4,
 		.spdEv = 40,
 		.ball = TRAINER_EV_CLASS_BALL,
-		.ability = Ability_Random_1_2,
+		.ability = Ability_Hidden,
 	},
 	[143] =
 	{ //Archer Houndour, Brock Vulpix
@@ -1484,7 +1484,18 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 		.spAtkEv = 252,
 		.ball = TRAINER_EV_CLASS_BALL,
 		.ability = Ability_2,
-	}
+	},
+	[145] =
+	{ //Special Sweeper: Typhlosion Blaine, Jotard Simisear
+		.nature = NATURE_TIMID,
+		.hiddenPower = TYPE_FIGHTING,
+		.ivs = 31,
+		.hpEv = 6,
+		.spdEv = 252,
+		.spAtkEv = 252,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_1,
+	},
 };
 #endif
 

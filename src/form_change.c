@@ -442,6 +442,14 @@ void HoldItemFormChange(struct Pokemon* mon, u16 item)
 		case SPECIES_ZACIAN_CROWNED:
 			if(item == ITEM_RUSTED_SWORD){
 				targetSpecies = SPECIES_ZACIAN_CROWNED;
+				// for (int i = 0; i < MAX_MON_MOVES; ++i)
+				// {
+				// 	if (GetMonData(mon, i + MON_DATA_MOVE1, NULL) == MOVE_IRONHEAD)
+				// 	{
+				// 		u16 move = MOVE_BEHEMOTHBLADE;
+				// 		SetMonData(mon, i + MON_DATA_MOVE1, &move);
+				// 	}
+				// }
 			}
 			else if (targetSpecies == SPECIES_NONE)
 					targetSpecies = SPECIES_ZACIAN;

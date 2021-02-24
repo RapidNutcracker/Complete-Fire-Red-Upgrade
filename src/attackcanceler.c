@@ -611,7 +611,23 @@ static u8 AtkCanceller_UnableToUseMove(void)
 						BattleScriptPushCursor();
 					}
 					#else
-					if (umodsi(Random(), 100) > 33) //33 %
+					if (SIDE(gBankAttacker) == B_SIDE_OPPONENT){
+						if (umodsi(Random(), 100) > 15) //15 % for AI, degen change
+						{
+							gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+							BattleScriptPushCursor();
+						}
+						else // confusion dmg
+						{
+							gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+							gBankTarget = gBankAttacker;
+							gBattleMoveDamage = ConfusionDamageCalc();
+							gProtectStructs[gBankAttacker].confusionSelfDmg = 1;
+							gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
+							gNewBS->breakDisguiseSpecialDmg = TRUE;
+						}
+					}
+					else if (umodsi(Random(), 100) > 33) //33 %
 					{
 						gBattleCommunication[MULTISTRING_CHOOSER] = 0;
 						BattleScriptPushCursor();

@@ -44,28 +44,25 @@ Well well, thought you could\nwaltz into the Pok\emon League\lwithout another bo
 W-what?! You[.]\nYou beat my invincible strat?!
 
 #org @gText_FinalCreatorBattle_2
-Hot damn!\pI don't know why I doubted you!\pYou're certainly ready.\pI've reserved this item for you,\nit's among one of the most\lbonkers Mega Evos so, you know,\lsave the best for last. 
+Hot damn!\pI don't know why I doubted you!\pYou're certainly ready.\pI've reserved this item for you,\nit's among one of the most\lbonkers Mega Evos so, you know,\lsave the best for last.
 
 #org @gText_FinalCreatorBattle_3
-Anyway, thanks for playing my ROM\nhack [GREEN][PLAYER][BLUE], even if you didn't\lenjoy it.\pFeel free to leave feedback!\pOf course, stay safe if you're\nstill stuck in quarantine.\pHave a good one, friend!
+I will warn that I've dropped\n[GREEN][RIVAL][BLUE] some sick Pok\emon on his\lway to the League.\pHis team won't resemble the one\nyou just faced. Have fun!\pAnyway, thanks for playing my ROM\nhack [GREEN][PLAYER][BLUE], even if you didn't\lenjoy it.\pFeel free to leave feedback!\pOf course, stay safe if you're\nstill stuck in quarantine.\pHave a good one, friend!
 
 #org @gText_VictoryRoad_Moltres1
 Gyaoo!
 
+#org @gText_SelectThree
+[BLACK]Select three Pok\emon to take into\nbattle.
+
 #org @gText_StartRaidBattle
-This strange den exuberates\npowerful energy.\pWould you like to look inside it?
+[BLACK]This strange den exuberates\npowerful energy.\pWould you like to look inside it?
 
 #org @gText_RaidTeamUp
 A powerful wild Pok\emon came\nout!
 
 #org @gText_StartRaidBattle2
 It's an empty den.
-
-#org @gText_StartRaidBattle3
-It's a dull red jewel222.
-
-#org @gText_StartRaidBattle4
-Got here. 
 
 #org @gText_Adamant
 Adamant [SHRINK][RED]+Atk [BLUE]-SpA
@@ -169,3 +166,5 @@ Mate[.] the Elite Four here is\non some wack shit.\pThankfully the AI can act li
 #org @gText_ShitsHard2
 Yo[.] get the fuck outta here.\pYou beat the game already lmao\pBut forreal, the Elite Four\nrematch will be available eventually. 
 
+#org @gText_whitneytesttxt
+I will warn that I've dropped\n[GREEN][RIVAL][BLUE] some sick Pok\emon on his\lway to the League.\pHis team won't resemble the one\nyou just faced. Have fun!

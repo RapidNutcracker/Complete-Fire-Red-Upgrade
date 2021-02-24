@@ -400,6 +400,16 @@ EventScript_ceruleangiovanni_Start:
 	applymovement 0xFF EventScript_ceruleangiovanni_Lookup
 	waitmovement 0x0 
 	msgbox gText_ceruleangiovanni_8_6 MSG_NORMAL
+	goto StartSelectPokemon
+	end
+
+StartSelectPokemon:
+	special 0x27
+	special 0xF5
+	waitstate
+    compare LASTRESULT NO
+	if equal _goto StartSelectPokemon
+	special 0x28
 	setflag FLAG_TAG_BATTLE 
 	setvar VAR_PARTNER 0x27 @Lance partner 
 	setvar VAR_PARTNER_BACKSPRITE 0x6 @Lance Backsprite 

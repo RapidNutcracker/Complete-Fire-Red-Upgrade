@@ -819,10 +819,19 @@ EventScript_sabrina_Start:
 	setflag 0x915
 	@ setflag 0x913 @set shiny 
 	special 0x0 
+	callasm CheckViableMons + 1
+	compare LASTRESULT YES
+	if equal _call SetPlaceholderPartner
 	trainerbattle3 0x3 0x1A4 0x0 gText_sabrina_DefeatText 
 	goto EventScript_sabrina_WonPointer
 	release
 	end
+
+SetPlaceholderPartner:
+	setflag 0x908
+	setvar 0x5011 0xE 
+	setvar 0x5012 0x8
+	return 
 
 CancelSabrina:
 	msgbox gText_sabrina_Whenever MSG_NORMAL 
@@ -1690,7 +1699,7 @@ SetUpWater:
 SetUpSteel:
 	setvar 0x5106 0x1F @HP 
 	buffernumber 0x0 0x5106
-	setvar 0x5106 0x1E @Atk 
+	setvar 0x5106 0x1F @Atk 
 	buffernumber 0x1 0x5106
 	setvar 0x5106 0x1F @Def 
 	buffernumber 0x2 0x5106
@@ -1710,7 +1719,7 @@ SetUpSteel:
 	setvar 0x8006 0x1F @31
 	special 0x10
 	setvar 0x8005 0x1 @Atk 
-	setvar 0x8006 0x1E
+	setvar 0x8006 0x1F
 	special 0x10
 	setvar 0x8005 0x2 @Def
 	setvar 0x8006 0x1F

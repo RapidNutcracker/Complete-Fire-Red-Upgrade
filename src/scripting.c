@@ -30,6 +30,7 @@
 #include "../include/constants/pokedex.h"
 #include "../include/constants/songs.h"
 
+#include "../include/new/build_pokemon.h" //added 
 #include "../include/new/battle_strings.h"
 #include "../include/new/catching.h"
 #include "../include/new/dns.h"
@@ -155,8 +156,11 @@ void SetMonDataFromVar8003(u8 dataRequest) {
 	#ifdef SELECT_FROM_PC
 		if (Var8003 == 1)
 			SetBoxMonDataAt(Var8000, Var8001, dataRequest, &Var8005);
-		else
+		else {
 			SetMonData(&gPlayerParty[Var8004], dataRequest, &Var8005);
+			CalculateMonStatsNew(&gPlayerParty[Var8004]);
+			HealMon(&gPlayerParty[Var8004]);
+		}
 	#else
 		SetMonData(&gPlayerParty[Var8004], dataRequest, &Var8005);
 	#endif

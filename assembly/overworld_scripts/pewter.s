@@ -331,3 +331,10 @@ GiveStatScanner:
 	giveitem ITEM_VS_SEEKER 0x1 MSG_OBTAIN 
 	return 
 
+.global EventScript_Pewter_RandomizerInfo
+EventScript_Pewter_RandomizerInfo:
+	lock
+	faceplayer
+	msgbox gText_Pewter_RandomizerInfo MSG_FACE
+	release
+	end

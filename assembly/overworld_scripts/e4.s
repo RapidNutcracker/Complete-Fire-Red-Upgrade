@@ -22,6 +22,9 @@ EventScript_lorelei_Start:
 	setvar 0x8004 0x9
 	setvar 0x8005 0x1
 	special 0x173
+	callasm CheckViableMons + 1
+	compare LASTRESULT YES
+	if equal _call SetPlaceholderPartner
 	checkflag 0x82C
 	if 0x0 _call EventScript_lorelei_Firstmatch
 	checkflag 0x82C
@@ -33,6 +36,12 @@ EventScript_lorelei_Start:
 	checkflag 0x82C
 	if 0x1 _goto EventScript_lorelei_Rematchbattle
 	end
+
+SetPlaceholderPartner:
+	setflag 0x908
+	setvar 0x5011 0xE 
+	setvar 0x5012 0x8
+	return 
 
 EventScript_lorelei_Defeat:
 	msgbox gText_lorelei_Postbattlemsg MSG_KEEPOPEN @"You@re better than I thought.\nGo ..."
@@ -333,9 +342,9 @@ EventScript_agatha_Start:
 	msgbox gText_agatha_Prebattlemsg 0x6
 	setflag 0x3
 	setflag 0x5
-	checkflag 0x844
+	checkflag 0x82C
 	if 0x0 _goto EventScript_agatha_Firstbattle
-	checkflag 0x844
+	checkflag 0x82C
 	if 0x1 _goto EventScript_agatha_Rematch
 	end
 

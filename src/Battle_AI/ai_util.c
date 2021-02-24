@@ -51,9 +51,9 @@ bool8 CanKnockOut(u8 bankAtk, u8 bankDef)
 
 	if (gNewBS->ai.canKnockOut[bankAtk][bankDef] == 0xFF) //Hasn't been calculated yet
 	{
-		struct BattlePokemon backupMonAtk; //, backupMonDef;
-		u8 backupAbilityAtk = ABILITY_NONE; //u8 backupAbilityDef = ABILITY_NONE;
-		u16 backupSpeciesAtk = SPECIES_NONE; //u16 backupSpeciesDef = SPECIES_NONE;
+		struct BattlePokemon backupMonAtk; // backupMonDef; // commented all these out added
+		u8 backupAbilityAtk = ABILITY_NONE; // u8 backupAbilityDef = ABILITY_NONE; 
+		u16 backupSpeciesAtk = SPECIES_NONE; // u16 backupSpeciesDef = SPECIES_NONE;
 
 		TryTempMegaEvolveBank(bankAtk, &backupMonAtk, &backupSpeciesAtk, &backupAbilityAtk);
 		// TryTempMegaEvolveBank(bankDef, &backupMonDef, &backupSpeciesDef, &backupAbilityDef); //added here 
@@ -66,7 +66,7 @@ bool8 CanKnockOut(u8 bankAtk, u8 bankDef)
 		if (gNewBS->ai.canKnockOut[bankAtk][bankDef])
 			gNewBS->ai.can2HKO[bankAtk][bankDef] = TRUE; //If you can KO in 1 hit you can KO in 2
 
-		// TryRevertTempMegaEvolveBank(bankDef, &backupMonDef, &backupSpeciesDef, &backupAbilityDef);
+		//TryRevertTempMegaEvolveBank(bankDef, &backupMonDef, &backupSpeciesDef, &backupAbilityDef);
 		TryRevertTempMegaEvolveBank(bankAtk, &backupMonAtk, &backupSpeciesAtk, &backupAbilityAtk); // added here
 	}
 
@@ -109,19 +109,19 @@ bool8 Can2HKO(u8 bankAtk, u8 bankDef)
 {
 	if (gNewBS->ai.can2HKO[bankAtk][bankDef] == 0xFF) //Hasn't been calculated yet
 	{
-		struct BattlePokemon backupMonAtk; //, backupMonDef;
-		u8 backupAbilityAtk = ABILITY_NONE; //u8 backupAbilityDef = ABILITY_NONE;
-		u16 backupSpeciesAtk = SPECIES_NONE; //u16 backupSpeciesDef = SPECIES_NONE;
+		struct BattlePokemon backupMonAtk;//  backupMonDef;
+		u8 backupAbilityAtk = ABILITY_NONE;  /*u8 backupAbilityDef = ABILITY_NONE; */
+		u16 backupSpeciesAtk = SPECIES_NONE;  /* u16 backupSpeciesDef = SPECIES_NONE; */
 
 		TryTempMegaEvolveBank(bankAtk, &backupMonAtk, &backupSpeciesAtk, &backupAbilityAtk);
-		// TryTempMegaEvolveBank(bankDef, &backupMonDef, &backupSpeciesDef, &backupAbilityDef); added 
+		// TryTempMegaEvolveBank(bankDef, &backupMonDef, &backupSpeciesDef, &backupAbilityDef); // added 
 
 		if (gNewBS->ai.strongestMove[bankAtk][bankDef] == 0xFFFF)
 			gNewBS->ai.strongestMove[bankAtk][bankDef] = CalcStrongestMove(bankAtk, bankDef, FALSE);
 
 		gNewBS->ai.can2HKO[bankAtk][bankDef] = MoveKnocksOutXHits(gNewBS->ai.strongestMove[bankAtk][bankDef], bankAtk, bankDef, 2);
 
-		// TryRevertTempMegaEvolveBank(bankDef, &backupMonDef, &backupSpeciesDef, &backupAbilityDef); added
+		// TryRevertTempMegaEvolveBank(bankDef, &backupMonDef, &backupSpeciesDef, &backupAbilityDef); // added
 		TryRevertTempMegaEvolveBank(bankAtk, &backupMonAtk, &backupSpeciesAtk, &backupAbilityAtk);
 	}
 
@@ -1317,7 +1317,7 @@ u8 GetAIAbility(u8 bankAtk, u8 bankDef, u16 move)
 	u8 ability = ABILITY_NONE;
 
 	if (!ShouldAIDelayMegaEvolution(bankAtk, bankDef, move))
-		ability = GetBankMegaFormAbility(bankAtk);
+		ability = ABILITY_NONE;
 
 	if (ability == ABILITY_NONE)
 		return ABILITY(bankAtk);

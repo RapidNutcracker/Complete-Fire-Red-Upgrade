@@ -63,3 +63,6 @@ Remove the Giganatamax factor from\n[BUFFER1]?
 
 #org @gMenuText_NickName
 Nickname
+
+#org @gMenuText_MoveItem
+Move Item

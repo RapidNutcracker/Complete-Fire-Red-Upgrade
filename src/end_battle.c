@@ -9,6 +9,7 @@
 #include "../include/constants/songs.h"
 #include "../include/constants/trainer_classes.h"
 
+#include "../include/constants/items.h"
 #include "../include/new/battle_util.h"
 #include "../include/new/dynamax.h"
 #include "../include/new/end_battle.h"
@@ -139,7 +140,6 @@ void HandleEndTurn_BattleWon(void)
 		}
 		if(FlagGet(FLAG_SYS_GAME_CLEAR))
 			gBattleStruct->moneyMultiplier *= 2;
-		// gBattleTypeFlags = BATTLE_TYPE_WILD; //added this to clear trainer bit for randomizer mode
 		BattleStopLowHpSound();
 		gBattlescriptCurrInstr = BattleScript_Victory;
 
@@ -523,7 +523,9 @@ void EndOfBattleThings(void)
 		HealPokemonInFrontier();
 		gTerrainType = 0; //Reset now b/c normal reset is after BG is loaded
 		CalculatePlayerPartyCount(); //Party size can change after multi battle is over
-		gBattleTypeFlags = 0; //added this to clear trainer bit for randomizer mode
+		if ( !(gBattleTypeFlags & BATTLE_TYPE_ROAMER)) {
+			gBattleTypeFlags = 0; 
+		} //added this to clear trainer bit for randomizer mode
 		#ifdef UNBOUND
 		u8 weather = GetCurrentWeather();
 		if (gBattleTypeFlags & BATTLE_TYPE_BATTLE_SANDS)
@@ -556,24 +558,38 @@ static void RestoreNonConsumableItems(void)
 	u16* items = gNewBS->itemBackup;
 	bool8 keepConsumables = TRUE; 
 
-	// if (gBattleTypeFlags & BATTLE_TYPE_TRAINER || (FlagGet(FLAG_RAID_BATTLE))  |)
-	// {
-	for (int i = 0; i < PARTY_SIZE; ++i)
+	if (gBattleTypeFlags & BATTLE_TYPE_TRAINER /*|| (FlagGet(FLAG_RAID_BATTLE) )*/)
 	{
-		if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER
-		||  keepConsumables
-		||  items[i] == ITEM_NONE
-		||  !IsConsumable(items[i]))
+		for (int i = 0; i < PARTY_SIZE; ++i)
 		{
-			SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &items[i]);
-		}
-		else if (gPlayerParty[i].item != items[i] //The player consumed their item, and then picked up another one
-		&& IsConsumable(items[i]))
-		{
-			SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &none);
+			if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER
+			||  keepConsumables
+			||  items[i] == ITEM_NONE
+			||  !IsConsumable(items[i]))
+			{
+				SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &items[i]);
+			}
+			else if (gPlayerParty[i].item != items[i] //The player consumed their item, and then picked up another one
+			&& IsConsumable(items[i]))
+			{
+				SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &none);
+			}
 		}
 	}
-	// }
+	else{
+		for (int i = 0; i < PARTY_SIZE; ++i)
+		{
+			if (items[i] == ITEM_FOCUS_SASH)
+			{
+				SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &items[i]);
+			}
+			// if (gPlayerParty[i].item != items[i] //The player consumed their item, and then picked up another one
+			// && IsConsumable(items[i]))
+			// {
+			// 	SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &items[i]);
+			// }
+		}
+	}
 }
 
 static void RevertDynamax(void)

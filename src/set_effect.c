@@ -272,8 +272,14 @@ void SetMoveEffect(bool8 primary, u8 certain)
 			if (gBattleCommunication[MOVE_EFFECT_BYTE] == MOVE_EFFECT_TOXIC && IsDynamaxed(gEffectBank)) //added 
 				gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_POISON; //Toxic becomes regular poison on a Dynamaxed opponent
 
-			if (gBattleCommunication[MOVE_EFFECT_BYTE] == MOVE_EFFECT_SLEEP)
-				gBattleMons[gEffectBank].status1 |= ((Random() % 3) + 2);
+			if (gBattleCommunication[MOVE_EFFECT_BYTE] == MOVE_EFFECT_SLEEP){
+				if (SIDE(gBankTarget) == B_SIDE_OPPONENT && (gBattleTypeFlags & BATTLE_TYPE_TRAINER)) { //degen addition, AI only min turns of sleep
+					gBattleMons[gEffectBank].status1 |= ((Random() % 2) + 2);
+				}
+				else{
+					gBattleMons[gEffectBank].status1 |= ((Random() % 3) + 2);
+				}
+			}
 			else
 				gBattleMons[gEffectBank].status1 |= sStatusFlagsForMoveEffects[gBattleCommunication[MOVE_EFFECT_BYTE]];
 
@@ -329,7 +335,12 @@ void SetMoveEffect(bool8 primary, u8 certain)
 			case MOVE_EFFECT_CONFUSION:
 				if (CanBeConfused(gEffectBank, FALSE)) //Safeguard checked earlier
 				{
-					gBattleMons[gEffectBank].status2 |= (umodsi(Random(), 4)) + 2;
+					if (SIDE(gBankTarget) == B_SIDE_OPPONENT && (gBattleTypeFlags & BATTLE_TYPE_TRAINER)){ //degen addition, AI only receives min turns of confusion
+						gBattleMons[gEffectBank].status2 |= (umodsi(Random(), 2)) + 2;
+					}
+					else {
+						gBattleMons[gEffectBank].status2 |= (umodsi(Random(), 4)) + 2;
+					}
 
 					BattleScriptPush(gBattlescriptCurrInstr + 1);
 					gBattlescriptCurrInstr = sMoveEffectBS_Ptrs[gBattleCommunication[MOVE_EFFECT_BYTE]];

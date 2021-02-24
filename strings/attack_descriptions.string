@@ -13,6 +13,9 @@ The user consumes the\ntarget's soul,\nstealing the target's\nstat boosts, and\n
 #org @DESC_SMOKESCREEN
 The user throws smoke\nat the foe, lowering\nits Attack. 
 
+#org @DESC_SKULLBASH
+The user raises its\nDefense and Attack\nin the 1st turn, then\nattacks in the 2nd\nturn. 
+
 #org @DESC_FLASH
 The user flashes a\nbright light, which\nlowers its Attack. 
 
@@ -821,7 +824,7 @@ The user shines a\nspotlight on the\ntarget so that only\nthe target will be\nat
 If the user's\nprevious moves has\nfailed, the power\nof this move\ndoubles.
 
 #org @DESC_STRENGTHSAP
-The user drains HP\nequal to the foe's\nAttack stat. It\nalso lowers the\nfoe's Attack stat.
+The user drains HP\nequal to the foe's\nAttack and lowers\nit. Uses 2x amount of\nPP.
 
 #org @DESC_SUNSTEELSTRIKE
 The user slams the\ntarget with a meteor\nforce. This move\ndisregards the\ntarget's Ability.

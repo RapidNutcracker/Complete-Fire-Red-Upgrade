@@ -45,6 +45,14 @@ EventScript_RockTunnel_Coalossalite:
     release
     end
 
+.global EventScript_PkmnTower_ReaperCloth
+EventScript_PkmnTower_ReaperCloth:
+    hidesprite 0x800F
+    giveitem ITEM_REAPER_CLOTH 0x1 MSG_FIND
+    setflag 0x1030
+    release
+    end
+
 .global EventScript_Route2_ChargeBeam
 EventScript_Route2_ChargeBeam:
     hidesprite 0x800F
@@ -544,3 +552,12 @@ EventScript_SilphCo_HP:
     setflag 0x989
     release 
     end 
+
+.global EventScript_Route8_SmartStrike
+EventScript_Route8_SmartStrike:
+    hidesprite 0x800F
+    giveitem ITEM_TM106 0x1 MSG_FIND
+    setflag 0x1031
+    release
+    end
+    

@@ -228,6 +228,10 @@ gText_TextSpeedFast 083cc334
 gText_TextSpeedInstant 083cc338
 #endif
 
+#0 archie replaced with nothing 
+blanktrainerspriteTiles 823957C
+blanktrainerspritePal   8239A1C
+
 #5  tested 
 archerTiles 82395A4 
 archerPal   8239A44

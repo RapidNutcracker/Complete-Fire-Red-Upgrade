@@ -641,7 +641,7 @@ void CreateEgg(struct Pokemon *mon, u16 species) //The function used by the give
 	u8 language = GAME_LANGUAGE;
 	u16 ball = BALL_TYPE_POKE_BALL;
 	bool8 isEgg = TRUE;
-
+	
 	CreateMon(mon, species, EGG_HATCH_LEVEL, 0x20, FALSE, 0, FALSE, 0);
 	SetMonData(mon, MON_DATA_POKEBALL, &ball);
 	SetMonData(mon, MON_DATA_NICKNAME, (void*) 0x825F83E);

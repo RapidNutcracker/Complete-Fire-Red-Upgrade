@@ -5,6 +5,12 @@
 .include "../xse_defines.s"
 .include "../asm_defines.s" 
 
+.equ FLAG_DOUBLE_WILD_BATTLE, 0x910
+.equ FLAG_DISABLE_BAG, 0x915
+.equ FLAG_TAG_BATTLE, 0x908
+.equ VAR_PARTNER_BACKSPRITE, 0x5012
+.equ VAR_PARTNER, 0x5011
+.equ VAR_TOTEM, 0x5002
 .global EventScript_rockslide_Start
 EventScript_rockslide_Start:
 	lock
@@ -143,17 +149,17 @@ EventScript_amarowak_Start:
 	if 0x0 _goto EventScript_amarowak_Moveup
 	setflag 0x90B
 	setflag 0x90C
-	setvar 0x8000 0x9B @sets moveset to bonemerang, shadow bone, fire punch, thunderpunch
-	setvar 0x8001 0x25F
-	setvar 0x8002 0x7
-	setvar 0x8003 0x9
-	setvar 0x5002 0x43 @raises speed by 4 stages
-	setflag 0x915
-	wildbattle SPECIES_MAROWAK_A 0x32 ITEM_THICK_CLUB @level 50 alolan marowak with thick club
+	setvar 0x8000 MOVE_BONEMERANG @sets moveset to bonemerang, shadow bone, fire punch, thunderpunch
+	setvar 0x8001 MOVE_SHADOWBONE
+	setvar 0x8002 MOVE_FIREPUNCH
+	setvar 0x8003 MOVE_THUNDERPUNCH
+	setvar VAR_TOTEM 0xFFFF @raises all stats by 1
+	setflag FLAG_DISABLE_BAG
+	setwildbattle SPECIES_MAROWAK_A 0x3A ITEM_THICK_CLUB
+	dowildbattle
 	special2 LASTRESULT 0xB4
 	compare LASTRESULT 0x1
 	if 0x1 _goto EventScript_amarowak_Thespirit
-	clearflag 0x915
 	applymovement 0xFF EventScript_amarowak_Move
 	waitmovement 0x0
 	releaseall
@@ -174,6 +180,7 @@ EventScript_amarowak_Thespirit:
 	waitkeypress
 	waitcry
 	msgbox gText_amarowak_Calmdown MSG_KEEPOPEN @"The mother@s spirit was calmed.\pI..."
+	giveitem ITEM_THICK_CLUB 0x1 MSG_OBTAIN
 	setvar 0x4059 0x1
 	releaseall
 	end

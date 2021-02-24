@@ -164,68 +164,6 @@ static struct Raid sViridianForestRaids3Star[] =
 static struct Raid sViridianForestRaids5Star[] =
 {
 	{
-		.species = SPECIES_GOURGEIST_XL,
-		.ability = RAID_ABILITY_HIDDEN,
-		.drops =
-		{
-			/*100 %*/ ITEM_STAR_PIECE,
-			/* 80 %*/ ITEM_NUGGET,
-			/* 80 %*/ ITEM_DUSK_BALL,
-			/* 50 %*/ ITEM_NONE,
-			/* 50 %*/ ITEM_NONE,
-			/* 30 %*/ ITEM_SALAC_BERRY,
-			/* 30 %*/ ITEM_HEAL_BALL,
-			/* 25 %*/ ITEM_LEPPA_BERRY,
-			/* 25 %*/ ITEM_BOTTLE_CAP,
-			/*  5 %*/ ITEM_PP_MAX,
-			/*  4 %*/ ITEM_CHOICE_SCARF,
-			/*  1 %*/ ITEM_CHOICE_SCARF,
-		},
-	},
-	{
-		.species = SPECIES_CALYREX,
-		.ability = RAID_ABILITY_1,
-		.drops =
-		{
-			/*100 %*/ ITEM_STAR_PIECE,
-			/* 80 %*/ ITEM_NUGGET,
-			/* 80 %*/ ITEM_DUSK_BALL,
-			/* 50 %*/ ITEM_NONE,
-			/* 50 %*/ ITEM_NONE,
-			/* 30 %*/ ITEM_SALAC_BERRY,
-			/* 30 %*/ ITEM_HEAL_BALL,
-			/* 25 %*/ ITEM_LEPPA_BERRY,
-			/* 25 %*/ ITEM_BOTTLE_CAP,
-			/*  5 %*/ ITEM_PP_MAX,
-			/*  4 %*/ ITEM_CHOICE_SCARF,
-			/*  1 %*/ ITEM_CHOICE_SCARF,
-		},
-	},
-	{
-		.species = SPECIES_GRANBULL,
-		.ability = RAID_ABILITY_HIDDEN,
-		.drops =
-		{
-			/*100 %*/ ITEM_STAR_PIECE,
-			/* 80 %*/ ITEM_NUGGET,
-			/* 80 %*/ ITEM_DUSK_BALL,
-			/* 50 %*/ ITEM_NONE,
-			/* 50 %*/ ITEM_NONE,
-			/* 30 %*/ ITEM_SALAC_BERRY,
-			/* 30 %*/ ITEM_HEAL_BALL,
-			/* 25 %*/ ITEM_LEPPA_BERRY,
-			/* 25 %*/ ITEM_BOTTLE_CAP,
-			/*  5 %*/ ITEM_PP_MAX,
-			/*  4 %*/ ITEM_CHOICE_SCARF,
-			/*  1 %*/ ITEM_CHOICE_SCARF,
-		},
-	},
-
-};
-
-static struct Raid sViridianForestRaids5Star[] =
-{
-	{
 		.species = SPECIES_CALYREX,
 		.ability = RAID_ABILITY_1,
 		.drops =
@@ -3264,7 +3202,7 @@ const struct RaidData gRaidsByMapSection[KANTO_MAPSEC_COUNT][RAID_STAR_COUNT] =
 	{
 		[THREE_STAR_RAID] = {sViridianForestRaids3Star, NELEMS(sViridianForestRaids3Star)},
 		[FOUR_STAR_RAID] = {sViridianForestRaids3Star, NELEMS(sViridianForestRaids3Star)},
-		[FIVE_STAR_RAID] = {sViridianForestRaids3Star, NELEMS(sViridianForestRaids5Star)},
+		[FIVE_STAR_RAID] = {sViridianForestRaids5Star, NELEMS(sViridianForestRaids5Star)},
 		[SIX_STAR_RAID] = {sViridianForestRaids6Star, NELEMS(sViridianForestRaids6Star)},
 	},
 	[MAPSEC_ROUTE_13 - MAPSEC_DYNAMIC] = 
@@ -3291,19 +3229,19 @@ const struct RaidData gRaidsByMapSection[KANTO_MAPSEC_COUNT][RAID_STAR_COUNT] =
 	[MAPSEC_POKEMON_MANSION - MAPSEC_DYNAMIC] =
 	{
 		[FOUR_STAR_RAID] = { sPokemonMansionRaids3Star, NELEMS( sPokemonMansionRaids3Star)},
-		[FIVE_STAR_RAID] = { sPokemonMansionRaids3Star, NELEMS( sPokemonMansionRaids3Star)},
+		[FIVE_STAR_RAID] = { sPokemonMansionRaids5Star, NELEMS( sPokemonMansionRaids5Star)},
 		[SIX_STAR_RAID] = { sPokemonMansionRaids6Star, NELEMS( sPokemonMansionRaids6Star)},
 	},
 	[MAPSEC_POWER_PLANT - MAPSEC_DYNAMIC] =
 	{
 		[FOUR_STAR_RAID] = { sPowerPlantRaids4Star, NELEMS( sPowerPlantRaids4Star)},
-		[FIVE_STAR_RAID] = { sPowerPlantRaids4Star, NELEMS( sPowerPlantRaids4Star)},
+		[FIVE_STAR_RAID] = { sPowerPlantRaids5Star, NELEMS( sPowerPlantRaids5Star)},
 		[SIX_STAR_RAID] = { sPowerPlantRaids6Star, NELEMS( sPowerPlantRaids6Star)},
 	},
 	[MAPSEC_SEAFOAM_ISLANDS - MAPSEC_DYNAMIC] =
 	{
 		[FOUR_STAR_RAID] = { sSeafoamRaids4Star, NELEMS( sSeafoamRaids4Star)},
-		[FIVE_STAR_RAID] = { sSeafoamRaids4Star, NELEMS( sSeafoamRaids5Star)},
+		[FIVE_STAR_RAID] = { sSeafoamRaids5Star, NELEMS( sSeafoamRaids5Star)},
 		[SIX_STAR_RAID] = { sSeafoamRaids6Star, NELEMS( sSeafoamRaids6Star)},
 	},
 	[MAPSEC_CERULEAN_CAVE - MAPSEC_DYNAMIC] =

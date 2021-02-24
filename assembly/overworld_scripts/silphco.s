@@ -271,6 +271,16 @@ EventScript_silphcoteambattle_Script:
 	applymovement 0x9 EventScript_silphcoteambattle_Facedown
 	waitmovement 0x0
 	msgbox gText_silphcoteambattle_10 0x6
+	msgbox gText_SelectThree MSG_NORMAL
+	goto StartSelectPokemon
+
+StartSelectPokemon:
+    special 0x27
+	special 0xF5
+	waitstate
+    compare LASTRESULT NO
+	if equal _goto StartSelectPokemon
+	special 0x28
 	setflag 0x908 @tag battle in CFRU engine
 	setflag 0x909 @two opponents
 	setvar 0x5011 0x37 @setting up trainer id for brendan

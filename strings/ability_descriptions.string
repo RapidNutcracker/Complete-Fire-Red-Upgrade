@@ -139,7 +139,7 @@ Only damaged by attacks.
 Avoids ball and bomb moves.
 
 #org @DESC_GALEWINGS
-Flying moves hit first.
+Flying moves hit first at full HP.
 
 #org @DESC_MOXIE
 Knockouts boost Attack.
@@ -475,7 +475,7 @@ Acts as if asleep.
 Copies dance moves.
 
 #org @DESC_BONE_ZONE
-Bone moves ignore immunities.
+Bone moves ignore immunity/resists
 
 #org @DESC_RECEIVER
 Takes over a KOed ally's Ability.
@@ -534,7 +534,7 @@ Takes one free physical hit.
 Powers up ally moves.
 
 #org @DESC_FLAMINGSOUL
-Fire type moves hit first.
+Fire moves hit first at full HP.
 
 #org @DESC_SCREENCLEANER
 Screens are removed on entry.

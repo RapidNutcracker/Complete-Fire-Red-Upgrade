@@ -363,6 +363,9 @@ static bool8 AccuracyCalcHelper(u16 move, u8 bankDef)
 		if(moveResult & MOVE_RESULT_SUPER_EFFECTIVE)
 			doneStatus = TRUE;
 	}
+	else if (ITEM(gBankAttacker) == 92 && SPECIES(gBankAttacker) == SPECIES_DUSKNOIR ) { //92 is reaper cloth
+		doneStatus = TRUE;
+	}
 	else if (WEATHER_HAS_EFFECT)
 	{
 		if (((gBattleWeather & WEATHER_RAIN_ANY) && CheckTableForMove(move, gAlwaysHitInRainMoves) && ITEM_EFFECT(bankDef) != ITEM_EFFECT_UTILITY_UMBRELLA)

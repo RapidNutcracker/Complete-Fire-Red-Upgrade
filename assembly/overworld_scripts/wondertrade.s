@@ -157,17 +157,17 @@ EventScript_AskRandomizer:
     applymovement 0xFF StopInPlace
     waitmovement 0x0
     msgbox gText_PleaseStop MSG_KEEPOPEN
-    pause 0x10
+    pause 0x30
     closeonkeypress
     msgbox gText_DoYouWantRandomizer MSG_YESNO 
     compare LASTRESULT YES 
     if equal _call setrandom 
-    @ msgbox gText_DoYouWantAbility MSG_YESNO 
-    @ compare LASTRESULT YES 
-    @ if equal _call setability 
-    @ msgbox gText_DoYouWantLearnsets MSG_YESNO 
-    @ compare LASTRESULT YES 
-    @ if equal _call setlearnsets 
+    msgbox gText_DoYouWantAbility MSG_YESNO  
+    compare LASTRESULT YES 
+    if equal _call setability 
+    msgbox gText_DoYouWantLearnsets MSG_YESNO 
+    compare LASTRESULT YES 
+    if equal _call setlearnsets 
     setvar 0x5100 0x1
     release 
     end 
@@ -186,12 +186,12 @@ SetHard:
     return 
 
 setability:
-    setflag 0x941
+    setflag 0x942
     msgbox gText_RandomAbilitySet MSG_NORMAL
     return 
 
 setlearnsets:
-    setflag 0x942
+    setflag 0x941
     msgbox gText_RandomLearnsets MSG_NORMAL
     return 
 

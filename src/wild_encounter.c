@@ -1112,9 +1112,19 @@ void sp138_StartLegendaryBattle(void)
 	#ifdef FLAG_DOUBLE_WILD_BATTLE
 	if (FlagGet(FLAG_DOUBLE_WILD_BATTLE)
 	&& gEnemyParty[1].species != SPECIES_NONE
-	&& ViableMonCount(gPlayerParty) > 1) //At least two alive Pokemon
+	&& ViableMonCount(gPlayerParty) > 1) //At least two alive Pokemon added 
 	{
 		gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
+		// gEnemyParty[1].species = SPECIES_DUSKNOIR;
+		// u8 maxIV = 31;
+		// SetMonData(&gEnemyParty[1], MON_DATA_HP_IV, &maxIV);
+		// SetMonData(&gEnemyParty[1], MON_DATA_ATK_IV, &maxIV);
+		// SetMonData(&gEnemyParty[1], MON_DATA_DEF_IV, &maxIV);
+		// SetMonData(&gEnemyParty[1], MON_DATA_SPATK_IV, &maxIV);
+		// SetMonData(&gEnemyParty[1], MON_DATA_SPDEF_IV, &maxIV);
+		// SetMonData(&gEnemyParty[1], MON_DATA_SPEED_IV, &maxIV);
+		// u16 item = 92;
+		// SetMonData(&gEnemyParty[1], MON_DATA_HELD_ITEM, &item);
 
 		if (FlagGet(FLAG_TAG_BATTLE))
 			gBattleTypeFlags |=  BATTLE_TYPE_INGAME_PARTNER;
@@ -1176,12 +1186,14 @@ void sp118_StartRaidBattle(void)
 
 	CreateBattleStartTask(0, GetMUS_ForBattle());
 	IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
-	IncrementGameStat(GAME_STAT_WILD_BATTLES);
+	IncrementGameStat(GAME_STAT_WILD_BATTLES); 
 	IncrementGameStat(GAME_STAT_RAID_BATTLES);
 }
 
 //setwildbattle SPECIES LEVEL ITEM
-//setwildbattle 0xFFFF 0x0 0x0 0x0 SPECIES_1 LEVEL_1 ITEM_1 0x0 SPECIES_2 LEVEL2 ITEM_2
+//setwildbattle 0xFFFF 0x0 0x0 
+//0x0 SPECIES_1 LEVEL_1 ITEM_1 
+//0x0 SPECIES_2 LEVEL2 ITEM_2
 bool8 ScrCmd_setwildbattle(struct ScriptContext* ctx)
 {
 	u16 species, item;
@@ -1257,6 +1269,25 @@ static void CreateScriptedWildMon(u16 species, u8 level, u16 item, u16* moves, b
 		{
 			if (moves[i] != 0xFFFF)
 				gEnemyParty[index].moves[i] = moves[i];
+		}
+		u8 maxIV = 31;
+		if (species == SPECIES_MAROWAK_A){
+			SetMonData(&gEnemyParty[index], MON_DATA_HP_IV, &maxIV);
+			SetMonData(&gEnemyParty[index], MON_DATA_ATK_IV, &maxIV);
+			SetMonData(&gEnemyParty[index], MON_DATA_DEF_IV, &maxIV);
+			SetMonData(&gEnemyParty[index], MON_DATA_SPATK_IV, &maxIV);
+			SetMonData(&gEnemyParty[index], MON_DATA_SPDEF_IV, &maxIV);
+			SetMonData(&gEnemyParty[index], MON_DATA_SPEED_IV, &maxIV);
+			GiveMonNatureAndAbility(&gEnemyParty[index], 13, 0xFF, TRUE, TRUE, FALSE); //0xFF Give Hidden Ability, 13 is jolly ability, first true is to force shiny
+			gEnemyParty[index].hpEv = 252;
+			gEnemyParty[index].atkEv = 252; 
+			gEnemyParty[index].defEv = 252;
+			gEnemyParty[index].spDefEv = 252; 
+			gEnemyParty[index].spdEv = 252; 
+			CalculateMonStatsNew(&gEnemyParty[index]);
+			HealMon(&gEnemyParty[index]);
+			u16 item = 224;
+			SetMonData(&gEnemyParty[index], MON_DATA_HELD_ITEM, &item);
 		}
 	}
 	#endif
