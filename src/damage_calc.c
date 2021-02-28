@@ -2833,10 +2833,14 @@ static u16 GetBasePower(struct DamageCalc* data)
 				if (gBattleMons[bankAtk].status2 & STATUS2_DEFENSE_CURL)
 					power *= 2;
 
-				if (gBattleMons[bankAtk].status2 & STATUS2_MULTIPLETURNS) //Rollout has started
+				if (gDisableStructs[bankAtk].rolloutTimer >= 1) //Rollout has started gDisableStructs[gBankAttacker].rolloutTimer = 5;
 				{
-					for (i = 1; i < (5 - gDisableStructs[bankAtk].rolloutTimer); ++i)
+					--gDisableStructs[gBankAttacker].rolloutTimer;
+					for (i = 1; i < (6 - gDisableStructs[bankAtk].rolloutTimer); ++i)
 						power *= 2;
+					if (gDisableStructs[gBankAttacker].rolloutTimer == 0){
+						gBattleMons[bankAtk].status2 &= ~(STATUS2_MULTIPLETURNS);
+					}
 				}
 			}
 			break;

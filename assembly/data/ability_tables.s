@@ -182,6 +182,7 @@ gTraceBannedAbilities:
 .byte ABILITY_NEUTRALIZINGGAS
 .byte ABILITY_ICEFACE
 .byte ABILITY_HUNGERSWITCH
+.byte ABILITY_PRIMALARMOR
 .byte ABILITY_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

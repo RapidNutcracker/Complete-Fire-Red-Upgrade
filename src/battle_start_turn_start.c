@@ -122,7 +122,20 @@ void BattleBeginFirstTurn(void)
 	u8* bank = &(gBattleStruct->switchInItemsCounter);
 	if (gBattleTypeFlags & BATTLE_TYPE_TRAINER){
 		gBattleScripting.battleStyle = OPTIONS_BATTLE_STYLE_SET; //added to force battle style set
+		for (i = 0; i < PARTY_SIZE; ++i)
+		{
+			u16 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2, NULL);
+	
+			if (species != SPECIES_NONE && species != SPECIES_EGG) //Viable mon
+			{
+				u8 level = GetMonData(&gPlayerParty[i], MON_DATA_LEVEL, NULL);
+				u32 id = MathMax(1, T1_READ_32(gSaveBlock2->playerTrainerId));
+				SeedRng2(species * level * id );
+				break;
+			}
+		}
 	}
+
 	if (!gBattleExecBuffer) //Inlclude Safari Check Here?
 	{
 		switch(*state) {

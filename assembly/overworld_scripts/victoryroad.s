@@ -236,6 +236,6 @@ EventScript_AllGen8_Mons:
 EventScript_MeadowPlate:
 	lock
 	faceplayer
-	callasm 0x8802131
+	givepokemon SPECIES_OBSTAGOON 0x23 0x0 0x0 0x0 0x0 
 	end
 

@@ -548,8 +548,8 @@ npc 1 41 12 EventScript_VictoryRoad_TM67
 
 #Elite Four/Indigo Plateau 
 npc 13 0 1 EventScript_E4nurse_Start
-npc 13 0 8 EventScript_NatureChanger 
-# npc 13 0 8 EventScript_MeadowPlate
+# npc 13 0 8 EventScript_NatureChanger 
+npc 13 0 8 EventScript_MeadowPlate
 tile 3 9 0 EventScript_FinalCreator_Fight
 npc 1 75 0 EventScript_lorelei_Start
 npc 1 76 0 EventScript_bruno_Start

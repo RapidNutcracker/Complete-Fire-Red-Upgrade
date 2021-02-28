@@ -1349,10 +1349,10 @@ static void MoveSelectionMetaDetails(void)
 	// 	default:
 	// 		StringCopy(gDisplayedStringBattle, gText_Physical);
 	// }
-	if (gNewBS->AuroraVeilTimers[SIDE(gBankAttacker)] > 0)
+	if (gNewBS->AuroraVeilTimers[SIDE(B_SIDE_PLAYER)] > 0)
 	{
 		txtPtr = StringCopy(gDisplayedStringBattle, gText_AuroraVeilText);
-		ConvertIntToDecimalStringN(txtPtr, gNewBS->AuroraVeilTimers[SIDE(gBankAttacker)], STR_CONV_MODE_LEFT_ALIGN, 3);
+		ConvertIntToDecimalStringN(txtPtr, gNewBS->AuroraVeilTimers[SIDE(B_SIDE_PLAYER)], STR_CONV_MODE_LEFT_ALIGN, 3);
 	}
 	else{
 		txtPtr = StringCopy(gDisplayedStringBattle, gText_NoAuroraVeilText);
@@ -1371,11 +1371,11 @@ static void MoveSelectionMetaDetails(void)
 	//Load PP Text
 	txtPtr = StringCopy(gDisplayedStringBattle, gText_Reflect);
 	BattlePutTextOnWindow(gDisplayedStringBattle, 7); //Slot of PP?
-	txtPtr = ConvertIntToDecimalStringN(gDisplayedStringBattle, gSideTimers[SIDE(gBankAttacker)].reflectTimer, STR_CONV_MODE_LEFT_ALIGN, 3);
+	txtPtr = ConvertIntToDecimalStringN(gDisplayedStringBattle, gSideTimers[SIDE(B_SIDE_PLAYER)].reflectTimer, STR_CONV_MODE_LEFT_ALIGN, 3);
 	BattlePutTextOnWindow(gDisplayedStringBattle, 9); //Slot of PP numbers
 	
 	txtPtr = StringCopy(gDisplayedStringBattle, gText_LightScreen);
-	ConvertIntToDecimalStringN(txtPtr, gSideTimers[SIDE(gBankAttacker)].lightscreenTimer, STR_CONV_MODE_LEFT_ALIGN, 3);
+	ConvertIntToDecimalStringN(txtPtr, gSideTimers[SIDE(B_SIDE_PLAYER)].lightscreenTimer, STR_CONV_MODE_LEFT_ALIGN, 3);
 	BattlePutTextOnWindow(gDisplayedStringBattle, 8); //Slot of PP numbers
 	MoveSelectionCreateCursorAt(0, 0);
 	gNewBS->zMoveData.viewingDetails = TRUE;

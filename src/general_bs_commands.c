@@ -3796,10 +3796,10 @@ void atkB3_rolloutdamagecalculation(void)
 			gBattleMons[gBankAttacker].status2 |= STATUS2_MULTIPLETURNS;
 			gLockedMoves[gBankAttacker] = gCurrentMove;
 		}
-		if (--gDisableStructs[gBankAttacker].rolloutTimer == 0) // last hit
-		{
-			gBattleMons[gBankAttacker].status2 &= ~(STATUS2_MULTIPLETURNS);
-		}
+		// --gDisableStructs[gBankAttacker].rolloutTimer; // last hit
+		// {
+		// 	gBattleMons[gBankAttacker].status2 &= ~(STATUS2_MULTIPLETURNS);
+		// }
 
 		gBattlescriptCurrInstr++;
 	}

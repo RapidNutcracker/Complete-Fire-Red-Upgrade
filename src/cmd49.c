@@ -1107,6 +1107,7 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 			{
 				if ((gCurrentMove == MOVE_MINDBLOWN || gCurrentMove == MOVE_STEELBEAM)
 				&& ABILITY(gBankAttacker) != ABILITY_MAGICGUARD
+				&& ABILITY(gBankAttacker) != ABILITY_BADCOMPANY
 				&& BATTLER_ALIVE(gBankAttacker))
 				{
 					gBattleMoveDamage = MathMax(1, gBattleMons[gBankAttacker].maxHP / 2);
@@ -1142,6 +1143,7 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 				}
 				else if (ABILITY(gBankAttacker) != ABILITY_MAGICGUARD
 				&& ABILITY(gBankAttacker) != ABILITY_ROCKHEAD
+				&& ABILITY(gBankAttacker) != ABILITY_BADCOMPANY
 				&& gNewBS->AttackerDidDamageAtLeastOnce
 				&& BATTLER_ALIVE(gBankAttacker))
 				{

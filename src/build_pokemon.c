@@ -4011,7 +4011,7 @@ u8 TryRandomizeAbility(u8 ability, unusedArg u16 species)
 	u32 newAbility = ability;
 
 	#ifdef FLAG_ABILITY_RANDOMIZER
-	if (FlagGet(FLAG_ABILITY_RANDOMIZER) && !FlagGet(FLAG_BATTLE_FACILITY))
+	if (FlagGet(FLAG_ABILITY_RANDOMIZER) && !FlagGet(FLAG_BATTLE_FACILITY) && ShouldTrainerRandomize())
 	{
 		u32 id = MathMax(1, T1_READ_32(gSaveBlock2->playerTrainerId)); //0 id would mean Pokemon wouldn't have ability
 		id = id + (u32) gClock.dayOfWeek; 
