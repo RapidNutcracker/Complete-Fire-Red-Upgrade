@@ -101,14 +101,14 @@ u8 AIScript_Partner(const u8 bankAtk, const u8 bankAtkPartner, const u16 origina
 			//	break;
 
 			// Fire
-			case ABILITY_FLASHFIRE:
-				if (moveType == TYPE_FIRE
-				&&  MoveTypeInMoveset(bankAtkPartner, TYPE_FIRE)
-				&&  !(gBattleResources->flags->flags[bankAtkPartner] & RESOURCE_FLAG_FLASH_FIRE))
-				{
-					IncreaseHelpingHandViability(&viability, class);
-				}
-				break;
+			// case ABILITY_FLASHFIRE:
+			// 	if (moveType == TYPE_FIRE
+			// 	&&  MoveTypeInMoveset(bankAtkPartner, TYPE_FIRE)
+			// 	&&  !(gBattleResources->flags->flags[bankAtkPartner] & RESOURCE_FLAG_FLASH_FIRE))
+			// 	{
+			// 		IncreaseHelpingHandViability(&viability, class);
+			// 	}
+			// 	break;
 
 			// Grass
 			case ABILITY_SAPSIPPER:
@@ -131,17 +131,6 @@ u8 AIScript_Partner(const u8 bankAtk, const u8 bankAtkPartner, const u16 origina
 					IncreaseHelpingHandViability(&viability, class);
 				}
 				break;
-
-			//Multiple move types
-			// case ABILITY_RATTLED:
-			// 	if (moveSplit != SPLIT_STATUS
-			// 	&& (moveType == TYPE_DARK || moveType == TYPE_GHOST || moveType == TYPE_BUG)
-			// 	&&  STAT_CAN_RISE(bankAtkPartner, STAT_STAGE_SPEED)
-			// 	&&  !MoveKnocksOutXHits(move, bankAtk, bankAtkPartner, 1))
-			// 	{
-			// 		IncreaseHelpingHandViability(&viability, class);
-			// 	}
-			// 	break;
 
 			//Move category checks
 			case ABILITY_CONTRARY:

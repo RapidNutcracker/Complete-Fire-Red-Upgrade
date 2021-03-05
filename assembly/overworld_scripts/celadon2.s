@@ -46,4 +46,3 @@ EventScript_gamecornertms_Values:
 	.hword ITEM_TM102 @ 0x1AB
 	.hword ITEM_TM110 @ 0x1B3 
     .hword 0x0
-    

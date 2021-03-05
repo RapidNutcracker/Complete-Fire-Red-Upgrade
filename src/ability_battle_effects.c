@@ -707,7 +707,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			}
 			break;
 		case ABILITY_SURPRISE:
-			roll = Random() % 5;
+			roll = Random2() % 5;
 			if(roll == 0)
 			{
 				if (!(gBattleMons[FOE(bank)].status2 & STATUS2_SUBSTITUTE) || !(gBattleMons[PARTNER(FOE(bank))].status2 & STATUS2_SUBSTITUTE))
@@ -792,7 +792,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				if (*GetAbilityLocation(target1) != ABILITY_NONE && gBattleMons[target1].hp != 0
 				&& *GetAbilityLocation(target2) != ABILITY_NONE && gBattleMons[target2].hp != 0)
 				{
-					gActiveBattler = GetBattlerAtPosition(((Random() & 1) * 2) | side);
+					gActiveBattler = GetBattlerAtPosition(((Random2() & 1) * 2) | side);
 					effect++;
 				}
 				else if (*GetAbilityLocation(target1) != ABILITY_NONE && gBattleMons[target1].hp != 0)
@@ -982,7 +982,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 							strongestTarget = FOE(bank);
 						}
 						else if (power > maxPower
-						|| (power == maxPower && Random() & 1))
+						|| (power == maxPower && Random2() & 1))
 						{
 							maxPower = power;
 							strongestMove = move;
@@ -1006,7 +1006,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 							strongestTarget = PARTNER(FOE(bank));
 						}
 						else if (power > maxPower
-						|| (power == maxPower && Random() & 1))
+						|| (power == maxPower && Random2() & 1))
 						{
 							maxPower = power;
 							strongestMove = move;
@@ -1393,7 +1393,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 					break;
 
 				case ABILITY_SHEDSKIN:
-					if ((gBattleMons[bank].status1 & STATUS1_ANY) && Random() % 3 == 0)
+					if ((gBattleMons[bank].status1 & STATUS1_ANY) && Random2() % 3 == 0)
 					{
 						ClearBankStatus(bank);
 						BattleScriptPushCursorAndCallback(BattleScript_AbilityCuredStatusEnd3);
@@ -1416,7 +1416,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 					if (IS_DOUBLE_BATTLE
 					&& BATTLER_ALIVE(PARTNER(bank))
 					&& gBattleMons[PARTNER(bank)].status1
-					&& Random() % 100 < 30)
+					&& Random2() % 100 < 30)
 					{
 						gEffectBank = PARTNER(bank);
 						ClearBankStatus(gEffectBank);
@@ -1438,55 +1438,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 						effect++;
 					}
 					break;
-
-				// case ABILITY_MOODY: ;
-				// 	u8 statToRaise = 0;
-				// 	u8 statToLower = 0;
-				// 	const u8* scriptPtr;
-
-				// 	if (MainStatsMinned(bank))
-				// 	{	//Raise One Stat
-				// 		statToRaise = RandRange(STAT_ATK, STAT_SPDEF + 1); //Attack, Defense, Sp. Atk, Sp.Def, Speed
-				// 		gBattleScripting.statChanger = statToRaise | INCREASE_2;
-				// 		scriptPtr = BattleScript_MoodySingleStat;
-				// 	}
-				// 	else if (MainStatsMaxed(bank))
-				// 	{	//Lower One Stat
-				// 		statToLower = RandRange(STAT_ATK, STAT_SPDEF + 1); //Attack, Defense, Sp. Atk, Sp.Def, Speed
-				// 		gBattleScripting.statChanger = statToLower | DECREASE_1;
-				// 		scriptPtr = BattleScript_MoodySingleStat;
-				// 	}
-				// 	else
-				// 	{	//Raise One Stat and Lower Another
-				// 		if (!(AllMainStatsButOneAreMinned(bank)))
-				// 		{	//At least two non min stats
-				// 			do
-				// 			{
-				// 				statToRaise = RandRange(STAT_ATK, STAT_SPDEF + 1); //Attack, Defense, Sp. Atk, Sp.Def, Speed
-				// 			} while (STAT_STAGE(bank, statToRaise) == STAT_STAGE_MAX);
-				// 		}
-				// 		else
-				// 		{	//If all stats but one are at min, then raise one of the min ones so the
-				// 			//non min one canned be lowered.
-				// 			do
-				// 			{
-				// 				statToRaise = RandRange(STAT_ATK, STAT_SPDEF + 1); //Attack, Defense, Sp. Atk, Sp.Def, Speed
-				// 			} while (STAT_STAGE(bank, statToRaise) != 0);
-				// 		}
-
-				// 		do
-				// 		{
-				// 			statToLower = RandRange(STAT_ATK, STAT_SPDEF + 1); //Attack, Defense, Sp. Atk, Sp.Def, Speed
-				// 		} while (statToLower == statToRaise || STAT_STAGE(bank, statToLower) == 0);
-
-				// 		gBattleScripting.statChanger = statToRaise | INCREASE_2;
-				// 		gBattleCommunication[MOVE_EFFECT_BYTE] = statToLower; //Save stat to lower in move effect byte
-				// 		scriptPtr = BattleScript_MoodyRegular;
-				// 	}
-
-				// 	BattleScriptPushCursorAndCallback(scriptPtr);
-				// 	effect++;
-				// 	break;
 
 				case ABILITY_BADDREAMS:
 					if (gBattleMons[FOE(bank)].status1 & STATUS_SLEEP
@@ -1515,7 +1466,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 						}
 						else //No Sun
 						{
-							if (Random() % 100 < 50)
+							if (Random2() % 100 < 50)
 								break;
 						}
 
@@ -1839,11 +1790,11 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				&& gBankAttacker != bank
 				&& CheckContact(move, gBankAttacker)
 				&& IsAffectedByPowder(gBankAttacker)
-				&& Random() % 10 == 0)
+				&& Random2() % 10 == 0)
 				{
 					do
 					{
-						gBattleCommunication[MOVE_EFFECT_BYTE] = Random() & 3;
+						gBattleCommunication[MOVE_EFFECT_BYTE] = Random2() & 3;
 					} while (gBattleCommunication[MOVE_EFFECT_BYTE] == 0);
 
 					switch (gBattleCommunication[MOVE_EFFECT_BYTE]) {
@@ -1882,7 +1833,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				&& gBankAttacker != bank
 				&& CheckContact(move, gBankAttacker)
 				&& CanBeParalyzed(gBankAttacker, TRUE)
-				&& umodsi(Random(), 3) == 0)
+				&& umodsi(Random2(), 3) == 0)
 				{
 					gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_PARALYSIS;
 					BattleScriptPushCursor();
@@ -1900,7 +1851,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				&& gBankAttacker != bank
 				&& CheckContact(move, gBankAttacker)
 				&& CanBeBurned(gBankAttacker, TRUE)
-				&& umodsi(Random(), 3) == 0) 
+				&& umodsi(Random2(), 3) == 0) 
 				{
 					gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_BURN;
 					BattleScriptPushCursor();
@@ -1917,7 +1868,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				&& BATTLER_ALIVE(bank)
 				&& gBankAttacker != bank
 				&& CheckContact(move, gBankAttacker)
-				&& umodsi(Random(), 3) == 0
+				&& umodsi(Random2(), 3) == 0
 				&& ABILITY(gBankAttacker) != ABILITY_OBLIVIOUS
 				&& ABILITY(gBankAttacker) != ABILITY_AROMAVEIL
 				&& !(IS_DOUBLE_BATTLE && ABILITY(PARTNER(gBankAttacker)) == ABILITY_AROMAVEIL)
@@ -1969,7 +1920,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				&& gBankAttacker != bank
 				&& ABILITY(gBankAttacker) != ABILITY_AROMAVEIL
 				&& !(IS_DOUBLE_BATTLE && ABILITY(PARTNER(gBankAttacker)) == ABILITY_AROMAVEIL)
-				&& umodsi(Random(), 3) == 0)
+				&& umodsi(Random2(), 3) == 0)
 				{
 					BattleScriptPushCursor();
 					gBattlescriptCurrInstr = BattleScript_CursedBodyActivates;

@@ -122,18 +122,11 @@ void BattleBeginFirstTurn(void)
 	u8* bank = &(gBattleStruct->switchInItemsCounter);
 	if (gBattleTypeFlags & BATTLE_TYPE_TRAINER){
 		gBattleScripting.battleStyle = OPTIONS_BATTLE_STYLE_SET; //added to force battle style set
-		for (i = 0; i < PARTY_SIZE; ++i)
-		{
-			u16 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2, NULL);
-	
-			if (species != SPECIES_NONE && species != SPECIES_EGG) //Viable mon
-			{
-				u8 level = GetMonData(&gPlayerParty[i], MON_DATA_LEVEL, NULL);
-				u32 id = MathMax(1, T1_READ_32(gSaveBlock2->playerTrainerId));
-				SeedRng2(species * level * id );
-				break;
-			}
-		}
+		// SeedRng2(Random());
+		SeedRng2( ((u16) gClock.dayOfWeek ) * gTrainerBattleOpponent_A); 
+	}
+	else {
+		SeedRng2(Random()); 
 	}
 
 	if (!gBattleExecBuffer) //Inlclude Safari Check Here?
@@ -403,7 +396,7 @@ void BattleBeginFirstTurn(void)
 				gBattleStruct->faintedActionsState = 0;
 				gBattleStruct->turncountersTracker = 0;
 				gMoveResultFlags = 0;
-				gRandomTurnNumber = Random();
+				gRandomTurnNumber = Random2();
 				*state = 0;
 		}
 	}
@@ -1215,14 +1208,14 @@ void HandleAction_UseMove(void)
 	CHOOSE_RANDOM_TARGET_DOUBLES:
 		if (SIDE(gBankAttacker) == B_SIDE_PLAYER)
 		{
-			if (IsRaidBattle() || Random() & 1)
+			if (IsRaidBattle() || Random2() & 1)
 				gBankTarget = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
 			else
 				gBankTarget = GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT);
 		}
 		else
 		{
-			if (Random() & 1)
+			if (Random2() & 1)
 				gBankTarget = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
 			else
 				gBankTarget = GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT);
@@ -1480,9 +1473,12 @@ extern const u8 sBattleTransitionTable_Trainer[][2];
 u8 GetTrainerBattleTransition(void)
 {
 	u8 minPartyCount, transitionType, enemyLevel, playerLevel;
-
+	
 	if (gTrainerBattleOpponent_A == TRAINER_SECRET_BASE)
 		return B_TRANSITION_CHAMPION;
+
+	// if (gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_LEADER || gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_AROMA_LADY_RS )
+	// 	return B_TRANSITION_CHAMPION;
 
 	#ifdef FR_PRE_BATTLE_MUGSHOT_STYLE
 	if (gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_CHAMPION)
@@ -1795,6 +1791,12 @@ static u32 BoostSpeedInWeather(u8 ability, u8 itemEffect, u32 speed)
 				if (gBattleWeather & WEATHER_SUN_ANY && itemEffect != ITEM_EFFECT_UTILITY_UMBRELLA)
 					speed *= 2;
 				break;
+			
+			case ABILITY_FLOWERGIFT:
+				if (gBattleWeather & WEATHER_SUN_ANY && itemEffect != ITEM_EFFECT_UTILITY_UMBRELLA)
+					speed = (speed * 15) / 10;
+				break;
+
 			case ABILITY_SANDRUSH:
 				if (gBattleWeather & WEATHER_SANDSTORM_ANY)
 					speed *= 2;

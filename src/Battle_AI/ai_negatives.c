@@ -721,7 +721,7 @@ MOVESCR_CHECK_0:
 
 		case EFFECT_ATTACK_UP:
 		case EFFECT_ATTACK_UP_2:
-			if (data->atkAbility != ABILITY_CONTRARY)
+			if (data->atkAbility != ABILITY_CONTRARY && data->defAbility != ABILITY_UNAWARE)
 			{
 				switch (move) {
 					case MOVE_HONECLAWS:
@@ -804,7 +804,7 @@ MOVESCR_CHECK_0:
 				AI_WORK_UP_CHECK: ;
 					if (((!STAT_CAN_RISE(bankAtk,STAT_STAGE_ATK)|| !PhysicalMoveInMoveset(bankAtk))
 					  && (!STAT_CAN_RISE(bankAtk, STAT_STAGE_SPATK) || !SpecialMoveInMoveset(bankAtk)))
-					|| data->atkAbility == ABILITY_CONTRARY)
+					|| data->atkAbility == ABILITY_CONTRARY || data->defAbility == ABILITY_UNAWARE)
 						DECREASE_VIABILITY(10);
 					break;
 
@@ -850,7 +850,7 @@ MOVESCR_CHECK_0:
 				default:
 					if (data->atkAbility == ABILITY_CONTRARY || !STAT_CAN_RISE(bankAtk, STAT_STAGE_SPATK) || !SpecialMoveInMoveset(bankAtk))
 						DECREASE_VIABILITY(10);
-				else if(data->atkStatus1 & STATUS_TOXIC_POISON)
+				else if((data->atkStatus1 & STATUS_TOXIC_POISON) || data->defAbility == ABILITY_UNAWARE)
 					DECREASE_VIABILITY(10);
 			}
 			break;
@@ -1536,7 +1536,7 @@ MOVESCR_CHECK_0:
 				{
 					DECREASE_VIABILITY(10); //Don't protect if you're going to faint after protecting
 				}
-				else if (gDisableStructs[bankAtk].protectUses == 1 && Random() % 100 < 50)
+				else if (gDisableStructs[bankAtk].protectUses == 1 && Random2() % 100 < 50)
 				{
 					if (IS_SINGLE_BATTLE)
 						DECREASE_VIABILITY(6);
@@ -2200,7 +2200,7 @@ MOVESCR_CHECK_0:
 			break;
 
 		case EFFECT_EXTREME_EVOBOOST:
-			if (MainStatsMaxed(bankAtk))
+			if (MainStatsMaxed(bankAtk) || data->defAbility == ABILITY_UNAWARE)
 			{
 				DECREASE_VIABILITY(10);
 				break;
@@ -2219,7 +2219,7 @@ MOVESCR_CHECK_0:
 			break;
 
 		case EFFECT_BULK_UP:
-			if (data->atkAbility == ABILITY_CONTRARY)
+			if (data->atkAbility == ABILITY_CONTRARY || data->defAbility == ABILITY_UNAWARE)
 				DECREASE_VIABILITY(10);
 			else
 			{
@@ -2246,13 +2246,13 @@ MOVESCR_CHECK_0:
 			break;
 
 		case EFFECT_CALM_MIND:
-			if (data->atkAbility == ABILITY_CONTRARY)
+			if (data->atkAbility == ABILITY_CONTRARY || data->defAbility == ABILITY_UNAWARE)
 					DECREASE_VIABILITY(10);
 			else
 			{
 				switch (move) {
 					case MOVE_QUIVERDANCE:
-						if(data->defAbility == ABILITY_DANCER)
+						if(data->defAbility == ABILITY_DANCER || data->defAbility == ABILITY_UNAWARE )
 							DECREASE_VIABILITY(10);
 						else if (STAT_STAGE(bankAtk, STAT_STAGE_SPEED) >= STAT_STAGE_MAX
 						&& (STAT_STAGE(bankAtk, STAT_STAGE_SPATK) >= STAT_STAGE_MAX || !SpecialMoveInMoveset(bankAtk))
@@ -2276,7 +2276,7 @@ MOVESCR_CHECK_0:
 						if ((STAT_STAGE(bankAtk, STAT_STAGE_SPATK) >= STAT_STAGE_MAX || !SpecialMoveInMoveset(bankAtk))
 						&&  STAT_STAGE(bankAtk, STAT_STAGE_SPDEF) >= STAT_STAGE_MAX)
 							DECREASE_VIABILITY(10);
-						else if(data->atkStatus1 & STATUS_TOXIC_POISON)
+						else if((data->atkStatus1 & STATUS_TOXIC_POISON ) || data->defAbility == ABILITY_UNAWARE)
 							DECREASE_VIABILITY(10);
 				}
 			}
@@ -2294,7 +2294,7 @@ MOVESCR_CHECK_0:
 						DECREASE_VIABILITY(10);
 					else if (IsTrickRoomActive())
 						DECREASE_VIABILITY(10);
-					else if(data->atkStatus1 & STATUS_TOXIC_POISON)
+					else if((data->atkStatus1 & STATUS_TOXIC_POISON) || data->defAbility == ABILITY_UNAWARE)
 						DECREASE_VIABILITY(10);
 					break;
 
@@ -2310,7 +2310,7 @@ MOVESCR_CHECK_0:
 							DECREASE_VIABILITY(10);
 						else if (IsTrickRoomActive())
 							DECREASE_VIABILITY(10);
-						else if(data->atkStatus1 & STATUS_TOXIC_POISON)
+						else if((data->atkStatus1 & STATUS_TOXIC_POISON) || data->defAbility == ABILITY_UNAWARE)
 							DECREASE_VIABILITY(10);
 					}
 			}

@@ -155,6 +155,7 @@ npc 22 1 1 EventScript_itemfinder_Start
 npc 3 29 11 EventScript_SSAnne_WorkUp
 #this one is actually soft sand 
 npc 3 29 10 EventScript_Route11_StarPiece 
+npc 22 0 0 EventScript_Guard_EVTraining
 
 #Route 12 
 npc 23 2 0 EventScript_sharpedonite_Start
@@ -297,7 +298,7 @@ npc 14 4 4 EventScript_Saffron_ManyTutors2
 npc 14 9 12 EventScript_EvChecker_Start
 npc 14 9 10 EventScript_EVSubtracter_Start
 npc 14 8 1 EventScript_liquidation_Start
-npc 14 1 3 EventScript_badjoke_Start
+# npc 14 1 3 EventScript_badjoke_Start
 npc 14 2 6 EventScript_clobbopus_Start
 npc 14 2 5 EventScript_crabrawler_Start
 npc 14 2 4 EventScript_chuck_Start
@@ -548,8 +549,8 @@ npc 1 41 12 EventScript_VictoryRoad_TM67
 
 #Elite Four/Indigo Plateau 
 npc 13 0 1 EventScript_E4nurse_Start
-# npc 13 0 8 EventScript_NatureChanger 
-npc 13 0 8 EventScript_MeadowPlate
+npc 13 0 8 EventScript_NatureChanger 
+# npc 13 0 8 EventScript_MeadowPlate
 tile 3 9 0 EventScript_FinalCreator_Fight
 npc 1 75 0 EventScript_lorelei_Start
 npc 1 76 0 EventScript_bruno_Start

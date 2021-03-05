@@ -12,6 +12,7 @@ u16 __attribute__((long_call)) Random2(void);
 
 //Returns a 32-bit pseudorandom number
 #define Random32() ((u32) (Random() | (Random() << 16)))
+#define Random32_2() ((u32) (Random2() | (Random2() << 16)))
 
 //Sets the initial seed value of the pseudorandom number generator
 void SeedRng(u16 seed);

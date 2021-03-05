@@ -236,6 +236,6 @@ EventScript_AllGen8_Mons:
 EventScript_MeadowPlate:
 	lock
 	faceplayer
-	givepokemon SPECIES_OBSTAGOON 0x23 0x0 0x0 0x0 0x0 
+	givepokemon SPECIES_MUNCHLAX 1 0x0 0x0 0x0 0x0 
 	end
 

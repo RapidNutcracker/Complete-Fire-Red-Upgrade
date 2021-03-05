@@ -554,7 +554,7 @@ SKIP_INDEX_SEARCH:
 		CreateWildMon(wildMonInfo->wildPokemon[wildMonIndex].species, level, wildMonIndex, TRUE);
 
 	#ifdef FLAG_DOUBLE_WILD_BATTLE
-	if (FlagGet(FLAG_DOUBLE_WILD_BATTLE)) // && ViableMonCount(gPlayerParty) >= 2)
+	if (FlagGet(FLAG_DOUBLE_WILD_BATTLE) && ViableMonCount(gPlayerParty) >= 2)
 	{
 		wildMonIndex = 0;
 
@@ -592,7 +592,6 @@ SKIP_INDEX_SEARCH:
 			CreateWildMon(wildMonInfo->wildPokemon[wildMonIndex].species, level, wildMonIndex, FALSE);
 	}
 	#endif
-
 	return TRUE;
 }
 
@@ -611,7 +610,7 @@ static species_t GenerateFishingWildMon(const struct WildPokemonInfo* wildMonInf
 		CreateWildMon(wildMonInfo->wildPokemon[wildMonIndex].species, level, wildMonIndex, FALSE);
 	}
 	#endif
-
+	
 	return wildMonInfo->wildPokemon[wildMonIndex].species;
 }
 

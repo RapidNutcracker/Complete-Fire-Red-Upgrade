@@ -13,6 +13,7 @@ extern const move_t gMeFirstBannedMoves[];
 extern const move_t gCopycatBannedMoves[];
 extern const move_t gInstructBannedMoves[];
 extern const move_t gMetronomeBannedMoves[];
+extern const move_t gForbiddenSpellMoves[];
 extern const move_t gAssistBannedMoves[];
 extern const move_t gMimicBannedMoves[];
 extern const move_t gSleepTalkBannedMoves[];

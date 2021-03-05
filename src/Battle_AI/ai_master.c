@@ -278,7 +278,7 @@ void BattleAI_SetupAIData(u8 defaultScoreMoves)
 	// Decide a random target battlerId in doubles.
 	if (IS_DOUBLE_BATTLE)
 	{
-		gBankTarget = (Random() & BIT_FLANK) + (SIDE(gActiveBattler) ^ BIT_SIDE);
+		gBankTarget = (Random2() & BIT_FLANK) + (SIDE(gActiveBattler) ^ BIT_SIDE);
 		if (gAbsentBattlerFlags & gBitTable[gBankTarget])
 			gBankTarget ^= BIT_FLANK;
 	}

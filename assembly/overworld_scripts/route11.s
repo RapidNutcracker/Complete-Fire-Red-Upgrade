@@ -220,3 +220,11 @@ EventScript_itemfinder_Done:
 	release
 	end
 
+.global EventScript_Guard_EVTraining
+EventScript_Guard_EVTraining:
+	lock
+	faceplayer
+	msgbox gText_Guard_Evtraining MSG_FACE
+	release
+	end
+	

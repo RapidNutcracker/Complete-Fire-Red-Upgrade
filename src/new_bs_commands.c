@@ -971,7 +971,7 @@ void atkFE_prefaintmoveendeffects(void)
 			{
 				switch (ABILITY(gBankAttacker)) {
 					case ABILITY_STENCH: //Check for Stench is taken care of in King's Rock check
-						if (umodsi(Random(), 100) < 10
+						if (umodsi(Random2(), 100) < 10
 						&& gCurrentTurnActionNumber < GetBattlerTurnOrderNum(gBankTarget)) //Attacker moved before target
 						{
 							gBattleMons[gBankTarget].status2 |= STATUS2_FLINCHED;
@@ -982,7 +982,7 @@ void atkFE_prefaintmoveendeffects(void)
 						if (CheckContact(gCurrentMove, gBankAttacker)
 						&& ABILITY(gBankTarget) != ABILITY_SHIELDDUST
 						&& CanBePoisoned(gBankTarget, gBankAttacker, TRUE)
-						&& umodsi(Random(), 100) < 30)
+						&& umodsi(Random2(), 100) < 30)
 						{
 							BattleScriptPushCursor();
 							gBattlescriptCurrInstr = BattleScript_PoisonTouch;

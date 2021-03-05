@@ -15,6 +15,7 @@ move_tables.s
 .global gCopycatBannedMoves
 .global gInstructBannedMoves
 .global gMetronomeBannedMoves
+.global gForbiddenSpellMoves
 .global gAssistBannedMoves
 .global gMimicBannedMoves
 .global gSleepTalkBannedMoves
@@ -281,6 +282,19 @@ gMetronomeBannedMoves:
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+gForbiddenSpellMoves:
+.hword MOVE_SHELLSMASH
+.hword MOVE_HEALINGWISH
+.hword MOVE_CONVERSION @Dark Hole
+.hword MOVE_TAILGLOW
+.hword MOVE_ROAROFTIME
+.hword MOVE_QUIVERDANCE
+.hword MOVE_SOULSTRIKE
+.hword MOVE_NORETREAT
+.hword MOVE_TABLES_TERMIN
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
 gRandomizerBannedMoves:
 .hword MOVE_TRANSFORM
 .hword MOVE_STRUGGLE
@@ -291,7 +305,6 @@ gRandomizerBannedMoves:
 .hword MOVE_COACHING
 .hword MOVE_BURNINGJEALOUSY
 .hword MOVE_TEATIME
-.hword MOVE_PLACEHOLDER1
 .hword MOVE_PLACEHOLDER2
 .hword MOVE_PLACEHOLDER3
 .hword MOVE_PLACEHOLDER4

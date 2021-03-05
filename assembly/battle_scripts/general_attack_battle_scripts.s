@@ -1869,7 +1869,12 @@ BS_083_Metronome:
 	waitanimation
 	setbyte ANIM_TURN 0x0
 	setbyte ANIM_TARGETS_HIT 0x0
+	@@ jumpifmove MOVE_FORBIDDENSPELL ForbiddenSpellBS
 	metronomeeffect
+
+@@ ForbiddenSpellBS:
+@@	callasm atk_forbiddenspell
+@@	goto BS_MOVE_END
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 

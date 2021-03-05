@@ -2098,7 +2098,7 @@ void atk77_setprotect(void) {
 			divisor *= 3;
 	}
 
-	if (udivsi(rate, divisor) >= Random() && notLastTurn)
+	if (udivsi(rate, divisor) >= Random2() && notLastTurn)
 	{
 		u8 atkSide = SIDE(gBankAttacker);
 		switch (gCurrentMove) {
@@ -2271,7 +2271,7 @@ void atk7C_trymirrormove(void)
 	}
 	else if (validMovesCount)
 	{
-		i = umodsi(Random(), validMovesCount);
+		i = umodsi(Random2(), validMovesCount);
 		gCurrentMove = movesArray[i];
 		gBankTarget = GetMoveTarget(gCurrentMove, 0);
 		TryUpdateCalledMoveWithZMove();
@@ -2588,9 +2588,9 @@ void atk8D_setmultihitcounter(void) {
 	else
 	#endif
 	{
-		gMultiHitCounter = Random() & 3;
+		gMultiHitCounter = Random2() & 3;
 		if (gMultiHitCounter > 1)
-			gMultiHitCounter = (Random() & 3) + 2;
+			gMultiHitCounter = (Random2() & 3) + 2;
 		else
 			gMultiHitCounter += 2;
 	}
@@ -2786,7 +2786,7 @@ void atk93_tryKO(void)
 			else
 			{
 				chance = baseAcc + (gBattleMons[bankAtk].level - gBattleMons[bankDef].level);
-				if (umodsi(Random(), 100) + 1 < chance)
+				if (umodsi(Random2(), 100) + 1 < chance)
 					chance = TRUE;
 				else
 					chance = FALSE;
@@ -2801,7 +2801,7 @@ void atk93_tryKO(void)
 			{
 				//Just break shields
 			}
-			else if (defEffect == ITEM_EFFECT_FOCUS_BAND && !mystery && umodsi(Random(), 100) < defQuality)
+			else if (defEffect == ITEM_EFFECT_FOCUS_BAND && !mystery && umodsi(Random2(), 100) < defQuality)
 			{
 				RecordItemEffectBattle(bankDef, defEffect);
 				gSpecialStatuses[bankDef].focusBanded = 1;
@@ -3180,21 +3180,43 @@ void atk9D_mimicattackcopy(void)
 
 void atk9E_metronome(void)
 {
-	do
-	{
-		gCurrentMove = umodsi(Random(), LAST_MOVE_INDEX) + 1;
-	} while (IsZMove(gCurrentMove) || IsAnyMaxMove(gCurrentMove)
-		|| CheckTableForMove(gCurrentMove, gMetronomeBannedMoves));
-
+	if(gCurrentMove == MOVE_FORBIDDENSPELL) {
+		do
+		{
+			gCurrentMove = ( (Random2() + SPECIES(gBankTarget) ) % LAST_MOVE_INDEX) + 1;
+		} while (IsZMove(gCurrentMove) || IsAnyMaxMove(gCurrentMove)
+		|| !(CheckTableForMove(gCurrentMove, gForbiddenSpellMoves) ));
+	}
+	else{
+		do
+		{
+			gCurrentMove = umodsi(Random2(), LAST_MOVE_INDEX) + 1;
+		} while (IsZMove(gCurrentMove) || IsAnyMaxMove(gCurrentMove)
+			|| CheckTableForMove(gCurrentMove, gMetronomeBannedMoves));
+	}
 	TryUpdateCalledMoveWithZMove();
 	UpdateMoveStartValuesForCalledMove();
 	gBattlescriptCurrInstr = gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect];
 	gBankTarget = GetMoveTarget(gCurrentMove, 0);
 }
 
+// void atk_forbiddenspell(void)
+// {
+// 	do
+// 	{
+// 		gCurrentMove = umodsi(Random2(), LAST_MOVE_INDEX) + 1;
+// 	} while (IsZMove(gCurrentMove) || IsAnyMaxMove(gCurrentMove)
+// 		|| !(CheckTableForMove(gCurrentMove, gForbiddenSpellMoves) ));
+
+// 	TryUpdateCalledMoveWithZMove();
+// 	UpdateMoveStartValuesForCalledMove();
+// 	gBattlescriptCurrInstr = gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect];
+// 	gBankTarget = GetMoveTarget(gCurrentMove, 0);
+// }
+
 void atkA0_psywavedamageeffect(void)
 {
-	gBattleMoveDamage = GetPsywaveDamage(Random() % 101);
+	gBattleMoveDamage = GetPsywaveDamage(Random2() % 101);
 	++gBattlescriptCurrInstr;
 }
 
@@ -3495,7 +3517,7 @@ void atkA9_trychoosesleeptalkmove(void) {
 	else { //at least one move can be chosen
 		u32 random_pos;
 		do {
-			random_pos = Random() & 3;
+			random_pos = Random2() & 3;
 		} while ((gBitTable[random_pos] & unusable_moves));
 
 		gCalledMove = gBattleMons[gBankAttacker].moves[random_pos];
@@ -3831,7 +3853,7 @@ void atkB5_furycuttercalc(void)
 
 void atkB7_presentdamagecalculation(void)
 {
-	int rand = Random() & 0xFF;
+	int rand = Random2() & 0xFF;
 
 	if (rand < 102)
 		gDynamicBasePower = 40;
@@ -3886,7 +3908,7 @@ void atkB9_magnitudedamagecalculation(void)
 		return;
 	}
 
-	int magnitude = umodsi(Random(), 100);
+	int magnitude = umodsi(Random2(), 100);
 
 	if (magnitude < 5)
 	{
@@ -4758,7 +4780,7 @@ void atkDE_asistattackselect(void)
 	if (chooseableMovesNo)
 	{
 		gHitMarker &= ~(HITMARKER_ATTACKSTRING_PRINTED);
-		gCalledMove = movesArray[((Random() & 0xFF) * chooseableMovesNo) >> 8];
+		gCalledMove = movesArray[((Random2() & 0xFF) * chooseableMovesNo) >> 8];
 		gBankTarget = GetMoveTarget(gCalledMove, 0);
 		gBattlescriptCurrInstr += 5;
 	}

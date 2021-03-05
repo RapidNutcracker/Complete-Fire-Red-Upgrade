@@ -810,7 +810,7 @@ u8 TurnBasedEffects(void)
 						{
 							if (!BATTLER_SEMI_INVULNERABLE(gActiveBattler)) //Semi-Invulnerability is removed when it tries to attack
 								CancelMultiTurnMoves(gActiveBattler);
-							gBattleMons[gActiveBattler].status1 |= (Random() % 3) + 2;
+							gBattleMons[gActiveBattler].status1 |= (Random2() % 3) + 2;
 							EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[gActiveBattler].status1);
 							MarkBufferBankForExecution(gActiveBattler);
 							gEffectBank = gActiveBattler;

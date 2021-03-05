@@ -313,7 +313,7 @@ Gives priority to healing moves.
 Ups Water attacks. Prevents burn.
 
 #org @DESC_WATERCOMPACTION
-Water-type hits raise Defense.
+Halves Water dmg & raises Def.
 
 #org @DESC_PARASITICGOO
 Attacks that poison also drain. 
@@ -394,7 +394,7 @@ Protects from status when sunny.
 Can't use items.
 
 #org @DESC_FLOWERGIFT
-Powers up team when sunny.
+Boosts Atk and Speed when sunny.
 
 #org @DESC_BADDREAMS
 Hurts sleeping foes.

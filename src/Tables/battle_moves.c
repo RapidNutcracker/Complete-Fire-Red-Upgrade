@@ -4889,7 +4889,7 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_NEEDLEARM] =
 	{
 		.effect = EFFECT_FLINCH_HIT,
-		.power = 60,
+		.power = 95,
 		.type = TYPE_GRASS,
 		.accuracy = 100,
 		.pp = 15,
@@ -4937,7 +4937,7 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_POISONFANG] =
 	{
 		.effect = EFFECT_BAD_POISON_HIT,
-		.power = 50,
+		.power = 75,
 		.type = TYPE_POISON,
 		.accuracy = 100,
 		.pp = 15,
@@ -4945,7 +4945,7 @@ const struct BattleMove gBattleMoves[] =
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
 		.flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 100,
+		.z_move_power = 140,
 		.split = SPLIT_PHYSICAL,
 		.z_move_effect = 0
 	},
@@ -5541,7 +5541,7 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_POISONTAIL] =
 	{
 		.effect = EFFECT_POISON_HIT,
-		.power = 50,
+		.power = 60,
 		.type = TYPE_POISON,
 		.accuracy = 100,
 		.pp = 25,
@@ -11988,6 +11988,22 @@ const struct BattleMove gBattleMoves[] =
 		.split = SPLIT_SPECIAL,
 		.z_move_effect = 0
 	},
+	
+	[MOVE_FORBIDDENSPELL] =
+	{
+		.effect = EFFECT_METRONOME,
+		.power = 0,
+		.type = TYPE_DARK,
+		.accuracy = 0,
+		.pp = 5,
+		.secondaryEffectChance = 0,
+		.target = MOVE_TARGET_DEPENDS,
+		.priority = 0,
+		.flags = 0,
+		.z_move_power = 0,
+		.split = SPLIT_STATUS,
+		.z_move_effect = 0
+	},
 
 	[MOVE_BREAKNECK_BLITZ_P] =
 	{
@@ -14679,7 +14695,7 @@ const u8 gDynamaxMovePowers[MOVES_COUNT] =
 	[MOVE_ICEBALL] = 90,
 	[MOVE_NEEDLEARM] = 110,
 	[MOVE_HYPERVOICE] = 130,
-	[MOVE_POISONFANG] = 75,
+	[MOVE_POISONFANG] = 130,
 	[MOVE_CRUSHCLAW] = 130,
 	[MOVE_BLASTBURN] = 150,
 	[MOVE_HYDROCANNON] = 150,

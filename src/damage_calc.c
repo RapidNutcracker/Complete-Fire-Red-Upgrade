@@ -126,7 +126,7 @@ void atk04_critcalc(void)
 			if (critChance > 4)
 				critChance = 4;
 
-			if (!(Random() % sCriticalHitChances[critChance]))
+			if (!(Random2() % sCriticalHitChances[critChance]))
 				confirmedCrit = TRUE;
 		}
 
@@ -334,7 +334,7 @@ u32 AI_CalcDmg(const u8 bankAtk, const u8 bankDef, const u16 move, struct Damage
 	gBattleScripting.dmgMultiplier = 1;
 
 	gCritMultiplier = CalcPossibleCritChance(bankAtk, bankDef, move, NULL, NULL); //Return 0 if none, 1 if always, 2 if 50%
-	if (gCritMultiplier != 0 && Random() % gCritMultiplier == 0)
+	if (gCritMultiplier != 0 && Random2() % gCritMultiplier == 0)
 		gCritMultiplier = CRIT_MULTIPLIER;
 	else
 		gCritMultiplier = BASE_CRIT_MULTIPLIER;
@@ -434,7 +434,7 @@ u32 AI_CalcPartyDmg(u8 bankAtk, u8 bankDef, u16 move, struct Pokemon* monAtk, st
 	gBattleScripting.dmgMultiplier = 1;
 
 	gCritMultiplier = CalcPossibleCritChance(bankAtk, bankDef, move, monAtk, NULL); //Return 0 if none, 1 if always, 2 if 50%
-	if (gCritMultiplier != 0 && Random() % gCritMultiplier == 0)
+	if (gCritMultiplier != 0 && Random2() % gCritMultiplier == 0)
 		gCritMultiplier = CRIT_MULTIPLIER;
 	else
 		gCritMultiplier = BASE_CRIT_MULTIPLIER;
@@ -533,7 +533,7 @@ u32 AI_CalcMonDefDmg(u8 bankAtk, u8 bankDef, u16 move, struct Pokemon* monDef, s
 	gBattleScripting.dmgMultiplier = 1;
 
 	gCritMultiplier = CalcPossibleCritChance(bankAtk, bankDef, move, NULL, monDef); //Return 0 if none, 1 if always, 2 if 50%
-	if (gCritMultiplier != 0 && Random() % gCritMultiplier == 0)
+	if (gCritMultiplier != 0 && Random2() % gCritMultiplier == 0)
 		gCritMultiplier = CRIT_MULTIPLIER;
 	else
 		gCritMultiplier = BASE_CRIT_MULTIPLIER;
@@ -1735,7 +1735,7 @@ void AdjustDamage(bool8 checkFalseSwipe)
 			gSpecialStatuses[bankDef].focusBanded = 1;
 			gNewBS->EnduranceHelper[bankDef] = ENDURE_FOCUS_SASH;
 		}
-		else if (itemEffect == ITEM_EFFECT_FOCUS_BAND && Random() % 100 < itemQuality && !IsBankHoldingFocusSash(bankDef))
+		else if (itemEffect == ITEM_EFFECT_FOCUS_BAND && Random2() % 100 < itemQuality && !IsBankHoldingFocusSash(bankDef))
 		{
 			RecordItemEffectBattle(bankDef, itemEffect);
 			gSpecialStatuses[bankDef].focusBanded = TRUE;
@@ -2154,13 +2154,13 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 			break;
 	}
 
-	switch (data->atkPartnerAbility) {
-		case ABILITY_FLOWERGIFT:
-			if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_SUN_ANY)
-			&& ITEM_EFFECT(PARTNER(bankAtk)) != ITEM_EFFECT_UTILITY_UMBRELLA)
-				attack = (attack * 15) / 10;
-			break;
-	}
+	// switch (data->atkPartnerAbility) {
+	// 	case ABILITY_FLOWERGIFT:
+	// 		if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_SUN_ANY)
+	// 		&& ITEM_EFFECT(PARTNER(bankAtk)) != ITEM_EFFECT_UTILITY_UMBRELLA)
+	// 			attack = (attack * 15) / 10;
+	// 		break;
+	// }
 
 //Target Ability Checks
 	switch (data->defAbility) {
@@ -2541,6 +2541,11 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		case ABILITY_WATERBUBBLE:
 		//0.5x Decrement
 			if (data->moveType == TYPE_FIRE)
+				damage /= 2;
+			break;
+
+		case ABILITY_WATERCOMPACTION: 
+			if (data->moveType == TYPE_WATER)
 				damage /= 2;
 			break;
 
@@ -3672,7 +3677,7 @@ static u8 GetFlingPower(u16 item, u16 species, u8 ability, u8 bank, bool8 partyC
 
 static void ApplyRandomDmgMultiplier(void)
 {
-	u16 rando = 100 - (Random() & 15);
+	u16 rando = 100 - (Random2() & 15);
 	if (gBattleMoveDamage)
 		gBattleMoveDamage = MathMax(1, (gBattleMoveDamage * rando) / 100);
 }

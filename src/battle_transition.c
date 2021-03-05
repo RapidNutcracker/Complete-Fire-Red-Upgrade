@@ -339,6 +339,8 @@ void Mugshots_CreateOpponentPlayerSprites(struct Task* task)
 	#ifdef FR_PRE_BATTLE_MUGSHOT_STYLE
 	|| gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_CHAMPION
 	|| gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_ELITE_FOUR
+	// || gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_LEADER
+	// || gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_AROMA_LADY_RS
 	#endif
 	)
 		trainerSpriteID = GetFrontierTrainerFrontSpriteId(gTrainerBattleOpponent_A, 0);

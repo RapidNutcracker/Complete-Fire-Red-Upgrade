@@ -43,3 +43,5 @@ Hi! Remember me?\nI'm one of Prof. Oak's aides.\pHe's entrusted me to give you t
 #org @gText_itemfinder_4
 There are items on the ground that\nmay be hidden from view.\pUse the [GREEN]Itemfinder[BLUE] to detect any\nhidden items close to you.\pThe machine is a bit limited.\nIt can't pinpoint item locations.\pWhat it does is show the direction\nwhere the item is.\pUse it to get your bearings, then\nsearch the suspect area by hand.
 
+#org @gText_Guard_Evtraining
+Don't you think it's tedious to EV\ntrain Pok\emon?\pEspecially if you've caught a\nwhole bunch?\pIn Lavender Town, there's a man\nwho provides services for EV\ltraining.\pHe even provides services for\nexperience grinding as well.

@@ -312,7 +312,7 @@ static u8 AtkCanceller_UnableToUseMove(void)
 		case CANCELLER_FROZEN:
 			if (gBattleMons[gBankAttacker].status1 & STATUS1_FREEZE)
 			{
-				if (umodsi(Random(), 5))
+				if (umodsi(Random2(), 5))
 				{
 					if (!CheckTableForMove(gCurrentMove, gMovesCanUnfreezeAttacker) || gMoveResultFlags & MOVE_RESULT_FAILED) // unfreezing via a move effect happens in case 13
 					{
@@ -380,7 +380,7 @@ static u8 AtkCanceller_UnableToUseMove(void)
 		case CANCELLER_RAID_BATTLE_NULLIFICATION:
 			if (IsRaidBattle()
 			&& GetBattlerPosition(gBankAttacker) == B_POSITION_OPPONENT_LEFT
-			&& Random() % 100 < GetRaidBattleStatNullificationChance(gBankAttacker))
+			&& Random2() % 100 < GetRaidBattleStatNullificationChance(gBankAttacker))
 			{
 				for (i = 0; i < gBattlersCount; ++i)
 				{
@@ -605,29 +605,13 @@ static u8 AtkCanceller_UnableToUseMove(void)
 				if (IsConfused(gBankAttacker))
 				{
 					#ifdef OLD_CONFUSION_CHANCE
-					if (Random() & 1) //50 %
+					if (Random2() & 1) //50 %
 					{
 						gBattleCommunication[MULTISTRING_CHOOSER] = 0;
 						BattleScriptPushCursor();
 					}
 					#else
-					if (SIDE(gBankAttacker) == B_SIDE_OPPONENT){
-						if (umodsi(Random(), 100) > 15) //15 % for AI, degen change
-						{
-							gBattleCommunication[MULTISTRING_CHOOSER] = 0;
-							BattleScriptPushCursor();
-						}
-						else // confusion dmg
-						{
-							gBattleCommunication[MULTISTRING_CHOOSER] = 1;
-							gBankTarget = gBankAttacker;
-							gBattleMoveDamage = ConfusionDamageCalc();
-							gProtectStructs[gBankAttacker].confusionSelfDmg = 1;
-							gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
-							gNewBS->breakDisguiseSpecialDmg = TRUE;
-						}
-					}
-					else if (umodsi(Random(), 100) > 33) //33 %
+					if (umodsi(Random2(), 100) > 33) //33 %
 					{
 						gBattleCommunication[MULTISTRING_CHOOSER] = 0;
 						BattleScriptPushCursor();
@@ -655,7 +639,7 @@ static u8 AtkCanceller_UnableToUseMove(void)
 			break;
 
 		case CANCELLER_PARALYSED: // paralysis
-			if ((gBattleMons[gBankAttacker].status1 & STATUS1_PARALYSIS) && umodsi(Random(), 4) == 0)
+			if ((gBattleMons[gBankAttacker].status1 & STATUS1_PARALYSIS) && umodsi(Random2(), 4) == 0)
 			{
 				gProtectStructs[gBankAttacker].prlzImmobility = 1;
 				CancelMultiTurnMoves(gBankAttacker);
@@ -686,7 +670,7 @@ static u8 AtkCanceller_UnableToUseMove(void)
 			if (gBattleMons[gBankAttacker].status2 & STATUS2_INFATUATION)
 			{
 				gBattleScripting.bank = CountTrailingZeroBits((gBattleMons[gBankAttacker].status2 & STATUS2_INFATUATION) >> 0x10);
-				if (Random() & 1)
+				if (Random2() & 1)
 				{
 					BattleScriptPushCursor();
 				}
@@ -1009,9 +993,9 @@ static u8 AtkCanceller_UnableToUseMove(void)
 				else
 				#endif
 				{
-					gMultiHitCounter = Random() & 3;
+					gMultiHitCounter = Random2() & 3;
 					if (gMultiHitCounter > 1)
-						gMultiHitCounter = (Random() & 3) + 2;
+						gMultiHitCounter = (Random2() & 3) + 2;
 					else
 						gMultiHitCounter += 2;
 				}
@@ -1126,8 +1110,6 @@ static u8 AtkCanceller_UnableToUseMove(void)
 
 static u8 IsMonDisobedient(void)
 {
-	// s32 rnd;
-	// s32 calc;
 	u8 obedienceLevel = 0;
 
 	if (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_POKE_DUDE | BATTLE_TYPE_FRONTIER))
@@ -1208,25 +1190,6 @@ static u8 IsMonDisobedient(void)
 				return 0;
 		}
 
-	// #else
-	// 	if (FlagGet(FLAG_BADGE08_GET))
-	// 		return 0;
-	// 	else if (FlagGet(FLAG_BADGE07_GET))
-	// 		obedienceLevel = BADGE_7_OBEDIENCE_LEVEL;
-	// 	else if (FlagGet(FLAG_BADGE06_GET))
-	// 		obedienceLevel = BADGE_6_OBEDIENCE_LEVEL;
-	// 	else if (FlagGet(FLAG_BADGE05_GET))
-	// 		obedienceLevel = BADGE_5_OBEDIENCE_LEVEL;
-	// 	else if (FlagGet(FLAG_BADGE04_GET))
-	// 		obedienceLevel = BADGE_4_OBEDIENCE_LEVEL;
-	// 	else if (FlagGet(FLAG_BADGE03_GET))
-	// 		obedienceLevel = BADGE_3_OBEDIENCE_LEVEL;
-	// 	else if (FlagGet(FLAG_BADGE02_GET))
-	// 		obedienceLevel = BADGE_2_OBEDIENCE_LEVEL;
-	// 	else if (FlagGet(FLAG_BADGE01_GET))
-	// 		obedienceLevel = BADGE_1_OBEDIENCE_LEVEL;
-	// 	else
-	// 		obedienceLevel = BASE_OBEDIENCE_LEVEL;
 	#endif
 
 	if (gBattleMons[gBankAttacker].level <= obedienceLevel)
@@ -1236,81 +1199,6 @@ static u8 IsMonDisobedient(void)
 		gBattlescriptCurrInstr = BattleScript_MoveUsedLoafingAround;
 		return 1; //added this
 	}
-	// rnd = (Random() & 255);
-	// calc = (gBattleMons[gBankAttacker].level + obedienceLevel) * rnd >> 8;
-	// if (calc < obedienceLevel)
-	// 	return 0;
-
-	// // is not obedient
-	// if (gCurrentMove == MOVE_RAGE)
-	// 	gBattleMons[gBankAttacker].status2 &= ~(STATUS2_RAGE);
-	// if (gBattleMons[gBankAttacker].status1 & STATUS1_SLEEP && (gCurrentMove == MOVE_SNORE || gCurrentMove == MOVE_SLEEPTALK))
-	// {
-	// 	gBattlescriptCurrInstr = BattleScript_IgnoresWhileAsleep;
-	// 	return 1;
-	// }
-
-	// rnd = (Random() & 255);
-	// calc = (gBattleMons[gBankAttacker].level + obedienceLevel) * rnd >> 8;
-	// if (calc < obedienceLevel && gCurrentMove != MOVE_FOCUSPUNCH && gCurrentMove != MOVE_BEAKBLAST && gCurrentMove != MOVE_SHELLTRAP)
-	// {
-	// 	// calc = CheckMoveLimitations(gBankAttacker, gBitTable[gCurrMovePos], 0xFF);
-	// 	// if (calc == 0xF) // all moves cannot be used
-	// 	// {
-	// 		gBattleCommunication[MULTISTRING_CHOOSER] = Random() & 3;
-	// 		gBattlescriptCurrInstr = BattleScript_MoveUsedLoafingAround;
-	// 		return 1;
-	// 	// }
-	// 	// else // use a random move
-	// 	// {
-	// 	// 	do
-	// 	// 	{
-	// 	// 		gCurrMovePos = gChosenMovePos = Random() & 3;
-	// 	// 	} while (gBitTable[gCurrMovePos] & calc);
-
-	// 	// 	gCalledMove = gBattleMons[gBankAttacker].moves[gCurrMovePos];
-	// 	// 	gBattlescriptCurrInstr = BattleScript_IgnoresAndUsesRandomMove;
-	// 	// 	gBankTarget = GetMoveTarget(gCalledMove, 0);
-	// 	// 	gHitMarker |= HITMARKER_x200000;
-	// 	// 	return 2;
-	// 	// }
-	// }
-	// else
-	// {
-	// 	// obedienceLevel = gBattleMons[gBankAttacker].level - obedienceLevel;
-
-	// 	// calc = (Random() & 255);
-	// 	// if (calc < obedienceLevel && CanBePutToSleep(gBankAttacker, FALSE))
-	// 	// {
-	// 		// try putting asleep
-	// 		int i;
-	// 		for (i = 0; i < gBattlersCount; i++)
-	// 		{
-	// 			if (gBattleMons[i].status2 & STATUS2_UPROAR)
-	// 				break;
-	// 		}
-	// 		if (i == gBattlersCount)
-	// 		{
-	// 			gBattlescriptCurrInstr = BattleScript_IgnoresAndFallsAsleep;
-	// 			return 1;
-	// 		}
-	// 	// }
-	// 	// calc -= obedienceLevel;
-	// 	// if (calc < obedienceLevel)
-	// 	// {
-	// 		gBattleMoveDamage = ConfusionDamageCalc();
-	// 		gBankTarget = gBankAttacker;
-	// 		gBattlescriptCurrInstr = BattleScript_IgnoresAndHitsItself;
-	// 		gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
-	// 		return 2;
-	// 	// }
-	// 	// else
-	// 	// {
-	// 	// 	gBattleCommunication[MULTISTRING_CHOOSER] = Random() & 3;
-	// 	// 	gBattlescriptCurrInstr = BattleScript_MoveUsedLoafingAround;
-	// 	// 	return 1;
-	// 	// }
-	// }
 }
 
 bool8 CanTargetPartner(u8 bankDef)

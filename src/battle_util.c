@@ -653,7 +653,7 @@ u8 GetMoveTarget(u16 move, u8 useMoveTarget)
 			if (!chosen) {
 				atkSide = SIDE(bankAtk);
 				do {
-					bankDef = umodsi(Random(), gBattlersCount);
+					bankDef = umodsi(Random2(), gBattlersCount);
 				} while (bankDef == bankAtk || atkSide == SIDE(bankDef) || gAbsentBattlerFlags & gBitTable[bankDef]);
 			}
 
@@ -733,14 +733,14 @@ u8 GetMoveTarget(u16 move, u8 useMoveTarget)
 		{
 			if (SIDE(bankAtk) == B_SIDE_PLAYER)
 			{
-				if (IsRaidBattle() || Random() & 1)
+				if (IsRaidBattle() || Random2() & 1)
 					bankDef = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
 				else
 					bankDef = GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT);
 			}
 			else
 			{
-				if (Random() & 1)
+				if (Random2() & 1)
 					bankDef = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
 				else
 					bankDef = GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT);

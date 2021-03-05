@@ -780,7 +780,7 @@ gMoveAnimations:
 .word ANIM_DRAGON_ENERGY
 .word ANIM_ASTRAL_BARRAGE
 .word ANIM_GLACIAL_LANCE
-.word ANIM_PLACEHOLDER
+.word ANIM_FORBIDDEN_SPELL
 .word ANIM_PLACEHOLDER
 .word ANIM_PLACEHOLDER
 .word ANIM_PLACEHOLDER
@@ -17251,7 +17251,49 @@ ANIM_ASTRAL_BARRAGE:
 ANIM_GLACIAL_LANCE:
 	goto ANIM_MAX_HAILSTORM
 	endanimation
-	
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+.pool
+ANIM_FORBIDDEN_SPELL:
+	loadparticle ANIM_TAG_IMPACT
+	loadparticle ANIM_TAG_SPARK_2
+	loadparticle ANIM_TAG_WHITE_CIRCLE_OF_LIGHT
+	pokespritetoBG bank_target
+	loadBG1 BG_GHOST
+	playsound2 0x85 SOUND_PAN_ATTACKER
+	waitbgfadein 
+	setblends 0x80c
+	pause 0x0
+	launchtask AnimTask_pal_fade_complex 0x2 0x6 0x3 0xffe1 0x1 0x5 0x5 0x5bff
+	playsound2 0x70 SOUND_PAN_ATTACKER
+	launchtemplate Template_ElectricSparkPlayer 0x0 0x7 0x20 0x18 0xbe 0xc 0x0 0x1 0x0
+	pause 0x0
+	launchtemplate Template_ElectricSparkPlayer 0x0 0x7 0x50 0x18 0x16 0xc 0x0 0x1 0x0
+	launchtemplate Template_ElectricSparkPlayer 0x0 0x7 0x9c 0x18 0x79 0xd 0x0 0x1 0x1
+	pause 0x0
+	launchtask AnimTask_pal_fade_complex 0x2 0x6 0x3 0xffe1 0x1 0x0 0x0 0x5bff
+	pause 0xa
+	launchtask AnimTask_pal_fade_complex 0x2 0x6 0x3 0xffe1 0x1 0x5 0x5 0x5bff
+	playsound2 0x70 SOUND_PAN_ATTACKER
+	launchtemplate Template_ElectricSparkPlayer 0x0 0x7 0x64 0x18 0x3c 0xa 0x0 0x1 0x0
+	launchtemplate Template_ElectricSparkPlayer 0x0 0x7 0xaa 0x18 0x2a 0xb 0x0 0x1 0x1
+	playsound2 0xc2 SOUND_PAN_ATTACKER
+	launchtemplate Template_LusterPurgeCircle 0x29 0x4 0x0 0x0 0x0 0x0
+	launchtask AnimTask_screen_shake 0x5 0x3 bank_attacker 0x5 0xe
+	pause 0xa
+	waitanimation
+	launchtask AnimTask_pal_fade 0xa 0x5 PAL_ALL_BANKS 0x2 0x0 0x0 0x0
+	waitanimation
+	pokespritefromBG side_target
+	resetblends
+	loaddefaultBG
+	waitbgfadein
+	waitanimation
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
 .pool
 ANIM_PLACEHOLDER:
 	goto ANIM_DOUBLEEDGE
@@ -24221,6 +24263,8 @@ ANIM_MAX_PHANTASM:
 	waitanimation
 	launchtask AnimTask_pal_fade 0xa 0x5 PAL_DEF 0x1 0x10 0x0 0x5C05 @;From royal Blue
 	launchtask AnimTask_pal_fade 0xa 0x5 PAL_BG 0x1 0xE 0x0 0x0 @;From black
+	waitanimation
+	launchtask AnimTask_pal_fade 0xa 0x5 PAL_ALL_BANKS 0x2 0x0 0x0 0x0
 	waitanimation
 	endanimation
 

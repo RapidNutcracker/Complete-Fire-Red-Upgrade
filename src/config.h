@@ -191,7 +191,7 @@ enum //These vars need to be one after the other (hence the enum)
 #define FLAG_ABILITY_RANDOMIZER 0x942 //Setting randomizes Pokemon abilities.
 #define FLAG_WONDER_TRADE 0x94F
 #define FLAG_EXPERT_DIFFICULTY 0x93A 
-#define NUM_SPECIES_RANDOMIZER NUM_SPECIES //NUM_SPECIES_GEN_7 The final number of Pokemon (+ 1) of species that can appear in the randomizer
+#define NUM_SPECIES_RANDOMIZER NUM_SPECIES // The final number of Pokemon (+ 1) of species that can appear in the randomizer
 
 /*===== Pre-existing Offsets =====*/
 //#define EXISTING_FOSSIL_IMAGE_TABLE_ADDRESS 0x81a4600 //Uncomment this if you've already inserted a fossil image table

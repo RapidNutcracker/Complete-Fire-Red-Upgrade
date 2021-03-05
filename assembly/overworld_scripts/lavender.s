@@ -198,17 +198,122 @@ EventScript_AudinoSlayer:
 	msgbox gText_AudinoSlayer_1 MSG_YESNO
 	compare LASTRESULT NO
 	if equal _goto AudinoReject
+	goto ChooseStat
+
+
+ChooseStat:
+	setvar 0x8006 0x0 @first item
+	loadpointer 0x0 gText_EVSubtracter_HP
+	special 0x25
+	setvar 0x8006 0x1 @second item
+	loadpointer 0x0 gText_EVSubtracter_Attack
+	special 0x25
+	setvar 0x8006 0x2 @third item
+	loadpointer 0x0 gText_EVSubtracter_Defense
+	special 0x25
+	setvar 0x8006 0x3 @fourth item
+	loadpointer 0x0 gText_EVSubtracter_SpA
+	special 0x25
+	setvar 0x8006 0x4 @fifth item
+	loadpointer 0x0 gText_EVSubtracter_SpDef
+	special 0x25
+	setvar 0x8006 0x5 @sixth item
+	loadpointer 0x0 gText_EVSubtracter_Speed
+	special 0x25
+	setvar 0x8006 0x6 @sixth item
+	loadpointer 0x0 gText_AudinoSlayer_EXP
+	special 0x25
+	preparemsg gText_AudinoSlayer_Choose
+	waitmsg
+	multichoice 0x0 0x0 0x25 0x0
+	compare LASTRESULT 0x0
+	if 0x1 _goto HPService
+	compare LASTRESULT 0x1
+	if 0x1 _goto AtkService
+	compare LASTRESULT 0x2
+	if 0x1 _goto DefService
+	compare LASTRESULT 0x3
+	if 0x1 _goto SpAtkService
+	compare LASTRESULT 0x4
+	if 0x1 _goto SpDefService
+	compare LASTRESULT 0x5
+	if 0x1 _goto SpeedService
+	compare LASTRESULT 0x6
+	if 0x1 _goto AudinoService
+	goto AudinoReject
+
+
+AudinoService:
+	showmoney 0x0 0x0 0x0
 	checkmoney 0x2710 0x0
     compare LASTRESULT 0x1
     if 0x0 _goto NotEnoughMoneyAudino
 	sound 0x58 
-    msgbox gText_AudniSlayer_Wait MSG_KEEPOPEN
-    removemoney 0x2710 0x00
+	removemoney 0x2710 0x00
     updatemoney 0x00 0x00 0x00
-    checksound
+    msgbox gText_AudniSlayer_Wait MSG_KEEPOPEN
+	checksound
 	closeonkeypress
 	msgbox gText_AudinoSlayer_2 MSG_NORMAL
+	hidemoney 0x0 0x0
 	setflag 0x90E
+	trainerbattle3 0x3 0x1B 0x0 gText_AudinoSlayer_Defeat
+	msgbox gText_AudinoSlayer_5 MSG_NORMAL
+	release
+	end
+
+EVServiceStuff:
+	showmoney 0x0 0x0 0x0
+	checkmoney 0x7D0 0x0
+    compare LASTRESULT 0x1
+	if 0x0 _goto NotEnoughMoneyEVs
+	sound 0x58 
+	removemoney 0x7D0 0x00
+    updatemoney 0x00 0x00 0x00
+    msgbox gText_AudniSlayer_Wait MSG_KEEPOPEN
+	checksound
+	closeonkeypress
+	msgbox gText_AudinoSlayer_2 MSG_NORMAL
+	hidemoney 0x0 0x0 
+	return
+
+AtkService:
+	call EVServiceStuff
+	trainerbattle3 0x3 0xA 0x0 gText_AudinoSlayer_Defeat
+	msgbox gText_AudinoSlayer_5 MSG_NORMAL
+	release
+	end
+
+DefService:
+	call EVServiceStuff
+	trainerbattle3 0x3 0xB 0x0 gText_AudinoSlayer_Defeat
+	msgbox gText_AudinoSlayer_5 MSG_NORMAL
+	release
+	end
+
+SpAtkService:
+	call EVServiceStuff
+	trainerbattle3 0x3 0xC 0x0 gText_AudinoSlayer_Defeat
+	msgbox gText_AudinoSlayer_5 MSG_NORMAL
+	release
+	end
+
+SpDefService:
+	call EVServiceStuff
+	trainerbattle3 0x3 0xD 0x0 gText_AudinoSlayer_Defeat
+	msgbox gText_AudinoSlayer_5 MSG_NORMAL
+	release
+	end
+
+SpeedService:
+	call EVServiceStuff
+	trainerbattle3 0x3 0x9 0x0 gText_AudinoSlayer_Defeat
+	msgbox gText_AudinoSlayer_5 MSG_NORMAL
+	release
+	end
+
+HPService:
+	call EVServiceStuff
 	trainerbattle3 0x3 0x1B 0x0 gText_AudinoSlayer_Defeat
 	msgbox gText_AudinoSlayer_5 MSG_NORMAL
 	release
@@ -222,6 +327,12 @@ AudinoReject:
 
 NotEnoughMoneyAudino:
 	msgbox gText_AudinoSlayer_4 MSG_NORMAL
+	hidemoney 0x0 0x0 
+	release
+	end
+
+NotEnoughMoneyEVs:
+	msgbox gText_AudinoSlayer_EV_4 MSG_NORMAL
 	hidemoney 0x0 0x0 
 	release
 	end

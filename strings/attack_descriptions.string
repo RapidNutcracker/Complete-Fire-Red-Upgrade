@@ -1195,6 +1195,9 @@ The user attacks\nby sending a fright-\nful amount of small\nghosts.
 #org @DESC_GLACIAL_LANCE
 The user attacks\nby hurling an ice-\ncloaked lance.
 
+#org @DESC_FORBIDDEN_SPELL
+The user conjures\nan ancient, corrupt\nspell that brings\nunexpected power.
+
 #org @DESC_MAX_GUARD
 Enables the user to\nevade all attacks.\nIt may fail if used\nin succession.
 

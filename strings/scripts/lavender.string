@@ -65,7 +65,13 @@ The ghost was the restless spirit\nof Cubone's mother!
 The mother's spirit was calmed.\pIt departed to the afterlife[.]\pAn item remains in its faint residue[.]
 
 #org @gText_AudinoSlayer_1
-Hi there! I offer a very special\nservice.\pFor a measly \$10000, you can slaughter\na family of Audinos!\pHow about it?
+Hi there! I offer a very special\nservice.\pFor a measly \$10000, you can slaughter\na family of Audinos!\pOr \$2000 for my EV training services.\pHow about it?
+
+#org @gText_AudinoSlayer_Choose
+Which service would you like? 
+
+#org @gText_AudinoSlayer_EXP
+Exp
 
 #org @gText_AudinoSlayer_2
 Very well. Let's begin.
@@ -78,6 +84,9 @@ What a lovely massacre!
 
 #org @gText_AudinoSlayer_4
 Well, it appears these Audinos will\nlive to see another day!\pYou don't have enough money!
+
+#org @gText_AudinoSlayer_EV_4
+Well, it appears these Pok\emon will\nlive to see another day!\pYou don't have enough money!
 
 #org @gText_AudinoSlayer_5
 Come back any time.

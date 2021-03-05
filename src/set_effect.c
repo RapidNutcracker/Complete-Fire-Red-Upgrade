@@ -135,7 +135,7 @@ void atk15_seteffectwithchance(void)
 			gBattleCommunication[MOVE_EFFECT_BYTE] &= 0x7F;
 			SetMoveEffect(FALSE, MOVE_EFFECT_CERTAIN);
 		}
-		else if (Random() % 100 <= PercentChance && gBattleCommunication[MOVE_EFFECT_BYTE] != 0 && MOVE_HAD_EFFECT)
+		else if (Random2() % 100 <= PercentChance && gBattleCommunication[MOVE_EFFECT_BYTE] != 0 && MOVE_HAD_EFFECT)
 		{
 			SetMoveEffect(FALSE, 0);
 		}
@@ -274,10 +274,10 @@ void SetMoveEffect(bool8 primary, u8 certain)
 
 			if (gBattleCommunication[MOVE_EFFECT_BYTE] == MOVE_EFFECT_SLEEP){
 				if (SIDE(gBankTarget) == B_SIDE_OPPONENT && (gBattleTypeFlags & BATTLE_TYPE_TRAINER)) { //degen addition, AI only min turns of sleep
-					gBattleMons[gEffectBank].status1 |= ((Random() % 2) + 2);
+					gBattleMons[gEffectBank].status1 |= ((Random2() % 2) + 2);
 				}
 				else{
-					gBattleMons[gEffectBank].status1 |= ((Random() % 3) + 2);
+					gBattleMons[gEffectBank].status1 |= ((Random2() % 3) + 2);
 				}
 			}
 			else
@@ -336,10 +336,10 @@ void SetMoveEffect(bool8 primary, u8 certain)
 				if (CanBeConfused(gEffectBank, FALSE)) //Safeguard checked earlier
 				{
 					if (SIDE(gBankTarget) == B_SIDE_OPPONENT && (gBattleTypeFlags & BATTLE_TYPE_TRAINER)){ //degen addition, AI only receives min turns of confusion
-						gBattleMons[gEffectBank].status2 |= (umodsi(Random(), 2)) + 2;
+						gBattleMons[gEffectBank].status2 |= (umodsi(Random2(), 3)) + 2;
 					}
 					else {
-						gBattleMons[gEffectBank].status2 |= (umodsi(Random(), 4)) + 2;
+						gBattleMons[gEffectBank].status2 |= (umodsi(Random2(), 4)) + 2;
 					}
 
 					BattleScriptPush(gBattlescriptCurrInstr + 1);
@@ -365,7 +365,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
 				{
 					gBattleMons[gEffectBank].status2 |= STATUS2_MULTIPLETURNS;
 					gLockedMoves[gEffectBank] = gCurrentMove;
-					gBattleMons[gEffectBank].status2 |= ((Random() & 3) + 2) << 4;
+					gBattleMons[gEffectBank].status2 |= ((Random2() & 3) + 2) << 4;
 
 					BattleScriptPush(gBattlescriptCurrInstr + 1);
 					gBattlescriptCurrInstr = sMoveEffectBS_Ptrs[gBattleCommunication[MOVE_EFFECT_BYTE]];
@@ -398,7 +398,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
 				}
 				else
 				{
-					gBattleCommunication[MOVE_EFFECT_BYTE] = umodsi(Random(), 3) + 3;
+					gBattleCommunication[MOVE_EFFECT_BYTE] = umodsi(Random2(), 3) + 3;
 					SetMoveEffect(FALSE, 0);
 				}
 				break;
@@ -424,7 +424,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
 					if (ITEM_EFFECT(gBankAttacker) == ITEM_EFFECT_GRIP_CLAW)
 						gBattleMons[gEffectBank].status2 |= (7 << 0xD);
 					else
-						gBattleMons[gEffectBank].status2 |= ((Random() & 1) + 4) << 0xD;
+						gBattleMons[gEffectBank].status2 |= ((Random2() & 1) + 4) << 0xD;
 
 					//Turn G-Max Moves into their corresponding trapping moves
 					switch (trappingMove) {
@@ -686,7 +686,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
 				{
 					gBattleMons[gEffectBank].status2 |= STATUS2_MULTIPLETURNS;
 					gLockedMoves[gEffectBank] = gCurrentMove;
-					gBattleMons[gEffectBank].status2 |= (((Random() & 1) + 2) << 0xA);
+					gBattleMons[gEffectBank].status2 |= (((Random2() & 1) + 2) << 0xA);
 				}
 				break;
 

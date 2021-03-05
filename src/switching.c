@@ -1001,7 +1001,7 @@ void atk8F_forcerandomswitch(void)
 			{
 				do
 				{
-					i = Random() % monsCount;
+					i = Random2() % monsCount;
 					i += firstMonId;
 				}
 				while (i == battler1PartyId

@@ -165,7 +165,7 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 			{
 				switch (ABILITY(gBankAttacker)) {
 					case ABILITY_STENCH: //Check for Stench is taken care of in King's Rock check
-						if (umodsi(Random(), 100) < 10
+						if (umodsi(Random2(), 100) < 10
 						&& gCurrentTurnActionNumber < GetBattlerTurnOrderNum(gBankTarget)) //Attacker moved before target
 						{
 							gBattleMons[gBankTarget].status2 |= STATUS2_FLINCHED;
@@ -176,7 +176,7 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 						if (CheckContact(gCurrentMove, gBankAttacker)
 						&& ABILITY(gBankTarget) != ABILITY_SHIELDDUST
 						&& CanBePoisoned(gBankTarget, gBankAttacker, TRUE)
-						&& umodsi(Random(), 100) < 30)
+						&& umodsi(Random2(), 100) < 30)
 						{
 							BattleScriptPushCursor();
 							gBattlescriptCurrInstr = BattleScript_PoisonTouch;
@@ -992,7 +992,7 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 					&& ABILITY(gBankAttacker) != ABILITY_OWNTEMPO
 					&& !(CheckGrounding(gBankAttacker) && gTerrainType == MISTY_TERRAIN))
 					{
-						gBattleMons[gBankAttacker].status2 |= (umodsi(Random(), 4)) + 2;
+						gBattleMons[gBankAttacker].status2 |= (umodsi(Random2(), 4)) + 2;
 						BattleScriptPushCursor();
 						gBattlescriptCurrInstr = BattleScript_ThrashConfuses;
 						effect = 1;
@@ -1386,7 +1386,7 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 			&& BATTLER_ALIVE(gBankAttacker)
 			&& gBankAttacker == BANK_RAID_BOSS
 			&& (SPLIT(gCurrentMove) == SPLIT_STATUS || !IsAnyMaxMove(gCurrentMove)) //Status move or Raid Boss didn't use Max Move
-			&& Random() % 100 < GetRaidBattleRepeatedAttackChance(gBankAttacker))
+			&& Random2() % 100 < GetRaidBattleRepeatedAttackChance(gBankAttacker))
 				gNewBS->dynamaxData.attackAgain = TRUE;
 			gBattleScripting.atk49_state++;
 			break;

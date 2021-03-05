@@ -1697,6 +1697,7 @@ static const u8* TryUseFlashInDarkCave(void)
 void RunOnTransitionMapScript(void)
 {
 	//Reset streaks upon moving to a new map
+	// SeedRng2(Random());
 	gCurrentDexNavChain = 0;
 	gFishingStreak = 0;
 	gLastFishingSpecies = 0;
@@ -1708,6 +1709,7 @@ void RunOnTransitionMapScript(void)
 
 void RunOnResumeMapScript(void)
 {
+	// SeedRng2(Random());
 	ForceClockUpdate();
 	MapHeaderRunScriptByTag(5);
 }
