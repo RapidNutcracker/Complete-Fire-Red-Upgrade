@@ -5,6 +5,11 @@
 .include "../xse_defines.s"
 .include "../asm_defines.s" 
 
+.equ FLAG_HARDCORE_MODE, 0x1034
+.equ VAR_BATTLE_AURAS, 0x5119
+.equ VAR_BATTLE_TAILWIND_STRING, 5
+.equ FLAG_MINIMAL_GRINDING_MODE, 0x1032
+
 .global EventScript_Fuschia_OakAid
 EventScript_Fuschia_OakAid:
     checkflag 0x999 
@@ -331,15 +336,23 @@ EventScript_koga_Start:
 	if 0x1 _goto EventScript_koga_Defeated
 	setflag 0x915
 	special 0x0
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _call SetTailwind
 	trainerbattle1 0x1 0x1A2 0x0 gText_koga_EncounterText gText_koga_DefeatText EventScript_koga_WonPointer
 	release
 	end
+
+SetTailwind:
+	setvar VAR_BATTLE_AURAS VAR_BATTLE_TAILWIND_STRING
+	return
 
 EventScript_koga_Defeated:
 	lock
 	faceplayer
 	checkflag 0x964
 	if 0x1 _goto EventScript_koga_Done
+		checkflag FLAG_MINIMAL_GRINDING_MODE
+	if 0x1 _goto MinGrindingModePerfectPkmn
 	msgbox gText_koga_Perfectpokemon 0x6
 	bufferfirstpokemon 0x00
 	msgbox gText_koga_Thepokemon 0x6
@@ -350,6 +363,19 @@ EventScript_koga_Defeated:
 	buffernumber 0x0 LASTRESULT @Buffer speed EVs to [buffer1]
 	compare LASTRESULT 150
 	if 0x4 _goto EventScript_koga_Veryfast
+	msgbox gText_koga_Notquite 0x6
+	release
+	end
+
+MinGrindingModePerfectPkmn:
+	msgbox gText_koga_PerfectpokemonMinimal 0x6
+	bufferfirstpokemon 0x00
+	msgbox gText_koga_Thepokemon 0x6
+	setvar 0x8003 0x0 @From party
+	setvar 0x8004 0x0 @1st Pok�mon
+	callasm CheckIfKogaApproves + 1
+	compare LASTRESULT 0x1
+	if 0x1 _goto EventScript_koga_Veryfast
 	msgbox gText_koga_Notquite 0x6
 	release
 	end
@@ -367,7 +393,14 @@ EventScript_koga_WonPointer:
 	clearflag 0x915
 	msgbox gText_koga_Givetm 0x6
 	msgbox gText_koga_Helloagain 0x6
+	checkflag FLAG_MINIMAL_GRINDING_MODE
+	if 0x1 _goto WonPointerMinGrindingMode 
 	msgbox gText_koga_Perfectpokemon 0x6
+	release
+	end
+
+WonPointerMinGrindingMode:
+	msgbox gText_koga_PerfectpokemonMinimal 0x6
 	release
 	end
 
@@ -422,4 +455,42 @@ SandacondaReject:
 
 FacePlayer:
 	.byte face_player
+	.byte end_m
+
+EventScript_Hardcoremode_CheckifDoneRematches:
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _goto CheckIfRematchesDone
+	goto SetVarCheck
+	end
+
+SetVarCheck: 
+	setvar 0x511A 0x1
+	release
+	end
+
+CheckIfRematchesDone:
+	checkflag 0x959 @Pewter 
+	if 0x0 _goto Closed
+	checkflag 0x932 @Cerulean
+	if 0x0 _goto Closed
+	checkflag 0x934 @Vermilion
+	if 0x0 _goto Closed
+	goto SetVarCheck
+	end
+
+Closed:
+	applymovement 0xFF FaceForward
+	waitmovement 0x0 
+	msgbox gText_Fuschia_Closed MSG_SIGN
+	applymovement 0xFF GoBackward
+	waitmovement 0x0
+	release
+	end
+
+FaceForward:
+	.byte look_up
+	.byte end_m
+
+GoBackward: 
+	.byte walk_down
 	.byte end_m

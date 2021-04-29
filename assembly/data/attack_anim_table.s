@@ -178,7 +178,7 @@ gMoveAnimations:
 .word 0x81d0a1f		@MOVE_DREAMEATER
 .word 0x81d0c22		@MOVE_POISONGAS
 .word 0x81cacd3		@MOVE_BARRAGE
-.word ANIM_LEECHLIFE
+.word ANIM_LEECHFANG
 .word 0x81d1c6c		@MOVE_LOVELYKISS
 .word 0x81cad1b		@MOVE_SKYATTACK
 .word 0x81d2811		@MOVE_TRANSFORM
@@ -17260,7 +17260,8 @@ ANIM_FORBIDDEN_SPELL:
 	loadparticle ANIM_TAG_SPARK_2
 	loadparticle ANIM_TAG_WHITE_CIRCLE_OF_LIGHT
 	pokespritetoBG bank_target
-	loadBG1 BG_GHOST
+	@ loadBG1 BG_GHOST
+	loadBG1 BG_BLACKHOLE_ECLIPSE
 	playsound2 0x85 SOUND_PAN_ATTACKER
 	waitbgfadein 
 	setblends 0x80c

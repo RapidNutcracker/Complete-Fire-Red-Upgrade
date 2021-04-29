@@ -2435,7 +2435,11 @@ static u8 ActivateWeatherAbility(u16 flags, u16 item, u8 bank, u8 animArg, u8 st
 		++item; //So it compiles warning free
 	#else
 		gBattleWeather = (flags & ~(WEATHER_PERMANENT_ANY)); //Remove any weather permanence
-		if (ITEM_EFFECT(bank) == item)
+		if (FlagGet(FLAG_HARDCORE_MODE)){
+			gBattleWeather = flags;
+			gWishFutureKnock.weatherDuration = 0;
+		}
+		else if (ITEM_EFFECT(bank) == item)
 			gWishFutureKnock.weatherDuration = 8;
 		else
 			gWishFutureKnock.weatherDuration = 5;
@@ -2471,7 +2475,10 @@ static u8 TryActivateTerrainAbility(u8 terrain, u8 anim, u8 bank)
 		#ifdef INFINITE_TERRAIN
 			gNewBS->TerrainTimer = 0;
 		#else
-			if (ITEM_EFFECT(bank) == ITEM_EFFECT_TERRAIN_EXTENDER)
+			if (FlagGet(FLAG_HARDCORE_MODE)) {
+				gNewBS->TerrainTimer = 0;
+			}
+			else if (ITEM_EFFECT(bank) == ITEM_EFFECT_TERRAIN_EXTENDER)
 				gNewBS->TerrainTimer = 8;
 			else
 				gNewBS->TerrainTimer = 5;

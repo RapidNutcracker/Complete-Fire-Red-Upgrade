@@ -214,6 +214,18 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 					}
 				}
 				break;
+				
+			//Rock
+			case ABILITY_MOUNTAINEER:
+				if ((moveType == TYPE_ROCK) && (moveSplit != SPLIT_STATUS))
+				{
+					if (!TARGETING_PARTNER) //Good idea to attack partner
+					{
+						DECREASE_VIABILITY(20);
+						return viability;
+					}
+				}
+				break;
 
 			// Water
 			case ABILITY_WATERABSORB:
@@ -276,19 +288,6 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				}
 				break;
 
-			//Multiple move types
-			// case ABILITY_RATTLED:
-			// 	if ((moveSplit != SPLIT_STATUS)
-			// 	&& (moveType == TYPE_DARK || moveType == TYPE_GHOST || moveType == TYPE_BUG))
-			// 	{
-			// 		if (!TARGETING_PARTNER) //Good idea to attack partner
-			// 		{
-			// 			DECREASE_VIABILITY(9);
-			// 			return viability;
-			// 		}
-			// 	}
-			// 	break;
-
 			//Move category checks
 			case ABILITY_SOUNDPROOF:
 				if (CheckSoundMove(move))
@@ -318,7 +317,7 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			case ABILITY_AROMAVEIL:
 				if (CheckTableForMove(move, gAromaVeilProtectedMoves))
 				{
-					DECREASE_VIABILITY(10);
+					DECREASE_VIABILITY(20);
 					return viability;
 				}
 				break;
@@ -1961,7 +1960,9 @@ MOVESCR_CHECK_0:
 
 		case EFFECT_TAUNT:
 			if (IsTaunted(bankDef)
-			|| PARTNER_MOVE_EFFECT_IS_SAME)
+			|| PARTNER_MOVE_EFFECT_IS_SAME
+			|| ABILITY(bankDef) == ABILITY_OBLIVIOUS
+			|| ABILITY(bankDef) == ABILITY_AROMAVEIL)
 				DECREASE_VIABILITY(10); //added 
 			break;
 

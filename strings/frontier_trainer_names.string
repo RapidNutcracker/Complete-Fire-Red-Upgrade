@@ -609,6 +609,9 @@ Lance
 #org @sTrainerName_Gold
 Gold
 
+#org @sTrainerName_Brendan
+Brendan
+
 #ifdef UNBOUND
 
 //Special Trainers

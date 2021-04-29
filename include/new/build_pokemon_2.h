@@ -29,7 +29,9 @@
 		else																																				\
 			ModifySpeciesAndLevelForGenericBattle(&speciesToCreate, &lvl, minPartyLevel, modifiedAveragePlayerLevel, trainer->partyFlags, canEvolveMon);	\
 	}																																						\
-																																							\
+	if (FlagGet(FLAG_EASY_MODE) && !ShouldTrainerRandomize()) {																															\
+		lvl = MathMax(1, lvl - 2);																															\
+	}																																						\
 	CreateMon(&party[i], speciesToCreate, lvl, baseIV, TRUE, personalityValue, otIdType, otid);																\
 	party[i].metLevel = structure[i].lvl;																													\
 }

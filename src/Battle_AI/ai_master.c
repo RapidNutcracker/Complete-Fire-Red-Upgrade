@@ -328,10 +328,14 @@ u32 GetAIFlags(void)
 		flags = AI_SCRIPT_CHECK_BAD_MOVE;
 	else if (gBattleTypeFlags & BATTLE_TYPE_SCRIPTED_WILD_3)
 		flags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_SEMI_SMART;
+	else if (FlagGet(FLAG_SMART_WILD))
+		flags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_SEMI_SMART;
 	else
 	{
 		if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
 			flags = gTrainers[gTrainerBattleOpponent_A].aiFlags | gTrainers[VarGet(VAR_SECOND_OPPONENT)].aiFlags;
+		else if (FlagGet(FLAG_HARDCORE_MODE) && gBattleTypeFlags & BATTLE_TYPE_TRAINER) //in hardcore mode trainers are always smart
+			flags = 7; 
 		else
 			flags = gTrainers[gTrainerBattleOpponent_A].aiFlags;
 

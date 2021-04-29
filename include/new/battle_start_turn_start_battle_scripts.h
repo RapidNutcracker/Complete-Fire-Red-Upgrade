@@ -27,6 +27,15 @@ extern const u8 BattleScript_CamomonsTypeRevealRet[];
 extern const u8 BattleScript_RaidBattleStart[];
 extern const u8 BattleScript_RaidBattleStorm[];
 extern const u8 BattleScript_DynamaxEnergySwirl[];
+extern const u8 BattleScript_SandstormBattleBegin[];
+extern const u8 BattleScript_RainBattleBegin[];
+extern const u8 BattleScript_HailBattleBegin[]; 
+
+extern const u8 BattleScript_FightingSpiritBegins[];
+extern const u8 BattleScript_PermaTrickRoomBegins[]; 
+extern const u8 BattleScript_PermaGroundImmunityBegins[];
+extern const u8 BattleScript_SolidRockBegins[]; 
+extern const u8 BattleScript_TailwindBegins[];
 
 extern const u8 gText_CamomonsTypeReveal[];
 extern const u8 gText_CamomonsTypeRevealDualType[];

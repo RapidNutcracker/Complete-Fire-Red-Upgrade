@@ -19,6 +19,13 @@ learn_move.c
 
 extern const u8 gMoveNames[][MOVE_NAME_LENGTH + 1];
 extern const move_t gRandomizerBannedMoves[];
+extern const move_t gHardcoreBannedMoves[];
+extern const move_t gHardcoreHalfBannedMoves[];
+extern const move_t gHardcoreTrashBannedMoves[]; 
+
+extern const species_t gSuperBadHardcoreList[]; 
+extern const species_t gBadHardcoreList[]; 
+
 
 #ifdef EXPAND_MOVESETS
 	extern const struct LevelUpMove* const gLevelUpLearnsets[];
@@ -48,6 +55,17 @@ void GiveBoxMonInitialMoveset(struct BoxPokemon* boxMon)
 	{
 		struct LevelUpMove lvlUpMove = gLevelUpLearnsets[species][i];
 		u16 move = lvlUpMove.move;
+		//Hardcore Mode checks
+		if(FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(lvlUpMove.move, gHardcoreBannedMoves)) {
+			continue;
+		}
+		else if(FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(lvlUpMove.move, gHardcoreHalfBannedMoves) && !CheckTableForSpecies(species, gBadHardcoreList)) { 
+			continue;
+		}
+		else if (FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(lvlUpMove.move, gHardcoreTrashBannedMoves) && !CheckTableForSpecies(species, gSuperBadHardcoreList)) { 
+			continue; 
+		}
+		// End of hardcore mode checks
 
 		#ifdef FLAG_POKEMON_LEARNSET_RANDOMIZER
 		if (FlagGet(FLAG_POKEMON_LEARNSET_RANDOMIZER) && !FlagGet(FLAG_BATTLE_FACILITY))
@@ -95,6 +113,15 @@ u16 MonTryLearningNewMove(struct Pokemon* mon, bool8 firstMove)
 	lvlUpMove = gLevelUpLearnsets[species][sLearningMoveTableID];
 	if (lvlUpMove.level == level)
 	{
+		if(FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(lvlUpMove.move, gHardcoreBannedMoves)) {
+			return 0;
+		}
+		else if(FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(lvlUpMove.move, gHardcoreHalfBannedMoves) && !CheckTableForSpecies(species, gBadHardcoreList)) { 
+			return 0;
+		}
+		else if (FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(lvlUpMove.move, gHardcoreTrashBannedMoves) && !CheckTableForSpecies(species, gSuperBadHardcoreList)) { 
+			return 0; 
+		}
 		gMoveToLearn = lvlUpMove.move;
 
 		#ifdef FLAG_POKEMON_LEARNSET_RANDOMIZER
@@ -115,6 +142,7 @@ u16 MonTryLearningNewMoveAfterEvolution(struct Pokemon* mon, bool8 firstMove)
 	u16 species = mon->species;
 	u8 level = mon->level;
 	struct LevelUpMove lvlUpMove;
+
 
 	if (firstMove)
 	{
@@ -142,6 +170,16 @@ u16 MonTryLearningNewMoveAfterEvolution(struct Pokemon* mon, bool8 firstMove)
 
 		++sLearningMoveTableID;
 		retVal = GiveMoveToMon(mon, gMoveToLearn);
+	}
+	//Hardcore mode checks
+	if(FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(lvlUpMove.move, gHardcoreBannedMoves)) {
+		return 0;
+	}
+	else if(FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(lvlUpMove.move, gHardcoreHalfBannedMoves) && !CheckTableForSpecies(species, gBadHardcoreList)) { 
+		return 0;
+	}
+	else if (FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(lvlUpMove.move, gHardcoreTrashBannedMoves) && !CheckTableForSpecies(species, gSuperBadHardcoreList)) { 
+		return 0; 
 	}
 
 	return retVal;
@@ -187,9 +225,12 @@ u8 GetMoveRelearnerMoves(struct Pokemon* mon, u16* moves)
 			{
 				for (k = 0; k < numMoves && moves[k] != lvlUpMove.move; ++k)
 					;
-
-				if (k == numMoves)
+				if(FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(lvlUpMove.move, gHardcoreBannedMoves)) {}
+				else if(FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(lvlUpMove.move, gHardcoreHalfBannedMoves) && !CheckTableForSpecies(species, gBadHardcoreList)) { }
+				else if (FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(lvlUpMove.move, gHardcoreTrashBannedMoves) && !CheckTableForSpecies(species, gSuperBadHardcoreList)) { }
+				else if (k == numMoves) {
 					moves[numMoves++] = lvlUpMove.move;
+				}
 			}
 		}
 	}
@@ -247,6 +288,7 @@ static move_t RandomizeMove(u16 move)
 }
 #endif
 
+//for benjamin butterfree
 u16 BuildLearnableMoveset(struct Pokemon* mon, u16* moves)
 {
 	u16 numLevelMoves = 0;
@@ -295,7 +337,7 @@ u16 BuildLearnableMoveset(struct Pokemon* mon, u16* moves)
 
 	return numTotalMoves;
 }
-
+//for the special scripts
 u16 GiveMoveToBoxMon(struct BoxPokemon *boxMon, u16 move)
 {
 	for (int i = 0; i < MAX_MON_MOVES; i++)
@@ -322,6 +364,7 @@ u16 GiveMoveToBoxMon(struct BoxPokemon *boxMon, u16 move)
 	return 0xFFFF;
 }
 
+//special scripts
 void SetMonMoveSlot(struct Pokemon* mon, u16 move, u8 slot)
 {
 	u16 form;

@@ -42,3 +42,14 @@ Thunder Wave causes paralysis in\nthe target Pok\emon.\pA paralyzed Pok\emon may
 
 #org @gText_twave_6
 Oh[.]\nBut Thunder Wave is convenient[.]
+
+#org @gText_silphcogioleft_Giomsg1
+Ah, [GREEN][PLAYER]![BLUE]\nSo we meet again!\pThe President and I are discussing\na vital business proposition.\pKeep your nose out of grown-up\nmatters[.]\pOr, experience a world of pain!
+
+#org @gText_silphcogioleft_Giolose
+Arrgh!!\nI lost again!?
+
+#org @gText_silphcogioleft_Giopostlosemsg
+Blast it all!\nYou ruined our plans for Silph!\pBut, Team Rocket will never fall!\p[GREEN][PLAYER][BLUE]! Never forget that all\nPok\emon exist for Team Rocket!\pI must go, but I shall return!
+
+

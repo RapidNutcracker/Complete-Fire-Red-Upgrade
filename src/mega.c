@@ -139,13 +139,13 @@ ability_t GetBankMegaFormAbility(u8 bank)
 		evos = CanMegaEvolve(bank, FALSE);
 		if (evos != NULL)
 		{
-			return TryRandomizeAbility(gBaseStats[evos->targetSpecies].ability1, evos->targetSpecies); //Megas can only have 1 ability
+			return TryRandomizeAbility2(gBaseStats[evos->targetSpecies].ability1, evos->targetSpecies); //Megas can only have 1 ability
 		}
 
 		evos = CanMegaEvolve(bank, TRUE);
 		if (evos != NULL)
 		{
-			return TryRandomizeAbility(gBaseStats[evos->targetSpecies].ability1, evos->targetSpecies); //Ultra Necrozma only has 1 ability
+			return TryRandomizeAbility2(gBaseStats[evos->targetSpecies].ability1, evos->targetSpecies); //Ultra Necrozma only has 1 ability
 		}
 	}
 
@@ -248,6 +248,9 @@ static bool8 IsItemKeystone(u16 item)
 static item_t FindTrainerKeystone(u16 trainerId)
 {
 	if (gBattleTypeFlags & (BATTLE_TYPE_FRONTIER | BATTLE_TYPE_LINK) || IsFrontierTrainerId(trainerId))
+		return ITEM_MEGA_RING;
+
+	if (FlagGet(FLAG_HARDCORE_MODE)) //trainers should always be able to mega in hardcore mode
 		return ITEM_MEGA_RING;
 
 	for (u8 i = 0; i < TRAINER_ITEM_COUNT; ++i)

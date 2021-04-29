@@ -69,6 +69,7 @@ extern const u16* const sMugshotsDpPals[];
 extern const u16* const sMugshotsTwoBarsPals[];
 extern const u16* const sMugshotPlayerPals[];
 
+extern bool8 ShouldTrainerMugshot();
 #define IS_VALID_TABLE_SPRITE(trainerSpriteID) (trainerSpriteID < ARRAY_COUNT(sPreBattleMugshotSprites) \
 											 && sPreBattleMugshotSprites[trainerSpriteID].sprite != NULL \
 											 && sPreBattleMugshotSprites[trainerSpriteID].pal != NULL) //Has complete data for image
@@ -335,7 +336,7 @@ void Mugshots_CreateOpponentPlayerSprites(struct Task* task)
 	}
 
 	//Load Opponent A
-	if (sTrainerEventObjectLocalId != 0 //Used for mugshots
+	if (sTrainerEventObjectLocalId != 0 ||  !ShouldTrainerMugshot() //Used for mugshots || 
 	#ifdef FR_PRE_BATTLE_MUGSHOT_STYLE
 	|| gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_CHAMPION
 	|| gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_ELITE_FOUR

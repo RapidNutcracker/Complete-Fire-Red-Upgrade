@@ -75,6 +75,7 @@ ability_battle_scripts.s
 .global BattleScript_IceFaceTransform
 .global MimikyuDisguisedTookDamageString
 .global BattleScript_EnduredSturdy
+.global BattleScript_EnduredFightingSpirit
 .global BattleScript_Receiver
 .global BattleScript_Symbiosis
 .global BattleScript_DefiantCompetitive
@@ -909,6 +910,14 @@ BattleScript_EnduredSturdy:
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
+BattleScript_EnduredFightingSpirit:
+	pause 0x10
+	setword BATTLE_STRING_LOADER LivedFightingSpirit
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	return
+
+@;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 BattleScript_Receiver:
 	playanimation BANK_SCRIPTING ANIM_LOAD_ABILITY_POP_UP 0x0
 	pause DELAY_HALFSECOND

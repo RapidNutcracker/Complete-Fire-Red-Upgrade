@@ -5,6 +5,7 @@
 .include "../xse_defines.s"
 .include "../asm_defines.s" 
 
+.equ FLAG_EASY_MODE, 0x1033
 
 .global EventScript_ExpertModeTile 
 EventScript_ExpertModeTile:
@@ -41,11 +42,22 @@ EventScript_ExpertModeTileRight:
 EventScript_ExpertModeStart:
 	textcolor 0x0
 	msgbox gText_ExpertMode1 MSG_NORMAL 
-	msgbox gText_ExpertMode2 MSG_NORMAL 
+	checkflag FLAG_EASY_MODE
+	if 0x1 _call EasyModeRulesText 
+	checkflag FLAG_EASY_MODE
+	if 0x0 _call NormalRulesText
 	msgbox gText_ExpertMode3 MSG_NORMAL 
 	msgbox gText_ExpertMode5 MSG_NORMAL 
 	setvar 0x5101 0x1
 	return 
+
+EasyModeRulesText:
+	msgbox gText_ExpertModeEasy MSG_NORMAL
+	return 
+
+NormalRulesText:
+	msgbox gText_ExpertMode2 MSG_NORMAL 
+	return
 
 WalkUpToYouTop:
 	.byte walk_left 

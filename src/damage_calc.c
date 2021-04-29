@@ -661,7 +661,11 @@ void atk06_typecalc(void)
 				else
 					goto RE_ENTER_TYPE_CHECK;	//You're a flying type
 			}
-
+			else if (moveType == TYPE_GROUND && (VarGet(VAR_BATTLE_AURAS) == IMMUNE_TO_GROUND) && gCurrentMove != MOVE_THOUSANDARROWS)   {
+				gNewBS->ResultFlags[bankDef] |= (MOVE_RESULT_DOESNT_AFFECT_FOE);
+				gLastLandedMoves[bankDef] = 0;
+				gLastHitByType[bankDef] = 0;
+			}
 			//Check Powder Moves
 			else if (CheckTableForMove(gCurrentMove, gPowderMoves))
 			{
@@ -1735,6 +1739,10 @@ void AdjustDamage(bool8 checkFalseSwipe)
 			gSpecialStatuses[bankDef].focusBanded = 1;
 			gNewBS->EnduranceHelper[bankDef] = ENDURE_FOCUS_SASH;
 		}
+		else if ( (gBattleMons[bankDef].hp >= (gBattleMons[bankDef].maxHP * 3 / 4 )) && (VarGet(VAR_BATTLE_AURAS) == FIGHTING_SPIRIT) && SIDE(bankDef) != B_SIDE_PLAYER ){
+			gProtectStructs[bankDef].enduredSturdy = TRUE;
+			gNewBS->EnduranceHelper[bankDef] = ENDURE_STURDY;
+		}
 		else if (itemEffect == ITEM_EFFECT_FOCUS_BAND && Random2() % 100 < itemQuality && !IsBankHoldingFocusSash(bankDef))
 		{
 			RecordItemEffectBattle(bankDef, itemEffect);
@@ -1942,9 +1950,6 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		switch (data->move) {
 			case MOVE_BODYPRESS:
 				attack = monAtk->defense;
-				if(data->atkAbility == ABILITY_FURCOAT){
-					attack = attack*2; 
-				}
 				spAttack = monAtk->spDefense;
 				break;
 			default:
@@ -2514,6 +2519,10 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 			if (data->resultFlags & MOVE_RESULT_SUPER_EFFECTIVE)
 				damage = (damage * 12) / 10;
 			break;
+	}
+	if (VarGet(VAR_BATTLE_AURAS) == AURA_SOLIDROCK) {
+			if (data->resultFlags & MOVE_RESULT_SUPER_EFFECTIVE && (SIDE(bankDef) == B_SIDE_OPPONENT))
+				damage = (damage * 66) / 100;
 	}
 
 	//Second Target Ability Checks

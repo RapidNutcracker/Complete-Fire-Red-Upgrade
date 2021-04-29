@@ -6,6 +6,8 @@
 .include "../asm_defines.s"
 
 .equ VAR_DAILY_EVENT2, 0x505C
+.equ FLAG_HARDCORE_MODE, 0x1034
+.equ VAR_WEATHER, 0x5118
 
 .global EventScript_Cerulean_Haircut
 EventScript_Cerulean_Haircut:
@@ -133,9 +135,15 @@ EventScript_misty_Rematch:
 	setflag 0x915
 	setflag 0x90E
 	special 0x0
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _call SetWeather
 	trainerbattle1 0x1 0x30 0x0 gText_misty_Battle gText_misty_Seconddefeat EventScript_misty_Rematchwon
 	release
 	end
+
+SetWeather:
+    setvar VAR_WEATHER 0x2 
+    return
 
 EventScript_misty_Cancel:
 	msgbox gText_misty_Comeback 0x6
@@ -303,6 +311,7 @@ EventScript_redogaryrival_Rivalbattle:
 	msgbox gText_redogaryrival_Billmsg MSG_KEEPOPEN @"[rival]: Hey, guess what?\pI went ..."
 	closeonkeypress
 	playsong 0x13C 0x0
+	setflag 0x90E
 	compare 0x4001 0x0
 	if 0x1 _call EventScript_redogaryrival_Leftmovement
 	compare 0x4001 0x1

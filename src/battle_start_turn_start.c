@@ -64,6 +64,7 @@ extern const u16 gWildSpeciesBasedBattleBGM[];
 extern const u16 gRandomBattleMusicOptions[];
 extern const u8 gRandomBattleMusicOptionsLength;
 extern const u16 gWildSpeciesBasedBattleBGMLength;
+extern bool8 ShouldTrainerMugshot();
 
 const u8 gStatStageRatios[][2] =
 {
@@ -120,7 +121,7 @@ void BattleBeginFirstTurn(void)
 	int i, j, k;
 	u8* state = &(gBattleStruct->switchInAbilitiesCounter);
 	u8* bank = &(gBattleStruct->switchInItemsCounter);
-	if (gBattleTypeFlags & BATTLE_TYPE_TRAINER){
+	if (gBattleTypeFlags & BATTLE_TYPE_TRAINER && !(FlagGet(FLAG_EASY_MODE))){
 		gBattleScripting.battleStyle = OPTIONS_BATTLE_STYLE_SET; //added to force battle style set
 		// SeedRng2(Random());
 		SeedRng2( ((u16) gClock.dayOfWeek ) * gTrainerBattleOpponent_A); 
@@ -163,6 +164,12 @@ void BattleBeginFirstTurn(void)
 				//OW Terrain
 				if (TryActivateOWTerrain())
 					return;
+
+				if (FlagGet(FLAG_HARDCORE_MODE) && TryActivateVarWeather())
+					return; 
+
+				if (FlagGet(FLAG_HARDCORE_MODE) && TryActivateVarBattleAuras())
+					return; 
 
 				//Primal Reversion
 				for (; *bank < gBattlersCount; ++*bank)
@@ -450,6 +457,86 @@ bool8 TryActivateOWTerrain(void)
 			gTerrainType = owTerrain;
 	}
 
+	return effect;
+}
+
+bool8 TryActivateVarWeather()
+{
+	bool8 effect = FALSE;
+	u8 weather = VarGet(VAR_WEATHER);
+
+
+	if (weather != 0) {
+		switch (weather) {
+			case 1:
+				BattleScriptPushCursorAndCallback(BattleScript_SandstormBattleBegin);
+				gBattleWeather =  (WEATHER_SANDSTORM_PERMANENT); 
+				gBattleScripting.animArg1 = B_ANIM_SANDSTORM_CONTINUES;
+				gWishFutureKnock.weatherDuration = 0;
+				effect = TRUE;
+				break;
+			case 2:
+				BattleScriptPushCursorAndCallback(BattleScript_RainBattleBegin);
+				gBattleWeather =  (WEATHER_RAIN_PERMANENT); 
+				gBattleScripting.animArg1 = B_ANIM_RAIN_CONTINUES;;
+				gWishFutureKnock.weatherDuration = 0;
+				effect = TRUE;
+				break;
+			case 3:
+				BattleScriptPushCursorAndCallback(BattleScript_HailBattleBegin);
+				gBattleWeather =  (WEATHER_HAIL_PERMANENT); 
+				gBattleScripting.animArg1 = B_ANIM_HAIL_CONTINUES;;
+				gWishFutureKnock.weatherDuration = 0;
+				effect = TRUE;
+				break;
+		}
+	}
+	
+	VarSet(VAR_WEATHER, 0);
+	return effect;
+}
+
+bool8 TryActivateVarBattleAuras()
+{
+	bool8 effect = FALSE;
+	u8 auras = VarGet(VAR_BATTLE_AURAS);
+
+	if (auras != 0) {
+		switch (auras) {
+			case FIGHTING_SPIRIT_STRING:
+				gBattleScripting.bank = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
+				BattleScriptPushCursorAndCallback(BattleScript_FightingSpiritBegins);
+				VarSet(VAR_BATTLE_AURAS, FIGHTING_SPIRIT);
+				effect = TRUE;
+				break;
+			case PERMA_TRICK_ROOM_STRING:
+				gBattleScripting.bank = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
+				BattleScriptPushCursorAndCallback(BattleScript_PermaTrickRoomBegins);
+				VarSet(VAR_BATTLE_AURAS, PERMA_TRICK_ROOM);
+				effect = TRUE;
+				break;
+			case IMMUNE_TO_GROUND_STRING:
+				gBattleScripting.bank = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
+				BattleScriptPushCursorAndCallback(BattleScript_PermaGroundImmunityBegins);
+				VarSet(VAR_BATTLE_AURAS, IMMUNE_TO_GROUND);
+				effect = TRUE;
+				break;
+			case AURA_SOLIDROCK_STRING: 
+				gBattleScripting.bank = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
+				BattleScriptPushCursorAndCallback(BattleScript_SolidRockBegins);
+				VarSet(VAR_BATTLE_AURAS, AURA_SOLIDROCK);
+				effect = TRUE;
+				break;
+			case AURA_TAILWIND_STRING:
+				gNewBS->TailwindTimers[GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT)] = 99;
+				BattleScriptPushCursorAndCallback(BattleScript_TailwindBegins);
+				VarSet(VAR_BATTLE_AURAS, AURA_TAILWIND);
+				effect = TRUE;
+				break;
+		}
+	}
+	
+	VarSet(VAR_WEATHER, 0);
 	return effect;
 }
 
@@ -1484,7 +1571,7 @@ u8 GetTrainerBattleTransition(void)
 	if (gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_CHAMPION)
 		return B_TRANSITION_CHAMPION;
 
-	if (gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_ELITE_FOUR)
+	if (gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_ELITE_FOUR || !ShouldTrainerMugshot() )//!ShouldTrainerRandomize())//FlagGet(FLAG_PRE_BATTLE_MUGSHOT))
 	{
 		VarSet(VAR_PRE_BATTLE_MUGSHOT_STYLE, MUGSHOT_TWO_BARS);
 		VarSet(VAR_PRE_BATTLE_MUGSHOT_SPRITE, MUGSHOT_PLAYER);

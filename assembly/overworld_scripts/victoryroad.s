@@ -158,6 +158,7 @@ EventScript_VictoryRoad_GalarMoltres:
 .global gMapScripts_VictoryRoad
 gMapScripts_VictoryRoad:
     mapscript MAP_SCRIPT_ON_TRANSITION HideGMoltresIfNotReady
+	mapscript MAP_SCRIPT_ON_LOAD SetUpPuzzleBlocksFloor2
     .byte MAP_SCRIPT_TERMIN
 
 HideGMoltresIfNotReady:
@@ -236,6 +237,23 @@ EventScript_AllGen8_Mons:
 EventScript_MeadowPlate:
 	lock
 	faceplayer
-	givepokemon SPECIES_MUNCHLAX 1 0x0 0x0 0x0 0x0 
+	setflag 0x1032
 	end
 
+SetUpPuzzleBlocksFloor2:
+	compare 0x4065 0x64
+	if 0x5 _call SetBlock1
+	compare 0x4066 0x64
+	if 0x5 _call 0x8160FC2
+	end
+
+SetBlock1:
+	setmaptile 0xD 0xA 0x307 0x1
+	setmaptile 0xD 0xB 0x317 0x1
+	return
+
+SetBlock2:
+	setmaptile 0x21 0x10 0x307 0x1
+	setmaptile 0x21 0x11 0x317 0x1
+	return
+	

@@ -182,6 +182,8 @@ void atkFF06_setterrain(void)
 
 	if (gBattleTypeFlags & BATTLE_TYPE_BATTLE_CIRCUS && gBattleCircusFlags & BATTLE_CIRCUS_TERRAIN)
 		type = 0xFF; //Can't be changed
+	else if (VarGet(VAR_TERRAIN) != 0) //added 
+		type = 0xFF; //Can't be changed
 	else
 	{
 		if (IsAnyMaxMove(gCurrentMove))
@@ -230,11 +232,13 @@ void atkFF06_setterrain(void)
 			case MOVE_DEFOG:
 			case MOVE_STEELROLLER:
 			REMOVE_TERRAIN:
-				type = 0;
-				gNewBS->terrainForcefullyRemoved = TRUE;
-				gBattleScripting.animArg1 = B_ANIM_LOAD_DEFAULT_BG;
-				gBattleStringLoader = TerrainEndString;
-				break;
+				if (!FlagGet(FLAG_HARDCORE_MODE)){
+					type = 0;
+					gNewBS->terrainForcefullyRemoved = TRUE;
+					gBattleScripting.animArg1 = B_ANIM_LOAD_DEFAULT_BG;
+					gBattleStringLoader = TerrainEndString;
+					break;
+				}
 		}
 	}
 

@@ -98,7 +98,7 @@ Well[.]\pMudkips are still cool[.]\pI will share the love XD
 THIS GAME WON'T LET ME OVERLEVEL\nWHAT THE FRIIIIIIIIIIICK!
 
 #org @gText_SilphCo_TeamAlert1
-[BLACK]Just a small warning from\nthe creator himself[.]\pThere's an upcoming tag battle,\nso I've healed your team in\ppreparation.\pHave fun and stay safe out there!\n:)
+[BLACK]Just a small warning from\nthe creator himself[.]\pThere's an upcoming tag battle,\nso I've healed your team in\lpreparation.\pHave fun and stay safe out there!\n:)
 
 #org @gText_Saffron_ManyTutors1 
 Hiya, I got a whole slew of\nuseful moves!\pThey cost \$7500.
@@ -299,7 +299,10 @@ If you'd like, you can have one of\nthe Fighting Pok\emon over here as a\ltrophy
 It's tough getting gains with\n24-Hour Fitness being closed in\lquarantine.
 
 #org @gText_chuck_10
-[.]I see you have your own [GREEN]Mega\nRing[BLUE].\pIf you show me a Pok\emon you've invested\nin Attack, I might just give you a\l[GREEN]Galladite![BLUE].
+[.]I see you have your own [GREEN]Mega\nRing[BLUE].\pIf you show me a Pok\emon you've invested\nin Attack, I might just give you a\l[GREEN]Galladite![BLUE]
+
+#org @gText_chuck_10_minGrinding
+[.]I see you have your own [GREEN]Mega\nRing[BLUE].\pIf you show me a Pok\emon with strong\nAttack, I might just give you a\l[GREEN]Galladite![BLUE]
 
 #org @gText_chuck_11
 Your [BUFFER1][.]
@@ -343,6 +346,12 @@ This loss shocks me!\nBut, a loss is a loss.\pI admit, I didn't work hard enough
 #org @gText_sabrina_Givetm
 TM116 is Trick Room.\pIt flips dimensions to allow\nslower Pok\emon to go first.\pIt's quite a potent strategy\nin Doubles. 
 
+#org @gText_sabrina_GivetmHard
+TM104 is Psyshock.\pIt's a special move that hits\nthe target's Defense.\pIt's a unique move that can\ncatch the opponent off guard.
+
+#org @gText_sabrina_Shinypokemon
+If you show me a shiny Pok\emon,\nI'll reward you handsomely.
+
 #org @gText_sabrina_TMInfomsg
 Before you go, please,\ntake this TM with you.
 
@@ -360,6 +369,9 @@ It's not quite what I'm looking\nfor[.]
 
 #org @gText_sabrina_Perfect
 Ah, yes.\pThis Pok\emon is clearly flawless.\pHere, take it.
+
+#org @gText_sabrina_Shiny
+Ah, yes.\pThis Pok\emon is clearly a Shiny.\pHere, take it.
 
 #org @gText_sabrina_Donemsg
 Psychic power isn't something that\nonly a few people have.\pEveryone has it to some degree.\nThey just haven't realized it yet.

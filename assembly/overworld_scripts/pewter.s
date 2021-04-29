@@ -5,6 +5,14 @@
 .include "../xse_defines.s"
 .include "../asm_defines.s" 
 
+.equ VAR_PRE_BATTLE_MUGSHOT_STYLE, 0x503A
+.equ VAR_PRE_BATTLE_MUGSHOT_SPRITE, 0x503B 
+
+.equ VAR_WEATHER, 0x5118
+.equ FLAG_HARDCORE_MODE, 0x1034
+.equ VAR_BATTLE_AURAS, 0x5119
+.equ AURA_SOLIDROCK_STRING, 4
+
 .global EventScript_Pewter_GiveDmax 
 EventScript_Pewter_GiveDmax:
     clearflag 0x200
@@ -114,6 +122,8 @@ EventScript_falkner_Start:
     waitmovement 0x0 
 	msgbox gText_falkner_2 0x6
 	msgbox gText_falkner_3 0x6
+	setvar VAR_PRE_BATTLE_MUGSHOT_STYLE 0x2
+	setvar VAR_PRE_BATTLE_MUGSHOT_SPRITE 0x0
 	setflag 0x915
 	trainerbattle3 0x3 0x2D 0x0 gText_falkner_Defeat
 	msgbox gText_falkner_4 0x6
@@ -176,6 +186,8 @@ EventScript_checkbadge1_Npctalk:
 EventScript_brock_Start:
 	lock
 	faceplayer
+	setvar VAR_PRE_BATTLE_MUGSHOT_STYLE 0x2
+	setvar VAR_PRE_BATTLE_MUGSHOT_SPRITE 0x0
 	checkflag 0x820
 	if 0x1 _goto EventScript_brock_Defeated
 	setflag 0x915
@@ -215,9 +227,16 @@ EventScript_brock_Rematch:
 	special 0x0
 	setflag 0x915
 	setflag 0x90E @scale levels
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _call SetWeather 
 	trainerbattle1 0x1 0x38 0x0 gText_brock_Battle gText_brock_Seconddefeat EventScript_brock_Rematchwon
 	release
 	end
+
+SetWeather:
+	setvar VAR_WEATHER 0x1
+	setvar VAR_BATTLE_AURAS AURA_SOLIDROCK_STRING
+	return
 
 EventScript_brock_Cancel:
 	msgbox gText_brock_Comeback 0x6
@@ -320,6 +339,7 @@ EventScript_GiveExpShare:
 	compare 0x800D 0x1
 	if lessthan _call GiveStatScanner 
 	msgbox gText_Pewter_TalkAboutLevelCap MSG_FACE
+	setvar 0x501A 0x0
 	release 
 	end 
  
@@ -338,3 +358,11 @@ EventScript_Pewter_RandomizerInfo:
 	msgbox gText_Pewter_RandomizerInfo MSG_FACE
 	release
 	end
+
+.global EventScript_DiglettsCave_HardStone
+EventScript_DiglettsCave_HardStone:
+    hidesprite 0x800F
+    giveitem ITEM_HARD_STONE 0x1 MSG_FIND
+    setflag 0x1035
+    release
+    end

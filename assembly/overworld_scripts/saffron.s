@@ -5,6 +5,14 @@
 .include "../xse_defines.s"
 .include "../asm_defines.s"
 
+.equ VAR_BATTLE_AURAS, 0x5119
+.equ FIGHTING_SPIRIT, 0x1
+.equ PERMA_TRICK_ROOM_STRING, 0x2
+.equ VAR_TERRAIN, 0x5000
+.equ PSYCHIC_TERRAIN, 0x4
+.equ FLAG_HARDCORE_MODE, 0x1034
+.equ FLAG_MINIMAL_GRINDING_MODE, 0x1032
+
 .global EventScript_Saffron_Nerd
 EventScript_Saffron_Nerd:
     lock
@@ -673,6 +681,8 @@ EventScript_chuck_Battle:
 	special 0x0
 	setflag 0x915
 	setflag 0x90E
+	checkflag FLAG_HARDCORE_MODE 
+	if 0x1 _call SetFightingSpirit
 	trainerbattle3 0x3 0x13D 0x0 gText_chuck_Defeat
 	msgbox gText_chuck_6 0x6
 	giveitem ITEM_TM60 0x1 MSG_OBTAIN
@@ -683,6 +693,10 @@ EventScript_chuck_Battle:
 	setvar 0x4081 0x1 @stop the script tiles
 	release
 	end
+
+SetFightingSpirit:
+	setvar VAR_BATTLE_AURAS FIGHTING_SPIRIT
+	return
 
 EventScript_chuck_Done:
 	lock
@@ -699,6 +713,8 @@ EventScript_chuck_Givemega:
 	faceplayer
 	checkflag 0x951
 	if 0x1 _goto EventScript_chuck_Donedone
+	checkflag FLAG_MINIMAL_GRINDING_MODE
+	if 0x1 _goto ChuckGiveMega_MinGrindingMode
 	msgbox gText_chuck_10 0x6
 	bufferfirstpokemon 0x00
 	msgbox gText_chuck_11 0x6
@@ -709,6 +725,19 @@ EventScript_chuck_Givemega:
 	buffernumber 0x0 LASTRESULT @Buffer attack EVs to [buffer1]
 	compare LASTRESULT 150
 	if 0x4 _goto EventScript_chuck_MaxedHappiness
+	msgbox gText_chuck_13 0x6
+	release
+	end
+
+ChuckGiveMega_MinGrindingMode:
+	msgbox gText_chuck_10_minGrinding 0x6
+	bufferfirstpokemon 0x00
+	msgbox gText_chuck_11 0x6
+	setvar 0x8003 0x0 @From party
+	setvar 0x8004 0x0 @1st Pokemon
+	callasm CheckIfChuckApproves
+	compare LASTRESULT 0x1
+	if 0x1 _goto EventScript_chuck_MaxedHappiness
 	msgbox gText_chuck_13 0x6
 	release
 	end
@@ -822,10 +851,16 @@ EventScript_sabrina_Start:
 	callasm CheckViableMons + 1
 	compare LASTRESULT YES
 	if equal _call SetPlaceholderPartner
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _call SetTerrainTR
 	trainerbattle3 0x3 0x1A4 0x0 gText_sabrina_DefeatText 
 	goto EventScript_sabrina_WonPointer
 	release
 	end
+
+SetTerrainTR:
+	setvar VAR_BATTLE_AURAS PERMA_TRICK_ROOM_STRING 
+	return
 
 SetPlaceholderPartner:
 	setflag 0x908
@@ -844,6 +879,8 @@ EventScript_sabrina_Defeated:
 	faceplayer
 	checkflag 0x958
 	if 0x1 _goto EventScript_sabrina_Done
+	checkflag FLAG_MINIMAL_GRINDING_MODE
+	if 0x1 _goto HardModeCheckShiny
 	msgbox gText_sabrina_Perfectpokemon 0x6
 	bufferfirstpokemon 0x00
 	msgbox gText_sabrina_Thepokemon 0x6
@@ -869,8 +906,32 @@ EventScript_sabrina_Defeated:
 	release
 	end
 
+HardModeCheckShiny:
+	msgbox gText_sabrina_Shinypokemon 0x6
+	bufferfirstpokemon 0x00
+	msgbox gText_sabrina_Thepokemon 0x6
+	setvar 0x8003 0x0 @From party
+	setvar 0x8004 0x0 @1st 
+	setvar 0x8005 0x0 @hp iv
+	callasm CheckIfShiny + 1
+	compare LASTRESULT 0x1
+	if 0x1 _goto ThisIsShiny
+	goto EventScript_sabrina_Nah
+	end
+
+ThisIsShiny:
+	msgbox gText_sabrina_Shiny MSG_NORMAL
+	giveitem ITEM_GARDEVOIRITE 0x1 MSG_OBTAIN
+	msgbox gText_sabrina_Charmmsg 0x6
+	giveitem ITEM_SHINY_CHARM 0x1 MSG_OBTAIN
+	setflag 0x958
+	release
+	end
+
 EventScript_sabrina_WonPointer:
 	msgbox gText_sabrina_TMInfomsg 0x6
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _goto EventScript_sabrina_HardModeWonPointer
 	giveitem ITEM_TM116 0x1 MSG_OBTAIN
 	settrainerflag 0x118
 	settrainerflag 0x119
@@ -883,6 +944,22 @@ EventScript_sabrina_WonPointer:
 	msgbox gText_sabrina_Givetm 0x6
 	msgbox gText_sabrina_Helloagain 0x6
 	msgbox gText_sabrina_Perfectpokemon 0x6
+	release
+	end
+
+EventScript_sabrina_HardModeWonPointer:
+	giveitem ITEM_TM104 0x1 MSG_OBTAIN
+	settrainerflag 0x118
+	settrainerflag 0x119
+	settrainerflag 0x11A
+	settrainerflag 0x11B
+	settrainerflag 0x1CE
+	settrainerflag 0x1CF
+	settrainerflag 0x1D0
+	setflag 0x825
+	msgbox gText_sabrina_GivetmHard 0x6
+	msgbox gText_sabrina_Helloagain 0x6
+	msgbox gText_sabrina_Shinypokemon 0x6
 	release
 	end
 

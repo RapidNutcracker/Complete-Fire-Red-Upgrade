@@ -1481,7 +1481,7 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_SOULSTRIKE] =
 	{
 		.effect = EFFECT_PSYCH_UP,
-		.power = 105,
+		.power = 100,
 		.type = TYPE_PSYCHIC,
 		.accuracy = 100,
 		.pp = 5,
@@ -1490,7 +1490,7 @@ const struct BattleMove gBattleMoves[] =
 		.priority = 0,
 		.flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
 		.z_move_power = 180,
-		.split = SPLIT_PHYSICAL,
+		.split = SPLIT_SPECIAL,
 		.z_move_effect = 0
 	},
 

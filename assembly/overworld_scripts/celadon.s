@@ -5,6 +5,10 @@
 .include "../xse_defines.s"
 .include "../asm_defines.s" 
 
+.equ VAR_TERRAIN, 0x5000
+.equ FLAG_HARDCORE_MODE, 0x1034
+.equ FLAG_MINIMAL_GRINDING_MODE, 0x1032
+
 .global EventScript_Celadon_CheckErika
 EventScript_Celadon_CheckErika:
     checkflag 0x823
@@ -164,12 +168,21 @@ EventScript_ivseller_Start:
 	@ checkitem ITEM_POWDER_JAR 0x1
 	@ compare 0x800D 0x1
 	@ if 0x4 _goto EventScript_IvSeller_bustEm
+	checkflag FLAG_MINIMAL_GRINDING_MODE
+	if 0x1 _goto IvSeller_mingrindingmode
 	showmoney 0x0 0x00 0x00
 	msgbox gText_ivseller_1 0x5
 	compare LASTRESULT 0x0
 	if 0x1 _call EventScript_ivseller_Cancel
 	msgbox gText_ivseller_3 0x6 @who wants it?
 	hidemoney 0x0 0x0
+	goto PickPokemon
+
+IvSeller_mingrindingmode:
+	msgbox gText_ivseller_1_Hard 0x5
+	compare LASTRESULT 0x0
+	if 0x1 _call EventScript_ivseller_Cancel
+	msgbox gText_ivseller_3 0x6 @who wants it?
 	goto PickPokemon
 
 PickPokemon:
@@ -235,6 +248,8 @@ CheckMoney:
 	return
 
 PerfectHP:
+	checkflag FLAG_MINIMAL_GRINDING_MODE
+	if 0x1 _goto PerfectHpMin 
 	call CheckMoney
 	setvar 0x8005 0x0
 	special2 LASTRESULT 0x8 
@@ -247,7 +262,21 @@ PerfectHP:
 	special 0x10
 	goto RemoveEnd
 
+PerfectHpMin:
+	setvar 0x8005 0x0
+	special2 LASTRESULT 0x8 
+	buffernumber 0x1 LASTRESULT
+	msgbox gText_ivseller_4_1_min MSG_YESNO
+	compare LASTRESULT NO 
+	if equal _goto ChooseStat
+	setvar 0x8005 0x0
+	setvar 0x8006 0x1F @31
+	special 0x10
+	goto RemoveEndMin
+
 PerfectAtk:
+	checkflag FLAG_MINIMAL_GRINDING_MODE
+	if 0x1 _goto PerfectAtkMin 
 	call CheckMoney
 	setvar 0x8005 0x1
 	special2 LASTRESULT 0x8 
@@ -260,7 +289,21 @@ PerfectAtk:
 	special 0x10
 	goto RemoveEnd
 
+PerfectAtkMin:
+	setvar 0x8005 0x1
+	special2 LASTRESULT 0x8 
+	buffernumber 0x1 LASTRESULT
+	msgbox gText_ivseller_4_2_min MSG_YESNO
+	compare LASTRESULT NO 
+	if equal _goto ChooseStat
+	setvar 0x8005 0x1
+	setvar 0x8006 0x1F @31
+	special 0x10
+	goto RemoveEndMin
+
 PerfectDef:
+	checkflag FLAG_MINIMAL_GRINDING_MODE
+	if 0x1 _goto PerfectDefMin
 	call CheckMoney
 	setvar 0x8005 0x2
 	special2 LASTRESULT 0x8 
@@ -273,7 +316,21 @@ PerfectDef:
 	special 0x10
 	goto RemoveEnd
 
+PerfectDefMin:
+	setvar 0x8005 0x2
+	special2 LASTRESULT 0x8 
+	buffernumber 0x1 LASTRESULT
+	msgbox gText_ivseller_4_3_min MSG_YESNO
+	compare LASTRESULT NO 
+	if equal _goto ChooseStat
+	setvar 0x8005 0x2
+	setvar 0x8006 0x1F @31
+	special 0x10
+	goto RemoveEndMin
+
 PerfectSpA:
+	checkflag FLAG_MINIMAL_GRINDING_MODE
+	if 0x1 _goto PerfectSpaMin
 	call CheckMoney
 	setvar 0x8005 0x4
 	special2 LASTRESULT 0x8 
@@ -286,7 +343,21 @@ PerfectSpA:
 	special 0x10
 	goto RemoveEnd
 
+PerfectSpaMin:
+	setvar 0x8005 0x4
+	special2 LASTRESULT 0x8 
+	buffernumber 0x1 LASTRESULT
+	msgbox gText_ivseller_4_4_min MSG_YESNO
+	compare LASTRESULT NO 
+	if equal _goto ChooseStat
+	setvar 0x8005 0x4
+	setvar 0x8006 0x1F @31
+	special 0x10
+	goto RemoveEndMin
+
 PerfectSpDef:
+	checkflag FLAG_MINIMAL_GRINDING_MODE
+	if 0x1 _goto PerfectSpDefMin
 	call CheckMoney
 	setvar 0x8005 0x5
 	special2 LASTRESULT 0x8 
@@ -299,7 +370,21 @@ PerfectSpDef:
 	special 0x10
 	goto RemoveEnd
 
+PerfectSpDefMin:
+	setvar 0x8005 0x5
+	special2 LASTRESULT 0x8 
+	buffernumber 0x1 LASTRESULT
+	msgbox gText_ivseller_4_5_min MSG_YESNO
+	compare LASTRESULT NO 
+	if equal _goto ChooseStat
+	setvar 0x8005 0x5
+	setvar 0x8006 0x1F @31
+	special 0x10
+	goto RemoveEndMin
+
 PerfectSpeed:
+	checkflag FLAG_MINIMAL_GRINDING_MODE
+	if 0x1 _goto PerfectSpeedMin
 	call CheckMoney
 	setvar 0x8005 0x3
 	special2 LASTRESULT 0x8 
@@ -311,6 +396,18 @@ PerfectSpeed:
 	setvar 0x8006 0x1F @31
 	special 0x10
 	goto RemoveEnd
+
+PerfectSpeedMin:
+	setvar 0x8005 0x3
+	special2 LASTRESULT 0x8 
+	buffernumber 0x1 LASTRESULT
+	msgbox gText_ivseller_4_6_min MSG_YESNO
+	compare LASTRESULT NO 
+	if equal _goto ChooseStat
+	setvar 0x8005 0x3
+	setvar 0x8006 0x1F @31
+	special 0x10
+	goto RemoveEndMin
 
 RemoveEnd:
 	removemoney 0x11170 0x00
@@ -324,10 +421,20 @@ RemoveEnd:
 	release
 	end
 
+RemoveEndMin:
+	msgbox gText_ivseller_Wait 0x6
+	hidemoney 0x35 0x00
+	msgbox gText_ivseller_Done 0x6
+	msgbox gText_ivseller_Grind 0x6
+	release
+	end
+
 PerfectAll: 
+	checkflag FLAG_MINIMAL_GRINDING_MODE
+	if 0x1 _goto PerfectAllMin
 	checkmoney 0x55730 0x0
 	compare 0x800D 0x1
-	if 0x0 _goto EventScript_ivseller_Poor @means player doesn@t ahve enuf money
+	if 0x0 _goto EventScript_ivseller_Poor @means player doesnt ahve enuf money
 	msgbox gText_ivseller_4 0x6
 	msgbox gText_ivseller_5 0x5
 	compare LASTRESULT 0x0
@@ -340,6 +447,19 @@ PerfectAll:
 	msgbox gText_ivseller_Done 0x6
 	checksound
 	hidemoney 0x35 0x0
+	msgbox gText_ivseller_Grind 0x6
+	release
+	end
+
+PerfectAllMin:
+	msgbox gText_ivseller_4_min 0x6
+	msgbox gText_ivseller_5 0x5
+	compare LASTRESULT 0x0
+	if 0x1 _goto EventScript_ivseller_Cancel2
+	call EventScript_ivseller_Giveivs
+	msgbox gText_ivseller_Wait 0x6
+	hidemoney 0x35 0x00
+	msgbox gText_ivseller_Done 0x6
 	msgbox gText_ivseller_Grind 0x6
 	release
 	end
@@ -1109,9 +1229,15 @@ EventScript_erika_Start:
 	if 0x1 _goto EventScript_erika_Defeated
 	setflag 0x915
 	special 0x0
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _call SetTerrain
 	trainerbattle1 0x1 0x1A1 0x0 gText_erika_EncounterText gText_erika_DefeatText EventScript_erika_WonPointer
 	release
 	end
+
+SetTerrain:
+	setvar VAR_TERRAIN 0x2
+	return
 
 EventScript_erika_Defeated:
 	lock

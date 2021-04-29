@@ -1480,6 +1480,17 @@ static bool8 IsUsePartyMenuItemHPEVModifier(struct Pokemon* mon, u16 oldHP, u16 
 		&& GetItemEffectType(item) == ITEM_EFFECT_HP_EV;
 }
 
+static bool8 IsItemVitaminOrWing(u16 item)
+{
+	if (item == ITEM_PROTEIN || item == ITEM_IRON || item == ITEM_CARBOS || item == ITEM_CALCIUM 
+				|| item == ITEM_HP_UP || item == ITEM_HEALTH_WING || item == ITEM_MUSCLE_WING || item == ITEM_RESIST_WING
+				|| item == ITEM_GENIUS_WING || item == ITEM_CLEVER_WING || item == ITEM_SWIFT_WING)
+	{
+		return TRUE;
+	}
+	return FALSE; 
+}
+
 #define gText_WontHaveEffect (const u8*) 0x84169DC
 void ItemUseCB_MedicineStep(u8 taskId, TaskFunc func)
 {
@@ -1488,7 +1499,10 @@ void ItemUseCB_MedicineStep(u8 taskId, TaskFunc func)
 	u16 item = Var800E;
 	bool8 canHeal;
 
-	if (NotUsingHPEVItemOnShedinja(mon, item))
+	if (FlagGet(FLAG_MINIMAL_GRINDING_MODE) && IsItemVitaminOrWing(item)) {
+		goto WONT_HAVE_EFFECT;
+	}
+	if (NotUsingHPEVItemOnShedinja(mon, item) )
 	{
 		canHeal = IsHPRecoveryItem(item);
 		if (canHeal == TRUE || GetItemEffectType(item) == ITEM_EFFECT_HP_EV)

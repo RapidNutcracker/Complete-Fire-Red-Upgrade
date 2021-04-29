@@ -358,8 +358,17 @@ static bool8 AccuracyCalcHelper(u16 move, u8 bankDef)
 		doneStatus = TRUE;
 	}
 	else if(ABILITY(gBankAttacker) == ABILITY_LETHALPRECISION) //added here )
-	{
-		u8 moveResult = VisualTypeCalc(move, gBankAttacker, gBankTarget);
+	{ //need to fix this later
+		u16 newMove = move; 
+		if (SPLIT(move) == SPLIT_STATUS) { //need to do this to ensure we get the correct type calc for moves like hypnosis/willowisp
+			for(u16 i = 0; i < MOVES_COUNT; i++) {
+				if( gBattleMoves[i].split != SPLIT_STATUS && gBattleMoves[i].type == GetMoveTypeSpecial(gBankAttacker, move)) {
+					newMove = i;
+					break;
+				}
+			}
+		}
+		u8 moveResult = VisualTypeCalc(newMove, gBankAttacker, gBankTarget);
 		if(moveResult & MOVE_RESULT_SUPER_EFFECTIVE)
 			doneStatus = TRUE;
 	}

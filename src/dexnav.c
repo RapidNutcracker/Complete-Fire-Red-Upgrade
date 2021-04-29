@@ -1099,7 +1099,7 @@ static u8 DexNavGenerateHiddenAbility(u16 species, u8 searchLevel)
 
 	if (genAbility && gBaseStats[species].hiddenAbility != ABILITY_NONE
 	&& GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT)) //Only give hidden ability if Pokemon has been caught before
-		return TryRandomizeAbility(gBaseStats[species].hiddenAbility, species);
+		return TryRandomizeAbility2(gBaseStats[species].hiddenAbility, species);
 	else
 	{
 		//Pick a normal ability of that Pokemon
@@ -1109,7 +1109,7 @@ static u8 DexNavGenerateHiddenAbility(u16 species, u8 searchLevel)
 		else
 			ability = gBaseStats[species].ability1;
 
-		return TryRandomizeAbility(ability, species);
+		return TryRandomizeAbility2(ability, species);
 	}
 }
 
@@ -1256,6 +1256,8 @@ static void DexNavGenerateMoveset(u16 species, u8 searchLevel, u8 encounterLevel
 		#endif
 	}
 
+	if (FlagGet(FLAG_HARDCORE_MODE)) //no dexnav egg moves in hard mode
+		genMove = FALSE;
 	//Generate a wild mon and copy moveset
 	CreateWildMon(species, encounterLevel, FindHeaderIndexWithLetter(species, sDexNavHudPtr->unownLetter - 1), TRUE);
 

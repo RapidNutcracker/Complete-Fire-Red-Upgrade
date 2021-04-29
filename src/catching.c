@@ -608,7 +608,8 @@ void atkF1_trysetcaughtmondexflags(void)
 	else
 	{
 		HandleSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_SET_CAUGHT, personality);
-		gBattlescriptCurrInstr += 5;
+		gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
+		// gBattlescriptCurrInstr += 5;
 	}
 }
 

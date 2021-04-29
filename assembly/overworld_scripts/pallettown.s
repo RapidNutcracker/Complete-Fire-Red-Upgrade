@@ -5,15 +5,131 @@
 .include "../xse_defines.s"
 .include "../asm_defines.s" 
 
+.equ FLAG_EASY_MODE, 0x1033
+.equ FLAG_HARDCORE_MODE, 0x1034
+
 .global gMapScripts_PalletTownHome
 gMapScripts_PalletTownHome:
     mapscript MAP_SCRIPT_ON_TRANSITION SetVar_PalletTownHome
     mapscript MAP_SCRIPT_ON_FRAME_TABLE LevelScripts_PalletTownHome
     .byte MAP_SCRIPT_TERMIN
 
+.global gMapScripts_PalletTownPlayerHome
+gMapScripts_PalletTownPlayerHome:
+    mapscript MAP_SCRIPT_ON_FRAME_TABLE LevelScripts_PalletTownPlayerHome
+    .byte MAP_SCRIPT_TERMIN
+
 LevelScripts_PalletTownHome:
     levelscript 0x5108, 0, LevelScript_PalletTownHome
     .hword MAP_SCRIPT_TERMIN
+
+LevelScripts_PalletTownPlayerHome:
+    levelscript 0x5100, 0, LevelScript_PalletTownPlayerHome
+    .byte MAP_SCRIPT_TERMIN
+
+LevelScript_PalletTownPlayerHome:
+    fadescreen 0x1
+    fadeoutbgm 0x0
+    sethealingplace 0x1
+    msgbox gText_PleaseStop MSG_KEEPOPEN
+    pause 0x30
+    closeonkeypress
+    msgbox gText_DoYouWantDefinitiveEdition MSG_YESNO
+    compare LASTRESULT YES
+    if equal _goto DefinitiveEdition
+    msgbox gText_DoYouWantMinGrinding MSG_YESNO
+    compare LASTRESULT YES
+    if equal _call setmingrinding
+    msgbox gText_DoYouWantHardcoreMode MSG_YESNO
+    compare LASTRESULT YES
+    if equal _goto sethardcoremode
+    msgbox gText_DoYouWantEasyMode MSG_YESNO
+    compare LASTRESULT YES
+    if equal _call seteasymode
+    msgbox gText_DoYouWantRandomizer MSG_YESNO 
+    compare LASTRESULT YES 
+    if equal _call setrandom 
+    msgbox gText_DoYouWantAbility MSG_YESNO  
+    compare LASTRESULT YES 
+    if equal _call setability 
+    msgbox gText_DoYouWantLearnsets MSG_YESNO 
+    compare LASTRESULT YES 
+    if equal _call setlearnsets
+    goto endofscript
+
+endofscript: 
+    setvar 0x5100 0x1
+    fadeinbgm 0x0 
+    fadescreen 0x0
+    release 
+    end 
+
+DefinitiveEdition:
+    sound 0x30 
+    msgbox gText_DefinitiveEdition  MSG_KEEPOPEN
+    checksound
+    closeonkeypress
+    goto endofscript
+
+sethardcoremode:
+    setflag FLAG_HARDCORE_MODE
+    setflag 0x1032
+    sound 0x30 
+    msgbox gText_hardcoremodeset MSG_KEEPOPEN
+    checksound
+    closeonkeypress
+    goto endofscript
+
+seteasymode:
+    setflag FLAG_EASY_MODE
+    sound 0x30
+    msgbox gText_easymodeset MSG_KEEPOPEN
+    checksound 
+    closeonkeypress
+    return
+
+setmingrinding:
+    setflag 0x1032
+    sound 0x30
+    msgbox gText_setmingrinding MSG_KEEPOPEN
+    checksound
+    closeonkeypress 
+    return
+
+setrandom:
+    setflag 0x940 
+    msgbox gText_RandomizerHard MSG_YESNO 
+    compare LASTRESULT YES 
+    if equal _goto SetHard 
+    sound 0x30
+    msgbox gText_RandomizerSet MSG_KEEPOPEN
+    checksound
+    closeonkeypress 
+    return 
+ 
+SetHard: 
+    setflag 0x93A 
+    sound 0x30
+    msgbox gText_RandomizerSetHard MSG_KEEPOPEN 
+    checksound
+    closeonkeypress 
+    return 
+
+setability:
+    setflag 0x942
+    sound 0x30
+    msgbox gText_RandomAbilitySet MSG_KEEPOPEN
+    checksound
+    closeonkeypress 
+    return 
+
+setlearnsets:
+    setflag 0x941
+    sound 0x30
+    msgbox gText_RandomLearnsets MSG_KEEPOPEN
+    checksound
+    closeonkeypress 
+    return 
 
 SetVar_PalletTownHome:
     compare 0x5108 0x2
@@ -155,5 +271,5 @@ EventScript_mom_Rest:
 	return
 
 EventScript_mom_Movement:
-.byte 0x5A
-.byte 0xFE
+    .byte 0x5A
+    .byte 0xFE

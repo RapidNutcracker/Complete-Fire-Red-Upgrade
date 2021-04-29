@@ -2110,11 +2110,17 @@ bool8 IsBagDisabled(void)
 	// 		return FALSE;
 	// }
 	// #endif
-	if (FlagGet(FLAG_DISABLE_BAG) )
+	if (FlagGet(FLAG_DISABLE_BAG) && !(FlagGet(FLAG_EASY_MODE))){
 		return TRUE;
-	if (ShouldTrainerRandomize())
+	}
+	if(FlagGet(FLAG_HARDCORE_MODE) && (gBattleTypeFlags & BATTLE_TYPE_TRAINER))
+		return TRUE;
+
+	if (ShouldTrainerRandomize() || FlagGet(FLAG_EASY_MODE)){
 		return FALSE;
+	}
 	return TRUE;
+
 	// return (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_TRAINER));
 }
 

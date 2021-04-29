@@ -5,6 +5,9 @@
 .include "../xse_defines.s"
 .include "../asm_defines.s" 
 
+.equ FLAG_HARDCORE_MODE, 0x1034
+.equ VAR_WEATHER, 0x5118
+
 .global EventScript_DumbassKid
 EventScript_DumbassKid:
     checkflag 0x98D
@@ -23,6 +26,8 @@ EventScript_DumbassKid:
     checksound
     msgbox gText_DumbassKid_Battle2 MSG_FACE 
     setflag 0x90E
+    checkflag FLAG_HARDCORE_MODE
+    if 0x1 _call SetWeather 
     trainerbattle3 0x3 0x19 0x0 gText_DumbassKidLoss
     setflag 0x98D
     givepokemon 0x11B 0x5 0x0 0x0 0x0 0x0
@@ -38,6 +43,10 @@ Done:
     msgbox gText_DumbassKid_LastMsg MSG_FACE 
     release
     end
+
+SetWeather:
+    setvar VAR_WEATHER 0x2 
+    return
 
 Good:
     cry 0x11B 0x0

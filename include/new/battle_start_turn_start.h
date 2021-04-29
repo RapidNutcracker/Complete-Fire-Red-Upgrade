@@ -9,6 +9,9 @@
 
 //Exported Functions
 bool8 TryActivateOWTerrain(void);
+bool8 TryActivateVarWeather(void);
+bool8 TryActivateVarBattleAuras(void);
+
 u8 CanActivateTotemBoost(u8 bank);
 u16 GetMUS_ForBattle(void);
 u8 GetTrainerBattleTransition(void);

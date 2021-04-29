@@ -228,3 +228,11 @@ EventScript_Guard_EVTraining:
 	release
 	end
 	
+.global EventScript_Route11_FireStone
+EventScript_Route11_FireStone:
+  	hidesprite 0x800F
+    giveitem ITEM_FIRE_STONE 0x1 MSG_FIND
+    setflag 0x1039
+    release
+    end
+	

@@ -10,7 +10,6 @@ EventScript_givepoweruppunch_Start:
 	textcolor 0x0
 	lock 
 	faceplayer 
-	@ checkflag 0x202 
 	checkitem ITEM_TM101 0x1 
 	compare 0x800D 0x1
 	if greaterorequal _goto EventScript_givepoweruppunch_Done
@@ -25,7 +24,6 @@ EventScript_givepoweruppunch_Start:
 EventScript_givepoweruppunch_Take:
 	msgbox gText_givepoweruppunch_5 0x6
 	giveitem ITEM_TM101 0x1 MSG_OBTAIN
-	@ setflag 0x202
 	msgbox gText_givepoweruppunch_7 0x6
 	release
 	end
@@ -54,6 +52,23 @@ EventScript_machobrace_Done:
 	msgbox gText_machobrace_4 0x6
 	release
 	end
+
+.global EventScript_Route4_WaterStone
+EventScript_Route4_WaterStone:
+    hidesprite 0x800F
+    giveitem ITEM_WATER_STONE 0x1 MSG_FIND
+    setflag 0x1036
+    release
+    end
+
+.global EventScript_Route4_SunStone
+EventScript_Route4_SunStone:
+    hidesprite 0x800F
+    giveitem ITEM_SUN_STONE 0x1 MSG_FIND
+    setflag 0x1037
+    release
+    end
+
 
 .global gMapScripts_Route4
 gMapScripts_Route4:

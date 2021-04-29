@@ -560,4 +560,11 @@ EventScript_Route8_SmartStrike:
     setflag 0x1031
     release
     end
-    
+
+.global EventScript_Route3_ThunderStone
+EventScript_Route3_ThunderStone:
+    hidesprite 0x800F
+    giveitem ITEM_THUNDER_STONE 0x1 MSG_FIND
+    setflag 0x103A
+    release
+    end

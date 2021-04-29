@@ -946,7 +946,11 @@ void atk0F_resultmessage(void)
 				gProtectStructs[gBankTarget].enduredSturdy = 0;
 				gBattleScripting.bank = gBankTarget;
 				BattleScriptPushCursor();
-				gBattlescriptCurrInstr = BattleScript_EnduredSturdy;
+				if ( (VarGet(VAR_BATTLE_AURAS) == FIGHTING_SPIRIT) /* && (SIDE(gBankTarget) == B_SIDE_OPPONENT)*/ ) {
+					gBattlescriptCurrInstr = BattleScript_EnduredFightingSpirit;
+				}
+				else
+					gBattlescriptCurrInstr = BattleScript_EnduredSturdy;
 				return;
 			}
 			else
@@ -1039,7 +1043,12 @@ void atk0F_resultmessage(void)
 					gNewBS->EnduranceHelper[gBankTarget] = 0;
 					gProtectStructs[gBankTarget].enduredSturdy = 0;
 					gBattleScripting.bank = gBankTarget;
-					gBattlescriptCurrInstr = BattleScript_EnduredSturdy;
+					if ( (VarGet(VAR_BATTLE_AURAS) == FIGHTING_SPIRIT)  /*&& (SIDE(gBankTarget) == B_SIDE_OPPONENT)*/ ) {
+						gBattlescriptCurrInstr = BattleScript_EnduredFightingSpirit;
+					}	
+					else {
+						gBattlescriptCurrInstr = BattleScript_EnduredSturdy;
+					}
 				}
 				else
 					gBattlescriptCurrInstr = BattleScript_EnduredMsg;

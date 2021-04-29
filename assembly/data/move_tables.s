@@ -68,6 +68,10 @@ move_tables.s
 .global gMovesWithQuietBGM
 .global gRandomizerBannedMoves
 
+.global gHardcoreBannedMoves
+.global gHardcoreHalfBannedMoves
+.global gHardcoreTrashBannedMoves
+
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 gGravityBannedMoves:
@@ -336,6 +340,69 @@ gRandomizerBannedMoves:
 .hword MOVE_HYPERSPACEFURY
 .hword MOVE_DARKVOID
 .hword MOVE_NONE
+.hword MOVE_TABLES_TERMIN
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+gHardcoreBannedMoves:
+.hword MOVE_SHELLSMASH
+.hword MOVE_QUIVERDANCE
+.hword MOVE_DRAGONDANCE
+.hword MOVE_CALMMIND
+.hword MOVE_BULKUP
+.hword MOVE_CURSE
+.hword MOVE_RAINDANCE
+.hword MOVE_SANDSTORM
+.hword MOVE_HAIL
+.hword MOVE_SUNNYDAY
+.hword MOVE_ELECTRICTERRAIN
+.hword MOVE_MISTYTERRAIN
+.hword MOVE_GRASSYTERRAIN
+.hword MOVE_PSYCHICTERRAIN
+.hword MOVE_TOXICSPIKES
+.hword MOVE_STICKYWEB
+.hword MOVE_SHIFTGEAR
+.hword MOVE_TAILGLOW
+.hword MOVE_COIL
+.hword MOVE_BELLYDRUM
+.hword MOVE_COTTONGUARD
+.hword MOVE_NORETREAT
+.hword MOVE_AMNESIA
+.hword MOVE_ACIDARMOR
+.hword MOVE_IRONDEFENSE
+.hword MOVE_COSMICPOWER
+.hword MOVE_STOCKPILE
+.hword MOVE_SWALLOW
+.hword MOVE_SPITUP
+.hword MOVE_GEOMANCY
+.hword MOVE_CLANGOROUSSOUL
+.hword MOVE_FELLSTINGER
+.hword MOVE_TRICKROOM
+.hword MOVE_STRENGTHSAP
+.hword MOVE_SKULLBASH
+.hword MOVE_METEORBEAM
+.hword MOVE_TAUNT
+.hword MOVE_PSYCHUP
+.hword MOVE_SNATCH
+.hword MOVE_MAGICCOAT
+.hword MOVE_TABLES_TERMIN
+
+gHardcoreHalfBannedMoves:
+.hword MOVE_POWERUPPUNCH
+.hword MOVE_STEALTHROCK
+.hword MOVE_LEECHSEED
+.hword MOVE_CHARGEBEAM
+.hword MOVE_DEFOG
+.hword MOVE_GROWTH
+.hword MOVE_WORKUP
+.hword MOVE_HONECLAWS
+.hword MOVE_AGILITY
+.hword MOVE_ROCKPOLISH
+.hword MOVE_TOXIC
+.hword MOVE_TABLES_TERMIN
+
+gHardcoreTrashBannedMoves:
+.hword MOVE_NASTYPLOT
+.hword MOVE_SWORDSDANCE
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -772,6 +839,7 @@ gKickingMoves:
 .hword MOVE_DOUBLEKICK
 .hword MOVE_PYROBALL
 .hword MOVE_HIGHHORSEPOWER
+.hword MOVE_LOWSWEEP
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

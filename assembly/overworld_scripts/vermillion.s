@@ -5,6 +5,11 @@
 .include "../xse_defines.s"
 .include "../asm_defines.s" 
 
+.equ FLAG_HARDCORE_MODE, 0x1034
+.equ VAR_TERRAIN, 0x5000
+.equ VAR_BATTLE_AURAS, 0x5119
+.equ IMMUNE_TO_GROUND_STRING, 0x3
+
 .global EventScript_punchtutor_Start 
 EventScript_punchtutor_Start:
 	lock
@@ -171,9 +176,16 @@ EventScript_ltsurge_Rematch:
 	setflag 0x915
 	setflag 0x90E
 	special 0x0
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _call SetBattleAuras
 	trainerbattle1 0x1 0x33 0x0 gText_ltsurge_Battle gText_ltsurge_Seconddefeat EventScript_ltsurge_Rematchwon
 	release
 	end
+
+SetBattleAuras:
+	setvar VAR_TERRAIN 0x1
+	setvar VAR_BATTLE_AURAS IMMUNE_TO_GROUND_STRING
+	return
 
 EventScript_ltsurge_Cleardis:
 	clearflag 0xA1
@@ -185,7 +197,8 @@ EventScript_ltsurge_Cancel:
 	end
 
 EventScript_ltsurge_Rematchwon:
-	clearflag 0x915
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _goto HardcoreRematchWon
 	msgbox gText_ltsurge_Won2text 0x6
 	giveitem ITEM_LIGHT_CLAY 0x1 MSG_OBTAIN
 	giveitem ITEM_MANECTITE 0x1 MSG_OBTAIN
@@ -194,8 +207,16 @@ EventScript_ltsurge_Rematchwon:
 	release
 	end
 
+HardcoreRematchWon:
+	msgbox gText_ltsurge_Won2text 0x6
+	giveitem ITEM_MANECTITE 0x1 MSG_OBTAIN
+	setflag 0x934
+	msgbox gText_ltsurge_InfoHard 0x6
+	release
+	end
+
 EventScript_ltsurge_DefeatedRematch:
-	msgbox gText_ltsurge_Info 0x6
+	msgbox gText_ltsurge_InfoHard 0x6
 	release
 	end
 
@@ -207,36 +228,6 @@ EventScript_SSAnne_CantForget:
 	release
 	end
 
-.global EventScript_Verm_EXPShare
-EventScript_Verm_EXPShare:
-	lock
-	faceplayer 
-	msgbox gText_DoYouWantRandomizer MSG_YESNO 
-    compare LASTRESULT YES 
-    if equal _call setrandom 
-    @ msgbox gText_DoYouWantAbility MSG_YESNO 
-    @ compare LASTRESULT YES 
-    @ if equal _call setability 
-    @ msgbox gText_DoYouWantLearnsets MSG_YESNO 
-    @ compare LASTRESULT YES 
-    @ if equal _call setlearnsets 
-    @ setvar 0x5100 0x1
-    release 
-    end 
-
-setrandom:
-    setflag 0x940 
-    msgbox gText_RandomizerHard MSG_YESNO 
-    compare LASTRESULT YES 
-    if equal _goto SetHard 
-    msgbox gText_RandomizerSet MSG_NORMAL 
-    return 
- 
-SetHard: 
-    clearflag 0x93A 
-	setflag 0x943
-    msgbox gText_RandomizerSetHard MSG_NORMAL 
-    return 
 
 .global EventScript_Verm_newTruant
 EventScript_Verm_newTruant:

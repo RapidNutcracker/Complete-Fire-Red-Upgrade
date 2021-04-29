@@ -2155,6 +2155,15 @@ const struct SpecialBattleFrontierTrainer gFrontierBrains[] =
 		},
 };
 
+const struct MultiBattleTowerTrainer gBossBattleTrainers[] =
+{
+	{
+		.otId = 0x2D,
+		.regSpreadSize = NELEMS(gMultiTowerSpread_Milo),
+	}
+
+}
+
 const struct MultiBattleTowerTrainer gFrontierMultiBattleTrainers[] =
 {
 	{

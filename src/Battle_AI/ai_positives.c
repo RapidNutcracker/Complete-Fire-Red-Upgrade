@@ -735,7 +735,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 
 		case EFFECT_SNORE:
 		case EFFECT_SLEEP_TALK:
-			if (data->atkStatus1 & STATUS1_SLEEP)
+			if (data->atkStatus1 & STATUS1_SLEEP || atkAbility == ABILITY_COMATOSE)
 				INCREASE_VIABILITY(10);
 			break;
 
@@ -1208,7 +1208,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 					{
 						if (!BankHasMonToSwitchTo(bankAtk))
 							break; //Can't switch
-						if (move == MOVE_TELEPORT && IsTrickRoomActive() )
+						if (move == MOVE_TELEPORT && IsTrickRoomActive() && !FlagGet(FLAG_HARDCORE_MODE) )
 						{
 							INCREASE_VIABILITY(9);
 						}

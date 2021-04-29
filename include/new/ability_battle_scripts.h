@@ -72,6 +72,7 @@ extern const u8 BattleScript_DisguiseTransform[];
 extern const u8 BattleScript_IceFaceTookDamage[];
 extern const u8 BattleScript_IceFaceTransform[];
 extern const u8 BattleScript_EnduredSturdy[];
+extern const u8 BattleScript_EnduredFightingSpirit[];
 extern const u8 BattleScript_Receiver[];
 extern const u8 BattleScript_PrimalWeatherEnd[];
 extern const u8 BattleScript_Symbiosis[];

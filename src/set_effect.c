@@ -273,8 +273,13 @@ void SetMoveEffect(bool8 primary, u8 certain)
 				gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_POISON; //Toxic becomes regular poison on a Dynamaxed opponent
 
 			if (gBattleCommunication[MOVE_EFFECT_BYTE] == MOVE_EFFECT_SLEEP){
-				if (SIDE(gBankTarget) == B_SIDE_OPPONENT && (gBattleTypeFlags & BATTLE_TYPE_TRAINER)) { //degen addition, AI only min turns of sleep
-					gBattleMons[gEffectBank].status1 |= ((Random2() % 2) + 2);
+				if (SIDE(gBankTarget) == B_SIDE_OPPONENT && (gBattleTypeFlags & BATTLE_TYPE_TRAINER)) { //degen addition, AI has high chance of min turns of sleep
+					if (Random2() % 2 == 0){ //very high chance for AI to get a single turn sleep
+						gBattleMons[gEffectBank].status1 |= 2;
+					}
+					else {
+						gBattleMons[gEffectBank].status1 |= ((Random2() % 2) + 3);
+					}
 				}
 				else{
 					gBattleMons[gEffectBank].status1 |= ((Random2() % 3) + 2);

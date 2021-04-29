@@ -189,8 +189,31 @@ enum //These vars need to be one after the other (hence the enum)
 #define FLAG_POKEMON_RANDOMIZER 0x940 //Setting randomizes Pokemon species that are created.
 #define FLAG_POKEMON_LEARNSET_RANDOMIZER 0x941 //Setting randomizes Pokemon learnsets.
 #define FLAG_ABILITY_RANDOMIZER 0x942 //Setting randomizes Pokemon abilities.
+
+
+//Newly Added: 
 #define FLAG_WONDER_TRADE 0x94F
 #define FLAG_EXPERT_DIFFICULTY 0x93A 
+#define FLAG_MINIMAL_GRINDING_MODE 0x1032
+#define FLAG_EASY_MODE 0x1033
+#define FLAG_HARDCORE_MODE 0x1034
+#define PLAYER_MAX_LEVEL 103
+#define ONE_BELOW_PLAYER_MAX_LEVEL 102
+#define TWO_BELOW_PLAYER_MAX_LEVEL 101
+#define SINGLE_BATTLE 0
+#define DOUBLE_BATTLE 1 
+#define VAR_WEATHER 0x5118
+#define VAR_BATTLE_AURAS 0x5119
+#define FIGHTING_SPIRIT 11
+#define FIGHTING_SPIRIT_STRING 1
+#define PERMA_TRICK_ROOM_STRING 2
+#define PERMA_TRICK_ROOM 12
+#define IMMUNE_TO_GROUND_STRING 3
+#define IMMUNE_TO_GROUND 13
+#define AURA_SOLIDROCK_STRING 4
+#define AURA_SOLIDROCK 14
+#define AURA_TAILWIND_STRING 5
+#define AURA_TAILWIND 15
 #define NUM_SPECIES_RANDOMIZER NUM_SPECIES // The final number of Pokemon (+ 1) of species that can appear in the randomizer
 
 /*===== Pre-existing Offsets =====*/

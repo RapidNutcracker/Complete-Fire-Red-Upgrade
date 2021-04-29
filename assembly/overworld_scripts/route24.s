@@ -133,4 +133,11 @@ YouBeGood:
 	msgbox gText_nuggetbridge_5 MSG_NORMAL
 	release 
 	end 
-	
+
+.global EventScript_Route24_LeafStone
+EventScript_Route24_LeafStone:
+    hidesprite 0x800F
+    giveitem ITEM_LEAF_STONE 0x1 MSG_FIND
+    setflag 0x1038
+    release
+    end

@@ -142,6 +142,7 @@ extern bool8 sp051_CanTeamParticipateInSkyBattle(void);
 extern bool8 CanMonParticipateInASkyBattle(struct Pokemon* mon);
 
 //This file's functions:
+static u8 BuildExpertBossParty(struct Pokemon* const party, const u16 trainerId, const struct MultiRaidTrainer bossData);
 static u8 CreateNPCTrainerParty(struct Pokemon* const party, const u16 trainerNum, const bool8 firstTrainer, const bool8 side);
 #if (defined SCALED_TRAINERS && !defined  DEBUG_NO_LEVEL_SCALING)
 static u8 GetPlayerBiasedAverageLevel(u8 maxLevel);
@@ -313,7 +314,7 @@ void BuildTrainerPartySetup(void)
 		do
 		{
 			playerMonId = Random() % PARTY_SIZE;
-		} while (GetMonData(&gPlayerParty[playerMonId], MON_DATA_SPECIES, NULL) == SPECIES_NONE);
+		} while (GetMonData(&gPlayerParty[playerMonId], MON_DATA_SPECIES, NULL) == SPECIES_NONE); 
 
 		do
 		{
@@ -323,7 +324,7 @@ void BuildTrainerPartySetup(void)
 		temp = gPlayerParty[playerMonId];
 		gPlayerParty[playerMonId] = gEnemyParty[enemyMonId];
 		gEnemyParty[enemyMonId] = temp;
-	}
+	} 
 
 	if (ViableMonCount(gEnemyParty) <= 1 && !IsRaidBattle()) //Error prevention
 		gBattleTypeFlags &= ~(BATTLE_TYPE_INGAME_PARTNER | BATTLE_TYPE_TWO_OPPONENTS | BATTLE_TYPE_DOUBLE);
@@ -409,7 +410,7 @@ u16 sp068_GivePlayerFrontierMonGivenSpecies(void)
 			break;
 		case 3:
 			numSpreads = TOTAL_LEGENDARY_SPREADS;
-			spreads = gFrontierLegendarySpreads;
+			spreads = gFrontierLegendarySpreads; 
 			break;
 		case 4: //Any Spread
 			numSpreads = TOTAL_SPREADS;
@@ -456,7 +457,7 @@ u16 GiveRandomFrontierMonByTier(u8 side, u8 tier, u16 spreadType)
 	u8 level;
 	u16 numSpreads;
 	struct Pokemon mon;
-	const struct BattleTowerSpread* spread;
+	const struct BattleTowerSpread* spread; 
 	const struct BattleTowerSpread* spreads;
 
 	switch (spreadType) {
@@ -488,18 +489,18 @@ u16 GiveRandomFrontierMonByTier(u8 side, u8 tier, u16 spreadType)
 			spreads = gMiddleCupSpreads;
 			tier = BATTLE_FACILITY_MIDDLE_CUP;
 			break;
-	}
+	} 
 
-	do
+	do 
 	{
 		spread = TryAdjustSpreadForSpecies(&spreads[Random() % numSpreads]);
 	} while (IsPokemonBannedBasedOnStreak(spread->species, spread->item, NULL, 0, 0, tier, TRUE)
-		  || PokemonTierBan(spread->species, spread->item, spread, NULL, tier, CHECK_BATTLE_TOWER_SPREADS));
+		  || PokemonTierBan(spread->species, spread->item, spread, NULL, tier, CHECK_BATTLE_TOWER_SPREADS)); 
 
 	CreateFrontierMon(&mon, level, spread, 0, 0, 0, TRUE);
 
 	if (side == B_SIDE_PLAYER)
-	{
+	{ 
 		SetMonPokedexFlags(&mon);
 		return GiveMonToPlayer(&mon);
 	}
@@ -532,6 +533,35 @@ void sp06B_ReplacePlayerTeamWithMultiTrainerTeam(void)
 	BuildFrontierMultiParty(Var8000);
 }
 
+static u8 BuildExpertBossParty(struct Pokemon* const party, const u16 trainerId, const struct MultiRaidTrainer bossData)
+{
+	for(u8 i = 0; i < bossData.spreadSizes[0]; i++) {
+		u8 level = bossData.spreads[0][i].level; 
+
+		if (bossData.backSpriteId == DOUBLE_BATTLE) {
+			gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
+		}
+		if (FlagGet(FLAG_SCALE_TRAINER_LEVELS)) { 
+			level = GetHighestMonLevel(gPlayerParty);
+		} 
+
+		switch (level) {
+			case PLAYER_MAX_LEVEL:
+				level = GetHighestMonLevel(gPlayerParty);
+				break;
+			case ONE_BELOW_PLAYER_MAX_LEVEL:
+				level = GetHighestMonLevel(gPlayerParty) - 1;
+				break;
+			case TWO_BELOW_PLAYER_MAX_LEVEL:
+				level = GetHighestMonLevel(gPlayerParty) - 2;
+				break;
+		}
+
+		CreateFrontierMon(&party[i], level, &bossData.spreads[0][i], trainerId, 0, 0, FALSE );
+	}
+	return bossData.spreadSizes[0]; 
+}
+
 //Returns the number of Pokemon
 static u8 CreateNPCTrainerParty(struct Pokemon* const party, const u16 trainerId, const bool8 firstTrainer, const bool8 side)
 {
@@ -546,6 +576,13 @@ static u8 CreateNPCTrainerParty(struct Pokemon* const party, const u16 trainerId
 	else if (IsFrontierTrainerId(trainerId))
 		return BuildFrontierParty(party, trainerId, BATTLE_FACILITY_STANDARD, firstTrainer, FALSE, side);
 
+	if (FlagGet(FLAG_HARDCORE_MODE) && side == B_SIDE_OPPONENT ){
+		for(u8 i = 0; i < gNumExpertBossBattles; i++) {
+			if (trainerId == gExpertBossBattles[i].otId) {
+				return BuildExpertBossParty(party, trainerId, gExpertBossBattles[i]);  
+			}
+		}
+	}
 	//Check if can build team
 	if (((gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_TRAINER_TOWER)) == BATTLE_TYPE_TRAINER)
 	||   (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER))
@@ -565,6 +602,9 @@ static u8 CreateNPCTrainerParty(struct Pokemon* const party, const u16 trainerId
 		#endif
 		{
 			baseIV = MathMin(gBaseIVsByTrainerClass[trainer->trainerClass], 31);
+			if(FlagGet(FLAG_HARDCORE_MODE || FLAG_MINIMAL_GRINDING_MODE)){
+				baseIV = 31; //all trainer mons have max ivs in hardcore//minimal grinding mode
+			}
 			if (baseIV == 0) //No data in the table
 				baseIV = STANDARD_IV;
 		}
@@ -745,7 +785,6 @@ static u8 CreateNPCTrainerParty(struct Pokemon* const party, const u16 trainerId
 						break;
 				}
 			}
-
 			//Assign Trainer information to mon
 			u8 otGender = trainer->gender;
 			const u8* name = TryGetRivalNameByTrainerClass(gTrainers[trainerId].trainerClass);
@@ -772,8 +811,9 @@ static u8 CreateNPCTrainerParty(struct Pokemon* const party, const u16 trainerId
 			&& spreadNum < NELEMS(gTrainersWithEvsSpreads)) //Valid id
 			{
 				const struct TrainersWithEvs* spread = &gTrainersWithEvsSpreads[spreadNum];
-
-				SET_EVS(spread);
+				if (!FlagGet(FLAG_MINIMAL_GRINDING_MODE) && !FlagGet(FLAG_EASY_MODE)){
+					SET_EVS(spread);
+				}
 				if (spread->hiddenPower){
 					switch (spread->hiddenPower){
 						case TYPE_FIGHTING:
@@ -846,19 +886,19 @@ static u8 CreateNPCTrainerParty(struct Pokemon* const party, const u16 trainerId
 				}
 
 				SetMonData(&party[i], MON_DATA_POKEBALL, &ballType);
-
+				u8 nature = spread->nature; 
 				switch(spread->ability) {
 					case Ability_Hidden:
 					TRAINER_WITH_EV_GIVE_HIDDEN_ABILITY:
-						GiveMonNatureAndAbility(&party[i], spread->nature, 0xFF, FALSE, TRUE, FALSE); //Give Hidden Ability
+						GiveMonNatureAndAbility(&party[i], nature, 0xFF, FALSE, TRUE, FALSE); //Give Hidden Ability
 						break;
 					case Ability_1:
 					case Ability_2:
-						GiveMonNatureAndAbility(&party[i], spread->nature, MathMin(1, spread->ability - 1), FALSE, TRUE, FALSE);
+						GiveMonNatureAndAbility(&party[i], nature, MathMin(1, spread->ability - 1), FALSE, TRUE, FALSE);
 						break;
 					case Ability_Random_1_2:
 					TRAINER_WITH_EV_GIVE_RANDOM_ABILITY:
-						GiveMonNatureAndAbility(&party[i], spread->nature, Random() % 2, FALSE, TRUE, FALSE);
+						GiveMonNatureAndAbility(&party[i], nature, Random() % 2, FALSE, TRUE, FALSE);
 						break;
 					case Ability_RandomAll: ;
 						u8 random = Random() % 3;
@@ -1146,9 +1186,9 @@ static u8 BuildFrontierParty(struct Pokemon* const party, const u16 trainerId, c
 		bool8 loop = TRUE;
 		u16 species, dexNum, item;
 		u8 ability, itemEffect, class;
-		const struct BattleTowerSpread* spread = NULL;
+		const struct BattleTowerSpread* spread = NULL; 
 
-		do
+		do 
 		{ 
 			switch (trainerId) {
 				case BATTLE_TOWER_SPECIAL_TID:
@@ -1861,7 +1901,9 @@ static void CreateFrontierMon(struct Pokemon* mon, const u8 level, const struct 
 	struct Pokemon* party = mon;
 
 	SET_IVS(spread);
-	SET_EVS(spread);
+	if(!FlagGet(FLAG_MINIMAL_GRINDING_MODE) && !FlagGet(FLAG_EASY_MODE)){
+		SET_EVS(spread);
+	}
 
 	if (spread->ability > FRONTIER_ABILITY_HIDDEN)
 	{
@@ -3280,7 +3322,7 @@ static void TryShuffleMovesForCamomons(struct Pokemon* party, u8 tier, u16 train
 
 bool8 IsMonAllowedInBattleTower(struct Pokemon* mon)
 {
-	if (FlagGet(FLAG_BATTLE_FACILITY))
+	if (FlagGet(FLAG_BATTLE_FACILITY)) 
 	{
 		u16 species = mon->species;
 		u16 item = mon->item;
@@ -3314,7 +3356,7 @@ bool8 IsMonAllowedInBattleTower(struct Pokemon* mon)
 			|| (tier == BATTLE_FACILITY_GS_CUP && !IsFrontierSingles(VarGet(VAR_BATTLE_FACILITY_BATTLE_TYPE)) && TooManyLegendariesOnGSCupTeam(mon->species, partySize, speciesArray)))
 				return FALSE;
 		}
-	}
+	} 
 	else if (mon->hp == 0 || GetMonData(mon, MON_DATA_IS_EGG, NULL)) //Regular multi battle probably
 		return FALSE;
 
@@ -3353,7 +3395,7 @@ static u8 GetHighestMonLevel(const struct Pokemon* const party)
 		if (max == MAX_LEVEL)
 			return max;
 		if(species == SPECIES_NONE){
-			if(!FlagGet(FLAG_SYS_GAME_CLEAR))
+			if(!FlagGet(FLAG_SYS_GAME_CLEAR) && !FlagGet(FLAG_HARDCORE_MODE))
 				max = max - 2;
 			return max;
 		}
@@ -3363,11 +3405,11 @@ static u8 GetHighestMonLevel(const struct Pokemon* const party)
 		level = GetMonData(&party[i], MON_DATA_LEVEL, NULL);
 		if (level > max)
 			max = level;
-		if (max < 24){
+		if (max < 24 && !FlagGet(FLAG_HARDCORE_MODE)){
 			max = 26;
 		}
 	}
-	if(!FlagGet(FLAG_SYS_GAME_CLEAR))
+	if(!FlagGet(FLAG_SYS_GAME_CLEAR) && !FlagGet(FLAG_HARDCORE_MODE))
 		max = max - 2; 
 
 	return max;
@@ -3378,7 +3420,7 @@ u8 GetMonPokeBall(struct PokemonSubstruct0* data)
 	return data->pokeball;
 }
 
-void SetMonPokeBall(struct PokemonSubstruct0* data, u8 ballId)
+void SetMonPokeBall(struct PokemonSubstruct0* data, u8 ballId) 
 {
 	data->pokeball = ballId;
 }
@@ -3595,9 +3637,73 @@ bool8 ShouldTrainerRandomize()
 
 	if (trainerClass == CLASS_BOSS || trainerClass == CLASS_CHAMPION || trainerClass == CLASS_RUIN_MANIAC_RS || trainerClass == CLASS_RIVAL_2 || trainerClass == CLASS_AQUA_LEADER || trainerClass == CLASS_TEAM_AQUA || trainerClass == CLASS_AROMA_LADY_RS || trainerClass == CLASS_PKMN_TRAINER_2 || trainerClass == CLASS_LEADER || trainerClass == CLASS_ELITE_4 
 	    || trainerClass == CLASS_MAGMA_ADMIN || trainerClass == CLASS_MAGMA_LEADER || trainerClass == CLASS_BUG_MANIAC || trainerClass == CLASS_COOLTRAINER)
-	/*|| trainerClass == CLASS_RIVAL_2 || trainerClass == CLASS_RIVAL || trainerClass == CLASS_PKMN_TRAINER_1
-    || trainerClass == CLASS_AQUA_LEADER || trainerClass ==  CLASS_TEAM_AQUA || trainerClass == CLASS_AROMA_LADY_RS 
-	|| trainerClass == CLASS_RUIN_MANIAC_RS){ */
+	{
+		return FALSE; 
+	}
+
+	return TRUE; 
+	
+} 
+
+void CheckIfShiny() 
+{
+	struct Pokemon* mon = &gPlayerParty[Var8004];
+	bool8 isShiny = IsMonShiny(mon);
+	if(isShiny) {
+		gSpecialVar_LastResult = TRUE; 
+	} 
+	else{
+		gSpecialVar_LastResult = FALSE; 
+	}
+}
+
+void CheckIfChuckApproves()  
+{  
+	struct Pokemon* mon = &gPlayerParty[Var8004];
+	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+	if (gBaseStats[species].baseAttack >= 125) {
+		gSpecialVar_LastResult = TRUE; 
+	}
+	else{
+		gSpecialVar_LastResult = FALSE; 
+	}
+}
+
+void CheckIfKogaApproves()  
+{  
+	struct Pokemon* mon = &gPlayerParty[Var8004];
+	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+	if (gBaseStats[species].baseSpeed >= 115) {
+		gSpecialVar_LastResult = TRUE; 
+	}
+	else{
+		gSpecialVar_LastResult = FALSE; 
+	}
+}
+
+
+bool8 ShouldTrainerMugshot() 
+{  
+	u16 trainerId = gTrainerBattleOpponent_A; //added 
+	u16 trainerClass = gTrainers[trainerId].trainerClass; //added 
+	// if(!(gBattleTypeFlags & (BATTLE_TYPE_TRAINER)) ){
+	// 	return TRUE;
+	// }
+
+	if (FlagGet(FLAG_HARDCORE_MODE))
+	{
+		for(u8 i = 0; i < gNumExpertBossBattles; i++) {
+			if (trainerId == gExpertBossBattles[i].otId) {
+				return FALSE; 
+			}
+		}
+	}
+	else if(!(gBattleTypeFlags & (BATTLE_TYPE_TRAINER)) ){
+		return TRUE;
+	}
+
+	if (trainerClass == CLASS_BOSS || trainerClass == CLASS_CHAMPION || trainerClass == CLASS_RUIN_MANIAC_RS || trainerClass == CLASS_RIVAL_2 || trainerClass == CLASS_AQUA_LEADER || trainerClass == CLASS_TEAM_AQUA || trainerClass == CLASS_AROMA_LADY_RS || trainerClass == CLASS_PKMN_TRAINER_2 || trainerClass == CLASS_LEADER || trainerClass == CLASS_ELITE_4 
+	    || trainerClass == CLASS_MAGMA_ADMIN || trainerClass == CLASS_MAGMA_LEADER || trainerClass == CLASS_BUG_MANIAC)
 	{
 		return FALSE; 
 	}
@@ -3710,8 +3816,6 @@ void TryRandomizeSpecies(unusedArg u16* species)
                 newSpecies = (newSpecies + offset++) * id; //Offset the new species by an increasing number to fix problem
                 newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
             }
-			// if (checkHowMany >= 20)
-			// 	newSpecies = SPECIES_DITTO;
 
             prevNewSpecies = newSpecies; 
 		} while (!CheckTableForSpecies(newSpecies, gWonderTradeList));
@@ -3789,22 +3893,32 @@ void CreateBoxMon(struct BoxPokemon* boxMon, u16 species, u8 level, u8 fixedIV, 
 		u32 iv;
 		value = Random();
 
-		iv = value & 0x1F;
-		SetBoxMonData(boxMon, MON_DATA_HP_IV, &iv);
-		iv = (value & 0x3E0) >> 5;
-		SetBoxMonData(boxMon, MON_DATA_ATK_IV, &iv);
-		iv = (value & 0x7C00) >> 10;
-		SetBoxMonData(boxMon, MON_DATA_DEF_IV, &iv);
+		if (FlagGet(FLAG_MINIMAL_GRINDING_MODE)) {
+			u8 perfect = 31;
+			SetBoxMonData(boxMon, MON_DATA_HP_IV, &perfect);
+			SetBoxMonData(boxMon, MON_DATA_ATK_IV, &perfect);
+			SetBoxMonData(boxMon, MON_DATA_DEF_IV, &perfect);
+			SetBoxMonData(boxMon, MON_DATA_SPATK_IV, &perfect);
+			SetBoxMonData(boxMon, MON_DATA_SPDEF_IV, &perfect);
+			SetBoxMonData(boxMon, MON_DATA_SPEED_IV, &perfect);
+		}
+		else{ 
+			iv = value & 0x1F;
+			SetBoxMonData(boxMon, MON_DATA_HP_IV, &iv);
+			iv = (value & 0x3E0) >> 5;
+			SetBoxMonData(boxMon, MON_DATA_ATK_IV, &iv);
+			iv = (value & 0x7C00) >> 10;
+			SetBoxMonData(boxMon, MON_DATA_DEF_IV, &iv);
 
-		value = Random();
+			value = Random();
 
-		iv = value & 0x1F;
-		SetBoxMonData(boxMon, MON_DATA_SPEED_IV, &iv);
-		iv = (value & 0x3E0) >> 5;
-		SetBoxMonData(boxMon, MON_DATA_SPATK_IV, &iv);
-		iv = (value & 0x7C00) >> 10;
-		SetBoxMonData(boxMon, MON_DATA_SPDEF_IV, &iv);
-
+			iv = value & 0x1F;
+			SetBoxMonData(boxMon, MON_DATA_SPEED_IV, &iv);
+			iv = (value & 0x3E0) >> 5;
+			SetBoxMonData(boxMon, MON_DATA_SPATK_IV, &iv);
+			iv = (value & 0x7C00) >> 10;
+			SetBoxMonData(boxMon, MON_DATA_SPDEF_IV, &iv);
+		}
 		#ifdef CREATE_WITH_X_PERFECT_IVS
 		{
 			// if (FlagGet(FLAG_SYS_GAME_CLEAR))
@@ -3943,7 +4057,7 @@ void CalculateMonStatsNew(struct Pokemon *mon)
 		newMaxHP = MathMin((((n + evs[STAT_HP] / 4) * level) / 100) + level + 10, 0xFFFF);
 	}
 
-	gBattleScripting.field_23 = newMaxHP - oldMaxHP;
+	gBattleScripting.field_23 = newMaxHP - oldMaxHP; 
 	if (gBattleScripting.field_23 == 0)
 		gBattleScripting.field_23 = 1;
 
@@ -4006,12 +4120,71 @@ void CalculateMonStatsNew(struct Pokemon *mon)
 	SetMonData(mon, MON_DATA_HP, &currentHP);
 }
 
-u8 TryRandomizeAbility(u8 ability, unusedArg u16 species)
+// u8 TryRandomizeAbility(u8 ability, unusedArg u16 species)
+u8 TryRandomizeAbility(u8 ability, const struct Pokemon* mon)
 {
 	u32 newAbility = ability;
+	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+	bool8 dontRandomize = TRUE;
+	for (u8 i = 0; i < PARTY_SIZE; i++) {
+		u32 otId = GetMonData(mon, MON_DATA_OT_ID, NULL);
+		if (gPlayerParty[i].otid == otId){
+			dontRandomize = FALSE;
+			break;
+		}
+	}
+	// this is to swap the banned abilities in hardcore mode
+	if (FlagGet(FLAG_HARDCORE_MODE)){
+		u32 otId = GetMonData(mon, MON_DATA_OT_ID, NULL);
+		if (otId == (u32) T1_READ_32(gSaveBlock2->playerTrainerId)){
+			
+			switch (ability) {
+				case ABILITY_DROUGHT:
+					return ABILITY_SOLARPOWER;
 
+				case ABILITY_DRIZZLE:
+					return ABILITY_SWIFTSWIM; 
+
+				case ABILITY_SNOWWARNING:
+					return ABILITY_SLUSHRUSH;
+
+				case ABILITY_SANDSTREAM:
+					if ( species == SPECIES_TYRANITAR || species == SPECIES_TYRANITAR_MEGA)
+						return ABILITY_SOLIDROCK;
+					return ABILITY_SANDFORCE; 
+				
+				case ABILITY_SANDSPIT:
+					return ABILITY_SANDFORCE;
+				
+				case ABILITY_SPEEDBOOST:
+					return ABILITY_INFILTRATOR;
+				
+				case ABILITY_CONTRARY:
+					return ABILITY_CLEARBODY;
+				
+				case ABILITY_MAGICBOUNCE:
+					return ABILITY_MAGICGUARD; 
+
+				case ABILITY_PSYCHICSURGE:
+				case ABILITY_MISTYSURGE:
+				case ABILITY_GRASSYSURGE:
+				case ABILITY_ELECTRICSURGE:
+					return ABILITY_TELEPATHY;
+				
+				case ABILITY_MOXIE:
+				case ABILITY_SOULHEART:
+				case ABILITY_BEASTBOOST:
+					return ABILITY_UNNERVE;
+					
+				case ABILITY_IMPOSTER:
+					return ABILITY_LIMBER;
+
+			}
+		}
+			return ability;
+	}
 	#ifdef FLAG_ABILITY_RANDOMIZER
-	if (FlagGet(FLAG_ABILITY_RANDOMIZER) && !FlagGet(FLAG_BATTLE_FACILITY) && ShouldTrainerRandomize())
+	if (FlagGet(FLAG_ABILITY_RANDOMIZER) && !FlagGet(FLAG_BATTLE_FACILITY) && (ShouldTrainerRandomize() || !dontRandomize))
 	{
 		u32 id = MathMax(1, T1_READ_32(gSaveBlock2->playerTrainerId)); //0 id would mean Pokemon wouldn't have ability
 		id = id + (u32) gClock.dayOfWeek; 
@@ -4028,6 +4201,26 @@ u8 TryRandomizeAbility(u8 ability, unusedArg u16 species)
 	return newAbility;
 }
 
+u8 TryRandomizeAbility2(u8 ability, const u16 species)
+{
+	u32 newAbility = ability;
+	#ifdef FLAG_ABILITY_RANDOMIZER
+	if (FlagGet(FLAG_ABILITY_RANDOMIZER) && !FlagGet(FLAG_BATTLE_FACILITY) && ShouldTrainerRandomize() )
+	{
+		u32 id = MathMax(1, T1_READ_32(gSaveBlock2->playerTrainerId)); //0 id would mean Pokemon wouldn't have ability
+		id = id + (u32) gClock.dayOfWeek; 
+
+		do
+		{
+			newAbility = newAbility * id * species;
+			newAbility = MathMax(1, newAbility % ABILITIES_COUNT);
+		}
+		while (CheckTableForAbility(newAbility, gRandomizerAbilityBanList));
+	}
+	#endif
+
+	return newAbility;
+}
 
 u8 GetMonAbility(const struct Pokemon* mon)
 {
@@ -4035,7 +4228,7 @@ u8 GetMonAbility(const struct Pokemon* mon)
 	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
 
 	if (mon->hiddenAbility && gBaseStats[species].hiddenAbility != ABILITY_NONE)
-		return TryRandomizeAbility(gBaseStats[species].hiddenAbility, species);
+		return TryRandomizeAbility(gBaseStats[species].hiddenAbility, mon);
 
 	u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
 	if ((personality & 1) == 0 || gBaseStats[species].ability2 == ABILITY_NONE)
@@ -4043,7 +4236,7 @@ u8 GetMonAbility(const struct Pokemon* mon)
 	else
 		ability = gBaseStats[species].ability2;
 
-	return TryRandomizeAbility(ability, species);
+	return TryRandomizeAbility(ability, mon);
 }
 
 void SetMonExpWithMaxLevelCheck(struct Pokemon *mon, u16 species, unusedArg u8 unused, u32 data)

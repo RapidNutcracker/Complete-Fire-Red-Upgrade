@@ -186,7 +186,7 @@ Neither Pok\emon can run away!
 [TARGET] is protected\nby an aromatic veil!
 
 #org @gText_SleepClausePrevents
-The sleep clause prevents more\nPok\emon from being put to sleep!
+The Sleep Clause prevents more\nPok\emon from being put to sleep!
 
 #org @gText_AbilityPreventsStatLoss
 [SCRIPTING_BANK]'s stats were\nnot lowered!
@@ -429,3 +429,39 @@ No A. Veil
 
 #org @gText_PP
 PP
+
+#org @GrassyTerrainBattleBeginString
+The opponent's presence set a\npermanent Grassy Terrain.
+
+#org @MistyTerrainBattleBeginString
+The opponent's presence set a\npermanent Misty Terrain.
+
+#org @PsychicTerrainBattleBeginString
+The opponent's presence set a\npermanent Psychic Terrain.
+
+#org @SandstormBattleBeginString
+The opponent's presence set a\npermanent Sandstorm.
+
+#org @RainBattleBeginString
+The opponent's presence set a\npermanent Rain Storm.
+ 
+#org @HailBattleBeginString
+The opponent's presence set a\npermanent Hail Storm.
+
+#org @PermaTrickRoomBeginsString
+The opponent's presence set a\npermanent Trick Room.
+
+#org @LivedFightingSpirit
+The foe lived on 1 HP thanks to its\nFighting Spirit!
+
+#org @FightingSpiritBattleBeginString
+The opponent's presence gave\nhis Pok\emon Fighting Spirit,\lallowing them to endure KOs at 75% HP.
+
+#org @PermaGroundImmunityBeginsString
+The opponent's presence gave\nhis Pok\emon a permanent ground\limmunity.
+
+#org @SolidRockBeginsString
+The opponent's rock-hard determination\nreduces super effective moves\lused on his Pok\emon by 33%.
+
+#org @TailwindBeginsString
+The opponent's presence set a\npermanent Tailwind.

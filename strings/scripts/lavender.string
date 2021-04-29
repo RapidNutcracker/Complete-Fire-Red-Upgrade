@@ -67,6 +67,9 @@ The mother's spirit was calmed.\pIt departed to the afterlife[.]\pAn item remain
 #org @gText_AudinoSlayer_1
 Hi there! I offer a very special\nservice.\pFor a measly \$10000, you can slaughter\na family of Audinos!\pOr \$2000 for my EV training services.\pHow about it?
 
+#org @gText_AudinoSlayer_1_Hard
+Hi there! I offer a very special\nservice.\pFor a measly \$10000, you can slaughter\na family of Audinos!\pHow about it?
+
 #org @gText_AudinoSlayer_Choose
 Which service would you like? 
 

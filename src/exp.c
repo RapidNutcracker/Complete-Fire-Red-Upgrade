@@ -41,8 +41,9 @@ enum
 #define BattleScript_LevelUp (u8*) 0x81D89F5
 extern const u16 gBaseExpBySpecies[];
 extern u8 String_TeamExpGain[];
-u8 LevelCap_Badges[17] = {
+u8 LevelCap_Badges[18] = {
 	15, //Before Brock
+	21, //before Mt Moon Archer
 	27, //Before Misty
 	34, //Before Surge
 	44, //Before Erika
@@ -59,6 +60,27 @@ u8 LevelCap_Badges[17] = {
 	82, //Before Brendan
 	85, //Before E4
 	100}; //added here
+
+u8 LevelCap_BadgesHardcoreMode[18] = {
+	16, //Before Brock
+	21, //before Mt Moon Archer
+	27, //Before Misty
+	36, //Before Surge
+	44, //Before Erika
+	47, //Before Celadon Giovanni
+	56, //Before Archer/Ariana Tag battle
+	57, //Before Giovanni Saffron
+	59, //Before Sabrina 
+	68, //Before Koga
+	73, //Before May
+	76, //Before Blaine
+	79, //Before Archer/Ariana 
+	80, //Before Giovanni Final
+	81, //Before Claire
+	82, //Before Brendan
+	85, //Before E4
+	100}; //added here
+
 //This file's functions:
 static u32 ExpCalculator(u32 a, u32 t, u32 b, u32 e, u32 L, u32 Lp, u32 p, u32 f, u32 v, u32 s);
 static bool8 WasWholeTeamSentIn(u8 bank, u8 sentIn);
@@ -268,8 +290,12 @@ void atk23_getexp(void)
 		calculatedExp = MathMax(1, calculatedExp);
 		u8 badgeCount = GetBadgeCount(); //added
 		u8 lvlCap = LevelCap_Badges[badgeCount]; //added
+		if (FlagGet(FLAG_HARDCORE_MODE)){
+			lvlCap = LevelCap_BadgesHardcoreMode[badgeCount];
+		}
+
 		if(pokeLevel >= lvlCap){ //added
-			calculatedExp = calculatedExp / 30; //added
+			calculatedExp = 1; //added
 		} //added
 		gBattleMoveDamage = calculatedExp;
 
@@ -365,6 +391,7 @@ void atk23_getexp(void)
 			gBattleResources->statsBeforeLvlUp->spDef = gPlayerParty[gBattleStruct->expGetterMonId].spDefense;
 
 			gActiveBattler = gBattleStruct->expGetterBank;
+			
 			EmitExpBarUpdate(0, gBattleStruct->expGetterMonId, gBattleMoveDamage);
 			MarkBufferBankForExecution(gActiveBattler);
 		}
@@ -419,6 +446,15 @@ void atk23_getexp(void)
 					gBattleMons[leveledUpBank].spAttack = gPlayerParty[gBattleStruct->expGetterMonId].spAttack;
 					gBattleMons[leveledUpBank].spDefense = gPlayerParty[gBattleStruct->expGetterMonId].spDefense;
 				}
+			}
+			u8 badgeCount = GetBadgeCount(); //added
+			u8 lvlCap = LevelCap_Badges[badgeCount]; //added
+			if (FlagGet(FLAG_HARDCORE_MODE)){
+				lvlCap = LevelCap_BadgesHardcoreMode[badgeCount];
+			}
+			
+			if(gPlayerParty[gBattleStruct->expGetterMonId].level >= lvlCap){ //added
+				gBattleMoveDamage = 0;
 			}
 		}
 		else
@@ -727,7 +763,7 @@ static void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
 	u8 holdEffect = ItemId_GetHoldEffect(heldItem);
 	u8 itemQuality = ItemId_GetHoldEffectParam(heldItem);
 
-	if (GetMonEVCount(mon) >= MAX_TOTAL_EVS)
+	if (GetMonEVCount(mon) >= MAX_TOTAL_EVS || FlagGet(FLAG_MINIMAL_GRINDING_MODE))
 		return;
 
 	for (u8 stat = 0; stat < NUM_STATS; ++stat)
@@ -818,7 +854,7 @@ u8 GetBadgeCount(void) //added this here
 	u8 badgeCount = 0;
 
 	if (FlagGet(FLAG_SYS_GAME_CLEAR)) //0x82C
-		return 16;
+		return 17;
 	if (FlagGet(FLAG_BRENDAN_FINAL))
 		++badgeCount;
 	if (FlagGet(FLAG_BADGE08_GET))
@@ -847,6 +883,8 @@ u8 GetBadgeCount(void) //added this here
 		++badgeCount;
 	if (FlagGet(FLAG_BADGE02_GET))
 		++badgeCount;
+	if (FlagGet(FLAG_ARCHER_MT_MOON))
+		++badgeCount; 
 	if (FlagGet(FLAG_BADGE01_GET))
 		++badgeCount;
 

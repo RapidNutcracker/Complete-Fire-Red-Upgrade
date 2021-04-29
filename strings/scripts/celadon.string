@@ -52,6 +52,9 @@ Game Corner has been fueling my\ngambling addiction in quarantine.
 #org @gText_ivseller_1
 Psst[.] I have a crazy proposition.\pI can max one of your Pok\emon's\nIVs for \$350000.\pOr I can do a single stat for\n\$70000.\pIt's crazy expensive, but this is\ntechnically illegal!\pHow about it?
 
+#org @gText_ivseller_1_Hard
+Psst[.] I have a crazy proposition.\pI can max one of your Pok\emon's\nIVs for free.\pNormally I charge money, but\nthis service isn't as useful in\l[GREEN]Minimal Grinding Mode.[BLUE]\pHow about it?
+
 #org @gText_ivseller_2
 Boo. You don't have enough money.\pCome back when you got stacks.
 
@@ -64,23 +67,44 @@ Sweet. Who wants it?
 #org @gText_ivseller_4
 So, [BUFFER1] will have its IVs\nmaxed. \$350000.
 
+#org @gText_ivseller_4_min
+So, [BUFFER1] will have its IVs\nmaxed.
+
 #org @gText_ivseller_4_1
 So, [BUFFER1] will have its HP IVs\nmaxed. It currently has [BUFFER2] HP\lIVs. It'll be \$70000.
+
+#org @gText_ivseller_4_1_min
+So, [BUFFER1] will have its HP IVs\nmaxed. It currently has [BUFFER2] HP\lIVs.
 
 #org @gText_ivseller_4_2
 So, [BUFFER1] will have its Atk IVs\nmaxed. It currently has [BUFFER2] Atk\lIVs. It'll be \$70000.
 
+#org @gText_ivseller_4_2_min
+So, [BUFFER1] will have its Atk IVs\nmaxed. It currently has [BUFFER2] Atk\lIVs.
+
 #org @gText_ivseller_4_3
 So, [BUFFER1] will have its Def IVs\nmaxed. It currently has [BUFFER2]Def\lIVs. It'll be \$70000.
+
+#org @gText_ivseller_4_3_min
+So, [BUFFER1] will have its Def IVs\nmaxed. It currently has [BUFFER2]Def\lIVs.
 
 #org @gText_ivseller_4_4
 So, [BUFFER1] will have its Sp. Atk\nIVs maxed. It currently has [BUFFER2]\lSp. Atk IVs. It'll be \$70000.
 
+#org @gText_ivseller_4_4_min
+So, [BUFFER1] will have its Sp. Atk\nIVs maxed. It currently has [BUFFER2]\lSp. Atk IVs. 
+
 #org @gText_ivseller_4_5
 So, [BUFFER1] will have its Sp. Def\nIVs maxed. It currently has [BUFFER2]\lSp. Def IVs. It'll be \$70000.
 
+#org @gText_ivseller_4_5_min
+So, [BUFFER1] will have its Sp. Def\nIVs maxed. It currently has [BUFFER2]\lSp. Def IVs. 
+
 #org @gText_ivseller_4_6
 So, [BUFFER1] will have its Speed\nIVs maxed. It currently has [BUFFER2]\lSpeed IVs. It'll be \$70000.
+
+#org @gText_ivseller_4_6_min
+So, [BUFFER1] will have its Speed\nIVs maxed. It currently has [BUFFER2]\lSpeed IVs. 
 
 #org @gText_ivseller_5
 Is that correct?

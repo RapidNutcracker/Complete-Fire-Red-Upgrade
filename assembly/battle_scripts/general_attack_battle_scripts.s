@@ -3942,7 +3942,7 @@ RecycleBS:
 BS_185_Poltergeist:
 	attackcanceler
 	attackstring
-	ppreduce
+	@ ppreduce
 	callasm TryPoltergeist
 	pause DELAY_HALFSECOND
 	printstring 0x184

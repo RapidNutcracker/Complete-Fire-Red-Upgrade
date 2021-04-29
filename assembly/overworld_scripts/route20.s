@@ -5,6 +5,9 @@
 .include "../xse_defines.s"
 .include "../asm_defines.s" 
 
+.equ VAR_WEATHER, 0x5118
+.equ FLAG_HARDCORE_MODE, 0x1034
+
 .global EventScript_pryce_Start
 EventScript_pryce_Start:
 	lock
@@ -21,6 +24,8 @@ EventScript_pryce_Battle:
 	setflag 0x915
 	setflag 0x90E
 	special 0x0
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _call SetWeather
 	random 0x3
 	compare 0x800D 0x0
 	if 0x1 _goto EventScript_pryce_Option1
@@ -30,6 +35,9 @@ EventScript_pryce_Battle:
 	if 0x1 _goto EventScript_pryce_Option3
 	end
 
+SetWeather:
+	setvar VAR_WEATHER 0x3
+	return
 
 EventScript_pryce_Option1:
 	trainerbattle3 0x3 0x3A 0x0 gText_pryce_Defeat

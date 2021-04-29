@@ -1278,11 +1278,13 @@ static void CreateScriptedWildMon(u16 species, u8 level, u16 item, u16* moves, b
 			SetMonData(&gEnemyParty[index], MON_DATA_SPDEF_IV, &maxIV);
 			SetMonData(&gEnemyParty[index], MON_DATA_SPEED_IV, &maxIV);
 			GiveMonNatureAndAbility(&gEnemyParty[index], 13, 0xFF, TRUE, TRUE, FALSE); //0xFF Give Hidden Ability, 13 is jolly ability, first true is to force shiny
-			gEnemyParty[index].hpEv = 252;
-			gEnemyParty[index].atkEv = 252; 
-			gEnemyParty[index].defEv = 252;
-			gEnemyParty[index].spDefEv = 252; 
-			gEnemyParty[index].spdEv = 252; 
+			if (!FlagGet(FLAG_MINIMAL_GRINDING_MODE) && !FlagGet(FLAG_EASY_MODE)){
+				gEnemyParty[index].atkEv = 252; 
+				gEnemyParty[index].defEv = 252;
+				gEnemyParty[index].spDefEv = 252; 
+				gEnemyParty[index].spdEv = 252; 
+			}
+			gEnemyParty[index].hpEv = 252; 
 			CalculateMonStatsNew(&gEnemyParty[index]);
 			HealMon(&gEnemyParty[index]);
 			u16 item = 224;

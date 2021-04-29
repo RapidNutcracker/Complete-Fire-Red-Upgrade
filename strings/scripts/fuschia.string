@@ -130,6 +130,9 @@ Now that you have the Soul Badge,\nyou can Surf outside of battle.\pAh!\nTake th
 #org @gText_koga_Perfectpokemon
 Show me a Pok\emon you've invested\nin Speed.\pI'll gladly hand one over.
 
+#org @gText_koga_PerfectpokemonMinimal
+Show me a speedy Pok\emon.\pI'll gladly hand one over.
+
 #org @gText_koga_Thepokemon
 Your [BUFFER1][.]
 
@@ -168,3 +171,6 @@ Hmm, perhaps I'm a bit tunnel-visioned\nwith my new strategy[.]\pI'll do some mo
 
 #org @gText_Fuschia_Sandaconda5
 [GREEN]Power Herb Meteor Beam!\n[RED]Watch your foes cower in terror as\lthe stars fall! 
+
+#org @gText_Fuschia_Closed 
+[BLACK]The gym appears to be closed[.]\pPerhaps it'd be wise to rematch\nsome of the Gym Leaders?

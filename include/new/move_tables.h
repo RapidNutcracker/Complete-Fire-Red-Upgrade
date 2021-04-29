@@ -68,3 +68,6 @@ extern const move_t gKickingMoves[];
 extern const move_t gSwordMoves[];
 extern const move_t gBoneMoves[];
 extern const move_t gRandomizerBannedMoves[];
+extern const move_t gHardcoreBannedMoves[];
+extern const move_t gHardcoreHalfBannedMoves[];
+extern const move_t gHardcoreTrashBannedMoves[];

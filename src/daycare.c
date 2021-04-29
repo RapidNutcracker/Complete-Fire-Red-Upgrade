@@ -44,6 +44,13 @@ enum Parents
 	DAYCARE_FATHER,
 };
 
+// extern const move_t gRandomizerBannedMoves[];
+// extern const move_t gHardcoreBannedMoves[];
+// extern const move_t gHardcoreHalfBannedMoves[];
+// extern const move_t gHardcoreTrashBannedMoves[]; 
+// extern const species_t gSuperBadHardcoreList[]; 
+// extern const species_t gBadHardcoreList[]; 
+
 //This file's functions:
 static s32 GetSlotToInheritNature(struct DayCare* daycare);
 static void DetermineEggParentSlots(struct DayCare* daycare, u8* parentSlots);
@@ -452,6 +459,15 @@ static void InheritIVs(struct Pokemon* egg, struct DayCare* daycare)
 				break;
 		}
 	}
+	if (FlagGet(FLAG_MINIMAL_GRINDING_MODE)){
+			u8 perfect = 31;
+			SetMonData(egg, MON_DATA_HP_IV, &perfect);
+			SetMonData(egg, MON_DATA_ATK_IV, &perfect);
+			SetMonData(egg, MON_DATA_DEF_IV, &perfect);
+			SetMonData(egg, MON_DATA_SPATK_IV, &perfect);
+			SetMonData(egg, MON_DATA_SPDEF_IV, &perfect);
+			SetMonData(egg, MON_DATA_SPEED_IV, &perfect);
+	}
 }
 
 
@@ -659,7 +675,15 @@ void CreateEgg(struct Pokemon *mon, u16 species) //The function used by the give
 		ball = BALL_TYPE_CHERISH_BALL;
 		SetMonData(mon, MON_DATA_POKEBALL, &ball);
 	}
-	
+	if (FlagGet(FLAG_MINIMAL_GRINDING_MODE))
+	{
+		SetMonData(mon, MON_DATA_HP_IV, &maxIV);
+		SetMonData(mon, MON_DATA_ATK_IV, &maxIV);
+		SetMonData(mon, MON_DATA_DEF_IV, &maxIV);
+		SetMonData(mon, MON_DATA_SPATK_IV, &maxIV);
+		SetMonData(mon, MON_DATA_SPDEF_IV, &maxIV);
+		SetMonData(mon, MON_DATA_SPEED_IV, &maxIV);
+	}
 }
 
 //Decide features to inherit
@@ -874,6 +898,16 @@ u8 GetAllEggMoves(struct Pokemon* mon, u16* moves, bool8 ignoreAlreadyKnownMoves
 	//Filter out any egg moves the Pokemon already knows
 	for (i = 0, j = 0; i < numEggMoves; ++i)
 	{
+		//For Hardcore Mode to remove banned moves from egg list 
+		// if(FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(eggMovesBuffer[i], gHardcoreBannedMoves)) {
+		// 	continue;
+		// }
+		// else if(FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(eggMovesBuffer[i], gHardcoreHalfBannedMoves) && !CheckTableForSpecies(species, gBadHardcoreList)) { 
+		// 	continue;
+		// }
+		// else if (FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(eggMovesBuffer[i], gHardcoreTrashBannedMoves) && !CheckTableForSpecies(species, gSuperBadHardcoreList)) { 
+		// 	continue; 
+		// }
 		if (!ignoreAlreadyKnownMoves || !MoveInMonMoveset(eggMovesBuffer[i], mon))
 		{
 			moves[j++] = eggMovesBuffer[i];

@@ -43,6 +43,14 @@ struct BagMenuAlloc
 
 extern const u8 gMoveNames[][MOVE_NAME_LENGTH + 1];
 extern const u8 gLongMoveNames[][MOVE_NAME_LENGTH + 1];
+//added for hardcore mode edits
+extern const move_t gHardcoreBannedMoves[]; 
+extern const move_t gHardcoreHalfBannedMoves[];
+extern const move_t gHardcoreTrashBannedMoves[]; 
+
+extern const species_t gSuperBadHardcoreList[]; 
+extern const species_t gBadHardcoreList[]; 
+// end of hardcore mode stuff
 
 extern const u8 gText_ThrowInOnePremierBall[];
 extern const u8 gText_ThrowInPremierBalls[];
@@ -582,8 +590,19 @@ u8 CanMonLearnTMTutor(struct Pokemon* mon, u16 item, u8 tutor)
 	if (GetPocketByItemId(item) == POCKET_TM_HM)
 	{
 		//if (CanMonLearnTMHM(mon, item - ITEM_TM01_FOCUS_PUNCH))
-		if (CanMonLearnTMHM(mon, TMIdFromItemId(item)))
+		if (CanMonLearnTMHM(mon, TMIdFromItemId(item))){
 			move = ItemIdToBattleMoveId(item);
+			u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+			if(FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(move, gHardcoreBannedMoves) ){
+				return CANNOT_LEARN_MOVE;
+			}
+			if(FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(move, gHardcoreHalfBannedMoves) && !CheckTableForSpecies(species, gBadHardcoreList)) { 
+				return CANNOT_LEARN_MOVE;
+			}
+			if (FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(move, gHardcoreTrashBannedMoves) && !CheckTableForSpecies(species, gSuperBadHardcoreList)) { 
+				return CANNOT_LEARN_MOVE;
+			}
+		}
 		else
 			return CANNOT_LEARN_MOVE;
 		//do {} while (0); // :morphon:
@@ -605,6 +624,16 @@ u8 CanMonLearnTMTutor(struct Pokemon* mon, u16 item, u8 tutor)
 	else
 	{
 		move = GetTutorMove(tutor);
+		u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+		if(FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(move, gHardcoreHalfBannedMoves) && !CheckTableForSpecies(species, gBadHardcoreList) ){
+			return CANNOT_LEARN_MOVE;
+		}
+		if(FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(move, gHardcoreHalfBannedMoves) && !CheckTableForSpecies(species, gBadHardcoreList)) { 
+			return CANNOT_LEARN_MOVE;
+		}
+		if (FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(move, gHardcoreTrashBannedMoves) && !CheckTableForSpecies(species, gSuperBadHardcoreList)) { 
+			return CANNOT_LEARN_MOVE;
+		}
 	}
 	#endif
 

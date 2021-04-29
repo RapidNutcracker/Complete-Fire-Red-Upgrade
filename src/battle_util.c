@@ -94,9 +94,9 @@ ability_t GetRecordedAbility(u8 bank)
 		return BATTLE_HISTORY->abilities[bank];
 
 	u16 species = species;
-	u8 ability1 = TryRandomizeAbility(gBaseStats[species].ability1, species);
-	u8 ability2 = TryRandomizeAbility(gBaseStats[species].ability2, species);
-	u8 hiddenAbility = TryRandomizeAbility(gBaseStats[species].hiddenAbility, species);
+	u8 ability1 = TryRandomizeAbility2(gBaseStats[species].ability1, species);
+	u8 ability2 = TryRandomizeAbility2(gBaseStats[species].ability2, species);
+	u8 hiddenAbility = TryRandomizeAbility2(gBaseStats[species].hiddenAbility, species);
 
 	if (ability1 == ability2 && hiddenAbility == ABILITY_NONE)
 		return ability1;
@@ -1623,7 +1623,8 @@ bool8 CanBeInfatuated(u8 bankDef, u8 bankAtk)
 bool8 IsTrickRoomActive(void)
 {
 	return gNewBS->TrickRoomTimer > 0
-		|| (IS_BATTLE_CIRCUS && gBattleCircusFlags & BATTLE_CIRCUS_TRICK_ROOM);
+		|| (IS_BATTLE_CIRCUS && gBattleCircusFlags & BATTLE_CIRCUS_TRICK_ROOM) 
+		|| (VarGet(VAR_BATTLE_AURAS) == PERMA_TRICK_ROOM);
 }
 
 bool8 IsMagicRoomActive(void)

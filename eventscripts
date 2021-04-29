@@ -1,12 +1,12 @@
 ##
 
 # PALLET TOWN 
-tile 4 1 0 EventScript_AskRandomizer
 sign 4 1 2 EventScript_Pallet_AutoRunSign
-# sign 4 1 2 EventScript_Pallet_Varrio
 npc 3 0 1 EventScript_Pallet_Technology
 map 4 0 gMapScripts_PalletTownHome
 npc 4 0 0 EventScript_mom_Start
+map 4 1 gMapScripts_PalletTownPlayerHome
+# tile 4 1 0 LevelScript_PalletTownPlayerHome
 
 # VIRIDIAN CITY 
 tile 3 1 4 EventScript_SetFlag
@@ -84,6 +84,7 @@ npc 6 7 1 EventScript_Pewter_RandomizerInfo
 #ROUTE 3 
 npc 3 21 9 EventScript_Route3Raid 
 npc 3 21 10 EventScript_Route13_Teleport
+npc 3 21 11 EventScript_Route3_ThunderStone
 
 #ROUTE 4
 npc 16 0 1 EventScript_MagikarpGuy
@@ -91,6 +92,8 @@ npc 3 22 7 EventScript_Route4Raid
 npc 16 0 6 EventScript_NatureChanger 
 npc 3 22 4 EventScript_givepoweruppunch_Start
 npc 3 22 5 EventScript_machobrace_Start
+npc 3 22 12 EventScript_Route4_WaterStone
+npc 3 22 13 EventScript_Route4_SunStone
 map 3 22 gMapScripts_Route4
 
 #MT MOON 
@@ -131,6 +134,7 @@ npc 3 43 10 EventScript_powerlens_Start
 #Route 25
 npc 3 44 13 EventScript_bugsy_Start
 npc 3 44 14 EventScript_Route25Raid 
+npc 3 44 15 EventScript_Route24_LeafStone
 npc 3 44 10 EventScript_Cut 
 
 #Route 5
@@ -155,6 +159,7 @@ npc 22 1 1 EventScript_itemfinder_Start
 npc 3 29 11 EventScript_SSAnne_WorkUp
 #this one is actually soft sand 
 npc 3 29 10 EventScript_Route11_StarPiece 
+npc 3 29 12 EventScript_Route11_FireStone
 npc 22 0 0 EventScript_Guard_EVTraining
 
 #Route 12 
@@ -163,6 +168,7 @@ npc 23 2 0 EventScript_sharpedonite_Start
 #Digletts Cave
 npc 1 37 0 EventScript_DigletsCaveRaid
 npc 1 37 1 EventScript_Route2_Rest
+npc 1 36 1 EventScript_DiglettsCave_HardStone
 
 #Vermilion City 
 npc 9 6 0 EventScript_ltsurge_Start
@@ -331,6 +337,8 @@ tile 1 57 3 EventScript_silphcotop_Start
 tile 1 57 4 EventScript_SilphCo_TeamAlert
 tile 1 57 5 EventScript_SilphCo_TeamAlert
 tile 1 57 6 EventScript_SilphCo_TeamAlert
+tile 1 57 0 EventScript_silphcogioleft_Start
+tile 1 57 1 EventScript_silphcogioright_Start
 npc 1 47 1 EventScript_SilphCo_HP
 npc 1 50 5 EventScript_SilphCo_Garb
 
@@ -385,6 +393,7 @@ npc 11 9 1 EventScript_Fuschia_EggTutor
 npc 11 9 2 EventScript_Fuschia_DoubleBattle
 npc 3 7 14 EventScript_substitute_Start
 tile 3 7 0 EventScript_brendanfuschia_Start
+tile 3 7 1 EventScript_Hardcoremode_CheckifDoneRematches
 npc 3 7 17 EventScript_nursegivemedicine_Start
 npc 3 7 18 EventScript_earthpower_start
 npc 24 1 0 EventScript_Fuschia_OakAid
@@ -549,8 +558,8 @@ npc 1 41 12 EventScript_VictoryRoad_TM67
 
 #Elite Four/Indigo Plateau 
 npc 13 0 1 EventScript_E4nurse_Start
-npc 13 0 8 EventScript_NatureChanger 
-# npc 13 0 8 EventScript_MeadowPlate
+# npc 13 0 8 EventScript_NatureChanger 
+npc 13 0 8 EventScript_MeadowPlate
 tile 3 9 0 EventScript_FinalCreator_Fight
 npc 1 75 0 EventScript_lorelei_Start
 npc 1 76 0 EventScript_bruno_Start

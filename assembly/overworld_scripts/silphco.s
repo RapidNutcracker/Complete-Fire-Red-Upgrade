@@ -5,6 +5,9 @@
 .include "../xse_defines.s"
 .include "../asm_defines.s"
 
+.equ VAR_WEATHER, 0x5118
+.equ FLAG_HARDCORE_MODE, 0x1034
+
 .global EventScript_silphcoelevatorthatworks_Start
 EventScript_silphcoelevatorthatworks_Start:
 	lockall
@@ -434,3 +437,85 @@ EventScript_silphcoteambattle_Goup:
 EventScript_silphcoteambattle_Exclamation:
 .byte 0x62
 .byte 0xFE
+
+EventScript_silphcogioleft_Start:
+	lockall
+	setvar 0x4001 0x0
+	goto EventScript_silphcogioleft_Doscript
+
+EventScript_silphcogioright_Start:
+	lockall
+	setvar 0x4001 0x1
+	goto EventScript_silphcogioleft_Doscript
+
+EventScript_silphcogioleft_Doscript:
+	textcolor 0x0
+	applymovement 0x3 EventScript_silphcogioleft_Facedown
+	waitmovement 0x0
+	pause 0x19
+	msgbox gText_silphcogioleft_Giomsg1 MSG_KEEPOPEN @"Ah, [player]!\nSo we meet again!\p..."
+	closeonkeypress
+	compare 0x4001 0x0
+	if 0x1 _call EventScript_silphcogioleft_Moveplayer
+	compare 0x4001 0x1
+	if 0x1 _call EventScript_silphcogioleft_Moveplayerright
+	setvar LASTTALKED 0x3
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _call SetWeather
+	special 0x0
+	trainerbattle3 0x3 0x15D 0x0 gText_silphcogioleft_Giolose
+	msgbox gText_silphcogioleft_Giopostlosemsg MSG_KEEPOPEN @"Blast it all!\nYou ruined our plan..."
+	closeonkeypress
+	fadescreen 0x1
+	hidesprite 0x3
+	hidesprite 0x4
+	hidesprite 0x6
+	fadescreen 0x0
+	setvar 0x4060 0x1
+	setflag 0x3E
+	clearflag 0x3F
+	releaseall
+	end
+
+SetWeather:
+	setvar VAR_WEATHER 0x1 @1 for sandstorm
+	return
+
+EventScript_silphcogioleft_Moveplayer:
+	applymovement 0x3 EventScript_silphcogioleft_Giostepdown
+	applymovement 0xFF EventScript_silphcogioleft_Faceright
+	waitmovement 0x0
+	return
+
+EventScript_silphcogioleft_Moveplayerright:
+	applymovement 0x3 EventScript_silphcogioleft_Stepdown
+	waitmovement 0x0
+	return
+
+EventScript_silphcogioleft_Facedown:
+	.byte 0x2D
+	.byte 0xFE
+
+EventScript_silphcogioleft_Giostepdown:
+	.byte 0x10
+	.byte 0x10
+	.byte 0x10
+	.byte 0x10
+	.byte 0x2F
+	.byte 0xFE
+
+EventScript_silphcogioleft_Faceright:
+	.byte 0x1C
+	.byte 0x1C
+	.byte 0x1C
+	.byte 0x1B
+	.byte 0x1A
+	.byte 0x30
+	.byte 0xFE
+
+EventScript_silphcogioleft_Stepdown:
+	.byte 0x10
+	.byte 0x10
+	.byte 0x10
+	.byte 0xFE
+

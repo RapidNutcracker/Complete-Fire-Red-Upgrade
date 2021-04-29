@@ -11,6 +11,11 @@
 .equ VAR_PARTNER_BACKSPRITE, 0x5012
 .equ VAR_PARTNER, 0x5011
 .equ VAR_TOTEM, 0x5002
+
+.equ VAR_TERRAIN, 0x5000
+.equ FLAG_HARDCORE_MODE, 0x1034
+.equ FLAG_MINIMAL_GRINDING_MODE, 0x1032
+
 .global EventScript_rockslide_Start
 EventScript_rockslide_Start:
 	lock
@@ -149,10 +154,12 @@ EventScript_amarowak_Start:
 	if 0x0 _goto EventScript_amarowak_Moveup
 	setflag 0x90B
 	setflag 0x90C
-	setvar 0x8000 MOVE_BONEMERANG @sets moveset to bonemerang, shadow bone, fire punch, thunderpunch
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _call SetTerrain
+	setvar 0x8000 MOVE_BONEMERANG @sets moveset to bonemerang, shadow bone, flare blitz thunderpunch
 	setvar 0x8001 MOVE_SHADOWBONE
-	setvar 0x8002 MOVE_FIREPUNCH
-	setvar 0x8003 MOVE_THUNDERPUNCH
+	setvar 0x8002 MOVE_FLAREBLITZ
+	setvar 0x8003 MOVE_SWORDSDANCE
 	setvar VAR_TOTEM 0xFFFF @raises all stats by 1
 	setflag FLAG_DISABLE_BAG
 	setwildbattle SPECIES_MAROWAK_A 0x3A ITEM_THICK_CLUB
@@ -164,6 +171,10 @@ EventScript_amarowak_Start:
 	waitmovement 0x0
 	releaseall
 	end
+
+SetTerrain: 
+	setvar VAR_TERRAIN 0x3 @misty terrain
+	return
 
 EventScript_amarowak_Moveup:
 	applymovement 0xFF EventScript_amarowak_Move
@@ -195,11 +206,19 @@ EventScript_AudinoSlayer:
 	lock
 	faceplayer
 	showmoney 0x0 0x0 0x0
+	checkflag FLAG_MINIMAL_GRINDING_MODE
+	if 0x1 _goto MinGrindingSlayer
 	msgbox gText_AudinoSlayer_1 MSG_YESNO
 	compare LASTRESULT NO
 	if equal _goto AudinoReject
 	goto ChooseStat
 
+MinGrindingSlayer:
+	msgbox gText_AudinoSlayer_1_Hard MSG_YESNO
+	compare LASTRESULT NO
+	if equal _goto AudinoReject
+	goto AudinoService
+	end
 
 ChooseStat:
 	setvar 0x8006 0x0 @first item
@@ -258,6 +277,7 @@ AudinoService:
 	hidemoney 0x0 0x0
 	setflag 0x90E
 	trainerbattle3 0x3 0x1B 0x0 gText_AudinoSlayer_Defeat
+	special 0x0
 	msgbox gText_AudinoSlayer_5 MSG_NORMAL
 	release
 	end
@@ -280,6 +300,7 @@ EVServiceStuff:
 AtkService:
 	call EVServiceStuff
 	trainerbattle3 0x3 0xA 0x0 gText_AudinoSlayer_Defeat
+	special 0x0
 	msgbox gText_AudinoSlayer_5 MSG_NORMAL
 	release
 	end
@@ -287,6 +308,7 @@ AtkService:
 DefService:
 	call EVServiceStuff
 	trainerbattle3 0x3 0xB 0x0 gText_AudinoSlayer_Defeat
+	special 0x0
 	msgbox gText_AudinoSlayer_5 MSG_NORMAL
 	release
 	end
@@ -294,6 +316,7 @@ DefService:
 SpAtkService:
 	call EVServiceStuff
 	trainerbattle3 0x3 0xC 0x0 gText_AudinoSlayer_Defeat
+	special 0x0
 	msgbox gText_AudinoSlayer_5 MSG_NORMAL
 	release
 	end
@@ -301,6 +324,7 @@ SpAtkService:
 SpDefService:
 	call EVServiceStuff
 	trainerbattle3 0x3 0xD 0x0 gText_AudinoSlayer_Defeat
+	special 0x0
 	msgbox gText_AudinoSlayer_5 MSG_NORMAL
 	release
 	end
@@ -308,6 +332,7 @@ SpDefService:
 SpeedService:
 	call EVServiceStuff
 	trainerbattle3 0x3 0x9 0x0 gText_AudinoSlayer_Defeat
+	special 0x0
 	msgbox gText_AudinoSlayer_5 MSG_NORMAL
 	release
 	end
@@ -315,6 +340,7 @@ SpeedService:
 HPService:
 	call EVServiceStuff
 	trainerbattle3 0x3 0x1B 0x0 gText_AudinoSlayer_Defeat
+	special 0x0
 	msgbox gText_AudinoSlayer_5 MSG_NORMAL
 	release
 	end
