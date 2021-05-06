@@ -228,7 +228,7 @@ ForcedMovement_MuddySlope 835B800
 
 
 # FieldUseFunc_MaxPowder 93C0C7C
-FieldUseFunc_Honey 93C140C
+# FieldUseFunc_Honey 93C140C
 FieldUseFunc_EVReducingBerry 93C1A68
 FieldUseFunc_EVReducingBerry 93C1A94
 FieldUseFunc_EVReducingBerry 93C1AC0
@@ -246,7 +246,7 @@ FieldUseFunc_FormChangeItem 93C5B08
 FieldUseFunc_FormChangeItem 93C5B34
 FieldUseFunc_FormChangeItem 93C5B60
 FieldUseFunc_AbilityCapsule 93C0C7C
-# FieldUseFunc_AbilityCapsule 93C140C
+FieldUseFunc_AbilityCapsule 93C140C
 
 # FieldUseFunc_AbilityCapsule 887CA9C
 

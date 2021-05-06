@@ -1811,13 +1811,6 @@ u8 TrySetCantSelectMoveBattleScript(void)
 		gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingNotAllowedMoveChoiceAbility;
 		++limitations;
 	}
-	// else if (!isAnyMaxMove && ability == ABILITY_SAGEPOWER && *choicedMove != 0 && *choicedMove != 0xFFFF && *choicedMove != move)
-	// {
-	// 	gCurrentMove = *choicedMove;
-	// 	gLastUsedAbility = ability;
-	// 	gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingNotAllowedMoveChoiceAbility;
-	// 	++limitations;
-	// }
 	else if (!isAnyMaxMove && holdEffect == ITEM_EFFECT_CHOICE_BAND && *choicedMove != 0 && *choicedMove != 0xFFFF && *choicedMove != move)
 	{
 		gCurrentMove = *choicedMove;

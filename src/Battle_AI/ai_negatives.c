@@ -268,7 +268,7 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			case ABILITY_SAPSIPPER:
 				if (moveType == TYPE_GRASS)
 				{
-					if (!TARGETING_PARTNER) //Good idea to attack partner
+					if (!TARGETING_PARTNER && !((VarGet(VAR_BATTLE_AURAS) == AURA_GRASS_TINTEDLENS ))) //Good idea to attack partner
 					{
 						DECREASE_VIABILITY(20);
 						return viability;
@@ -720,7 +720,7 @@ MOVESCR_CHECK_0:
 
 		case EFFECT_ATTACK_UP:
 		case EFFECT_ATTACK_UP_2:
-			if (data->atkAbility != ABILITY_CONTRARY && data->defAbility != ABILITY_UNAWARE)
+			if (data->atkAbility != ABILITY_CONTRARY && data->defAbility != ABILITY_UNAWARE && !MoveInMoveset(MOVE_HAZE, bankDef) && !MoveInMoveset(MOVE_FREEZYFROST, bankDef))
 			{
 				switch (move) {
 					case MOVE_HONECLAWS:
@@ -803,7 +803,8 @@ MOVESCR_CHECK_0:
 				AI_WORK_UP_CHECK: ;
 					if (((!STAT_CAN_RISE(bankAtk,STAT_STAGE_ATK)|| !PhysicalMoveInMoveset(bankAtk))
 					  && (!STAT_CAN_RISE(bankAtk, STAT_STAGE_SPATK) || !SpecialMoveInMoveset(bankAtk)))
-					|| data->atkAbility == ABILITY_CONTRARY || data->defAbility == ABILITY_UNAWARE)
+					|| data->atkAbility == ABILITY_CONTRARY || data->defAbility == ABILITY_UNAWARE ||
+					MoveInMoveset(MOVE_HAZE, bankDef) || MoveInMoveset(MOVE_FREEZYFROST, bankDef))
 						DECREASE_VIABILITY(10);
 					break;
 
@@ -2191,6 +2192,9 @@ MOVESCR_CHECK_0:
 		case EFFECT_COSMIC_POWER:
 			if (data->atkAbility == ABILITY_CONTRARY)
 				DECREASE_VIABILITY(10);
+			else if(MoveInMoveset(MOVE_HAZE, bankDef) || MoveInMoveset(MOVE_FREEZYFROST, bankDef)) {
+				DECREASE_VIABILITY(10);
+			}
 			else
 			{
 				AI_COSMIC_POWER:
@@ -2201,6 +2205,9 @@ MOVESCR_CHECK_0:
 			break;
 
 		case EFFECT_EXTREME_EVOBOOST:
+			if(MoveInMoveset(MOVE_HAZE, bankDef) || MoveInMoveset(MOVE_FREEZYFROST, bankDef)) {
+				DECREASE_VIABILITY(10);
+			}
 			if (MainStatsMaxed(bankAtk) || data->defAbility == ABILITY_UNAWARE)
 			{
 				DECREASE_VIABILITY(10);
@@ -2220,7 +2227,7 @@ MOVESCR_CHECK_0:
 			break;
 
 		case EFFECT_BULK_UP:
-			if (data->atkAbility == ABILITY_CONTRARY || data->defAbility == ABILITY_UNAWARE)
+			if (data->atkAbility == ABILITY_CONTRARY || data->defAbility == ABILITY_UNAWARE || MoveInMoveset(MOVE_HAZE, bankDef) || MoveInMoveset(MOVE_FREEZYFROST, bankDef))
 				DECREASE_VIABILITY(10);
 			else
 			{
@@ -2249,6 +2256,9 @@ MOVESCR_CHECK_0:
 		case EFFECT_CALM_MIND:
 			if (data->atkAbility == ABILITY_CONTRARY || data->defAbility == ABILITY_UNAWARE)
 					DECREASE_VIABILITY(10);
+			else if(MoveInMoveset(MOVE_HAZE, bankDef) || MoveInMoveset(MOVE_FREEZYFROST, bankDef)) {
+				DECREASE_VIABILITY(10);
+			}
 			else
 			{
 				switch (move) {
@@ -2288,7 +2298,9 @@ MOVESCR_CHECK_0:
 				case MOVE_SHELLSMASH:
 					if (data->atkAbility == ABILITY_CONTRARY)
 						goto AI_COSMIC_POWER;
-
+					if (MoveInMoveset(MOVE_HAZE, bankDef) || MoveInMoveset(MOVE_FREEZYFROST, bankDef)) {
+						DECREASE_VIABILITY(10);
+					}
 					if ((STAT_STAGE(bankAtk, STAT_STAGE_SPATK) >= STAT_STAGE_MAX || !SpecialMoveInMoveset(bankAtk))
 					&&  (STAT_STAGE(bankAtk, STAT_STAGE_ATK) >= STAT_STAGE_MAX || !PhysicalMoveInMoveset(bankAtk))
 					&&  (STAT_STAGE(bankAtk, STAT_STAGE_SPEED) >= STAT_STAGE_MAX))
@@ -2302,6 +2314,10 @@ MOVESCR_CHECK_0:
 				default: //Dragon Dance + Shift Gear
 					if (data->atkAbility == ABILITY_CONTRARY)
 						DECREASE_VIABILITY(10);
+					else if(MoveInMoveset(MOVE_HAZE, bankDef) || MoveInMoveset(MOVE_FREEZYFROST, bankDef)) {
+						DECREASE_VIABILITY(10);
+					}
+
 					else
 					{
 						if ((STAT_STAGE(bankAtk, STAT_STAGE_ATK) >= STAT_STAGE_MAX || !PhysicalMoveInMoveset(bankAtk))

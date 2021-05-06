@@ -764,11 +764,20 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 						effect++;
 					}
 				}
-				else if (!(gBattleWeather & (WEATHER_HAIL_ANY | WEATHER_PRIMAL_ANY | WEATHER_CIRCUS)))
+				else if (!(gBattleWeather & (WEATHER_HAIL_ANY | WEATHER_PRIMAL_ANY | WEATHER_CIRCUS)) && !FlagGet(FLAG_HARDCORE_MODE))
 				{
 					gBattleScripting.animArg1 = B_ANIM_HAIL_CONTINUES;
 					effect = ActivateWeatherAbility(WEATHER_HAIL_PERMANENT | WEATHER_HAIL_TEMPORARY,
 													ITEM_EFFECT_ICY_ROCK, bank, B_ANIM_HAIL_CONTINUES, 3, FALSE);
+				}
+				else {
+					gBankAttacker = bank;
+					STAT_STAGE(bank, STAT_STAGE_ATK)++;
+					gBattleScripting.statChanger = STAT_STAGE_ATK | INCREASE_1;
+					PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_STAGE_ATK);
+					PREPARE_STAT_ROSE(gBattleTextBuff2);
+					BattleScriptPushCursorAndCallback(BattleScript_AttackerAbilityStatRaiseEnd3);
+					effect++;
 				}
 			}
 			break;
@@ -1634,7 +1643,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 					break;
 
 				case ABILITY_SAPSIPPER:
-					if (moveType == TYPE_GRASS)
+					if (moveType == TYPE_GRASS && !(VarGet(VAR_BATTLE_AURAS) == AURA_GRASS_TINTEDLENS))
 						effect = 2, statId = STAT_ATK;
 					break;
 

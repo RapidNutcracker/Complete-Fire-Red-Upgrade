@@ -489,6 +489,7 @@ bool8 TryActivateVarWeather()
 				gWishFutureKnock.weatherDuration = 0;
 				effect = TRUE;
 				break;
+
 		}
 	}
 	
@@ -531,6 +532,12 @@ bool8 TryActivateVarBattleAuras()
 				gNewBS->TailwindTimers[GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT)] = 99;
 				BattleScriptPushCursorAndCallback(BattleScript_TailwindBegins);
 				VarSet(VAR_BATTLE_AURAS, AURA_TAILWIND);
+				effect = TRUE;
+				break;
+			case AURA_GRASS_TINTEDLENS_STRING:
+				gBattleScripting.bank = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
+				BattleScriptPushCursorAndCallback(BattleScript_GrassTintedLensBegins);
+				VarSet(VAR_BATTLE_AURAS, AURA_GRASS_TINTEDLENS);
 				effect = TRUE;
 				break;
 		}

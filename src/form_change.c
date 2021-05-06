@@ -222,15 +222,15 @@ bool8 TryFormRevert(pokemon_t* mon)
 		return TRUE;
 	}
 	#if (defined SPECIES_SHAYMIN && defined SPECIES_SHAYMIN_SKY)
-	else if (mon->species == SPECIES_SHAYMIN_SKY)
-	{
-		if (IsNightTime())
-		{
-			mon->species = SPECIES_SHAYMIN; //Shaymin reverts to normal form at night
-			CalculateMonStats(mon);
-			return TRUE;
-		}
-	}
+	// else if (mon->species == SPECIES_SHAYMIN_SKY)
+	// {
+	// 	if (IsNightTime())
+	// 	{
+	// 		mon->species = SPECIES_SHAYMIN; //Shaymin reverts to normal form at night
+	// 		CalculateMonStats(mon);
+	// 		return TRUE;
+	// 	}
+	// }
 	#endif
 	#if (defined SPECIES_KELDEO && SPECIES_KELDEO_RESOLUTE)
 	else if (mon->species == SPECIES_KELDEO)

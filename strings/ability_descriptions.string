@@ -124,7 +124,7 @@ Ups evasion if confused.
 Summons a hailstorm in battle.
 
 #org @DESC_QUICKFEET
-Ups Speed if suffering.
+Doubles Speed if suffering.
 
 #org @DESC_SAPSIPPER
 Boosts Attack if hit by Grass.
@@ -385,7 +385,7 @@ Critically hits poisoned foes.
 Protects against mental problems.
 
 #org @DESC_FLOWERVEIL
-Protects Grass-types from status.
+Shields Grass-types from status.
 
 #org @DESC_LEAFGUARD
 Protects from status when sunny.

@@ -1908,6 +1908,33 @@ bool8 PhysicalMoveInMoveset(u8 bank)
 	return FALSE;
 }
 
+bool8 AtLeastTwoPhysicalMoveInMoveset(u8 bank, u8 amount)
+{
+	u16 move;
+	u8 moveLimitations = CheckMoveLimitations(bank, 0, 0xFF);
+	u8 count = 0;
+	for (int i = 0; i < MAX_MON_MOVES; ++i)
+	{
+		move = GetBattleMonMove(bank, i);
+		if (move == MOVE_NONE)
+			break;
+
+		if (!(gBitTable[i] & moveLimitations))
+		{
+			if (CalcMoveSplit(bank, move) == SPLIT_PHYSICAL
+			&& gBattleMoves[move].power != 0
+			&& gBattleMoves[move].effect != EFFECT_COUNTER){
+				count++;
+				if (count >= amount){
+					return TRUE;
+				}
+			}
+		}
+	}
+
+	return FALSE;
+}
+
 bool8 SpecialMoveInMoveset(u8 bank)
 {
 	u16 move;
@@ -1925,6 +1952,34 @@ bool8 SpecialMoveInMoveset(u8 bank)
 			&& gBattleMoves[move].power != 0
 			&& gBattleMoves[move].effect != EFFECT_MIRROR_COAT)
 				return TRUE;
+		}
+	}
+
+	return FALSE;
+}
+
+bool8 AtLeastTwoSpecialMoveInMoveset(u8 bank, u8 amount)
+{
+	u16 move;
+	u8 moveLimitations = CheckMoveLimitations(bank, 0, 0xFF);
+	u8 count = 0;
+
+	for (int i = 0; i < MAX_MON_MOVES; ++i)
+	{
+		move = GetBattleMonMove(bank, i);
+		if (move == MOVE_NONE)
+			break;
+
+		if (!(gBitTable[i] & moveLimitations))
+		{
+			if (CalcMoveSplit(bank, move) == SPLIT_SPECIAL
+			&& gBattleMoves[move].power != 0
+			&& gBattleMoves[move].effect != EFFECT_MIRROR_COAT){
+				count++;
+				if (count >= amount){
+					return TRUE;
+				}
+			}
 		}
 	}
 

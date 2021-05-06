@@ -40,6 +40,7 @@ battle_start_turn_start_battle_scripts.s
 .global BattleScript_PermaGroundImmunityBegins
 .global BattleScript_SolidRockBegins
 .global BattleScript_TailwindBegins
+.global BattleScript_GrassTintedLensBegins
 
 .global StringNull
 
@@ -182,14 +183,14 @@ BattleScript_FightingSpiritBegins:
 BattleScript_PermaTrickRoomBegins:
 	setword BATTLE_STRING_LOADER PermaTrickRoomBeginsString
 	printstring 0x184
-	playanimation BANK_SCRIPTING ANIM_TRICKROOM 0x0
+	playanimation BANK_SCRIPTING ANIM_TRICKROOM2 0x0
 	waitmessage DELAY_1SECOND
 	end3
 
 BattleScript_PermaGroundImmunityBegins:
 	setword BATTLE_STRING_LOADER PermaGroundImmunityBeginsString
 	printstring 0x184
-	playanimation BANK_SCRIPTING ANIM_MAGNETRISE 0x0
+	playanimation BANK_SCRIPTING ANIM_MAGNETRISE2 0x0
 	waitmessage DELAY_1SECOND
 	end3
 
@@ -203,10 +204,16 @@ BattleScript_SolidRockBegins:
 BattleScript_TailwindBegins:
 	setword BATTLE_STRING_LOADER TailwindBeginsString
 	printstring 0x184
-	playanimation BANK_SCRIPTING ANIM_TAILWIND 0x0
+	playanimation BANK_SCRIPTING ANIM_TAILWIND2 0x0
 	waitmessage DELAY_1SECOND
 	end3
 
+BattleScript_GrassTintedLensBegins:
+	setword BATTLE_STRING_LOADER GrassTintedLensBeginsString
+	printstring 0x184
+	playanimation BANK_SCRIPTING ANIM_FORESTSCURSE2 0x0
+	waitmessage DELAY_1SECOND
+	end3
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 BattleScript_QuickClaw:

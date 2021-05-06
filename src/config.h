@@ -214,6 +214,8 @@ enum //These vars need to be one after the other (hence the enum)
 #define AURA_SOLIDROCK 14
 #define AURA_TAILWIND_STRING 5
 #define AURA_TAILWIND 15
+#define AURA_GRASS_TINTEDLENS_STRING 6
+#define AURA_GRASS_TINTEDLENS 16
 #define NUM_SPECIES_RANDOMIZER NUM_SPECIES // The final number of Pokemon (+ 1) of species that can appear in the randomizer
 
 /*===== Pre-existing Offsets =====*/

@@ -605,7 +605,7 @@ The user attacks by\nslicing with a long\nhorn. The target's\nstat changes are\n
 The user slams down\nwith fire. The more\nthe user outweighs\nthe foe, the greater\nthe damage.
 
 #org @DESC_HEADCHARGE
-The user charges its\nhead into its foe,\nusing its guard hair.\nIt slightly damages\nthe user.
+The user charges its\nhead into its foe.\nIt slightly damages\nthe user and can\nlower Defense. 
 
 #org @DESC_TECHNOBLAST
 The user fires a beam\nof light at its foe.\nThe type changes\ndepending on the\nDrive held.
@@ -749,7 +749,7 @@ The user engages its\ngears to raise the\nAttack and Sp. Atk\nof allies with the
 The user fiercely\nattacks the target\nusing its entire\nbody.
 
 #org @DESC_ICEHAMMER
-The user swings\nits heavy fist.\nIt also lowers the\nuser's Speed.
+The user swings\nwith a heavy,\nicy fist to\nattack the target.
 
 #org @DESC_LASERFOCUS
 The user concentrates\nintensely. The\nattack on the next\nturn always results\nin a critical hit.
@@ -824,7 +824,7 @@ The user shines a\nspotlight on the\ntarget so that only\nthe target will be\nat
 If the user's\nprevious moves has\nfailed, the power\nof this move\ndoubles.
 
 #org @DESC_STRENGTHSAP
-The user drains HP\nequal to the foe's\nAttack and lowers\nit. Uses 2x amount of\nPP.
+The user drains HP\nequal to the foe's\nAttack and lowers\nit. 
 
 #org @DESC_SUNSTEELSTRIKE
 The user slams the\ntarget with a meteor\nforce. This move\ndisregards the\ntarget's Ability.
@@ -1010,7 +1010,7 @@ The user unleashes\na strong beam that\ndeals double damage\nto Dynamaxed target
 The user ignores\nthe effects of moves\nand Abilities that\ndraw in moves.
 
 #org @DESC_JAW_LOCK
-The user bites down,\npreventing itself\nand the target from\nswitching out.
+The user bites down,\npreventing the tar-\nget from switching\nout.
 
 #org @DESC_STUFF_CHEEKS
 The user consumes\nits held Berry,\nthen raises its\nDefense sharply.
@@ -1197,6 +1197,24 @@ The user attacks\nby hurling an ice-\ncloaked lance.
 
 #org @DESC_FORBIDDEN_SPELL
 The user conjures\nan ancient, corrupt\nspell that brings\nunexpected power.
+
+#org @DESC_ZIPPY_ZAP
+The user bursts with\nelectricity, going\nfirst and always\nresulting in a\ncritical hit. 
+
+#org @DESC_SAPPY_SEED
+The user scatters\nseeds to attack,\ndraining the target's\nHP every turn.
+
+#org @DESC_FREEZY_FROST
+The user attacks\nwith a large crystal\nthat removes all stat\nchanges on the field.
+
+#org @DESC_SPARKLY_SWIRL
+The user attacks\nwith a whirlwind that\nheals status problems\non the user's party.
+
+#org @DESC_BOUNCY_BUBBLE
+The user attacks\nwith water bubbles\nthat drains half the\ndamage it inflicted.
+
+#org @DESC_SONIC_SLASH
+The user attacks\nwith a swift slash\nthat becomes strong-\ner the faster the\nuser is.
 
 #org @DESC_MAX_GUARD
 Enables the user to\nevade all attacks.\nIt may fail if used\nin succession.

@@ -108,6 +108,13 @@ void AcupressureFunc(void)
 	SET_STATCHANGER(stat, 2, FALSE);
 }
 
+void CheckIfSeeded (void) 
+{
+	if (gStatuses3[gBankTarget] & STATUS3_LEECHSEED) {
+		gBattlescriptCurrInstr = BattleScript_MoveEnd - 5;
+	}
+}
+
 void SetStatSwapSplit(void)
 {
 	u8 bankAtk = gBankAttacker;

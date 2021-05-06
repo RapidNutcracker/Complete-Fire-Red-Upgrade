@@ -36,6 +36,7 @@ extern const u8 BattleScript_PermaTrickRoomBegins[];
 extern const u8 BattleScript_PermaGroundImmunityBegins[];
 extern const u8 BattleScript_SolidRockBegins[]; 
 extern const u8 BattleScript_TailwindBegins[];
+extern const u8 BattleScript_GrassTintedLensBegins[];
 
 extern const u8 gText_CamomonsTypeReveal[];
 extern const u8 gText_CamomonsTypeRevealDualType[];

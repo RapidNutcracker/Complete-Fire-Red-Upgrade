@@ -76,7 +76,7 @@ Surfing:
     setvar 0x8000 0xF5
     setvar 0x8001 MOVE_HAPPYHOUR
     setvar 0x8002 0x56 @moves 
-    setvar 0x8003 0x39 @surf 
+    setvar 0x8003 MOVE_BOUNCYBUBBLE @surf 
     setvar 0x8004 0xF @nature moodest 
     setvar 0x8005 0x0 
     setvar 0x8006 0x1E
@@ -93,7 +93,7 @@ Flying:
     setvar 0x8000 0xF5
     setvar 0x8001 MOVE_HAPPYHOUR
     setvar 0x8002 0x56 @moves 
-    setvar 0x8003 MOVE_HURRICANE @fly
+    setvar 0x8003 MOVE_AIRSLASH
     setvar 0x8004 0x3 @nature adamant 
     setvar 0x8005 0x0 
     setvar 0x8006 0x1E
@@ -144,7 +144,7 @@ PopStar:
     setvar 0x8000 0xF5
     setvar 0x8001 MOVE_HAPPYHOUR
     setvar 0x8002 0x56 @moves 
-    setvar 0x8003 0x1D1 @Draining Kiss  
+    setvar 0x8003 MOVE_SPARKLYSWIRL @Draining Kiss  
     setvar 0x8004 0xF @nature modest
     setvar 0x8005 0x0 
     setvar 0x8006 0x1E
@@ -175,10 +175,10 @@ RockStar:
     end
 
 Belle:
-    setvar 0x8000 0xF5
+    setvar 0x8000 MOVE_ICICLECRASH
     setvar 0x8001 MOVE_HAPPYHOUR
     setvar 0x8002 0x56 @moves 
-    setvar 0x8003 0x19D @Icicle Crash
+    setvar 0x8003 MOVE_FREEZYFROST @Icicle Crash
     setvar 0x8004 0x3 @nature adamant 
     setvar 0x8005 0x0 
     setvar 0x8006 0x1E

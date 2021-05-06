@@ -339,7 +339,6 @@ EventScript_GiveExpShare:
 	compare 0x800D 0x1
 	if lessthan _call GiveStatScanner 
 	msgbox gText_Pewter_TalkAboutLevelCap MSG_FACE
-	setvar 0x501A 0x0
 	release 
 	end 
  

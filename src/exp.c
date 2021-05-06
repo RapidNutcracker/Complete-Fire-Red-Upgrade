@@ -43,7 +43,7 @@ extern const u16 gBaseExpBySpecies[];
 extern u8 String_TeamExpGain[];
 u8 LevelCap_Badges[18] = {
 	15, //Before Brock
-	21, //before Mt Moon Archer
+	22, //before Mt Moon Archer
 	27, //Before Misty
 	34, //Before Surge
 	44, //Before Erika
@@ -63,8 +63,8 @@ u8 LevelCap_Badges[18] = {
 
 u8 LevelCap_BadgesHardcoreMode[18] = {
 	16, //Before Brock
-	21, //before Mt Moon Archer
-	27, //Before Misty
+	23, //before Mt Moon Archer
+	28, //Before Misty
 	36, //Before Surge
 	44, //Before Erika
 	47, //Before Celadon Giovanni

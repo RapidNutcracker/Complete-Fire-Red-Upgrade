@@ -7,6 +7,7 @@
 
 .equ VAR_WEATHER, 0x5118
 .equ FLAG_HARDCORE_MODE, 0x1034
+.equ VAR_TERRAIN, 0x5000
 
 .global EventScript_pryce_Start
 EventScript_pryce_Start:

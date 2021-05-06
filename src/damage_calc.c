@@ -120,6 +120,7 @@ void atk04_critcalc(void)
 						#endif
 						#ifdef SPECIES_FARFETCHD
 						+  (atkEffect == ITEM_EFFECT_STICK && (gBattleMons[gBankAttacker].species == SPECIES_FARFETCHD || gBattleMons[gBankAttacker].species == SPECIES_FARFETCHD_G)) //changed from +2 crit rate to +1 
+						+ 2 * (atkEffect == ITEM_EFFECT_STICK && (gBattleMons[gBankAttacker].species == SPECIES_SIRFETCHD))
 						#endif
 						+ 2 * (gCurrentMove == MOVE_10000000_VOLT_THUNDERBOLT);
 
@@ -206,6 +207,7 @@ static u8 CalcPossibleCritChance(u8 bankAtk, u8 bankDef, u16 move, struct Pokemo
 					#endif
 					#ifdef SPECIES_FARFETCHD
 					+ 1 * (atkEffect == ITEM_EFFECT_STICK && (atkSpecies == SPECIES_FARFETCHD || atkSpecies == SPECIES_FARFETCHD_G) ) 
+					+ 2 * (atkEffect == ITEM_EFFECT_STICK && (gBattleMons[gBankAttacker].species == SPECIES_SIRFETCHD))
 					#endif
 					+ 2 * (move == MOVE_10000000_VOLT_THUNDERBOLT);
 
@@ -334,7 +336,7 @@ u32 AI_CalcDmg(const u8 bankAtk, const u8 bankDef, const u16 move, struct Damage
 	gBattleScripting.dmgMultiplier = 1;
 
 	gCritMultiplier = CalcPossibleCritChance(bankAtk, bankDef, move, NULL, NULL); //Return 0 if none, 1 if always, 2 if 50%
-	if (gCritMultiplier != 0 && Random2() % gCritMultiplier == 0)
+	if (gCritMultiplier != 0 && Random() % gCritMultiplier == 0)
 		gCritMultiplier = CRIT_MULTIPLIER;
 	else
 		gCritMultiplier = BASE_CRIT_MULTIPLIER;
@@ -353,7 +355,7 @@ u32 AI_CalcDmg(const u8 bankAtk, const u8 bankDef, const u16 move, struct Damage
 	damage = (gBattleMoveDamage * gCritMultiplier) / BASE_CRIT_MULTIPLIER;
 	gCritMultiplier = BASE_CRIT_MULTIPLIER; //Reset
 
-	damage = (damage * 93) / 100; //Roll 93% damage - about halfway between min & max damage
+	damage = (damage * 85) / 100; //Used to be 93. Did 85 (lowest damage roll) to ensure AI knows which move is the strongest move given the worst circumstances.
 
 	if (CheckTableForMove(move, gTwoToFiveStrikesMoves) && ABILITY(bankAtk) == ABILITY_SKILLLINK)
 	{
@@ -2512,6 +2514,7 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		
 	}
 
+
 	//Second Attacker Item Checks
 	switch (data->atkItemEffect) {
 		case ITEM_EFFECT_EXPERT_BELT:
@@ -2520,9 +2523,18 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 				damage = (damage * 12) / 10;
 			break;
 	}
-	if (VarGet(VAR_BATTLE_AURAS) == AURA_SOLIDROCK) {
+
+	//Logic for battle auras for hardcore mode
+	switch(VarGet(VAR_BATTLE_AURAS)) {
+		case AURA_SOLIDROCK:
 			if (data->resultFlags & MOVE_RESULT_SUPER_EFFECTIVE && (SIDE(bankDef) == B_SIDE_OPPONENT))
 				damage = (damage * 66) / 100;
+			break;
+
+		case AURA_GRASS_TINTEDLENS:
+			if (data->resultFlags & MOVE_RESULT_NOT_VERY_EFFECTIVE && (SIDE(bankDef) == B_SIDE_PLAYER) && data->moveType == TYPE_GRASS )
+				damage *= 3 / 2;
+			break;
 	}
 
 	//Second Target Ability Checks
@@ -2880,6 +2892,19 @@ static u16 GetBasePower(struct DamageCalc* data)
 					power = 80;
 				else
 					power = 60;
+			}
+			break;
+
+		case MOVE_SONICSLASH:	;
+			if (!(data->specialFlags & FLAG_IGNORE_TARGET))
+			{
+				ratio = data->atkSpeed / data->defSpeed;
+				if (ratio >= 3)
+					power = 140;
+				else if (ratio >= 2)
+					power = 120;
+				else
+					power = 80;
 			}
 			break;
 

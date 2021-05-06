@@ -81,7 +81,9 @@ bool8 CanMovePredictionProtectAgainstMove(u8 bankAtk, u8 bankDef, u16 move);
 
 bool8 DamagingMoveInMoveset(u8 bank);
 bool8 PhysicalMoveInMoveset(u8 bank);
+bool8 AtLeastTwoPhysicalMoveInMoveset(u8 bank, u8 amount);
 bool8 SpecialMoveInMoveset(u8 bank);
+bool8 AtLeastTwoSpecialMoveInMoveset(u8 bank, u8 amount);
 bool8 MoveSplitInMoveset(u8 bank, u8 moveSplit);
 bool8 PhysicalMoveInMonMoveset(struct Pokemon* mon, u8 moveLimitations);
 bool8 SpecialMoveInMonMoveset(struct Pokemon* mon, u8 moveLimitations);

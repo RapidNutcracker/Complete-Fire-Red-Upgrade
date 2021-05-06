@@ -927,6 +927,7 @@ static bool8 PredictedMoveWontDoTooMuchToMon(u8 activeBattler, struct Pokemon* m
 		&& SpeedCalcMon(SIDE(activeBattler), mon) > SpeedCalc(foe); //Has time to heal
 }
 
+//added changes
 static bool8 ShouldSwitchIfOnlyBadMovesLeft(void)
 {
 	u8 battlerIn1, battlerIn2;
@@ -962,6 +963,45 @@ static bool8 ShouldSwitchIfOnlyBadMovesLeft(void)
 				return TRUE;
 			}
 		}
+		if (STAT_STAGE(gActiveBattler, STAT_STAGE_ATK) <= 4 && AtLeastTwoPhysicalMoveInMoveset(gActiveBattler, 2))
+		{ //if minus 2 in Atk it's probably better to switch out if its a physical attacker
+			u8 firstId, lastId, bestMon;
+			struct Pokemon *party;
+			party = LoadPartyRange(gActiveBattler, &firstId, &lastId);
+			bestMon = GetMostSuitableMonToSwitchInto();
+
+			if (PredictedMoveWontDoTooMuchToMon(gActiveBattler, &party[bestMon], foe1))
+			{
+				u16 move = GetStrongestMove(gActiveBattler, foe1); //Assume the usuable damage move is the strongest move
+				u32 dmg = GetFinalAIMoveDamage(move, gActiveBattler, foe1, 1, NULL);
+
+				if (dmg < gBattleMons[foe1].hp){ //Move doesn't KO
+					gBattleStruct->switchoutIndex[SIDE(gActiveBattler)] = PARTY_SIZE;
+					EmitTwoReturnValues(1, ACTION_SWITCH, 0);
+					return TRUE;
+				}
+			}
+		}
+		if (STAT_STAGE(gActiveBattler, STAT_STAGE_SPATK) <= 4 && AtLeastTwoSpecialMoveInMoveset(gActiveBattler, 2))
+		{ //if minus 2 in SpA it's probably better to switch out if its a special attacker
+			u8 firstId, lastId, bestMon;
+			struct Pokemon *party;
+			party = LoadPartyRange(gActiveBattler, &firstId, &lastId);
+			bestMon = GetMostSuitableMonToSwitchInto();
+
+			if (PredictedMoveWontDoTooMuchToMon(gActiveBattler, &party[bestMon], foe1))
+			{
+				u16 move = GetStrongestMove(gActiveBattler, foe1); //Assume the usuable damage move is the strongest move
+				u32 dmg = GetFinalAIMoveDamage(move, gActiveBattler, foe1, 1, NULL);
+
+				if (dmg < gBattleMons[foe1].hp){ //Move doesn't KO 
+					gBattleStruct->switchoutIndex[SIDE(gActiveBattler)] = PARTY_SIZE;
+					EmitTwoReturnValues(1, ACTION_SWITCH, 0);
+					return TRUE;
+				}
+			}
+		}
+
 	}
 
 	return FALSE;

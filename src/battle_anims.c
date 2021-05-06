@@ -944,6 +944,35 @@ void AnimTask_GetLycanrocForm(u8 taskId)
 	DestroyAnimVisualTask(taskId);
 }
 
+void AnimTask_GetTerrain(u8 taskId)
+{
+	if (CheckGroundingFromPartyData(GetIllusionPartyData(gBattleAnimAttacker)) != GROUNDED) {
+		gBattleAnimArgs[0] = 0;
+	}
+	else {
+		switch (gTerrainType) {
+			case ELECTRIC_TERRAIN:
+				gBattleAnimArgs[0] = 1;
+				break;
+			case GRASSY_TERRAIN:
+				gBattleAnimArgs[0] = 2;
+				break;
+			case MISTY_TERRAIN:
+				gBattleAnimArgs[0] = 3;
+				break;
+			case PSYCHIC_TERRAIN:
+				gBattleAnimArgs[0] = 4;
+				break;
+			default:
+				gBattleAnimArgs[0] = 0;
+
+		}
+	}
+
+	DestroyAnimVisualTask(taskId);
+}
+
+
 void AnimTask_IsTargetPartner(u8 taskId)
 {
 	if (gBattleAnimTarget == PARTNER(gBattleAnimAttacker))

@@ -1442,9 +1442,9 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 		.ability = Ability_Hidden,
 	},
 	[141] =
-	{ //Mixed Attacker: Attack Based, Less Defense - Ability_Hidden, HP electric Misty floatzel
+	{ //Mixed Attacker: Attack Based, Less Defense - Ability_Hidden, HP Grass Misty floatzel
 		.nature = NATURE_BASHFUL,
-		.hiddenPower = TYPE_ELECTRIC,
+		.hiddenPower = TYPE_GRASS,
 		.ivs = 31,
 		.atkEv = 8,
 		.spdEv = 252,

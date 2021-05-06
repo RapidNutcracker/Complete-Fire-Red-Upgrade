@@ -176,6 +176,7 @@ static void PostProcessTeam(struct Pokemon* party, struct TeamBuilder* builder);
 static void TryShuffleMovesForCamomons(struct Pokemon* party, u8 tier, u16 trainerId);
 static u8 GetPartyIdFromPartyData(struct Pokemon* mon);
 static u8 GetHighestMonLevel(const struct Pokemon* const party);
+u8 HardcoreBannedAbilitySwapper(u8 ability);
 
 #ifdef OPEN_WORLD_TRAINERS
 
@@ -848,7 +849,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon* const party, const u16 trainerId
 							party[i].attackIV = 30;			
 							party[i].defenseIV = 31;			
 							party[i].speedIV = 31;		
-							party[i].spAttackIV = 30;		
+							party[i].spAttackIV = 30;		 
 							party[i].spDefenseIV = 31;	
 							break;
 
@@ -859,6 +860,14 @@ static u8 CreateNPCTrainerParty(struct Pokemon* const party, const u16 trainerId
 							party[i].speedIV = 31;		
 							party[i].spAttackIV = 30;		
 							party[i].spDefenseIV = 30;	
+							break;
+						case TYPE_ELECTRIC:
+							party[i].hpIV = 31;			
+							party[i].attackIV = 31;			
+							party[i].defenseIV = 31;			
+							party[i].speedIV = 31;		
+							party[i].spAttackIV = 30;		
+							party[i].spDefenseIV = 31;	
 							break;
 
 						default:
@@ -1617,7 +1626,7 @@ static u8 BuildFrontierParty(struct Pokemon* const party, const u16 trainerId, c
 					}
 				}
 			}
-
+ 
 			//Prevent duplicate species and items
 			//Only allow one Mega Stone & Z-Crystal per team
 			if (!IsPokemonBannedBasedOnStreak(species, item, builder->speciesArray, monsCount, trainerId, tier, forPlayer)
@@ -1629,7 +1638,7 @@ static u8 BuildFrontierParty(struct Pokemon* const party, const u16 trainerId, c
 			&& !(tier == BATTLE_FACILITY_MONOTYPE && TeamNotAllSameType(species, item, monsCount, builder->speciesArray, builder->itemArray))
 			&& !(tier == BATTLE_FACILITY_GS_CUP && !IsFrontierSingles(battleType) && TooManyLegendariesOnGSCupTeam(species, monsCount, builder->speciesArray))
 			&& !((trainerId == BATTLE_TOWER_TID || forPlayer || (trainerId == BATTLE_FACILITY_MULTI_TRAINER_TID && IsRandomBattleTowerBattle())) && TeamDoesntHaveSynergy(spread, builder)))
-			{
+			{ 
 				class = PredictFightingStyle(spread->moves, ability, itemEffect, 0xFF);
 
 				builder->spreads[i] = spread;
@@ -1917,11 +1926,11 @@ static void CreateFrontierMon(struct Pokemon* mon, const u8 level, const struct 
 	for (j = 0; j < MAX_MON_MOVES; j++)
 	{
 		mon->moves[j] = spread->moves[j];
-		mon->pp[j] = gBattleMoves[spread->moves[j]].pp;
+		mon->pp[j] = gBattleMoves[spread->moves[j]].pp; 
 	}
 
 	SetMonData(mon, MON_DATA_HELD_ITEM, &spread->item);
-
+ 
 	u8 ballType;
 	if (spread->ball != BALL_TYPE_RANDOM)
 		ballType = MathMin(LAST_BALL_INDEX, spread->ball);
@@ -2088,7 +2097,7 @@ static void AdjustTypesForMegas(const u16 species, const u16 item, u8* const typ
 
 		if (*type2 != megaType1
 		&&  *type2 != megaType2)
-			*type2 = TYPE_BLANK;
+			*type2 = TYPE_BLANK; 
 	}
 }
 
@@ -2098,7 +2107,7 @@ static bool8 TeamNotAllSameType(const u16 species, const u16 item, const u8 part
 	u8 typeOnTeam[NUMBER_OF_MON_TYPES] = {FALSE};
 
 	u8 type1 = gBaseStats[species].type1;
-	u8 type2 = gBaseStats[species].type2;
+	u8 type2 = gBaseStats[species].type2; 
 	AdjustTypesForMegas(species, item, &type1, &type2);
 
 	//if (type1 != TYPE_GHOST && type2 != TYPE_GHOST) //For debugging
@@ -4120,6 +4129,51 @@ void CalculateMonStatsNew(struct Pokemon *mon)
 	SetMonData(mon, MON_DATA_HP, &currentHP);
 }
 
+u8 HardcoreBannedAbilitySwapper(u8 ability){
+	switch (ability) {
+		case ABILITY_DROUGHT:
+			return ABILITY_SOLARPOWER;
+
+		case ABILITY_DRIZZLE:
+			return ABILITY_SWIFTSWIM; 
+
+		case ABILITY_SNOWWARNING:
+			return ABILITY_SLUSHRUSH;
+
+		case ABILITY_SANDSTREAM:
+			return ABILITY_SANDFORCE; 
+		
+		case ABILITY_SANDSPIT:
+			return ABILITY_SANDFORCE;
+		
+		case ABILITY_SPEEDBOOST:
+			return ABILITY_INFILTRATOR;
+		
+		case ABILITY_CONTRARY:
+			return ABILITY_CLEARBODY;
+		
+		case ABILITY_MAGICBOUNCE:
+			return ABILITY_MAGICGUARD; 
+
+		case ABILITY_PSYCHICSURGE:
+		case ABILITY_MISTYSURGE:
+		case ABILITY_GRASSYSURGE:
+		case ABILITY_ELECTRICSURGE:
+			return ABILITY_TELEPATHY;
+		
+		case ABILITY_MOXIE:
+		case ABILITY_SOULHEART:
+		case ABILITY_BEASTBOOST:
+			return ABILITY_UNNERVE;
+			
+		case ABILITY_IMPOSTER:
+			return ABILITY_LIMBER;
+
+	}
+	return ability;
+
+}
+
 // u8 TryRandomizeAbility(u8 ability, unusedArg u16 species)
 u8 TryRandomizeAbility(u8 ability, const struct Pokemon* mon)
 {
@@ -4137,51 +4191,9 @@ u8 TryRandomizeAbility(u8 ability, const struct Pokemon* mon)
 	if (FlagGet(FLAG_HARDCORE_MODE)){
 		u32 otId = GetMonData(mon, MON_DATA_OT_ID, NULL);
 		if (otId == (u32) T1_READ_32(gSaveBlock2->playerTrainerId)){
-			
-			switch (ability) {
-				case ABILITY_DROUGHT:
-					return ABILITY_SOLARPOWER;
-
-				case ABILITY_DRIZZLE:
-					return ABILITY_SWIFTSWIM; 
-
-				case ABILITY_SNOWWARNING:
-					return ABILITY_SLUSHRUSH;
-
-				case ABILITY_SANDSTREAM:
-					if ( species == SPECIES_TYRANITAR || species == SPECIES_TYRANITAR_MEGA)
-						return ABILITY_SOLIDROCK;
-					return ABILITY_SANDFORCE; 
-				
-				case ABILITY_SANDSPIT:
-					return ABILITY_SANDFORCE;
-				
-				case ABILITY_SPEEDBOOST:
-					return ABILITY_INFILTRATOR;
-				
-				case ABILITY_CONTRARY:
-					return ABILITY_CLEARBODY;
-				
-				case ABILITY_MAGICBOUNCE:
-					return ABILITY_MAGICGUARD; 
-
-				case ABILITY_PSYCHICSURGE:
-				case ABILITY_MISTYSURGE:
-				case ABILITY_GRASSYSURGE:
-				case ABILITY_ELECTRICSURGE:
-					return ABILITY_TELEPATHY;
-				
-				case ABILITY_MOXIE:
-				case ABILITY_SOULHEART:
-				case ABILITY_BEASTBOOST:
-					return ABILITY_UNNERVE;
-					
-				case ABILITY_IMPOSTER:
-					return ABILITY_LIMBER;
-
-			}
+			return HardcoreBannedAbilitySwapper(ability);
 		}
-			return ability;
+		return ability;
 	}
 	#ifdef FLAG_ABILITY_RANDOMIZER
 	if (FlagGet(FLAG_ABILITY_RANDOMIZER) && !FlagGet(FLAG_BATTLE_FACILITY) && (ShouldTrainerRandomize() || !dontRandomize))

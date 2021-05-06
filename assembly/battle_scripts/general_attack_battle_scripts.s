@@ -138,7 +138,6 @@ StrengthSapBS:
 	jumpifstat BANK_TARGET EQUALS STAT_ATK STAT_MIN FAILED_PRE
 	attackstring
 	ppreduce
-	ppreduce
 	attackanimation
 	waitanimation
 	setgraphicalstatchangevalues
@@ -829,6 +828,7 @@ BS_024_LowerTargetEvsn1:
 
 .global BS_025_Haze
 BS_025_Haze:
+	jumpifmove MOVE_FREEZYFROST FreezyFrostBS
 	attackcanceler
 	attackstring
 	ppreduce
@@ -839,6 +839,17 @@ BS_025_Haze:
 	waitmessage DELAY_1SECOND
 	goto BS_MOVE_END
 
+FreezyFrostBS:
+	tryactivateprotean
+	attackcanceler
+	accuracycheck BS_MOVE_MISSED 0x0 
+	call STANDARD_DAMAGE
+	prefaintmoveendeffects 0x0
+	faintpokemonaftermove
+	normalisebuffs
+	printstring 0xF9
+	waitmessage DELAY_1SECOND
+	goto BS_MOVE_END
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 .global BS_026_Bide
@@ -2179,6 +2190,7 @@ BS_101_FalseSwipe:
 .global BattleScript_SapSipperAromatherapy
 .global BS_102_HealBell
 BS_102_HealBell:
+	jumpifmove MOVE_SPARKLYSWIRL SparklySwirlBS
 	attackcanceler
 	attackstring
 	ppreduce
@@ -2205,6 +2217,18 @@ BattleScript_CheckHealBellMon2Unaffected:
 	printstring 0x15E @;STRINGID_PKMNSXBLOCKSY2
 	waitmessage DELAY_1SECOND
 	call BattleScript_AbilityPopUpRevert
+
+SparklySwirlBS: 
+	tryactivateprotean
+	attackcanceler
+	accuracycheck BS_MOVE_MISSED 0x0 
+	call STANDARD_DAMAGE
+	prefaintmoveendeffects 0x0
+	faintpokemonaftermove
+	healpartystatus
+	printfromtable 0x83FE5E4
+	waitmessage DELAY_1SECOND
+	goto BattleScript_PartyHealEnd
 
 BattleScript_PartyHealEnd:
 	refreshhpbar 0x4
@@ -2261,7 +2285,8 @@ BS_106_MeanLook:
 	jumpifmove MOVE_ANCHORSHOT DamageAndTrapBS
 	jumpifmove MOVE_SPIRITSHACKLE DamageAndTrapBS
 	jumpifmove MOVE_THOUSANDWAVES DamageAndTrapBS
-	jumpifmove MOVE_JAWLOCK JawLockBS
+	jumpifmove MOVE_JAWLOCK DamageAndTrapBS
+	@ jumpifmove MOVE_JAWLOCK JawLockBS
 	attackcanceler
 	accuracycheck FAILED_PRE 0x0
 	jumpiftype BANK_TARGET TYPE_GHOST FAILED_PRE
@@ -4757,9 +4782,27 @@ BS_213_StatSwapSplitters:
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-.global BS_214_Blank
-BS_214_Blank:
-	goto BS_STANDARD_HIT
+.global BS_214_SappySeed
+BS_214_SappySeed:
+	@ jumpifsecondarystatus BANK_TARGET STATUS3_SEEDED | STATUS3_SEEDED_RECOVERY BS_STANDARD_HIT doesnt work for some reason
+	tryactivateprotean
+	jumpifsecondarystatus BANK_TARGET STATUS2_SUBSTITUTE BS_STANDARD_HIT
+	jumpiftype BANK_TARGET TYPE_GRASS BS_STANDARD_HIT
+	attackcanceler
+	accuracycheck BS_MOVE_MISSED 0x0 
+	call STANDARD_DAMAGE
+	jumpiffainted BANK_TARGET BS_MOVE_FAINT
+	jumpifmovehadnoeffect BS_MOVE_FAINT
+
+SetSappyLeechSeed:
+	callasm CheckIfSeeded
+	setleechseed
+	playanimation BANK_TARGET ANIM_LEECHSEED2 0x0
+	waitanimation
+	printfromtable 0x83FE558
+	waitmessage DELAY_1SECOND
+	goto BS_MOVE_END
+
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 

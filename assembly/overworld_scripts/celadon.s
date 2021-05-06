@@ -8,6 +8,9 @@
 .equ VAR_TERRAIN, 0x5000
 .equ FLAG_HARDCORE_MODE, 0x1034
 .equ FLAG_MINIMAL_GRINDING_MODE, 0x1032
+.equ VAR_BATTLE_AURAS, 0x5119
+.equ AURA_GRASS_TINTEDLENS_STRING, 6
+.equ PERMA_TRICK_ROOM_STRING, 2
 
 .global EventScript_Celadon_CheckErika
 EventScript_Celadon_CheckErika:
@@ -1311,6 +1314,8 @@ EventScript_erika_BattleTwo:
 	msgbox gText_erika_StartBattle MSG_NORMAL 
 	setflag 0x90E
 	special 0x0
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _call SetRematchAura
 	trainerbattle3 0x3 0x41 0x0 gText_Erika_DefeatText2
 	msgbox gText_PostRematch MSG_NORMAL 
 	setflag 0x90F
@@ -1325,6 +1330,11 @@ EventScript_erika_BattleTwo:
 	setflag 0x948 
 	release
 	end
+
+SetRematchAura:
+	setvar VAR_TERRAIN 0x2
+	setvar VAR_BATTLE_AURAS AURA_GRASS_TINTEDLENS_STRING
+	return
 
 EventScript_erika_Farewell:
 	msgbox gText_erika_Info 0x6

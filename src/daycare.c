@@ -45,11 +45,11 @@ enum Parents
 };
 
 // extern const move_t gRandomizerBannedMoves[];
-// extern const move_t gHardcoreBannedMoves[];
-// extern const move_t gHardcoreHalfBannedMoves[];
-// extern const move_t gHardcoreTrashBannedMoves[]; 
-// extern const species_t gSuperBadHardcoreList[]; 
-// extern const species_t gBadHardcoreList[]; 
+extern const move_t gHardcoreBannedMoves[];
+extern const move_t gHardcoreHalfBannedMoves[];
+extern const move_t gHardcoreTrashBannedMoves[]; 
+extern const species_t gSuperBadHardcoreList[]; 
+extern const species_t gBadHardcoreList[]; 
 
 //This file's functions:
 static s32 GetSlotToInheritNature(struct DayCare* daycare);
@@ -899,15 +899,15 @@ u8 GetAllEggMoves(struct Pokemon* mon, u16* moves, bool8 ignoreAlreadyKnownMoves
 	for (i = 0, j = 0; i < numEggMoves; ++i)
 	{
 		//For Hardcore Mode to remove banned moves from egg list 
-		// if(FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(eggMovesBuffer[i], gHardcoreBannedMoves)) {
-		// 	continue;
-		// }
-		// else if(FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(eggMovesBuffer[i], gHardcoreHalfBannedMoves) && !CheckTableForSpecies(species, gBadHardcoreList)) { 
-		// 	continue;
-		// }
-		// else if (FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(eggMovesBuffer[i], gHardcoreTrashBannedMoves) && !CheckTableForSpecies(species, gSuperBadHardcoreList)) { 
-		// 	continue; 
-		// }
+		if(FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(eggMovesBuffer[i], gHardcoreBannedMoves)) {
+			continue;
+		}
+		else if(FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(eggMovesBuffer[i], gHardcoreHalfBannedMoves) && !CheckTableForSpecies(species, gBadHardcoreList)) { 
+			continue;
+		}
+		else if (FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(eggMovesBuffer[i], gHardcoreTrashBannedMoves) && !CheckTableForSpecies(species, gSuperBadHardcoreList)) { 
+			continue; 
+		}
 		if (!ignoreAlreadyKnownMoves || !MoveInMonMoveset(eggMovesBuffer[i], mon))
 		{
 			moves[j++] = eggMovesBuffer[i];

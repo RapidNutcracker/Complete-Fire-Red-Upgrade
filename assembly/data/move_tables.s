@@ -309,12 +309,6 @@ gRandomizerBannedMoves:
 .hword MOVE_COACHING
 .hword MOVE_BURNINGJEALOUSY
 .hword MOVE_TEATIME
-.hword MOVE_PLACEHOLDER2
-.hword MOVE_PLACEHOLDER3
-.hword MOVE_PLACEHOLDER4
-.hword MOVE_PLACEHOLDER5
-.hword MOVE_PLACEHOLDER6
-.hword MOVE_PLACEHOLDER7
 .hword MOVE_PLACEHOLDER8
 .hword MOVE_PLACEHOLDER9
 .hword MOVE_PLACEHOLDER10
@@ -384,6 +378,8 @@ gHardcoreBannedMoves:
 .hword MOVE_PSYCHUP
 .hword MOVE_SNATCH
 .hword MOVE_MAGICCOAT
+.hword MOVE_FISHIOUSREND
+.hword MOVE_PROTECT
 .hword MOVE_TABLES_TERMIN
 
 gHardcoreHalfBannedMoves:
@@ -488,6 +484,7 @@ gSleepTalkBannedMoves:
 .hword MOVE_ICEBURN
 .hword MOVE_MEFIRST
 .hword MOVE_METRONOME
+.hword MOVE_METEORBEAM
 .hword MOVE_MIRRORMOVE
 .hword MOVE_MIMIC
 .hword MOVE_PHANTOMFORCE
@@ -1110,6 +1107,7 @@ gAlwaysCriticalMoves:
 .hword MOVE_FROSTBREATH
 .hword MOVE_SURGINGSTRIKES
 .hword MOVE_WICKEDBLOW
+.hword MOVE_ZIPPYZAP
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -1270,11 +1268,11 @@ gPercent25RecoilMoves:
 .hword MOVE_SUBMISSION
 .hword MOVE_WILDCHARGE
 .hword MOVE_HEADCHARGE
+.hword MOVE_VOLTTACKLE
 .hword MOVE_TABLES_TERMIN
 
 gPercent33RecoilMoves:
 .hword MOVE_DOUBLEEDGE
-.hword MOVE_VOLTTACKLE
 .hword MOVE_FLAREBLITZ
 .hword MOVE_BRAVEBIRD
 .hword MOVE_WOODHAMMER

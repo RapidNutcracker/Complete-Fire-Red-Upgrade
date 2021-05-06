@@ -2307,7 +2307,14 @@ static u8 GetAbilityCapsuleNewAbility(struct Pokemon* mon)
 	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
 	u8 ability = GetMonAbility(mon);
 	u8 changeTo = ABILITY_NONE;
+	u8 ability1 = gBaseStats[species].ability1;
+	u8 ability2 = gBaseStats[species].ability2;
 
+	if(FlagGet(FLAG_HARDCORE_MODE)) {
+		ability1 = HardcoreBannedAbilitySwapper(ability1);
+		ability2 = HardcoreBannedAbilitySwapper(ability2);
+	}
+	
 	if (abilityType != 0) //Hidden Ability Capsule
 	{
 		if (ability != gBaseStats[species].hiddenAbility
@@ -2322,16 +2329,16 @@ static u8 GetAbilityCapsuleNewAbility(struct Pokemon* mon)
 	// }
 	else //Regular ability capsule
 	{
-		if (ability == gBaseStats[species].ability1)
+		if (ability == ability1)
 		{
-			if (ability != gBaseStats[species].ability2
+			if (ability != ability2
 			&& gBaseStats[species].ability2 != ABILITY_NONE)
-				changeTo = gBaseStats[species].ability2;
+				changeTo = ability2;
 		}
-		else if (ability == gBaseStats[species].ability2) //Explicit check just in case the Pokemon has its Hidden Ability
+		else if (ability == ability2) //Explicit check just in case the Pokemon has its Hidden Ability
 		{
-			if (gBaseStats[species].ability1 != ABILITY_NONE)
-				changeTo = gBaseStats[species].ability1;
+			if (ability1 != ABILITY_NONE)
+				changeTo = ability1;
 		}
 	}
 	

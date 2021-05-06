@@ -449,19 +449,22 @@ The opponent's presence set a\npermanent Rain Storm.
 The opponent's presence set a\npermanent Hail Storm.
 
 #org @PermaTrickRoomBeginsString
-The opponent's presence set a\npermanent Trick Room.
+The opponent's telekinetic powers\nset a permanent Trick Room.
 
 #org @LivedFightingSpirit
 The foe lived on 1 HP thanks to its\nFighting Spirit!
 
 #org @FightingSpiritBattleBeginString
-The opponent's presence gave\nhis Pok\emon Fighting Spirit,\lallowing them to endure KOs at 75% HP.
+The opponent's courage gave\nhis Pok\emon Fighting Spirit,\lallowing them to endure KOs at 75% HP.
 
 #org @PermaGroundImmunityBeginsString
-The opponent's presence gave\nhis Pok\emon a permanent ground\limmunity.
+The opponent's arrogance gave\nhis Pok\emon a permanent ground\limmunity.
 
 #org @SolidRockBeginsString
 The opponent's rock-hard determination\nreduces super effective moves\lused on his Pok\emon by 33%.
 
 #org @TailwindBeginsString
-The opponent's presence set a\npermanent Tailwind.
+The opponent's swiftness set a\npermanent Tailwind.
+
+#org @GrassTintedLensBeginsString
+The opponent's shrewdness increases\nthe power of her Pok\emon's resisted\lGrass moves by 50% and bypasses\limmunities.
