@@ -8,7 +8,8 @@
 .equ VAR_WEATHER, 0x5118
 .equ FLAG_HARDCORE_MODE, 0x1034
 .equ VAR_TERRAIN, 0x5000
-
+.equ VAR_BATTLE_AURAS, 0x5119
+.equ AURA_ICE_DEFENSE_STRING, 7
 .global EventScript_pryce_Start
 EventScript_pryce_Start:
 	lock
@@ -38,6 +39,7 @@ EventScript_pryce_Battle:
 
 SetWeather:
 	setvar VAR_WEATHER 0x3
+	setvar VAR_BATTLE_AURAS AURA_ICE_DEFENSE_STRING
 	return
 
 EventScript_pryce_Option1:

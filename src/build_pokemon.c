@@ -176,9 +176,9 @@ static void PostProcessTeam(struct Pokemon* party, struct TeamBuilder* builder);
 static void TryShuffleMovesForCamomons(struct Pokemon* party, u8 tier, u16 trainerId);
 static u8 GetPartyIdFromPartyData(struct Pokemon* mon);
 static u8 GetHighestMonLevel(const struct Pokemon* const party);
-u8 HardcoreBannedAbilitySwapper(u8 ability);
-
-#ifdef OPEN_WORLD_TRAINERS
+u8 HardcoreBannedAbilitySwapper(u8 ability); 
+ 
+#ifdef OPEN_WORLD_TRAINERS  
 
 extern const u8 gOpenWorldLevelRanges[NUM_BADGE_OPTIONS][2];
 extern const species_t gGeneralTrainerSpreads[NUM_TRAINER_CLASSES][NUM_BADGE_OPTIONS][NUM_MONS_PER_BADGE];
@@ -1853,7 +1853,7 @@ const struct BattleTowerSpread* GetRaidMultiSpread(u8 multiId, u8 index, u8 numS
 static void BuildRaidMultiParty(void)
 {
 	int i;
-	u8 zero = METLOC_FATEFUL_ENCOUNTER;
+	u8 zero = METLOC_FATEFUL_ENCOUNTER;  
 
 	u8 numStars = gRaidBattleStars; 
 	u8 multiId = VarGet(VAR_FACILITY_TRAINER_ID_PARTNER);
@@ -1937,7 +1937,8 @@ static void CreateFrontierMon(struct Pokemon* mon, const u8 level, const struct 
 	else
 		ballType = umodsi(Random(), NUM_BALLS);
 	SetMonData(mon, MON_DATA_POKEBALL, &ballType);
-
+	u8 ppBonus = 255; 
+	SetMonData(mon, MON_DATA_PP_BONUSES, &ppBonus); //max out pp ?
 	if (spread->gigantamax)
 		mon->gigantamax = TRUE;
 
@@ -1947,7 +1948,7 @@ static void CreateFrontierMon(struct Pokemon* mon, const u8 level, const struct 
 }
 
 static void SetWildMonHeldItem(void)
-{
+{  
 	u16 rnd = umodsi(Random(), 100);
 	u16 species;
 	u16 var1 = 45;

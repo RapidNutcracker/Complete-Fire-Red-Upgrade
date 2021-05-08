@@ -7,6 +7,9 @@
 
 .equ VAR_LEVEL, 0x1E
 .equ VAR_DAILY_EVENT, 0x505A
+.equ FLAG_HARDCORE_MODE, 0x1034
+.equ VAR_BATTLE_AURAS, 0x5119
+.equ AURA_CANT_HAZARD_CONTROL_STRING, 8
 
 .global EventScript_CinnabarMay_Boss
 EventScript_CinnabarMay_Boss:
@@ -31,6 +34,8 @@ EventScript_CinnabarMay_Boss:
     msgbox gText_CinnabarMay4 MSG_NORMAL
     setflag 0x200 
     setflag 0x915
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _call SetAura
     trainerbattle3 0x3 0x3D 0x0 gText_CinnabarMayDefeat 
     msgbox gText_CinnabarMay5 MSG_NORMAL
     setflag 0x90F
@@ -49,6 +54,10 @@ EventScript_CinnabarMay_Boss:
     setflag 0x998
     release
     end
+
+SetAura:
+	setvar VAR_BATTLE_AURAS AURA_CANT_HAZARD_CONTROL_STRING
+	return
 
 CinnabarMayStop:
     .byte 0x1

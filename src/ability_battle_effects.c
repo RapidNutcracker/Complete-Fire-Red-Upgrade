@@ -365,6 +365,7 @@ const bool8 gMoldBreakerIgnoredAbilities[] =
 	[ABILITY_ICESCALES] =		TRUE,
 	[ABILITY_ICEFACE] =			TRUE,
 	[ABILITY_PASTELVEIL] =		TRUE,
+	[ABILITY_SOLARPOWER] =		TRUE,
 };
 
 const u16 gWeatherContinuesStringIds[] =

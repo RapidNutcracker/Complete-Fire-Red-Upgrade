@@ -260,6 +260,7 @@ static bool8 PickTileScreen(u8 targetBehaviour, u8 areaX, u8 areaY, s16 *xBuff, 
 					break;
 				}
 			}
+
 			if (goNext)
 			{
 				topX += 1;
@@ -278,7 +279,7 @@ static bool8 PickTileScreen(u8 targetBehaviour, u8 areaX, u8 areaY, s16 *xBuff, 
 					u8 elevDiff = (IsZCoordMismatchAt((gEventObjects[gPlayerAvatar->spriteId].elevation << 4
 						| gEventObjects[gPlayerAvatar->spriteId].currentElevation), topX, topY));
 
-					weight = (Random() % scale <= 1) && elevDiff && !MapGridIsImpassableAt(topX, topY);
+					weight = (Random() % scale <= 1) &&  elevDiff && !MapGridIsImpassableAt(topX, topY);
 				}
 				else if (!IsMapTypeOutdoors(GetCurrentMapType()))
 				{
@@ -815,25 +816,25 @@ static void DexNavIconsVisionUpdate(u8 proximity, u8 searchLevel)
 extern const u8 SystemScript_StartDexNavBattle[];
 static void Task_ManageDexNavHUD(u8 taskId)
 {
-	//Check for out of range
-	if (sDexNavHudPtr->proximity > 20)
-	{
-		DestroyTask(taskId);
-		DexNavFreeHUD();
-		DexNavShowFieldMessage(FIELD_MSG_LOST_SIGNAL);
-		return;
-	}
+	// //Check for out of range
+	// if (sDexNavHudPtr->proximity > 20)
+	// {
+	// 	DestroyTask(taskId);
+	// 	DexNavFreeHUD();
+	// 	DexNavShowFieldMessage(FIELD_MSG_LOST_SIGNAL);
+	// 	return;
+	// }
 
-	//Check for timeout.
-	gTasks[taskId].data[1]++;
-	if (gTasks[taskId].data[1] > DEXNAV_TIMEOUT * 60)
-	{
-		// gCurrentDexNavChain = 0; //A Pokemon running like this resets the chain
-		DestroyTask(taskId);
-		DexNavFreeHUD();
-		DexNavShowFieldMessage(FIELD_MSG_GOT_AWAY);
-		return;
-	}
+	// //Check for timeout.
+	// gTasks[taskId].data[1]++;
+	// if (gTasks[taskId].data[1] > DEXNAV_TIMEOUT * 60)
+	// {
+	// 	// gCurrentDexNavChain = 0; //A Pokemon running like this resets the chain
+	// 	DestroyTask(taskId);
+	// 	DexNavFreeHUD();
+	// 	DexNavShowFieldMessage(FIELD_MSG_GOT_AWAY);
+	// 	return;
+	// }
 
 	// if (sDexNavHudPtr->proximity <= SNEAKING_PROXIMITY && TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_DASH | PLAYER_AVATAR_FLAG_BIKE)) //If player is close and running then the Pokemon should flee
 	// {
@@ -852,6 +853,26 @@ static void Task_ManageDexNavHUD(u8 taskId)
 		DexNavFreeHUD();
 		return;
 	}
+
+		//Check for out of range
+	if (sDexNavHudPtr->proximity > 20)
+	{
+		DestroyTask(taskId);
+		DexNavFreeHUD();
+		DexNavShowFieldMessage(FIELD_MSG_LOST_SIGNAL);
+		return;
+	}
+
+	//Check for timeout.
+	// gTasks[taskId].data[1]++;
+	// if (gTasks[taskId].data[1] > DEXNAV_TIMEOUT * 60)
+	// {
+	// 	// gCurrentDexNavChain = 0; //A Pokemon running like this resets the chain
+	// 	DestroyTask(taskId);
+	// 	DexNavFreeHUD();
+	// 	DexNavShowFieldMessage(FIELD_MSG_GOT_AWAY);
+	// 	return;
+	// }
 
 	if (gMain.newKeys & (B_BUTTON | START_BUTTON))
 	{
@@ -1587,11 +1608,6 @@ static void PrintDexNavError(void)
 		PrintDexNavMessage(MESSAGE_NO_DATA); //No data in slot
 		PlaySE(SE_ERROR);
 	}
-	// else if (GetCurrentRegionMapSectionId() == MAPSEC_POKEMON_TOWER && !CheckBagHasItem(ITEM_SILPH_SCOPE, 1)) 
-	// {
-	// 	PrintDexNavMessage(MESSAGE_NO_DATA); //No data in slot
-	// 	PlaySE(SE_ERROR);
-	// }
 	else //Selected unidentified Pokemon
 	{
 		if (Overworld_GetFlashLevel() > 0)
@@ -1924,8 +1940,6 @@ static bool8 SpeciesInArray(u16 species, u8 indexCount, u8 unownLetter)
 			{
 				u16 wildSpecies = sDexNavGuiPtr->grassSpecies[i];
 				TryRandomizeSpecies(&wildSpecies);
-				// if (GetCurrentRegionMapSectionId() == MAPSEC_POKEMON_TOWER && !CheckBagHasItem(ITEM_SILPH_SCOPE, 1))
-				// 	return FALSE; 
 				if (SpeciesToNationalPokedexNum(wildSpecies) == dexNum)
 					return TRUE;
 			}

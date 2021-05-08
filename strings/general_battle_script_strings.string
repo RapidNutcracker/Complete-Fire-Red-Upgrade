@@ -468,3 +468,9 @@ The opponent's swiftness set a\npermanent Tailwind.
 
 #org @GrassTintedLensBeginsString
 The opponent's shrewdness increases\nthe power of her Pok\emon's resisted\lGrass moves by 50% and bypasses\limmunities.
+
+#org @IceDefenseBeginsString
+The opponent's wisdom increases\nthe Defense of his Pok\emon by 50%.
+
+#org @CantHazardControlBeginsString
+The opponent's tactical prowess\nprevents you from removing hazards.

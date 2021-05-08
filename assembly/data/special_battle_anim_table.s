@@ -100,6 +100,8 @@ gBattleAnims_General:
 .word ANIM_TAILWIND2
 .word ANIM_FORESTSCURSE2
 .word ANIM_LEECHSEED2
+.word ANIM_AURORAVEIL2
+
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
 ANIM_USEITEM:
@@ -1176,8 +1178,14 @@ ANIM_FORESTSCURSE2:
 .align 2
 CURSE_PLANTSPLANTS: objtemplate ANIM_TAG_ROOTS ANIM_TAG_ROOTS OAM_OFF_32x32 0x83E2DB4 0x0 gDummySpriteAffineAnimTable 0x80AC625
 
+.pool
 ANIM_LEECHSEED2:
 	goto 0x81c7c23
+	endanimation
+
+.pool
+ANIM_AURORAVEIL2:
+	goto 0x81cdcda	
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

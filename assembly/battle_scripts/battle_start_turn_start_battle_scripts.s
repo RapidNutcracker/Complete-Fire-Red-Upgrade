@@ -41,7 +41,8 @@ battle_start_turn_start_battle_scripts.s
 .global BattleScript_SolidRockBegins
 .global BattleScript_TailwindBegins
 .global BattleScript_GrassTintedLensBegins
-
+.global BattleScript_IceDefenseBegins
+.global BattleScript_CantHazardControlBegins
 .global StringNull
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -214,6 +215,20 @@ BattleScript_GrassTintedLensBegins:
 	playanimation BANK_SCRIPTING ANIM_FORESTSCURSE2 0x0
 	waitmessage DELAY_1SECOND
 	end3
+
+BattleScript_IceDefenseBegins:
+	setword BATTLE_STRING_LOADER IceDefenseBeginsString
+	printstring 0x184
+	playanimation BANK_SCRIPTING ANIM_AURORAVEIL2 0x0
+	waitmessage DELAY_1SECOND
+	end3
+
+BattleScript_CantHazardControlBegins:
+	setword BATTLE_STRING_LOADER CantHazardControlBeginsString
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	end3
+	
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 BattleScript_QuickClaw:

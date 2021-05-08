@@ -11591,7 +11591,7 @@ const struct BattleMove gBattleMoves[] =
 
 	[MOVE_SHELLSIDEARM] =
 	{	//ANIM TODO
-		.effect = EFFECT_HIT, //EFFECT TODO
+		.effect = EFFECT_HIT, 
 		.power = 100,
 		.type = TYPE_POISON,
 		.accuracy = 100,
@@ -11766,7 +11766,7 @@ const struct BattleMove gBattleMoves[] =
 	},
 
 	[MOVE_FLIPTURN] =
-	{	//ANIM TODO
+	{	
 		.effect = EFFECT_BATON_PASS,
 		.power = 60,
 		.type = TYPE_WATER,
@@ -12022,7 +12022,7 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_SAPPYSEED] = 
 	{
 		.effect = EFFECT_SAPPY_SEED,
-		.power = 90,
+		.power = 95,
 		.type = TYPE_GRASS,
 		.accuracy = 100,
 		.pp = 5,
@@ -12037,7 +12037,7 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_FREEZYFROST] = 
 	{
 		.effect = EFFECT_HAZE,
-		.power = 90,
+		.power = 95,
 		.type = TYPE_ICE,
 		.accuracy = 100,
 		.pp = 5,
@@ -12052,7 +12052,7 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_SPARKLYSWIRL] = 
 	{
 		.effect = EFFECT_HEAL_BELL,
-		.power = 90,
+		.power = 95,
 		.type = TYPE_FAIRY,
 		.accuracy = 100,
 		.pp = 5,
@@ -12067,7 +12067,7 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_BOUNCYBUBBLE] = 
 	{
 		.effect = EFFECT_ABSORB,
-		.power = 90,
+		.power = 95,
 		.type = TYPE_WATER,
 		.accuracy = 100,
 		.pp = 5,

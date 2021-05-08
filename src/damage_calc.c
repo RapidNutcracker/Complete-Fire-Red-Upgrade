@@ -2325,6 +2325,11 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 	&& ((!useMonDef && IsOfType(bankDef, TYPE_ROCK)) || (useMonDef && IsMonOfType(data->monDef, TYPE_ROCK))))
 		data->spDefense = (15 * data->spDefense) / 10;
 
+// For pryce Hardcore mode battle aura
+	if ( (VarGet(VAR_BATTLE_AURAS) == AURA_ICE_DEFENSE) && (SIDE(bankDef) == B_SIDE_OPPONENT)) {
+		data->defense = (15 * data->defense) / 10; 
+	} 
+
 //Old Exploding Check
 	#ifdef OLD_EXPLOSION_BOOST
 		if (move == MOVE_SELFDESTRUCT || move == MOVE_EXPLOSION)

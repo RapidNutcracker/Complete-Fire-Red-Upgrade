@@ -540,10 +540,20 @@ bool8 TryActivateVarBattleAuras()
 				VarSet(VAR_BATTLE_AURAS, AURA_GRASS_TINTEDLENS);
 				effect = TRUE;
 				break;
+			case AURA_ICE_DEFENSE_STRING:
+				gBattleScripting.bank = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
+				BattleScriptPushCursorAndCallback(BattleScript_IceDefenseBegins);
+				VarSet(VAR_BATTLE_AURAS, AURA_ICE_DEFENSE);
+				effect = TRUE;
+				break;
+			case AURA_CANT_HAZARD_CONTROL_STRING:
+				BattleScriptPushCursorAndCallback(BattleScript_CantHazardControlBegins);
+				VarSet(VAR_BATTLE_AURAS, AURA_CANT_HAZARD_CONTROL);
+				effect = TRUE;
+				break;
 		}
 	}
 	
-	VarSet(VAR_WEATHER, 0);
 	return effect;
 }
 

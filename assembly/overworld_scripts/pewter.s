@@ -358,10 +358,10 @@ EventScript_Pewter_RandomizerInfo:
 	release
 	end
 
-.global EventScript_DiglettsCave_HardStone
+.global EventScript_DiglettsCave_HardStone @changed to TM low sweep
 EventScript_DiglettsCave_HardStone:
     hidesprite 0x800F
-    giveitem ITEM_HARD_STONE 0x1 MSG_FIND
+    giveitem ITEM_TM78 0x1 MSG_FIND
     setflag 0x1035
     release
     end

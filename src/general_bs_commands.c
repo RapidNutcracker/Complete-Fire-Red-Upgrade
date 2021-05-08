@@ -4126,7 +4126,7 @@ void atkBE_rapidspinfree(void)
 			BattleScriptPushCursor();
 			gBattlescriptCurrInstr = BattleScript_LeechSeedFree;
 		}
-		else if (gSideStatuses[sideAtk] & SIDE_STATUS_SPIKES)
+		else if (gSideStatuses[sideAtk] & SIDE_STATUS_SPIKES && !(VarGet(VAR_BATTLE_AURAS) == AURA_CANT_HAZARD_CONTROL) )
 		{
 			gSideStatuses[sideAtk] &= ~(SIDE_STATUS_SPIKES);
 			gSideTimers[sideAtk].spikesAmount = 0;
@@ -4207,7 +4207,7 @@ void atkBE_rapidspinfree(void)
 	// }
 	else //defog or gmax thingy 
 	{
-		if (gSideStatuses[sideAtk] & SIDE_STATUS_SPIKES)
+		if (gSideStatuses[sideAtk] & SIDE_STATUS_SPIKES && !(VarGet(VAR_BATTLE_AURAS) == AURA_CANT_HAZARD_CONTROL))
 		{
 			gSideStatuses[sideAtk] &= ~(SIDE_STATUS_SPIKES);
 			gSideTimers[sideAtk].spikesAmount = 0;
@@ -4219,7 +4219,7 @@ void atkBE_rapidspinfree(void)
 			gBattlescriptCurrInstr = BattleScript_PrintCustomString;
 			gBattleStringLoader = RemovedEntryHazardsString;
 		}
-		else if (gSideStatuses[sideDef] & SIDE_STATUS_SPIKES)
+		else if (gSideStatuses[sideDef] & SIDE_STATUS_SPIKES && !(VarGet(VAR_BATTLE_AURAS) == AURA_CANT_HAZARD_CONTROL))
 		{
 			gSideStatuses[sideDef] &= ~(SIDE_STATUS_SPIKES);
 			gSideTimers[sideDef].spikesAmount = 0;
@@ -4257,7 +4257,8 @@ void atkBE_rapidspinfree(void)
 			TEXT_BUFFER_SIDE_STATUS(MOVE_AURORAVEIL, 0, sideDef);
 		}
 		else if (gTerrainType != 0 //Since Gen 8
-		&& !(gBattleTypeFlags & BATTLE_TYPE_BATTLE_CIRCUS && gBattleCircusFlags & BATTLE_CIRCUS_TERRAIN)) //Terrain is permanent
+		&& !(gBattleTypeFlags & BATTLE_TYPE_BATTLE_CIRCUS && gBattleCircusFlags & BATTLE_CIRCUS_TERRAIN)
+		&& !(FlagGet(FLAG_HARDCORE_MODE))) //Terrain is permanent
 		{
 			BattleScriptPushCursor();
 			gBattlescriptCurrInstr = BattleScript_SetTerrain; //Removes the Terrain

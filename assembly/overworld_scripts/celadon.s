@@ -1332,7 +1332,7 @@ EventScript_erika_BattleTwo:
 	end
 
 SetRematchAura:
-	setvar VAR_TERRAIN 0x2
+	@ setvar VAR_TERRAIN 0x4
 	setvar VAR_BATTLE_AURAS AURA_GRASS_TINTEDLENS_STRING
 	return
 

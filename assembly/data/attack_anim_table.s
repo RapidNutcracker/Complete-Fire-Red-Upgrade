@@ -126,8 +126,7 @@ gMoveAnimations:
 .word 0x81cd570		@MOVE_THUNDER
 .word ANIM_ROCKTHROW
 .word 0x81ca6d1		@MOVE_EARTHQUAKE
-@.word 0x81ca71e		@MOVE_FISSURE
-.word ANIM_SOUL_STRIKE 
+.word ANIM_SOUL_STRIKE @replaces fissure
 .word 0x81ca841		@MOVE_DIG
 .word 0x81cf131		@MOVE_TOXIC
 .word 0x81cd40b		@MOVE_CONFUSION
@@ -17021,18 +17020,95 @@ EXPANDING_FORCE_STRONG:
 	launchtask AnimTask_BlendParticle 0x5 0x5 ANIM_TAG_IMPACT 0x0 0xc 0xc 0x5c00
 	waitanimation
 	launchtask AnimTask_move_bank 0x5 0x5 bank_target 0x0 0x4 0x38 0x1
-	launchtask AnimTask_pal_fade 0xa 0x5 PAL_DEF 0x3 0x0 0x10 0x7d3d @;Purple
-	call MINDSTORM_GEYSER
-	call MINDSTORM_GEYSER
-	call MINDSTORM_GEYSER
+	launchtask AnimTask_move_bank 0x5 0x5 target_partner 0x3 0x0 0x16 0x1
+	@ launchtask AnimTask_pal_fade 0xa 0x5 PAL_DEF 0x3 0x0 0x10 0x7d3d @;Purple
+	launchtask AnimTask_pal_fade 0xa 0x5 PAL_DEF | PAL_DEF_PARTNER 0x3 0x0 0x10 0x7d3d @;Purple
+	call MINDSTORM_GEYSER_DOUBLE
+	call MINDSTORM_GEYSER_DOUBLE
+	call MINDSTORM_GEYSER_DOUBLE
 	waitanimation
-	launchtask AnimTask_pal_fade 0xa 0x5 PAL_DEF 0x1 0x10 0x0 0x7d3d @;Purple
+	@ launchtask AnimTask_pal_fade 0xa 0x5 PAL_DEF 0x1 0x10 0x0 0x7d3d @;Purple
+	launchtask AnimTask_pal_fade 0xa 0x5 PAL_DEF | PAL_DEF_PARTNER 0x1 0x10 0x0 0x7d3d @;Purple
 	waitanimation
 	pokespritefromBG bank_target
 	resetblends
 	call UNSET_SCROLLING_BG
 	waitanimation
 	endanimation
+
+MINDSTORM_GEYSER_DOUBLE:
+	@ launchtemplate LIGHTBURN_EXPLODE TEMPLATE_TARGET | 2, 0x4 0x0003 0x0005 0x1 0x0
+	launchtemplate NEEDLE_GEYSER TEMPLATE_TARGET | 4, 0x3 bank_target 0xfffc 0x10
+	playsound2 0xaa SOUND_PAN_TARGET
+	pause 0x0
+	@ launchtemplate LIGHTBURN_EXPLODE TEMPLATE_TARGET | 2, 0x4 0xfff5 0xfff1 0x1 0x0
+	launchtemplate NEEDLE_GEYSER TEMPLATE_TARGET | 4, 0x3 bank_target 0x100D 0x10
+	playsound2 0xaa SOUND_PAN_TARGET
+	pause 0x0
+	@ launchtemplate LIGHTBURN_EXPLODE TEMPLATE_TARGET | 2, 0x4 0x0008 0xfffb 0x1 0x0
+	launchtemplate NEEDLE_GEYSER TEMPLATE_TARGET | 4, 0x3 bank_target 0x4 0x10
+	playsound2 0xaa SOUND_PAN_TARGET
+	pause 0x0
+	@ launchtemplate LIGHTBURN_EXPLODE TEMPLATE_TARGET | 2, 0x4 0xfffa 0x0012 0x1 0x0
+	launchtemplate NEEDLE_GEYSER TEMPLATE_TARGET | 4, 0x3 bank_target 0xfff0 0x10
+	playsound2 0xaa SOUND_PAN_TARGET
+	pause 0x0
+	@ launchtemplate LIGHTBURN_EXPLODE TEMPLATE_TARGET | 2, 0x4 0x0000 0x0005 0x1 0x0
+	launchtemplate NEEDLE_GEYSER TEMPLATE_TARGET | 4, 0x3 bank_target 0xfffc 0x10
+	playsound2 0xaa SOUND_PAN_TARGET
+	@ launchtemplate LIGHTBURN_EXPLODE TEMPLATE_TARGET | 2, 0x4 0x0003 0xfff5 bank_target 0x0
+	launchtemplate NEEDLE_GEYSER TEMPLATE_TARGET | 4, 0x3 bank_target 0x100D 0x10
+	@ launchtemplate LIGHTBURN_EXPLODE TEMPLATE_TARGET | 2, 0x4 0x0003 0xfff5 target_partner 0x0
+	launchtemplate NEEDLE_GEYSER TEMPLATE_TARGET | 4, 0x3 target_partner 0x100D 0x10
+	pause 0x0
+	@ launchtemplate LIGHTBURN_EXPLODE TEMPLATE_TARGET | 2, 0x4 0xfff5 0xffe1 bank_target 0x0
+	launchtemplate NEEDLE_GEYSER TEMPLATE_TARGET | 4, 0x3 bank_target 0x4 0x10
+	@ launchtemplate LIGHTBURN_EXPLODE TEMPLATE_TARGET | 2, 0x4 0xfff5 0xffe1 target_partner 0x0
+	launchtemplate NEEDLE_GEYSER TEMPLATE_TARGET | 4, 0x3 target_partner 0x4 0x10
+
+	pause 0x0
+	@ launchtemplate LIGHTBURN_EXPLODE TEMPLATE_TARGET | 2, 0x4 0x0008 0xffeb bank_target 0x0
+	launchtemplate NEEDLE_GEYSER TEMPLATE_TARGET | 4, 0x3 bank_target 0xfff0 0x10
+	@ launchtemplate LIGHTBURN_EXPLODE TEMPLATE_TARGET | 2, 0x4 0x0008 0xffeb target_partner 0x0
+	launchtemplate NEEDLE_GEYSER TEMPLATE_TARGET | 4, 0x3 target_partner 0xfff0 0x10
+	pause 0x0
+	@ launchtemplate LIGHTBURN_EXPLODE TEMPLATE_TARGET | 2, 0x4 0xfffa 0x0002 bank_target 0x0
+	launchtemplate NEEDLE_GEYSER TEMPLATE_TARGET | 4, 0x3 bank_target 0xfffc 0x10
+	@ launchtemplate LIGHTBURN_EXPLODE TEMPLATE_TARGET | 2, 0x4 0xfffa 0x0002 target_partner 0x0
+	launchtemplate NEEDLE_GEYSER TEMPLATE_TARGET | 4, 0x3 target_partner 0xfffc 0x10
+	pause 0x0
+	@ launchtemplate LIGHTBURN_EXPLODE TEMPLATE_TARGET | 2, 0x4 0x0000 0xfff5 bank_target 0x0
+	launchtemplate NEEDLE_GEYSER TEMPLATE_TARGET | 4, 0x3 bank_target 0x100D 0x10
+	@ launchtemplate LIGHTBURN_EXPLODE TEMPLATE_TARGET | 2, 0x4 0x0000 0xfff5 target_partner 0x0
+	launchtemplate NEEDLE_GEYSER TEMPLATE_TARGET | 4, 0x3 target_partner 0x100D 0x10
+	pause 0x0
+	@ launchtemplate LIGHTBURN_EXPLODE TEMPLATE_TARGET | 2, 0x4 0x0003 0xffe5 bank_target 0x0
+	launchtemplate NEEDLE_GEYSER TEMPLATE_TARGET | 4, 0x3 bank_target 0x4 0x10
+	@ launchtemplate LIGHTBURN_EXPLODE TEMPLATE_TARGET | 2, 0x4 0x0003 0xffe5 target_partner 0x0
+	launchtemplate NEEDLE_GEYSER TEMPLATE_TARGET | 4, 0x3 target_partner 0x4 0x10
+	pause 0x0
+	launchtemplate LIGHTBURN_EXPLODE TEMPLATE_TARGET | 2, 0x4 0xfff5 0xffd1 bank_target 0x0
+	launchtemplate NEEDLE_GEYSER TEMPLATE_TARGET | 4, 0x3 bank_target 0xfff0 0x10
+	@ launchtemplate LIGHTBURN_EXPLODE TEMPLATE_TARGET | 2, 0x4 0xfff5 0xffd1 target_partner 0x0
+	launchtemplate NEEDLE_GEYSER TEMPLATE_TARGET | 4, 0x3 target_partner 0xfff0 0x10
+	pause 0x0
+	@launchtemplate LIGHTBURN_EXPLODE TEMPLATE_TARGET | 2, 0x4 0x0008 0xffdb bank_target 0x0
+	launchtemplate NEEDLE_GEYSER TEMPLATE_TARGET | 4, 0x3 bank_target 0xfffc 0x10
+	@ launchtemplate LIGHTBURN_EXPLODE TEMPLATE_TARGET | 2, 0x4 0x0008 0xffdb target_partner 0x0
+	launchtemplate NEEDLE_GEYSER TEMPLATE_TARGET | 4, 0x3 target_partner 0xfffc 0x10
+	pause 0x0
+	@launchtemplate LIGHTBURN_EXPLODE TEMPLATE_TARGET | 2, 0x4 0xfffa 0xfff2 bank_target 0x0
+	launchtemplate NEEDLE_GEYSER TEMPLATE_TARGET | 4, 0x3 bank_target 0x100D 0x10
+	@ launchtemplate LIGHTBURN_EXPLODE TEMPLATE_TARGET | 2, 0x4 0xfffa 0xfff2 target_partner 0x0
+	launchtemplate NEEDLE_GEYSER TEMPLATE_TARGET | 4, 0x3 target_partner 0x100D 0x10
+	pause 0x0
+	@ launchtemplate LIGHTBURN_EXPLODE TEMPLATE_TARGET | 2, 0x4 0x0000 0xffe5 bank_target 0x0
+	launchtemplate NEEDLE_GEYSER TEMPLATE_TARGET | 4, 0x3 bank_target 0x4 0x10
+	@ launchtemplate LIGHTBURN_EXPLODE TEMPLATE_TARGET | 2, 0x4 0x0000 0xffe5 target_partner 0x0
+	launchtemplate NEEDLE_GEYSER TEMPLATE_TARGET | 4, 0x3 target_partner 0x4 0x10
+	pause 0x0
+	launchtemplate NEEDLE_GEYSER TEMPLATE_TARGET | 4, 0x3 bank_target 0xfff0 0x10
+	return
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
