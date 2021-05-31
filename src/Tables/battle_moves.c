@@ -4777,10 +4777,10 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_LUSTERPURGE] =
 	{
 		.effect = EFFECT_SPECIAL_DEFENSE_DOWN_HIT,
-		.power = 70,
+		.power = 85,
 		.type = TYPE_PSYCHIC,
 		.accuracy = 100,
-		.pp = 5,
+		.pp = 10,
 		.secondaryEffectChance = 50,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
@@ -4793,15 +4793,15 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_MISTBALL] =
 	{
 		.effect = EFFECT_SPECIAL_ATTACK_DOWN_HIT,
-		.power = 70,
+		.power = 85,
 		.type = TYPE_PSYCHIC,
 		.accuracy = 100,
-		.pp = 5,
+		.pp = 10,
 		.secondaryEffectChance = 50,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
 		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 140,
+		.z_move_power = 175,
 		.split = SPLIT_SPECIAL,
 		.z_move_effect = 0
 	},
@@ -5345,11 +5345,7 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_MUDDYWATER] =
 	{
 		.effect = EFFECT_ATTACK_DOWN_HIT,
-		#ifdef GEN_6_POWER_NERFS
 		.power = 95,
-		#else
-		.power = 95,
-		#endif
 		.type = TYPE_WATER,
 		.accuracy = 85,
 		.pp = 10,
@@ -6757,7 +6753,7 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_LOWSWEEP] =
 	{
 		.effect = EFFECT_SPEED_DOWN_HIT,
-		.power = 65,
+		.power = 60,
 		.type = TYPE_FIGHTING,
 		.accuracy = 100,
 		.pp = 20,
@@ -11148,7 +11144,7 @@ const struct BattleMove gBattleMoves[] =
 		.power = 85,
 		.type = TYPE_WATER,
 		.accuracy = 100,
-		.pp = 10,
+		.pp = 5,
 		.secondaryEffectChance = 0,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
@@ -11241,16 +11237,16 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_SNAPTRAP] =
 	{	//ANIM TODO
 		.effect = EFFECT_TRAP,
-		.power = 35,
-		.type = TYPE_GRASS,
-		.accuracy = 100,
-		.pp = 15,
+		.power = 100,
+		.type = TYPE_STEEL,
+		.accuracy = 85,
+		.pp = 5,
 		.secondaryEffectChance = 100,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
 		.flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
 		.split = SPLIT_PHYSICAL,
-		.z_move_power = 100,
+		.z_move_power = 180,
 		.z_move_effect = 0,
 	},
 
@@ -12067,7 +12063,7 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_BOUNCYBUBBLE] = 
 	{
 		.effect = EFFECT_ABSORB,
-		.power = 95,
+		.power = 90,
 		.type = TYPE_WATER,
 		.accuracy = 100,
 		.pp = 5,
@@ -14778,8 +14774,8 @@ const u8 gDynamaxMovePowers[MOVES_COUNT] =
 	[MOVE_SECRETPOWER] = 120,
 	[MOVE_DIVE] = 130,
 	[MOVE_ARMTHRUST] = 70,
-	[MOVE_LUSTERPURGE] = 120,
-	[MOVE_MISTBALL] = 120,
+	[MOVE_LUSTERPURGE] = 130,
+	[MOVE_MISTBALL] = 130,
 	[MOVE_BLAZEKICK] = 130,
 	[MOVE_ICEBALL] = 90,
 	[MOVE_NEEDLEARM] = 110,
@@ -15050,7 +15046,7 @@ const u8 gDynamaxMovePowers[MOVES_COUNT] =
 	[MOVE_FISHIOUSREND] = 130,
 	[MOVE_BODYPRESS] = 90,
 	[MOVE_DRUMBEATING] = 130,
-	[MOVE_SNAPTRAP] = 90,
+	[MOVE_SNAPTRAP] = 130,
 	[MOVE_PYROBALL] = 140,
 	[MOVE_BEHEMOTHBLADE] = 130,
 	[MOVE_BEHEMOTHBASH] = 130,

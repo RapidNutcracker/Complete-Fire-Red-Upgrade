@@ -4,6 +4,8 @@
 .include "../xse_commands.s"
 .include "../xse_defines.s"
 
+.equ FLAG_MINIMAL_GRINDING_MODE, 0x1032
+
 .global EventScript_NatureChanger
 EventScript_NatureChanger:
     lock
@@ -178,3 +180,22 @@ NotEnoughMoney:
 RegCancel:
 	release 
 	end 
+
+.global EventScript_GuardTopFloor
+EventScript_GuardTopFloor:
+    checkflag FLAG_MINIMAL_GRINDING_MODE
+    if 0x0 _goto Disappear
+    msgbox gText_GuardTopFloorDisappearBanned MSG_FACE
+    release
+    end
+    
+Disappear:
+    msgbox gText_GuardTopFloorDisappear1 MSG_FACE
+    fadescreen 0x1
+	hidesprite 0x800F
+	sound 0x9
+	checksound
+	fadescreen 0x0
+    release
+    end
+

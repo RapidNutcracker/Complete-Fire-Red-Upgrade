@@ -38,19 +38,25 @@ If you're looking for more\ntrainers to fight, I hear a seer\lon Route 16 gives 
 [RED]Yay! Great job sweetie.
 
 #org @gText_DoYouWantHardcoreMode
-[GREEN]Hardcore Mode[BLACK] makes this game even\nmore difficult as is.\pIt restricts certain abilities and\nmoves from the player, and bosses\lare even more powerful.\pThis game mode is automatically\npaired with [GREEN]Minimal Grinding Mode[BLACK]\lto make it less tedious.\pDo you want to [GREEN]Hardcore Mode[BLACK]\non?
+[GREEN]Hardcore Mode[BLACK] makes this game even\nmore difficult as is.\pIt restricts certain abilities and\nmoves from the player, and bosses\lare even more powerful.\pThis game mode is automatically\npaired with [GREEN]Minimal Grinding Mode[BLACK]\lto make it less tedious.\pDo you want to turn [GREEN]Hardcore\nMode[BLACK] on?
+
+#org @gText_DoYouWantRestrictMode
+[GREEN]Restricted Mode[BLACK] restricts certain abi-\nlities and moves from the player.\pDo you want to turn [GREEN]Restricted\nMode[BLACK] on?
 
 #org @gText_DoYouWantMinGrinding
 [GREEN]Minimal Grinding Mode[BLACK] guarantees\nall Pok\emon to have perfect IVs,\land EVs cannot be obtained.\pLikewise, boss Pok\emon will not have\nEVs either.\pThis is for people who dislike\nEV training or grinding for perfect\lIVs.\pDo you want to turn [GREEN]Minimal Grinding\nMode[BLACK] on?
 
 #org @gText_DoYouWantEasyMode
-[GREEN]Easy Mode[BLACK] removes EVs on boss\nPok\emon, reduces their levels slightly,\land gives them neutral natures.\pSwitch Mode can also be used, and\nitems are allowed in boss battles.\pThis is a significantly less difficult\nexperience, but still harder than\lvanilla Pok\emon games.\pDo you want to turn on [GREEN]Easy Mode[BLACK]?
+[GREEN]Easy Mode[BLACK] removes EVs on boss\nPok\emon, and reduces their levels\lslightly.\pSwitch Mode can also be used, and\nitems are allowed in boss battles.\pThis is a significantly less difficult\nexperience, but still harder than\lvanilla Pok\emon games.\pDo you want to turn on [GREEN]Easy Mode[BLACK]?
 
 #org @gText_easymodeset
 [GREEN]Easy Mode[BLACK] has been set! 
 
 #org @gText_hardcoremodeset
 [GREEN]Hardcore Mode[BLACK] has been set!
+
+#org @gText_restrictmodeset
+[GREEN]Restricted Mode[BLACK] has been set!
 
 #org @gText_setmingrinding
 [GREEN]Minimal Grinding Mode[BLACK] has been\nset!
@@ -86,4 +92,4 @@ Please stop mashing [A_BUTTON] and properly\nanswer the incoming questions.
 Do you want to simply play [RED]Radical\nRed[BLACK] without any custom options?
 
 #org @gText_DefinitiveEdition
-[RED]Radical Red[BLACK] will be played with no\ncustom options. 
+[RED]Radical Red[BLACK] will be played with no\ncustom options!

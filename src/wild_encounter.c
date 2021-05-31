@@ -714,7 +714,7 @@ u8 GetAbilityEncounterRateModType(void)
 				sWildEncounterData.abilityEffect = 1;
 				break;
 			case ABILITY_ARENATRAP:
-			// case ABILITY_ILLUMINATE:
+			case ABILITY_ILLUMINATE:
 			case ABILITY_NOGUARD:
 			case ABILITY_SWARM:
 				sWildEncounterData.abilityEffect = 2;

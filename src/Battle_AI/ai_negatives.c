@@ -375,14 +375,14 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				}
 				break;
 
-			case ABILITY_BIGPECKS:
-				if (moveEffect == EFFECT_DEFENSE_DOWN
-				||  moveEffect == EFFECT_DEFENSE_DOWN_2)
-				{
-					DECREASE_VIABILITY(10);
-					return viability;
-				}
-				break;
+			// case ABILITY_BIGPECKS:
+			// 	if (moveEffect == EFFECT_DEFENSE_DOWN
+			// 	||  moveEffect == EFFECT_DEFENSE_DOWN_2)
+			// 	{
+			// 		DECREASE_VIABILITY(10);
+			// 		return viability;
+			// 	}
+			// 	break;
 
 			case ABILITY_DEFIANT:
 			case ABILITY_COMPETITIVE:
@@ -617,6 +617,10 @@ MOVESCR_CHECK_0:
 			{
 				DECREASE_VIABILITY(10);
 			}
+			else if ( (HasProtectionMoveInMoveset(bankDef, 0) && gDisableStructs[bankDef].protectUses < 1) || MoveEffectInMoveset(EFFECT_SEMI_INVULNERABLE, bankDef))
+			{
+				DECREASE_VIABILITY(10);
+			}
 			else if (ViableMonCountFromBank(bankDef) == 1 //If the Target only has one PKMN left
 			&& MoveKnocksOutXHits(move, bankAtk, bankDef, 1)) //The AI can knock out the target
 			{
@@ -642,7 +646,7 @@ MOVESCR_CHECK_0:
 						//Good to use move
 					}
 					else if (CanKnockOutWithoutMove(move, bankAtk, bankDef, FALSE))
-						DECREASE_VIABILITY(4); //Better to use a different move to knock out
+						DECREASE_VIABILITY(10); //Better to use a different move to knock out
 				}
 				// else
 				// 	DECREASE_VIABILITY(4); removed this here
@@ -727,14 +731,10 @@ MOVESCR_CHECK_0:
 						if (STAT_STAGE(bankAtk, STAT_STAGE_ATK) >= STAT_STAGE_MAX
 						&& (STAT_STAGE(bankAtk, STAT_STAGE_ACC) >= STAT_STAGE_MAX || !PhysicalMoveInMoveset(bankAtk)))
 							DECREASE_VIABILITY(10);
-						else if(data->atkStatus1 & STATUS_TOXIC_POISON)
-							DECREASE_VIABILITY(10);
 						break;
 
 					default:
 						if (STAT_STAGE(bankAtk, STAT_STAGE_ATK) >= STAT_STAGE_MAX || !PhysicalMoveInMoveset(bankAtk))
-							DECREASE_VIABILITY(10);
-						else if(data->atkStatus1 & STATUS_TOXIC_POISON)
 							DECREASE_VIABILITY(10);
 				}
 			}
@@ -790,8 +790,6 @@ MOVESCR_CHECK_0:
 			if (data->atkAbility == ABILITY_CONTRARY || !STAT_CAN_RISE(bankAtk, STAT_STAGE_SPEED))
 				DECREASE_VIABILITY(10);
 			else if(IsTrickRoomActive())
-				DECREASE_VIABILITY(10);
-			else if(data->atkStatus1 & STATUS_TOXIC_POISON)
 				DECREASE_VIABILITY(10);
 			break;
 
@@ -850,8 +848,7 @@ MOVESCR_CHECK_0:
 				default:
 					if (data->atkAbility == ABILITY_CONTRARY || !STAT_CAN_RISE(bankAtk, STAT_STAGE_SPATK) || !SpecialMoveInMoveset(bankAtk))
 						DECREASE_VIABILITY(10);
-				else if((data->atkStatus1 & STATUS_TOXIC_POISON) || data->defAbility == ABILITY_UNAWARE)
-					DECREASE_VIABILITY(10);
+
 			}
 			break;
 
@@ -1032,6 +1029,7 @@ MOVESCR_CHECK_0:
 			switch (move) {
 				case MOVE_DRAGONTAIL:
 				case MOVE_CIRCLETHROW:
+				case MOVE_ROAROFTIME:
 					goto AI_STANDARD_DAMAGE;
 
 				default:
@@ -1522,6 +1520,11 @@ MOVESCR_CHECK_0:
 				break;
 			}
 
+			if (ABILITY(bankDef) == ABILITY_UNSEENFIST){ //dont protect if they're urshifu
+				DECREASE_VIABILITY(10);
+				break;
+			}
+
 			if (gBattleMoves[gLastResultingMoves[bankAtk]].effect == EFFECT_PROTECT
 			&&  move != MOVE_QUICKGUARD
 			// &&  move != MOVE_WIDEGUARD
@@ -1536,7 +1539,7 @@ MOVESCR_CHECK_0:
 				{
 					DECREASE_VIABILITY(10); //Don't protect if you're going to faint after protecting
 				}
-				else if (gDisableStructs[bankAtk].protectUses == 1 && Random2() % 100 < 50)
+				else if (gDisableStructs[bankAtk].protectUses == 1)
 				{
 					if (IS_SINGLE_BATTLE)
 						DECREASE_VIABILITY(6);
@@ -2083,6 +2086,12 @@ MOVESCR_CHECK_0:
 			}
 			break;
 
+		case EFFECT_POLTERGEIST:
+			if (data->defItem == ITEM_NONE) {
+				DECREASE_VIABILITY(10);
+			}
+			break;
+		
 		case EFFECT_SKILL_SWAP:
 			data->atkAbility = *GetAbilityLocation(bankAtk); //Get actual abilities
 			data->defAbility = *GetAbilityLocation(bankDef);
@@ -2208,7 +2217,7 @@ MOVESCR_CHECK_0:
 			if(MoveInMoveset(MOVE_HAZE, bankDef) || MoveInMoveset(MOVE_FREEZYFROST, bankDef)) {
 				DECREASE_VIABILITY(10);
 			}
-			if (MainStatsMaxed(bankAtk) || data->defAbility == ABILITY_UNAWARE)
+			if (MainStatsMaxed(bankAtk))
 			{
 				DECREASE_VIABILITY(10);
 				break;
@@ -2227,7 +2236,7 @@ MOVESCR_CHECK_0:
 			break;
 
 		case EFFECT_BULK_UP:
-			if (data->atkAbility == ABILITY_CONTRARY || data->defAbility == ABILITY_UNAWARE || MoveInMoveset(MOVE_HAZE, bankDef) || MoveInMoveset(MOVE_FREEZYFROST, bankDef))
+			if (data->atkAbility == ABILITY_CONTRARY)
 				DECREASE_VIABILITY(10);
 			else
 			{
@@ -2254,24 +2263,19 @@ MOVESCR_CHECK_0:
 			break;
 
 		case EFFECT_CALM_MIND:
-			if (data->atkAbility == ABILITY_CONTRARY || data->defAbility == ABILITY_UNAWARE)
+			if (data->atkAbility == ABILITY_CONTRARY)
 					DECREASE_VIABILITY(10);
-			else if(MoveInMoveset(MOVE_HAZE, bankDef) || MoveInMoveset(MOVE_FREEZYFROST, bankDef)) {
-				DECREASE_VIABILITY(10);
-			}
 			else
 			{
 				switch (move) {
 					case MOVE_QUIVERDANCE:
-						if(data->defAbility == ABILITY_DANCER || data->defAbility == ABILITY_UNAWARE )
+						if(data->defAbility == ABILITY_DANCER)
 							DECREASE_VIABILITY(10);
 						else if (STAT_STAGE(bankAtk, STAT_STAGE_SPEED) >= STAT_STAGE_MAX
 						&& (STAT_STAGE(bankAtk, STAT_STAGE_SPATK) >= STAT_STAGE_MAX || !SpecialMoveInMoveset(bankAtk))
 						&&  STAT_STAGE(bankAtk, STAT_STAGE_SPDEF) >= STAT_STAGE_MAX)
 							DECREASE_VIABILITY(10);
 						else if (IsTrickRoomActive())
-							DECREASE_VIABILITY(10);
-						else if(data->atkStatus1 & STATUS_TOXIC_POISON)
 							DECREASE_VIABILITY(10);
 						break; 
 					case MOVE_GEOMANCY:
@@ -2286,8 +2290,6 @@ MOVESCR_CHECK_0:
 					default:
 						if ((STAT_STAGE(bankAtk, STAT_STAGE_SPATK) >= STAT_STAGE_MAX || !SpecialMoveInMoveset(bankAtk))
 						&&  STAT_STAGE(bankAtk, STAT_STAGE_SPDEF) >= STAT_STAGE_MAX)
-							DECREASE_VIABILITY(10);
-						else if((data->atkStatus1 & STATUS_TOXIC_POISON ) || data->defAbility == ABILITY_UNAWARE)
 							DECREASE_VIABILITY(10);
 				}
 			}
@@ -2307,8 +2309,6 @@ MOVESCR_CHECK_0:
 						DECREASE_VIABILITY(10);
 					else if (IsTrickRoomActive())
 						DECREASE_VIABILITY(10);
-					else if((data->atkStatus1 & STATUS_TOXIC_POISON) || data->defAbility == ABILITY_UNAWARE)
-						DECREASE_VIABILITY(10);
 					break;
 
 				default: //Dragon Dance + Shift Gear
@@ -2326,8 +2326,6 @@ MOVESCR_CHECK_0:
 						else if(move == MOVE_DRAGONDANCE && data->defAbility == ABILITY_DANCER)
 							DECREASE_VIABILITY(10);
 						else if (IsTrickRoomActive())
-							DECREASE_VIABILITY(10);
-						else if((data->atkStatus1 & STATUS_TOXIC_POISON) || data->defAbility == ABILITY_UNAWARE)
 							DECREASE_VIABILITY(10);
 					}
 			}

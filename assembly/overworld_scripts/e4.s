@@ -5,6 +5,19 @@
 .include "../xse_defines.s"
 .include "../asm_defines.s"
 
+.equ VAR_TERRAIN, 0x5000
+.equ VAR_WEATHER, 0x5118
+.equ WEATHER_HAIL, 3 
+.equ WEATHER_HEAVY_RAIN, 6
+.equ FLAG_HARDCORE_MODE, 0x1034
+.equ VAR_BATTLE_AURAS, 0x5119
+.equ AURA_SHADOWTAG_STRING, 24 
+.equ AURA_ICE_DEFENSE_STRING, 7
+.equ PERMA_TRICK_ROOM_STRING, 2
+.equ AURA_SOLIDROCK_STRING, 4
+.equ MISTY_TERRAIN, 3
+.equ AURA_CANT_HAZARD_CONTROL_STRING, 8
+.equ AURA_RAINBOW_STRING, 23
 
 .global EventScript_lorelei_Start
 EventScript_lorelei_Start:
@@ -66,14 +79,28 @@ EventScript_lorelei_Firstbattle:
 	end
 
 EventScript_lorelei_Option1:
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _call SetHail
 	trainerbattle3 0x3 0x4D 0x0 gText_lorelei_Defeatmsg
 	goto EventScript_lorelei_End
 	end 
 
 EventScript_lorelei_Option2:
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _call SetHeavyRain
 	trainerbattle3 0x3 0x4E 0x0 gText_lorelei_Defeatmsg
 	goto EventScript_lorelei_End
 	end 
+
+SetHeavyRain:
+	setvar VAR_WEATHER WEATHER_HEAVY_RAIN
+	return
+
+SetHail:
+	setvar VAR_WEATHER WEATHER_HAIL
+	@ setvar VAR_BATTLE_AURAS AURA_ICE_DEFENSE_STRING
+	setvar VAR_BATTLE_AURAS AURA_RAINBOW_STRING
+	return
 
 EventScript_lorelei_Rematchbattle:
 	setflag 0x915
@@ -83,29 +110,7 @@ EventScript_lorelei_Rematchbattle:
 	if 0x1 _goto EventScript_lorelei_Option1
 	compare 0x800D 0x1
 	if 0x1 _goto EventScript_lorelei_Option2
-	@ random 0x3
-	@ compare 0x800D 0x0
-	@ if 0x1 _goto EventScript_lorelei_Option4
-	@ compare 0x800D 0x1
-	@if 0x1 _goto EventScript_lorelei_Option5
-	@ compare 0x800D 0x2
-	@ if 0x1 _goto EventScript_lorelei_Option6
 	end 
-
-EventScript_lorelei_Option4:
-	trainerbattle3 0x3 0x59 0x0 gText_lorelei_Defeatmsg
-	goto EventScript_lorelei_End
-	end
-
-EventScript_lorelei_Option5:
-	trainerbattle3 0x3 0x5A 0x0 gText_lorelei_Defeatmsg
-	goto EventScript_lorelei_End
-	end
-
-EventScript_lorelei_Option6:
-	trainerbattle3 0x3 0x5B 0x0 gText_lorelei_Defeatmsg
-	goto EventScript_lorelei_End
-	end
 
 EventScript_lorelei_End:
 	clearflag 0x5
@@ -188,12 +193,19 @@ EventScript_bruno_Postdefeat:
 
 EventScript_bruno_Firstbattle:
 	setflag 0x915
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _call SetBrunoAura
 	random 0x2
 	compare 0x800D 0x0
 	if 0x1 _goto EventScript_bruno_Option1
 	compare 0x800D 0x1
 	if 0x1 _goto EventScript_bruno_Option2
 	end
+
+SetBrunoAura:
+	setvar VAR_BATTLE_AURAS AURA_SOLIDROCK_STRING
+	setvar VAR_TERRAIN MISTY_TERRAIN
+	return
 
 EventScript_bruno_Option1:
 	trainerbattle3 0x3 0x50 0x0 gText_bruno_Defeatmsg
@@ -357,12 +369,18 @@ EventScript_agatha_Afterdefeat:
 	@---------------
 EventScript_agatha_Firstbattle:
 	setflag 0x915
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _call SetAgathaAura
 	random 0x2
 	compare 0x800D 0x0
 	if 0x1 _goto EventScript_agatha_Option1
 	compare 0x800D 0x1
 	if 0x1 _goto EventScript_agatha_Option2
 	end
+
+SetAgathaAura:
+	setvar VAR_BATTLE_AURAS AURA_SHADOWTAG_STRING
+	return
 
 EventScript_agatha_Option1:
 	trainerbattle3 0x3 0x53 0x0 gText_agatha_Defeatmsg
@@ -487,12 +505,18 @@ EventScript_lance_Prebattle2:
 	@---------------
 EventScript_lance_Firstbattle:
 	setflag 0x915
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _call SetLance
 	random 0x2
 	compare 0x800D 0x0
 	if 0x1 _goto EventScript_lance_Option1
 	compare 0x800D 0x1
 	if 0x1 _goto EventScript_lance_Option2
 	end
+
+SetLance:
+	setvar VAR_BATTLE_AURAS AURA_CANT_HAZARD_CONTROL_STRING
+	return
 
 EventScript_lance_Option1:
 	trainerbattle3 0x3 0x56 0x0 gText_lance_Defeatmsg
@@ -597,8 +621,14 @@ EventScript_E4LanceInfo_Start:
 EventScript_TileProcScale:
 	checkflag 0x82C
 	if 0x1 _call SetScaleFlag
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _call SetTRChampion
 	release
 	end
+
+SetTRChampion:
+	setvar VAR_BATTLE_AURAS, PERMA_TRICK_ROOM_STRING
+	return
 
 SetScaleFlag:
 	setflag 0x90E

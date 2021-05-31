@@ -1306,13 +1306,14 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 					&&  gBattleMons[bank].hp <= gBattleMons[bank].maxHP / 2
 					&&  gBattleMons[bank].hp + gNewBS->turnDamageTaken[bank] > gBattleMons[bank].maxHP / 2) //Fell this turn
 					{
-						if (gBattleMoves[gCurrentMove].effect == EFFECT_BATON_PASS)
-							gBattlescriptCurrInstr = BattleScript_Atk49; //Cancel switchout for U-Turn & Volt Switch
+						// if (gBattleMoves[gCurrentMove].effect == EFFECT_BATON_PASS)
+						// 	gBattlescriptCurrInstr = BattleScript_Atk49; //Cancel switchout for U-Turn & Volt Switch
 
-						gActiveBattler = gBattleScripting.bank = gBankSwitching = bank;
-						BattleScriptPushCursor();
-						gBattlescriptCurrInstr = BattleScript_EmergencyExit;
-						effect = 1;
+						// gActiveBattler = gBattleScripting.bank = gBankSwitching = bank;
+						// BattleScriptPushCursor();
+						// gBattlescriptCurrInstr = BattleScript_EmergencyExit;
+						// effect = 1;
+						gDisableStructs[bank].truantSwitchInHack = 1;
 						break;
 					}
 				}

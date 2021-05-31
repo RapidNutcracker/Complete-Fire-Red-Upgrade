@@ -2685,7 +2685,7 @@ static struct Raid sCeruleanCaveRaids5Star[] =
 	},
 	{
 		.species = SPECIES_GUZZLORD,
-		.ability = RAID_ABILITY_1,
+		.ability = RAID_ABILITY_2,
 		.drops =
 		{
 			/* 100 %*/ ITEM_NUGGET,

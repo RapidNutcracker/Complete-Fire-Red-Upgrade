@@ -8468,9 +8468,6 @@ ANIM_AQUAFANG:
 	waitanimation
 	pokespritefromBG bank_target
 	endanimation
-	@ loadparticle ANIM_TAG_SHARP_TEETH
-	@ goto ANIM_FISHIOUS_REND
-	@ endanimation 
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
@@ -16416,8 +16413,37 @@ ANIM_DRUM_BEATING:
 @Credits to -
 .global ANIM_SNAP_TRAP
 ANIM_SNAP_TRAP:
-	goto 0x81c6f34 @ANIM_POUND
+	loadparticle ANIM_TAG_SPIKES
+	loadparticle ANIM_TAG_SHARP_TEETH
+	loadparticle ANIM_TAG_IMPACT
+	loadparticle ANIM_TAG_LEAF @green color
+	pokespritetoBG side_target
+	playsound2 0x88 SOUND_PAN_ATTACKER
+	playsoundwait 0x9f SOUND_PAN_TARGET 0x1c
+	launchtemplate SNAPSPIKES 0x82 0x5 0x14 0x0 0x0 0x18 0x1e
+	launchtask AnimTask_move_bank 0x2 0x5 bank_target 0x0 0x3 0x40 0x1
+	pause 0x5
+	playsound2 0x88 SOUND_PAN_ATTACKER
+	playsoundwait 0x9f SOUND_PAN_TARGET 0x1c
+	launchtemplate SNAPSPIKES 0x82 0x5 0x14 0x0 0xffe8 0x18 0x1e
+	waitanimation
+	playsound2 0x9a SOUND_PAN_TARGET
+	launchtask AnimTask_pal_fade 0xa 0x5 PAL_DEF 0x2 0x0 0x9 0x6318 
+	launchtemplate Template_Teeth 0x2 0x6 0x0 0xffe0 0x0 0x0 0x333 0xa
+	launchtemplate Template_Teeth 0x2 0x6 0x0 0x20 0x4 0x0 0xfccd 0xa
+	launchtask AnimTask_BlendParticle 0x5 0x5 ANIM_TAG_SHARP_TEETH 0x1 0x0 0xA 0x6318  @;Gray
+	pause 0xA
+	launchtemplate Template_Hit 0x2 0x4 0x0 0x0 0x1 0x2
+	launchtask AnimTask_move_bank 0x2 0x5 0x1 0x3 0x0 0x6 0x1
+	playsound2 0x84 SOUND_PAN_TARGET
+	waitanimation
+	launchtask AnimTask_pal_fade 0xa 0x5 PAL_DEF 0x2 0x9 0x0 0x6318 
+	waitanimation
+	pokespritefromBG bank_target
 	endanimation
+	
+.align 2
+SNAPSPIKES: objtemplate ANIM_TAG_SPIKES ANIM_TAG_LEAF OAM_OFF_16x16 gDummySpriteAnimTable 0x0 gDummySpriteAffineAnimTable 0x80DE8B1
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
@@ -17931,7 +17957,7 @@ ANIM_BOUNCY_BUBBLE:
 	launchtask AnimTask_pal_fade 0xa 0x5 PAL_BG 0x1 0xE 0x0 0x0
 	waitanimation
 	resetblends
-	pokespritefromBG bank_target
+	pokespritefromBG bank_attacker
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -17945,7 +17971,9 @@ ANIM_SONIC_SLASH:
 	loadparticle ANIM_TAG_HYDRO_PUMP @Blue Colour
 	loadparticle ANIM_TAG_PUNISHMENT_BLADES @Punishment Blade
 	pokespritetoBG bank_target
+	jumpifargmatches 0x7 0x1 LOAD_BG_ON_PLAYER_SONIC
 	loadBG1 BG_HIGHSPEED_ON_OPPONENT
+SonicSlashHit:
 	waitbgfadeout
 	launchtask AnimTask_scroll_background 0x5 0x4 0xf700 0x0 0x1 0xffff
 	waitbgfadein
@@ -17956,17 +17984,22 @@ ANIM_SONIC_SLASH:
 	launchtask AnimTask_pal_fade_complex 0x2 0x6 PAL_DEF 0x2 0x2 0x0 0xb 0x1f
 	waitanimation
 	makebankvisible bank_attacker
-	pokespritetoBG bank_target
+	@ pokespritetoBG bank_target
+	call 0x81d59ff
 	playsound2 0x81 SOUND_PAN_TARGET
 	launchtemplate SWORD_BLADES 0x81 0x5 0x0 0xa 0x0 0xFF00 0xA
 	launchtemplate SWORD_CUT 0x2 0x3 0x28 0xffe0 0x0
+	pause 0x3
 	launchtask AnimTask_move_bank 0x2 0x5 0x1 0x0 0x3 0xa 0x1
 	waitanimation
 	pokespritefromBG bank_target
 	resetblends
 	waitanimation
-	call 0x81d59ff
 	endanimation
+
+LOAD_BG_ON_PLAYER_SONIC:
+	loadBG1 BG_HIGHSPEED_ON_PLAYER
+	goto SonicSlashHit
 
 .align 2
 BIRD_TEMPLATE2: objtemplate ANIM_TAG_BIRD ANIM_TAG_HYDRO_PUMP OAM_NORMAL_64x64 gDummySpriteAnimTable 0x0 gDummySpriteAffineAnimTable 0x80B2D65

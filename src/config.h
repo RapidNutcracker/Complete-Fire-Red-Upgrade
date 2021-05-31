@@ -197,6 +197,7 @@ enum //These vars need to be one after the other (hence the enum)
 #define FLAG_MINIMAL_GRINDING_MODE 0x1032
 #define FLAG_EASY_MODE 0x1033
 #define FLAG_HARDCORE_MODE 0x1034
+#define FLAG_RESTRICT_MODE 0x103C
 #define PLAYER_MAX_LEVEL 103
 #define ONE_BELOW_PLAYER_MAX_LEVEL 102
 #define TWO_BELOW_PLAYER_MAX_LEVEL 101
@@ -220,6 +221,17 @@ enum //These vars need to be one after the other (hence the enum)
 #define AURA_ICE_DEFENSE 17
 #define AURA_CANT_HAZARD_CONTROL_STRING 8
 #define AURA_CANT_HAZARD_CONTROL 18
+#define AURA_FIREPROOF_STRING 9
+#define AURA_FIREPROOF 19
+#define AURA_SWAMP_STRING 21
+#define AURA_SWAMP        31
+#define AURA_SEAOFFIRE_STRING 22
+#define AURA_SEAOFFIRE       32
+#define AURA_RAINBOW_STRING  23
+#define AURA_RAINBOW         33
+#define AURA_SHADOWTAG_STRING 24 
+#define AURA_SHADOWTAG 34
+
 #define NUM_SPECIES_RANDOMIZER NUM_SPECIES // The final number of Pokemon (+ 1) of species that can appear in the randomizer
 
 /*===== Pre-existing Offsets =====*/

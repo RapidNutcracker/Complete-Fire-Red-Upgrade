@@ -10,6 +10,8 @@
 .equ FLAG_HARDCORE_MODE, 0x1034
 .equ VAR_BATTLE_AURAS, 0x5119
 .equ AURA_CANT_HAZARD_CONTROL_STRING, 8
+.equ AURA_FIREPROOF_STRING, 9
+.equ VAR_WEATHER, 0x5118
 
 .global EventScript_CinnabarMay_Boss
 EventScript_CinnabarMay_Boss:
@@ -214,15 +216,23 @@ EventScript_blaine_Start:
 	if 0x1 _goto EventScript_blaine_Defeated
 	setflag 0x915
 	special 0x0
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _call SetWeather
     trainerbattle1 0x1 0x1A3 0x0 gText_blaine_EncounterText gText_blaine_DefeatText EventScript_blaine_WonPointer
 	release
 	end
+
+SetWeather:
+	setvar VAR_WEATHER 0x5
+	return
 
 EventScript_blaine_Defeated:
 	lock
 	faceplayer
 	checkflag 0x96F
 	if 0x1 _goto EventScript_blaine_Done
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _goto Blaine_defeated_Hardcore
 	msgbox gText_blaine_Perfectpokemon 0x6
 	bufferfirstpokemon 0x00
 	msgbox gText_blaine_Thepokemon 0x6
@@ -233,6 +243,19 @@ EventScript_blaine_Defeated:
 	buffernumber 0x0 LASTRESULT @Buffer spa EVs to [buffer1]
 	compare LASTRESULT 150
 	if 0x4 _goto EventScript_blaine_Veryfast
+	msgbox gText_blaine_Notquite 0x6
+	release
+	end
+
+Blaine_defeated_Hardcore:
+	msgbox gText_blaine_Perfectpokemon2 0x6
+	bufferfirstpokemon 0x00
+	msgbox gText_blaine_Thepokemon 0x6
+	setvar 0x8003 0x0 @From party
+	setvar 0x8004 0x0 @1st Pok�mon
+	callasm CheckIfBlaineApproves
+	compare LASTRESULT 0x1
+	if equal _goto EventScript_blaine_Veryfast2
 	msgbox gText_blaine_Notquite 0x6
 	release
 	end
@@ -250,8 +273,16 @@ EventScript_blaine_WonPointer:
 	setflag 0x826
 	clearflag 0x915
 	msgbox gText_blaine_Givetm 0x6
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _goto blaine_WonPointer_hardcoreend
 	msgbox gText_blaine_Helloagain 0x6
 	msgbox gText_blaine_Perfectpokemon 0x6
+	release
+	end
+
+blaine_WonPointer_hardcoreend:
+	msgbox gText_blaine_Helloagain2 0x6
+	msgbox gText_blaine_Perfectpokemon2 0x6
 	release
 	end
 
@@ -263,6 +294,15 @@ EventScript_blaine_Done:
 EventScript_blaine_Veryfast:
 	msgbox gText_blaine_Perfect 0x6
 	giveitem ITEM_CHARIZARDITE_Y 0x1 MSG_OBTAIN 
+	msgbox gText_blaine_Charmmsg 0x6
+	giveitem ITEM_CHOICE_SPECS 0x1 MSG_OBTAIN 
+	setflag 0x96F
+	release
+	end
+
+EventScript_blaine_Veryfast2:
+	msgbox gText_blaine_Perfect 0x6
+	giveitem ITEM_CHARIZARDITE_X 0x1 MSG_OBTAIN 
 	msgbox gText_blaine_Charmmsg 0x6
 	giveitem ITEM_CHOICE_SPECS 0x1 MSG_OBTAIN 
 	setflag 0x96F
@@ -289,6 +329,8 @@ EventScript_jasmine_Battle:
 	setflag 0x915
 	setflag 0x90E
 	special 0x0
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _call SetAuraJasmine
 	random 0x3
 	compare 0x800D 0x0
 	if 0x1 _goto EventScript_jasmine_Option1
@@ -298,6 +340,9 @@ EventScript_jasmine_Battle:
 	if 0x1 _goto EventScript_jasmine_Option3
 	end
 
+SetAuraJasmine:
+	setvar VAR_BATTLE_AURAS AURA_FIREPROOF_STRING
+	return
 
 EventScript_jasmine_Option1:
 	trainerbattle3 0x3 0x3E 0x0 gText_jasmine_Defeat
@@ -325,6 +370,8 @@ EventScript_jasmine_Endbattle:
 EventScript_jasmine_Done:
 	checkflag 0x96E
 	if 0x1 _goto EventScript_jasmine_Donedone
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _goto Jasmine_Done_hardcore 
 	msgbox gText_jasmine_Take 0x6
 	bufferfirstpokemon 0x00
 	msgbox gText_jasmine_Firstmon 0x6
@@ -335,6 +382,19 @@ EventScript_jasmine_Done:
 	buffernumber 0x0 LASTRESULT @Buffer def EVs to [buffer1]
 	compare LASTRESULT 150
 	if 0x4 _goto EventScript_jasmine_HighDef
+	msgbox gText_jasmine_8 0x6
+	release
+	end
+
+Jasmine_Done_hardcore:
+	msgbox gText_jasmine_Take 0x6
+	bufferfirstpokemon 0x00
+	msgbox gText_jasmine_Firstmon 0x6
+	setvar 0x8003 0x0 @From party
+	setvar 0x8004 0x0 @1st Pokemon
+	callasm CheckIfJasmineApproves
+	compare LASTRESULT 0x1
+	if 0x1 _goto EventScript_jasmine_HighDef
 	msgbox gText_jasmine_8 0x6
 	release
 	end

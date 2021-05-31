@@ -329,7 +329,7 @@ u32 GetAIFlags(void)
 	else if (gBattleTypeFlags & BATTLE_TYPE_SCRIPTED_WILD_3)
 		flags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_SEMI_SMART;
 	else if (FlagGet(FLAG_SMART_WILD))
-		flags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_SEMI_SMART;
+		flags = 7; 
 	else
 	{
 		if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
@@ -865,7 +865,7 @@ static bool8 ShouldSwitch(void)
 		return TRUE;
 	if (CanStopLockedMove())
 		return TRUE;
-	if (IsYawned()) //add sleep check to isyawned
+	if (IsYawned()) 
 		return TRUE;
 	if (IsTakingAnnoyingSecondaryDamage())
 		return TRUE;
@@ -1021,7 +1021,7 @@ static bool8 FindMonThatAbsorbsOpponentsMove(void)
 
 	predictedMove1 = IsValidMovePrediction(foe1, gActiveBattler);
 	predictedMove2 = IsValidMovePrediction(foe2, gActiveBattler);
-
+	// predictedMove1 = gBattleMons[0].moves[gBattleStruct->chosenMovePositions[0]]; // LATEST
 	if (IS_SINGLE_BATTLE)
 	{
 		if (!MoveWouldHitFirst(predictedMove1, foe2, gActiveBattler)) //AI goes first
@@ -1137,6 +1137,138 @@ static bool8 FindMonThatAbsorbsOpponentsMove(void)
 
 	return FALSE;
 }
+
+// static bool8 FindMonThatAbsorbsOpponentsMoveRechoose(u16 predictedMove1)
+// {
+// 	u8 battlerIn1, battlerIn2;
+// 	u8 foe1, foe2;
+// 	predictedMove2;
+// 	u8 absorbingTypeAbility1, absorbingTypeAbility2, absorbingTypeAbility3;
+// 	u8 firstId, lastId;
+// 	struct Pokemon *party;
+// 	int i;
+
+// 	LoadBattlersAndFoes(&battlerIn1, &battlerIn2, &foe1, &foe2);
+
+// 	// predictedMove1 = IsValidMovePrediction(foe1, gActiveBattler);
+// 	predictedMove2 = IsValidMovePrediction(foe2, gActiveBattler);
+// 	// predictedMove1 = gBattleMons[0].moves[gBattleStruct->chosenMovePositions[0]]; // LATEST
+// 	if (IS_SINGLE_BATTLE)
+// 	{
+// 		if (!MoveWouldHitFirst(predictedMove1, foe2, gActiveBattler)) //AI goes first
+// 		{
+// 			if (CanKnockOut(gActiveBattler, foe1))
+// 				return FALSE; //Just KO the opponent and don't worry about switching out
+// 		}
+// 		else
+// 		{
+// 			if (!CanKnockOut(foe1, gActiveBattler) //The enemy can't KO you first
+// 			&&   CanKnockOut(gActiveBattler, foe1)
+// 			&&   AnyStatGreaterThan(gActiveBattler, 6 + 0)) //Has stat boosts +7 or more
+// 				return FALSE; //Just KO the opponent and don't worry about switching out if you're boosted up
+// 		}
+
+// 		if (!CanKnockOut(foe1, gActiveBattler) //The enemy can't KO you
+// 		&& AnyStatGreaterThan(gActiveBattler, 6 + 1)) //AI is invested in stat boosts +8 or more
+// 			return FALSE;
+
+// 		if (IS_BEHIND_SUBSTITUTE(gActiveBattler) //Make use of your substitute before switching
+// 		&& !DamagingMoveThaCanBreakThroughSubstituteInMoveset(foe1, gActiveBattler))
+// 			return FALSE;
+// 	}
+// 	else //Double Battle
+// 	{
+// 		u16 bestMove1 = gNewBS->ai.bestDoublesKillingMoves[gActiveBattler][foe1];
+// 		u16 bestMove2 = gNewBS->ai.bestDoublesKillingMoves[gActiveBattler][foe2];
+// 		if (GetDoubleKillingScore(bestMove1, gActiveBattler, foe1) >= BEST_DOUBLES_KO_SCORE - 2 //10: Hit 2 Foes, KO 1 Foe/Strongest Move 2 Foes
+// 		||  GetDoubleKillingScore(bestMove2, gActiveBattler, foe2) >= BEST_DOUBLES_KO_SCORE - 2) //10: Hit 2 Foes, KO 1 Foe/Strongest Move 2 Foes
+// 			return FALSE; //Don't switch if this mon can do some major damage to the enemy side
+
+// 		if (AnyStatGreaterThan(gActiveBattler, 6 + 1) //AI is invested in stat boosts +8 or more
+// 		&& (GetDoubleKillingScore(bestMove1, gActiveBattler, foe1) >= BEST_DOUBLES_KO_SCORE / 2 //6: Hit 1 Foe, KO 1 Foe
+// 		 || GetDoubleKillingScore(bestMove2, gActiveBattler, foe2) >= BEST_DOUBLES_KO_SCORE / 2)) //6: Hit 1 Foe, KO 1 Foe
+// 			return FALSE;
+// 	}
+
+// 	// if (STAT_STAGE(gActiveBattler, STAT_STAGE_EVASION) >= 6 + 3)
+// 	// 	return FALSE; //Invested in Evasion so don't switch
+
+// 	if (((predictedMove1 == MOVE_NONE || predictedMove1 == MOVE_PREDICTION_SWITCH) && (predictedMove2 == MOVE_NONE || predictedMove2 == MOVE_PREDICTION_SWITCH))
+// 	|| (SPLIT(predictedMove1) == SPLIT_STATUS && SPLIT(predictedMove2) == SPLIT_STATUS))
+// 		return FALSE;
+
+// 	u8 moveType;
+// 	if (predictedMove1 != MOVE_NONE && predictedMove1 != MOVE_PREDICTION_SWITCH)
+// 		moveType = GetMoveTypeSpecial(foe1, predictedMove1);
+// 	else
+// 		moveType = GetMoveTypeSpecial(foe2, predictedMove2);
+
+// 	switch (moveType) {
+// 		case TYPE_FIRE:
+// 			absorbingTypeAbility1 = ABILITY_FLASHFIRE;
+// 			absorbingTypeAbility2 = ABILITY_FLASHFIRE;
+// 			absorbingTypeAbility3 = ABILITY_FLASHFIRE;
+// 			break;
+// 		case TYPE_ELECTRIC:
+// 			absorbingTypeAbility1 = ABILITY_VOLTABSORB;
+// 			absorbingTypeAbility2 = ABILITY_LIGHTNINGROD;
+// 			absorbingTypeAbility3 = ABILITY_MOTORDRIVE;
+// 			break;
+// 		case TYPE_WATER:
+// 			absorbingTypeAbility1 = ABILITY_WATERABSORB;
+// 			absorbingTypeAbility2 = ABILITY_DRYSKIN;
+// 			absorbingTypeAbility3 = ABILITY_STORMDRAIN;
+// 			break;
+// 		case TYPE_GRASS:
+// 			absorbingTypeAbility1 = ABILITY_SAPSIPPER;
+// 			absorbingTypeAbility2 = ABILITY_SAPSIPPER;
+// 			absorbingTypeAbility3 = ABILITY_SAPSIPPER;
+// 			break;
+// 		case TYPE_ROCK: 
+// 			absorbingTypeAbility1 = ABILITY_MOUNTAINEER; //added here 
+// 			absorbingTypeAbility2 = ABILITY_MOUNTAINEER;
+// 			absorbingTypeAbility3 = ABILITY_MOUNTAINEER;
+// 			break; 
+// 		default:
+// 			return FALSE;
+// 	}
+
+// 	u8 atkAbility = GetPredictedAIAbility(gActiveBattler, foe1);
+// 	if (atkAbility == absorbingTypeAbility1
+// 	||  atkAbility == absorbingTypeAbility2
+// 	||  atkAbility == absorbingTypeAbility3)
+// 		return FALSE;
+
+// 	party = LoadPartyRange(gActiveBattler, &firstId, &lastId);
+
+// 	for (i = firstId; i < lastId; i++)
+// 	{
+// 		u16 species = party[i].species;
+// 		u8 monAbility = GetMonAbility(&party[i]);
+
+// 		if (party[i].hp == 0
+// 		||  species == SPECIES_NONE
+// 		||	GetMonData(&party[i], MON_DATA_IS_EGG, 0)
+// 		||	i == gBattlerPartyIndexes[battlerIn1]
+// 		||	i == gBattlerPartyIndexes[battlerIn2]
+// 		||	i == gBattleStruct->monToSwitchIntoId[battlerIn1]
+// 		||	i == gBattleStruct->monToSwitchIntoId[battlerIn2])
+// 			continue;
+
+// 		if (monAbility == absorbingTypeAbility1
+// 		||  monAbility == absorbingTypeAbility2
+// 		||  monAbility == absorbingTypeAbility3)
+// 		{
+// 			// we found a mon.
+// 			gBattleStruct->switchoutIndex[SIDE(gActiveBattler)] = i;
+// 			EmitTwoReturnValues(1, ACTION_SWITCH, 0);
+// 			return TRUE;
+// 		}
+// 	}
+
+// 	return FALSE;
+// }
+
 
 static bool8 ShouldSwitchIfNaturalCureOrRegenerator(void)
 {
@@ -2565,7 +2697,6 @@ static void PredictMovesForBanks(void)
 			for (u8 bankDef = 0; bankDef < gBattlersCount; ++bankDef)
 			{
 				if (bankAtk == bankDef || !BATTLER_ALIVE(bankDef)) continue;
-
 				if (gBattleMons[bankAtk].status2 & STATUS2_RECHARGE
 				||  gDisableStructs[bankAtk].truantCounter != 0)
 				{
@@ -2620,6 +2751,13 @@ static void PredictMovesForBanks(void)
 			}
 		}
 	}
+	// if (gChosenActionByBank[0] == ACTION_SWITCH) //latest
+	// {
+	// 	StoreSwitchPrediction(0, 1);
+	// }
+	// else{
+
+	// }
 }
 
 static void UpdateStrongestMoves(void)

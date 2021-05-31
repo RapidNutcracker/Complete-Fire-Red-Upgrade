@@ -1261,7 +1261,7 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 	},
 	[124] =
 	{ //Early mons, just max IVs not much investment otherwise mistys starmie brendans lunatone
-		.nature = NATURE_BASHFUL,
+		.nature = NATURE_MODEST,
 		.ivs = 31,
 		.hpEv = 24,
 		.atkEv = 16,
@@ -1272,7 +1272,7 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 	},
 	[125] =
 	{ //Early mons, just max IVs not much investment otherwise grovyle
-		.nature = NATURE_BASHFUL,
+		.nature = NATURE_ADAMANT,
 		.ivs = 31,
 		.hpEv = 4,
 		.atkEv = 100,
@@ -1292,8 +1292,8 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 		.ability = Ability_2,
 	},
 	[127] =
-	{ //Mixed Attacker: Attack Based, Less Defense - Ability_Hidden Old floatzel
-		.nature = NATURE_BASHFUL,
+	{ //Brendan Early Crawdaunt
+		.nature = NATURE_ADAMANT,
 		.ivs = 31,
 		.atkEv = 8,
 		.spdEv = 252,
@@ -1314,7 +1314,7 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 	},
 	[129] =
 	{ //Early mons, just max IVs not much investment otherwise vikavolt
-		.nature = NATURE_BASHFUL,
+		.nature = NATURE_MODEST,
 		.ivs = 31,
 		.hpEv = 200,
 		.atkEv = 0,
@@ -1386,8 +1386,8 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 		.ability = Ability_Hidden,
 	},
 	[136] =
-	{ //Lt Surge Manectric
-		.nature = NATURE_BASHFUL,
+	{ //Lt Surge Manectric pincurchin
+		.nature = NATURE_MODEST,
 		.hiddenPower = TYPE_GRASS,
 		.ivs = 31,
 		.hpEv = 100,
@@ -1443,7 +1443,7 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 	},
 	[141] =
 	{ //Mixed Attacker: Attack Based, Less Defense - Ability_Hidden, HP Grass Misty floatzel
-		.nature = NATURE_BASHFUL,
+		.nature = NATURE_MODEST,
 		.hiddenPower = TYPE_GRASS,
 		.ivs = 31,
 		.atkEv = 8,
@@ -1454,8 +1454,8 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 	},
 	[142] =
 	{ //Early mons, just max IVs. Falkner Emolga
-		.nature = NATURE_BASHFUL,
-		.hiddenPower = TYPE_GROUND, 
+		.nature = NATURE_TIMID,
+		// .hiddenPower = TYPE_GROUND, 
 		.ivs = 31,
 		.hpEv = 4,
 		.spdEv = 40,
@@ -1464,7 +1464,7 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 	},
 	[143] =
 	{ //Archer Houndour, Brock Vulpix
-		.nature = NATURE_BASHFUL,
+		.nature = NATURE_MODEST,
 		.hiddenPower = TYPE_GRASS,
 		.ivs = 31,
 		.hpEv = 60,
@@ -1517,6 +1517,27 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 		.spDefEv = 4,
 		.ball = TRAINER_EV_CLASS_BALL,
 		.ability = Ability_1,
+	},
+	[148] =
+	{ //Early mons, just max IVs not much investment otherwise misty lanturn
+		.nature = NATURE_MODEST,
+		.ivs = 31,
+		.hpEv = 40,
+		.atkEv = 0,
+		.spAtkEv = 40,
+		.spdEv = 4,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_1,
+	},
+	[149] =
+	{ //Early mons, just max IVs. Falkner Rufflet
+		.nature = NATURE_JOLLY,
+		// .hiddenPower = TYPE_GROUND, 
+		.ivs = 31,
+		.hpEv = 4,
+		.spdEv = 40,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_Hidden,
 	},
 };
 #endif

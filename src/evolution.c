@@ -318,6 +318,8 @@ u16 GetEvolutionTargetSpecies(struct Pokemon* mon, u8 type, u16 evolutionItem)
 			{
 				if (evolutionItem == ITEM_DAWN_STONE && GetMonGender(mon) != gEvolutionTable[species][i].unknown)
 					break;
+				if ( (FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE)) && species == SPECIES_NINCADA )
+					break;
 				targetSpecies = gEvolutionTable[species][i].targetSpecies;
 				break;
 			}

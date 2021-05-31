@@ -192,11 +192,9 @@ static void SetUpStartMenu_NormalField(void)
 		if (!FlagGet(FLAG_SYS_PLAYER_HIDE))
 	#endif
 			AppendToStartMenuItems(STARTMENU_PLAYER);
-
-	#ifdef FLAG_SYS_SAVE_HIDE
-		if (!FlagGet(FLAG_SYS_SAVE_HIDE))
-	#endif
-			AppendToStartMenuItems(STARTMENU_SAVE);
+			
+	if (!FlagGet(FLAG_SYS_SAVE_HIDE))
+		AppendToStartMenuItems(STARTMENU_SAVE);
 
 	//These two are always present
 	AppendToStartMenuItems(STARTMENU_OPTION);

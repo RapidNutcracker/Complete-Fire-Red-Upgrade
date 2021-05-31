@@ -621,6 +621,7 @@ void EmitChooseMove(u8 bufferId, bool8 isDoubleBattle, bool8 NoPpNumber, struct 
 
 void EmitMoveChosen(u8 bufferId, u8 chosenMoveIndex, u8 target, u8 megaState, u8 ultraState, u8 zMoveState, u8 dynamaxState)
 {
+	
 	gBattleBuffersTransferData[0] = CONTROLLER_TWORETURNVALUES;
 	gBattleBuffersTransferData[1] = ACTION_RUN_BATTLESCRIPT;
 	gBattleBuffersTransferData[2] = chosenMoveIndex;

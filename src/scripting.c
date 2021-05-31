@@ -1900,6 +1900,17 @@ void sp0CC_CanLearnDracoMeteorInParty(void)
 	gSpecialVar_LastResult = FALSE;
 }
 
+void CheckIfHallOfFame(void)
+{
+	if (SaveLoadGameData(3) != TRUE){
+		gSpecialVar_LastResult = FALSE;
+	}
+	else{
+		gSpecialVar_LastResult = TRUE;
+	}
+	return;
+}
+
 #define gTMCasePositionStruct ((u8*) 0x203B10C)
 bool8 ShouldSelectItemFromTMCase(void)
 {

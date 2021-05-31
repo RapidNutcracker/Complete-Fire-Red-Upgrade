@@ -448,6 +448,12 @@ The opponent's presence set a\npermanent Rain Storm.
 #org @HailBattleBeginString
 The opponent's presence set a\npermanent Hail Storm.
 
+#org @HarshSunBattleBeginString
+The opponent's presence set an\nextremely harsh Sunlight that nullifies\lWater-type moves.
+
+#org @HarshRainBattleBeginString
+The opponent's presence caused\nextremely heavy Rain that nullifies\lFire-type moves.
+
 #org @PermaTrickRoomBeginsString
 The opponent's telekinetic powers\nset a permanent Trick Room.
 
@@ -458,7 +464,7 @@ The foe lived on 1 HP thanks to its\nFighting Spirit!
 The opponent's courage gave\nhis Pok\emon Fighting Spirit,\lallowing them to endure KOs at 75% HP.
 
 #org @PermaGroundImmunityBeginsString
-The opponent's arrogance gave\nhis Pok\emon a permanent ground\limmunity.
+The opponent's arrogance gave\nhis Pok\emon a permanent Ground\limmunity.
 
 #org @SolidRockBeginsString
 The opponent's rock-hard determination\nreduces super effective moves\lused on his Pok\emon by 33%.
@@ -467,10 +473,27 @@ The opponent's rock-hard determination\nreduces super effective moves\lused on h
 The opponent's swiftness set a\npermanent Tailwind.
 
 #org @GrassTintedLensBeginsString
-The opponent's shrewdness increases\nthe power of her Pok\emon's resisted\lGrass moves by 50% and bypasses\limmunities.
+The opponent's shrewdness increases\nthe power of her Pok\emon's resisted\lGrass moves by 75% and bypasses\limmunities.
 
 #org @IceDefenseBeginsString
 The opponent's wisdom increases\nthe Defense of his Pok\emon by 50%.
 
 #org @CantHazardControlBeginsString
 The opponent's tactical prowess\nprevents you from removing hazards.
+
+#org @FireproofBeginsString
+The opponent's defensive nature\ngave her Pok\emon a permanent Fire\limmunity.
+
+#org @SwampBeginsString
+The opponent set a swamp that\nquarters your Pok\emon's Speed.
+
+#org @SeaOfFireBeginsString
+The opponent set a sea of fire\nthat deals 1/8 of your Pok\emon's\lmax HP at the end of each turn.
+
+#org @RainbowBeginsString
+The opponent set a rainbow that\ndoubles the chances of their\lmoves' secondary effects.
+
+#org @ShadowTagBeginsString
+The opponent's intimidation prevents\nyour Pok\emon from switching out.
+
+

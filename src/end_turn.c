@@ -324,6 +324,14 @@ u8 TurnBasedEffects(void)
 							if (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, gActiveBattler, 0, 0, 0))
 								effect++;
 							break;
+						case ABILITY_EMERGENCYEXIT:
+							if (AbilityBattleEffects(ABILITYEFFECT_ENDTURN, gActiveBattler, 0, 0, 0))
+								effect++;
+							break;
+						case ABILITY_ZENMODE:
+							if (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, gActiveBattler, 0, 0, 0))
+								effect++;
+							break;
 					}
 
 					if (!effect)
@@ -393,7 +401,8 @@ u8 TurnBasedEffects(void)
 						if (BATTLER_ALIVE(gActiveBattler)
 						&&  BankSideHasSeaOfFire(gActiveBattler)
 						&&	ABILITY(gActiveBattler) != ABILITY_MAGICGUARD
-						&&	!IsOfType(gActiveBattler, TYPE_FIRE))
+						// &&	!IsOfType(gActiveBattler, TYPE_FIRE)
+						)
 						{
 							gBattleMoveDamage = GetSeaOfFireDamage(gActiveBattler);
 							gBattleStringLoader = gText_HurtBySeaOfFire;
@@ -1365,8 +1374,8 @@ u8 TurnBasedEffects(void)
 							break;
 
 						case ABILITY_ZENMODE:
-							if (gBattleMons[gActiveBattler].hp <= gBattleMons[gActiveBattler].maxHP / 2)
-							{
+							// if (gBattleMons[gActiveBattler].hp <= gBattleMons[gActiveBattler].maxHP / 2)
+							// {
 								#if (defined SPECIES_DARMANITAN && defined SPECIES_DARMANITANZEN)
 								if (species == SPECIES_DARMANITAN)
 								{
@@ -1387,31 +1396,31 @@ u8 TurnBasedEffects(void)
 									battleScript = BattleScript_TransformedEnd2;
 								}
 								#endif
-							}
-							else //gBattleMons[gActiveBattler].hp > gBattleMons[gActiveBattler].maxHP / 2
-							{
-								//Revert if back above half health
-								#if (defined SPECIES_DARMANITAN && defined SPECIES_DARMANITANZEN)
-								if (species == SPECIES_DARMANITANZEN)
-								{
-									newSpecies = SPECIES_DARMANITAN;
-									changedForm = TRUE;
-									reloadType = TRUE;
-									reloadStats = TRUE;
-									battleScript = BattleScript_TransformedEnd2;
-								}
-								#endif
-								#if (defined SPECIES_DARMANITAN_G && defined SPECIES_DARMANITAN_G_ZEN)
-								if (species == SPECIES_DARMANITAN_G_ZEN)
-								{
-									newSpecies = SPECIES_DARMANITAN_G;
-									changedForm = TRUE;
-									reloadType = TRUE;
-									reloadStats = TRUE;
-									battleScript = BattleScript_TransformedEnd2;
-								}
-								#endif
-							}
+							// }
+							// else //gBattleMons[gActiveBattler].hp > gBattleMons[gActiveBattler].maxHP / 2
+							// {
+							// 	//Revert if back above half health
+							// 	#if (defined SPECIES_DARMANITAN && defined SPECIES_DARMANITANZEN)
+							// 	if (species == SPECIES_DARMANITANZEN)
+							// 	{
+							// 		newSpecies = SPECIES_DARMANITAN;
+							// 		changedForm = TRUE;
+							// 		reloadType = TRUE;
+							// 		reloadStats = TRUE;
+							// 		battleScript = BattleScript_TransformedEnd2;
+							// 	}
+							// 	#endif
+							// 	#if (defined SPECIES_DARMANITAN_G && defined SPECIES_DARMANITAN_G_ZEN)
+							// 	if (species == SPECIES_DARMANITAN_G_ZEN)
+							// 	{
+							// 		newSpecies = SPECIES_DARMANITAN_G;
+							// 		changedForm = TRUE;
+							// 		reloadType = TRUE;
+							// 		reloadStats = TRUE;
+							// 		battleScript = BattleScript_TransformedEnd2;
+							// 	}
+							// 	#endif
+							// }
 							break;
 
 						#if (defined SPECIES_ZYGARDE && defined SPECIES_ZYGARDE_10 && defined SPECIES_ZYGARDE_COMPLETE)

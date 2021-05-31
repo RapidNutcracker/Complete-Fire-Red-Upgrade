@@ -79,6 +79,15 @@ I have some errands to run in [GREEN]Vir-\nidian.\p[BLUE]Until we meet again, [G
 #org @gText_claire_EncounterText
 [RED]Ah, a challenger finally arrives.\pI was about to take a nap.\p[RED]Although I'm the newly appointed\nGym Leader of the Kanto region,\lI was once a leader in Johto.\pSo, this is nothing new to me.\p[GREEN]Lance[RED] may be considered the world's\ndragon master, but I'm a close sec-\lond!\pDo you still dare to take me on?\pFine, let's do this!
 
+#org @gText_Clair_FairyOnly
+Though, I should mention I have a special\nrule in my Gym[.]\pYou aren't allowed to bring Fairy\ntypes, including their Megas.
+
+#org @gText_ClairFairyGood
+[.]Seems like you're good,\nlet's roll!
+
+#org @gText_Clair_TeamNotFit
+Seems like your team doesn't\nfit this criteria[.]\pSorry, you'll have to come back\nwithout any Fairies[.]
+
 #org @gText_claire_DefeatText
 Oh, I see[.]\nYour skills are rather mysterious.\pFine, have the Rising Badge.
 
@@ -120,3 +129,5 @@ Aeepraaa!
 
 #org @gText_Viridian_GirlTip 
 Here's a neat trick!\pPressing [R_BUTTON] in the main fight menu\nallows you to instantly click the\lRun button!
+
+

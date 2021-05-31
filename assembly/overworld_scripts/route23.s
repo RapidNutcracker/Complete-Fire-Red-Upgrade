@@ -5,6 +5,10 @@
 .include "../xse_defines.s"
 .include "../asm_defines.s" 
 
+.equ FLAG_HARDCORE_MODE, 0x1034
+.equ AURA_SWAMP_STRING, 21
+.equ VAR_BATTLE_AURAS, 0x5119 
+
 .global EventScript_FinalBrendan_Fight
 EventScript_FinalBrendan_Fight:
     applymovement 0xFF FaceUp
@@ -35,6 +39,8 @@ EventScript_FinalBrendan_Fight:
     waitmovement 0x0 
     msgbox gText_VRBrendanBattle_6 MSG_FACE 
     setflag 0x200 
+    checkflag FLAG_HARDCORE_MODE
+    if 0x1 _call SetSwamp
     trainerbattle3 0x3 0x1A 0x0 gText_VRBrendanLoss 
     pause 0x20 
     applymovement 0xA FaceDown 
@@ -58,6 +64,10 @@ EventScript_FinalBrendan_Fight:
     setflag 0x991
     release
     end 
+
+SetSwamp:
+    setvar VAR_BATTLE_AURAS AURA_SWAMP_STRING
+    return
 
 FaceUp: 
     .byte 0x1

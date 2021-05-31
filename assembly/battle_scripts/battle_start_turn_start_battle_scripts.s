@@ -35,6 +35,8 @@ battle_start_turn_start_battle_scripts.s
 .global BattleScript_SandstormBattleBegin
 .global BattleScript_RainBattleBegin
 .global BattleScript_HailBattleBegin
+.global BattleScript_HarshSunlightBegins
+.global BattleScript_HarshRainBegins
 .global BattleScript_FightingSpiritBegins
 .global BattleScript_PermaTrickRoomBegins
 .global BattleScript_PermaGroundImmunityBegins
@@ -43,6 +45,12 @@ battle_start_turn_start_battle_scripts.s
 .global BattleScript_GrassTintedLensBegins
 .global BattleScript_IceDefenseBegins
 .global BattleScript_CantHazardControlBegins
+.global BattleScript_SwampBegins
+.global BattleScript_FireproofBegins
+.global BattleScript_SeaOfFireBegins
+.global BattleScript_RainbowBegins
+.global BattleScript_ShadowTagBegins
+
 .global StringNull
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -172,6 +180,20 @@ BattleScript_HailBattleBegin:
 	waitmessage DELAY_1SECOND
 	end3
 
+BattleScript_HarshSunlightBegins:
+	setword BATTLE_STRING_LOADER HarshSunBattleBeginString
+	printstring 0x184
+	playanimation2 BANK_SCRIPTING ANIM_ARG_1 0x0
+	waitmessage DELAY_1SECOND
+	end3
+
+BattleScript_HarshRainBegins:
+	setword BATTLE_STRING_LOADER HarshRainBattleBeginString
+	printstring 0x184
+	playanimation2 BANK_SCRIPTING ANIM_ARG_1 0x0
+	waitmessage DELAY_1SECOND
+	end3
+
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 BattleScript_FightingSpiritBegins:
@@ -228,7 +250,40 @@ BattleScript_CantHazardControlBegins:
 	printstring 0x184
 	waitmessage DELAY_1SECOND
 	end3
-	
+
+BattleScript_FireproofBegins:
+	setword BATTLE_STRING_LOADER FireproofBeginsString
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	end3
+
+BattleScript_SwampBegins: 
+	setword BATTLE_STRING_LOADER SwampBeginsString
+	printstring 0x184
+	playanimation BANK_SCRIPTING ANIM_MUDDYWATER2 0x0
+	waitmessage DELAY_1SECOND
+	end3
+
+BattleScript_SeaOfFireBegins: 
+	setword BATTLE_STRING_LOADER SeaOfFireBeginsString
+	printstring 0x184
+	playanimation BANK_SCRIPTING ANIM_SEA_OF_FIRE 0x0
+	waitmessage DELAY_1SECOND
+	end3
+
+BattleScript_RainbowBegins:
+	setword BATTLE_STRING_LOADER RainbowBeginsString
+	printstring 0x184
+	playanimation BANK_SCRIPTING ANIM_RAINBOW 0x0
+	waitmessage DELAY_1SECOND
+	end3
+
+BattleScript_ShadowTagBegins:
+	setword BATTLE_STRING_LOADER ShadowTagBeginsString
+	printstring 0x184
+	playanimation BANK_SCRIPTING ANIM_MEANLOOK2 0x0
+	waitmessage DELAY_1SECOND
+	end3
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 BattleScript_QuickClaw:

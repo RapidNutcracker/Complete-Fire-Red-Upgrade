@@ -351,7 +351,7 @@ EventScript_koga_Defeated:
 	faceplayer
 	checkflag 0x964
 	if 0x1 _goto EventScript_koga_Done
-		checkflag FLAG_MINIMAL_GRINDING_MODE
+	checkflag FLAG_MINIMAL_GRINDING_MODE
 	if 0x1 _goto MinGrindingModePerfectPkmn
 	msgbox gText_koga_Perfectpokemon 0x6
 	bufferfirstpokemon 0x00

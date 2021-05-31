@@ -47,7 +47,7 @@ W-what?! You[.]\nYou beat my invincible strat?!
 Hot damn!\pI don't know why I doubted you!\pYou're certainly ready.\pI've reserved this item for you,\nit's among one of the most\lbonkers Mega Evos so, you know,\lsave the best for last.
 
 #org @gText_FinalCreatorBattle_3
-I will warn that I've dropped\n[GREEN][RIVAL][BLUE] some sick Pok\emon on his\lway to the League.\pHis team won't resemble the one\nyou just faced. Have fun!\pAnyway, thanks for playing my ROM\nhack [GREEN][PLAYER][BLUE], even if you didn't\lenjoy it.\pFeel free to leave feedback!\pOf course, stay safe if you're\nstill stuck in quarantine.\pHave a good one, friend!
+I will warn that I've dropped\n[GREEN][RIVAL][BLUE] some sick Pok\emon on his\lway to the League.\pHis team won't resemble the one\nyou just faced. Have fun!\pAnyway, thanks for playing my ROM\nhack [GREEN][PLAYER][BLUE], even if you didn't enjoy\lit.\pOf course, stay safe if you're\nstill stuck in quarantine.\pHave a good one, friend!
 
 #org @gText_VictoryRoad_Moltres1
 Gyaoo!
@@ -168,3 +168,9 @@ Yo[.] get the fuck outta here.\pYou beat the game already lmao\pBut forreal, the
 
 #org @gText_whitneytesttxt
 I will warn that I've dropped\n[GREEN][RIVAL][BLUE] some sick Pok\emon on his\lway to the League.\pHis team won't resemble the one\nyou just faced. Have fun!
+
+#org @gText_GuardTopFloorDisappearBanned
+Greetings. Unfortunately, the top floor\nis restricted for those playing on [GREEN]Minimal\lGrinding Mode.
+
+#org @gText_GuardTopFloorDisappear1
+Greetings. The top floor is mainly\nif you'd like to trade to yourself\lfor whatever reason.\pTake care.

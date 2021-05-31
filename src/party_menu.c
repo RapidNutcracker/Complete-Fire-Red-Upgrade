@@ -2310,9 +2310,9 @@ static u8 GetAbilityCapsuleNewAbility(struct Pokemon* mon)
 	u8 ability1 = gBaseStats[species].ability1;
 	u8 ability2 = gBaseStats[species].ability2;
 
-	if(FlagGet(FLAG_HARDCORE_MODE)) {
-		ability1 = HardcoreBannedAbilitySwapper(ability1);
-		ability2 = HardcoreBannedAbilitySwapper(ability2);
+	if((FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE))) {
+		ability1 = HardcoreBannedAbilitySwapper(ability1, species);
+		ability2 = HardcoreBannedAbilitySwapper(ability2, species);
 	}
 	
 	if (abilityType != 0) //Hidden Ability Capsule

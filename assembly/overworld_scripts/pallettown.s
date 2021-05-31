@@ -7,6 +7,8 @@
 
 .equ FLAG_EASY_MODE, 0x1033
 .equ FLAG_HARDCORE_MODE, 0x1034
+.equ FLAG_RESTRICT_MODE, 0x103C
+.equ FLAG_SYS_SAVE_HIDE, 0x91D
 
 .global gMapScripts_PalletTownHome
 gMapScripts_PalletTownHome:
@@ -28,6 +30,9 @@ LevelScripts_PalletTownPlayerHome:
     .byte MAP_SCRIPT_TERMIN
 
 LevelScript_PalletTownPlayerHome:
+    setvar 0x5100 0x1
+    setvar 0x407C 0x2
+    setflag FLAG_SYS_SAVE_HIDE
     fadescreen 0x1
     fadeoutbgm 0x0
     sethealingplace 0x1
@@ -43,9 +48,46 @@ LevelScript_PalletTownPlayerHome:
     msgbox gText_DoYouWantHardcoreMode MSG_YESNO
     compare LASTRESULT YES
     if equal _goto sethardcoremode
+    msgbox gText_DoYouWantRestrictMode MSG_YESNO
+    compare LASTRESULT YES
+    if equal _goto setrestrictmode
     msgbox gText_DoYouWantEasyMode MSG_YESNO
     compare LASTRESULT YES
     if equal _call seteasymode
+    goto AskRandomizer
+    @ goto endofscript
+
+endofscript: 
+    fadeinbgm 0x0 
+    fadescreen 0x0
+    warp 0x4 0x1 0x1 0x0 0x0
+    release
+    end 
+
+.global EventScript_AskRandomizer
+EventScript_AskRandomizer:
+    clearflag FLAG_SYS_SAVE_HIDE
+    callasm CheckIfHallOfFame
+    compare LASTRESULT 0x1
+    if equal _goto SetHofFlag
+    goto EndRandomizerScript
+
+EndRandomizerScript:
+    setvar 0x511B 0x1
+    release
+    end
+
+SetHofFlag:
+    setflag 0x103D
+    goto EndRandomizerScript
+
+AskRandomizer:
+    @ checkflag FLAG_HARDCORE_MODE
+    @ if 0x1 _goto EndRandomizerScript
+    @ checkflag FLAG_RESTRICT_MODE
+    @ if 0x1 _goto EndRandomizerScript
+    @ applymovement 0xFF FaceLeft
+    @ waitmovement 0x0
     msgbox gText_DoYouWantRandomizer MSG_YESNO 
     compare LASTRESULT YES 
     if equal _call setrandom 
@@ -55,14 +97,10 @@ LevelScript_PalletTownPlayerHome:
     msgbox gText_DoYouWantLearnsets MSG_YESNO 
     compare LASTRESULT YES 
     if equal _call setlearnsets
+    @ setvar 0x511B 0x1
     goto endofscript
-
-endofscript: 
-    setvar 0x5100 0x1
-    fadeinbgm 0x0 
-    fadescreen 0x0
-    release 
-    end 
+    release
+    end
 
 DefinitiveEdition:
     sound 0x30 
@@ -76,6 +114,14 @@ sethardcoremode:
     setflag 0x1032
     sound 0x30 
     msgbox gText_hardcoremodeset MSG_KEEPOPEN
+    checksound
+    closeonkeypress
+    goto endofscript
+
+setrestrictmode:
+    setflag FLAG_RESTRICT_MODE
+    sound 0x30 
+    msgbox gText_restrictmodeset MSG_KEEPOPEN
     checksound
     closeonkeypress
     goto endofscript

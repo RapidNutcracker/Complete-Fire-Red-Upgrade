@@ -668,6 +668,13 @@ void atk06_typecalc(void)
 				gLastLandedMoves[bankDef] = 0;
 				gLastHitByType[bankDef] = 0;
 			}
+			
+			if (moveType == TYPE_FIRE && (VarGet(VAR_BATTLE_AURAS) == AURA_FIREPROOF) && (SIDE(bankDef) == B_SIDE_OPPONENT) ) {
+				gNewBS->ResultFlags[bankDef] |= (MOVE_RESULT_DOESNT_AFFECT_FOE);
+				gLastLandedMoves[bankDef] = 0;
+				gLastHitByType[bankDef] = 0;
+			}
+			
 			//Check Powder Moves
 			else if (CheckTableForMove(gCurrentMove, gPowderMoves))
 			{
@@ -2538,7 +2545,7 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 
 		case AURA_GRASS_TINTEDLENS:
 			if (data->resultFlags & MOVE_RESULT_NOT_VERY_EFFECTIVE && (SIDE(bankDef) == B_SIDE_PLAYER) && data->moveType == TYPE_GRASS )
-				damage *= 3 / 2;
+				damage *= 7 / 4;
 			break;
 	}
 
@@ -2580,12 +2587,6 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		//0.5x Decrement
 			if (data->defHP >= data->defMaxHP)
 				damage /= 2;
-			break;
-
-		case ABILITY_SOLARPOWER: 
-			if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_SUN_ANY)
-			&& data->defItemEffect != ITEM_EFFECT_UTILITY_UMBRELLA)
-				damage = (damage * 2) / 3;
 			break;
 
 		case ABILITY_FLUFFY:
@@ -3132,21 +3133,6 @@ static u16 GetBasePower(struct DamageCalc* data)
 				power = (10 * (255 - gBattleMons[bankAtk].friendship)) / 25;
 			break;
 
-		// case MOVE_BEATUP:
-		// 	if (useMonAtk || (data->specialFlags & (FLAG_CHECKING_FROM_MENU | FLAG_AI_CALC)))
-		// 		power = (gBaseStats[data->atkSpecies].baseAttack / 10) + 10; //added used to be +5
-		// 	else
-		// 	{
-		// 		struct Pokemon* party;
-		// 		if (SIDE(bankAtk) == B_SIDE_PLAYER)
-		// 			party = gPlayerParty;
-		// 		else
-		// 			party = gEnemyParty;
-
-		// 		power = (gBaseStats[party[gBattleCommunication[0] - 1].species].baseAttack / 10) + 10; //added used to be +5
-		// 	}
-		// 	break;
-
 		case MOVE_HIDDENPOWER:
 		#ifdef OLD_HIDDEN_POWER_BP
 			if (useMonAtk)
@@ -3243,8 +3229,11 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 	switch(data->atkAbility) {
 		case ABILITY_TECHNICIAN:
 		//1.5x Boost
-			if (data->basePower <= 60)
-				power = (power * 15) / 10;
+			if (data->basePower <= 60){
+				if (!( move == MOVE_ACROBATICS && data->atkItem == ITEM_NONE)) {
+					power = (power * 15) / 10;
+				}
+			}
 			break;
 
 		case ABILITY_RIVALRY: ;
@@ -3412,7 +3401,7 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 		case ABILITY_BULLRUSH:
 		//1.5x Boost first turn 
 			if(gDisableStructs[bankAtk].isFirstTurn)
-				power = (power * 15) / 10;
+				power = (power * 13) / 10;
 			break; 
 	}
 

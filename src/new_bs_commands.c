@@ -711,7 +711,8 @@ void atkFF15_jumpifstatcanbemodified(void)
 		}
 		else if ( //(ability == ABILITY_KEENEYE && currStat == STAT_STAGE_ACC)
 		(ability == ABILITY_HYPERCUTTER && currStat == STAT_STAGE_ATK)
-		|| (ability == ABILITY_BIGPECKS && currStat == STAT_STAGE_DEF))
+		//|| (ability == ABILITY_BIGPECKS && currStat == STAT_STAGE_DEF)
+		)
 			gFormCounter = 4;
 
 		PREPARE_STAT_BUFFER(gBattleTextBuff1, currStat)

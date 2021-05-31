@@ -12,6 +12,11 @@
 
 .equ SPECIES_KUBFU, 0x49F
 .equ ITEM_BLACK_BELT, 207
+.equ FLAG_HARDCORE_MODE, 0x1034
+.equ VAR_TERRAIN, 0x5000
+.equ VAR_BATTLE_AURAS, 0x5119
+.equ VAR_BATTLE_TAILWIND_STRING, 5
+.equ FIGHTING_SPIRIT, 0x1
 
 .global gMapScripts_CeruleanCave
 gMapScripts_CeruleanCave:
@@ -411,6 +416,8 @@ StartSelectPokemon:
 	if equal _goto StartSelectPokemon
 	special 0x28
 	setflag FLAG_TAG_BATTLE 
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _call SetTerrain
 	setvar VAR_PARTNER 0x27 @Lance partner 
 	setvar VAR_PARTNER_BACKSPRITE 0x6 @Lance Backsprite 
 	clearflag 0x81 @mewtwo
@@ -503,6 +510,10 @@ StartSelectPokemon:
 	pause 0x50
 	warp 0x3 0x16 0x3 0x0 0x0
 	end
+
+SetTerrain:
+	setvar VAR_TERRAIN 0x4
+	return
 
 EventScript_ceruleangiovanni_Lookup:
 .byte 0x1
@@ -642,6 +653,8 @@ EventScript_KubfuMaster:
 	if equal _goto RejectKubfu
 	msgbox gText_KubfuMaster_PreFight MSG_NORMAL
 	call KubfuBattle
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _call KubfuAura1
 	trainerbattle3 0x3 0x14 0x0 gText_KubfuMaster_FightLoss
 	msgbox gText_KubfuMaster_4 MSG_NORMAL
 	givepokemon SPECIES_KUBFU 0x1E ITEM_LIECHI_BERRY 0x0 0x0 0x0
@@ -653,6 +666,14 @@ KubfuBattle:
 	setflag 0x915
 	setflag 0x90E
 	return 
+
+KubfuAura1:
+	setvar VAR_BATTLE_AURAS VAR_BATTLE_TAILWIND_STRING
+	return
+
+KubfuAura2:
+	setvar VAR_BATTLE_AURAS FIGHTING_SPIRIT
+	return
 
 KubfuBattleEnd:
 	fanfare 0x13E
@@ -684,6 +705,8 @@ RepeatBattle:
 	if equal _goto RejectKubfu
 	msgbox gText_KubfuMaster_PreFight MSG_NORMAL
 	call KubfuBattle
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _call KubfuAura2
 	trainerbattle3 0x3 0x13 0x0 gText_KubfuMaster_FightLoss
 	msgbox gText_KubfuMaster_5 MSG_NORMAL
 	givepokemon SPECIES_KUBFU 0x1E ITEM_SALAC_BERRY 0x0 0x0 0x0

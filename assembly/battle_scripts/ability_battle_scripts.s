@@ -30,6 +30,7 @@ ability_battle_scripts.s
 .global BattleScript_ShieldsDownToCoreEnd3
 .global BattleScript_ShieldsDownToMeteorEnd3
 .global BattleScript_EmergencyExit
+.global BattleScript_EmergencyExitEnd3
 .global BattleScript_AbilityTransformed
 .global BattleScript_TransformedEnd2
 .global BattleScript_TransformedEnd3
@@ -337,9 +338,13 @@ BattleScript_AbilityTransformed:
 	return
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
+BattleScript_EmergencyExitEnd3:
+	call BattleScript_EmergencyExit
+	end3
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 BattleScript_EmergencyExit:
-	jumpifbattletype BATTLE_TRAINER EmergencyExitSwitchBS
+	@ jumpifbattletype BATTLE_TRAINER EmergencyExitSwitchBS
+	goto EmergencyExitSwitchBS
 
 EmergencyExitFleeBS:
 	getifcantrunfrombattle BANK_SCRIPTING

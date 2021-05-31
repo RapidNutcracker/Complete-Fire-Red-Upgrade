@@ -2743,6 +2743,7 @@ UTurnSwitchBS:
 	setword BATTLE_STRING_LOADER UTurnString
 	printstring 0x184
 	waitmessage DELAY_1SECOND
+	callasm SetSwitchingBankSwitchingCooldownTo2VoltSwitch @added here to prevent ai from switching too much w uturn
 	goto BattleScript_SwitchOutAttackCheckPursuit
 	
 UTurnGiveEXPBS:

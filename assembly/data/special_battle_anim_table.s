@@ -101,7 +101,9 @@ gBattleAnims_General:
 .word ANIM_FORESTSCURSE2
 .word ANIM_LEECHSEED2
 .word ANIM_AURORAVEIL2
-
+.word ANIM_MUDDYWATER2
+.word ANIM_MEANLOOK2
+.word ANIM_RAINBOW
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
 ANIM_USEITEM:
@@ -1186,6 +1188,33 @@ ANIM_LEECHSEED2:
 .pool
 ANIM_AURORAVEIL2:
 	goto 0x81cdcda	
+	endanimation
+
+.pool
+ANIM_MUDDYWATER2:
+	goto 0x81d2f28
+	endanimation
+
+
+.pool
+ANIM_MEANLOOK2:
+	goto 0x81C9ABA
+	endanimation
+
+.pool
+ANIM_RAINBOW:
+	loadparticle ANIM_TAG_IMPACT
+	loadparticle ANIM_TAG_SPARKLE_2
+	launchtask AnimTask_BlendParticle 0x5 0x5 ANIM_TAG_IMPACT 0x0 0xF 0xF 0x7F5F @;Pinkish White
+	launchtask AnimTask_BlendParticle 0x5 0x5 ANIM_TAG_SPARKLE_2 0x0 0xC 0xC 0x7ADF @;Pink
+	launchtask AnimTask_pal_fade 0xa 0x5 PAL_BG 0x1 0x0 0xF 0x7FFF @;To white
+	launchtask AnimTask_SetGrayscaleOrOriginalPalette 0x5 0x2 bank_attacker 0x0
+	soundcomplex 0xbc 0xc0 0x10 0x3 
+	call HEALING_STARS
+	waitanimation
+	launchtask AnimTask_pal_fade 0xa 0x5 PAL_BG 0x1 0xF 0x0 0x7FFF @;From white
+	launchtask AnimTask_SetGrayscaleOrOriginalPalette 0x5 0x2 bank_attacker 0x1
+	waitanimation
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

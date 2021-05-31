@@ -146,7 +146,7 @@ static bool8 TryRemovePrimalWeather(u8 bank, u8 ability)
 				gBattleStringLoader = PrimalRainEndString;
 			break;
 		case ABILITY_DESOLATELAND:
-			if (gBattleWeather & WEATHER_SUN_PRIMAL)
+			if (gBattleWeather & WEATHER_SUN_PRIMAL && !FlagGet(FLAG_HARDCORE_MODE))
 				gBattleStringLoader = PrimalSunEndString;
 			break;
 		case ABILITY_DELTASTREAM:
@@ -266,7 +266,7 @@ static bool8 TryActivateFlowerGift(u8 leavingBank)
 		if (bank == leavingBank)
 			continue; //Don't do this form change if you're the bank switching out
 
-		if ((ABILITY(bank) == ABILITY_FLOWERGIFT || ABILITY(bank) == ABILITY_FORECAST)) //Just in case someone with Air Lock/Cloud Nine switches out
+		if ((ABILITY(bank) == ABILITY_FLOWERGIFT || ABILITY(bank) == ABILITY_FORECAST) || ABILITY(bank) == ABILITY_ZENMODE) //Just in case someone with Air Lock/Cloud Nine switches out
 		{
 			gStatuses3[bank] &= ~STATUS3_SWITCH_IN_ABILITY_DONE;
 

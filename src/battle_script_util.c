@@ -2191,6 +2191,10 @@ void SetSwitchingBankSwitchingCooldownTo2(void)
 		gNewBS->ai.switchingCooldown[gBankSwitching] = 2;
 }
 
+void SetSwitchingBankSwitchingCooldownTo2VoltSwitch(void){
+	gNewBS->ai.switchingCooldown[gBankAttacker] = 2;
+}
+
 void FaintedBankNameInBuff1(void)
 {
     PREPARE_MON_NICK_BUFFER(gBattleTextBuff1, gBankFainted, gBattlerPartyIndexes[gBankFainted]);

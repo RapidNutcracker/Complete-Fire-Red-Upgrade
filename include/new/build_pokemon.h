@@ -28,7 +28,7 @@ u8 GetScaledWildBossLevel(u8 level);
 void TryRandomizeSpecies(u16* species);
 u8 TryRandomizeAbility(u8 ability, const struct Pokemon* mon);
 u8 TryRandomizeAbility2(u8 ability, const u16 species);
-u8 HardcoreBannedAbilitySwapper(u8 ability);
+u8 HardcoreBannedAbilitySwapper(u8 ability, u16 species);
 bool8 ShouldTrainerRandomize(void);
 bool8 ShouldTrainerMugshot(void);
 

@@ -73,6 +73,56 @@ bool8 CanKnockOut(u8 bankAtk, u8 bankDef)
 	return gNewBS->ai.canKnockOut[bankAtk][bankDef];
 }
 
+bool8 CanKnockOutSash(u8 bankAtk, u8 bankDef) //added this function to ensure mons don't set up with sash against priority pokemon
+{ 
+	if (!BATTLER_ALIVE(bankAtk) || !BATTLER_ALIVE(bankDef))
+		return FALSE; //Can't KO if you're dead or target is dead
+
+	if (gNewBS->ai.canKnockOut[bankAtk][bankDef] == 0xFF) //Hasn't been calculated yet
+	{
+		struct BattlePokemon backupMonAtk; // backupMonDef; // commented all these out added
+		u8 backupAbilityAtk = ABILITY_NONE; // u8 backupAbilityDef = ABILITY_NONE; 
+		u16 backupSpeciesAtk = SPECIES_NONE; // u16 backupSpeciesDef = SPECIES_NONE;
+
+		TryTempMegaEvolveBank(bankAtk, &backupMonAtk, &backupSpeciesAtk, &backupAbilityAtk);
+		// TryTempMegaEvolveBank(bankDef, &backupMonDef, &backupSpeciesDef, &backupAbilityDef); //added here 
+
+		if (gNewBS->ai.strongestMove[bankAtk][bankDef] == 0xFFFF)
+			gNewBS->ai.strongestMove[bankAtk][bankDef] = CalcStrongestMove(bankAtk, bankDef, FALSE);
+
+		gNewBS->ai.canKnockOut[bankAtk][bankDef] = MoveKnocksOutXHits(gNewBS->ai.strongestMove[bankAtk][bankDef], bankAtk, bankDef, 99); //99 is special for set up check for sashes
+
+		if (gNewBS->ai.canKnockOut[bankAtk][bankDef])
+			gNewBS->ai.can2HKO[bankAtk][bankDef] = TRUE; //If you can KO in 1 hit you can KO in 2
+
+		//TryRevertTempMegaEvolveBank(bankDef, &backupMonDef, &backupSpeciesDef, &backupAbilityDef);
+		TryRevertTempMegaEvolveBank(bankAtk, &backupMonAtk, &backupSpeciesAtk, &backupAbilityAtk); // added here
+	}
+	else if ( (BATTLER_MAX_HP(bankDef) && ABILITY(bankDef) == ABILITY_STURDY) //recalculate for sash garbage 
+	|| (BATTLER_MAX_HP(bankDef) && IsBankHoldingFocusSash(bankDef) ) ) {
+		struct BattlePokemon backupMonAtk; // backupMonDef; // commented all these out added
+		u8 backupAbilityAtk = ABILITY_NONE; // u8 backupAbilityDef = ABILITY_NONE; 
+		u16 backupSpeciesAtk = SPECIES_NONE; // u16 backupSpeciesDef = SPECIES_NONE;
+
+		TryTempMegaEvolveBank(bankAtk, &backupMonAtk, &backupSpeciesAtk, &backupAbilityAtk);
+		// TryTempMegaEvolveBank(bankDef, &backupMonDef, &backupSpeciesDef, &backupAbilityDef); //added here 
+
+		if (gNewBS->ai.strongestMove[bankAtk][bankDef] == 0xFFFF)
+			gNewBS->ai.strongestMove[bankAtk][bankDef] = CalcStrongestMove(bankAtk, bankDef, FALSE);
+
+		gNewBS->ai.canKnockOut[bankAtk][bankDef] = MoveKnocksOutXHits(gNewBS->ai.strongestMove[bankAtk][bankDef], bankAtk, bankDef, 99); //99 is special for set up check for sashes
+
+		if (gNewBS->ai.canKnockOut[bankAtk][bankDef])
+			gNewBS->ai.can2HKO[bankAtk][bankDef] = TRUE; //If you can KO in 1 hit you can KO in 2
+
+		//TryRevertTempMegaEvolveBank(bankDef, &backupMonDef, &backupSpeciesDef, &backupAbilityDef);
+		TryRevertTempMegaEvolveBank(bankAtk, &backupMonAtk, &backupSpeciesAtk, &backupAbilityAtk); // added here
+	}
+
+	return gNewBS->ai.canKnockOut[bankAtk][bankDef];
+}
+
+
 bool8 GetCanKnockOut(u8 bankAtk, u8 bankDef)
 {
 	int i;
@@ -743,11 +793,65 @@ static bool8 CalculateMoveKnocksOutXHits(u16 move, u8 bankAtk, u8 bankDef, u8 nu
 			numHits -= 1; //Takes at least a hit to break Disguise/Ice Face or sub
 	}
 
-	if (GetFinalAIMoveDamage(move, bankAtk, bankDef, numHits, NULL) >= gBattleMons[bankDef].hp)
+	u32 dmg = GetFinalAIMoveDamage(move, bankAtk, bankDef, numHits, NULL);
+	if (dmg >= gBattleMons[bankDef].hp)
 		return TRUE;
+
 
 	return FALSE;
 }
+
+static bool8 CalculateMoveKnocksOutSashXHits(u16 move, u8 bankAtk, u8 bankDef, u8 numHits)
+{
+	u8 ability = ABILITY(bankDef);
+	u16 species = SPECIES(bankDef);
+	bool8 noMoldBreakers = NO_MOLD_BREAKERS(ABILITY(bankAtk), move);
+
+	if (MoveBlockedBySubstitute(move, bankAtk, bankDef)
+	#ifdef SPECIES_MIMIKYU
+	|| (ability == ABILITY_DISGUISE && species == SPECIES_MIMIKYU && noMoldBreakers)
+	#endif
+	#ifdef SPECIES_EISCUE
+	|| (ability == ABILITY_ICEFACE && species == SPECIES_EISCUE && SPLIT(move) == SPLIT_PHYSICAL && noMoldBreakers)
+	#endif
+	)
+	{
+		if (numHits > 0)
+			numHits -= 1; //Takes at least a hit to break Disguise/Ice Face or sub
+	}
+
+	u32 dmg = GetFinalAIMoveDamage(move, bankAtk, bankDef, numHits, NULL);
+	if (dmg >= gBattleMons[bankDef].hp)
+		return TRUE;
+
+	if (numHits == 1 && (int) dmg == (gBattleMons[bankDef].hp - 1 )){ //added here
+		if ( gTerrainType != PSYCHIC_TERRAIN && (MoveEffectInMoveset(EFFECT_QUICK_ATTACK, bankAtk) || MoveEffectInMoveset(EFFECT_SUCKER_PUNCH, bankAtk) 
+			|| MoveInMoveset(MOVE_WATERSHURIKEN, bankAtk) 
+			|| ((ABILITY(bankAtk) == ABILITY_FLAMINGSOUL || ABILITY(bankAtk) == ABILITY_GALEWINGS) && BATTLER_MAX_HP(bankAtk))
+			|| (ABILITY(bankAtk) == ABILITY_TRIAGE && MoveEffectInMoveset(EFFECT_ABSORB, bankAtk)) ) ){
+			return TRUE; 
+		}
+	}
+
+	if ( (ABILITY(bankAtk) == ABILITY_TRIAGE && MoveEffectInMoveset(EFFECT_ABSORB, bankAtk)) 
+		  || ( MoveInMoveset(MOVE_GRASSYGLIDE, bankAtk) && gTerrainType == GRASSY_TERRAIN)){ //added this to check if triage 2HKOs, if so its useless to setup
+		if (GetDmgHealthPercentage(bankDef, dmg) >= 55){
+			return TRUE;
+		}
+	}
+
+	if ((MoveEffectInMoveset(EFFECT_QUICK_ATTACK, bankAtk) || MoveEffectInMoveset(EFFECT_SUCKER_PUNCH, bankAtk) //don't set up if we take a lot of damage and they have priority 
+			|| MoveInMoveset(MOVE_WATERSHURIKEN, bankAtk)) )
+	{
+		if (GetDmgHealthPercentage(bankDef, dmg) >= 70){
+			return TRUE;
+		}
+	}
+
+
+	return FALSE;
+}
+
 
 bool8 MoveKnocksOutXHits(u16 move, u8 bankAtk, u8 bankDef, u8 numHits)
 {
@@ -777,6 +881,18 @@ bool8 MoveKnocksOutXHits(u16 move, u8 bankAtk, u8 bankDef, u8 numHits)
 			if (gNewBS->ai.moveKnocksOut2Hits[bankAtk][bankDef][movePos] != 0xFF)
 				return gNewBS->ai.moveKnocksOut2Hits[bankAtk][bankDef][movePos];
 			return gNewBS->ai.moveKnocksOut2Hits[bankAtk][bankDef][movePos] = CalculateMoveKnocksOutXHits(move, bankAtk, bankDef, 2);
+
+		case 99:
+			if (gBattleMoves[move].effect == EFFECT_FUTURE_SIGHT)
+				return FALSE; //Really always 3 hits
+
+			movePos = FindMovePositionInMoveset(move, bankAtk);
+			if (movePos >= MAX_MON_MOVES)
+				break; //Move not in moveset
+
+			// if (gNewBS->ai.moveKnocksOut1Hit[bankAtk][bankDef][movePos] != 0xFF)
+			// 	return gNewBS->ai.moveKnocksOut1Hit[bankAtk][bankDef][movePos];
+			return gNewBS->ai.moveKnocksOut1Hit[bankAtk][bankDef][movePos] = CalculateMoveKnocksOutSashXHits(move, bankAtk, bankDef, 1);
 	}
 
 	return CalculateMoveKnocksOutXHits(move, bankAtk, bankDef, numHits);
@@ -863,6 +979,8 @@ u16 CalcFinalAIMoveDamage(u16 move, u8 bankAtk, u8 bankDef, u8 numHits, struct D
 	u32 dmg = AI_CalcDmg(bankAtk, bankDef, move, damageData);
 	if (dmg >= gBattleMons[bankDef].hp)
 		return gBattleMons[bankDef].hp;
+
+	// if (dmg == gBattleMons[bankDef].hp - 1) 
 
 	u8 defAbility = ABILITY(bankDef);
 	if (numHits >= 2 && BATTLER_MAX_HP(bankDef) && (defAbility == ABILITY_MULTISCALE || defAbility == ABILITY_SHADOWSHIELD))
@@ -1701,9 +1819,9 @@ bool8 GoodIdeaToLowerDefense(u8 bankDef, u8 bankAtk, u16 move)
 		&& PhysicalMoveInMoveset(bankAtk)
 		&& defAbility != ABILITY_CONTRARY
 		&& defAbility != ABILITY_CLEARBODY
-		&& defAbility != ABILITY_DEFIANT
+		&& defAbility != ABILITY_DEFIANT;
 		//&& defAbility != ABILITY_FULLMETALBODY
-		&& defAbility != ABILITY_BIGPECKS;
+		// && defAbility != ABILITY_BIGPECKS;
 }
 
 bool8 GoodIdeaToLowerSpAtk(u8 bankDef, u8 bankAtk, u16 move)
@@ -2922,6 +3040,11 @@ bool8 GetHealthPercentage(u8 bank)
 	return (gBattleMons[bank].hp * 100) / gBattleMons[bank].maxHP;
 }
 
+bool8 GetDmgHealthPercentage(u8 bank, u32 dmg)
+{
+	return (dmg * 100) / gBattleMons[bank].hp;
+}
+
 bool8 TeamFullyHealedMinusBank(u8 bank)
 {
 	u8 firstId, lastId;
@@ -3104,6 +3227,7 @@ bool8 ShouldAIUseZMove(u8 bankAtk, u8 bankDef, u16 move)
 				case EFFECT_SKULL_BASH:
 				case EFFECT_SOLARBEAM:
 				case EFFECT_LASTRESORT_SKYDROP:
+				case EFFECT_OVERHEAT: //added 
 					return TRUE;
 			}
 

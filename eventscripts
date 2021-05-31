@@ -7,6 +7,7 @@ map 4 0 gMapScripts_PalletTownHome
 npc 4 0 0 EventScript_mom_Start
 map 4 1 gMapScripts_PalletTownPlayerHome
 # tile 4 1 0 LevelScript_PalletTownPlayerHome
+tile 4 1 0 EventScript_AskRandomizer
 
 # VIRIDIAN CITY 
 tile 3 1 4 EventScript_SetFlag
@@ -448,6 +449,9 @@ npc 3 39 6 EventScript_powerbracer_Start
 
 #Route 22 
 npc 3 41 1 EventScript_Route22_Scizorite
+tile 3 41 3 EventScript_garypree4top_GaryPreE4Top
+tile 3 41 4 EventScript_garypree4top_GaryPreE4Middle
+tile 3 41 5 EventScript_garypree4top_GaryPreE4Bottom
 npc 3 40 5 EventScript_powerband_Start
 npc 3 39 7 EventScript_Route18_Kinglerite 
 
@@ -558,8 +562,8 @@ npc 1 41 12 EventScript_VictoryRoad_TM67
 
 #Elite Four/Indigo Plateau 
 npc 13 0 1 EventScript_E4nurse_Start
-# npc 13 0 8 EventScript_NatureChanger 
-npc 13 0 8 EventScript_MeadowPlate
+npc 13 0 8 EventScript_NatureChanger 
+# npc 13 0 8 EventScript_MeadowPlate
 tile 3 9 0 EventScript_FinalCreator_Fight
 npc 1 75 0 EventScript_lorelei_Start
 npc 1 76 0 EventScript_bruno_Start

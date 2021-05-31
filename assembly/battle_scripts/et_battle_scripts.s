@@ -712,7 +712,7 @@ BattleScript_RaidMonEscapeBall:
 	setbyte BATTLE_OUTCOME 0x1 @B_OUTCOME_WON
 	finishaction
 
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 BattleScript_PrintCustomStringEnd2:
 	call BattleScript_PrintCustomString

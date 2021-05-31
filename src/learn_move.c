@@ -56,13 +56,13 @@ void GiveBoxMonInitialMoveset(struct BoxPokemon* boxMon)
 		struct LevelUpMove lvlUpMove = gLevelUpLearnsets[species][i];
 		u16 move = lvlUpMove.move;
 		//Hardcore Mode checks
-		if(FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(lvlUpMove.move, gHardcoreBannedMoves)) {
+		if((FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE)) && CheckTableForMove(lvlUpMove.move, gHardcoreBannedMoves)) {
 			continue;
 		}
-		else if(FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(lvlUpMove.move, gHardcoreHalfBannedMoves) && !CheckTableForSpecies(species, gBadHardcoreList)) { 
+		else if((FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE)) && CheckTableForMove(lvlUpMove.move, gHardcoreHalfBannedMoves) && !CheckTableForSpecies(species, gBadHardcoreList)) { 
 			continue;
 		}
-		else if (FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(lvlUpMove.move, gHardcoreTrashBannedMoves) && !CheckTableForSpecies(species, gSuperBadHardcoreList)) { 
+		else if ((FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE)) && CheckTableForMove(lvlUpMove.move, gHardcoreTrashBannedMoves) && !CheckTableForSpecies(species, gSuperBadHardcoreList)) { 
 			continue; 
 		}
 		// End of hardcore mode checks
@@ -113,13 +113,13 @@ u16 MonTryLearningNewMove(struct Pokemon* mon, bool8 firstMove)
 	lvlUpMove = gLevelUpLearnsets[species][sLearningMoveTableID];
 	if (lvlUpMove.level == level)
 	{
-		if(FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(lvlUpMove.move, gHardcoreBannedMoves)) {
+		if((FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE)) && CheckTableForMove(lvlUpMove.move, gHardcoreBannedMoves)) {
 			return 0;
 		}
-		else if(FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(lvlUpMove.move, gHardcoreHalfBannedMoves) && !CheckTableForSpecies(species, gBadHardcoreList)) { 
+		else if((FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE)) && CheckTableForMove(lvlUpMove.move, gHardcoreHalfBannedMoves) && !CheckTableForSpecies(species, gBadHardcoreList)) { 
 			return 0;
 		}
-		else if (FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(lvlUpMove.move, gHardcoreTrashBannedMoves) && !CheckTableForSpecies(species, gSuperBadHardcoreList)) { 
+		else if ((FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE)) && CheckTableForMove(lvlUpMove.move, gHardcoreTrashBannedMoves) && !CheckTableForSpecies(species, gSuperBadHardcoreList)) { 
 			return 0; 
 		}
 		gMoveToLearn = lvlUpMove.move;
@@ -172,13 +172,13 @@ u16 MonTryLearningNewMoveAfterEvolution(struct Pokemon* mon, bool8 firstMove)
 		retVal = GiveMoveToMon(mon, gMoveToLearn);
 	}
 	//Hardcore mode checks
-	if(FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(lvlUpMove.move, gHardcoreBannedMoves)) {
+	if((FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE)) && CheckTableForMove(lvlUpMove.move, gHardcoreBannedMoves)) {
 		return 0;
 	}
-	else if(FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(lvlUpMove.move, gHardcoreHalfBannedMoves) && !CheckTableForSpecies(species, gBadHardcoreList)) { 
+	else if((FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE)) && CheckTableForMove(lvlUpMove.move, gHardcoreHalfBannedMoves) && !CheckTableForSpecies(species, gBadHardcoreList)) { 
 		return 0;
 	}
-	else if (FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(lvlUpMove.move, gHardcoreTrashBannedMoves) && !CheckTableForSpecies(species, gSuperBadHardcoreList)) { 
+	else if ((FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE)) && CheckTableForMove(lvlUpMove.move, gHardcoreTrashBannedMoves) && !CheckTableForSpecies(species, gSuperBadHardcoreList)) { 
 		return 0; 
 	}
 
@@ -225,9 +225,9 @@ u8 GetMoveRelearnerMoves(struct Pokemon* mon, u16* moves)
 			{
 				for (k = 0; k < numMoves && moves[k] != lvlUpMove.move; ++k)
 					;
-				if(FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(lvlUpMove.move, gHardcoreBannedMoves)) {}
-				else if(FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(lvlUpMove.move, gHardcoreHalfBannedMoves) && !CheckTableForSpecies(species, gBadHardcoreList)) { }
-				else if (FlagGet(FLAG_HARDCORE_MODE) && CheckTableForMove(lvlUpMove.move, gHardcoreTrashBannedMoves) && !CheckTableForSpecies(species, gSuperBadHardcoreList)) { }
+				if((FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE)) && CheckTableForMove(lvlUpMove.move, gHardcoreBannedMoves)) {}
+				else if((FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE)) && CheckTableForMove(lvlUpMove.move, gHardcoreHalfBannedMoves) && !CheckTableForSpecies(species, gBadHardcoreList)) { }
+				else if ((FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE)) && CheckTableForMove(lvlUpMove.move, gHardcoreTrashBannedMoves) && !CheckTableForSpecies(species, gSuperBadHardcoreList)) { }
 				else if (k == numMoves) {
 					moves[numMoves++] = lvlUpMove.move;
 				}

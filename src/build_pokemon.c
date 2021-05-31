@@ -44,7 +44,7 @@ build_pokemon.c
 	modifies the data that is set for generated pokemon, eg. for battle tower/frontier team generation and others.
 */
 
-#define TOTAL_SPREADS ARRAY_COUNT(gFrontierSpreads)
+#define TOTAL_SPREADS ARRAY_COUNT(gFrontierSpreads)  
 #define TOTAL_LEGENDARY_SPREADS ARRAY_COUNT(gFrontierLegendarySpreads)
 #define TOTAL_ARCEUS_SPREADS ARRAY_COUNT(gArceusSpreads)
 #define TOTAL_PIKACHU_SPREADS ARRAY_COUNT(gPikachuSpreads)
@@ -89,7 +89,7 @@ struct TeamBuilder
 	u8 battleType;
 	u8 monsCount;
 	u8 numStalls;
-	u8 numChoiceItems;
+	u8 numChoiceItems;  
 	u8 numMegas;
 	u16 trainerId;
 };
@@ -176,7 +176,7 @@ static void PostProcessTeam(struct Pokemon* party, struct TeamBuilder* builder);
 static void TryShuffleMovesForCamomons(struct Pokemon* party, u8 tier, u16 trainerId);
 static u8 GetPartyIdFromPartyData(struct Pokemon* mon);
 static u8 GetHighestMonLevel(const struct Pokemon* const party);
-u8 HardcoreBannedAbilitySwapper(u8 ability); 
+u8 HardcoreBannedAbilitySwapper(u8 ability, u16 species); 
  
 #ifdef OPEN_WORLD_TRAINERS  
 
@@ -1966,17 +1966,26 @@ static void SetWildMonHeldItem(void)
 		for (int i = 0; i < 2; ++i) //Two possible wild opponents
 		{
 			if (i > 0 && !IS_DOUBLE_BATTLE)
-				break;
+				break; 
 
 			species = gEnemyParty[i].species;
-
+			if ((FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE) ) && (gBaseStats[species].item1 == ITEM_WEAKNESS_POLICY || gBaseStats[species].item2 == ITEM_WEAKNESS_POLICY
+			|| gBaseStats[species].item1 == ITEM_DAMP_ROCK || gBaseStats[species].item2 == ITEM_DAMP_ROCK  
+			|| gBaseStats[species].item1 == ITEM_HEAT_ROCK || gBaseStats[species].item2 == ITEM_HEAT_ROCK 
+			|| gBaseStats[species].item1 == ITEM_DAMP_ROCK || gBaseStats[species].item2 == ITEM_DAMP_ROCK 
+			|| gBaseStats[species].item1 == ITEM_SMOOTH_ROCK || gBaseStats[species].item2 == ITEM_SMOOTH_ROCK))
+				continue;
+			if (FlagGet(FLAG_HARDCORE_MODE) &&(gBaseStats[species].item1 == ITEM_PSYCHIC_SEED || gBaseStats[species].item2 == ITEM_PSYCHIC_SEED) && !(FlagGet(FLAG_BADGE05_GET)))
+				continue; 
+			if (FlagGet(FLAG_HARDCORE_MODE) &&(gBaseStats[species].item1 == ITEM_ELECTRIC_SEED || gBaseStats[species].item2 == ITEM_ELECTRIC_SEED) && !(FlagGet(FLAG_BADGE03_GET)))
+				continue;   
 			if (gBaseStats[species].item1 == gBaseStats[species].item2 && gBaseStats[species].item1 != 0)
 			{
 				SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &gBaseStats[species].item1);
 				continue;
 			}
 
-			if (rnd < var1)
+			if (rnd < var1) 
 				continue;
 
 			if (rnd < var2)
@@ -3134,7 +3143,7 @@ static void PostProcessTeam(struct Pokemon* party, struct TeamBuilder* builder)
 			if (builder->partyIndex[BATON_PASSER] != 0) //Baton Passer isn't already at lead
 				SwapMons(party, 0, builder->partyIndex[BATON_PASSER]);
 		}
-		else //Try to stick a mon with Tailwind/Trick Room or entry hazards at the front
+		else //Try to stick a mon with Tailwind/Trick Room or entry hazards at the front  
 		{
 			if (tailwindTRIndex != 0xFF)
 				SwapMons(party, 0, tailwindTRIndex);
@@ -3683,7 +3692,7 @@ void CheckIfKogaApproves()
 {  
 	struct Pokemon* mon = &gPlayerParty[Var8004];
 	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
-	if (gBaseStats[species].baseSpeed >= 115) {
+	if (gBaseStats[species].baseSpeed >= 125) {
 		gSpecialVar_LastResult = TRUE; 
 	}
 	else{
@@ -3691,6 +3700,57 @@ void CheckIfKogaApproves()
 	}
 }
 
+void CheckIfJasmineApproves()
+{
+	struct Pokemon* mon = &gPlayerParty[Var8004];
+	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+	if (gBaseStats[species].baseDefense >= 125) {
+		gSpecialVar_LastResult = TRUE; 
+	}
+	else{
+		gSpecialVar_LastResult = FALSE; 
+	}
+}
+
+void CheckIfBlaineApproves()
+{
+	struct Pokemon* mon = &gPlayerParty[Var8004];
+	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+	if (gBaseStats[species].baseSpAttack >= 125) {
+		gSpecialVar_LastResult = TRUE; 
+	}
+	else{
+		gSpecialVar_LastResult = FALSE; 
+	}
+}
+
+void CheckIfCanBattleClair() 
+{
+	int i;
+
+	for (i = 0; i < PARTY_SIZE; ++i)
+	{
+		u16 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL);
+		u16 item = GetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, NULL);
+		if (species != SPECIES_NONE
+		&& !GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG, NULL)) //Don't count Egg types
+		{
+			if (gBaseStats[species].type1 == TYPE_FAIRY
+			||  gBaseStats[species].type2 == TYPE_FAIRY
+			|| ( species == SPECIES_AMPHAROS && item == ITEM_AMPHAROSITE)
+			|| ( species == SPECIES_ALTARIA && item == ITEM_ALTARIANITE)
+			|| (species == SPECIES_ABSOL && item == ITEM_ABSOLITE)
+			|| (species == SPECIES_AUDINO && item == ITEM_AUDINITE) )
+			{
+
+				gSpecialVar_LastResult = FALSE;
+				return;
+			}
+		}
+	}
+
+	gSpecialVar_LastResult = TRUE;
+}
 
 bool8 ShouldTrainerMugshot() 
 {  
@@ -4130,12 +4190,14 @@ void CalculateMonStatsNew(struct Pokemon *mon)
 	SetMonData(mon, MON_DATA_HP, &currentHP);
 }
 
-u8 HardcoreBannedAbilitySwapper(u8 ability){
+u8 HardcoreBannedAbilitySwapper(u8 ability, unusedArg u16 species){
 	switch (ability) {
 		case ABILITY_DROUGHT:
+		case ABILITY_DESOLATELAND:
 			return ABILITY_SOLARPOWER;
 
 		case ABILITY_DRIZZLE:
+		case ABILITY_PRIMORDIALSEA:
 			return ABILITY_SWIFTSWIM; 
 
 		case ABILITY_SNOWWARNING:
@@ -4146,21 +4208,23 @@ u8 HardcoreBannedAbilitySwapper(u8 ability){
 		
 		case ABILITY_SANDSPIT:
 			return ABILITY_SANDFORCE;
-		
+		 
 		case ABILITY_SPEEDBOOST:
 			return ABILITY_INFILTRATOR;
-		
+
 		case ABILITY_CONTRARY:
+		case ABILITY_DEFIANT:
+		case ABILITY_COMPETITIVE:
 			return ABILITY_CLEARBODY;
-		
+		  
 		case ABILITY_MAGICBOUNCE:
-			return ABILITY_MAGICGUARD; 
+			return ABILITY_MAGICGUARD;   
 
 		case ABILITY_PSYCHICSURGE:
 		case ABILITY_MISTYSURGE:
-		case ABILITY_GRASSYSURGE:
-		case ABILITY_ELECTRICSURGE:
-			return ABILITY_TELEPATHY;
+		case ABILITY_GRASSYSURGE: 
+		case ABILITY_ELECTRICSURGE:  
+			return ABILITY_TELEPATHY; 
 		
 		case ABILITY_MOXIE:
 		case ABILITY_SOULHEART:
@@ -4168,7 +4232,20 @@ u8 HardcoreBannedAbilitySwapper(u8 ability){
 			return ABILITY_UNNERVE;
 			
 		case ABILITY_IMPOSTER:
-			return ABILITY_LIMBER;
+			return ABILITY_LIMBER; 
+		
+		case ABILITY_STORMDRAIN:
+			return ABILITY_WATERABSORB;
+
+		case ABILITY_LIGHTNINGROD: 
+		case ABILITY_MOTORDRIVE:
+			return ABILITY_VOLTABSORB;
+		// case ABILITY_TRIAGE:
+		// 	return ABILITY_NATURALCURE;
+		
+		// case ABILITY_FLAMINGSOUL:
+		// 	return ABILITY_FLASHFIRE;
+		
 
 	}
 	return ability;
@@ -4189,10 +4266,10 @@ u8 TryRandomizeAbility(u8 ability, const struct Pokemon* mon)
 		}
 	}
 	// this is to swap the banned abilities in hardcore mode
-	if (FlagGet(FLAG_HARDCORE_MODE)){
+	if ((FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE)) ){
 		u32 otId = GetMonData(mon, MON_DATA_OT_ID, NULL);
 		if (otId == (u32) T1_READ_32(gSaveBlock2->playerTrainerId)){
-			return HardcoreBannedAbilitySwapper(ability);
+			return HardcoreBannedAbilitySwapper(ability, species);
 		}
 		return ability;
 	}
@@ -4210,8 +4287,8 @@ u8 TryRandomizeAbility(u8 ability, const struct Pokemon* mon)
 		while (CheckTableForAbility(newAbility, gRandomizerAbilityBanList));
 	}
 	#endif
-
-	return newAbility;
+  
+	return newAbility; 
 }
 
 u8 TryRandomizeAbility2(u8 ability, const u16 species)
@@ -4231,7 +4308,9 @@ u8 TryRandomizeAbility2(u8 ability, const u16 species)
 		while (CheckTableForAbility(newAbility, gRandomizerAbilityBanList));
 	}
 	#endif
-
+	if ((FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE))){
+		return HardcoreBannedAbilitySwapper(ability, species);
+	}
 	return newAbility;
 }
 

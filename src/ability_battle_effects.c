@@ -58,7 +58,6 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_BATTLEBOND] = 6,
 	[ABILITY_BEASTBOOST] = 7,
 	[ABILITY_BERSERK] = 5,
-	[ABILITY_BIGPECKS] = 1,
 	[ABILITY_BLAZE] = 5,
 	[ABILITY_BULLETPROOF] = 7,
 	[ABILITY_CHEEKPOUCH] = 4,
@@ -103,7 +102,6 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_FOREWARN] = 2,
 	[ABILITY_FRIENDGUARD] = 0,
 	[ABILITY_FRISK] = 3,
-//	[ABILITY_FULLMETALBODY] = 4,
 	[ABILITY_FURCOAT] = 7,
 	[ABILITY_GALEWINGS] = 6,
 	[ABILITY_GALVANIZE] = 8,
@@ -123,6 +121,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_HYPERCUTTER] = 3,
 	[ABILITY_ICEBODY] = 3,
 	[ABILITY_GULPMISSILE] = 4,
+	[ABILITY_ILLUMINATE] = 7,
 	[ABILITY_ILLUSION] = 8,
 	[ABILITY_IMMUNITY] = 4,
 	[ABILITY_IMPOSTER] = 9,
@@ -339,7 +338,6 @@ const bool8 gMoldBreakerIgnoredAbilities[] =
 	[ABILITY_WATERABSORB] =		TRUE,
 	[ABILITY_WATERVEIL] =		TRUE,
 	[ABILITY_WONDERGUARD] =		TRUE,
-	[ABILITY_BIGPECKS] =		TRUE,
 	[ABILITY_CONTRARY] =		TRUE,
 	[ABILITY_FRIENDGUARD] =		TRUE,
 	[ABILITY_HEAVYMETAL] =		TRUE,
@@ -365,7 +363,6 @@ const bool8 gMoldBreakerIgnoredAbilities[] =
 	[ABILITY_ICESCALES] =		TRUE,
 	[ABILITY_ICEFACE] =			TRUE,
 	[ABILITY_PASTELVEIL] =		TRUE,
-	[ABILITY_SOLARPOWER] =		TRUE,
 };
 
 const u16 gWeatherContinuesStringIds[] =
@@ -648,14 +645,33 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 					}
 				}
 			}
-			effect = CastformDataTypeChange(bank);
-			if (effect != 0)
+			if (effect != 0  && (ITEM_EFFECT(bank) != ITEM_EFFECT_SMOOTH_ROCK) )
 			{
+				effect = CastformDataTypeChange(bank);
 				BattleScriptPushCursorAndCallback(BattleScript_CastformChange);
 				gBattleStruct->castformToChangeInto = effect - 1;
 			}
 			break; 
 
+		case ABILITY_ZENMODE: ;//added here
+			u16 species = SPECIES(bank);
+			#if (defined SPECIES_DARMANITAN && defined SPECIES_DARMANITANZEN)
+			if (species == SPECIES_DARMANITAN)
+			{
+				DoFormChange(bank, SPECIES_DARMANITANZEN, TRUE, TRUE, FALSE);
+				BattleScriptPushCursorAndCallback(BattleScript_TransformedEnd3);
+				++effect;
+			}
+			#endif
+			#if (defined SPECIES_DARMANITAN_G && defined SPECIES_DARMANITAN_G_ZEN)
+			if (species == SPECIES_DARMANITAN_G)
+			{
+				DoFormChange(bank, SPECIES_DARMANITANZEN, TRUE, TRUE, FALSE);
+				BattleScriptPushCursorAndCallback(BattleScript_TransformedEnd3);
+				++effect;
+			}
+			#endif
+			break;
 		case ABILITY_PRIMORDIALSEA:
 			if (!(gBattleWeather & (WEATHER_RAIN_PRIMAL | WEATHER_CIRCUS)))
 			{
@@ -1540,7 +1556,66 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 						gBattleStruct->castformToChangeInto = effect - 1;
 					}
 					break;
+				// case ABILITY_ZENMODE:
+				// 	struct Pokemon* mon = GetBankPartyData(gActiveBattler);
+				// 	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+				// 	u16 newSpecies = SPECIES_NONE;
+				// 	bool8 changedForm = FALSE;
+				// 	bool8 reloadType = FALSE;
+				// 	bool8 reloadStats = FALSE;
+				// 	bool8 reloadAbility = FALSE;
+				// 	const u8* battleScript = NULL;
+
+				// 	#if (defined SPECIES_DARMANITAN && defined SPECIES_DARMANITANZEN)
+				// 	if (species == SPECIES_DARMANITAN)
+				// 	{
+				// 		newSpecies = SPECIES_DARMANITANZEN;
+				// 		changedForm = TRUE;
+				// 		reloadType = TRUE;
+				// 		reloadStats = TRUE;
+				// 		battleScript = BattleScript_TransformedEnd3;
+				// 	}
+				// 	#endif
+				// 	#if (defined SPECIES_DARMANITAN_G && defined SPECIES_DARMANITAN_G_ZEN)
+				// 	if (species == SPECIES_DARMANITAN_G)
+				// 	{
+				// 		newSpecies = SPECIES_DARMANITAN_G_ZEN;
+				// 		changedForm = TRUE;
+				// 		reloadType = TRUE;
+				// 		reloadStats = TRUE;
+				// 		battleScript = BattleScript_TransformedEnd3;
+				// 	}
+				// 	#endif
+				// 	if (changedForm)
+				// 	{
+				// 		gBattleScripting.bank = gActiveBattler;
+				// 		DoFormChange(gActiveBattler, newSpecies, reloadType, reloadStats, reloadAbility);
+				// 		BattleScriptExecute(battleScript);
+				// 		++effect;
+				// 	}
+				// 	break;
+
+				case ABILITY_EMERGENCYEXIT:
+					if ( (!(gStatuses3[bank] & (STATUS3_SKY_DROP_ANY))
+					&& gNewBS->turnDamageTaken[bank] > 0
+					&& (gBattleMons[bank].hp <= gBattleMons[bank].maxHP / 2) 
+					&& ( gBattleMons[bank].hp + gNewBS->turnDamageTaken[bank] > gBattleMons[bank].maxHP / 2) )) //Fell from end turn damage
+					{
+						gBattleScripting.bank = gBankSwitching = bank;
+						BattleScriptPushCursorAndCallback(BattleScript_EmergencyExitEnd3);
+						effect = 1;
+					}
+					else if ((gBattleMons[bank].hp <= gBattleMons[bank].maxHP / 2) && gDisableStructs[bank].truantSwitchInHack == 1
+					&& !(gStatuses3[bank] & (STATUS3_SKY_DROP_ANY)) ){
+						gDisableStructs[bank].truantSwitchInHack = 0;
+						gBattleScripting.bank = gBankSwitching = bank;
+						BattleScriptPushCursorAndCallback(BattleScript_EmergencyExitEnd3);
+						effect = 1;
+					}
+					gNewBS->turnDamageTaken[bank] = 0; //Reset to prevent accidental triggering
+					break;
 				}
+
 			}
 			break;
 

@@ -7,6 +7,7 @@
 //Exported Functions
 bool8 CanKillAFoe(u8 bank);
 bool8 CanKnockOut(u8 bankAtk, u8 bankDef);
+bool8 CanKnockOutSash(u8 bankAtk, u8 bankDef);
 bool8 GetCanKnockOut(u8 bankAtk, u8 bankDef);
 bool8 Can2HKO(u8 bankAtk, u8 bankDef);
 bool8 GetCan2HKO(u8 bankAtk, u8 bankDef);
@@ -111,6 +112,7 @@ u16 TryReplaceMoveWithZMove(u8 bankAtk, u8 bankDef, u16 move);
 u8 GetAIMoveEffectForMaxMove(u16 move, u8 bankAtk, u8 bankDef);
 
 bool8 GetHealthPercentage(u8 bank);
+bool8 GetDmgHealthPercentage(u8 bank, u32 dmg);
 bool8 TeamFullyHealedMinusBank(u8 bank);
 bool8 AnyStatIsRaised(u8 bank);
 bool8 AnyUsefulStatIsRaised(u8 bank);

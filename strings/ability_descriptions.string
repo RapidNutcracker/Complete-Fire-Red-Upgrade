@@ -52,8 +52,8 @@ Status moves hit first.
 #org @DESC_ADAPTABILITY
 Boosts same type attacks.
 
-#org @DESC_BIGPECKS
-Prevents Defense reduction.
+#org @DESC_ILLUMINATE
+Raises accuracy.
 
 #org @DESC_MAGICBOUNCE
 Reflects status moves.
@@ -179,7 +179,7 @@ Boosts moves that make contact.
 Boosts biting moves.
 
 #org @DESC_VICTORYSTAR
-Raises accuracy.
+Slightly raises accuracy.
 
 #org @DESC_STORMDRAIN
 Draws in Water-type moves.

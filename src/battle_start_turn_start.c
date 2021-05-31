@@ -149,8 +149,13 @@ void BattleBeginFirstTurn(void)
 				{
 					for (j = i + 1; j < gBattlersCount; ++j)
 					{
-						if (GetWhoStrikesFirst(gBanksByTurnOrder[i], gBanksByTurnOrder[j], 1))
+						u8 whosFirst = GetWhoStrikesFirst(gBanksByTurnOrder[i], gBanksByTurnOrder[j], 1);
+						if (whosFirst == SecondMon){
 							SwapTurnOrder(i, j);
+						}
+						else if (whosFirst == SpeedTie && Random2() % 2 == 0) {
+							SwapTurnOrder(i, j);
+						}
 					}
 				}
 
@@ -478,15 +483,29 @@ bool8 TryActivateVarWeather()
 			case 2:
 				BattleScriptPushCursorAndCallback(BattleScript_RainBattleBegin);
 				gBattleWeather =  (WEATHER_RAIN_PERMANENT); 
-				gBattleScripting.animArg1 = B_ANIM_RAIN_CONTINUES;;
+				gBattleScripting.animArg1 = B_ANIM_RAIN_CONTINUES;
 				gWishFutureKnock.weatherDuration = 0;
 				effect = TRUE;
 				break;
 			case 3:
 				BattleScriptPushCursorAndCallback(BattleScript_HailBattleBegin);
 				gBattleWeather =  (WEATHER_HAIL_PERMANENT); 
-				gBattleScripting.animArg1 = B_ANIM_HAIL_CONTINUES;;
+				gBattleScripting.animArg1 = B_ANIM_HAIL_CONTINUES;
 				gWishFutureKnock.weatherDuration = 0;
+				effect = TRUE;
+				break;
+			case 5:
+				BattleScriptPushCursorAndCallback(BattleScript_HarshSunlightBegins);
+				gBattleWeather = (WEATHER_SUN_PERMANENT | WEATHER_SUN_PRIMAL);
+				gWishFutureKnock.weatherDuration = 0;
+				gBattleScripting.animArg1 = B_ANIM_SUN_CONTINUES;
+				effect = TRUE;
+				break;
+			case 6:
+				BattleScriptPushCursorAndCallback(BattleScript_HarshRainBegins);
+				gBattleWeather = (WEATHER_RAIN_PERMANENT | WEATHER_RAIN_PRIMAL);
+				gWishFutureKnock.weatherDuration = 0;
+				gBattleScripting.animArg1 = B_ANIM_RAIN_CONTINUES;
 				effect = TRUE;
 				break;
 
@@ -551,6 +570,39 @@ bool8 TryActivateVarBattleAuras()
 				VarSet(VAR_BATTLE_AURAS, AURA_CANT_HAZARD_CONTROL);
 				effect = TRUE;
 				break;
+			case AURA_FIREPROOF_STRING:
+				BattleScriptPushCursorAndCallback(BattleScript_FireproofBegins);
+				VarSet(VAR_BATTLE_AURAS, AURA_FIREPROOF);
+				effect = TRUE;
+				break;
+			case AURA_SWAMP_STRING:
+				gNewBS->SwampTimers[GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)] = 99;
+				gBattleScripting.bank = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
+				BattleScriptPushCursorAndCallback(BattleScript_SwampBegins);
+				VarSet(VAR_BATTLE_AURAS, AURA_SWAMP);
+				effect = TRUE;
+				break;
+			case AURA_SEAOFFIRE_STRING:
+				gNewBS->SeaOfFireTimers[GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)] = 99;
+				gBattleScripting.bank = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
+				BattleScriptPushCursorAndCallback(BattleScript_SeaOfFireBegins);
+				VarSet(VAR_BATTLE_AURAS, AURA_SEAOFFIRE);
+				effect = TRUE;
+				break;
+			case AURA_RAINBOW_STRING:
+				gNewBS->RainbowTimers[GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT)] = 99;
+				gBattleScripting.bank = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
+				BattleScriptPushCursorAndCallback(BattleScript_RainbowBegins);
+				VarSet(VAR_BATTLE_AURAS, AURA_RAINBOW);
+				effect = TRUE;
+				break;
+			case AURA_SHADOWTAG_STRING:
+				gBattleScripting.bank = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
+				BattleScriptPushCursorAndCallback(BattleScript_ShadowTagBegins);
+				VarSet(VAR_BATTLE_AURAS, AURA_SHADOWTAG);
+				effect = TRUE;
+				break;
+
 		}
 	}
 	
@@ -741,8 +793,15 @@ void SetActionsAndBanksTurnOrder(void)
 						&& gActionsByTurnOrder[i] != ACTION_SWITCH
 						&& gActionsByTurnOrder[j] != ACTION_SWITCH)
 					{
-						if (GetWhoStrikesFirst(bank1, bank2, FALSE))
+						// if (GetWhoStrikesFirst(bank1, bank2, FALSE))
+						// 	SwapTurnOrder(i, j);
+						u8 whosFirst = GetWhoStrikesFirst(bank1, bank2, FALSE);
+						if (whosFirst == SecondMon){
 							SwapTurnOrder(i, j);
+						}
+						else if (whosFirst == SpeedTie && Random2() % 2 == 0) {
+							SwapTurnOrder(i, j);
+						}
 					}
 				}
 			}
@@ -888,8 +947,15 @@ void RunTurnActionsFunctions(void)
 						&& gActionsByTurnOrder[i] != ACTION_FINISHED
 						&& gActionsByTurnOrder[j] != ACTION_FINISHED)
 					{
-						if (GetWhoStrikesFirst(bank1, bank2, FALSE))
+						// if (GetWhoStrikesFirst(bank1, bank2, FALSE))
+						// 	SwapTurnOrder(i, j);
+						u8 whosFirst = GetWhoStrikesFirst(bank1, bank2, FALSE);
+						if (whosFirst == SecondMon){
 							SwapTurnOrder(i, j);
+						}
+						else if (whosFirst == SpeedTie && Random2() % 2 == 0) {
+							SwapTurnOrder(i, j);
+						}
 					}
 				}
 			}
@@ -1047,8 +1113,13 @@ void HandleAction_UseMove(void)
 					&& !(gBitTable[bank1] & gNewBS->quashed)
 					&& !(gBitTable[bank2] & gNewBS->quashed))
 				{
-					if (GetWhoStrikesFirstUseLastBracketCalc(bank1, bank2))
+					u8 whosFirst = GetWhoStrikesFirstUseLastBracketCalc(bank1, bank2);
+					if (whosFirst == SecondMon){
 						SwapTurnOrder(i, j);
+					}
+					else if (whosFirst == SpeedTie && Random2() % 2 == 0) {
+						SwapTurnOrder(i, j);
+					}
 				}
 			}
 		}
@@ -1970,6 +2041,11 @@ u32 SpeedCalc(u8 bank)
 		case ABILITY_SURGESURFER:
 			if (gTerrainType == ELECTRIC_TERRAIN)
 				speed *= 2;
+			break;
+		case ABILITY_BULLRUSH:
+			if(gDisableStructs[bank].isFirstTurn){
+				speed = (speed * 15) / 10;
+			}
 			break;
 	}
 

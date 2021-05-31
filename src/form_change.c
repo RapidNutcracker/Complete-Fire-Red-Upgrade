@@ -36,8 +36,9 @@ static const species_t sBannedBackupSpecies[] =
 	SPECIES_CHERRIM_SUN,
 	SPECIES_SHAYMIN_SKY,
 	SPECIES_DARMANITANZEN,
+	SPECIES_DARMANITAN_G_ZEN,
 	SPECIES_KELDEO_RESOLUTE,
-	SPECIES_MELOETTA_PIROUETTE,
+	// SPECIES_MELOETTA_PIROUETTE,
 	SPECIES_AEGISLASH_BLADE,
 	SPECIES_WISHIWASHI_S,
 	SPECIES_MIMIKYU_BUSTED,
@@ -129,14 +130,14 @@ void SwitchOutFormsRevert(u8 bank)
 			break;
 		#endif
 
-		#if (defined SPECIES_MELOETTA && defined SPECIES_MELOETTA_PIROUETTE)
-		case SPECIES_MELOETTA_PIROUETTE:
-			if (backupSpecies != SPECIES_NONE)
-				DoFormChange(bank, backupSpecies, FALSE, TRUE, FALSE);
-			else
-				DoFormChange(bank, SPECIES_MELOETTA, FALSE, TRUE, FALSE);
-			break;
-		#endif
+		// #if (defined SPECIES_MELOETTA && defined SPECIES_MELOETTA_PIROUETTE)
+		// case SPECIES_MELOETTA_PIROUETTE:
+		// 	if (backupSpecies != SPECIES_NONE)
+		// 		DoFormChange(bank, backupSpecies, FALSE, TRUE, FALSE);
+		// 	else
+		// 		DoFormChange(bank, SPECIES_MELOETTA, FALSE, TRUE, FALSE);
+		// 	break;
+		// #endif
 
 		#if (defined SPECIES_AEGISLASH && defined SPECIES_AEGISLASH_BLADE)
 		case SPECIES_AEGISLASH_BLADE:
@@ -207,9 +208,11 @@ bool8 TryFormRevert(pokemon_t* mon)
 	{
 		mon->backupSpecies = SPECIES_NONE;
 	}
-	else if (mon->backupSpecies != SPECIES_NONE && mon->backupSpecies < NUM_SPECIES)
+	else if (mon->backupSpecies != SPECIES_NONE && mon->backupSpecies < NUM_SPECIES )
 	{
-		mon->species = mon->backupSpecies;
+		if (!(mon->backupSpecies == SPECIES_MELOETTA || mon->backupSpecies == SPECIES_MELOETTA_PIROUETTE)) {
+			mon->species = mon->backupSpecies;
+		}
 		mon->backupSpecies = SPECIES_NONE;
 		oldHP = mon->hp;
 		CalculateMonStats(mon);

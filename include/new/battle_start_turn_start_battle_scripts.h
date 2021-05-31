@@ -30,6 +30,8 @@ extern const u8 BattleScript_DynamaxEnergySwirl[];
 extern const u8 BattleScript_SandstormBattleBegin[];
 extern const u8 BattleScript_RainBattleBegin[];
 extern const u8 BattleScript_HailBattleBegin[]; 
+extern const u8 BattleScript_HarshSunlightBegins[];
+extern const u8 BattleScript_HarshRainBegins[];
 
 extern const u8 BattleScript_FightingSpiritBegins[];
 extern const u8 BattleScript_PermaTrickRoomBegins[]; 
@@ -39,6 +41,11 @@ extern const u8 BattleScript_TailwindBegins[];
 extern const u8 BattleScript_GrassTintedLensBegins[];
 extern const u8 BattleScript_IceDefenseBegins[];
 extern const u8 BattleScript_CantHazardControlBegins[];
+extern const u8 BattleScript_FireproofBegins[];
+extern const u8 BattleScript_SwampBegins[];
+extern const u8 BattleScript_SeaOfFireBegins[]; 
+extern const u8 BattleScript_RainbowBegins[];
+extern const u8 BattleScript_ShadowTagBegins[];
 
 extern const u8 gText_CamomonsTypeReveal[];
 extern const u8 gText_CamomonsTypeRevealDualType[];

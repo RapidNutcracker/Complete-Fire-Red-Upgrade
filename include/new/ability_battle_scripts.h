@@ -37,6 +37,7 @@ extern const u8 BattleScript_MoodyRegular[];
 extern const u8 BattleScript_BadDreams[];
 extern const u8 BattleScript_Harvest[];
 extern const u8 BattleScript_Pickup[];
+extern const u8 BattleScript_EmergencyExitEnd3[];
 extern const u8 BattleScript_BallFetch[];
 extern const u8 BattleScript_PrintCustomStringEnd3[];
 extern const u8 BattleScript_AttackerCantUseMove[];

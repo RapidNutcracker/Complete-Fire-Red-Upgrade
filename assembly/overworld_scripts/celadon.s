@@ -10,7 +10,6 @@
 .equ FLAG_MINIMAL_GRINDING_MODE, 0x1032
 .equ VAR_BATTLE_AURAS, 0x5119
 .equ AURA_GRASS_TINTEDLENS_STRING, 6
-.equ PERMA_TRICK_ROOM_STRING, 2
 
 .global EventScript_Celadon_CheckErika
 EventScript_Celadon_CheckErika:
@@ -1332,7 +1331,7 @@ EventScript_erika_BattleTwo:
 	end
 
 SetRematchAura:
-	@ setvar VAR_TERRAIN 0x4
+	setvar VAR_TERRAIN 0x2
 	setvar VAR_BATTLE_AURAS AURA_GRASS_TINTEDLENS_STRING
 	return
 

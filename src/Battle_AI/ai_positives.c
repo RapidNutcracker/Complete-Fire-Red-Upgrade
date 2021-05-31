@@ -164,6 +164,8 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 
 					if (STAT_STAGE(bankAtk,STAT_STAGE_ATK) >= 8)
 						goto AI_ACCURACY_PLUS;
+						
+					goto AI_ATTACK_PLUS;
 					break;
 
 				default:
@@ -300,6 +302,8 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				break;
 			if (MoveInMovesetWithAccuracyLessThan(bankAtk, bankDef, 90, TRUE) && defAbility != ABILITY_CONTRARY)
 				INCREASE_STAT_VIABILITY(STAT_STAGE_ACC, STAT_STAGE_MAX, 2);
+			else if (ABILITY(bankAtk) == ABILITY_HUSTLE)
+				INCREASE_STAT_VIABILITY(STAT_STAGE_ACC, STAT_STAGE_MAX, 2);
 			break;
 
 		case EFFECT_EVASION_UP:
@@ -428,7 +432,9 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			{
 				if (atkAbility == ABILITY_PRIMALARMOR)
 					INCREASE_VIABILITY(16);
-				if (IsClassStall(class))
+				else if (atkAbility == ABILITY_TRUANT)
+					INCREASE_VIABILITY(16);
+				else if (IsClassStall(class))
 					INCREASE_VIABILITY(4);
 				else if (IsClassDoublesTrickRoomSetup(class))
 					INCREASE_VIABILITY(16);
@@ -1208,7 +1214,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 					{
 						if (!BankHasMonToSwitchTo(bankAtk))
 							break; //Can't switch
-						if (move == MOVE_TELEPORT && IsTrickRoomActive() && !FlagGet(FLAG_HARDCORE_MODE) )
+						if (move == MOVE_TELEPORT && IsTrickRoomActive())
 						{
 							INCREASE_VIABILITY(9);
 						}
@@ -1730,7 +1736,12 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 					case ITEM_EFFECT_LAGGING_TAIL:
 					case ITEM_EFFECT_STICKY_BARB:
 						break;
-
+					
+					case ITEM_EFFECT_EVIOLITE: 
+						if(CanEvolve(GetBankPartyData(bankDef))){
+							INCREASE_VIABILITY(3);
+						}
+					// 	break;
 					// default: tried removing this so that ai doesnt always click knock off
 					// 	INCREASE_VIABILITY(3); //Increase past strongest move
 				}

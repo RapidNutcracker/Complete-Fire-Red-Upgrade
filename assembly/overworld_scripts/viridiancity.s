@@ -5,6 +5,10 @@
 .include "../xse_defines.s"
 .include "../asm_defines.s"
 
+.equ FLAG_HARDCORE_MODE, 0x1034
+.equ VAR_BATTLE_AURAS, 0x5119
+.equ AURA_CANT_HAZARD_CONTROL_STRING, 8
+
 .global EventScript_Viridian_WiseGlasses
 EventScript_Viridian_WiseGlasses:
     lock
@@ -411,14 +415,31 @@ EventScript_claire_Start:
 	faceplayer
 	checkflag 0x827
 	if 0x1 _goto EventScript_claire_Defeated
-	setflag 0x915
-	special 0x0
     goto EventScript_claire_Option1
 	release
 	end
 
 EventScript_claire_Option1:
-	trainerbattle1 0x1 0x4A 0x0 gText_claire_EncounterText gText_claire_DefeatText EventScript_claire_WonPointer
+	msgbox gText_claire_EncounterText MSG_NORMAL
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _call CheckFairy
+	special 0x0
+	trainerbattle3 0x3 0x4A 0x0 gText_claire_DefeatText 
+	goto EventScript_claire_WonPointer
+	release
+	end
+
+CheckFairy:
+	msgbox gText_Clair_FairyOnly MSG_NORMAL
+	callasm CheckIfCanBattleClair
+	compare LASTRESULT 0x1
+	if 0x0 _goto DoesntFollowTheRules
+	msgbox gText_ClairFairyGood MSG_NORMAL
+	setvar VAR_BATTLE_AURAS AURA_CANT_HAZARD_CONTROL_STRING
+	return
+
+DoesntFollowTheRules:
+	msgbox gText_Clair_TeamNotFit MSG_NORMAL
 	release
 	end
 

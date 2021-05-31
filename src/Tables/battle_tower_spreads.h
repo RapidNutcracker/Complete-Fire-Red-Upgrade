@@ -614,7 +614,7 @@ const struct BattleTowerSpread gFrontierSpreads[] =
 		.defEv = 4,
 		.spAtkEv = 252,
 		.spdEv = 252,
-		.ability = FRONTIER_ABILITY_HIDDEN, //ABILITY_BIGPECKS
+		.ability = FRONTIER_ABILITY_HIDDEN,
 		.item = ITEM_PIDGEOTITE,
 		.moves =
 		{

@@ -851,26 +851,27 @@ u16 GetAmountToRecoverBy(u8 bankAtk, u8 bankDef, u16 move)
 bool8 ShouldRecover(u8 bankAtk, u8 bankDef, u16 move)
 {
 	u32 healAmount = GetAmountToRecoverBy(bankAtk, bankDef, move);
+	if(ABILITY(bankAtk) == ABILITY_TRUANT && gDisableStructs[bankAtk].truantCounter) { //slaking should always click healing move on truant turn
+		return TRUE;
+	}
+	
 
-	//if (IS_SINGLE_BATTLE)
-	//{
-		if (move == 0xFFFF || MoveWouldHitFirst(move, bankAtk, bankDef)) //Using item or attacker goes first
+	if (move == 0xFFFF || MoveWouldHitFirst(move, bankAtk, bankDef)) //Using item or attacker goes first
+	{
+		//if (CanKnockOut(bankDef, bankAtk)
+		//&& 
+		if ( (Can2HKO(bankDef, bankAtk) || GetHealthPercentage(bankAtk) <= 45) //change here 
+		&&  !CanKnockOutAfterHealing(bankDef, bankAtk, healAmount, 1))
+			return TRUE;
+	}
+	else //Opponent Goes First
+	{
+		if (!CanKnockOut(bankDef, bankAtk)) //Enemy can't kill attacker
 		{
-			if (CanKnockOut(bankDef, bankAtk)
-			&& !CanKnockOutAfterHealing(bankDef, bankAtk, healAmount, 1))
+			if ( (Can2HKO(bankDef, bankAtk) || GetHealthPercentage(bankAtk) <= 45 )  && !CanKnockOutAfterHealing(bankDef, bankAtk, healAmount, 2)) //changed this 
 				return TRUE;
 		}
-		else //Opponent Goes First
-		{
-			if (!CanKnockOut(bankDef, bankAtk)) //Enemy can't kill attacker
-			{
-				if (Can2HKO(bankDef, bankAtk)
-				&& !CanKnockOutAfterHealing(bankDef, bankAtk, healAmount, 2))
-					return TRUE;
-			}
-		}
-	//}
-	//else {}
+	}
 
 	return FALSE;
 }
@@ -905,10 +906,6 @@ static bool8 BankHasAbilityUsefulToProtectFor(u8 bankAtk, u8 bankDef)
 	u8 ability = ABILITY(bankAtk);
 
 	switch (ability) {
-		// case ABILITY_MOODY:
-		// 	if (!StatsMaxed(bankAtk))
-		// 		return TRUE;
-		// 	break;
 
 		case ABILITY_SPEEDBOOST:
 			if (SpeedCalc(bankAtk) <= SpeedCalc(bankDef)
@@ -1528,12 +1525,26 @@ static bool8 ShouldTryToSetUpStat(u8 bankAtk, u8 bankDef, u16 move, u8 stat, u8 
 
 	if (WillFaintFromSecondaryDamage(bankAtk))
 		return FALSE; //Don't set up if you're going to die
+	if ((gBattleMons[bankAtk].status1 & STATUS_TOXIC_POISON) && (ABILITY(bankAtk) != ABILITY_POISONHEAL && ABILITY(bankAtk) != ABILITY_MAGICGUARD && 
+		ABILITY(bankAtk) != ABILITY_TOXICBOOST) && GetHealthPercentage(bankAtk) <= 75  ) {
+		return FALSE; //Don't set up if you're toxic poisoned with less than 75% health
+	}
+
+	if (MoveEffectInMoveset(bankDef, EFFECT_HAZE))
+		return FALSE; //don't set up if they have haze, roar 
+	
+	if (MoveInMoveset(MOVE_ROAR, bankDef) || MoveInMoveset(MOVE_WHIRLWIND, bankDef) || (MoveInMoveset(MOVE_DRAGONTAIL, bankDef) && !IsOfType(bankAtk, TYPE_FAIRY)) ||
+	(MoveInMoveset(MOVE_CIRCLETHROW, bankDef) && !IsOfType(bankAtk, TYPE_GHOST)) ){
+		return FALSE;
+	}
+	if (((ABILITY(bankDef) == ABILITY_FLAMINGSOUL || ABILITY(bankDef) == ABILITY_GALEWINGS) && BATTLER_MAX_HP(bankAtk)))
+		return FALSE; //break gale wings/flaming soul instead of setting up
 
 	if (IS_SINGLE_BATTLE)
 	{
 		if (MoveWouldHitFirst(move, bankAtk, bankDef)) //Attacker goes first
 		{
-			if (CanKnockOut(bankDef, bankAtk))
+			if (CanKnockOutSash(bankDef, bankAtk)) //this changed function checks if attacker has priority if we have sash so it doesnt do silly set ups
 			{
 				return FALSE; //Don't set up if enemy can KO you
 			}
@@ -1542,7 +1553,8 @@ static bool8 ShouldTryToSetUpStat(u8 bankAtk, u8 bankDef, u16 move, u8 stat, u8 
 				if (BATTLER_SEMI_INVULNERABLE(bankDef))
 					return TRUE; //Can't hit target anyways
 
-				if (STAT_STAGE(bankAtk, stat) >= statLimit)
+				// if (STAT_STAGE(bankAtk, stat) >= statLimit)
+				if (STAT_STAGE(bankAtk, stat) >= 9) //setting up past +3 is kinda redundant ?
 					return FALSE;
 			}
 
@@ -1553,9 +1565,12 @@ static bool8 ShouldTryToSetUpStat(u8 bankAtk, u8 bankDef, u16 move, u8 stat, u8 
 			if (IsMovePredictionSemiInvulnerable(bankDef, bankAtk))
 				return TRUE;
 
-			if (stat == STAT_STAGE_SPEED && STAT_STAGE(bankAtk, stat) < statLimit)
+			if (stat == STAT_STAGE_SPEED && STAT_STAGE(bankAtk, stat) < statLimit) {
+				if (CanKnockOutSash(bankDef, bankAtk))
+					return FALSE; //Don't set up if enemy can KO you + they have priority 
 				return TRUE; //Opponent goes first now, but maybe boosting speed will make you faster
-
+			}
+			
 			if (!Can2HKO(bankDef, bankAtk) && STAT_STAGE(bankAtk, stat) < statLimit)
 				return TRUE;
 
@@ -2111,7 +2126,8 @@ void IncreaseFakeOutViability(s16* originalViability, u8 class, u8 bankAtk, u8 b
 
 	switch (class) {
 		case FIGHT_CLASS_DOUBLES_ALL_OUT_ATTACKER:
-			break; //Only use if good damaging move
+			INCREASE_VIABILITY(19); //changed, fake out is always good in doubles wtf lmao 
+			break; 
 
 		case FIGHT_CLASS_DOUBLES_SETUP_ATTACKER:
 			break; //Only use if good damaging move

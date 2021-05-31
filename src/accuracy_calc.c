@@ -457,6 +457,12 @@ static u32 AccuracyCalcPassDefAbilityItemEffect(u16 move, u8 bankAtk, u8 bankDef
 
 		case ABILITY_VICTORYSTAR:
 			calc = udivsi((calc * 110), 100); // 1.1 Victory Star boost
+			break; 
+
+		case ABILITY_ILLUMINATE:
+			calc = udivsi((calc * 120), 100);
+			break;
+		
 	}
 
 	if (IS_DOUBLE_BATTLE && ABILITY(PARTNER(bankAtk)) == ABILITY_VICTORYSTAR)
@@ -559,6 +565,11 @@ u32 VisualAccuracyCalc_NoTarget(u16 move, u8 bankAtk)
 
 		case ABILITY_VICTORYSTAR:
 			calc = udivsi((calc * 110), 100); // 1.1 Victory Star boost
+			break;
+
+		case ABILITY_ILLUMINATE:
+			calc = udivsi((calc * 120), 100);
+			break;
 	}
 
 	if (IS_DOUBLE_BATTLE && ABILITY(PARTNER(bankAtk)) == ABILITY_VICTORYSTAR)

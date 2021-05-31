@@ -10,6 +10,7 @@
 .equ VAR_TERRAIN, 0x5000
 .equ VAR_BATTLE_AURAS, 0x5119
 .equ AURA_ICE_DEFENSE_STRING, 7
+
 .global EventScript_pryce_Start
 EventScript_pryce_Start:
 	lock
