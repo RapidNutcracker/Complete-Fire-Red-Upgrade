@@ -5,6 +5,8 @@
 .include "../xse_defines.s"
 .include "../asm_defines.s" 
 
+.equ FLAG_HARDCORE_MODE, 0x1034
+
 .global EventScript_VictoryRoad_Snorlaxite
 EventScript_VictoryRoad_Snorlaxite:
     hidesprite 0x800F
@@ -466,10 +468,18 @@ EventScript_CeruleanCave_EQ:
 .global EventScript_PkmnMansion_Cameruptite
 EventScript_PkmnMansion_Cameruptite:
     hidesprite 0x800F
+    checkflag FLAG_HARDCORE_MODE
+    if 0x1 _goto GiveGardevoirite
     giveitem ITEM_CAMERUPTITE 0x1 MSG_FIND 
     setflag 0x19F
     release 
     end 
+
+GiveGardevoirite:
+    giveitem ITEM_GARDEVOIRITE 0x1 MSG_FIND 
+    setflag 0x19F
+    release 
+    end
 
 .global EventScript_PkmnMansion_StealthRock
 EventScript_PkmnMansion_StealthRock:

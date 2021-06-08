@@ -104,6 +104,7 @@ gBattleAnims_General:
 .word ANIM_MUDDYWATER2
 .word ANIM_MEANLOOK2
 .word ANIM_RAINBOW
+.word ANIM_MIST2
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
 ANIM_USEITEM:
@@ -1217,6 +1218,11 @@ ANIM_RAINBOW:
 	waitanimation
 	endanimation
 
+.pool 
+ANIM_MIST2:	
+	goto 0x81d0821
+	endanimation
+	
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
 .align 2

@@ -35,7 +35,7 @@ Oh, my!\nYou're something special, child!
 I still can't believe my dragons\nlost to you, [GREEN][PLAYER][BLUE].\pYou are now the Pok\emon League\nChampion!\p[.]Or, you would have been, but\nyou have one more challenge left.\pThere is one more trainer to face!\nHis name is[.]\p[GREEN][RIVAL][BLUE]!\pHe beat the Elite Four before\nyou.\pHe is the real Pok\emon League\nChampion.
 
 #org @gText_lance_Prebattlemsg
-Ah! I've heard about you,\n[GREEN][PLAYER][BLUE]!\pI lead the Elite Four.\pYou can call me [GREEN]Lance[BLUE] the dragon\ntrainer.\pYou know that dragons are\nmythical Pok\emon.\pThey're hard to catch and raise,\nbut their powers are superior.\pThey're virtually indestructible.\nThere's no being clever with them.\pWell, are you ready to lose?\pYour League challenge ends with\nme, [GREEN][PLAYER][BLUE]!
+Ah! Nice to see you,\n[GREEN][PLAYER][BLUE]!\pI lead the Elite Four.\pI'll cut to the chase.\pYou know that dragons are\nmythical Pok\emon.\pThey're hard to catch and raise,\nbut their powers are superior.\pThey're virtually indestructible.\nThere's no being clever with them.\pWell, are you ready to lose?\pYour League challenge ends with\nme, [GREEN][PLAYER][BLUE]!
 
 #org @gText_lance_Prebattlemsg2
 Ah!\nSo, you've returned, [GREEN][PLAYER][BLUE]!\pI lead the Elite Four.\pYou can call me [GREEN] Lance[BLUE] the dragon\ntrainer.\pYou know that dragons are\nmythical Pok\emon.\pThey're hard to catch and raise,\nbut their powers are superior.\pThey're virtually indestructible.\nThere's no being clever with them.\pWell, are you ready to lose?\pYour League challenge ends with\nme, [GREEN][PLAYER][BLUE]!
@@ -47,4 +47,38 @@ That's it!\pI hate to admit it, but you are a\nPok\emon master!
 Now go get your ass beat lmao 
 
 #org @gText_E4LanceInfo
-= Maybe becoming an Elite Four\nmember is in the blood.\pFrom what I've heard, Lance has\na cousin who's become a Gym Leader\lhere recently.
+Maybe becoming an Elite Four\nmember is in the blood.\pFrom what I've heard, Lance has\na cousin who's become a Gym Leader\lhere recently.
+
+#org @gText_hof_Oaktalk
+[GREEN]Oak:[BLUE] Er-hem!\nCongratulations, [GREEN][PLAYER]![BLUE]\pThis floor is the Pok\emon Hall Of\nFame.\pPok\emon League Champions are\nhonored for their exploits here.\pTheir Pok\emon are also recorded in\nthe Hall Of Fame.\p[GREEN][PLAYER]![BLUE]\pYou have worked hard to become\nthe new League Champion.\pCongratulations, [GREEN][PLAYER],[BLUE] you and\nyour Pok\emon are Hall Of Famers!
+
+#org @gText_champion_LossMsgWhy
+Why?\nWhy did I lose?\pI never made any mistakes raising\nmy Pok\emon[.]\pDarn it! You're the new Pok\emon\nLeague Champion!\pAlthough I don't like to admit it[.]
+
+#org @gText_champion_OakPlayer
+[GREEN]Oak: [PLAYER]![BLUE]
+
+#org @gText_champion_SoYouWon
+[GREEN]Oak:[BLUE] So, you've won!\nSincerely, congratulations!\pYou're the new Pok\emon League\nChampion!\pYou've grown up so much since you\nfirst left with [GREEN][BUFFER1][BLUE] to work\lon the Pok\edex.\p[GREEN][PLAYER],[BLUE] you have come of age!
+
+#org @gText_champion_OakDisappointed
+[GREEN]Oak: [RIVAL][.][BLUE]\nI'm disappointed in you.\pI came when I heard you'd beaten\nthe Elite Four.\pBut, when I got here, you had\nalready lost!\p[GREEN][RIVAL],[BLUE] do you understand why\nyou lost?\pYou have forgotten to treat your\nPok\emon with love and trust.\pWithout them, you will never\nbecome a Champ again!
+
+#org @gText_champion_OakURChampion
+[GREEN]Oak: [PLAYER].[BLUE]\pYou understand that your victory\nwas not just your own doing.\pThe bond you share with your\nPok\emon is marvelous.\p[GREEN][PLAYER]![BLUE]\nCome with me!
+
+#org @gText_champion_FirstMsgTxtHardcore
+[GREEN][RIVAL]:[BLUE] Hey, [GREEN][PLAYER]![BLUE]\pI was looking forward to seeing\nyou, [GREEN][PLAYER].[BLUE]\pMy rival should be strong to keep\nme sharp.\pWhile working on my Pok\edex, I\nlooked all over for Pok\emon.\pNot only that, I unlocked the abi-\nlity to Mega Evolve multiple times.\pAnd now[.]\pI'm the Pok\emon League Champion!\p[GREEN][PLAYER][BLUE]!\nDo you know what that means?\pI'll tell you.\pI am the most powerful Trainer in\nthe world!
+
+#org @gText_champion_SecondMsgTextHardcore
+[GREEN][RIVAL]:[BLUE] Hey, [GREEN][PLAYER]![BLUE]\pYou came back, [GREEN][PLAYER]![BLUE]\nHahah, that is so great!\pMy rival should be strong to keep\nme sharp.\pWhile working on my Pok\edex, I\nlooked all over for Pok\emon.\pNot only that, I unlocked the abi-\nlity to Mega Evolve multiple times.\pAnd now[.]\pI'm the Pok\emon League Champion!\p[GREEN][PLAYER]![BLUE]\nDo you know what that means?\pI'll tell you.\pI am the most powerful Trainer in\nthe world!
+
+#org @gText_champion_FirstMsgTxt
+[GREEN][RIVAL]:[BLUE] Hey, [GREEN][PLAYER]![BLUE]\pI was looking forward to seeing\nyou, [GREEN][PLAYER].[BLUE]\pMy rival should be strong to keep\nme sharp.\pWhile working on my Pok\edex, I\nlooked all over for Pok\emon.\pNot only that, I assembled teams\nthat would beat any Pok\emon type.\pAnd now[.]\pI'm the Pok\emon League Champion!\p[GREEN][PLAYER][BLUE]!\nDo you know what that means?\pI'll tell you.\pI am the most powerful Trainer in\nthe world!
+
+#org @gText_champion_SecondMsgText
+[GREEN][RIVAL]:[BLUE] Hey, [GREEN][PLAYER]![BLUE]\pYou came back, [GREEN][PLAYER]![BLUE]\nHahah, that is so great!\pMy rival should be strong to keep\nme sharp.\pWhile working on my Pok\edex, I\nlooked all over for Pok\emon.\pNot only that, I assembled teams\nthat would beat any Pok\emon type.\pAnd now[.]\pI'm the Pok\emon League Champion!\p[GREEN][PLAYER]![BLUE]\nDo you know what that means?\pI'll tell you.\pI am the most powerful Trainer in\nthe world!
+
+#org @gText_champion_LossMsg
+No!\nThat can't be!\lYou beat me at my best!\pAfter all that work to become\nthe League Champ?\pMy reign is over already?\nIt's not fair!
+

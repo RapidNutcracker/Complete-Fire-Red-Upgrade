@@ -856,6 +856,12 @@ bool8 ShouldRecover(u8 bankAtk, u8 bankDef, u16 move)
 	}
 	
 
+	if ((gBattleMons[bankAtk].status1 & STATUS_TOXIC_POISON) && (ABILITY(bankAtk) != ABILITY_POISONHEAL && ABILITY(bankAtk) != ABILITY_MAGICGUARD && 
+		ABILITY(bankAtk) != ABILITY_TOXICBOOST) ) 
+	{
+		return FALSE; //Don't recover if you're toxic poisoned 
+	}
+
 	if (move == 0xFFFF || MoveWouldHitFirst(move, bankAtk, bankDef)) //Using item or attacker goes first
 	{
 		//if (CanKnockOut(bankDef, bankAtk)
@@ -1537,9 +1543,12 @@ static bool8 ShouldTryToSetUpStat(u8 bankAtk, u8 bankDef, u16 move, u8 stat, u8 
 	(MoveInMoveset(MOVE_CIRCLETHROW, bankDef) && !IsOfType(bankAtk, TYPE_GHOST)) ){
 		return FALSE;
 	}
-	if (((ABILITY(bankDef) == ABILITY_FLAMINGSOUL || ABILITY(bankDef) == ABILITY_GALEWINGS) && BATTLER_MAX_HP(bankAtk)))
+	if (((ABILITY(bankDef) == ABILITY_FLAMINGSOUL || ABILITY(bankDef) == ABILITY_GALEWINGS) && BATTLER_MAX_HP(bankDef)))
 		return FALSE; //break gale wings/flaming soul instead of setting up
 
+    if ( (IsBankHoldingFocusSash(bankDef) || ABILITY(bankDef) == ABILITY_STURDY) && BATTLER_MAX_HP(bankDef))
+		return FALSE; //don't set up break sash/sturdy first 
+		
 	if (IS_SINGLE_BATTLE)
 	{
 		if (MoveWouldHitFirst(move, bankAtk, bankDef)) //Attacker goes first
@@ -1554,7 +1563,7 @@ static bool8 ShouldTryToSetUpStat(u8 bankAtk, u8 bankDef, u16 move, u8 stat, u8 
 					return TRUE; //Can't hit target anyways
 
 				// if (STAT_STAGE(bankAtk, stat) >= statLimit)
-				if (STAT_STAGE(bankAtk, stat) >= 9) //setting up past +3 is kinda redundant ?
+				if (STAT_STAGE(bankAtk, stat) >= 9) //setting up past +2 is kinda redundant ?
 					return FALSE;
 			}
 
@@ -1565,13 +1574,13 @@ static bool8 ShouldTryToSetUpStat(u8 bankAtk, u8 bankDef, u16 move, u8 stat, u8 
 			if (IsMovePredictionSemiInvulnerable(bankDef, bankAtk))
 				return TRUE;
 
-			if (stat == STAT_STAGE_SPEED && STAT_STAGE(bankAtk, stat) < statLimit) {
+			if (stat == STAT_STAGE_SPEED && STAT_STAGE(bankAtk, stat) < 9) {
 				if (CanKnockOutSash(bankDef, bankAtk))
 					return FALSE; //Don't set up if enemy can KO you + they have priority 
 				return TRUE; //Opponent goes first now, but maybe boosting speed will make you faster
 			}
 			
-			if (!Can2HKO(bankDef, bankAtk) && STAT_STAGE(bankAtk, stat) < statLimit)
+			if (!Can2HKO(bankDef, bankAtk) && STAT_STAGE(bankAtk, stat) < 9)
 				return TRUE;
 
 			return FALSE;
@@ -1592,12 +1601,12 @@ static bool8 ShouldTryToSetUpStat(u8 bankAtk, u8 bankDef, u16 move, u8 stat, u8 
 		{
 			if (MoveWouldHitFirst(move, bankAtk, foe1)) //Attacker goes first
 			{
-				if (CanKnockOut(foe1, bankAtk) || STAT_STAGE(bankAtk, stat) >= statLimit)
+				if (CanKnockOut(foe1, bankAtk) || STAT_STAGE(bankAtk, stat) >= 9)
 					return FALSE;
 			}
 			else //Opponent Goes First
 			{
-				if (Can2HKO(foe1, bankAtk) || STAT_STAGE(bankAtk, stat) >= statLimit)
+				if (Can2HKO(foe1, bankAtk) || STAT_STAGE(bankAtk, stat) >= 9)
 					return FALSE;
 			}
 		}
@@ -1606,12 +1615,12 @@ static bool8 ShouldTryToSetUpStat(u8 bankAtk, u8 bankDef, u16 move, u8 stat, u8 
 		{
 			if (MoveWouldHitFirst(move, bankAtk, foe2)) //Attacker goes first
 			{
-				if (CanKnockOut(foe2, bankAtk) || STAT_STAGE(bankAtk, stat) >= statLimit)
+				if (CanKnockOut(foe2, bankAtk) || STAT_STAGE(bankAtk, stat) >= 9)
 					return FALSE;
 			}
 			else //Opponent Goes First
 			{
-				if (Can2HKO(foe2, bankAtk) || STAT_STAGE(bankAtk, stat) >= statLimit)
+				if (Can2HKO(foe2, bankAtk) || STAT_STAGE(bankAtk, stat) >= 9)
 					return FALSE;
 			}
 		}

@@ -671,6 +671,9 @@ void SetMoveEffect(bool8 primary, u8 certain)
 			case MOVE_EFFECT_ALL_STATS_UP:
 				if (gCurrentMove != MOVE_CLANGOROUS_SOULBLAZE || !gNewBS->secondaryEffectApplied) //Hits two targets but only gets effect once
 				{
+					if( (FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE)) && (SIDE(gEffectBank) == B_SIDE_PLAYER) ) {
+						break;
+					}
 					gNewBS->secondaryEffectApplied = TRUE;
 					BattleScriptPush(gBattlescriptCurrInstr + 1);
 					gBattlescriptCurrInstr = BattleScript_AllStatsUp;

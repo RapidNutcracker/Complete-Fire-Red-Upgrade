@@ -2421,7 +2421,7 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_FLASH] =
 	{
 		.effect = EFFECT_ATTACK_DOWN_HIT,
-		.power = 50,
+		.power = 60,
 		.type = TYPE_ELECTRIC,
 		.accuracy = 100,
 		.pp = 20,
@@ -2623,7 +2623,7 @@ const struct BattleMove gBattleMoves[] =
 		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
 		.z_move_power = 180,
 		.split = SPLIT_SPECIAL,
-		.z_move_effect = Z_EFFECT_ALL_STATS_UP_1
+		.z_move_effect = 0
 	},
 
 	[MOVE_TRIATTACK] =
@@ -5673,7 +5673,7 @@ const struct BattleMove gBattleMoves[] =
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
 		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 100,
+		.z_move_power = 140,
 		.split = SPLIT_PHYSICAL,
 		.z_move_effect = 0
 	},
@@ -8183,7 +8183,7 @@ const struct BattleMove gBattleMoves[] =
 		.effect = EFFECT_DOUBLE_HIT,
 		.power = 50,
 		.type = TYPE_STEEL,
-		.accuracy = 85,
+		.accuracy = 100,
 		.pp = 15,
 		.secondaryEffectChance = 0,
 		.target = MOVE_TARGET_SELECTED,
@@ -11804,7 +11804,7 @@ const struct BattleMove gBattleMoves[] =
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
 		.flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 100,
+		.z_move_power = 160,
 		.split = SPLIT_PHYSICAL,
 		.z_move_effect = 0
 	},
@@ -11981,7 +11981,7 @@ const struct BattleMove gBattleMoves[] =
 		.priority = 0,
 		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
 		.z_move_power = 190,
-		.split = SPLIT_SPECIAL,
+		.split = SPLIT_PHYSICAL,
 		.z_move_effect = 0
 	},
 	

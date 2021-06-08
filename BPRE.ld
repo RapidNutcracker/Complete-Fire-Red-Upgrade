@@ -1166,7 +1166,6 @@ GetPlayerTextSpeedDelay = 0x80F78A8 | 1;
 ChoiceSetupSimple = 0x810F7D8 | 1;
 AddTextPrinterParameterized4 = 0x812E5A4 | 1;
 
-
 /* Task Functions */
 nullsub_8 = 0x802E310 | 1;
 ResetTasks = 0x80773BC | 1;
@@ -1760,7 +1759,7 @@ SaveLoadGameData = 0x80DA4FC | 1;
 InitHallOfFameScreen = 0x80F1DDC | 1;
 Task_Hof_TrySaveData = 0x80F2220 | 1;
 Task_Hof_SetMonDisplayTask = 0x80F2294 | 1;
-Task_Hof_PaletteFadeAndPrintWelcomeText = 0x80F2514 | 1;
+Task_Hof_PaletteFadeAndPrintWelcomeText = 0x80F2514 | 1; 
 Task_HofPC_HandleInput = 0x80F2E8C | 1;
 Task_HofPC_PrintDataIsCorrupted = 0x80F30A4 | 1;
 SpriteCB_GetOnScreenAndAnimate = 0x80F3870 | 1;

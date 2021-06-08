@@ -141,6 +141,10 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			DECREASE_VIABILITY(20);
 			return viability;
 		}
+		// if (IS_DOUBLE_BATTLE && moveTarget & (MOVE_TARGET_ALL) ) 
+		// {
+		// 	if (data->bankDefPartner
+		// }
 		// else if(MoveInMoveset(MOVE_WIDEGUARD, bankAtk) && IS_DOUBLE_BATTLE)
 		// {
 		// 	DECREASE_VIABILITY(20);
@@ -628,9 +632,9 @@ MOVESCR_CHECK_0:
 			}
 			else if (IS_DOUBLE_BATTLE)
 			{
-				if (ViableMonCountFromBank(bankDef) == 2 //If the Target has both Pokemon remaining in doubles
-				&& MoveKnocksOutXHits(move, bankAtk, bankDef, 1)
-				&& MoveKnocksOutXHits(move, bankAtk, data->bankDefPartner, 1))
+				if //(ViableMonCountFromBank(bankDef) == 2 && //If the Target has both Pokemon remaining in doubles
+				(MoveKnocksOutXHits(move, bankAtk, bankDef, 2)
+				|| MoveKnocksOutXHits(move, bankAtk, data->bankDefPartner, 2)) 
 				{
 					//Good to use move
 				}
@@ -1572,7 +1576,12 @@ MOVESCR_CHECK_0:
 			}
 			else
 			{
-				if (ViableMonCountFromBank(bankDef) <= 3)
+				if ( (ViableMonCountFromBank(bankDef) <= 3) 
+					|| (MoveInMoveset(MOVE_RAPIDSPIN, bankDef) && !(IsOfType(bankAtk, TYPE_GHOST)))
+					|| (MoveInMoveset(MOVE_DEFOG, bankDef)) 
+					|| (MoveInMoveset(MOVE_MAGICCOAT, bankDef))
+					|| (ABILITY(FOE(bankAtk)) == ABILITY_MAGICBOUNCE)
+					)
 				{
 					DECREASE_VIABILITY(10);
 					break;

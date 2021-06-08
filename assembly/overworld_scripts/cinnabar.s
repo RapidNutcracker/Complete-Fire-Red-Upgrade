@@ -8,6 +8,7 @@
 .equ VAR_LEVEL, 0x1E
 .equ VAR_DAILY_EVENT, 0x505A
 .equ FLAG_HARDCORE_MODE, 0x1034
+.equ FLAG_MINIMAL_GRINDING_MODE, 0x1032
 .equ VAR_BATTLE_AURAS, 0x5119
 .equ AURA_CANT_HAZARD_CONTROL_STRING, 8
 .equ AURA_FIREPROOF_STRING, 9
@@ -231,7 +232,7 @@ EventScript_blaine_Defeated:
 	faceplayer
 	checkflag 0x96F
 	if 0x1 _goto EventScript_blaine_Done
-	checkflag FLAG_HARDCORE_MODE
+	checkflag FLAG_MINIMAL_GRINDING_MODE
 	if 0x1 _goto Blaine_defeated_Hardcore
 	msgbox gText_blaine_Perfectpokemon 0x6
 	bufferfirstpokemon 0x00
@@ -301,6 +302,8 @@ EventScript_blaine_Veryfast:
 	end
 
 EventScript_blaine_Veryfast2:
+	checkflag FLAG_HARDCORE_MODE
+	if 0x0 _goto EventScript_blaine_Veryfast
 	msgbox gText_blaine_Perfect 0x6
 	giveitem ITEM_CHARIZARDITE_X 0x1 MSG_OBTAIN 
 	msgbox gText_blaine_Charmmsg 0x6
@@ -370,7 +373,7 @@ EventScript_jasmine_Endbattle:
 EventScript_jasmine_Done:
 	checkflag 0x96E
 	if 0x1 _goto EventScript_jasmine_Donedone
-	checkflag FLAG_HARDCORE_MODE
+	checkflag FLAG_MINIMAL_GRINDING_MODE
 	if 0x1 _goto Jasmine_Done_hardcore 
 	msgbox gText_jasmine_Take 0x6
 	bufferfirstpokemon 0x00

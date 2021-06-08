@@ -4139,7 +4139,7 @@ void atkBE_rapidspinfree(void)
 		}
 		else
 		{
-			if (gCurrentMove == MOVE_RAPIDSPIN && ABILITY(bankAtk) != ABILITY_SHEERFORCE) //From Gen 8
+			if (gCurrentMove == MOVE_RAPIDSPIN && ABILITY(bankAtk) != ABILITY_SHEERFORCE && !FlagGet(FLAG_HARDCORE_MODE) && !FlagGet(FLAG_RESTRICT_MODE)) //From Gen 8
 			{
 				gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_SPD_PLUS_1 | MOVE_EFFECT_AFFECTS_USER;
 				SetMoveEffect(TRUE, TRUE); //Automatically increments gBattlescriptCurrInstr

@@ -193,6 +193,7 @@ enum //These vars need to be one after the other (hence the enum)
 
 //Newly Added: 
 #define FLAG_WONDER_TRADE 0x94F
+#define FLAG_WONDER_TRADE_FIRST 0x103E
 #define FLAG_EXPERT_DIFFICULTY 0x93A 
 #define FLAG_MINIMAL_GRINDING_MODE 0x1032
 #define FLAG_EASY_MODE 0x1033
@@ -230,8 +231,9 @@ enum //These vars need to be one after the other (hence the enum)
 #define AURA_RAINBOW_STRING  23
 #define AURA_RAINBOW         33
 #define AURA_SHADOWTAG_STRING 24 
+#define AURA_STATUSMIST_STRING 25 
 #define AURA_SHADOWTAG 34
-
+#define AURA_STATUSMIST 35 
 #define NUM_SPECIES_RANDOMIZER NUM_SPECIES // The final number of Pokemon (+ 1) of species that can appear in the randomizer
 
 /*===== Pre-existing Offsets =====*/

@@ -879,8 +879,10 @@ EventScript_sabrina_Defeated:
 	faceplayer
 	checkflag 0x958
 	if 0x1 _goto EventScript_sabrina_Done
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _goto HardModeCheckShiny 
 	checkflag FLAG_MINIMAL_GRINDING_MODE
-	if 0x1 _goto HardModeCheckShiny
+	if 0x1 _goto MinModeCheckShiny
 	msgbox gText_sabrina_Perfectpokemon 0x6
 	bufferfirstpokemon 0x00
 	msgbox gText_sabrina_Thepokemon 0x6
@@ -915,6 +917,19 @@ HardModeCheckShiny:
 	setvar 0x8005 0x0 @hp iv
 	callasm CheckIfShiny + 1
 	compare LASTRESULT 0x1
+	if 0x1 _goto ThisIsShinyHard
+	goto EventScript_sabrina_Nah
+	end
+
+MinModeCheckShiny:
+	msgbox gText_sabrina_Shinypokemon 0x6
+	bufferfirstpokemon 0x00
+	msgbox gText_sabrina_Thepokemon 0x6
+	setvar 0x8003 0x0 @From party
+	setvar 0x8004 0x0 @1st 
+	setvar 0x8005 0x0 @hp iv
+	callasm CheckIfShiny + 1
+	compare LASTRESULT 0x1
 	if 0x1 _goto ThisIsShiny
 	goto EventScript_sabrina_Nah
 	end
@@ -922,6 +937,15 @@ HardModeCheckShiny:
 ThisIsShiny:
 	msgbox gText_sabrina_Shiny MSG_NORMAL
 	giveitem ITEM_GARDEVOIRITE 0x1 MSG_OBTAIN
+	msgbox gText_sabrina_Charmmsg 0x6
+	giveitem ITEM_SHINY_CHARM 0x1 MSG_OBTAIN
+	setflag 0x958
+	release
+	end
+
+ThisIsShinyHard:
+	msgbox gText_sabrina_Shiny MSG_NORMAL
+	giveitem ITEM_CAMERUPTITE 0x1 MSG_OBTAIN
 	msgbox gText_sabrina_Charmmsg 0x6
 	giveitem ITEM_SHINY_CHARM 0x1 MSG_OBTAIN
 	setflag 0x958
@@ -958,7 +982,7 @@ EventScript_sabrina_HardModeWonPointer:
 	settrainerflag 0x1D0
 	setflag 0x825
 	msgbox gText_sabrina_GivetmHard 0x6
-	msgbox gText_sabrina_Helloagain 0x6
+	msgbox gText_sabrina_HelloagainHard 0x6
 	msgbox gText_sabrina_Shinypokemon 0x6
 	release
 	end

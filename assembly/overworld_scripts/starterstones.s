@@ -5,6 +5,9 @@
 .include "../xse_defines.s"
 .include "../asm_defines.s" 
 
+
+.equ FLAG_HARDCORE_MODE, 0x1034
+
 .global EventScript_startersmegastone_Start
 EventScript_startersmegastone_Start:
 	lock
@@ -76,7 +79,15 @@ EventScript_startersmegastone_Charizard:
 	checkflag 0x967
 	if 0x1 _goto EventScript_startersmegastone_Done
 	msgbox gText_startersmegastone_3 0x6
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _goto GiveCharY
 	giveitem ITEM_CHARIZARDITE_X 0x1 MSG_OBTAIN
+	setflag 0x967
+	release
+	end
+
+GiveCharY: 
+	giveitem ITEM_CHARIZARDITE_Y 0x1 MSG_OBTAIN
 	setflag 0x967
 	release
 	end

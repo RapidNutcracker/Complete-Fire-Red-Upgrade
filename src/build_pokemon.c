@@ -116,6 +116,7 @@ extern const u8 gClassPokeBalls[NUM_TRAINER_CLASSES];
 extern const u8 gRandomizerAbilityBanList[];
 extern const species_t gRandomizerSpeciesBanList[];
 extern const species_t gWonderTradeList[];
+extern const species_t gWonderTradeListFirst[];
 extern const species_t gBadRandomizerList[];
 extern const species_t gSetPerfectXIvList[];
 extern const species_t gDeerlingForms[];
@@ -539,7 +540,7 @@ static u8 BuildExpertBossParty(struct Pokemon* const party, const u16 trainerId,
 	for(u8 i = 0; i < bossData.spreadSizes[0]; i++) {
 		u8 level = bossData.spreads[0][i].level; 
 
-		if (bossData.backSpriteId == DOUBLE_BATTLE) {
+		if (bossData.backSpriteId == DOUBLE_BATTLE && ViableMonCount(gPlayerParty) >= 2 ) {
 			gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
 		}
 		if (FlagGet(FLAG_SCALE_TRAINER_LEVELS)) { 
@@ -1973,7 +1974,8 @@ static void SetWildMonHeldItem(void)
 			|| gBaseStats[species].item1 == ITEM_DAMP_ROCK || gBaseStats[species].item2 == ITEM_DAMP_ROCK  
 			|| gBaseStats[species].item1 == ITEM_HEAT_ROCK || gBaseStats[species].item2 == ITEM_HEAT_ROCK 
 			|| gBaseStats[species].item1 == ITEM_DAMP_ROCK || gBaseStats[species].item2 == ITEM_DAMP_ROCK 
-			|| gBaseStats[species].item1 == ITEM_SMOOTH_ROCK || gBaseStats[species].item2 == ITEM_SMOOTH_ROCK))
+			|| gBaseStats[species].item1 == ITEM_SMOOTH_ROCK || gBaseStats[species].item2 == ITEM_SMOOTH_ROCK
+			|| gBaseStats[species].item1 == ITEM_THROAT_SPRAY || gBaseStats[species].item2 == ITEM_THROAT_SPRAY))
 				continue;
 			if (FlagGet(FLAG_HARDCORE_MODE) &&(gBaseStats[species].item1 == ITEM_PSYCHIC_SEED || gBaseStats[species].item2 == ITEM_PSYCHIC_SEED) && !(FlagGet(FLAG_BADGE05_GET)))
 				continue; 
@@ -3892,6 +3894,33 @@ void TryRandomizeSpecies(unusedArg u16* species)
 		
 		*species = newSpecies;
 	} 
+	else if (FlagGet(FLAG_WONDER_TRADE_FIRST) && !FlagGet(FLAG_BATTLE_FACILITY) && *species != SPECIES_NONE && *species < NUM_SPECIES)
+	{
+		u32 id = MathMax(1, T1_READ_32(gSaveBlock2->playerTrainerId)); //0 id would mean every Pokemon would crash the game
+        u32 newSpecies = *species;
+        u32 prevNewSpecies = SPECIES_NONE; //Helps prevent infinite loop
+        u32 offset = 1; //Used in case of an infinite loop
+		u32 checkHowMany = 0; 
+		do
+        {
+            newSpecies *= id;
+            newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
+			checkHowMany++;
+			if (checkHowMany >= 20){
+				newSpecies = (newSpecies + offset++) * id; //Offset the new species by an increasing number to fix problem
+                newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
+			}
+            while (newSpecies == prevNewSpecies) //Entered into an infinite loop
+            {
+                newSpecies = (newSpecies + offset++) * id; //Offset the new species by an increasing number to fix problem
+                newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
+            }
+
+            prevNewSpecies = newSpecies; 
+		} while (!CheckTableForSpecies(newSpecies, gWonderTradeListFirst));
+		
+		*species = newSpecies;
+	}
 	#endif 
 }
 
@@ -4194,7 +4223,7 @@ u8 HardcoreBannedAbilitySwapper(u8 ability, unusedArg u16 species){
 	switch (ability) {
 		case ABILITY_DROUGHT:
 		case ABILITY_DESOLATELAND:
-			return ABILITY_SOLARPOWER;
+			return ABILITY_SOLARPOWER; 
 
 		case ABILITY_DRIZZLE:
 		case ABILITY_PRIMORDIALSEA:
@@ -4240,15 +4269,19 @@ u8 HardcoreBannedAbilitySwapper(u8 ability, unusedArg u16 species){
 		case ABILITY_LIGHTNINGROD: 
 		case ABILITY_MOTORDRIVE:
 			return ABILITY_VOLTABSORB;
-		// case ABILITY_TRIAGE:
-		// 	return ABILITY_NATURALCURE;
+
+		case ABILITY_TRIAGE:
+		// case ABILITY_SERENEGRACE:
+			return ABILITY_NATURALCURE;
 		
-		// case ABILITY_FLAMINGSOUL:
-		// 	return ABILITY_FLASHFIRE;
+		case ABILITY_FLAMINGSOUL:
+			return ABILITY_FLASHFIRE;  
 		
+		case ABILITY_TRACE:
+			return ABILITY_SYNCHRONIZE; 
 
 	}
-	return ability;
+	return ability; 
 
 }
 
@@ -4259,9 +4292,9 @@ u8 TryRandomizeAbility(u8 ability, const struct Pokemon* mon)
 	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
 	bool8 dontRandomize = TRUE;
 	for (u8 i = 0; i < PARTY_SIZE; i++) {
-		u32 otId = GetMonData(mon, MON_DATA_OT_ID, NULL);
+		u32 otId = GetMonData(mon, MON_DATA_OT_ID, NULL); 
 		if (gPlayerParty[i].otid == otId){
-			dontRandomize = FALSE;
+			dontRandomize = FALSE;    
 			break;
 		}
 	}

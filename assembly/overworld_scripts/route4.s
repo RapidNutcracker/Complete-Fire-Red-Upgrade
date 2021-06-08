@@ -5,6 +5,8 @@
 .include "../xse_defines.s"
 .include "../asm_defines.s" 
 
+.equ FLAG_MINIMAL_GRINDING_MODE, 0x1032
+
 .global EventScript_givepoweruppunch_Start
 EventScript_givepoweruppunch_Start:
 	textcolor 0x0
@@ -40,7 +42,9 @@ EventScript_machobrace_Start:
 	textcolor 0x0
 	checkflag 0x203
 	if 0x1 _goto EventScript_machobrace_Done
-	msgbox gText_machobrace_3 0x6
+	msgbox gText_machobrace_3 0x6 
+	checkflag FLAG_MINIMAL_GRINDING_MODE
+	if 0x1 _goto GivePPUps
 	giveitem ITEM_MACHO_BRACE 0x1 MSG_OBTAIN
 	msgbox gText_machobrace_4 0x6
 	setflag 0x203
@@ -48,8 +52,22 @@ EventScript_machobrace_Start:
 	release
 	end
 
+GivePPUps:
+	giveitem ITEM_PP_UP 0x4 MSG_OBTAIN
+	msgbox gText_machobrace_4_2 0x6
+	setflag 0x203
+	release
+	end
+
 EventScript_machobrace_Done:
+	checkflag FLAG_MINIMAL_GRINDING_MODE
+	if 0x1 _goto MachoBrace_DoneMinGrinding
 	msgbox gText_machobrace_4 0x6
+	release
+	end
+
+MachoBrace_DoneMinGrinding:
+	msgbox gText_machobrace_4_2 0x6
 	release
 	end
 

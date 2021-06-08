@@ -1378,6 +1378,12 @@ static bool8 AbilityCanChangeTypeAndBoost(u16 move, u8 atkAbility, u8 electrifyT
 		}
 	}
 
+	if (atkAbility == ABILITY_LIQUIDVOICE) { //added
+		if (CheckSoundMove(move)){
+			return TRUE;
+		}
+	}
+
 	//Check non-Normal-type moves
 	return atkAbility == ABILITY_NONE && moveTypeCanBeChanged; //used to be normalize
 }
@@ -3316,15 +3322,12 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 		case ABILITY_PIXILATE:
 		case ABILITY_REFRIGERATE:
 		case ABILITY_GALVANIZE:
+		case ABILITY_LIQUIDVOICE:
 		//1.2x / 1.3x Boost
 			if ((!useMonAtk && AbilityCanChangeTypeAndBoost(move, data->atkAbility, gNewBS->ElectrifyTimers[bankAtk], TRUE, (gNewBS->zMoveData.active || gNewBS->zMoveData.viewing)))
 			||   (useMonAtk && AbilityCanChangeTypeAndBoost(move, data->atkAbility, 0, FALSE, FALSE)))
 			{
-				#ifdef OLD_ATE_BOOST
-					power = (power * 13) / 10;
-				#else
-					power = (power * 12) / 10;
-				#endif
+				power = (power * 12) / 10;
 			}
 			break;
 
@@ -3401,7 +3404,7 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 		case ABILITY_BULLRUSH:
 		//1.5x Boost first turn 
 			if(gDisableStructs[bankAtk].isFirstTurn)
-				power = (power * 13) / 10;
+				power = (power * 12) / 10;
 			break; 
 	}
 

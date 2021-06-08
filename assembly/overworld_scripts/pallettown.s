@@ -31,7 +31,7 @@ LevelScripts_PalletTownPlayerHome:
 
 LevelScript_PalletTownPlayerHome:
     setvar 0x5100 0x1
-    setvar 0x407C 0x2
+    @ setvar 0x407C 0x2
     setflag FLAG_SYS_SAVE_HIDE
     fadescreen 0x1
     fadeoutbgm 0x0
@@ -74,6 +74,7 @@ EventScript_AskRandomizer:
 
 EndRandomizerScript:
     setvar 0x511B 0x1
+    setvar 0x407C 0x2 @this clears the pokemon center flag
     release
     end
 

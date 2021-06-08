@@ -50,6 +50,7 @@ battle_start_turn_start_battle_scripts.s
 .global BattleScript_SeaOfFireBegins
 .global BattleScript_RainbowBegins
 .global BattleScript_ShadowTagBegins
+.global BattleScript_StatusMistBegins
 
 .global StringNull
 
@@ -284,6 +285,14 @@ BattleScript_ShadowTagBegins:
 	playanimation BANK_SCRIPTING ANIM_MEANLOOK2 0x0
 	waitmessage DELAY_1SECOND
 	end3
+
+BattleScript_StatusMistBegins:
+	setword BATTLE_STRING_LOADER MistBeginsString
+	printstring 0x184
+	playanimation BANK_SCRIPTING ANIM_MIST2 0x0
+	waitmessage DELAY_1SECOND
+	end3
+	
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 BattleScript_QuickClaw:

@@ -74,7 +74,7 @@ Boosts moves against rivals.
 Boosts moves in a sandstorm.
 
 #org @DESC_SOLARPOWER
-Boosts power and defense in sun.
+Boosts Sp. Atk in sun.
 
 #org @DESC_HEATPROOF
 Heat protection.
@@ -106,7 +106,7 @@ Restores HP if poisoned.
 Slight HP recovery in hail.
 
 #org @DESC_BULLRUSH
-Powers up first move used. 
+Boosts power & Speed in first turn.
 
 #org @DESC_HYDRATION
 Heals status problems in rain.
@@ -251,7 +251,7 @@ Parent and child attack together.
 Moves ignore Abilities.
 
 #org @DESC_ZENMODE
-Transforms below half HP.
+Transforms into Zen Mode.
 
 #org @DESC_BATTLEBOND
 Transforms after a KO.

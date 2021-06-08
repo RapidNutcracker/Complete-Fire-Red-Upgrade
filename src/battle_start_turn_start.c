@@ -603,6 +603,15 @@ bool8 TryActivateVarBattleAuras()
 				effect = TRUE;
 				break;
 
+			case AURA_STATUSMIST_STRING:
+				gBattleScripting.bank = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
+				// gSideTimers[GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT)].mistTimer = 5;
+				// gSideTimers[GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT)].safeguardTimer = 5;
+				BattleScriptPushCursorAndCallback(BattleScript_StatusMistBegins);
+				VarSet(VAR_BATTLE_AURAS, AURA_STATUSMIST);
+				effect = TRUE;
+				break;
+
 		}
 	}
 	

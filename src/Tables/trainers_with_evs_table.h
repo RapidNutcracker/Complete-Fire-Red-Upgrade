@@ -1519,13 +1519,12 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 		.ability = Ability_1,
 	},
 	[148] =
-	{ //Early mons, just max IVs not much investment otherwise misty lanturn
-		.nature = NATURE_MODEST,
+	{ //Early mons, just max IVs not much investment otherwise bugsy ariados
+		.nature = NATURE_ADAMANT,
 		.ivs = 31,
 		.hpEv = 40,
-		.atkEv = 0,
-		.spAtkEv = 40,
-		.spdEv = 4,
+		.atkEv = 40,
+		.spdEv = 252,
 		.ball = TRAINER_EV_CLASS_BALL,
 		.ability = Ability_1,
 	},
@@ -1538,6 +1537,37 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 		.spdEv = 40,
 		.ball = TRAINER_EV_CLASS_BALL,
 		.ability = Ability_Hidden,
+	},
+	[150] =
+	{ //Early mons, just max IVs not much investment otherwise Misty Lanturn
+		.nature = NATURE_MODEST,
+		.hiddenPower = TYPE_GRASS, 
+		.ivs = 31,
+		.atkEv = 4,
+		.spAtkEv = 16,
+		.spdEv = 252,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_1,
+	},
+	[151] =
+	{ //Bulky Special Attacker: Ariana Gothitelle
+		.nature = NATURE_MODEST,
+		.hiddenPower = TYPE_FIGHTING,
+		.ivs = 31,
+		.hpEv = 252,
+		.spdEv = 4,
+		.spAtkEv = 252,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_2,
+	},
+	[152] =
+	{ //Early mons, just max IVs not much investment otherwise falkner corvisquire
+		.nature = NATURE_CAREFUL,
+		.ivs = 31,
+		.hpEv = 4,
+		.spdEv = 40,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_2,
 	},
 };
 #endif

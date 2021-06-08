@@ -666,7 +666,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			#if (defined SPECIES_DARMANITAN_G && defined SPECIES_DARMANITAN_G_ZEN)
 			if (species == SPECIES_DARMANITAN_G)
 			{
-				DoFormChange(bank, SPECIES_DARMANITANZEN, TRUE, TRUE, FALSE);
+				DoFormChange(bank, SPECIES_DARMANITAN_G_ZEN, TRUE, TRUE, FALSE);
 				BattleScriptPushCursorAndCallback(BattleScript_TransformedEnd3);
 				++effect;
 			}

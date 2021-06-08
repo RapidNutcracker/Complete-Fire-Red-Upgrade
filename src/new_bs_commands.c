@@ -694,7 +694,7 @@ void atkFF15_jumpifstatcanbemodified(void)
 		if (gBattleMons[gActiveBattler].statStages[currStat - 1] == 0)
 			gFormCounter = 1;
 
-		else if (BankSideHasMist(gActiveBattler) && (gBattlescriptCurrInstr[1] != BS_GET_TARGET || ABILITY(gBankAttacker) != ABILITY_INFILTRATOR))
+		else if ((BankSideHasMist(gActiveBattler) && (gBattlescriptCurrInstr[1] != BS_GET_TARGET || ABILITY(gBankAttacker) != ABILITY_INFILTRATOR) )) 
 			gFormCounter = 2;
 
 		else if (ability == ABILITY_CLEARBODY

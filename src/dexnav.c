@@ -1339,6 +1339,9 @@ static void DexNavDrawAbility(u8 ability, u8* spriteIdAddr)
 		gSprites[spriteId].pos1.x += ((8 * (len/2)) + (4 * (len % 2)));
 
 		//Copy ability string from table using state id
+		// if(FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE)){
+		// 	ability = HardcoreBannedAbilitySwapper(ability, 1);
+		// }
 		CopyAbilityName(gStringVar4, ability);
 
 		//Format string so it's even length or if it's odd ends in two spaces
@@ -2088,8 +2091,13 @@ static void PrintGUIHiddenAbility(u16 species)
 
 	if (GetSetPokedexFlag(dexNum, FLAG_GET_CAUGHT) || species == SPECIES_NONE) //Only display hidden ability if Pokemon has been caught
 	{
-		if (species != SPECIES_NONE && gBaseStats[species].hiddenAbility != ABILITY_NONE)
-			text = GetAbilityName(gBaseStats[species].hiddenAbility);
+		if (species != SPECIES_NONE && gBaseStats[species].hiddenAbility != ABILITY_NONE){
+			u8 ability = gBaseStats[species].hiddenAbility;
+			if (FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE)) {
+				ability = HardcoreBannedAbilitySwapper(ability, 1);
+			}
+			text = GetAbilityName(ability);
+		}
 		else
 			text = gText_DexNav_NoInfo;
 	}

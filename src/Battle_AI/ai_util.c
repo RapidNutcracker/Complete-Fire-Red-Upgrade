@@ -98,8 +98,8 @@ bool8 CanKnockOutSash(u8 bankAtk, u8 bankDef) //added this function to ensure mo
 		//TryRevertTempMegaEvolveBank(bankDef, &backupMonDef, &backupSpeciesDef, &backupAbilityDef);
 		TryRevertTempMegaEvolveBank(bankAtk, &backupMonAtk, &backupSpeciesAtk, &backupAbilityAtk); // added here
 	}
-	else if ( (BATTLER_MAX_HP(bankDef) && ABILITY(bankDef) == ABILITY_STURDY) //recalculate for sash garbage 
-	|| (BATTLER_MAX_HP(bankDef) && IsBankHoldingFocusSash(bankDef) ) ) {
+	else /*if ( (BATTLER_MAX_HP(bankDef) && ABILITY(bankDef) == ABILITY_STURDY) //recalculate for sash garbage 
+	|| (BATTLER_MAX_HP(bankDef) && IsBankHoldingFocusSash(bankDef) ) )*/ {
 		struct BattlePokemon backupMonAtk; // backupMonDef; // commented all these out added
 		u8 backupAbilityAtk = ABILITY_NONE; // u8 backupAbilityDef = ABILITY_NONE; 
 		u16 backupSpeciesAtk = SPECIES_NONE; // u16 backupSpeciesDef = SPECIES_NONE;
@@ -825,25 +825,32 @@ static bool8 CalculateMoveKnocksOutSashXHits(u16 move, u8 bankAtk, u8 bankDef, u
 		return TRUE;
 
 	if (numHits == 1 && (int) dmg == (gBattleMons[bankDef].hp - 1 )){ //added here
-		if ( gTerrainType != PSYCHIC_TERRAIN && (MoveEffectInMoveset(EFFECT_QUICK_ATTACK, bankAtk) || MoveEffectInMoveset(EFFECT_SUCKER_PUNCH, bankAtk) 
+		if (  (gTerrainType != PSYCHIC_TERRAIN ) && 
+		( (MoveEffectInMoveset(EFFECT_QUICK_ATTACK, bankAtk)) 
+		|| MoveEffectInMoveset(EFFECT_SUCKER_PUNCH, bankAtk) 
 			|| MoveInMoveset(MOVE_WATERSHURIKEN, bankAtk) 
-			|| ((ABILITY(bankAtk) == ABILITY_FLAMINGSOUL || ABILITY(bankAtk) == ABILITY_GALEWINGS) && BATTLER_MAX_HP(bankAtk))
+			|| ((ABILITY(bankAtk) == ABILITY_FLAMINGSOUL 
+			|| ABILITY(bankAtk) == ABILITY_GALEWINGS) && BATTLER_MAX_HP(bankAtk))
 			|| (ABILITY(bankAtk) == ABILITY_TRIAGE && MoveEffectInMoveset(EFFECT_ABSORB, bankAtk)) ) ){
 			return TRUE; 
 		}
 	}
 
-	if ( (ABILITY(bankAtk) == ABILITY_TRIAGE && MoveEffectInMoveset(EFFECT_ABSORB, bankAtk)) 
-		  || ( MoveInMoveset(MOVE_GRASSYGLIDE, bankAtk) && gTerrainType == GRASSY_TERRAIN)){ //added this to check if triage 2HKOs, if so its useless to setup
-		if (GetDmgHealthPercentage(bankDef, dmg) >= 55){
+	if ( (gTerrainType != PSYCHIC_TERRAIN ) && 
+		((ABILITY(bankAtk) == ABILITY_TRIAGE && MoveEffectInMoveset(EFFECT_ABSORB, bankAtk)) 
+		  || ( MoveInMoveset(MOVE_GRASSYGLIDE, bankAtk) && gTerrainType == GRASSY_TERRAIN)))
+	{ //added this to check if triage 2HKOs, if so its useless to setup
+		if (GetDmgHealthPercentage(bankDef, dmg) <= 45){
 			return TRUE;
 		}
 	}
 
-	if ((MoveEffectInMoveset(EFFECT_QUICK_ATTACK, bankAtk) || MoveEffectInMoveset(EFFECT_SUCKER_PUNCH, bankAtk) //don't set up if we take a lot of damage and they have priority 
-			|| MoveInMoveset(MOVE_WATERSHURIKEN, bankAtk)) )
+	if ( (gTerrainType != PSYCHIC_TERRAIN ) && 
+		(MoveEffectInMoveset(EFFECT_QUICK_ATTACK, bankAtk) 
+		|| MoveEffectInMoveset(EFFECT_SUCKER_PUNCH, bankAtk) //don't set up if we take a lot of damage and they have priority 
+		|| MoveInMoveset(MOVE_WATERSHURIKEN, bankAtk)))
 	{
-		if (GetDmgHealthPercentage(bankDef, dmg) >= 70){
+		if (GetDmgHealthPercentage(bankDef, dmg) <= 30){
 			return TRUE;
 		}
 	}
@@ -3042,7 +3049,7 @@ bool8 GetHealthPercentage(u8 bank)
 
 bool8 GetDmgHealthPercentage(u8 bank, u32 dmg)
 {
-	return (dmg * 100) / gBattleMons[bank].hp;
+	return ((gBattleMons[bank].hp - dmg) * 100) / gBattleMons[bank].maxHP;
 }
 
 bool8 TeamFullyHealedMinusBank(u8 bank)
@@ -3228,11 +3235,17 @@ bool8 ShouldAIUseZMove(u8 bankAtk, u8 bankDef, u16 move)
 				case EFFECT_SOLARBEAM:
 				case EFFECT_LASTRESORT_SKYDROP:
 				case EFFECT_OVERHEAT: //added 
+				// case EFFECT_SUPERPOWER: //added 
 					return TRUE;
 			}
-
-			if (MoveKnocksOutXHits(move, bankAtk, bankDef, 1) && AccuracyCalc(move, bankAtk, bankDef) >= 90 )
-				return FALSE; //If the base move can KO and is above 90 accuracy, don't turn it into a Z-Move
+			// Superpower should always be turned into Z-Move to stop stat drop
+			switch (move) {
+				case MOVE_SUPERPOWER:
+					return TRUE;
+			}
+			u32 accCalced = AccuracyCalc(move, bankAtk, bankDef); 
+			if (MoveKnocksOutXHits(move, bankAtk, bankDef, 1) && ( accCalced >= 85 || accCalced == 0))
+				return FALSE; //If the base move can KO and is above 85 accuracy or cant miss (0 means cant miss) , don't turn it into a Z-Move
 
 			return TRUE;
 		}

@@ -1681,13 +1681,15 @@ bool8 IsInverseBattle(void)
 bool8 BankSideHasSafeguard(u8 bank)
 {
 	return gSideStatuses[SIDE(bank)] & SIDE_STATUS_SAFEGUARD
-		|| (IS_BATTLE_CIRCUS && gBattleCircusFlags & BATTLE_CIRCUS_SAFEGUARD);
+		|| (IS_BATTLE_CIRCUS && gBattleCircusFlags & BATTLE_CIRCUS_SAFEGUARD)
+		|| ((VarGet(VAR_BATTLE_AURAS) == AURA_STATUSMIST) && SIDE(bank) == B_POSITION_OPPONENT_LEFT);
 }
 
 bool8 BankSideHasMist(u8 bank)
 {
 	return gSideStatuses[SIDE(bank)] & SIDE_STATUS_MIST
-		|| (IS_BATTLE_CIRCUS && gBattleCircusFlags & BATTLE_CIRCUS_MIST);
+		|| (IS_BATTLE_CIRCUS && gBattleCircusFlags & BATTLE_CIRCUS_MIST)
+		|| ((VarGet(VAR_BATTLE_AURAS) == AURA_STATUSMIST) && SIDE(bank) == B_POSITION_OPPONENT_LEFT);
 }
 
 bool8 BankSideHasSeaOfFire(u8 bank)

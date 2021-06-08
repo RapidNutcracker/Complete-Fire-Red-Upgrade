@@ -338,10 +338,11 @@ EventScript_GiveExpShare:
 	checkitem ITEM_VS_SEEKER 0x1
 	compare 0x800D 0x1
 	if lessthan _call GiveStatScanner 
-	@ givepokemon SPECIES_MILOTIC 81 ITEM_DAMP_ROCK 0x0 0x0 0x0
+	@ givepokemon SPECIES_KOMMO_O 1 ITEM_DAMP_ROCK 0x0 0x0 0x0
+	@ givepokemon SPECIES_LAPRAS 80 ITEM_LAPRASITE 0x0 0x0 0x0
 	@ callasm 0x088032F0 + 1
 	@ callasm 0x08803960 + 1
-	@giveitem ITEM_BIG_NUGGET 0x50 MSG_OBTAIN 
+	@ giveitem ITEM_BIG_NUGGET 0x50 MSG_OBTAIN 
 	msgbox gText_Pewter_TalkAboutLevelCap MSG_FACE
 	release 
 	end 

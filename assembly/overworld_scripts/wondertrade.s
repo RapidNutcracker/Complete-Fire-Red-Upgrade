@@ -5,6 +5,10 @@
 .include "../xse_defines.s"
 .include "../asm_defines.s" 
 
+.equ FLAG_EXPERT_MODE, 0x93A
+.equ FLAG_RANDOMIZER_MODE, 0x940
+.equ FLAG_WONDER_TRADE_FIRST, 0x103E
+
 .global EventScript_WonderTrade
 EventScript_WonderTrade: 
     lock
@@ -31,10 +35,17 @@ ReceiveEgg:
     fanfare 0x101
     msgbox gText_RandomEgg_ReceivedEgg MSG_KEEPOPEN
     waitfanfare
-    waitkeypress 
-    setflag 0x94F
+    waitkeypress
+    checkflag FLAG_RANDOMIZER_MODE
+    if 0x1 _goto ReceiveEggEnd
+    checkflag FLAG_EXPERT_MODE
+    if 0x1 _goto ReceiveEggEnd
+    setflag FLAG_WONDER_TRADE_FIRST
+    goto ReceiveEggEnd
+
+ReceiveEggEnd: 
     giveegg SPECIES_MUDKIP
-    clearflag 0x94F
+    clearflag FLAG_WONDER_TRADE_FIRST
     setflag 0x99E
     msgbox gText_RandomEgg3 MSG_NORMAL 
     sound 0x58 
@@ -90,7 +101,14 @@ ReceiveEgg2:
     fanfare 0x101
     waitfanfare
     msgbox gText_RandomEgg_ReceivedEgg MSG_FACE
+    checkflag FLAG_RANDOMIZER_MODE
+    if 0x1 _goto ReceiveEggEnd2
+    checkflag FLAG_EXPERT_MODE
+    if 0x1 _goto ReceiveEggEnd2
     setflag 0x94F
+    goto ReceiveEggEnd2
+
+ReceiveEggEnd2:
     giveegg SPECIES_FLOETTE
     clearflag 0x94F
     setflag 0x97E
@@ -136,7 +154,14 @@ ReceiveEgg3:
     fanfare 0x101
     waitfanfare
     msgbox gText_RandomEgg_ReceivedEgg MSG_FACE
+    checkflag FLAG_RANDOMIZER_MODE
+    if 0x1 _goto ReceiveEggEnd3
+    checkflag FLAG_EXPERT_MODE
+    if 0x1 _goto ReceiveEggEnd3
     setflag 0x94F
+    goto ReceiveEggEnd3
+
+ReceiveEggEnd3:
     giveegg SPECIES_GASTLY
     clearflag 0x94F
     setflag 0x97F

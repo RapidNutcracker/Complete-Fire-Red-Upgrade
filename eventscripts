@@ -573,6 +573,8 @@ npc 13 0 3 EventScript_PokemonLeagueChick
 npc 13 0 6 EventScript_E4LanceInfo_Start
 map 13 0 gMapScripts_PkmnLeague
 tile 1 78 0 EventScript_TileProcScale
+map 1 80 gMapScripts_HallOfFame
+map 1 79 gMapScripts_Champion
 
 #One Island
 npc 32 0 6 EventScript_NatureChanger

@@ -58,7 +58,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon* mon, u8 type, u16 evolutionItem)
 
 				case EVO_FRIENDSHIP_NIGHT:
 				#ifdef TIME_ENABLED
-					if (IsNightTime() && friendship >= 220)
+					if (IsEvening() && friendship >= 220)
 						targetSpecies = gEvolutionTable[species][i].targetSpecies;
 				#endif
 					break;
@@ -169,7 +169,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon* mon, u8 type, u16 evolutionItem)
 
 				case EVO_LEVEL_NIGHT:
 					#ifdef TIME_ENABLED
-						if (gEvolutionTable[species][i].param <= level && IsNightTime())
+						if (gEvolutionTable[species][i].param <= level && IsEvening())
 							targetSpecies = gEvolutionTable[species][i].targetSpecies;
 					#else  // regular level up check
 						if (gEvolutionTable[species][i].param <= level)

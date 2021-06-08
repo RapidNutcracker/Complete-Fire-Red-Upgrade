@@ -77,6 +77,19 @@ extern const species_t gSkyBattleBannedSpeciesList[];
 static u8 GetTextCaretPosition(void);
 #endif
 
+//HERE
+// static void Task_Hof_PaletteFadeAndPrintWelcomeText(u8 taskId);
+// static void Task_Hof_ApplauseAndConfetti(u8 taskId);
+// static void Task_Hof_WaitBorderFadeAway(u8 taskId);
+// static void Task_Hof_SpawnPlayerPic(u8 taskId);
+// static void Task_Hof_WaitAndPrintPlayerInfo(u8 taskId);
+static void Task_Hof_ExitOnKeyPressed(u8 taskId);
+// static void Task_Hof_HandlePaletteOnExit(u8 taskId);
+// static void Task_Hof_HandleExit(u8 taskId);
+// static void SetWarpsToRollCredits(void);
+// static void HallOfFame_PrintWelcomeText(u8 a0, u8 a1);
+//TO HERE
+
 //Pokemon Specials//
 ///////////////////////////////////////////////////////////////////////////////////
 
@@ -653,6 +666,35 @@ void sp01B_SwapPartyAndBoxData(void)
 #endif
 }
 
+extern const u8 gText_HardcoreMode[];
+extern const u8 gText_emptystring[];
+extern const u8 gText_RestrictedMode[];
+extern const u8 gText_EasyMode[];
+extern const u8 gText_DefaultMode[];
+extern const u8 gText_Mingrinding[];
+extern const u8 gText_RadicalRedInfo[];
+extern const u8 gText_Randomizers[];
+extern const u8 gText_InsaneRand[];
+extern const u8 gText_SpeciesRand[];
+extern const u8 gText_AbilityRand[];
+extern const u8 gText_LearnsetRand[];
+
+// void SetStringForHof(void)
+// {
+// 	if (FlagGet(FLAG_HARDCORE_MODE)){ 
+// 		StringCopy(gStringVar7, gText_HardcoreMode);
+// 	}
+// 	else if (FlagGet(FLAG_RESTRICT_MODE)){
+// 		StringCopy(gStringVar7, gText_RestrictedMode);
+// 	}
+// 	else if (FlagGet(FLAG_EASY_MODE)){
+// 		StringCopy(gStringVar7, gText_EasyMode);
+// 	}
+// 	else if (FlagGet(FLAG_MINIMAL_GRINDING_MODE)) 
+// 	{
+// 		StringCopy(gStringVar7, gText_Mingrinding);
+// 	}
+// }
 //Nicknaming Specials//
 ///////////////////////////////////////////////////////////////////////////////////
 void sp07C_BufferNickname(void)
@@ -2142,13 +2184,268 @@ void Task_Hof_TryDisplayAnotherMon(u8 taskId) {
 			gSprites[gTasks[taskId].tMonSpriteId(currPokeID)].oam.priority = 1;
 			gTasks[taskId].func = Task_Hof_DisplayMon;
 		} else {
-			gTasks[taskId].func = Task_Hof_PaletteFadeAndPrintWelcomeText;
+			//here 
+			BeginNormalPaletteFade(0xFFFF0000, 0, 0, 0, RGB_BLACK);
+			for (u8 i = 0; i < PARTY_SIZE; i++)
+			{
+				if (gTasks[taskId].data[5 + i] != 0xFF)
+					gSprites[gTasks[taskId].data[5 + i]].oam.priority = 0;
+			}
+			FillWindowPixelBuffer(0, PIXEL_FILL(0));
+			PutWindowTilemap(0);
+			// u8 x = (0xD0 - GetStringWidth(2, gText_RadicalRedInfo, 0)) / 2;
+			u8 buffer[100];
+			StringCopy(buffer, gText_RadicalRedInfo );
+			// WindowPrint(0, 2, x, 0x0, sUnknown_0840C23C, 0, gText_RadicalRedInfo);
+			if (FlagGet(FLAG_HARDCORE_MODE)){ 
+				// u8 x2 = (0xD0 - GetStringWidth(2, gText_HardcoreMode, 0)) / 2;
+				StringAppend(buffer, gText_HardcoreMode );
+				// WindowPrint(0, 2, x2, 0xD, sUnknown_0840C23C, 0, gText_HardcoreMode);
+			}
+			else if (FlagGet(FLAG_RESTRICT_MODE)){
+				// WindowPrint(0, 2, 0x35, 0xD, sUnknown_0840C23C, 0, gText_RestrictedMode);
+				StringAppend(buffer, gText_RestrictedMode );
+			}
+			else if (FlagGet(FLAG_EASY_MODE)){
+				// WindowPrint(0, 2, 0x35, 0xD, sUnknown_0840C23C, 0, gText_EasyMode);
+				StringAppend(buffer, gText_EasyMode);
+			}
+			else {
+				StringAppend(buffer, gText_DefaultMode );
+			}
+			if (FlagGet(FLAG_MINIMAL_GRINDING_MODE) && !FlagGet(FLAG_HARDCORE_MODE)) 
+			{
+				// WindowPrint(0, 2, 0x35, 0xD, sUnknown_0840C23C, 0, gText_EasyMode);
+				StringAppend(buffer, gText_Mingrinding );
+			}
+			u8 x2 = (0xD0 - GetStringWidth(2, buffer, 0)) / 2;
+			
+			WindowPrint(0, 2, x2, 0x0, sUnknown_0840C23C, 0, buffer);
+			if (FlagGet(FLAG_POKEMON_RANDOMIZER) || FlagGet(FLAG_POKEMON_LEARNSET_RANDOMIZER) || FlagGet(FLAG_ABILITY_RANDOMIZER))
+			{
+				u8 buffer2[100];
+				StringCopy(buffer2, gText_Randomizers);
+				if (FlagGet(FLAG_EXPERT_DIFFICULTY)) {
+					StringAppend(buffer2, gText_InsaneRand);
+				}
+				else if (FlagGet(FLAG_POKEMON_RANDOMIZER)) {
+					StringAppend(buffer2, gText_SpeciesRand);
+				}
+				if (FlagGet(FLAG_ABILITY_RANDOMIZER)) {
+					StringAppend(buffer2, gText_AbilityRand);
+				}
+				if (FlagGet(FLAG_POKEMON_LEARNSET_RANDOMIZER)){
+					StringAppend(buffer2, gText_LearnsetRand);
+				}
+				x2 = (0xD0 - GetStringWidth(2, buffer2, 0)) / 2;
+				WindowPrint(0, 2, x2, 0xD, sUnknown_0840C23C, 0, buffer2);
+			}
+			gTasks[taskId].func = Task_Hof_ExitOnKeyPressed;
+			// gTasks[taskId].func = Task_Hof_PaletteFadeAndPrintWelcomeText;
 		}
 	}
 }
 
+static void Task_Hof_ExitOnKeyPressed(u8 taskId)
+{
+    if (JOY_NEW(A_BUTTON))
+    {
+        gTasks[taskId].func = Task_Hof_PaletteFadeAndPrintWelcomeText;
+    }
+}
+
+// //EVERYTHING ADDED HERE
+// static void Task_Hof_PaletteFadeAndPrintWelcomeText(u8 taskId)
+// {
+//     u16 i;
+
+//     BeginNormalPaletteFade(0xFFFF0000, 0, 0, 0, RGB_BLACK);
+//     for (i = 0; i < PARTY_SIZE; i++)
+//     {
+//         if (gTasks[taskId].data[5 + i] != 0xFF)
+//             gSprites[gTasks[taskId].data[5 + i]].oam.priority = 0;
+//     }
+
+//     HallOfFame_PrintWelcomeText(0, 15);
+//     PlaySE(SE_APPLAUSE);
+//     gTasks[taskId].data[3] = 400;
+//     gTasks[taskId].func = Task_Hof_ApplauseAndConfetti;
+// }
+
+// static void HallOfFame_PrintWelcomeText(u8 not, u8 used)
+// {
+//     u8 x = (0xD0 - GetStringWidth(2, gText_HardcoreMode, 0)) / 2;
+//     FillWindowPixelBuffer(0, PIXEL_FILL(0));
+//     PutWindowTilemap(0);
+//     AddTextPrinterParameterized3(0, 2, x, 1, sTextColors[0], 0, gText_HardcoreMode);
+//     CopyWindowToVram(0, COPYWIN_BOTH);
+// }
+
+// #define HALL_OF_FAME_BG_PAL    (RGB(22, 24, 29))
+
+// static void Task_Hof_ApplauseAndConfetti(u8 taskId)
+// {
+//     if (gTasks[taskId].data[3] != 0)
+//     {
+//         gTasks[taskId].data[3]--;
+//         if ((gTasks[taskId].data[3] & 3) == 0 && gTasks[taskId].data[3] > 110)
+//             Hof_SpawnConfetti();
+//     }
+//     else
+//     {
+//         u16 i;
+//         for (i = 0; i < PARTY_SIZE; i++)
+//         {
+//             if (gTasks[taskId].data[5 + i] != 0xFF)
+//                 gSprites[gTasks[taskId].data[5 + i]].oam.priority = 1;
+//         }
+//         BeginNormalPaletteFade(sSelectedPaletteIndices, 0, 12, 12, HALL_OF_FAME_BG_PAL);
+//         FillWindowPixelBuffer(0, PIXEL_FILL(0));
+//         CopyWindowToVram(0, COPYWIN_BOTH);
+//         gTasks[taskId].data[3] = 7;
+//         gTasks[taskId].func = Task_Hof_WaitBorderFadeAway;
+//     }
+// }
+
+// static void Task_Hof_WaitBorderFadeAway(u8 taskId)
+// {
+//     if (gTasks[taskId].data[3] > 15)
+//     {
+//         gTasks[taskId].func = Task_Hof_SpawnPlayerPic;
+//     }
+//     else
+//     {
+//         gTasks[taskId].data[3]++;
+//         SetGpuReg(REG_OFFSET_BLDALPHA, 256 * gTasks[taskId].data[3]);
+//     }
+// }
+
+// static void Task_Hof_SpawnPlayerPic(u8 taskId)
+// {
+//     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0 | DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON);
+//     ShowBg(0);
+//     ShowBg(1);
+//     ShowBg(3);
+//     gTasks[taskId].data[4] = CreateTrainerPicSprite(0, TRUE, 0x78, 0x48, 6, 0xFFFF);
+//     AddWindow(&sWindowTemplate);
+//     TextWindow_SetStdFrame0_WithPal(1, 0x21D, 0xD0);
+//     gTasks[taskId].data[3] = 120;
+//     gTasks[taskId].func = Task_Hof_WaitAndPrintPlayerInfo;
+// }
+
+// static void Task_Hof_WaitAndPrintPlayerInfo(u8 taskId)
+// {
+//     if (gTasks[taskId].data[3] != 0)
+//     {
+//         gTasks[taskId].data[3]--;
+//     }
+//     else if (gSprites[gTasks[taskId].data[4]].pos1.x != 192)
+//     {
+//         gSprites[gTasks[taskId].data[4]].pos1.x++;
+//     }
+//     else
+//     {
+//         FillBgTilemapBufferRect_Palette0(0, 0, 0, 0, 0x20, 0x20);
+//         HallOfFame_PrintPlayerInfo(1, 2);
+//         DrawDialogueFrame(0, 0);
+//         AddTextPrinterParameterized2(0, 2, gText_HardcoreMode, 0, NULL, 2, 1, 3);
+//         CopyWindowToVram(0, COPYWIN_BOTH);
+//         gTasks[taskId].func = Task_Hof_ExitOnKeyPressed;
+//     }
+// }
+
+// static void Task_Hof_ExitOnKeyPressed(u8 taskId)
+// {
+//     if (JOY_NEW(A_BUTTON))
+//     {
+//         FadeOutBGM(4);
+//         gTasks[taskId].func = Task_Hof_HandlePaletteOnExit;
+//     }
+// }
+
+// static void Task_Hof_HandlePaletteOnExit(u8 taskId)
+// {
+//     CpuCopy16(gPlttBufferFaded, gPlttBufferUnfaded, PLTT_BUFFER_SIZE * sizeof(u16));
+//     BeginNormalPaletteFade(0xFFFFFFFF, 8, 0, 16, RGB_BLACK);
+//     gTasks[taskId].func = Task_Hof_HandleExit;
+// }
+
+// static EWRAM_DATA struct HofGfx * sHofGfxPtr = NULL;
+// struct HofGfx
+// {
+//     u16 state;
+//     u8 field_2[4];
+//     u8 tilemap1[0x1000];
+//     u8 tilemap2[0x1000];
+// };
+
+// static void Task_Hof_HandleExit(u8 taskId)
+// {
+//     if (!gPaletteFade.active)
+//     {
+//         s32 i;
+
+//         for (i = 0; i < PARTY_SIZE; i++)
+//         {
+//             u8 spriteId = gTasks[taskId].data[5 + i];
+//             if (spriteId != 0xFF)
+//             {
+//                 FreeAndDestroyMonPicSprite(spriteId);
+//             }
+//         }
+
+//         FreeAndDestroyTrainerPicSprite(gTasks[taskId].data[4]);
+//         HideBg(0);
+//         HideBg(1);
+//         HideBg(3);
+//         FreeAllWindowBuffers();
+//         UnsetBgTilemapBuffer(1);
+//         UnsetBgTilemapBuffer(3);
+//         ResetBgsAndClearDma3BusyFlags(0);
+//         DestroyTask(taskId);
+
+//         if (sHofGfxPtr != NULL)
+//         FREE_AND_SET_NULL(sHofGfxPtr);
+//         if (sHofMonPtr != NULL)
+//         FREE_AND_SET_NULL(sHofMonPtr);
+
+//         SetWarpsToRollCredits();
+//     }
+// }
+
+// static void SetWarpsToRollCredits(void)
+// {
+//     VarSet(VAR_MAP_SCENE_INDIGO_PLATEAU_EXTERIOR, 1);
+//     FlagSet(FLAG_DONT_SHOW_MAP_NAME_POPUP);
+//     gDisableMapMusicChangeOnMapLoad = 2;
+//     SetWarpDestination(MAP_GROUP(INDIGO_PLATEAU_EXTERIOR), MAP_NUM(INDIGO_PLATEAU_EXTERIOR), -1, 11, 6);
+//     DoWarp();
+//     ResetInitialPlayerAvatarState();
+// }
 
 
+// static bool8 Hof_SpawnConfetti(void)
+// {
+//     u8 spriteId;
+//     struct Sprite* sprite;
+
+//     s16 posX = Random() % 240;
+//     s16 posY = -(Random() % 8);
+
+//     spriteId = CreateSprite(&sSpriteTemplate_Confetti, posX, posY, 0);
+//     sprite = &gSprites[spriteId];
+
+//     StartSpriteAnim(sprite, Random() % 17);
+
+//     if (Random() & 3)
+//         sprite->data[1] = 0;
+//     else
+//         sprite->data[1] = 1;
+
+//     return FALSE;
+// }
+
+//UNTIL HERE
 void Task_HofPC_CopySaveData(u8 taskId) {
 	HofPC_CreateWindow(0, 0x1E, 0, 0xC, 0x226);
 	if (SaveLoadGameData(3) != 1) {

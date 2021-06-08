@@ -496,4 +496,5 @@ The opponent set a rainbow that\ndoubles the chances of their\lmoves' secondary 
 #org @ShadowTagBeginsString
 The opponent's intimidation prevents\nyour Pok\emon from switching out.
 
-
+#org @MistBeginsString
+The opponent surrounded himself in a\nshrouded mist, preventing them\lfrom being affected by status and\lstat reduction. 
