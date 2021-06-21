@@ -855,6 +855,8 @@ bool8 ShouldRecover(u8 bankAtk, u8 bankDef, u16 move)
 		return TRUE;
 	}
 	
+	if (GetHealthPercentage(bankAtk) >= 80) //if we're above 80% pointless to heal most of the time
+		return FALSE;
 
 	if ((gBattleMons[bankAtk].status1 & STATUS_TOXIC_POISON) && (ABILITY(bankAtk) != ABILITY_POISONHEAL && ABILITY(bankAtk) != ABILITY_MAGICGUARD && 
 		ABILITY(bankAtk) != ABILITY_TOXICBOOST) ) 
@@ -940,6 +942,11 @@ enum ProtectQueries ShouldProtect(u8 bankAtk, u8 bankDef, u16 move)
 
 	if (IsBankIncapacitated(bankDef))
 		return FALSE; //Don't Protect against an opponent that isn't going to do anything
+
+	if ((gBattleMons[bankAtk].status1 & STATUS_TOXIC_POISON) && (ABILITY(bankAtk) != ABILITY_POISONHEAL && ABILITY(bankAtk) != ABILITY_MAGICGUARD && 
+		ABILITY(bankAtk) != ABILITY_TOXICBOOST))  {
+		return FALSE; //Don't protect if you're toxiced
+	}
 
 	if ((!isAtkDynamaxed && BankHoldingUsefulItemToProtectFor(bankAtk))
 	||  (!isAtkDynamaxed && BankHasAbilityUsefulToProtectFor(bankAtk, bankDef))
@@ -1215,6 +1222,7 @@ bool8 ShouldUseFakeOut(u8 bankAtk, u8 bankDef)
 	if (gDisableStructs[bankAtk].isFirstTurn
 	&& IsUsefulToFlinchTarget(bankDef)
 	&& ABILITY(bankDef) != ABILITY_INNERFOCUS
+	&& ABILITY(bankDef) != ABILITY_SHIELDDUST
 	&& !MoveBlockedBySubstitute(MOVE_FAKEOUT, bankAtk, bankDef))
 	{
 		if (IS_DOUBLE_BATTLE)
@@ -1522,7 +1530,7 @@ void IncreaseStatusViability(s16* originalViability, u8 class, u8 boost, u8 bank
 	*originalViability = MathMin(viability, 255);
 }
 
-static bool8 ShouldTryToSetUpStat(u8 bankAtk, u8 bankDef, u16 move, u8 stat, u8 statLimit)
+static bool8 ShouldTryToSetUpStat(u8 bankAtk, u8 bankDef, u16 move, u8 stat, unusedArg u8 statLimit)
 {
 	if (ABILITY(bankDef) == ABILITY_UNAWARE
 	&& !MoveInMoveset(MOVE_STOREDPOWER, bankAtk)
@@ -1536,7 +1544,9 @@ static bool8 ShouldTryToSetUpStat(u8 bankAtk, u8 bankDef, u16 move, u8 stat, u8 
 		return FALSE; //Don't set up if you're toxic poisoned with less than 75% health
 	}
 
-	if (MoveEffectInMoveset(bankDef, EFFECT_HAZE))
+	if (MoveEffectInMoveset(EFFECT_HAZE, bankDef) 
+	   || MoveInMoveset(MOVE_TOPSYTURVY, bankDef)
+	   || MoveEffectInMoveset(EFFECT_PSYCH_UP, bankDef ))
 		return FALSE; //don't set up if they have haze, roar 
 	
 	if (MoveInMoveset(MOVE_ROAR, bankDef) || MoveInMoveset(MOVE_WHIRLWIND, bankDef) || (MoveInMoveset(MOVE_DRAGONTAIL, bankDef) && !IsOfType(bankAtk, TYPE_FAIRY)) ||
@@ -1548,12 +1558,21 @@ static bool8 ShouldTryToSetUpStat(u8 bankAtk, u8 bankDef, u16 move, u8 stat, u8 
 
     if ( (IsBankHoldingFocusSash(bankDef) || ABILITY(bankDef) == ABILITY_STURDY) && BATTLER_MAX_HP(bankDef))
 		return FALSE; //don't set up break sash/sturdy first 
-		
+	
+	if ( ((IsBankHoldingFocusSash(bankAtk) || ABILITY(bankAtk) == ABILITY_STURDY) && (BATTLER_MAX_HP(bankAtk)) )
+	&& (MoveEffectInMoveset(EFFECT_QUICK_ATTACK, bankDef) 
+		|| MoveEffectInMoveset(EFFECT_SUCKER_PUNCH, bankDef) 
+			|| MoveInMoveset(MOVE_WATERSHURIKEN, bankDef) 
+			|| (ABILITY(bankDef) == ABILITY_TRIAGE && MoveEffectInMoveset(EFFECT_ABSORB, bankDef)) ) ) {
+				return FALSE;
+	}
+
 	if (IS_SINGLE_BATTLE)
 	{
 		if (MoveWouldHitFirst(move, bankAtk, bankDef)) //Attacker goes first
 		{
-			if (CanKnockOutSash(bankDef, bankAtk)) //this changed function checks if attacker has priority if we have sash so it doesnt do silly set ups
+			// if (CanKnockOutSash(bankDef, bankAtk)) //this changed function checks if attacker has priority if we have sash so it doesnt do silly set ups
+			if (CanKnockOut(bankDef, bankAtk))
 			{
 				return FALSE; //Don't set up if enemy can KO you
 			}
@@ -1575,7 +1594,8 @@ static bool8 ShouldTryToSetUpStat(u8 bankAtk, u8 bankDef, u16 move, u8 stat, u8 
 				return TRUE;
 
 			if (stat == STAT_STAGE_SPEED && STAT_STAGE(bankAtk, stat) < 9) {
-				if (CanKnockOutSash(bankDef, bankAtk))
+				// if (CanKnockOutSash(bankDef, bankAtk))
+				if (CanKnockOut(bankDef, bankAtk))
 					return FALSE; //Don't set up if enemy can KO you + they have priority 
 				return TRUE; //Opponent goes first now, but maybe boosting speed will make you faster
 			}
@@ -1778,6 +1798,9 @@ void IncreaseSleepViability(s16* originalViability, u8 class, u8 bankAtk, u8 ban
 	s16 viability = *originalViability;
 
 	if (BadIdeaToPutToSleep(bankDef, bankAtk))
+		return;
+
+	if (CanKnockOutWithoutMove(move, bankAtk, bankDef, FALSE)) //added this
 		return;
 
 	bool8 spreadSleep = gBattleMoves[move].target & (MOVE_TARGET_BOTH | MOVE_TARGET_ALL)

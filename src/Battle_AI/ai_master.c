@@ -1298,6 +1298,9 @@ static bool8 ShouldSwitchIfNaturalCureOrRegenerator(void)
 			|| IsDynamaxed(gActiveBattler))
 				return FALSE;
 
+			if (gBattleMons[gActiveBattler].hp < gBattleMons[gActiveBattler].maxHP / 3) // if less than 33% health just sack
+				return FALSE;
+
 			if (WillTakeSignificantDamageFromEntryHazards(gActiveBattler, 3))
 				return FALSE; //Don't switch out if you'll lose more than you gain by switching out here
 
@@ -2286,6 +2289,17 @@ u8 CalcMostSuitableMonToSwitchInto(void)
 							{
 								move = GetMonData(&party[i], MON_DATA_MOVE1 + k, 0);
 
+								if ( (ability == ABILITY_MAGNETPULL && (TYPE(foe) == TYPE_STEEL) && (ITEM(foe) != ITEM_SHED_SHELL) )
+								|| (ability == ABILITY_ARENATRAP && (CheckGrounding(foe)) && (ITEM(foe) != ITEM_SHED_SHELL) && (TYPE(foe) != TYPE_GHOST) )
+								|| (ability == ABILITY_SHADOWTAG && (TYPE(foe) != TYPE_GHOST) && (ITEM(foe) != ITEM_SHED_SHELL) )) //if we can trap and kill, let's do it
+								{
+									if (MoveKnocksOutXHitsFromParty(move, &party[i], foe, 1, &damageData))
+									{
+										scores[i] += SWITCHING_INCREASE_REVENGE_KILL;
+										break;
+									}
+								}
+								
 								if (gBattleMoves[move].effect == EFFECT_RAPID_SPIN //Includes Defog
 								&&  gSideStatuses[SIDE(gActiveBattler)] & SIDE_STATUS_SPIKES)
 								{
@@ -2304,18 +2318,27 @@ u8 CalcMostSuitableMonToSwitchInto(void)
 										break;
 									}
 								}
+								else if (move == MOVE_PURSUIT
+								&&  !(gBitTable[k] & moveLimitations))
+								{
+									if (MoveKnocksOutXHitsFromParty(move, &party[i], foe, 1, &damageData))
+									{
+										scores[i] += SWITCHING_INCREASE_REVENGE_KILL;
+										break;
+									}
+								}
 								else if (SPLIT(move) != SPLIT_STATUS
 								&& PriorityCalcMon(&party[i], move) > 0
 								&& MoveKnocksOutXHitsFromParty(move, &party[i], foe, 1, &damageData))
 								{
 									//Priority move that KOs
-									if( gBattleMoves[move].effect == EFFECT_SUCKER_PUNCH) {
-										if ( Random() % 2 == 0) {
-											scores[i] += SWITCHING_INCREASE_REVENGE_KILL;
-										}
-									}
-									else
-										scores[i] += SWITCHING_INCREASE_REVENGE_KILL;
+									// if( gBattleMoves[move].effect == EFFECT_SUCKER_PUNCH) {
+									// 	if ( Random() % 2 == 0) {
+									// 		scores[i] += SWITCHING_INCREASE_REVENGE_KILL;
+									// 	}
+									// }
+									// else
+									scores[i] += SWITCHING_INCREASE_REVENGE_KILL;
 									break;
 								}
 							}

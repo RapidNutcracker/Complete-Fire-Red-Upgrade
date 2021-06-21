@@ -80,7 +80,8 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				else if (IsClassDoublesTrickRoomSetup(class))
 					INCREASE_VIABILITY(16);
 				else if (IS_SINGLE_BATTLE)
-					INCREASE_VIABILITY(3); //Past strongest move
+					// INCREASE_VIABILITY(3); //Past strongest move
+					break;
 				else
 					IncreaseDoublesDamageViabilityToScore(&viability, class, 5, bankAtk, bankDef);
 			}
@@ -172,8 +173,6 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				AI_ATTACK_PLUS:
 					if (IsMovePredictionPhazingMove(bankDef, bankAtk))
 						break;
-					if (PhysicalMoveInMoveset(bankAtk) && move == MOVE_POWERUPPUNCH && STAT_STAGE(bankAtk,STAT_STAGE_ATK) <= 4 && !IsOfType(bankDef, TYPE_GHOST))
-						INCREASE_VIABILITY(8);
 					else if (PhysicalMoveInMoveset(bankAtk) && atkAbility != ABILITY_CONTRARY)
 						INCREASE_STAT_VIABILITY(STAT_STAGE_ATK, 8, 2);
 					/*else if (IsMaxMove(move) && IS_DOUBLE_BATTLE && BATTLER_ALIVE(data->bankAtkPartner)
@@ -483,9 +482,10 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			break;
 
 		case EFFECT_TRAP:
-		AI_TRAP:
+		// AI_TRAP:
 			if (MoveInMoveset(MOVE_RAPIDSPIN, bankDef)
 			||  IsOfType(bankDef, TYPE_GHOST)
+			|| data->defItemEffect == ITEM_EFFECT_SHED_SHELL
 			||  data->defStatus2 & (STATUS2_WRAPPED))
 			{
 				break; //Just a regular attacking move now
@@ -781,57 +781,57 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				INCREASE_VIABILITY(7);
 			break;
 
-		case EFFECT_THIEF:
-			if (data->atkItem == ITEM_NONE
-			&&  data->defItem != ITEM_NONE
-			&& CanTransferItem(SPECIES(bankDef), data->defItem)
-			&& CanTransferItem(SPECIES(bankAtk), data->defItem)
-			&& !MoveInMoveset(MOVE_ACROBATICS, bankAtk)
-			&& defAbility != ABILITY_STICKYHOLD
-			&& IsClassSweeper(class))
-			{
-				switch (ItemId_GetHoldEffect(ITEM(bankDef))) {
-					case ITEM_EFFECT_CHOICE_BAND: ;
-						if (ITEM_QUALITY(bankDef) == QUALITY_CHOICE_SCARF
-						|| MoveSplitInMoveset(ITEM_QUALITY(bankDef), bankAtk))
-							INCREASE_STATUS_VIABILITY(2);
-						break;
+		// case EFFECT_THIEF:
+		// 	if (data->atkItem == ITEM_NONE
+		// 	&&  data->defItem != ITEM_NONE
+		// 	&& CanTransferItem(SPECIES(bankDef), data->defItem)
+		// 	&& CanTransferItem(SPECIES(bankAtk), data->defItem)
+		// 	&& !MoveInMoveset(MOVE_ACROBATICS, bankAtk)
+		// 	&& defAbility != ABILITY_STICKYHOLD
+		// 	&& IsClassSweeper(class))
+		// 	{
+		// 		switch (ItemId_GetHoldEffect(ITEM(bankDef))) {
+		// 			case ITEM_EFFECT_CHOICE_BAND: ;
+		// 				if (ITEM_QUALITY(bankDef) == QUALITY_CHOICE_SCARF
+		// 				|| MoveSplitInMoveset(ITEM_QUALITY(bankDef), bankAtk))
+		// 					INCREASE_STATUS_VIABILITY(2);
+		// 				break;
 
-					case ITEM_EFFECT_TOXIC_ORB:
-						if (GoodIdeaToPoisonSelf(bankAtk))
-							INCREASE_STATUS_VIABILITY(2);
-						break;
+		// 			case ITEM_EFFECT_TOXIC_ORB:
+		// 				if (GoodIdeaToPoisonSelf(bankAtk))
+		// 					INCREASE_STATUS_VIABILITY(2);
+		// 				break;
 
-					case ITEM_EFFECT_FLAME_ORB:
-						if (GoodIdeaToBurnSelf(bankAtk))
-							INCREASE_STATUS_VIABILITY(2);
-						break;
+		// 			case ITEM_EFFECT_FLAME_ORB:
+		// 				if (GoodIdeaToBurnSelf(bankAtk))
+		// 					INCREASE_STATUS_VIABILITY(2);
+		// 				break;
 
-					case ITEM_EFFECT_BLACK_SLUDGE:
-						if (IsOfType(bankAtk, TYPE_POISON))
-							INCREASE_STATUS_VIABILITY(2);
-						break;
+		// 			case ITEM_EFFECT_BLACK_SLUDGE:
+		// 				if (IsOfType(bankAtk, TYPE_POISON))
+		// 					INCREASE_STATUS_VIABILITY(2);
+		// 				break;
 
-					case ITEM_EFFECT_IRON_BALL:
-						if (MoveInMoveset(MOVE_FLING, bankAtk))
-							INCREASE_STATUS_VIABILITY(2);
-						break;
+		// 			case ITEM_EFFECT_IRON_BALL:
+		// 				if (MoveInMoveset(MOVE_FLING, bankAtk))
+		// 					INCREASE_STATUS_VIABILITY(2);
+		// 				break;
 
-					case ITEM_EFFECT_LAGGING_TAIL:
-					case ITEM_EFFECT_STICKY_BARB:
-						break;
+		// 			case ITEM_EFFECT_LAGGING_TAIL:
+		// 			case ITEM_EFFECT_STICKY_BARB:
+		// 				break;
 
-					default:
-						INCREASE_VIABILITY(1);
-				}
-			}
-			break;
+		// 			default:
+		// 				INCREASE_VIABILITY(1);
+		// 		}
+		// 	}
+		// 	break;
 
-		case EFFECT_MEAN_LOOK:
-			if (IsTrapped(bankDef, TRUE))
-				break; //Already trapped
+		// case EFFECT_MEAN_LOOK: removed here
+		// 	if (IsTrapped(bankDef, TRUE))
+		// 		break; //Already trapped
 
-			goto AI_TRAP;
+		// 	goto AI_TRAP;
 
 		case EFFECT_NIGHTMARE:
 			if (defAbility == ABILITY_MAGICGUARD)
@@ -1236,7 +1236,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			}
 			break;
 
-		case EFFECT_PURSUIT:
+		case EFFECT_PURSUIT: //if it sees a kill click
 			if (IsClassSweeper(class))
 			{
 				if (IsPredictedToSwitch(bankDef, bankAtk))
@@ -1380,6 +1380,19 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				}
 				break;
 			}
+			else if (move == MOVE_POWERUPPUNCH && STAT_STAGE(bankAtk, STAT_STAGE_ATK) < STAT_STAGE_MAX && atkAbility != ABILITY_CONTRARY ) //added for poweruppunch
+			{
+				if (MoveKnocksOutXHits(move, bankAtk, bankDef, 1))
+				{
+					if (IS_SINGLE_BATTLE)
+					{
+						if (MoveWouldHitFirst(move, bankAtk, bankDef))
+							INCREASE_VIABILITY(9);
+						else
+							INCREASE_VIABILITY(3); //Past strongest move
+					}
+				}
+			}
 			break;
 
 		case EFFECT_BELLY_DRUM:
@@ -1513,7 +1526,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 
 		case EFFECT_WILL_O_WISP:
 		AI_BURN_CHECKS:
-			if (!BadIdeaToBurn(bankDef, bankAtk))
+			if (!BadIdeaToBurn(bankDef, bankAtk) || CanKnockOutWithoutMove(move, bankAtk, bankDef, FALSE) )
 			{
 				if (CalcMoveSplit(bankDef, predictedMove) == SPLIT_PHYSICAL
 				&& MoveKnocksOutXHits(predictedMove, bankDef, bankAtk, 1))
@@ -2007,30 +2020,30 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			}
 			break;
 
-		case EFFECT_EAT_BERRY:
-			switch (move)
-			{
-				case MOVE_BUGBITE:
-				case MOVE_PLUCK:
-					if (data->defStatus2 & STATUS2_SUBSTITUTE
-					||  defAbility == ABILITY_STICKYHOLD)
-						break;
-					else if (IsBerry(data->defItem))
-						INCREASE_VIABILITY(3); //Increase past strongest move
-					break;
+		// case EFFECT_EAT_BERRY: removed this
+		// 	switch (move)
+		// 	{
+		// 		case MOVE_BUGBITE:
+		// 		case MOVE_PLUCK:
+		// 			if (data->defStatus2 & STATUS2_SUBSTITUTE
+		// 			||  defAbility == ABILITY_STICKYHOLD)
+		// 				break;
+		// 			else if (IsBerry(data->defItem))
+		// 				INCREASE_VIABILITY(3); //Increase past strongest move
+		// 			break;
 
-				case MOVE_INCINERATE:
-					if (data->defStatus2 & STATUS2_SUBSTITUTE
-					||  defAbility == ABILITY_STICKYHOLD)
-						break;
-					else if (IsBerry(data->defItem) || IsGem(data->defItem))
-						INCREASE_VIABILITY(3); //Increase past strongest move
-					break;
-			}
-			break;
+		// 		case MOVE_INCINERATE:
+		// 			if (data->defStatus2 & STATUS2_SUBSTITUTE
+		// 			||  defAbility == ABILITY_STICKYHOLD)
+		// 				break;
+		// 			else if (IsBerry(data->defItem) || IsGem(data->defItem))
+		// 				INCREASE_VIABILITY(3); //Increase past strongest move
+		// 			break;
+		// 	}
+		// 	break;
 
 		case EFFECT_SMACK_DOWN:
-			if (CheckGrounding(bankDef) != GROUNDED)
+			if (CheckGrounding(bankDef) != GROUNDED && (Random() % 2 == 0))
 				INCREASE_VIABILITY(3); //Increase past strongest move
 			break;
 
@@ -2350,6 +2363,10 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 						IncreaseDoublesDamageViabilityToScore(&viability, class, 5, bankAtk, bankDef);
 				}
 			}
+			// if (move == MOVE_LASTRESORT){
+			// 	if (SPECIES(bankAtk) == SPECIES_EEVEE && !IsMegaZMoveBannedBattle() && !gNewBS->zMoveData.used[bankAtk])
+			// 		INCREASE_VIABILITY(9); //Extreme Evo Boost
+			// }
 			break;
 	}
 

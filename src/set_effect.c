@@ -280,7 +280,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
 
 			if (gBattleCommunication[MOVE_EFFECT_BYTE] == MOVE_EFFECT_SLEEP){
 				if (SIDE(gBankTarget) == B_SIDE_OPPONENT && (gBattleTypeFlags & BATTLE_TYPE_TRAINER)) { //degen addition, AI has high chance of min turns of sleep
-					if (Random2() % 2 == 0){ //very high chance for AI to get a single turn sleep
+					if (Random2() % 2 <= 1){ //very high chance for AI to get a single turn sleep
 						gBattleMons[gEffectBank].status1 |= 2;
 					}
 					else {
@@ -346,12 +346,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
 			case MOVE_EFFECT_CONFUSION:
 				if (CanBeConfused(gEffectBank, FALSE)) //Safeguard checked earlier
 				{
-					if (SIDE(gBankTarget) == B_SIDE_OPPONENT && (gBattleTypeFlags & BATTLE_TYPE_TRAINER)){ //degen addition, AI only receives min turns of confusion
-						gBattleMons[gEffectBank].status2 |= (umodsi(Random2(), 3)) + 2;
-					}
-					else {
-						gBattleMons[gEffectBank].status2 |= (umodsi(Random2(), 4)) + 2;
-					}
+					gBattleMons[gEffectBank].status2 |= (umodsi(Random2(), 4)) + 2;
 
 					BattleScriptPush(gBattlescriptCurrInstr + 1);
 					gBattlescriptCurrInstr = sMoveEffectBS_Ptrs[gBattleCommunication[MOVE_EFFECT_BYTE]];

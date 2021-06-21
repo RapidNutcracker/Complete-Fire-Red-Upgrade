@@ -13,6 +13,21 @@ Sorry, I almost didn't recognize\nyou!\pI'm one of [GREEN]Oak's [BLUE]aides. I w
 #org @gText_aidoranberry_3
 [BLUE]To access DexNav on the Start Menu,\nclick the [ARROW_RIGHT] button.\pI've also upgraded your Pok\edex to\nthe National Dex.\pWhile I'm here, I may as well give\nyou these too.
 
+#org @gText_aidoranberry_carepackage
+[BLUE]Also, as a part of [GREEN]Minimal Grinding\nMode,[BLUE] I can give you care packages.\pCare packages automatically give you\nall items that you'd normally have to\lfarm for from raids or wild battles.
+
+#org @gText_aidoranberry_ifyouwant
+[BLUE]If you'd like a care package, please\ninput the necessary password.
+
+#org @gText_aidoranberry_3_2
+[BLUE]Oh[.] You're playing [GREEN]Hardcore Mode[BLUE],\nare you?\pHow brave of you!\pHere, take these too.
+
+#org @gText_aidoranberry_NiceHere
+Yup, that's it!\nHere's your first care package.
+
+#org @gText_aidoranberry_carepackageNo
+Hmm[.]\nThat's not quite it.\pWould you like to try again?
+
 #org @gText_aidoranberry_4
 Take care!
 
@@ -130,4 +145,36 @@ Aeepraaa!
 #org @gText_Viridian_GirlTip 
 Here's a neat trick!\pPressing [R_BUTTON] in the main fight menu\nallows you to instantly click the\lRun button!
 
+#org @gText_viridian_cheatiswrong
+Hmm[.] you really don't know\nwhat's up[.]
+
+#org @gText_viridian_doyoucheat
+Hmm[.] do you know what's up?
+
+#org @gText_viridian_youcheat
+I guess you're in the know.\nTake these.
+
+#org @gText_oldmanrescript_HadMyCoffeTxt
+Well, now, I've had my coffee, and\nthat's what I need to get going!\pBut I made it too strong.\nIt gave me a headache[.]\pIncidentally, is my old Teachy TV\nhelping you?
+
+#org @gText_oldmanrescript_GrandsonShowTxt
+Wahaha!\nIt's my grandson on the show!\pSince he's the one doing the\nteaching, you're bound to learn.
+
+#org @gText_oldmanrescript_GetGoingTxt
+Well, now, I've had my coffee, and\nthat's what I need to get going!\pBut I made it too strong.\nIt gave me a headache[.]\pIncidentally, are you filling your\nPok\edex?\pAt first, focus on weakening the\nPok\emon before trying to catch it.
+
+#org @gText_oldmanrescript_PrivatePropertyTxt
+I absolutely forbid you from\ngoing through here!\pThis is private property!
+
+#org @gText_oldmanrescript_TooBusyTxt
+Hm[.] You're too busy to not even\nhave the time for Teachy TV[.]\pTime is money, and neither should\nbe ill spent[.]
+
+#org @gText_oldmanrescript_CoffeeTextToo
+Well, now, I've had my coffee, and\nthat's what I need to get going!\pHm?\nWhat is that red box you have?\pAh, so you're working on your\nPok\edex.\pThen let me give you a word of\nadvice.\pWhenever you catch a Pok\emon,\nthe Pok\edex automatically updates\lits data.
+
+#org @gText_oldmanrescript_EducationRight
+Here, take this, too.
+
+#org @gText_oldmanrescript_WatchThat
+That thing's worthless!
 

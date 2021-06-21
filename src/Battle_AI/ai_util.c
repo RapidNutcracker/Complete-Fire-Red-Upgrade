@@ -316,12 +316,12 @@ bool8 MoveKnocksOutPossiblyGoesFirstWithBestAccuracy(u16 move, u8 bankAtk, u8 ba
 				else if (currAcc == bestAcc)
 				{
 					if (PriorityCalc(bankAtk, ACTION_USE_MOVE, currMove) > PriorityCalc(bankAtk, ACTION_USE_MOVE, gBattleMons[bankAtk].moves[bestMoveIndex])) //The better move is still the one with more priority
-						// if (gBattleMoves[currMove].effect == EFFECT_SUCKER_PUNCH){
-						// 	if (Random() % 2 == 0)
-						// 		bestMoveIndex = i;
-						// }
-						// else
-						bestMoveIndex = i;
+						if (gBattleMoves[currMove].effect == EFFECT_SUCKER_PUNCH){
+							if (Random() % 2 == 0)
+								bestMoveIndex = i;
+						}
+						else
+							bestMoveIndex = i;
 				}
 			}
 		}
@@ -3180,7 +3180,10 @@ bool8 ShouldAIUseZMove(u8 bankAtk, u8 bankDef, u16 move)
 
 	u16 zMove = CanUseZMove(bankAtk, 0xFF, move);
 	u16 defMovePrediction = IsValidMovePrediction(bankDef, bankAtk);
-
+	// struct Pokemon* mon = GetBankPartyData(bankAtk);
+	// u16 item = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
+	// // if (SPECIES(bankAtk) == SPECIES_EEVEE && item == ITEM_EEVIUM_Z && move == MOVE_LASTRESORT )
+	// // 	return TRUE;
 	if (zMove != MOVE_NONE)
 	{
 		if (zMove != 0xFFFF) //Damaging Z-Move
@@ -3330,7 +3333,6 @@ bool8 ShouldAIUseZMove(u8 bankAtk, u8 bankDef, u16 move)
 			}
 		}
 	}
-
 	return FALSE;
 }
 

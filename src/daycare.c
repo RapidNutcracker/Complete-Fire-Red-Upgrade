@@ -667,7 +667,7 @@ void CreateEgg(struct Pokemon *mon, u16 species) //The function used by the give
 	SetMonData(mon, MON_DATA_LANGUAGE, &language);
 	SetMonData(mon, MON_DATA_IS_EGG, &isEgg);
 	u8 maxIV = 31;
-	if (FlagGet(0x94F)){
+	if (FlagGet(0x94F) || FlagGet(FLAG_WONDER_TRADE_FIRST)){
 		mon->hiddenAbility = 1; 
 		SetMonData(mon, MON_DATA_ATK_IV, &maxIV);
 		SetMonData(mon, MON_DATA_SPATK_IV, &maxIV);
@@ -800,13 +800,13 @@ static u8 GetEggStepsToSubtract(void)
 {
 	u8 i;
 	u8 count = CalculatePlayerPartyCount();
-	//If any party mons have Magma Armor or Flame Body, subtract 2 steps from hatch counter instead of 1. Updated to 4. 
+	//If any party mons have Magma Armor or Flame Body, subtract 2 steps from hatch counter instead of 1. Updated to 8. 
 	for (i = 0; i < count; ++i)
 	{
 		if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG, NULL))
 		{
 			u8 ability = GetMonAbility(&gPlayerParty[i]);
-			if (ability == ABILITY_MAGMAARMOR || ability == ABILITY_FLAMEBODY || ability == ABILITY_STEAMENGINE)
+			if (FlagGet(FLAG_MINIMAL_GRINDING_MODE) || ability == ABILITY_MAGMAARMOR || ability == ABILITY_FLAMEBODY || ability == ABILITY_STEAMENGINE)
 			{
 				return 4;
 			}

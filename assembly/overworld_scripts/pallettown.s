@@ -61,6 +61,8 @@ endofscript:
     fadeinbgm 0x0 
     fadescreen 0x0
     warp 0x4 0x1 0x1 0x0 0x0
+    @ givepokemon SPECIES_ABSOL 30 0x0 0x0 0x0 0x0
+    @ warp 0x1 0x6 0x0 0x0 0x0
     release
     end 
 
@@ -105,13 +107,15 @@ AskRandomizer:
 
 DefinitiveEdition:
     sound 0x30 
-    msgbox gText_DefinitiveEdition  MSG_KEEPOPEN
+    msgbox gText_DefinitiveEdition MSG_KEEPOPEN
     checksound
     closeonkeypress
     goto endofscript
 
 sethardcoremode:
     setflag FLAG_HARDCORE_MODE
+    checkflag 0x1032
+    if 0x0 _call setmingrinding
     setflag 0x1032
     sound 0x30 
     msgbox gText_hardcoremodeset MSG_KEEPOPEN

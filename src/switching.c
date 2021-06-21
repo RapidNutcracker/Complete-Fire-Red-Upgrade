@@ -142,7 +142,7 @@ static bool8 TryRemovePrimalWeather(u8 bank, u8 ability)
 
 	switch (ability) {
 		case ABILITY_PRIMORDIALSEA:
-			if (gBattleWeather & WEATHER_RAIN_PRIMAL)
+			if (gBattleWeather & WEATHER_RAIN_PRIMAL && !FlagGet(FLAG_HARDCORE_MODE))
 				gBattleStringLoader = PrimalRainEndString;
 			break;
 		case ABILITY_DESOLATELAND:

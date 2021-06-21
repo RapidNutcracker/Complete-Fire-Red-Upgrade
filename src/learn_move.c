@@ -159,6 +159,15 @@ u16 MonTryLearningNewMoveAfterEvolution(struct Pokemon* mon, bool8 firstMove)
 	}
 
 	lvlUpMove = gLevelUpLearnsets[species][sLearningMoveTableID];
+	if((FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE)) && CheckTableForMove(lvlUpMove.move, gHardcoreBannedMoves)) {
+		return 0;
+	}
+	else if((FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE)) && CheckTableForMove(lvlUpMove.move, gHardcoreHalfBannedMoves) && !CheckTableForSpecies(species, gBadHardcoreList)) { 
+		return 0;
+	}
+	else if ((FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE)) && CheckTableForMove(lvlUpMove.move, gHardcoreTrashBannedMoves) && !CheckTableForSpecies(species, gSuperBadHardcoreList)) { 
+		return 0; 
+	}
 	if (lvlUpMove.level == level || lvlUpMove.level == 0)
 	{
 		gMoveToLearn = lvlUpMove.move;
@@ -172,15 +181,6 @@ u16 MonTryLearningNewMoveAfterEvolution(struct Pokemon* mon, bool8 firstMove)
 		retVal = GiveMoveToMon(mon, gMoveToLearn);
 	}
 	//Hardcore mode checks
-	if((FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE)) && CheckTableForMove(lvlUpMove.move, gHardcoreBannedMoves)) {
-		return 0;
-	}
-	else if((FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE)) && CheckTableForMove(lvlUpMove.move, gHardcoreHalfBannedMoves) && !CheckTableForSpecies(species, gBadHardcoreList)) { 
-		return 0;
-	}
-	else if ((FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE)) && CheckTableForMove(lvlUpMove.move, gHardcoreTrashBannedMoves) && !CheckTableForSpecies(species, gSuperBadHardcoreList)) { 
-		return 0; 
-	}
 
 	return retVal;
 }

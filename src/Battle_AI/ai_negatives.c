@@ -186,7 +186,7 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 		return 0; //Can't select this move period
 
 	// Ungrounded check
-	if (CheckGrounding(bankDef) == IN_AIR && moveType == TYPE_GROUND)
+	if (CheckGrounding(bankDef) == IN_AIR && moveType == TYPE_GROUND && move != MOVE_THOUSANDARROWS) //make sure we can still click thousandarrows 
 		return 0;
 
 	// Powder Move Checks (safety goggles, defender has grass type, overcoat, and powder move table)
@@ -378,15 +378,6 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 					return viability;
 				}
 				break;
-
-			// case ABILITY_BIGPECKS:
-			// 	if (moveEffect == EFFECT_DEFENSE_DOWN
-			// 	||  moveEffect == EFFECT_DEFENSE_DOWN_2)
-			// 	{
-			// 		DECREASE_VIABILITY(10);
-			// 		return viability;
-			// 	}
-			// 	break;
 
 			case ABILITY_DEFIANT:
 			case ABILITY_COMPETITIVE:
@@ -633,8 +624,8 @@ MOVESCR_CHECK_0:
 			else if (IS_DOUBLE_BATTLE)
 			{
 				if //(ViableMonCountFromBank(bankDef) == 2 && //If the Target has both Pokemon remaining in doubles
-				(MoveKnocksOutXHits(move, bankAtk, bankDef, 2)
-				|| MoveKnocksOutXHits(move, bankAtk, data->bankDefPartner, 2)) 
+				(MoveKnocksOutXHits(move, bankAtk, bankDef, 3)
+				|| MoveKnocksOutXHits(move, bankAtk, data->bankDefPartner, 3)) 
 				{
 					//Good to use move
 				}
@@ -652,8 +643,8 @@ MOVESCR_CHECK_0:
 					else if (CanKnockOutWithoutMove(move, bankAtk, bankDef, FALSE))
 						DECREASE_VIABILITY(10); //Better to use a different move to knock out
 				}
-				// else
-				// 	DECREASE_VIABILITY(4); removed this here
+				else
+					DECREASE_VIABILITY(4); //removed this here
 			}
 		#else
 			DECREASE_VIABILITY(10);
@@ -1577,13 +1568,15 @@ MOVESCR_CHECK_0:
 			else
 			{
 				if ( (ViableMonCountFromBank(bankDef) <= 3) 
-					|| (MoveInMoveset(MOVE_RAPIDSPIN, bankDef) && !(IsOfType(bankAtk, TYPE_GHOST)))
-					|| (MoveInMoveset(MOVE_DEFOG, bankDef)) 
+					|| (MoveInMoveset(MOVE_RAPIDSPIN, bankDef) && !(IsOfType(bankAtk, TYPE_GHOST)) && !(VarGet(VAR_BATTLE_AURAS) == AURA_CANT_HAZARD_CONTROL))
+					|| (MoveInMoveset(MOVE_DEFOG, bankDef) && !(VarGet(VAR_BATTLE_AURAS) == AURA_CANT_HAZARD_CONTROL)) 
 					|| (MoveInMoveset(MOVE_MAGICCOAT, bankDef))
 					|| (ABILITY(FOE(bankAtk)) == ABILITY_MAGICBOUNCE)
 					)
 				{
-					DECREASE_VIABILITY(10);
+					if (Random() % 2 == 0){
+						DECREASE_VIABILITY(10);
+					}
 					break;
 				}
 			}
@@ -2780,13 +2773,13 @@ MOVESCR_CHECK_0:
 					DECREASE_VIABILITY(10);
 					break;
 				}
-				else if ( Random() % 2 == 0) {
-					DECREASE_VIABILITY(10); //don't always spam sucker punch, can be easily abused
-				}
+				// else if ( Random() % 2 == 0) {
+				// 	DECREASE_VIABILITY(10); //don't always spam sucker punch, can be easily abused
+				// }
 			}
-			else if ( Random() % 2 == 0) {
-				DECREASE_VIABILITY(10);
-			}
+			// else if ( Random() % 2 == 0) {
+			// 	DECREASE_VIABILITY(10);
+			// }
 			//If the foe has move prediction, assume damage move for now.
 			goto AI_STANDARD_DAMAGE;
 
@@ -2824,7 +2817,7 @@ MOVESCR_CHECK_0:
 		case EFFECT_LASTRESORT_SKYDROP:
 			switch (move) {
 				case MOVE_LASTRESORT:
-					if (!CanUseLastResort(bankAtk))
+					if (!CanUseLastResort(bankAtk) && SPECIES(bankAtk) != SPECIES_EEVEE)
 						DECREASE_VIABILITY(10);
 					else
 						goto AI_STANDARD_DAMAGE;

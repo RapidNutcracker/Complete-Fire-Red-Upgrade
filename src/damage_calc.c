@@ -362,14 +362,14 @@ u32 AI_CalcDmg(const u8 bankAtk, const u8 bankDef, const u16 move, struct Damage
 		damage *= 5;
 		return damage;
 	}
-	else if (CheckTableForMove(move, gTwoToFiveStrikesMoves) || gBattleMoves[move].effect == EFFECT_TRIPLE_KICK) //Three hits on average
-	{
-		damage *= 3;
-		return damage;
-	}
-	else if (CheckTableForMove(move, gTwoStrikesMoves))
+	else if (CheckTableForMove(move, gTwoToFiveStrikesMoves) || CheckTableForMove(move, gTwoStrikesMoves)) //Three hits on average
 	{
 		damage *= 2;
+		return damage;
+	}
+	else if (gBattleMoves[move].effect == EFFECT_TRIPLE_KICK) //just assume 120 damage for triple kick yolo 
+	{
+		damage *= 6;
 		return damage;
 	}
 	else if (ABILITY(bankAtk) == ABILITY_PARENTALBOND && IsMoveAffectedByParentalBond(move, bankAtk))

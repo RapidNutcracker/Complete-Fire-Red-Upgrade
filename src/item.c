@@ -607,7 +607,7 @@ u8 CanMonLearnTMTutor(struct Pokemon* mon, u16 item, u8 tutor)
 			return CANNOT_LEARN_MOVE;
 		//do {} while (0); // :morphon:
 	}
-	#ifdef EXPANDED_MOVE_TUTORS
+	// #ifdef EXPANDED_MOVE_TUTORS
 	else if (!CanMonLearnTutorMove(mon, tutor))
 	{
 		return CANNOT_LEARN_MOVE;
@@ -615,17 +615,8 @@ u8 CanMonLearnTMTutor(struct Pokemon* mon, u16 item, u8 tutor)
 	else
 	{
 		move = GetExpandedTutorMove(tutor);
-	}
-	#else
-	else if (!CanLearnTutorMove(mon->species, tutor))
-	{
-		return CANNOT_LEARN_MOVE;
-	}
-	else
-	{
-		move = GetTutorMove(tutor);
 		u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
-		if((FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE)) && CheckTableForMove(move, gHardcoreHalfBannedMoves) && !CheckTableForSpecies(species, gBadHardcoreList) ){
+		if( (FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE)) && CheckTableForMove(move, gHardcoreBannedMoves)  ){
 			return CANNOT_LEARN_MOVE;
 		}
 		if((FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE)) && CheckTableForMove(move, gHardcoreHalfBannedMoves) && !CheckTableForSpecies(species, gBadHardcoreList)) { 
@@ -635,7 +626,26 @@ u8 CanMonLearnTMTutor(struct Pokemon* mon, u16 item, u8 tutor)
 			return CANNOT_LEARN_MOVE;
 		}
 	}
-	#endif
+	// #else
+	// else if (!CanLearnTutorMove(mon->species, tutor))
+	// {
+	// 	return CANNOT_LEARN_MOVE;
+	// }
+	// else
+	// {
+	// 	move = GetTutorMove(tutor);
+	// 	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+	// 	if((FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE)) && CheckTableForMove(move, gHardcoreHalfBannedMoves) && !CheckTableForSpecies(species, gBadHardcoreList) ){
+	// 		return CANNOT_LEARN_MOVE;
+	// 	}
+	// 	if((FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE)) && CheckTableForMove(move, gHardcoreHalfBannedMoves) && !CheckTableForSpecies(species, gBadHardcoreList)) { 
+	// 		return CANNOT_LEARN_MOVE;
+	// 	}
+	// 	if ((FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE)) && CheckTableForMove(move, gHardcoreTrashBannedMoves) && !CheckTableForSpecies(species, gSuperBadHardcoreList)) { 
+	// 		return CANNOT_LEARN_MOVE;
+	// 	}
+	// }
+	// #endif
 
 	if (MonKnowsMove(mon, move))
 		return ALREADY_KNOWS_MOVE;

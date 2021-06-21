@@ -357,7 +357,7 @@ void atkEF_handleballthrow(void)
 			odds = (odds * 15) / 10;
 
 		if (IsRaidBattle()) //Dynamax Raid Pokemon can be caught easier
-			odds *= 4;
+			odds *= 5;
 		if (FlagGet(FLAG_SYS_GAME_CLEAR))
 			odds *= 3;
 

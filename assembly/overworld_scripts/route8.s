@@ -26,6 +26,7 @@ Route8_AceTrainerFight:
     if equal _goto LaterThen 
     msgbox gText_Route8_AceTrainerPreBattle MSG_FACE
     setflag 0x90E
+    special 0x0
     trainerbattle3 0x3 0x12 0x0 gText_Route8_AceTrainerLoss
     msgbox gText_Route8_AceTrainer3 MSG_FACE
     faceplayer

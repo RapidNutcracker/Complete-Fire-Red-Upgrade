@@ -45,7 +45,7 @@ static struct Raid sRoute3Raids1Star[] =
 		.ability = RAID_ABILITY_HIDDEN,
 		.drops =
 		{
-			/* 100 %*/ ITEM_ORAN_BERRY,
+			/* 100 %*/ITEM_ORAN_BERRY,
 			/* 80 %*/ ITEM_STARDUST,
 			/* 80 %*/ ITEM_MUSCLE_WING,
 			/* 50 %*/ ITEM_CHESTO_BERRY,
@@ -287,7 +287,7 @@ static struct Raid sRoute4Raids1Star[] =
 {
 	{
 		.species = SPECIES_YAMPER,
-		.ability = RAID_ABILITY_HIDDEN,
+		.ability = RAID_ABILITY_1,
 		.drops =
 		{
 			/*100 %*/ ITEM_NONE,
@@ -561,7 +561,7 @@ static struct Raid sRoute24Raids1Star[] =
 	},
 	{
 		.species = SPECIES_LOTAD,
-		.ability = RAID_ABILITY_HIDDEN,
+		.ability = RAID_ABILITY_1,
 		.drops =
 		{
 			/*100 %*/ ITEM_NONE,
@@ -1391,8 +1391,8 @@ static struct Raid sRockTunnelRaids2Star[] =
 			/* 25 %*/ ITEM_ABILITY_CAPSULE,
 			/* 25 %*/ ITEM_DREAM_BALL,
 			/*  5 %*/ ITEM_PP_UP,
-			/*  4 %*/ ITEM_EVIOLITE,
-			/*  1 %*/ ITEM_EVIOLITE,
+			/*  4 %*/ ITEM_LUCKY_EGG,
+			/*  1 %*/ ITEM_LUCKY_EGG,
 		},
 	},
 	{
@@ -1410,8 +1410,8 @@ static struct Raid sRockTunnelRaids2Star[] =
 			/* 25 %*/ ITEM_ABILITY_CAPSULE,
 			/* 25 %*/ ITEM_DREAM_BALL,
 			/*  5 %*/ ITEM_PP_UP,
-			/*  4 %*/ ITEM_EVIOLITE,
-			/*  1 %*/ ITEM_EVIOLITE,
+			/*  4 %*/ ITEM_LUCKY_EGG,
+			/*  1 %*/ ITEM_LUCKY_EGG,
 		},
 	},
 	{
@@ -1429,8 +1429,8 @@ static struct Raid sRockTunnelRaids2Star[] =
 			/* 25 %*/ ITEM_ABILITY_CAPSULE,
 			/* 25 %*/ ITEM_DREAM_BALL,
 			/*  5 %*/ ITEM_PP_UP,
-			/*  4 %*/ ITEM_EVIOLITE,
-			/*  1 %*/ ITEM_EVIOLITE,
+			/*  4 %*/ ITEM_LUCKY_EGG,
+			/*  1 %*/ ITEM_LUCKY_EGG,
 		},
 	},
 	{
@@ -1448,8 +1448,8 @@ static struct Raid sRockTunnelRaids2Star[] =
 			/* 25 %*/ ITEM_ABILITY_CAPSULE,
 			/* 25 %*/ ITEM_DREAM_BALL,
 			/*  5 %*/ ITEM_PP_UP,
-			/*  4 %*/ ITEM_EVIOLITE,
-			/*  1 %*/ ITEM_EVIOLITE,
+			/*  4 %*/ ITEM_LUCKY_EGG,
+			/*  1 %*/ ITEM_LUCKY_EGG,
 		},
 	},
 	{
@@ -1467,8 +1467,8 @@ static struct Raid sRockTunnelRaids2Star[] =
 			/* 25 %*/ ITEM_ABILITY_CAPSULE,
 			/* 25 %*/ ITEM_DREAM_BALL,
 			/*  5 %*/ ITEM_PP_UP,
-			/*  4 %*/ ITEM_EVIOLITE,
-			/*  1 %*/ ITEM_EVIOLITE,
+			/*  4 %*/ ITEM_LUCKY_EGG,
+			/*  1 %*/ ITEM_LUCKY_EGG,
 		},
 	},
 };

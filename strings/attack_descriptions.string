@@ -19,6 +19,9 @@ The user raises its\nDefense and Attack\nin the 1st turn, then\nattacks in the 2
 #org @DESC_FLASH
 The user flashes a\nbright light, which\nlowers its Attack. 
 
+#org @DESC_BEATUP
+The use attacks by\nbullying the target.\nIt hits two to five\ntimes in a row.
+
 #org @DESC_DRILLPECK 
 The beak acts as\na drill, boasting\nhigh critical-hit\nratio.
 
@@ -335,7 +338,7 @@ The user scatters\na cloud of powder,\nmaking foes attack\nonly the user.
 Does double damage\nto a sleeping foe.\nIt also wakes the\nfoe up, however.
 
 #org @DESC_RAZORSHELL
-The foe is cut\nby sharp shells.\nIt may also lower\nthe foe's Defense.
+The foe is cut\nby sharp shells.\nIt has a high\ncritical-hit ratio.
 
 #org @DESC_COPYCAT
 The user mimics the\nlast move used.\nFails if no move\nhas been used yet.

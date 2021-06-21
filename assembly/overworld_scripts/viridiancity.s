@@ -8,6 +8,7 @@
 .equ FLAG_HARDCORE_MODE, 0x1034
 .equ VAR_BATTLE_AURAS, 0x5119
 .equ AURA_CANT_HAZARD_CONTROL_STRING, 8
+.equ FLAG_MINIMAL_GRINDING_MODE, 0x1032
 
 .global EventScript_Viridian_WiseGlasses
 EventScript_Viridian_WiseGlasses:
@@ -70,7 +71,12 @@ EventScript_aidoranberry_Start:
 	waitfanfare
 	setflag 0x91E
 	msgbox gText_aidoranberry_3 0x6
-	giveitem 0x8B 0x5 MSG_OBTAIN
+	giveitem 0x8B 0xA MSG_OBTAIN
+	checkflag FLAG_MINIMAL_GRINDING_MODE
+	if 0x1 _call GiveRepels
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _call HardcoreAsk
+AidLeave:
 	msgbox gText_aidoranberry_4 0x6
 	applymovement 0x9 EventScript_aidoranberry_Aid4
 	waitmovement 0x0
@@ -79,6 +85,60 @@ EventScript_aidoranberry_Start:
 	setflag 0x200
 	release
 	end
+
+GiveRepels:
+	giveitem ITEM_MAX_REPEL 0x64 MSG_OBTAIN
+	msgbox gText_aidoranberry_carepackage MSG_NORMAL
+AskAidPassword:
+	msgbox gText_aidoranberry_ifyouwant MSG_NORMAL
+	special 0x12C
+	waitstate
+	loadpointer 0x0 gText_ToxicString
+	special 0x12D
+	compare LASTRESULT 0x0
+	if equal _goto GiveCarePackage
+NoThatsNotItAid:
+	msgbox gText_aidoranberry_carepackageNo MSG_YESNO
+	compare LASTRESULT YES
+	if 0x1 _goto AskAidPassword
+	goto AidLeave
+	end
+
+HardcoreAsk:
+	msgbox gText_aidoranberry_3_2 MSG_NORMAL
+	giveitem ITEM_ABILITY_CAPSULE 0x5 MSG_OBTAIN
+	return
+
+GiveCarePackage:
+	msgbox gText_aidoranberry_NiceHere MSG_NORMAL
+	giveitem ITEM_QUICK_BALL 0xA MSG_OBTAIN
+	giveitem ITEM_SHED_SHELL 0xC MSG_OBTAIN
+	giveitem ITEM_SHARP_BEAK 0xC MSG_OBTAIN
+	giveitem ITEM_BLACK_GLASSES 0xC MSG_OBTAIN
+	giveitem ITEM_NEVER_MELT_ICE 0xC MSG_OBTAIN
+	giveitem ITEM_POISON_BARB 0xC MSG_OBTAIN
+	giveitem ITEM_MENTAL_HERB 0xC MSG_OBTAIN
+	giveitem ITEM_BIG_MUSHROOM 0xC MSG_OBTAIN
+	giveitem ITEM_PIXIE_PLATE 0xC MSG_OBTAIN
+	giveitem ITEM_SILVER_POWDER 0xC MSG_OBTAIN
+	giveitem ITEM_TWISTED_SPOON 0xC MSG_OBTAIN
+	giveitem ITEM_MIRACLE_SEED 0xC MSG_OBTAIN
+	giveitem ITEM_LIGHT_BALL 0xC MSG_OBTAIN
+	giveitem ITEM_BOTTLE_CAP 0xC MSG_OBTAIN
+	giveitem ITEM_RED_SHARD 0x20 MSG_OBTAIN
+	giveitem ITEM_ASPEAR_BERRY 0xC MSG_OBTAIN
+	giveitem ITEM_CHILAN_BERRY 0xC MSG_OBTAIN
+	giveitem ITEM_PECHA_BERRY 0xC MSG_OBTAIN
+	giveitem ITEM_PASSHO_BERRY 0xC MSG_OBTAIN
+	giveitem ITEM_CHARTI_BERRY 0xC MSG_OBTAIN
+	giveitem ITEM_YACHE_BERRY 0xC MSG_OBTAIN
+	giveitem ITEM_PAYAPA_BERRY 0xC MSG_OBTAIN
+	giveitem ITEM_RINDO_BERRY 0xC MSG_OBTAIN
+	giveitem ITEM_OCCA_BERRY 0xC MSG_OBTAIN
+	giveitem ITEM_COBA_BERRY 0xC MSG_OBTAIN
+	giveitem ITEM_KEBIA_BERRY 0xC MSG_OBTAIN
+	setflag 0x103F
+	return
 
 Stop:
     .byte look_up
@@ -232,7 +292,6 @@ EventScript_brendanbattleleft_Start:
 	waitmovement 0x0
 	setvar 0x4013 0x1
 	hidesprite 0x0D
-	setflag 0x200
 	release
 	end
 
@@ -617,4 +676,153 @@ EventScript_ViridianForestGirlTip:
 	msgbox gText_Viridian_GirlTip MSG_FACE 
 	release 
 	end 
-	
+
+.global EventScript_MinimalGrindingCandy
+EventScript_MinimalGrindingCandy:
+	checkflag FLAG_MINIMAL_GRINDING_MODE
+	if 0x0 _goto NoThatsNotIt
+	lock
+	faceplayer
+	msgbox gText_viridian_doyoucheat MSG_YESNO
+	compare LASTRESULT YES
+	if 0x0 _goto NoThatsNotIt
+	checkflag 0x1040
+	if 0x1 _goto GiveCandy
+	special 0x12C
+	waitstate
+	loadpointer 0x0 gText_CheatString
+	special 0x12D
+	compare LASTRESULT 0x0
+	if equal _goto SetRareFlag
+	goto NoThatsNotIt
+	release
+	end
+
+NoThatsNotIt:
+	applymovement 0x800F StayFace
+	msgbox gText_viridian_cheatiswrong MSG_FACE
+	waitmovement 0x0
+	release
+	end
+
+StayFace:
+	.byte face_player
+	.byte end_m
+
+SetRareFlag:
+	setflag 0x1040
+	goto GiveCandy
+	end
+
+GiveCandy:
+	applymovement 0x800F StayFace
+	msgbox gText_viridian_youcheat MSG_NORMAL
+	giveitem ITEM_RARE_CANDY 0x64 MSG_OBTAIN
+	giveitem ITEM_RARE_CANDY 0x64 MSG_OBTAIN
+	giveitem ITEM_RARE_CANDY 0x64 MSG_OBTAIN
+	giveitem ITEM_RARE_CANDY 0x64 MSG_OBTAIN
+	giveitem ITEM_POMEG_BERRY 0x64 MSG_OBTAIN
+	waitmovement 0x0
+	release 
+	end
+
+.global EventScript_oldmanrescript_Start
+EventScript_oldmanrescript_Start:
+	lock
+	faceplayer
+	checkflag 0x820
+	if 0x1 _goto EventScript_oldmanrescript_HadMyCoffee
+	compare 0x4051 0x2
+	if 0x4 _goto EventScript_oldmanrescript_HadMyCoffee2
+	compare 0x4051 0x1
+	if 0x1 _goto EventScript_oldmanrescript_Option3
+	compare 0x4051 0x0
+	if 0x1 _goto EventScript_oldmanrescript_Forbid
+	end
+
+.global EventScript_oldmanrescript_Tileleft
+EventScript_oldmanrescript_Tileleft:
+	lockall
+	textcolor 0x0
+	applymovement 0x4 EventScript_oldmanrescript_FaceLeft
+	waitmovement 0x0
+	applymovement 0xFF EventScript_oldmanrescript_FaceRight
+	waitmovement 0x0
+	call EventScript_oldmanrescript_Option3Stuff
+	release
+	end
+
+.global EventScript_oldmanrescript_Tileright
+EventScript_oldmanrescript_Tileright:
+	lockall
+	textcolor 0x0
+	applymovement 0x4 EventScript_oldmanrescript_FaceRight
+	waitmovement 0x0
+	applymovement 0xFF EventScript_oldmanrescript_FaceLeft
+	waitmovement 0x0
+	call EventScript_oldmanrescript_Option3Stuff
+	release
+	end
+
+
+	@---------------
+EventScript_oldmanrescript_HadMyCoffee:
+	msgbox gText_oldmanrescript_HadMyCoffeTxt MSG_YESNO @"Well, now, I@ve had my coffee, and..."
+	compare LASTRESULT 0x0
+	if 0x1 _goto EventScript_oldmanrescript_TooBusy
+	msgbox gText_oldmanrescript_GrandsonShowTxt MSG_KEEPOPEN @"Wahaha!\nIt@s my grandson on the s..."
+	release
+	end
+
+	@---------------
+EventScript_oldmanrescript_HadMyCoffee2:
+	msgbox gText_oldmanrescript_GetGoingTxt MSG_KEEPOPEN @"Well, now, I@ve had my coffee, and..."
+	release
+	end
+
+	@---------------
+EventScript_oldmanrescript_Option3:
+	call EventScript_oldmanrescript_Option3Stuff
+	release
+	end
+
+	@---------------
+EventScript_oldmanrescript_Forbid:
+	msgbox gText_oldmanrescript_PrivatePropertyTxt MSG_KEEPOPEN @"I absolutely forbid you from\ngoin..."
+	closeonkeypress
+	release
+	end
+
+	@---------------
+EventScript_oldmanrescript_TooBusy:
+	msgbox gText_oldmanrescript_TooBusyTxt MSG_KEEPOPEN @"Hm[.] You@re too busy to not even\..."
+	release
+	end
+
+EventScript_oldmanrescript_Option3Stuff:
+	msgbox gText_oldmanrescript_CoffeeTextToo MSG_KEEPOPEN @"Well, now, I@ve had my coffee, and..."
+	closeonkeypress
+	special 0x187
+	compare LASTRESULT 0x2
+	if 0x1 _goto EventScript_oldmanrescript_End
+	lock
+	faceplayer
+	msgbox gText_oldmanrescript_EducationRight MSG_KEEPOPEN @"There! Now tell me, that was\neduc..."
+	setvar 0x4051 0x2
+	giveitem 0x16E 0x1 MSG_OBTAIN
+	msgbox gText_oldmanrescript_WatchThat MSG_KEEPOPEN @"If there@s something you don@t\nun..."
+	return
+
+	@---------------
+EventScript_oldmanrescript_End:
+	release
+	end
+
+
+EventScript_oldmanrescript_FaceLeft:
+.byte 0x2F
+.byte 0xFE
+
+EventScript_oldmanrescript_FaceRight:
+.byte 0x30
+.byte 0xFE

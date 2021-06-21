@@ -1414,6 +1414,7 @@ FlappleTrainersContinue:
 	if equal _goto Celadon_FlappleReject
 	setflag 0x90E
 	msgbox gText_CeladonFlappleTrainers_4 MSG_NORMAL
+	special 0x0
 	trainerbattle3 0x3 0x10 0x0 gText_flappletrainer1_loss
 	msgbox gText_CeladonFlappleTrainers_5 MSG_NORMAL
 	setflag 0x90E

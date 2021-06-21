@@ -1569,6 +1569,16 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 		.ball = TRAINER_EV_CLASS_BALL,
 		.ability = Ability_2,
 	},
+	[153] =
+	{ //Lt Surge Boltund
+		.nature = NATURE_JOLLY,
+		.ivs = 31,
+		.hpEv = 100,
+		.atkEv = 100,
+		.spdEv = 252,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_1,
+	},
 };
 #endif
 

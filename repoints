@@ -308,9 +308,13 @@ giovanniPal 8239D7C
 claireTiles 82395E4
 clairePal   8239A84
 
-#56 tested 
+#56 NEED TEST
 brendanTiles 823973C
 brendanPal   8239BDC
+
+#57
+mayTiles 8239744
+mayPal   8239BE4
 
 # red 135 tested 
 gTrainerPicNewFrontRedTiles 82399B4

@@ -2051,6 +2051,7 @@ u32 SpeedCalc(u8 bank)
 			if (gTerrainType == ELECTRIC_TERRAIN)
 				speed *= 2;
 			break;
+
 		case ABILITY_BULLRUSH:
 			if(gDisableStructs[bank].isFirstTurn){
 				speed = (speed * 15) / 10;
@@ -2114,6 +2115,11 @@ u32 SpeedCalcMon(u8 side, struct Pokemon* mon)
 		case ABILITY_SURGESURFER:
 			if (gTerrainType == ELECTRIC_TERRAIN)
 				speed *= 2;
+			break;
+		case ABILITY_BULLRUSH:
+			if(gDisableStructs[side].isFirstTurn){
+				speed = (speed * 15) / 10;
+			}
 			break;
 	}
 

@@ -11,7 +11,8 @@
 .equ VAR_PARTNER_BACKSPRITE, 0x5012
 .equ VAR_PARTNER, 0x5011
 .equ VAR_TOTEM, 0x5002
-
+.equ VAR_BATTLE_AURAS, 0x5119
+.equ AURA_STATUSMIST_STRING, 25 
 .equ VAR_TERRAIN, 0x5000
 .equ FLAG_HARDCORE_MODE, 0x1034
 .equ FLAG_MINIMAL_GRINDING_MODE, 0x1032
@@ -158,8 +159,8 @@ EventScript_amarowak_Start:
 	if 0x1 _call SetTerrain
 	setvar 0x8000 MOVE_BONEMERANG @sets moveset to bonemerang, shadow bone, flare blitz thunderpunch
 	setvar 0x8001 MOVE_SHADOWBONE
-	setvar 0x8002 MOVE_FLAREBLITZ
-	setvar 0x8003 MOVE_SWORDSDANCE
+	setvar 0x8002 MOVE_FIREPUNCH
+	setvar 0x8003 MOVE_THUNDERPUNCH
 	setvar VAR_TOTEM 0xFFFF @raises all stats by 1
 	setflag FLAG_DISABLE_BAG
 	setwildbattle SPECIES_MAROWAK_A 0x3A ITEM_THICK_CLUB
@@ -173,7 +174,7 @@ EventScript_amarowak_Start:
 	end
 
 SetTerrain: 
-	setvar VAR_TERRAIN 0x3 @misty terrain
+	setvar VAR_BATTLE_AURAS AURA_STATUSMIST_STRING @misty terrain
 	return
 
 EventScript_amarowak_Moveup:

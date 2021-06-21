@@ -28,7 +28,9 @@ npc 5 1 9 EventScript_ExpertModeNPC
 npc 15 0 1 EventScript_ViridianForestGirlTip
 sign 3 1 2 EventScript_TrainerTipsViridian1
 sign 3 1 0 EventScript_TrainerTipsViridian2
-
+npc 3 1 3 EventScript_oldmanrescript_Start
+tile 3 1 2 EventScript_oldmanrescript_Tileleft
+tile 3 1 3 EventScript_oldmanrescript_Tileright
 #ROUTE 2
 npc 3 20 2 EventScript_Cut
 npc 3 20 3 EventScript_Cut
@@ -77,7 +79,7 @@ tile 6 2 1 EventScript_ExpertModeTile
 tile 6 2 0 EventScript_ExpertModeTileLeft
 tile 6 2 2 EventScript_ExpertModeTileRight
 npc 6 2 2 EventScript_ExpertModeNPC
-npc 3 2 8 EventScript_WonderTrade2
+npc 3 2 8 EventScript_WonderTrade
 npc 3 2 2 EventScript_GiveExpShare
 sign 3 2 3 EventScript_TrainerTipsPewter
 npc 6 7 1 EventScript_Pewter_RandomizerInfo
@@ -103,6 +105,7 @@ npc 1 1 14 EventScript_MtMoonRaid
 npc 1 3 11 EventScript_MtMoon_ScopeLens 
 tile 1 3 1 EventScript_adminmtmoonright
 tile 1 3 2 EventScript_adminmtmoonleft_Start
+npc 1 3 8 EventScript_DiglettsCave_HardStone
 npc 1 2 0 EventScript_RockSmash 
 npc 1 2 1 EventScript_RockSmash 
 npc 1 2 2 EventScript_RockSmash 
@@ -113,7 +116,7 @@ npc 7 3 7 EventScript_NatureChanger
 npc 7 5 2 EventScript_misty_Start
 npc 7 0 0 EventScript_Cerulean_Haircut
 npc 7 9 0 EventScript_Cerulean_HappinessCheck
-npc 7 2 1 EventScript_WonderTrade
+npc 7 2 1 EventScript_WonderTrade2
 # npc 7 2 0 EventScript_WonderTrade2
 npc 3 3 8 EventScript_Cut 
 npc 7 5 3 EventScript_ExpertModeNPC
@@ -151,9 +154,9 @@ npc 3 24 9 EventScript_Route6_Pinsirite
 npc 3 24 8 EventScript_RockSmash 
 
 #Route 11
-tile 3 29 0 EventScript_secondbrendantop_Start
-tile 3 29 1 EventScript_secondbrendanmiddle_Start
-tile 3 29 2 EventScript_secondbrendanbottom_Start
+# tile 3 29 0 EventScript_secondbrendantop_Start
+# tile 3 29 1 EventScript_secondbrendanmiddle_Start
+# tile 3 29 2 EventScript_secondbrendanbottom_Start
 npc 3 29 14 EventScript_whitney_Start
 npc 3 29 15 EventScript_Route11Raid 
 npc 22 1 1 EventScript_itemfinder_Start 
@@ -169,7 +172,6 @@ npc 23 2 0 EventScript_sharpedonite_Start
 #Digletts Cave
 npc 1 37 0 EventScript_DigletsCaveRaid
 npc 1 37 1 EventScript_Route2_Rest
-npc 1 36 1 EventScript_DiglettsCave_HardStone
 
 #Vermilion City 
 npc 9 6 0 EventScript_ltsurge_Start
@@ -188,6 +190,9 @@ npc 3 5 9 EventScript_Vermilion_Copperajite
 npc 1 20 1 EventScript_SSAnne_CantForget
 npc 1 21 2 EventScript_SSAnne_RockPolish
 npc 1 13 3 EventScript_SSAnne_BrickBreak
+tile 1 6 0 EventScript_secondbrendanleft_Start
+tile 1 6 1 EventScript_secondbrendanmiddle_Start
+tile 1 6 2 EventScript_secondbrendanright_Start
 
 #Route 9
 npc 3 27 9 EventScript_Cut
@@ -465,6 +470,7 @@ npc 12 0 7 EventScript_blaine_Start
 npc 12 4 4 EventScript_SilvallyChanger
 npc 12 5 7 EventScript_NatureChanger
 # npc 12 5 7 EventScript_Viridian_GiveTestItem
+npc 3 1 5 EventScript_MinimalGrindingCandy
 npc 12 4 5 EventScript_therianforms_Start
 npc 12 0 8 EventScript_ExpertModeNPC
 npc 12 3 1 EventScript_Eevee_scientist

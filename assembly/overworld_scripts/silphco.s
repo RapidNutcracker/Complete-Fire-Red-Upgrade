@@ -229,6 +229,7 @@ EventScript_silphcoteambattle_Start:
 
 EventScript_silphcoteambattle_Script:
 	msgbox gText_silphcoteambattle_1 0x6
+	special 0x0
 	clearflag 0x200
 	showsprite 0x9
 	applymovement 0xFF EventScript_silphcoteambattle_Facedown

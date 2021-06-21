@@ -350,6 +350,8 @@ static bool8 AccuracyCalcHelper(u16 move, u8 bankDef)
 	||   (ABILITY(gBankAttacker) == ABILITY_NOGUARD) || (ABILITY(bankDef) == ABILITY_NOGUARD)
 	// || (ABILITY(gBankAttacker) == ABILITY_LETHALPRECISION && (gNewBS->ResultFlags[bankDef] & MOVE_RESULT_SUPER_EFFECTIVE)) //added here 
 	||   (move == MOVE_TOXIC && IsOfType(gBankAttacker, TYPE_POISON))
+	||   (move == MOVE_WILLOWISP && IsOfType(gBankAttacker, TYPE_FIRE) )
+	||   (move == MOVE_THUNDERWAVE && IsOfType(gBankAttacker, TYPE_ELECTRIC))
 	||   (CheckTableForMove(move, gAlwaysHitWhenMinimizedMoves) && gStatuses3[bankDef] & STATUS3_MINIMIZED)
 	||  ((gStatuses3[bankDef] & STATUS3_TELEKINESIS) && gBattleMoves[move].effect != EFFECT_0HKO)
 	||	 gBattleMoves[move].accuracy == 0)

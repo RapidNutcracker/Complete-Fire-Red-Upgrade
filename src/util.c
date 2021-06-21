@@ -424,3 +424,46 @@ bool8 CanPartyMonBeFrozen(struct Pokemon* mon)
 
 	return TRUE;
 }
+
+
+u8 GetBadgeCount() //added this here
+{
+	u8 badgeCount = 0;
+
+	if (FlagGet(FLAG_SYS_GAME_CLEAR)) //0x82C
+		return 17;
+	if (FlagGet(FLAG_BRENDAN_FINAL))
+		++badgeCount;
+	if (FlagGet(FLAG_BADGE08_GET))
+		++badgeCount;
+	if (FlagGet(FLAG_GIOVANNI_BOSS))
+	    ++badgeCount;
+	if (FlagGet(FLAG_ARCHER_ARIANA_B2B))
+		++badgeCount;
+	if (FlagGet(FLAG_BADGE07_GET))
+		++badgeCount;
+	if (FlagGet(FLAG_MAY_BOSS))
+		++badgeCount;
+	if (FlagGet(FLAG_BADGE06_GET))
+		++badgeCount;
+	if (FlagGet(FLAG_BADGE05_GET))
+		++badgeCount;
+	if (FlagGet(FLAG_HIDE_SILPH_ROCKETS))
+		++badgeCount;
+	if (FlagGet(FLAG_ARCHER_ARIANA_TAG))
+		++badgeCount;
+	if (FlagGet(FLAG_HIDE_HIDEOUT_GIOVANNI))
+		++badgeCount; 
+	if (FlagGet(FLAG_BADGE04_GET))
+		++badgeCount;
+	if (FlagGet(FLAG_BADGE03_GET))
+		++badgeCount;
+	if (FlagGet(FLAG_BADGE02_GET))
+		++badgeCount;
+	if (FlagGet(FLAG_ARCHER_MT_MOON))
+		++badgeCount; 
+	if (FlagGet(FLAG_BADGE01_GET))
+		++badgeCount;
+
+	return badgeCount;
+}

@@ -1977,6 +1977,8 @@ static void SetWildMonHeldItem(void)
 			|| gBaseStats[species].item1 == ITEM_SMOOTH_ROCK || gBaseStats[species].item2 == ITEM_SMOOTH_ROCK
 			|| gBaseStats[species].item1 == ITEM_THROAT_SPRAY || gBaseStats[species].item2 == ITEM_THROAT_SPRAY))
 				continue;
+			if (FlagGet(FLAG_HARDCORE_MODE) &&(gBaseStats[species].item1 == ITEM_MISTY_SEED || gBaseStats[species].item2 == ITEM_MISTY_SEED) && !(FlagGet(FLAG_BADGE06_GET)))
+				continue; 
 			if (FlagGet(FLAG_HARDCORE_MODE) &&(gBaseStats[species].item1 == ITEM_PSYCHIC_SEED || gBaseStats[species].item2 == ITEM_PSYCHIC_SEED) && !(FlagGet(FLAG_BADGE05_GET)))
 				continue; 
 			if (FlagGet(FLAG_HARDCORE_MODE) &&(gBaseStats[species].item1 == ITEM_ELECTRIC_SEED || gBaseStats[species].item2 == ITEM_ELECTRIC_SEED) && !(FlagGet(FLAG_BADGE03_GET)))
@@ -1997,7 +1999,7 @@ static void SetWildMonHeldItem(void)
 		}
 	}
 }
-
+  
 void GiveMonNatureAndAbility(struct Pokemon* mon, u8 nature, u8 abilityNum, bool8 forceShiny, bool8 keepGender, bool8 keepLetterCore)
 {
 	u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
@@ -3495,7 +3497,7 @@ static u8 GetOpenWorldSpeciesLevel(u32 nameHash, u8 i)
 #endif
 
 u8 GetOpenWorldBadgeCount(void)
-{
+{ 
 	u8 badgeCount = 0;
 
 	if (FlagGet(FLAG_SYS_GAME_CLEAR)) //0x82C
@@ -3511,7 +3513,7 @@ u8 GetOpenWorldBadgeCount(void)
 		++badgeCount;
 	if (FlagGet(FLAG_BADGE04_GET))
 		++badgeCount;
-	if (FlagGet(FLAG_BADGE03_GET))
+	if (FlagGet(FLAG_BADGE03_GET))  
 		++badgeCount;
 	if (FlagGet(FLAG_BADGE02_GET))
 		++badgeCount;
@@ -3576,6 +3578,9 @@ u8 ScriptGiveMon(u16 species, u8 level, u16 item, unusedArg u32 unused1, u32 cus
 		MonRestorePP(&mon);
 	}
 	#endif
+	u32 value = 0xFF;
+	if (GetCurrentRegionMapSectionId() == MAPSEC_PALLET_TOWN)
+		SetMonData(&mon, MON_DATA_MET_LOCATION, &value);
 
 	sentToPc = GiveMonToPlayer(&mon);
 
@@ -4223,7 +4228,11 @@ u8 HardcoreBannedAbilitySwapper(u8 ability, unusedArg u16 species){
 	switch (ability) {
 		case ABILITY_DROUGHT:
 		case ABILITY_DESOLATELAND:
-			return ABILITY_SOLARPOWER; 
+			if( species == SPECIES_CHARIZARD_MEGA_Y) {
+				return ABILITY_SHEERFORCE;
+			}
+			else 
+				return ABILITY_SOLARPOWER; 
 
 		case ABILITY_DRIZZLE:
 		case ABILITY_PRIMORDIALSEA:
@@ -4258,6 +4267,7 @@ u8 HardcoreBannedAbilitySwapper(u8 ability, unusedArg u16 species){
 		case ABILITY_MOXIE:
 		case ABILITY_SOULHEART:
 		case ABILITY_BEASTBOOST:
+		case ABILITY_GRIMNEIGH:
 			return ABILITY_UNNERVE;
 			
 		case ABILITY_IMPOSTER:
@@ -4279,6 +4289,10 @@ u8 HardcoreBannedAbilitySwapper(u8 ability, unusedArg u16 species){
 		
 		case ABILITY_TRACE:
 			return ABILITY_SYNCHRONIZE; 
+		
+		case ABILITY_STAMINA:
+			return ABILITY_INNERFOCUS; 
+
 
 	}
 	return ability; 
@@ -4298,14 +4312,14 @@ u8 TryRandomizeAbility(u8 ability, const struct Pokemon* mon)
 			break;
 		}
 	}
-	// this is to swap the banned abilities in hardcore mode
+	// this is to swap the banned abilities in hardcore mode 
 	if ((FlagGet(FLAG_HARDCORE_MODE) || FlagGet(FLAG_RESTRICT_MODE)) ){
 		u32 otId = GetMonData(mon, MON_DATA_OT_ID, NULL);
 		if (otId == (u32) T1_READ_32(gSaveBlock2->playerTrainerId)){
 			return HardcoreBannedAbilitySwapper(ability, species);
 		}
-		return ability;
-	}
+		return ability; 
+	} 
 	#ifdef FLAG_ABILITY_RANDOMIZER
 	if (FlagGet(FLAG_ABILITY_RANDOMIZER) && !FlagGet(FLAG_BATTLE_FACILITY) && (ShouldTrainerRandomize() || !dontRandomize))
 	{
@@ -4321,8 +4335,8 @@ u8 TryRandomizeAbility(u8 ability, const struct Pokemon* mon)
 	}
 	#endif
   
-	return newAbility; 
-}
+	return newAbility;  
+} 
 
 u8 TryRandomizeAbility2(u8 ability, const u16 species)
 {

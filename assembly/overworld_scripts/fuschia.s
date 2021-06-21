@@ -431,6 +431,7 @@ EventScript_Fuschia_SandacondaBattle:
 	if equal _goto SandacondaReject
 	msgbox gText_Fuschia_Sandaconda2 MSG_FACE
 	setflag 0x90E
+	special 0x0
 	trainerbattle3 0x3 0xF 0x0 gText_Fuschia_SandacondaDefeat
 	applymovement 0x800F FacePlayer
 	waitmovement 0x0

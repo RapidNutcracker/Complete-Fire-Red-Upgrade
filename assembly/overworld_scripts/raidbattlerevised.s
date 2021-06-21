@@ -61,7 +61,6 @@ RaidBattle:
     msgbox gText_StartRaidBattle MSG_YESNO 
     compare LASTRESULT YES 
     if NO _goto RaidScript_EndClear 
-    setflag FLAG_DYNAMAX_BATTLE
     fadescreen FADEOUT_BLACK
     sound 0x9
     checksound
@@ -77,6 +76,7 @@ RaidBattle:
 	if equal _goto Cancel
 	special 0x28
     setflag FLAG_TAG_BATTLE 
+    setflag FLAG_DYNAMAX_BATTLE
     msgbox gText_RaidTeamUp MSG_NORMAL
     special SPECIAL_CREATE_RAID_MON 
     special SPECIAL_START_RAID_BATTLE
@@ -91,6 +91,9 @@ RaidBattle:
     return 
 
 Cancel:
+    special 0x28
+    clearflag FLAG_TAG_BATTLE 
+    clearflag FLAG_DYNAMAX_BATTLE
     release
     end
 

@@ -41,7 +41,7 @@ enum
 #define BattleScript_LevelUp (u8*) 0x81D89F5
 extern const u16 gBaseExpBySpecies[];
 extern u8 String_TeamExpGain[];
-u8 LevelCap_Badges[18] = {
+u8 LevelCap_Badges2[18] = {
 	15, //Before Brock
 	22, //before Mt Moon Archer
 	27, //Before Misty
@@ -61,7 +61,7 @@ u8 LevelCap_Badges[18] = {
 	85, //Before E4
 	100}; //added here
 
-u8 LevelCap_BadgesHardcoreMode[18] = {
+u8 LevelCap_BadgesHardcoreMode2[18] = {
 	16, //Before Brock
 	23, //before Mt Moon Archer
 	28, //Before Misty
@@ -81,6 +81,7 @@ u8 LevelCap_BadgesHardcoreMode[18] = {
 	85, //Before E4
 	100}; //added here
 
+
 //This file's functions:
 static u32 ExpCalculator(u32 a, u32 t, u32 b, u32 e, u32 L, u32 Lp, u32 p, u32 f, u32 v, u32 s);
 static bool8 WasWholeTeamSentIn(u8 bank, u8 sentIn);
@@ -91,7 +92,7 @@ static void Task_GiveExpToMon(u8 taskId);
 static void sub_80300F4(u8 taskId);
 static u32 GetExpToLevel(u8 toLevel, u8 growthRate);
 static void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies);
-u8 GetBadgeCount(void); //added this
+extern u8 GetBadgeCount(); //added this
 
 ///////////////////// GAIN EXPERIENCE //////////////////////
 void atk23_getexp(void)
@@ -289,9 +290,9 @@ void atk23_getexp(void)
 	SKIP_EXP_CALC:
 		calculatedExp = MathMax(1, calculatedExp);
 		u8 badgeCount = GetBadgeCount(); //added
-		u8 lvlCap = LevelCap_Badges[badgeCount]; //added
+		u8 lvlCap = LevelCap_Badges2[badgeCount]; //added
 		if (FlagGet(FLAG_HARDCORE_MODE)){
-			lvlCap = LevelCap_BadgesHardcoreMode[badgeCount];
+			lvlCap = LevelCap_BadgesHardcoreMode2[badgeCount];
 		}
 
 		if(pokeLevel >= lvlCap){ //added
@@ -448,9 +449,9 @@ void atk23_getexp(void)
 				}
 			}
 			u8 badgeCount = GetBadgeCount(); //added
-			u8 lvlCap = LevelCap_Badges[badgeCount]; //added
+			u8 lvlCap = LevelCap_Badges2[badgeCount]; //added
 			if (FlagGet(FLAG_HARDCORE_MODE)){
-				lvlCap = LevelCap_BadgesHardcoreMode[badgeCount];
+				lvlCap = LevelCap_BadgesHardcoreMode2[badgeCount];
 			}
 			
 			if(gPlayerParty[gBattleStruct->expGetterMonId].level >= lvlCap){ //added
@@ -849,44 +850,3 @@ bool8 AddEVs(struct Pokemon* mon, u8 statId, u16 numToAdd)
 }
 
 
-u8 GetBadgeCount(void) //added this here
-{
-	u8 badgeCount = 0;
-
-	if (FlagGet(FLAG_SYS_GAME_CLEAR)) //0x82C
-		return 17;
-	if (FlagGet(FLAG_BRENDAN_FINAL))
-		++badgeCount;
-	if (FlagGet(FLAG_BADGE08_GET))
-		++badgeCount;
-	if (FlagGet(FLAG_GIOVANNI_BOSS))
-	    ++badgeCount;
-	if (FlagGet(FLAG_ARCHER_ARIANA_B2B))
-		++badgeCount;
-	if (FlagGet(FLAG_BADGE07_GET))
-		++badgeCount;
-	if (FlagGet(FLAG_MAY_BOSS))
-		++badgeCount;
-	if (FlagGet(FLAG_BADGE06_GET))
-		++badgeCount;
-	if (FlagGet(FLAG_BADGE05_GET))
-		++badgeCount;
-	if (FlagGet(FLAG_HIDE_SILPH_ROCKETS))
-		++badgeCount;
-	if (FlagGet(FLAG_ARCHER_ARIANA_TAG))
-		++badgeCount;
-	if (FlagGet(FLAG_HIDE_HIDEOUT_GIOVANNI))
-		++badgeCount; 
-	if (FlagGet(FLAG_BADGE04_GET))
-		++badgeCount;
-	if (FlagGet(FLAG_BADGE03_GET))
-		++badgeCount;
-	if (FlagGet(FLAG_BADGE02_GET))
-		++badgeCount;
-	if (FlagGet(FLAG_ARCHER_MT_MOON))
-		++badgeCount; 
-	if (FlagGet(FLAG_BADGE01_GET))
-		++badgeCount;
-
-	return badgeCount;
-}

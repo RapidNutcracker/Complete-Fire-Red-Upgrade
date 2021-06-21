@@ -1483,13 +1483,54 @@ static bool8 IsUsePartyMenuItemHPEVModifier(struct Pokemon* mon, u16 oldHP, u16 
 static bool8 IsItemVitaminOrWing(u16 item)
 {
 	if (item == ITEM_PROTEIN || item == ITEM_IRON || item == ITEM_CARBOS || item == ITEM_CALCIUM 
-				|| item == ITEM_HP_UP || item == ITEM_HEALTH_WING || item == ITEM_MUSCLE_WING || item == ITEM_RESIST_WING
+				|| item == ITEM_HP_UP || item == ITEM_ZINC || item == ITEM_HEALTH_WING || item == ITEM_MUSCLE_WING || item == ITEM_RESIST_WING
 				|| item == ITEM_GENIUS_WING || item == ITEM_CLEVER_WING || item == ITEM_SWIFT_WING)
 	{
 		return TRUE;
 	}
 	return FALSE; 
 }
+
+
+u8 LevelCap_Badges3[18] = {
+	15, //Before Brock
+	22, //before Mt Moon Archer
+	27, //Before Misty
+	34, //Before Surge
+	44, //Before Erika
+	47, //Before Celadon Giovanni
+	56, //Before Archer/Ariana Tag battle
+	57, //Before Giovanni Saffron
+	59, //Before Sabrina 
+	68, //Before Koga
+	73, //Before May
+	76, //Before Blaine
+	79, //Before Archer/Ariana 
+	80, //Before Giovanni Final
+	81, //Before Claire
+	82, //Before Brendan
+	85, //Before E4
+	100}; //added here
+
+u8 LevelCap_BadgesHardcoreMode3[18] = {
+	16, //Before Brock
+	23, //before Mt Moon Archer
+	28, //Before Misty
+	36, //Before Surge
+	44, //Before Erika
+	47, //Before Celadon Giovanni
+	56, //Before Archer/Ariana Tag battle
+	57, //Before Giovanni Saffron
+	59, //Before Sabrina 
+	68, //Before Koga
+	73, //Before May
+	76, //Before Blaine
+	79, //Before Archer/Ariana 
+	80, //Before Giovanni Final
+	81, //Before Claire
+	82, //Before Brendan
+	85, //Before E4
+	100}; //added here
 
 #define gText_WontHaveEffect (const u8*) 0x84169DC
 void ItemUseCB_MedicineStep(u8 taskId, TaskFunc func)
@@ -1502,6 +1543,8 @@ void ItemUseCB_MedicineStep(u8 taskId, TaskFunc func)
 	if (FlagGet(FLAG_MINIMAL_GRINDING_MODE) && IsItemVitaminOrWing(item)) {
 		goto WONT_HAVE_EFFECT;
 	}
+
+
 	if (NotUsingHPEVItemOnShedinja(mon, item) )
 	{
 		canHeal = IsHPRecoveryItem(item);
@@ -2375,6 +2418,9 @@ void CheckChosenMonHiddenAbility(void) //added this
 		struct Pokemon* mon2 = &gPlayerParty[Var8004];
 		changeTo = GetMonAbility(mon2);
 		gPlayerParty[Var8004].hiddenAbility = TRUE;
+	}
+	if (FlagGet(FLAG_HARDCORE_MODE || FlagGet(FLAG_RESTRICT_MODE))) {
+		changeTo = HardcoreBannedAbilitySwapper(changeTo, species);
 	}
 	if(gBaseStats[species].hiddenAbility == ABILITY_NONE ||  ability == changeTo ){
 		gSpecialVar_LastResult = 0x0;

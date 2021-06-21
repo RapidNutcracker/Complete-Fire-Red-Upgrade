@@ -259,7 +259,7 @@ gMoveDescriptions:
 .word 0x8486a62		@MOVE_FUTURESIGHT
 .word 0x8486aa6		@MOVE_ROCKSMASH
 .word 0x8486aef		@MOVE_WHIRLPOOL
-.word 0x8486b36		@MOVE_BEATUP
+.word 				DESC_BEATUP                    @.word 0x8486b36		@MOVE_BEATUP
 .word 0x8486b7e		@MOVE_FAKEOUT
 .word 0x8486bc7		@MOVE_UPROAR
 .word 0x8486c10		@MOVE_STOCKPILE

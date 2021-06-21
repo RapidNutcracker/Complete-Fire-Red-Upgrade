@@ -340,8 +340,8 @@ bool8 MegaEvolutionEnabled(u8 bank)
 
 bool8 BankMegaEvolved(u8 bank, bool8 checkUB)
 {
-	// if ((SIDE(bank) == B_SIDE_OPPONENT))
-	// 	return FALSE;
+	if ((SIDE(bank) == B_SIDE_OPPONENT))
+		return FALSE;
 	if ((SIDE(bank) == B_SIDE_PLAYER && gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)
 	||  (SIDE(bank) == B_SIDE_OPPONENT && gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS))
 	{

@@ -311,7 +311,6 @@ EventScript_redogaryrival_Rivalbattle:
 	msgbox gText_redogaryrival_Billmsg MSG_KEEPOPEN @"[rival]: Hey, guess what?\pI went ..."
 	closeonkeypress
 	playsong 0x13C 0x0
-	setflag 0x90E
 	compare 0x4001 0x0
 	if 0x1 _call EventScript_redogaryrival_Leftmovement
 	compare 0x4001 0x1

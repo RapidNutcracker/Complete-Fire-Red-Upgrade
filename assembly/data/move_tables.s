@@ -371,6 +371,7 @@ gHardcoreBannedMoves:
 .hword MOVE_AMNESIA
 .hword MOVE_ACIDARMOR
 .hword MOVE_IRONDEFENSE
+.hword MOVE_BARRIER
 .hword MOVE_COSMICPOWER
 .hword MOVE_STOCKPILE
 .hword MOVE_SWALLOW
@@ -403,13 +404,16 @@ gHardcoreBannedMoves:
 .hword MOVE_CHARGEBEAM
 .hword MOVE_FLAMECHARGE
 .hword MOVE_GROWTH
+.hword MOVE_WORKUP
+.hword MOVE_HONECLAWS
+.hword MOVE_MEDITATE
+.hword MOVE_HOWL
+.hword MOVE_FIERYDANCE
 .hword MOVE_TABLES_TERMIN
 
 gHardcoreHalfBannedMoves:
 .hword MOVE_LEECHSEED
 .hword MOVE_DEFOG
-.hword MOVE_WORKUP
-.hword MOVE_HONECLAWS
 .hword MOVE_TOXIC
 .hword MOVE_TABLES_TERMIN
 

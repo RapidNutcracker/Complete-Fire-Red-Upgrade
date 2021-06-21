@@ -5,6 +5,9 @@
 .include "../xse_defines.s"
 .include "../asm_defines.s" 
 
+.equ FLAG_MINIMAL_GRINDING_MODE, 0x1032
+.equ FLAG_HARDCORE_MODE, 0x1034
+
 .global EventScript_bugsy_Start
 EventScript_bugsy_Start:
 	lock
@@ -25,7 +28,15 @@ EventScript_bugsy_Battle:
 	setflag 0x90E
 	msgbox gText_bugsy_5 0x6
 	special 0x0
+	checkflag FLAG_HARDCORE_MODE
+	if 0x1 _goto CheckBadges
+	goto Normalbugsy
+
+Normalbugsy:
 	trainerbattle3 0x3 0x2F 0x0 gText_bugsy_Defeat
+	goto PostBugsy
+
+PostBugsy:
 	msgbox gText_bugsy_6 0x6
 	giveitem ITEM_TM89 0x1 MSG_OBTAIN
 	msgbox gText_bugsy_7 0x6
@@ -40,6 +51,11 @@ EventScript_bugsy_Battle:
 	release
 	end
 
+CheckBadges:
+	checkflag 0x822 @Beat Surge?
+	if 0x0 _goto Normalbugsy
+	trainerbattle3 0x3 0x8 0x0 gText_bugsy_Defeat
+	return
 
 EventScript_bugsy_Look:
 .byte 0x4A
@@ -96,8 +112,27 @@ EventScript_nuggetbridge_Secondstart:
 	msgbox gText_nuggetbridge_4 MSG_NORMAL 
 	giveitem ITEM_NUGGET 0x1 MSG_OBTAIN
 	msgbox gText_nuggetbridge_5 MSG_NORMAL
+	checkflag FLAG_MINIMAL_GRINDING_MODE 
+	if 0x1 _goto PickUpItems
 	setvar 0x406B 0x1
 	return
+
+PickUpItems:
+	msgbox gText_nuggetbridge_6 MSG_YESNO
+	compare LASTRESULT YES
+	if 0x0 _goto EndOfRocketBridgeScript
+	giveitem ITEM_TWISTED_SPOON 0xA MSG_OBTAIN
+	giveitem ITEM_STICK 0x6 MSG_OBTAIN
+	giveitem ITEM_PRISM_SCALE 0xA MSG_OBTAIN
+	giveitem ITEM_SILK_SCARF 0xA MSG_OBTAIN
+	giveitem ITEM_WACAN_BERRY 0xA MSG_OBTAIN
+	giveitem ITEM_QUICK_BALL 0x32 MSG_OBTAIN
+	goto EndOfRocketBridgeScript
+
+EndOfRocketBridgeScript:
+	setvar 0x406B 0x1
+	releaseall
+	end
 
 EventScript_nuggetbridge_Movement1:
 .byte 0x30

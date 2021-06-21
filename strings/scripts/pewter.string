@@ -92,7 +92,22 @@ Well, come back whenever.
 I hope you took good care of\nthe egg! 
 
 #org @gText_Pewter_TalkAboutLevelCap
-This game's difficulty can seem\nseem unfair to casual players.\pFeel free to check out other ROM\nhacks that utilize the CFRU engine,\llike Unbound, Dreams, and GS\lChronicles!
+This game's difficulty can seem\nunfair to casual players.\pFeel free to check out other ROM\nhacks that utilize the CFRU engine,\llike Unbound, Dreams, and GS\lChronicles!
+
+#org @gText_Pewter_WantCarePackage
+Oh, hello there brave trainer!\pWould you be interested in a\ncare package?
+
+#org @gText_Pewter_SayNoMore
+Say no more, friend!
+
+#org @gText_Pewter_TakeCare
+Take care.
+
+#org @gText_Pewter_AhThatsOkay
+Ah, okay.\nYou don't want free handouts.\pCome see me if you change your\nmind.
+
+#org @gText_Pewter_PostBrockCarePackage
+As usual, would you like a\ncare package?
 
 #org @gText_Pewter_RandomizerInfo
 I'm playing on randomizer, and I was\nstoked to see my [GREEN]Huge Power[RED] on my\l[GREEN]Slaking![RED]\pBut, the next day it turned into [GREEN]Slow\nStart.\p[RED]Turns out, the randomizer seed changes\ndepending on the day of the week.\pSo I gotta wait until next week for\nmy broken[GREEN] Slaking[RED] to come back.

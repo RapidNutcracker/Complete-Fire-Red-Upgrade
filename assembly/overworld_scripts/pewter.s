@@ -9,6 +9,7 @@
 .equ VAR_PRE_BATTLE_MUGSHOT_SPRITE, 0x503B 
 
 .equ VAR_WEATHER, 0x5118
+.equ FLAG_MINIMAL_GRINDING_MODE, 0x1032
 .equ FLAG_HARDCORE_MODE, 0x1034
 .equ VAR_BATTLE_AURAS, 0x5119
 .equ AURA_SOLIDROCK_STRING, 4
@@ -28,13 +29,35 @@ EventScript_Pewter_GiveDmax:
     msgbox gText_Pewter_GiveDmax3 MSG_NORMAL 
     giveitem ITEM_DYNAMAX_BAND 0x1 MSG_OBTAIN 
     setflag 0x200
-    msgbox gText_Pewter_GiveDynamaxEnd MSG_NORMAL 
+	checkflag FLAG_MINIMAL_GRINDING_MODE
+	if 0x1 _call PostBrockCarePackage
+    msgbox gText_Pewter_GiveDynamaxEnd MSG_NORMAL
     applymovement 0x8 GoLeave 
     waitmovement 0x0 
     hidesprite 0x8
     setvar 0x506A 0x1 
     release 
     end 
+
+PostBrockCarePackage:
+	msgbox gText_Pewter_PostBrockCarePackage MSG_YESNO
+	compare LASTRESULT YES
+	if equal _call PostBrockGive
+	return
+
+PostBrockGive:
+	giveitem ITEM_MOON_STONE 0xA MSG_OBTAIN
+	giveitem ITEM_CHERI_BERRY 0xA MSG_OBTAIN
+	giveitem ITEM_CHESTO_BERRY 0xA MSG_OBTAIN
+	giveitem ITEM_CHOPLE_BERRY 0xA MSG_OBTAIN
+	giveitem ITEM_BERRY_JUICE 0xA MSG_OBTAIN
+	giveitem ITEM_SITRUS_BERRY 0xA MSG_OBTAIN
+	giveitem ITEM_LEPPA_BERRY 0x64 MSG_OBTAIN
+	giveitem ITEM_IRON_BALL 0xA MSG_OBTAIN
+	giveitem ITEM_WIDE_LENS 0xA MSG_OBTAIN
+	giveitem ITEM_GREEN_SHARD 0x10 MSG_OBTAIN
+	giveitem ITEM_ELIXIR 0x10 MSG_OBTAIN
+	return
 
 Stop:
     .byte look_right 
@@ -337,16 +360,56 @@ EventScript_GiveExpShare:
 	if lessthan _call GiveExpShare 
 	checkitem ITEM_VS_SEEKER 0x1
 	compare 0x800D 0x1
-	if lessthan _call GiveStatScanner 
+	if lessthan _call GiveStatScanner
+	checkflag FLAG_MINIMAL_GRINDING_MODE
+	if 0x1 _goto AskCarePackage 
 	@ givepokemon SPECIES_KOMMO_O 1 ITEM_DAMP_ROCK 0x0 0x0 0x0
 	@ givepokemon SPECIES_LAPRAS 80 ITEM_LAPRASITE 0x0 0x0 0x0
 	@ callasm 0x088032F0 + 1
 	@ callasm 0x08803960 + 1
 	@ giveitem ITEM_BIG_NUGGET 0x50 MSG_OBTAIN 
+	@ givepokemon SPECIES_EEVEE 50 ITEM_EEVIUM_Z 0x0 0x0 0x0 
+	@ givepokemon SPECIES_EEVEE 50 ITEM_NORMALIUM_Z 0x0 0x0 0x0 
+	@ givepokemon SPECIES_ROCKRUFF 24 0 0x0 0x0 0x0 
+	@ giveitem ITEM_RARE_CANDY 0x50 MSG_OBTAIN 
+	@ warp 0x3 0x8 0x1 0x0 0x0
+	goto FatNormalMsg
+
+FatNormalMsg:
 	msgbox gText_Pewter_TalkAboutLevelCap MSG_FACE
 	release 
 	end 
- 
+
+AskCarePackage:
+	checkflag 0x103F
+	if 0x1 _goto GiveCarePackage
+	goto FatNormalMsg
+	msgbox gText_Pewter_AhThatsOkay MSG_NORMAL
+	release
+	end
+
+
+GiveCarePackage:
+	msgbox gText_Pewter_WantCarePackage MSG_YESNO
+	compare LASTRESULT YES
+	if 0x1 _goto ItemCarePackage
+	release
+	end
+
+ItemCarePackage:
+	msgbox gText_Pewter_SayNoMore MSG_NORMAL
+	giveitem ITEM_SOFT_SAND 0xC MSG_OBTAIN
+	giveitem ITEM_BLACK_BELT 0xC MSG_OBTAIN
+	giveitem ITEM_SPELL_TAG 0xC MSG_OBTAIN
+	giveitem ITEM_MAGNET 0xC MSG_OBTAIN
+	giveitem ITEM_DRAGON_FANG 0xC MSG_OBTAIN
+	giveitem ITEM_RAWST_BERRY 0xC MSG_OBTAIN
+	giveitem ITEM_PERSIM_BERRY 0xC MSG_OBTAIN
+	giveitem ITEM_TANGA_BERRY 0xC MSG_OBTAIN
+	msgbox gText_Pewter_TakeCare MSG_NORMAL
+	release
+	end
+
 GiveExpShare:
 	giveitem ITEM_EXP_SHARE 0x1 MSG_OBTAIN 
 	return 
