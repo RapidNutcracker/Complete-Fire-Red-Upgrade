@@ -55,7 +55,7 @@ CheckBadges:
 	checkflag 0x822 @Beat Surge?
 	if 0x0 _goto Normalbugsy
 	trainerbattle3 0x3 0x8 0x0 gText_bugsy_Defeat
-	return
+	goto PostBugsy
 
 EventScript_bugsy_Look:
 .byte 0x4A
@@ -110,23 +110,22 @@ EventScript_nuggetbridge_Secondstart:
 	setvar LASTTALKED 0x1
 	trainerbattle3 0x3 0x164 0x0 gText_nuggetbridge_3
 	msgbox gText_nuggetbridge_4 MSG_NORMAL 
-	giveitem ITEM_NUGGET 0x1 MSG_OBTAIN
+	giveitem ITEM_BIG_NUGGET 0x1 MSG_OBTAIN
 	msgbox gText_nuggetbridge_5 MSG_NORMAL
-	checkflag FLAG_MINIMAL_GRINDING_MODE 
+	checkflag 0x103F
 	if 0x1 _goto PickUpItems
 	setvar 0x406B 0x1
 	return
 
 PickUpItems:
-	msgbox gText_nuggetbridge_6 MSG_YESNO
-	compare LASTRESULT YES
-	if 0x0 _goto EndOfRocketBridgeScript
-	giveitem ITEM_TWISTED_SPOON 0xA MSG_OBTAIN
+	msgbox gText_nuggetbridge_6 MSG_NORMAL
 	giveitem ITEM_STICK 0x6 MSG_OBTAIN
-	giveitem ITEM_PRISM_SCALE 0xA MSG_OBTAIN
-	giveitem ITEM_SILK_SCARF 0xA MSG_OBTAIN
-	giveitem ITEM_WACAN_BERRY 0xA MSG_OBTAIN
+	giveitem ITEM_PRISM_SCALE 0xC MSG_OBTAIN
+	giveitem ITEM_SILK_SCARF 0xC MSG_OBTAIN
+	giveitem ITEM_WACAN_BERRY 0xC MSG_OBTAIN
 	giveitem ITEM_QUICK_BALL 0x32 MSG_OBTAIN
+	giveitem ITEM_ELIXIR 0x15 MSG_OBTAIN
+	giveitem ITEM_PP_UP 0x50 MSG_OBTAIN
 	goto EndOfRocketBridgeScript
 
 EndOfRocketBridgeScript:

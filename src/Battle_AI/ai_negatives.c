@@ -186,7 +186,9 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 		return 0; //Can't select this move period
 
 	// Ungrounded check
-	if (CheckGrounding(bankDef) == IN_AIR && moveType == TYPE_GROUND && move != MOVE_THOUSANDARROWS) //make sure we can still click thousandarrows 
+	if (CheckGrounding(bankDef) == IN_AIR && moveType == TYPE_GROUND && move != MOVE_THOUSANDARROWS
+	&& (data->atkAbility != ABILITY_BONEZONE && move != MOVE_BONEMERANG)
+	&& (data->atkAbility != ABILITY_MOLDBREAKER && data->defAbility != ABILITY_LEVITATE)) //make sure we can still click thousandarrows, ground moves w/mold breaker vs levitat
 		return 0;
 
 	// Powder Move Checks (safety goggles, defender has grass type, overcoat, and powder move table)
@@ -223,11 +225,8 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			case ABILITY_MOUNTAINEER:
 				if ((moveType == TYPE_ROCK) && (moveSplit != SPLIT_STATUS))
 				{
-					if (!TARGETING_PARTNER) //Good idea to attack partner
-					{
-						DECREASE_VIABILITY(20);
-						return viability;
-					}
+					DECREASE_VIABILITY(20);
+					return viability;
 				}
 				break;
 
@@ -1119,25 +1118,6 @@ MOVESCR_CHECK_0:
 				DECREASE_VIABILITY(10);
 			else if(HasProtectionMoveInMoveset(bankDef, 0) && gDisableStructs[bankDef].protectUses < 1) //check for protect, and that their protect timer is at 0
 				DECREASE_VIABILITY(6);
-			// else
-			// {
-			// 	u8 firstId, lastId;
-			// 	struct Pokemon* defParty = LoadPartyRange(bankDef, &firstId, &lastId);					
-			// 	for (i = 0; i < PARTY_SIZE; ++i)
-			// 	{
-			// 		if (GetMonData(&defParty[i], MON_DATA_SPECIES, NULL) != SPECIES_NONE
-			// 		&& !GetMonData(&defParty[i], MON_DATA_IS_EGG, NULL)
-			// 		&&  GetMonData(&defParty[i], MON_DATA_HP, NULL) > 0
-			// 		&&  IsOfType(&defParty[i], TYPE_GHOST)
-			// 		&&  i != gBattlerPartyIndexes[data->foe1]
-			// 		&&  i != gBattlerPartyIndexes[data->foe2])
-			// 		{
-			// 			DECREASE_VIABILITY(6);
-			// 			break; //deprioritize if ghost type on team
-			// 		}
-			// 	}
-			// break;
-			// }
 
 			break;
 

@@ -3514,6 +3514,10 @@ extern const u8	gText_TypePsychic[];
 extern const u8	gText_TypeIce[];
 extern const u8	gText_TypeDragon[];
 extern const u8	gText_TypeDark[];
+extern const u8 gText_BrockRematch[];
+extern const u8 gText_MistyRematch[];
+extern const u8 gText_ErikaFight[];
+extern const u8 gText_GiovanniFight[];
 
 //Scrolling Lists
 static const u8* sMultichoiceSet1[] =
@@ -3716,6 +3720,15 @@ static const u8* sMultichoiceSet11[] =
 	gText_TypeDark,
 };
 
+static const u8* sMultichoiceSet12[] =
+{
+	gText_BrockRematch,
+	gText_MistyRematch,
+	gText_ErikaFight,
+	gText_GiovanniFight,
+};
+
+
 // Multichoice Lists
 const struct ScrollingMulti gScrollingSets[] =
 {
@@ -3730,6 +3743,7 @@ const struct ScrollingMulti gScrollingSets[] =
 	{sMultichoiceSet9, ARRAY_COUNT(sMultichoiceSet9)},
 	{sMultichoiceSet10, ARRAY_COUNT(sMultichoiceSet10)},
 	{sMultichoiceSet11, ARRAY_COUNT(sMultichoiceSet11)},
+	{sMultichoiceSet12, ARRAY_COUNT(sMultichoiceSet12)},
 };
 
 //Link number of opts shown at once to the box height

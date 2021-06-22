@@ -3442,7 +3442,7 @@ static const struct BattleTowerSpread sExpertBossBattle_Route24_BugsyPostSurge[]
 		{
 			MOVE_SWORDSDANCE,
 			MOVE_DUALWINGBEAT, 
-			MOVE_UTURN, 
+			MOVE_BUGBITE, 
 			MOVE_ROCKSMASH, 
 		},
 		.ball = BALL_TYPE_GREAT_BALL,
@@ -3965,7 +3965,7 @@ static const struct BattleTowerSpread sExpertBossBattle_Brendan_Battle2[] =
 			MOVE_VOLTSWITCH,
 			MOVE_GRASSKNOT, 
 			MOVE_THUNDERBOLT, 
-			MOVE_HIDDENPOWER, 
+			MOVE_HIDDENPOWER, //ice
 		},
 		.ball = BALL_TYPE_ULTRA_BALL,
 		.forSingles = TRUE,
@@ -4135,7 +4135,7 @@ static const struct BattleTowerSpread sExpertBossBattle_Route11_Whitney[] =
 		.moves =
 		{
 			MOVE_LOVELYKISS,
-			MOVE_SCALD, 
+			MOVE_SURF, 
 			MOVE_MOONBLAST,
 			MOVE_ICEBEAM, 
 		},
@@ -7043,7 +7043,7 @@ static const struct BattleTowerSpread sExpertBossBattle_Saffron_Sabrina[] =
 		.spDefIv = 31,
 		.spdIv = 0,
 		.ability = FRONTIER_ABILITY_1, //ABILITY Misty Surge
-		.item = ITEM_PIXIE_PLATE, 
+		.item = ITEM_IRON_BALL, 
 		.moves =
 		{
 			MOVE_MISTYEXPLOSION,
@@ -9878,7 +9878,7 @@ static const struct BattleTowerSpread sExpertBossBattle_Cinnabar_Jasmine[] =
 		.spAtkIv = 30,
 		.spDefIv = 31,
 		.spdIv = 31,
-		.ability = FRONTIER_ABILITY_2, //ABILITY Levitate
+		.ability = FRONTIER_ABILITY_2, //ABILITY Sturdy
 		.item = ITEM_ASSAULT_VEST,
 		.moves =
 		{
@@ -14744,6 +14744,22 @@ const struct MultiRaidTrainer gExpertBossBattles[] =
 			[0] =   NELEMS(sExpertBossBattle_Route24_Bugsy),
 		},
 	},
+	{
+		.owNum = EVENT_OBJ_GFX_BRENDAN, //Bugsy
+		.trainerClass = CLASS_PKMN_TRAINER_1,
+		.backSpriteId = SINGLE_BATTLE,
+		.gender = MALE,
+		.otId = 0x8,
+		.name = sTrainerName_Xan,
+		.spreads =
+		{
+			[0] =	sExpertBossBattle_Route24_BugsyPostSurge,
+		},
+		.spreadSizes =
+		{
+			[0] =   NELEMS(sExpertBossBattle_Route24_BugsyPostSurge),
+		},
+	}
 	{
 		.owNum = EVENT_OBJ_GFX_BRENDAN, //Misty
 		.trainerClass = CLASS_PKMN_TRAINER_1,

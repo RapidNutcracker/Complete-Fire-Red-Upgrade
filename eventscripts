@@ -88,6 +88,7 @@ npc 6 7 1 EventScript_Pewter_RandomizerInfo
 npc 3 21 9 EventScript_Route3Raid 
 npc 3 21 10 EventScript_Route13_Teleport
 npc 3 21 11 EventScript_Route3_ThunderStone
+npc 3 21 0 EventScript_Route3_PostSallyCare
 
 #ROUTE 4
 npc 16 0 1 EventScript_MagikarpGuy

@@ -4276,7 +4276,7 @@ u8 HardcoreBannedAbilitySwapper(u8 ability, unusedArg u16 species){
 		case ABILITY_STORMDRAIN:
 			return ABILITY_WATERABSORB;
 
-		case ABILITY_LIGHTNINGROD: 
+		// case ABILITY_LIGHTNINGROD: 
 		case ABILITY_MOTORDRIVE:
 			return ABILITY_VOLTABSORB;
 

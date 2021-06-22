@@ -112,7 +112,6 @@ HardcoreAsk:
 GiveCarePackage:
 	msgbox gText_aidoranberry_NiceHere MSG_NORMAL
 	giveitem ITEM_QUICK_BALL 0xA MSG_OBTAIN
-	giveitem ITEM_SHED_SHELL 0xC MSG_OBTAIN
 	giveitem ITEM_SHARP_BEAK 0xC MSG_OBTAIN
 	giveitem ITEM_BLACK_GLASSES 0xC MSG_OBTAIN
 	giveitem ITEM_NEVER_MELT_ICE 0xC MSG_OBTAIN

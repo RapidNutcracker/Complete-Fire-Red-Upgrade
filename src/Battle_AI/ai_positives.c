@@ -173,6 +173,21 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				AI_ATTACK_PLUS:
 					if (IsMovePredictionPhazingMove(bankDef, bankAtk))
 						break;
+					else if (move == MOVE_POWERUPPUNCH && STAT_STAGE(bankAtk, STAT_STAGE_ATK) < STAT_STAGE_MAX && atkAbility != ABILITY_CONTRARY ) //added for poweruppunch
+					{
+						if (MoveKnocksOutXHits(move, bankAtk, bankDef, 1))
+						{
+							if (IS_SINGLE_BATTLE)
+							{
+								if (MoveWouldHitFirst(move, bankAtk, bankDef))
+									INCREASE_VIABILITY(9);
+								else
+									INCREASE_VIABILITY(3); //Past strongest move
+							}
+						}
+						else if (PhysicalMoveInMoveset(bankAtk) && atkAbility != ABILITY_CONTRARY)
+							INCREASE_STAT_VIABILITY(STAT_STAGE_ATK, 8, 2);
+					}
 					else if (PhysicalMoveInMoveset(bankAtk) && atkAbility != ABILITY_CONTRARY)
 						INCREASE_STAT_VIABILITY(STAT_STAGE_ATK, 8, 2);
 					/*else if (IsMaxMove(move) && IS_DOUBLE_BATTLE && BATTLER_ALIVE(data->bankAtkPartner)
@@ -239,6 +254,18 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				INCREASE_STAT_VIABILITY(STAT_STAGE_SPEED, 8, 3);
 			break;
 
+		case EFFECT_OVERHEAT:
+			if (atkAbility == ABILITY_CONTRARY) {
+				if (MoveKnocksOutXHits(move, bankAtk, bankDef, 1))
+				{
+					INCREASE_VIABILITY(3); //Past strongest move
+				}
+				else {
+					goto AI_SPECIAL_ATTACK_PLUS;
+				}
+			}
+			break;
+			
 		case EFFECT_SPECIAL_ATTACK_UP:
 		case EFFECT_SPECIAL_ATTACK_UP_2:
 			if (IsMovePredictionPhazingMove(bankDef, bankAtk))
@@ -1244,6 +1271,16 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				else if (IsPredictedToUsePursuitableMove(bankDef, bankAtk) && !MoveWouldHitFirst(move, bankAtk, bankDef)) //Pursuit against fast U-Turn
 					INCREASE_VIABILITY(3);
 			}
+			if (MoveKnocksOutXHits(move, bankAtk, bankDef, 1))
+			{
+				if (IS_SINGLE_BATTLE)
+				{
+					if (MoveWouldHitFirst(move, bankAtk, bankDef))
+						INCREASE_VIABILITY(9);
+					else
+						INCREASE_VIABILITY(3); //Past strongest move
+				}
+			}
 			break;
 
 		case EFFECT_RAPID_SPIN:
@@ -1379,19 +1416,6 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 					}
 				}
 				break;
-			}
-			else if (move == MOVE_POWERUPPUNCH && STAT_STAGE(bankAtk, STAT_STAGE_ATK) < STAT_STAGE_MAX && atkAbility != ABILITY_CONTRARY ) //added for poweruppunch
-			{
-				if (MoveKnocksOutXHits(move, bankAtk, bankDef, 1))
-				{
-					if (IS_SINGLE_BATTLE)
-					{
-						if (MoveWouldHitFirst(move, bankAtk, bankDef))
-							INCREASE_VIABILITY(9);
-						else
-							INCREASE_VIABILITY(3); //Past strongest move
-					}
-				}
 			}
 			break;
 

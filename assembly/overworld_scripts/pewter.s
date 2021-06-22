@@ -46,17 +46,8 @@ PostBrockCarePackage:
 	return
 
 PostBrockGive:
-	giveitem ITEM_MOON_STONE 0xA MSG_OBTAIN
 	giveitem ITEM_CHERI_BERRY 0xA MSG_OBTAIN
-	giveitem ITEM_CHESTO_BERRY 0xA MSG_OBTAIN
-	giveitem ITEM_CHOPLE_BERRY 0xA MSG_OBTAIN
-	giveitem ITEM_BERRY_JUICE 0xA MSG_OBTAIN
-	giveitem ITEM_SITRUS_BERRY 0xA MSG_OBTAIN
-	giveitem ITEM_LEPPA_BERRY 0x64 MSG_OBTAIN
-	giveitem ITEM_IRON_BALL 0xA MSG_OBTAIN
-	giveitem ITEM_WIDE_LENS 0xA MSG_OBTAIN
-	giveitem ITEM_GREEN_SHARD 0x10 MSG_OBTAIN
-	giveitem ITEM_ELIXIR 0x10 MSG_OBTAIN
+	giveitem ITEM_MOON_STONE 0xA MSG_OBTAIN
 	return
 
 Stop:
@@ -90,6 +81,33 @@ GoLeave:
 GoUp:
     .byte walk_up 
     .byte end_m
+
+.global EventScript_Route3_PostSallyCare
+	msgbox gText_route3carepackage MSG_FACE
+	checkflag 0x103F 
+	if 0x1 _call AskCarePackageSally
+	release
+	end
+	
+AskCarePackageSally:
+	msgbox gText_route3careaskcare MSG_YESNO
+	compare LASTRESULT 0x1
+	if 0x1 _call GiveItems
+	release
+	end
+
+GiveItems:
+	giveitem ITEM_GREEN_SHARD 0x64 MSG_OBTAIN
+	giveitem ITEM_ELIXIR 0x10 MSG_OBTAIN
+	giveitem ITEM_LEPPA_BERRY 0x64 MSG_OBTAIN
+	giveitem ITEM_IRON_BALL 0xA MSG_OBTAIN
+	giveitem ITEM_SITRUS_BERRY 0xA MSG_OBTAIN
+	giveitem ITEM_CHOPLE_BERRY 0xA MSG_OBTAIN
+	giveitem ITEM_COLBUR_BERRY 0xA MSG_OBTAIN
+	giveitem ITEM_WIDE_LENS 0xA MSG_OBTAIN
+	giveitem ITEM_CHESTO_BERRY 0xA MSG_OBTAIN
+	giveitem ITEM_BERRY_JUICE 0xA MSG_OBTAIN
+	return
 
 .global EventScript_Pewter_GiveDmaxMiddle
 EventScript_Pewter_GiveDmaxMiddle:
@@ -433,3 +451,14 @@ EventScript_DiglettsCave_HardStone:
     setflag 0x1035
     release
     end
+
+.global EventScript_AITestBattle
+EventScript_AITestBattle:
+	setvar 0x8001 0x6
+    setvar 0x8004 0xC 
+    preparemsg gText_NatureChanger2 
+    waitmsg
+    special 0x158
+    waitstate 
+	release
+	end
