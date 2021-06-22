@@ -10964,7 +10964,7 @@ const struct BattleMove gBattleMoves[] =
 
 	[MOVE_DYNAMAXCANNON] =
 	{	//ANIM TODO
-		.effect = 0,
+		.effect = EFFECT_HIT,
 		.power = 100,
 		.type = TYPE_DRAGON,
 		.accuracy = 100,
@@ -11852,7 +11852,7 @@ const struct BattleMove gBattleMoves[] =
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
 		.flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 160,
+		.z_move_power = 190,
 		.split = SPLIT_PHYSICAL,
 		.z_move_effect = 0
 	},
@@ -11868,7 +11868,7 @@ const struct BattleMove gBattleMoves[] =
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
 		.flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 100,
+		.z_move_power = 190,
 		.split = SPLIT_PHYSICAL,
 		.z_move_effect = 0
 	},
@@ -11980,7 +11980,7 @@ const struct BattleMove gBattleMoves[] =
 		.target = MOVE_TARGET_BOTH,
 		.priority = 0,
 		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 190,
+		.z_move_power = 195,
 		.split = SPLIT_PHYSICAL,
 		.z_move_effect = 0
 	},
