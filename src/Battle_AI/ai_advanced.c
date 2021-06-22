@@ -1543,15 +1543,18 @@ static bool8 ShouldTryToSetUpStat(u8 bankAtk, u8 bankDef, u16 move, u8 stat, unu
 		ABILITY(bankAtk) != ABILITY_TOXICBOOST) && GetHealthPercentage(bankAtk) <= 75  ) {
 		return FALSE; //Don't set up if you're toxic poisoned with less than 75% health
 	}
-	u8 randomRoll = Random() % 2;
+	bool8 roll = FALSE;
+	if (Random() % 2 == 0) 
+		roll = TRUE;
 
-	if (MoveEffectInMoveset(EFFECT_HAZE, bankDef) 
+	if ( (MoveEffectInMoveset(EFFECT_HAZE, bankDef) 
 	   || MoveInMoveset(MOVE_TOPSYTURVY, bankDef)
-	   || MoveEffectInMoveset(EFFECT_PSYCH_UP, bankDef ) && randomRoll == 0)
+	   || MoveEffectInMoveset(EFFECT_PSYCH_UP, bankDef ) )
+	   && roll)
 		return FALSE; //don't set up if they have haze, roar 
 	
-	if (MoveInMoveset(MOVE_ROAR, bankDef) || MoveInMoveset(MOVE_WHIRLWIND, bankDef) || (MoveInMoveset(MOVE_DRAGONTAIL, bankDef) && !IsOfType(bankAtk, TYPE_FAIRY)) ||
-	(MoveInMoveset(MOVE_CIRCLETHROW, bankDef) && !IsOfType(bankAtk, TYPE_GHOST)) && ViableMonCountFromBank(bankAtk) > 1 && randomRoll == 0)
+	if ( (MoveInMoveset(MOVE_ROAR, bankDef) || MoveInMoveset(MOVE_WHIRLWIND, bankDef) || (MoveInMoveset(MOVE_DRAGONTAIL, bankDef) && !IsOfType(bankAtk, TYPE_FAIRY)) ||
+	(MoveInMoveset(MOVE_CIRCLETHROW, bankDef) && !IsOfType(bankAtk, TYPE_GHOST))) && (ViableMonCountFromBank(bankAtk) > 1 && roll) )
 	{
 		return FALSE;
 	}

@@ -578,3 +578,4 @@ EventScript_Route3_ThunderStone:
     setflag 0x103A
     release
     end
+    
