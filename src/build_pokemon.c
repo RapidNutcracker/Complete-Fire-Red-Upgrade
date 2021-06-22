@@ -37,6 +37,7 @@
 #include "Tables/battle_tower_spreads.h"
 #include "Tables/raid_encounters.h"
 #include "Tables/raid_partners.h"
+#include "Tables/hardcore_trainers.h"
 #include "Tables/trainers_with_evs_table.h"
 
 /*
@@ -136,7 +137,7 @@ extern const u8 gNumFloetteForms;
 extern const u8 gNumFlorgesForms;
 extern const u8 gNumFurfrouForms;
 extern const u8 gNumPikachuCapForms;
-extern const u8 gNumAlcremieForms;
+extern const u8 gNumAlcremieForms; 
 
 
 extern bool8 sp051_CanTeamParticipateInSkyBattle(void);
@@ -438,7 +439,7 @@ u16 sp068_GivePlayerFrontierMonGivenSpecies(void)
 
 			numSpreads = TOTAL_LITTLE_CUP_SPREADS;
 			spreads = gLittleCupSpreads;
-			break;
+			break; 
 	}
 
 	return GivePlayerFrontierMonGivenSpecies(species, spreads, numSpreads);

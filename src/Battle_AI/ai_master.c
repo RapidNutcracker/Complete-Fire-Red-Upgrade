@@ -2289,9 +2289,9 @@ u8 CalcMostSuitableMonToSwitchInto(void)
 							{
 								move = GetMonData(&party[i], MON_DATA_MOVE1 + k, 0);
 
-								if ( (ability == ABILITY_MAGNETPULL && (TYPE(foe) == TYPE_STEEL) && (ITEM(foe) != ITEM_SHED_SHELL) )
-								|| (ability == ABILITY_ARENATRAP && (CheckGrounding(foe)) && (ITEM(foe) != ITEM_SHED_SHELL) && (TYPE(foe) != TYPE_GHOST) )
-								|| (ability == ABILITY_SHADOWTAG && (TYPE(foe) != TYPE_GHOST) && (ITEM(foe) != ITEM_SHED_SHELL) )) //if we can trap and kill, let's do it
+								if ( (ability == ABILITY_MAGNETPULL && IsOfType(foe, TYPE_STEEL) && (ITEM(foe) != ITEM_SHED_SHELL) )
+								|| (ability == ABILITY_ARENATRAP && (CheckGrounding(foe)) && (ITEM(foe) != ITEM_SHED_SHELL) && (!IsOfType(foe, TYPE_GHOST) ) )
+								|| (ability == ABILITY_SHADOWTAG && (!IsOfType(foe, TYPE_GHOST)) && (ITEM(foe) != ITEM_SHED_SHELL) )) //if we can trap and kill, let's do it
 								{
 									if (MoveKnocksOutXHitsFromParty(move, &party[i], foe, 1, &damageData))
 									{
@@ -2299,7 +2299,7 @@ u8 CalcMostSuitableMonToSwitchInto(void)
 										break;
 									}
 								}
-								
+
 								if (gBattleMoves[move].effect == EFFECT_RAPID_SPIN //Includes Defog
 								&&  gSideStatuses[SIDE(gActiveBattler)] & SIDE_STATUS_SPIKES)
 								{

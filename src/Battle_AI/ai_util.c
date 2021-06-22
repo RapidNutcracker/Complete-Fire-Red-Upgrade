@@ -315,13 +315,15 @@ bool8 MoveKnocksOutPossiblyGoesFirstWithBestAccuracy(u16 move, u8 bankAtk, u8 ba
 				}
 				else if (currAcc == bestAcc)
 				{
-					if (PriorityCalc(bankAtk, ACTION_USE_MOVE, currMove) > PriorityCalc(bankAtk, ACTION_USE_MOVE, gBattleMons[bankAtk].moves[bestMoveIndex])) //The better move is still the one with more priority
+					if (PriorityCalc(bankAtk, ACTION_USE_MOVE, currMove) > PriorityCalc(bankAtk, ACTION_USE_MOVE, gBattleMons[bankAtk].moves[bestMoveIndex])){ //The better move is still the one with more priority
 						if (gBattleMoves[currMove].effect == EFFECT_SUCKER_PUNCH){
 							if (Random() % 2 == 0)
 								bestMoveIndex = i;
 						}
-						else
+						else {
 							bestMoveIndex = i;
+						}
+					}
 				}
 			}
 		}

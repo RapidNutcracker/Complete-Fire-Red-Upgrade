@@ -83,12 +83,13 @@ GoUp:
     .byte end_m
 
 .global EventScript_Route3_PostSallyCare
+EventScript_Route3_PostSallyCare:
 	msgbox gText_route3carepackage MSG_FACE
 	checkflag 0x103F 
 	if 0x1 _call AskCarePackageSally
 	release
 	end
-	
+
 AskCarePackageSally:
 	msgbox gText_route3careaskcare MSG_YESNO
 	compare LASTRESULT 0x1
@@ -452,6 +453,7 @@ EventScript_DiglettsCave_HardStone:
     release
     end
 
+@wip i guess
 .global EventScript_AITestBattle
 EventScript_AITestBattle:
 	setvar 0x8001 0x6
