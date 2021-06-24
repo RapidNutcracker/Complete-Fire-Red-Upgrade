@@ -111,3 +111,15 @@ As usual, would you like a\ncare package?
 
 #org @gText_Pewter_RandomizerInfo
 I'm playing on randomizer, and I was\nstoked to see my [GREEN]Huge Power[RED] on my\l[GREEN]Slaking![RED]\pBut, the next day it turned into [GREEN]Slow\nStart.\p[RED]Turns out, the randomizer seed changes\ndepending on the day of the week.\pSo I gotta wait until next week for\nmy broken[GREEN] Slaking[RED] to come back.
+
+#org @gText_Gender_SuccesfullySwapped 
+Succesfully swapped!
+
+#org @gText_DoYouWantGenderSwap
+[BLUE]Hi, I can swap the gender of\na [GREEN]Snorunt, Ralts, Kirlie, Salandit,\lBurmy, or Combee![BLUE]\pThis can be necessary as they\need specific genders for their\levolutions!\pInterested? 
+
+#org @gText_GenderSwapperCantDo
+Ah, that one I can't do.\nSorry.
+
+#org @gText_Gender_DoYouWantTo
+Do you want to swap [GREEN][BUFFER1][BLUE]\nto a [BUFFER2]?

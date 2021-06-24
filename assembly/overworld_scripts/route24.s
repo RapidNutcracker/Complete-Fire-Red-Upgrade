@@ -52,7 +52,7 @@ PostBugsy:
 	end
 
 CheckBadges:
-	checkflag 0x822 @Beat Surge?
+	checkflag 0x821 @Beat Misty?
 	if 0x0 _goto Normalbugsy
 	trainerbattle3 0x3 0x8 0x0 gText_bugsy_Defeat
 	goto PostBugsy

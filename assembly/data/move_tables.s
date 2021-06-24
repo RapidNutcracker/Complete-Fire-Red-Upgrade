@@ -409,6 +409,7 @@ gHardcoreBannedMoves:
 .hword MOVE_MEDITATE
 .hword MOVE_HOWL
 .hword MOVE_FIERYDANCE
+.hword MOVE_KINGSSHIELD
 .hword MOVE_TABLES_TERMIN
 
 gHardcoreHalfBannedMoves:

@@ -69,6 +69,7 @@ EventScript_morty_Battle:
 	msgbox gText_morty_6 0x6
 	giveitem 0x13E 0x1 MSG_OBTAIN
 	msgbox gText_morty_8 0x6
+	giveitem ITEM_SHED_SHELL 0x1 MSG_OBTAIN
 	giveitem 0xB8 0x1 MSG_OBTAIN
 	msgbox gText_morty_9 0x6
 	setflag 0x1003

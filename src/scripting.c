@@ -679,22 +679,6 @@ extern const u8 gText_SpeciesRand[];
 extern const u8 gText_AbilityRand[];
 extern const u8 gText_LearnsetRand[];
 
-// void SetStringForHof(void)
-// {
-// 	if (FlagGet(FLAG_HARDCORE_MODE)){ 
-// 		StringCopy(gStringVar7, gText_HardcoreMode);
-// 	}
-// 	else if (FlagGet(FLAG_RESTRICT_MODE)){
-// 		StringCopy(gStringVar7, gText_RestrictedMode);
-// 	}
-// 	else if (FlagGet(FLAG_EASY_MODE)){
-// 		StringCopy(gStringVar7, gText_EasyMode);
-// 	}
-// 	else if (FlagGet(FLAG_MINIMAL_GRINDING_MODE)) 
-// 	{
-// 		StringCopy(gStringVar7, gText_Mingrinding);
-// 	}
-// }
 //Nicknaming Specials//
 ///////////////////////////////////////////////////////////////////////////////////
 void sp07C_BufferNickname(void)

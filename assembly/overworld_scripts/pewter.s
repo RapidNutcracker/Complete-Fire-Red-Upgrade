@@ -464,3 +464,36 @@ EventScript_AITestBattle:
     waitstate 
 	release
 	end
+
+.global EventScript_GenderSwapper
+EventScript_GenderSwapper:
+	lock
+	faceplayer
+	msgbox gText_DoYouWantGenderSwap MSG_YESNO
+	compare LASTRESULT NO
+	if equal _goto CancelGenderSwap
+	setvar 0x8003 0x0 
+    special 0x9F 
+    waitstate 
+    compare 0x8004 0x6
+    if greaterorequal _goto CancelGenderSwap
+	callasm CheckIfCanSwapGender + 1
+	compare LASTRESULT TRUE
+	if 0x0 _goto CantDo
+	msgbox gText_Gender_DoYouWantTo MSG_YESNO
+	compare LASTRESULT NO
+	if equal _goto CancelGenderSwap
+	callasm ChangeMonGender + 1
+	msgbox gText_Gender_SuccesfullySwapped MSG_FACE
+	release
+	end
+
+
+CancelGenderSwap:
+	release
+	end
+
+CantDo:
+	msgbox gText_GenderSwapperCantDo MSG_FACE
+	release
+	end

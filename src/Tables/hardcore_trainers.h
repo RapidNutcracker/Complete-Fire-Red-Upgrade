@@ -777,10 +777,10 @@ static const struct BattleTowerSpread sExpertBossBattle_Route3_LassMiniBoss[] =
 		.item = ITEM_LEFTOVERS,
 		.moves =
 		{
-			MOVE_METALBURST,
+			MOVE_TOXIC,
 			MOVE_COVET, 
 			MOVE_METALCLAW,
-			MOVE_THUNDERFANG, 
+			MOVE_FIREFANG, 
 		},
 		.ball = BALL_TYPE_GREAT_BALL,
 		.forSingles = TRUE,
@@ -4946,12 +4946,12 @@ static const struct BattleTowerSpread sExpertBossBattle_SilphCo_Ariana[] =
 		.spDefIv = 31,
 		.spdIv = 31,
 		.ability = FRONTIER_ABILITY_HIDDEN, //ABILITY Intimidate
-		.item = ITEM_FIRIUM_Z, 
+		.item = ITEM_INCINIUM_Z, 
 		.moves =
 		{
 			MOVE_FAKEOUT,
 			MOVE_DARKESTLARIAT, 
-			MOVE_PARTINGSHOT,
+			MOVE_WILLOWISP,
 			MOVE_FLAREBLITZ,
 		},
 		.ball = BALL_TYPE_GREAT_BALL,
@@ -5397,7 +5397,7 @@ static const struct BattleTowerSpread sExpertBossBattle_Saffron_Sabrina[] =
 		.spDefIv = 31,
 		.spdIv = 0,
 		.ability = FRONTIER_ABILITY_1, //ABILITY Misty Surge
-		.item = ITEM_IRON_BALL, 
+		.item = ITEM_FOCUS_SASH, 
 		.moves =
 		{
 			MOVE_MISTYEXPLOSION,
@@ -7687,7 +7687,7 @@ static const struct BattleTowerSpread sExpertBossBattle_Cinnabar_May[] =
 		.spAtkIv = 31,
 		.spDefIv = 31,
 		.spdIv = 31,
-		.ability = FRONTIER_ABILITY_1, //ABILITY Swarm
+		.ability = FRONTIER_ABILITY_2, //ABILITY Shield Dust
 		.item = ITEM_FOCUS_SASH, 
 		.moves =
 		{
@@ -7909,7 +7909,7 @@ static const struct BattleTowerSpread sExpertBossBattle_Cinnabar_Mansion1[] =
 		.spDefIv = 31,
 		.spdIv = 31,
 		.ability = FRONTIER_ABILITY_HIDDEN, //ABILITY Bull Rush
-		.item = ITEM_CHOICE_BAND,
+		.item = ITEM_BLACK_BELT,
 		.moves =
 		{
 			MOVE_CLOSECOMBAT,
@@ -8112,7 +8112,7 @@ static const struct BattleTowerSpread sExpertBossBattle_Cinnabar_Mansion2[] =
 		{
 			MOVE_CALMMIND,
 			MOVE_ROOST, 
-			MOVE_STOREDPOWER,
+			MOVE_FREEZINGGLARE,
 			MOVE_AIRSLASH, 
 		},
 		.ball = BALL_TYPE_CHERISH_BALL,
@@ -8655,7 +8655,7 @@ static const struct BattleTowerSpread sExpertBossBattle_CeruleanCave_Grunt2[] =
 		.spDefIv = 31,
 		.spdIv = 30,
 		.ability = FRONTIER_ABILITY_HIDDEN, //ABILITY Regenerator
-		.item = ITEM_FOCUS_SASH,
+		.item = ITEM_ASSAULT_VEST,
 		.moves =
 		{
 			MOVE_GIGADRAIN,
@@ -9399,7 +9399,7 @@ static const struct BattleTowerSpread sExpertBossBattle_Viridian_Clair[] =
 {
 	{
 		.species = SPECIES_SHUCKLE,
-		.nature = NATURE_BOLD,
+		.nature = NATURE_IMPISH,
 		.level = PLAYER_MAX_LEVEL,
 		.hpIv = 31,
 		.atkIv = 31,
@@ -9408,7 +9408,7 @@ static const struct BattleTowerSpread sExpertBossBattle_Viridian_Clair[] =
 		.spDefIv = 31,
 		.spdIv = 31,
 		.ability = FRONTIER_ABILITY_2, //ABILITY Solid Rock
-		.item = ITEM_RED_CARD, 
+		.item = ITEM_FOCUS_SASH, 
 		.moves =
 		{
 			MOVE_STEALTHROCK,
@@ -9460,7 +9460,7 @@ static const struct BattleTowerSpread sExpertBossBattle_Viridian_Clair[] =
 		.moves =
 		{
 			MOVE_SHIFTGEAR,
-			MOVE_MOONBLAST, 
+			MOVE_MOONBLAST, //illegal
 			MOVE_THUNDERBOLT, 
 			MOVE_AURASPHERE, 
 		},

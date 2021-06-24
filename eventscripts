@@ -83,6 +83,7 @@ npc 3 2 8 EventScript_WonderTrade
 npc 3 2 2 EventScript_GiveExpShare
 sign 3 2 3 EventScript_TrainerTipsPewter
 npc 6 7 1 EventScript_Pewter_RandomizerInfo
+npc 6 7 0 EventScript_GenderSwapper
 
 #ROUTE 3 
 npc 3 21 9 EventScript_Route3Raid 

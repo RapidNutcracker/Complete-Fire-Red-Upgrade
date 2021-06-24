@@ -3696,6 +3696,73 @@ void CheckIfChuckApproves()
 	}
 }
 
+extern const u8 gText_MonMale[];
+extern const u8 gText_MonFemale[];
+
+void CheckIfCanSwapGender() {
+	struct Pokemon* mon = &gPlayerParty[Var8004];
+	u32 speciesPersonality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
+	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+	u8 gender = GetGenderFromSpeciesAndPersonality(species, speciesPersonality);
+	if (species != SPECIES_BURMY && species != SPECIES_BURMY_SANDY && species != SPECIES_BURMY_TRASH && species != SPECIES_COMBEE && species != SPECIES_RALTS
+	&& species != SPECIES_KIRLIA  && species != SPECIES_SALANDIT && species != SPECIES_SNORUNT) {
+		gSpecialVar_LastResult = FALSE; 
+		
+	}
+	else{
+		gSpecialVar_LastResult = TRUE; 
+	}
+	GetMonData(&gPlayerParty[Var8004], MON_DATA_NICKNAME, gStringVar1);
+	if (gender == MON_MALE) {
+		StringCopy(sScriptStringVars[1], gText_MonFemale);
+	}
+	else {
+		StringCopy(sScriptStringVars[1], gText_MonMale);
+	}
+}
+
+void ChangeMonGender()
+{
+	struct Pokemon* mon = &gPlayerParty[Var8004];
+	u32 speciesPersonality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
+	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+	u8 nature = GetNatureFromPersonality(speciesPersonality);
+
+	u8 abilityBit = speciesPersonality & 1;
+	u32 personality;
+	u8 gender = GetGenderFromSpeciesAndPersonality(species, speciesPersonality);
+	u8 genderToSwapTo;
+	if (gender == MON_MALE) {
+		genderToSwapTo = MON_FEMALE;
+	}
+	else {
+		genderToSwapTo = MON_MALE; 
+	}
+	bool8 isShiny = IsMonShiny(mon);
+	u32 trainerId = GetMonData(mon, MON_DATA_OT_ID, NULL);
+	u16 sid = HIHALF(trainerId);
+	u16 tid = LOHALF(trainerId);
+
+	do
+	{
+		personality = Random32(); 
+		if (isShiny)
+		{
+			u8 shinyRange = 1;
+			personality = (((shinyRange ^ (sid ^ tid)) ^ LOHALF(personality)) << 16) | LOHALF(personality);
+		}
+		personality &= ~(1);
+		personality |= abilityBit;
+		if(GetGenderFromSpeciesAndPersonality(species, personality) == genderToSwapTo){
+			if(nature == GetNatureFromPersonality(personality))
+				break; // we found a personality with the desired nature
+		}
+	} while (TRUE);
+
+	SetMonData(mon, MON_DATA_PERSONALITY, &personality);
+	CalculateMonStats(mon);
+}
+
 void CheckIfKogaApproves()  
 {  
 	struct Pokemon* mon = &gPlayerParty[Var8004];
@@ -3875,56 +3942,64 @@ void TryRandomizeSpecies(unusedArg u16* species)
 	}
 	else if (FlagGet(FLAG_WONDER_TRADE) && !FlagGet(FLAG_BATTLE_FACILITY) && *species != SPECIES_NONE && *species < NUM_SPECIES)
 	{
-		u32 id = MathMax(1, T1_READ_32(gSaveBlock2->playerTrainerId)); //0 id would mean every Pokemon would crash the game
-        u32 newSpecies = *species;
-        u32 prevNewSpecies = SPECIES_NONE; //Helps prevent infinite loop
-        u32 offset = 1; //Used in case of an infinite loop
-		u32 checkHowMany = 0; 
-		do
-        {
-            newSpecies *= id;
-            newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
-			checkHowMany++;
-			if (checkHowMany >= 20){
-				newSpecies = (newSpecies + offset++) * id; //Offset the new species by an increasing number to fix problem
-                newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
-			}
-            while (newSpecies == prevNewSpecies) //Entered into an infinite loop
-            {
-                newSpecies = (newSpecies + offset++) * id; //Offset the new species by an increasing number to fix problem
-                newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
-            }
+		// u32 id = MathMax(1, T1_READ_32(gSaveBlock2->playerTrainerId)); //0 id would mean every Pokemon would crash the game
+        // u32 newSpecies = *species;
+        // u32 prevNewSpecies = SPECIES_NONE; //Helps prevent infinite loop
+        // u32 offset = 1; //Used in case of an infinite loop
+		// u32 checkHowMany = 0; 
+		// do
+        // {
+        //     newSpecies *= id;
+        //     newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
+		// 	checkHowMany++;
+		// 	if (checkHowMany >= 20){
+		// 		newSpecies = (newSpecies + offset++) * id; //Offset the new species by an increasing number to fix problem
+        //         newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
+		// 	}
+        //     while (newSpecies == prevNewSpecies) //Entered into an infinite loop
+        //     {
+        //         newSpecies = (newSpecies + offset++) * id; //Offset the new species by an increasing number to fix problem
+        //         newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
+        //     }
 
-            prevNewSpecies = newSpecies; 
+        //     prevNewSpecies = newSpecies; 
+		// } while (!CheckTableForSpecies(newSpecies, gWonderTradeList));
+		u32 newSpecies = 0;
+		do {
+			newSpecies = Random32();
 		} while (!CheckTableForSpecies(newSpecies, gWonderTradeList));
 		
 		*species = newSpecies;
 	} 
 	else if (FlagGet(FLAG_WONDER_TRADE_FIRST) && !FlagGet(FLAG_BATTLE_FACILITY) && *species != SPECIES_NONE && *species < NUM_SPECIES)
 	{
-		u32 id = MathMax(1, T1_READ_32(gSaveBlock2->playerTrainerId)); //0 id would mean every Pokemon would crash the game
-        u32 newSpecies = *species;
-        u32 prevNewSpecies = SPECIES_NONE; //Helps prevent infinite loop
-        u32 offset = 1; //Used in case of an infinite loop
-		u32 checkHowMany = 0; 
-		do
-        {
-            newSpecies *= id;
-            newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
-			checkHowMany++;
-			if (checkHowMany >= 20){
-				newSpecies = (newSpecies + offset++) * id; //Offset the new species by an increasing number to fix problem
-                newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
-			}
-            while (newSpecies == prevNewSpecies) //Entered into an infinite loop
-            {
-                newSpecies = (newSpecies + offset++) * id; //Offset the new species by an increasing number to fix problem
-                newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
-            }
+		// u32 id = MathMax(1, T1_READ_32(gSaveBlock2->playerTrainerId)); //0 id would mean every Pokemon would crash the game
+        // u32 newSpecies = *species;
+        // u32 prevNewSpecies = SPECIES_NONE; //Helps prevent infinite loop
+        // u32 offset = 1; //Used in case of an infinite loop
+		// u32 checkHowMany = 0; 
+		// do
+        // {
+        //     newSpecies *= id;
+        //     newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
+		// 	checkHowMany++;
+		// 	if (checkHowMany >= 20){
+		// 		newSpecies = (newSpecies + offset++) * id; //Offset the new species by an increasing number to fix problem
+        //         newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
+		// 	}
+        //     while (newSpecies == prevNewSpecies) //Entered into an infinite loop
+        //     {
+        //         newSpecies = (newSpecies + offset++) * id; //Offset the new species by an increasing number to fix problem
+        //         newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
+        //     }
 
-            prevNewSpecies = newSpecies; 
+        //     prevNewSpecies = newSpecies; 
+		// } while (!CheckTableForSpecies(newSpecies, gWonderTradeListFirst));
+		u32 newSpecies = 0;
+		do {
+			newSpecies = Random32();
 		} while (!CheckTableForSpecies(newSpecies, gWonderTradeListFirst));
-		
+
 		*species = newSpecies;
 	}
 	#endif 
