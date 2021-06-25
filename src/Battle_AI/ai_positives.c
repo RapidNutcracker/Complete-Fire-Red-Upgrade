@@ -2396,6 +2396,8 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 
 	if (moveSplit != SPLIT_STATUS)
 	{
+		mgba_printf(MGBA_LOG_INFO, "Am I even here" );
+
 		if (IS_SINGLE_BATTLE) //Single Battle or only 1 target left
 		{
 			//Every spread type has the same viability increases for these two

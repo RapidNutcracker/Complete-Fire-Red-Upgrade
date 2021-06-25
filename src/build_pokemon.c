@@ -20,17 +20,17 @@
 
 #include "../include/new/ability_tables.h"
 #include "../include/new/ai_advanced.h"
-#include "../include/new/build_pokemon.h"
+#include "../include/new/build_pokemon.h" 
 #include "../include/new/build_pokemon_2.h"
 #include "../include/new/catching.h"
 #include "../include/new/dexnav.h"
 #include "../include/new/dynamax.h"
-#include "../include/new/form_change.h"
-#include "../include/new/frontier.h"
-#include "../include/new/item.h"
+#include "../include/new/form_change.h" 
+#include "../include/new/frontier.h" 
+#include "../include/new/item.h"  
 #include "../include/new/learn_move.h"
 #include "../include/new/mega.h"
-#include "../include/new/multi.h"
+#include "../include/new/multi.h" 
 #include "../include/new/pokemon_storage_system.h"
 #include "../include/new/util.h"
 
@@ -54,7 +54,7 @@ build_pokemon.c
 #define TOTAL_ORICORIO_SPREADS ARRAY_COUNT(gOricorioSpreads)
 #define TOTAL_LITTLE_CUP_SPREADS ARRAY_COUNT(gLittleCupSpreads)
 #define TOTAL_MIDDLE_CUP_SPREADS ARRAY_COUNT(gMiddleCupSpreads)
-
+  
 enum
 {
 	HAZARDS_SETUP,
@@ -4002,7 +4002,7 @@ void TryRandomizeSpecies(unusedArg u16* species)
 
 		*species = newSpecies;
 	}
-	#endif 
+	#endif    
 }
 
 u16 GetRandomizedSpecies(u16 species)
@@ -4189,10 +4189,10 @@ bool8 GetAlternateHasSpecies(struct BoxPokemon* mon)
 	u32 n = (((2 * base + iv + ev / 4) * level) / 100) + 5; \
 	n = ModifyStatByNature(nature, n, statIndex);			\
 	SetMonData(mon, field, &n);								\
-}
-
-void CalculateMonStatsNew(struct Pokemon *mon)
-{
+}  
+  
+void CalculateMonStatsNew(struct Pokemon *mon) 
+{  
 	u32 i;
 	u16 newMaxHP;
 	u8 ivs[NUM_STATS] = {0};

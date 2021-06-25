@@ -3,6 +3,35 @@
 
 // HARDCORE MODE BOSS BATTLES HERE:
 
+static const struct BattleTowerSpread sExpertBossBattle_TestHighestdamage[] = 
+{
+	{
+		.species = SPECIES_ELECTIVIRE,
+		.nature = NATURE_ADAMANT,
+		.level = PLAYER_MAX_LEVEL,
+		.hpIv = 31,
+		.atkIv = 31,
+		.defIv = 31,
+		.spAtkIv = 31,
+		.spDefIv = 31,
+		.spdIv = 31,
+		.ability = FRONTIER_ABILITY_HIDDEN, //ABILITY Iron Fist
+		.item = ITEM_EXPERT_BELT,
+		.moves =
+		{
+			MOVE_DRAINPUNCH,
+			MOVE_CLOSECOMBAT,
+			// MOVE_AURASPHERE,
+			MOVE_PLASMAFISTS,
+			MOVE_THUNDERPUNCH,
+		},
+		.ball = BALL_TYPE_GREAT_BALL,
+		.forSingles = TRUE,
+		.forDoubles = TRUE,
+		.modifyMovesDoubles = FALSE,
+	}
+};
+
 static const struct BattleTowerSpread sExpertBossBattle_Brendan_Battle1[] =
 {
 	{
@@ -2599,7 +2628,7 @@ static const struct BattleTowerSpread sExpertBossBattle_Vermilion_LtSurgeGymTrai
 		.modifyMovesDoubles = FALSE,
 	},
 	{
-		.species = SPECIES_PORYGON_Z,
+		.species = SPECIES_SWANNA,
 		.nature = NATURE_TIMID,
 		.level = ONE_BELOW_PLAYER_MAX_LEVEL,
 		.hpIv = 31,
@@ -2608,14 +2637,14 @@ static const struct BattleTowerSpread sExpertBossBattle_Vermilion_LtSurgeGymTrai
 		.spAtkIv = 31,
 		.spDefIv = 31,
 		.spdIv = 31,
-		.ability = FRONTIER_ABILITY_2, //ABILITY Download
-		.item = ITEM_EXPERT_BELT,
+		.ability = FRONTIER_ABILITY_HIDDEN, //ABILITY No Guard
+		.item = ITEM_SHARP_BEAK,
 		.moves =
 		{
-			MOVE_TRIATTACK,
-			MOVE_SHADOWBALL, 
-			MOVE_THUNDERBOLT, 
+			MOVE_HURRICANE,
+			MOVE_HYDROPUMP, 
 			MOVE_ICEBEAM, 
+			MOVE_UTURN, 
 		},
 		.ball = BALL_TYPE_ULTRA_BALL,
 		.forSingles = TRUE,
@@ -2647,23 +2676,23 @@ static const struct BattleTowerSpread sExpertBossBattle_Vermilion_LtSurgeGymTrai
 		.modifyMovesDoubles = FALSE,
 	},
 	{
-		.species = SPECIES_MORPEKO,
+		.species = SPECIES_DUGTRIO,
 		.nature = NATURE_JOLLY,
-		.level = ONE_BELOW_PLAYER_MAX_LEVEL,
+		.level = PLAYER_MAX_LEVEL,
 		.hpIv = 31,
 		.atkIv = 31,
 		.defIv = 31,
 		.spAtkIv = 31,
 		.spDefIv = 31,
 		.spdIv = 31,
-		.ability = FRONTIER_ABILITY_1, //ABILITY Hunger Thingy
+		.ability = FRONTIER_ABILITY_2, //ABILITY Arena Trap
 		.item = ITEM_LIFE_ORB, 
 		.moves =
 		{
-			MOVE_AURAWHEEL,
-			MOVE_BULLETSEED, 
-			MOVE_ZIPPYZAP,
-			MOVE_CRUNCH, 
+			MOVE_EARTHQUAKE,
+			MOVE_ROCKSLIDE, 
+			MOVE_SUCKERPUNCH,
+			MOVE_AERIALACE, 
 		},
 		.ball = BALL_TYPE_ULTRA_BALL,
 		.forSingles = TRUE,
@@ -8062,9 +8091,9 @@ static const struct BattleTowerSpread sExpertBossBattle_Cinnabar_Mansion2[] =
 		.item = ITEM_LOPUNNITE,
 		.moves =
 		{
-			MOVE_FAKEOUT,
-			MOVE_CLOSECOMBAT, 
+			MOVE_UTURN,
 			MOVE_RETURN, 
+			MOVE_CLOSECOMBAT, 
 			MOVE_TRIPLEAXEL, 
 		},
 		.ball = BALL_TYPE_GREAT_BALL,
@@ -8615,7 +8644,7 @@ static const struct BattleTowerSpread sExpertBossBattle_CeruleanCave_Grunt2[] =
 			MOVE_TOXIC,
 			MOVE_UTURN, 
 		},
-		.ball = BALL_TYPE_BEAST_BALL,
+		.ball = BALL_TYPE_DUSK_BALL,
 		.forSingles = TRUE,
 		.forDoubles = TRUE,
 		.modifyMovesDoubles = FALSE,
@@ -8865,7 +8894,7 @@ static const struct BattleTowerSpread sExpertBossBattle_CeruleanCave_Ariana[] =
 			MOVE_THUNDERBOLT,
 			MOVE_ICEBEAM, 
 		},
-		.ball = BALL_TYPE_BEAST_BALL,
+		.ball = BALL_TYPE_GREAT_BALL,
 		.forSingles = TRUE,
 		.forDoubles = TRUE,
 		.modifyMovesDoubles = FALSE,
@@ -9107,7 +9136,7 @@ static const struct BattleTowerSpread sExpertBossBattle_CeruleanCave_Ketchup1[] 
 		.spDefIv = 31,
 		.spdIv = 31,
 		.ability = FRONTIER_ABILITY_1, //ABILITY Prism Armor
-		.item = ITEM_WHITE_HERB, 
+		.item = ITEM_POWER_HERB, 
 		.moves =
 		{
 			MOVE_STEALTHROCK,
@@ -14385,7 +14414,7 @@ const struct MultiRaidTrainer gExpertBossBattles[] =
 			[0] =   NELEMS(sExpertBossBattle_E4_GaryBulbasaur),
 		},
 	},
-		{		
+	{		
 		.owNum = EVENT_OBJ_GFX_BRENDAN, // Gary Champion Charmander 
 		.trainerClass = CLASS_PKMN_TRAINER_1,
 		.backSpriteId = SINGLE_BATTLE,
@@ -14399,6 +14428,22 @@ const struct MultiRaidTrainer gExpertBossBattles[] =
 		.spreadSizes =
 		{
 			[0] =   NELEMS(sExpertBossBattle_E4_GaryCharmander),
+		},
+	},
+	{
+		.owNum = EVENT_OBJ_GFX_BRENDAN, //Test battle
+		.trainerClass = CLASS_PKMN_TRAINER_1,
+		.backSpriteId = SINGLE_BATTLE,
+		.gender = MALE,
+		.otId = 0x7,
+		.name = sTrainerName_Xan,
+		.spreads =
+		{
+			[0] =	sExpertBossBattle_TestHighestdamage,
+		},
+		.spreadSizes =
+		{
+			[0] =   NELEMS(sExpertBossBattle_TestHighestdamage),
 		},
 	},
 };

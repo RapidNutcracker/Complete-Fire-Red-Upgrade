@@ -328,8 +328,8 @@ u32 GetAIFlags(void)
 		flags = AI_SCRIPT_CHECK_BAD_MOVE;
 	else if (gBattleTypeFlags & BATTLE_TYPE_SCRIPTED_WILD_3)
 		flags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_SEMI_SMART;
-	else if (FlagGet(FLAG_SMART_WILD))
-		flags = 7; 
+	// else if (FlagGet(FLAG_SMART_WILD))
+	// 	flags = 7; 
 	else
 	{
 		if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
@@ -338,26 +338,6 @@ u32 GetAIFlags(void)
 			flags = 7; 
 		else
 			flags = gTrainers[gTrainerBattleOpponent_A].aiFlags;
-
-		#ifdef VAR_GAME_DIFFICULTY
-		if (difficulty == OPTIONS_EASY_DIFFICULTY && gBattleTypeFlags & BATTLE_TYPE_TRAINER)
-			flags = AI_SCRIPT_CHECK_BAD_MOVE; //Trainers are always barely smart in easy mode
-		else if (difficulty == OPTIONS_HARD_DIFFICULTY && gBattleTypeFlags & BATTLE_TYPE_TRAINER)
-		{
-			if (!(flags & AI_SCRIPT_CHECK_GOOD_MOVE)) //Not Trainers who are already smart
-				flags |= AI_SCRIPT_SEMI_SMART; //Regular Trainers are always semi smart in hard mode
-		}
-		else if (difficulty == OPTIONS_EXPERT_DIFFICULTY)
-		{
-			if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
-			{
-				if (!(flags & AI_SCRIPT_CHECK_GOOD_MOVE)) //Not Trainers who are already smart
-					flags |= AI_SCRIPT_SEMI_SMART; //Regular Trainers are always semi smart in expert mode
-			}
-			else
-				flags = AI_SCRIPT_CHECK_BAD_MOVE; //Even Wild Pokemon are moderately smart in expert mode
-		}
-		#endif
 	}
 
 	if (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER) && gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)
@@ -771,7 +751,7 @@ static void CalculateAIPredictions(void)
 {
 	if (!gNewBS->calculatedAIPredictions) //Only calculate these things once per turn
 	{
-		//mgba_printf(MGBA_LOG_INFO, "Calculating strongest moves...");
+		// mgba_printf(MGBA_LOG_INFO, "Calculating strongest moves...");
 		UpdateStrongestMoves();
 		//mgba_printf(MGBA_LOG_WARN, "Calculating doubles killing moves...");
 		UpdateBestDoublesKillingMoves(); //Takes long time
@@ -1138,136 +1118,6 @@ static bool8 FindMonThatAbsorbsOpponentsMove(void)
 	return FALSE;
 }
 
-// static bool8 FindMonThatAbsorbsOpponentsMoveRechoose(u16 predictedMove1)
-// {
-// 	u8 battlerIn1, battlerIn2;
-// 	u8 foe1, foe2;
-// 	predictedMove2;
-// 	u8 absorbingTypeAbility1, absorbingTypeAbility2, absorbingTypeAbility3;
-// 	u8 firstId, lastId;
-// 	struct Pokemon *party;
-// 	int i;
-
-// 	LoadBattlersAndFoes(&battlerIn1, &battlerIn2, &foe1, &foe2);
-
-// 	// predictedMove1 = IsValidMovePrediction(foe1, gActiveBattler);
-// 	predictedMove2 = IsValidMovePrediction(foe2, gActiveBattler);
-// 	// predictedMove1 = gBattleMons[0].moves[gBattleStruct->chosenMovePositions[0]]; // LATEST
-// 	if (IS_SINGLE_BATTLE)
-// 	{
-// 		if (!MoveWouldHitFirst(predictedMove1, foe2, gActiveBattler)) //AI goes first
-// 		{
-// 			if (CanKnockOut(gActiveBattler, foe1))
-// 				return FALSE; //Just KO the opponent and don't worry about switching out
-// 		}
-// 		else
-// 		{
-// 			if (!CanKnockOut(foe1, gActiveBattler) //The enemy can't KO you first
-// 			&&   CanKnockOut(gActiveBattler, foe1)
-// 			&&   AnyStatGreaterThan(gActiveBattler, 6 + 0)) //Has stat boosts +7 or more
-// 				return FALSE; //Just KO the opponent and don't worry about switching out if you're boosted up
-// 		}
-
-// 		if (!CanKnockOut(foe1, gActiveBattler) //The enemy can't KO you
-// 		&& AnyStatGreaterThan(gActiveBattler, 6 + 1)) //AI is invested in stat boosts +8 or more
-// 			return FALSE;
-
-// 		if (IS_BEHIND_SUBSTITUTE(gActiveBattler) //Make use of your substitute before switching
-// 		&& !DamagingMoveThaCanBreakThroughSubstituteInMoveset(foe1, gActiveBattler))
-// 			return FALSE;
-// 	}
-// 	else //Double Battle
-// 	{
-// 		u16 bestMove1 = gNewBS->ai.bestDoublesKillingMoves[gActiveBattler][foe1];
-// 		u16 bestMove2 = gNewBS->ai.bestDoublesKillingMoves[gActiveBattler][foe2];
-// 		if (GetDoubleKillingScore(bestMove1, gActiveBattler, foe1) >= BEST_DOUBLES_KO_SCORE - 2 //10: Hit 2 Foes, KO 1 Foe/Strongest Move 2 Foes
-// 		||  GetDoubleKillingScore(bestMove2, gActiveBattler, foe2) >= BEST_DOUBLES_KO_SCORE - 2) //10: Hit 2 Foes, KO 1 Foe/Strongest Move 2 Foes
-// 			return FALSE; //Don't switch if this mon can do some major damage to the enemy side
-
-// 		if (AnyStatGreaterThan(gActiveBattler, 6 + 1) //AI is invested in stat boosts +8 or more
-// 		&& (GetDoubleKillingScore(bestMove1, gActiveBattler, foe1) >= BEST_DOUBLES_KO_SCORE / 2 //6: Hit 1 Foe, KO 1 Foe
-// 		 || GetDoubleKillingScore(bestMove2, gActiveBattler, foe2) >= BEST_DOUBLES_KO_SCORE / 2)) //6: Hit 1 Foe, KO 1 Foe
-// 			return FALSE;
-// 	}
-
-// 	// if (STAT_STAGE(gActiveBattler, STAT_STAGE_EVASION) >= 6 + 3)
-// 	// 	return FALSE; //Invested in Evasion so don't switch
-
-// 	if (((predictedMove1 == MOVE_NONE || predictedMove1 == MOVE_PREDICTION_SWITCH) && (predictedMove2 == MOVE_NONE || predictedMove2 == MOVE_PREDICTION_SWITCH))
-// 	|| (SPLIT(predictedMove1) == SPLIT_STATUS && SPLIT(predictedMove2) == SPLIT_STATUS))
-// 		return FALSE;
-
-// 	u8 moveType;
-// 	if (predictedMove1 != MOVE_NONE && predictedMove1 != MOVE_PREDICTION_SWITCH)
-// 		moveType = GetMoveTypeSpecial(foe1, predictedMove1);
-// 	else
-// 		moveType = GetMoveTypeSpecial(foe2, predictedMove2);
-
-// 	switch (moveType) {
-// 		case TYPE_FIRE:
-// 			absorbingTypeAbility1 = ABILITY_FLASHFIRE;
-// 			absorbingTypeAbility2 = ABILITY_FLASHFIRE;
-// 			absorbingTypeAbility3 = ABILITY_FLASHFIRE;
-// 			break;
-// 		case TYPE_ELECTRIC:
-// 			absorbingTypeAbility1 = ABILITY_VOLTABSORB;
-// 			absorbingTypeAbility2 = ABILITY_LIGHTNINGROD;
-// 			absorbingTypeAbility3 = ABILITY_MOTORDRIVE;
-// 			break;
-// 		case TYPE_WATER:
-// 			absorbingTypeAbility1 = ABILITY_WATERABSORB;
-// 			absorbingTypeAbility2 = ABILITY_DRYSKIN;
-// 			absorbingTypeAbility3 = ABILITY_STORMDRAIN;
-// 			break;
-// 		case TYPE_GRASS:
-// 			absorbingTypeAbility1 = ABILITY_SAPSIPPER;
-// 			absorbingTypeAbility2 = ABILITY_SAPSIPPER;
-// 			absorbingTypeAbility3 = ABILITY_SAPSIPPER;
-// 			break;
-// 		case TYPE_ROCK: 
-// 			absorbingTypeAbility1 = ABILITY_MOUNTAINEER; //added here 
-// 			absorbingTypeAbility2 = ABILITY_MOUNTAINEER;
-// 			absorbingTypeAbility3 = ABILITY_MOUNTAINEER;
-// 			break; 
-// 		default:
-// 			return FALSE;
-// 	}
-
-// 	u8 atkAbility = GetPredictedAIAbility(gActiveBattler, foe1);
-// 	if (atkAbility == absorbingTypeAbility1
-// 	||  atkAbility == absorbingTypeAbility2
-// 	||  atkAbility == absorbingTypeAbility3)
-// 		return FALSE;
-
-// 	party = LoadPartyRange(gActiveBattler, &firstId, &lastId);
-
-// 	for (i = firstId; i < lastId; i++)
-// 	{
-// 		u16 species = party[i].species;
-// 		u8 monAbility = GetMonAbility(&party[i]);
-
-// 		if (party[i].hp == 0
-// 		||  species == SPECIES_NONE
-// 		||	GetMonData(&party[i], MON_DATA_IS_EGG, 0)
-// 		||	i == gBattlerPartyIndexes[battlerIn1]
-// 		||	i == gBattlerPartyIndexes[battlerIn2]
-// 		||	i == gBattleStruct->monToSwitchIntoId[battlerIn1]
-// 		||	i == gBattleStruct->monToSwitchIntoId[battlerIn2])
-// 			continue;
-
-// 		if (monAbility == absorbingTypeAbility1
-// 		||  monAbility == absorbingTypeAbility2
-// 		||  monAbility == absorbingTypeAbility3)
-// 		{
-// 			// we found a mon.
-// 			gBattleStruct->switchoutIndex[SIDE(gActiveBattler)] = i;
-// 			EmitTwoReturnValues(1, ACTION_SWITCH, 0);
-// 			return TRUE;
-// 		}
-// 	}
-
-// 	return FALSE;
-// }
 
 
 static bool8 ShouldSwitchIfNaturalCureOrRegenerator(void)
@@ -2331,13 +2181,6 @@ u8 CalcMostSuitableMonToSwitchInto(void)
 								&& PriorityCalcMon(&party[i], move) > 0
 								&& MoveKnocksOutXHitsFromParty(move, &party[i], foe, 1, &damageData))
 								{
-									//Priority move that KOs
-									// if( gBattleMoves[move].effect == EFFECT_SUCKER_PUNCH) {
-									// 	if ( Random() % 2 == 0) {
-									// 		scores[i] += SWITCHING_INCREASE_REVENGE_KILL;
-									// 	}
-									// }
-									// else
 									scores[i] += SWITCHING_INCREASE_REVENGE_KILL;
 									break;
 								}
@@ -2876,178 +2719,6 @@ static u32 GetMaxByteIndexInList(const u8 array[], const u32 size)
 
 	return maxIndex;
 }
-
-// static u8 GetAI_ItemType(u16 itemId, const u8 *itemEffect) //Fixed from vanilla
-// {
-//     if (itemId == ITEM_FULL_RESTORE)
-//         return AI_ITEM_FULL_RESTORE;
-//     else if (itemEffect[4] & ITEM4_HEAL_HP)
-//         return AI_ITEM_HEAL_HP;
-//     else if (itemEffect[3] & ITEM3_STATUS_ALL)
-//         return AI_ITEM_CURE_CONDITION;
-//     else if (itemEffect[0] & (ITEM0_HIGH_CRIT | ITEM0_X_ATTACK) || itemEffect[1] != 0 || itemEffect[2] != 0)
-//         return AI_ITEM_X_STAT;
-//     else if (itemEffect[3] & ITEM3_MIST)
-//         return AI_ITEM_GUARD_SPECS;
-//     else
-//         return AI_ITEM_NOT_RECOGNIZABLE;
-// }
-
-// static bool8 ShouldAIUseItem(void)
-// {
-// 	u32 i;
-// 	u8 validMons = 0;
-// 	bool8 shouldUse = FALSE;
-	
-// 	if (SIDE(gActiveBattler) == B_SIDE_PLAYER)
-// 		return FALSE;
-
-// 	struct Pokemon* party;
-// 	u8 firstId, lastId;
-// 	party = LoadPartyRange(gActiveBattler, &firstId, &lastId);
-
-// 	for (i = 0; i < PARTY_SIZE; ++i)
-// 	{
-// 		if (MON_CAN_BATTLE(&party[i]))
-// 			++validMons;
-// 	}
-
-// 	for (i = 0; i < 4; ++i) //Number of Trainer items
-// 	{
-// 		u16 item;
-// 		const u8 *itemEffects;
-// 		u8 paramOffset;
-
-// 		//if (i > 0 && validMons > (BATTLE_HISTORY->itemsNo - i) + 1) //Spread out item usage
-// 		//	continue;
-// 		item = BATTLE_HISTORY->trainerItems[i];
-// 		itemEffects = gItemEffectTable[item - ITEM_POTION];
-
-// 		if (item == ITEM_NONE || itemEffects == NULL)
-// 			continue;
-
-// 		switch (gBattleStruct->AI_itemType[gActiveBattler & BIT_FLANK] = GetAI_ItemType(item, itemEffects))
-// 		{
-// 			case AI_ITEM_FULL_RESTORE:
-// 				if (BATTLER_ALIVE(gActiveBattler) && !BATTLER_MAX_HP(gActiveBattler))
-// 				{
-// 					FULL_RESTORE_LOGIC:
-// 					if (AI_THINKING_STRUCT->aiFlags <= AI_SCRIPT_CHECK_BAD_MOVE) //Dumb AI
-// 					{
-// 						if (gBattleMons[gActiveBattler].hp < gBattleMons[gActiveBattler].maxHP / 4)
-// 							shouldUse = TRUE;
-// 					}
-// 					else if (gBattleMons[gActiveBattler].hp < gBattleMons[gActiveBattler].maxHP / 2) //Smart AI should only use at less than half health
-// 					{
-// 						u8 foe = FOE(gActiveBattler);
-// 						if ((BATTLER_ALIVE(foe) && ShouldRecover(gActiveBattler, foe, 0xFFFF))
-// 						|| (IS_DOUBLE_BATTLE && BATTLER_ALIVE(PARTNER(foe)) && ShouldRecover(gActiveBattler, PARTNER(foe), 0xFFFF)))
-// 						{
-// 							shouldUse = TRUE;
-// 						}
-// 					}
-// 				}
-// 				break;
-// 			case AI_ITEM_HEAL_HP:
-// 				paramOffset = GetItemEffectParamOffset(item, 4, 4);
-// 				if (paramOffset > 0 && BATTLER_ALIVE(gActiveBattler) && !BATTLER_MAX_HP(gActiveBattler))
-// 				{
-// 					if (gBattleMons[gActiveBattler].maxHP - gBattleMons[gActiveBattler].hp > itemEffects[paramOffset]) //Item won't restore all HP
-// 						shouldUse = TRUE;
-// 					else
-// 						goto FULL_RESTORE_LOGIC;
-// 				}
-// 				break;
-// 			case AI_ITEM_CURE_CONDITION: ;
-// 				u32 status1 = gBattleMons[gActiveBattler].status1;
-// 				gBattleStruct->AI_itemFlags[gActiveBattler & BIT_FLANK] = 0;
-// 				if (itemEffects[3] & ITEM3_SLEEP && status1 & STATUS1_SLEEP)
-// 				{
-// 					gBattleStruct->AI_itemFlags[gActiveBattler & BIT_FLANK] |= 0x20;
-// 					shouldUse = TRUE;
-// 				}
-// 				if (itemEffects[3] & ITEM3_POISON && (status1 & STATUS1_PSN_ANY))
-// 				{
-// 					gBattleMons[gActiveBattler].status1 = 0; //Temporarily remove status
-// 					if (!GoodIdeaToPoisonSelf(gActiveBattler)) //Pokemon shouldn't be poisoned
-// 					{
-// 						gBattleStruct->AI_itemFlags[gActiveBattler & BIT_FLANK] |= 0x10; //So heal it
-// 						shouldUse = TRUE;
-// 					}
-// 					gBattleMons[gActiveBattler].status1 = status1; //Restore from backup
-// 				}
-// 				if (itemEffects[3] & ITEM3_BURN && status1 & STATUS1_BURN)
-// 				{
-// 					gBattleMons[gActiveBattler].status1 = 0; //Temporarily remove status
-// 					if (!GoodIdeaToBurnSelf(gActiveBattler)) //Pokemon shouldn't be burned
-// 					{
-// 						gBattleStruct->AI_itemFlags[gActiveBattler & BIT_FLANK] |= 0x8; //So heal it
-// 						shouldUse = TRUE;
-// 					}
-// 					gBattleMons[gActiveBattler].status1 = status1; //Restore from backup
-// 				}
-// 				if (itemEffects[3] & ITEM3_FREEZE && status1 & STATUS1_FREEZE)
-// 				{
-// 					gBattleStruct->AI_itemFlags[gActiveBattler & BIT_FLANK] |= 0x4;
-// 					shouldUse = TRUE;
-// 				}
-// 				if (itemEffects[3] & ITEM3_PARALYSIS && status1 & STATUS1_PARALYSIS)
-// 				{
-// 					gBattleMons[gActiveBattler].status1 = 0; //Temporarily remove status
-// 					if (!GoodIdeaToParalyzeSelf(gActiveBattler)) //Pokemon shouldn't be paralyzed
-// 					{
-// 						gBattleStruct->AI_itemFlags[gActiveBattler & BIT_FLANK] |= 0x2; //So heal it
-// 						shouldUse = TRUE;
-// 					}
-// 					gBattleMons[gActiveBattler].status1 = status1; //Restore from backup
-// 				}
-// 				if (itemEffects[3] & ITEM3_CONFUSION && gBattleMons[gActiveBattler].status2 & STATUS2_CONFUSION)
-// 				{
-// 					gBattleStruct->AI_itemFlags[gActiveBattler & BIT_FLANK] |= 0x1;
-// 					shouldUse = TRUE;
-// 				}
-// 				break;
-// 			case AI_ITEM_X_STAT:
-// 				gBattleStruct->AI_itemFlags[gActiveBattler & BIT_FLANK] = 0;
-// 				if (!gDisableStructs[gActiveBattler].isFirstTurn)
-// 					break;
-// 				if (itemEffects[0] & ITEM0_X_ATTACK)
-// 					gBattleStruct->AI_itemFlags[gActiveBattler & BIT_FLANK] |= 0x1;
-// 				if (itemEffects[1] & ITEM1_X_DEFEND)
-// 					gBattleStruct->AI_itemFlags[gActiveBattler & BIT_FLANK] |= 0x2;
-// 				if (itemEffects[1] & ITEM1_X_SPEED)
-// 					gBattleStruct->AI_itemFlags[gActiveBattler & BIT_FLANK] |= 0x4;
-// 				if (itemEffects[2] & ITEM2_X_SPATK)
-// 				{
-// 					if (item != ITEM_X_SP_DEF) //Sp. Atk
-// 						gBattleStruct->AI_itemFlags[gActiveBattler & BIT_FLANK] |= 0x8;
-// 					else //Sp. Def
-// 						gBattleStruct->AI_itemFlags[gActiveBattler & BIT_FLANK] |= 0x10;
-// 				}
-// 				if (itemEffects[2] & ITEM2_X_ACCURACY)
-// 					gBattleStruct->AI_itemFlags[gActiveBattler & BIT_FLANK] |= 0x20;
-// 				if (itemEffects[0] & ITEM0_HIGH_CRIT)
-// 					gBattleStruct->AI_itemFlags[gActiveBattler & BIT_FLANK] |= 0x80;
-// 				shouldUse = TRUE;
-// 				break;
-// 			case AI_ITEM_GUARD_SPECS:
-// 				if (gDisableStructs[gActiveBattler].isFirstTurn && gSideTimers[SIDE(gActiveBattler)].mistTimer == 0)
-// 					shouldUse = TRUE;
-// 				break;
-// 			case AI_ITEM_NOT_RECOGNIZABLE:
-// 				return FALSE;
-// 		}
-
-// 		if (shouldUse)
-// 		{
-// 			EmitTwoReturnValues(1, ACTION_USE_ITEM, 0);
-// 			gBattleStruct->chosenItem[gActiveBattler & BIT_FLANK] = item;
-// 			BATTLE_HISTORY->trainerItems[i] = 0;
-// 			return shouldUse;
-// 		}
-// 	}
-// 	return FALSE;
-// }
 
 #ifdef VAR_GAME_DIFFICULTY
 static bool8 IsGoodIdeaToDoShiftSwitch(u8 switchBank, u8 foe)

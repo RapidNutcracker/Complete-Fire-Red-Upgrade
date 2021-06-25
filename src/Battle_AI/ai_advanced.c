@@ -1558,19 +1558,12 @@ static bool8 ShouldTryToSetUpStat(u8 bankAtk, u8 bankDef, u16 move, u8 stat, unu
 	{
 		return FALSE;
 	}
-	if (((ABILITY(bankDef) == ABILITY_FLAMINGSOUL || ABILITY(bankDef) == ABILITY_GALEWINGS) && BATTLER_MAX_HP(bankDef)))
-		return FALSE; //break gale wings/flaming soul instead of setting up
 
     if ( (IsBankHoldingFocusSash(bankDef) || ABILITY(bankDef) == ABILITY_STURDY) && BATTLER_MAX_HP(bankDef))
 		return FALSE; //don't set up break sash/sturdy first 
 	
-	if ( ((IsBankHoldingFocusSash(bankAtk) || ABILITY(bankAtk) == ABILITY_STURDY) && (BATTLER_MAX_HP(bankAtk)) )
-	&& (MoveEffectInMoveset(EFFECT_QUICK_ATTACK, bankDef) 
-		|| MoveEffectInMoveset(EFFECT_SUCKER_PUNCH, bankDef) 
-			|| MoveInMoveset(MOVE_WATERSHURIKEN, bankDef) 
-			|| (ABILITY(bankDef) == ABILITY_TRIAGE && MoveEffectInMoveset(EFFECT_ABSORB, bankDef)) ) ) {
-				return FALSE;
-	}
+	if (PriorityMoveInMoveset(bankDef) > 0) //accounts for triage and flaming soul/gale wings
+		return FALSE;
 
 	if (IS_SINGLE_BATTLE)
 	{

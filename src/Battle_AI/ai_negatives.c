@@ -2757,9 +2757,9 @@ MOVESCR_CHECK_0:
 				// 	DECREASE_VIABILITY(10); //don't always spam sucker punch, can be easily abused
 				// }
 			}
-			// else if ( Random() % 2 == 0) {
-			// 	DECREASE_VIABILITY(10);
-			// }
+			else if ( Random() % 2 == 0) {
+				DECREASE_VIABILITY(10);
+			}
 			//If the foe has move prediction, assume damage move for now.
 			goto AI_STANDARD_DAMAGE;
 

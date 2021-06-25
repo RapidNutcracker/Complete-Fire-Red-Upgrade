@@ -80,7 +80,8 @@ tile 6 2 0 EventScript_ExpertModeTileLeft
 tile 6 2 2 EventScript_ExpertModeTileRight
 npc 6 2 2 EventScript_ExpertModeNPC
 npc 3 2 8 EventScript_WonderTrade
-npc 3 2 2 EventScript_GiveExpShare
+@ npc 3 2 2 EventScript_GiveExpShare
+npc 3 2 2 EventScript_AITestBattle
 sign 3 2 3 EventScript_TrainerTipsPewter
 npc 6 7 1 EventScript_Pewter_RandomizerInfo
 npc 6 7 0 EventScript_GenderSwapper

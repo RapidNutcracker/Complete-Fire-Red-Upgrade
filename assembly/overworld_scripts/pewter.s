@@ -456,12 +456,14 @@ EventScript_DiglettsCave_HardStone:
 @wip i guess
 .global EventScript_AITestBattle
 EventScript_AITestBattle:
-	setvar 0x8001 0x6
-    setvar 0x8004 0xC 
-    preparemsg gText_NatureChanger2 
-    waitmsg
-    special 0x158
-    waitstate 
+	@ setvar 0x8001 0x6
+    @ setvar 0x8004 0xC 
+    @ preparemsg gText_NatureChanger2 
+    @ waitmsg
+    @ special 0x158
+    @ waitstate
+	@ trainerbattle3 0x3  
+	trainerbattle3 0x3 0x7 0x0 gText_falkner_Defeat
 	release
 	end
 

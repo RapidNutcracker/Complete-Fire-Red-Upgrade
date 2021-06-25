@@ -73,54 +73,7 @@ bool8 CanKnockOut(u8 bankAtk, u8 bankDef)
 	return gNewBS->ai.canKnockOut[bankAtk][bankDef];
 }
 
-bool8 CanKnockOutSash(u8 bankAtk, u8 bankDef) //added this function to ensure mons don't set up with sash against priority pokemon
-{ 
-	if (!BATTLER_ALIVE(bankAtk) || !BATTLER_ALIVE(bankDef))
-		return FALSE; //Can't KO if you're dead or target is dead
 
-	if (gNewBS->ai.canKnockOut[bankAtk][bankDef] == 0xFF) //Hasn't been calculated yet
-	{
-		struct BattlePokemon backupMonAtk; // backupMonDef; // commented all these out added
-		u8 backupAbilityAtk = ABILITY_NONE; // u8 backupAbilityDef = ABILITY_NONE; 
-		u16 backupSpeciesAtk = SPECIES_NONE; // u16 backupSpeciesDef = SPECIES_NONE;
-
-		TryTempMegaEvolveBank(bankAtk, &backupMonAtk, &backupSpeciesAtk, &backupAbilityAtk);
-		// TryTempMegaEvolveBank(bankDef, &backupMonDef, &backupSpeciesDef, &backupAbilityDef); //added here 
-
-		if (gNewBS->ai.strongestMove[bankAtk][bankDef] == 0xFFFF)
-			gNewBS->ai.strongestMove[bankAtk][bankDef] = CalcStrongestMove(bankAtk, bankDef, FALSE);
-
-		gNewBS->ai.canKnockOut[bankAtk][bankDef] = MoveKnocksOutXHits(gNewBS->ai.strongestMove[bankAtk][bankDef], bankAtk, bankDef, 99); //99 is special for set up check for sashes
-
-		if (gNewBS->ai.canKnockOut[bankAtk][bankDef])
-			gNewBS->ai.can2HKO[bankAtk][bankDef] = TRUE; //If you can KO in 1 hit you can KO in 2
-
-		//TryRevertTempMegaEvolveBank(bankDef, &backupMonDef, &backupSpeciesDef, &backupAbilityDef);
-		TryRevertTempMegaEvolveBank(bankAtk, &backupMonAtk, &backupSpeciesAtk, &backupAbilityAtk); // added here
-	}
-	else /*if ( (BATTLER_MAX_HP(bankDef) && ABILITY(bankDef) == ABILITY_STURDY) //recalculate for sash garbage 
-	|| (BATTLER_MAX_HP(bankDef) && IsBankHoldingFocusSash(bankDef) ) )*/ {
-		struct BattlePokemon backupMonAtk; // backupMonDef; // commented all these out added
-		u8 backupAbilityAtk = ABILITY_NONE; // u8 backupAbilityDef = ABILITY_NONE; 
-		u16 backupSpeciesAtk = SPECIES_NONE; // u16 backupSpeciesDef = SPECIES_NONE;
-
-		TryTempMegaEvolveBank(bankAtk, &backupMonAtk, &backupSpeciesAtk, &backupAbilityAtk);
-		// TryTempMegaEvolveBank(bankDef, &backupMonDef, &backupSpeciesDef, &backupAbilityDef); //added here 
-
-		if (gNewBS->ai.strongestMove[bankAtk][bankDef] == 0xFFFF)
-			gNewBS->ai.strongestMove[bankAtk][bankDef] = CalcStrongestMove(bankAtk, bankDef, FALSE);
-
-		gNewBS->ai.canKnockOut[bankAtk][bankDef] = MoveKnocksOutXHits(gNewBS->ai.strongestMove[bankAtk][bankDef], bankAtk, bankDef, 99); //99 is special for set up check for sashes
-
-		if (gNewBS->ai.canKnockOut[bankAtk][bankDef])
-			gNewBS->ai.can2HKO[bankAtk][bankDef] = TRUE; //If you can KO in 1 hit you can KO in 2
-
-		//TryRevertTempMegaEvolveBank(bankDef, &backupMonDef, &backupSpeciesDef, &backupAbilityDef);
-		TryRevertTempMegaEvolveBank(bankAtk, &backupMonAtk, &backupSpeciesAtk, &backupAbilityAtk); // added here
-	}
-
-	return gNewBS->ai.canKnockOut[bankAtk][bankDef];
-}
 
 
 bool8 GetCanKnockOut(u8 bankAtk, u8 bankDef)
@@ -290,9 +243,11 @@ bool8 MoveKnocksOutPossiblyGoesFirstWithBestAccuracy(u16 move, u8 bankAtk, u8 ba
 	u16 currMove, currAcc;
 
 	u8 bestMoveIndex = 0xFF;
+	u8 bestMoveIndexArray[4];
+	u8 totalBestMoves = 0;
 	u16 bestAcc = 0;
+	// mgba_printf(MGBA_LOG_INFO, "Calculating for  %d", move );
 	u8 moveLimitations = CheckMoveLimitations(bankAtk, 0, AdjustMoveLimitationFlagsForAI(bankAtk, bankDef));
-
 	for (int i = 0; i < MAX_MON_MOVES; ++i)
 	{
 		currMove = GetBattleMonMove(bankAtk, i);
@@ -304,26 +259,42 @@ bool8 MoveKnocksOutPossiblyGoesFirstWithBestAccuracy(u16 move, u8 bankAtk, u8 ba
 		if (!(gBitTable[i] & moveLimitations))
 		{
 			currAcc = CalcAIAccuracy(currMove, bankAtk, bankDef);
+			if (currAcc == 0xFFFF) { 
+				currAcc = 100; //we don't care about inf accuracy lol
+			}
 
 			if ((!checkGoingFirst || MoveWouldHitFirst(currMove, bankAtk, bankDef))
 			&& MoveKnocksOutXHits(currMove, bankAtk, bankDef, 1))
 			{
-				if (MoveWillHit(currMove, bankAtk, bankDef) || currAcc > bestAcc)
+				if ( (MoveWillHit(currMove, bankAtk, bankDef) && bestAcc < 100) || (currAcc > bestAcc))
 				{
 					bestAcc = currAcc;
 					bestMoveIndex = i;
+					totalBestMoves = 1;
+					bestMoveIndexArray[0] = i;
 				}
 				else if (currAcc == bestAcc)
 				{
-					if (PriorityCalc(bankAtk, ACTION_USE_MOVE, currMove) > PriorityCalc(bankAtk, ACTION_USE_MOVE, gBattleMons[bankAtk].moves[bestMoveIndex])){ //The better move is still the one with more priority
-						if (gBattleMoves[currMove].effect == EFFECT_SUCKER_PUNCH){
-							if (Random() % 2 == 0)
-								bestMoveIndex = i;
-						}
-						else {
-							bestMoveIndex = i;
-						}
+					//if (PriorityCalc(bankAtk, ACTION_USE_MOVE, currMove) > PriorityCalc(bankAtk, ACTION_USE_MOVE, gBattleMons[bankAtk].moves[bestMoveIndex])){ //The better move is still the one with more priority
+						// if (gBattleMoves[currMove].effect == EFFECT_SUCKER_PUNCH){
+						// 	if (Random() % 2 == 0)
+						// 		bestMoveIndex = i;
+						// }
+					//	bestMoveIndex = i;
+					//}
+					if ( PriorityCalc(bankAtk, ACTION_USE_MOVE, currMove) > PriorityCalc(bankAtk, ACTION_USE_MOVE, gBattleMons[bankAtk].moves[bestMoveIndex]) 
+					&& ((MoveWouldHitFirst(MOVE_TACKLE, bankAtk, bankDef) && PriorityCalc(bankAtk, ACTION_USE_MOVE, currMove) >= PriorityMoveInMoveset(bankDef) )
+					|| !MoveWouldHitFirst(MOVE_TACKLE, bankAtk, bankDef))  ){
+						bestMoveIndex = i;
+						totalBestMoves = 1;
+						bestMoveIndexArray[0] = i;
 					}
+					else {
+						bestMoveIndex = i;
+						bestMoveIndexArray[totalBestMoves] = i;
+						totalBestMoves++;
+					}
+
 				}
 			}
 		}
@@ -332,8 +303,14 @@ bool8 MoveKnocksOutPossiblyGoesFirstWithBestAccuracy(u16 move, u8 bankAtk, u8 ba
 	if (bestMoveIndex == 0xFF) //No moves knock out and go first
 		return FALSE;
 
-	if (gBattleMons[bankAtk].moves[bestMoveIndex] == move)
-		return TRUE;
+	for (u8 i = 0; i < totalBestMoves; i++) {
+		if (gBattleMons[bankAtk].moves[bestMoveIndexArray[i]] == move) {
+			// mgba_printf(MGBA_LOG_INFO, "Total best moves true: %d", move );
+			return TRUE;
+		}
+	}
+	// if (gBattleMons[bankAtk].moves[bestMoveIndex] == move)
+	// 	return TRUE;
 
 	return FALSE;
 }
@@ -803,65 +780,6 @@ static bool8 CalculateMoveKnocksOutXHits(u16 move, u8 bankAtk, u8 bankDef, u8 nu
 	return FALSE;
 }
 
-static bool8 CalculateMoveKnocksOutSashXHits(u16 move, u8 bankAtk, u8 bankDef, u8 numHits)
-{
-	u8 ability = ABILITY(bankDef);
-	u16 species = SPECIES(bankDef);
-	bool8 noMoldBreakers = NO_MOLD_BREAKERS(ABILITY(bankAtk), move);
-
-	if (MoveBlockedBySubstitute(move, bankAtk, bankDef)
-	#ifdef SPECIES_MIMIKYU
-	|| (ability == ABILITY_DISGUISE && species == SPECIES_MIMIKYU && noMoldBreakers)
-	#endif
-	#ifdef SPECIES_EISCUE
-	|| (ability == ABILITY_ICEFACE && species == SPECIES_EISCUE && SPLIT(move) == SPLIT_PHYSICAL && noMoldBreakers)
-	#endif
-	)
-	{
-		if (numHits > 0)
-			numHits -= 1; //Takes at least a hit to break Disguise/Ice Face or sub
-	}
-
-	u32 dmg = GetFinalAIMoveDamage(move, bankAtk, bankDef, numHits, NULL);
-	if (dmg >= gBattleMons[bankDef].hp)
-		return TRUE;
-
-	if (numHits == 1 && (int) dmg == (gBattleMons[bankDef].hp - 1 )){ //added here
-		if (  (gTerrainType != PSYCHIC_TERRAIN ) && 
-		( (MoveEffectInMoveset(EFFECT_QUICK_ATTACK, bankAtk)) 
-		|| MoveEffectInMoveset(EFFECT_SUCKER_PUNCH, bankAtk) 
-			|| MoveInMoveset(MOVE_WATERSHURIKEN, bankAtk) 
-			|| ((ABILITY(bankAtk) == ABILITY_FLAMINGSOUL 
-			|| ABILITY(bankAtk) == ABILITY_GALEWINGS) && BATTLER_MAX_HP(bankAtk))
-			|| (ABILITY(bankAtk) == ABILITY_TRIAGE && MoveEffectInMoveset(EFFECT_ABSORB, bankAtk)) ) ){
-			return TRUE; 
-		}
-	}
-
-	if ( (gTerrainType != PSYCHIC_TERRAIN ) && 
-		((ABILITY(bankAtk) == ABILITY_TRIAGE && MoveEffectInMoveset(EFFECT_ABSORB, bankAtk)) 
-		  || ( MoveInMoveset(MOVE_GRASSYGLIDE, bankAtk) && gTerrainType == GRASSY_TERRAIN)))
-	{ //added this to check if triage 2HKOs, if so its useless to setup
-		if (GetDmgHealthPercentage(bankDef, dmg) <= 45){
-			return TRUE;
-		}
-	}
-
-	if ( (gTerrainType != PSYCHIC_TERRAIN ) && 
-		(MoveEffectInMoveset(EFFECT_QUICK_ATTACK, bankAtk) 
-		|| MoveEffectInMoveset(EFFECT_SUCKER_PUNCH, bankAtk) //don't set up if we take a lot of damage and they have priority 
-		|| MoveInMoveset(MOVE_WATERSHURIKEN, bankAtk)))
-	{
-		if (GetDmgHealthPercentage(bankDef, dmg) <= 30){
-			return TRUE;
-		}
-	}
-
-
-	return FALSE;
-}
-
-
 bool8 MoveKnocksOutXHits(u16 move, u8 bankAtk, u8 bankDef, u8 numHits)
 {
 	u8 movePos;
@@ -891,17 +809,6 @@ bool8 MoveKnocksOutXHits(u16 move, u8 bankAtk, u8 bankDef, u8 numHits)
 				return gNewBS->ai.moveKnocksOut2Hits[bankAtk][bankDef][movePos];
 			return gNewBS->ai.moveKnocksOut2Hits[bankAtk][bankDef][movePos] = CalculateMoveKnocksOutXHits(move, bankAtk, bankDef, 2);
 
-		case 99:
-			if (gBattleMoves[move].effect == EFFECT_FUTURE_SIGHT)
-				return FALSE; //Really always 3 hits
-
-			movePos = FindMovePositionInMoveset(move, bankAtk);
-			if (movePos >= MAX_MON_MOVES)
-				break; //Move not in moveset
-
-			// if (gNewBS->ai.moveKnocksOut1Hit[bankAtk][bankDef][movePos] != 0xFF)
-			// 	return gNewBS->ai.moveKnocksOut1Hit[bankAtk][bankDef][movePos];
-			return gNewBS->ai.moveKnocksOut1Hit[bankAtk][bankDef][movePos] = CalculateMoveKnocksOutSashXHits(move, bankAtk, bankDef, 1);
 	}
 
 	return CalculateMoveKnocksOutXHits(move, bankAtk, bankDef, numHits);
@@ -1140,16 +1047,25 @@ move_t CalcStrongestMove(const u8 bankAtk, const u8 bankDef, const bool8 onlySpr
 				{
 					strongestMove = move;
 					highestDamage = predictedDamage;
-				}
-				else if (predictedDamage == highestDamage
-				&& PriorityCalc(bankAtk, ACTION_USE_MOVE, move) > PriorityCalc(bankAtk, ACTION_USE_MOVE, strongestMove)) //Use faster of two strongest moves
+				} 
+				else if (predictedDamage == highestDamage //changedhere
+				&& PriorityCalc(bankAtk, ACTION_USE_MOVE, move) > PriorityCalc(bankAtk, ACTION_USE_MOVE, strongestMove)
+				/*&& ( (MoveWouldHitFirst(MOVE_TACKLE, bankAtk, bankDef) && PriorityCalc(bankAtk, ACTION_USE_MOVE, move) >= PriorityMoveInMoveset(bankDef) )
+				|| !MoveWouldHitFirst(MOVE_TACKLE, bankAtk, bankDef) )*/) //Use faster of two strongest moves
 				{
+		
 					strongestMove = move;
 				}
 				else if (predictedDamage == highestDamage) //Find which move has better Acc
 				{
 					u16 currAcc = CalcAIAccuracy(move, bankAtk, bankDef);
 					u16 bestMoveAcc = CalcAIAccuracy(strongestMove, bankAtk, bankDef);
+					if (currAcc == 0xFFFF) { 
+						currAcc = 100; //we don't care about inf accuracy lol
+					}
+					if (bestMoveAcc == 0xFFFF) {
+						bestMoveAcc = 100;
+					}
 
 					if (currAcc > bestMoveAcc && bestMoveAcc < 100)
 					{
@@ -1213,6 +1129,8 @@ bool8 MoveWillHit(u16 move, u8 bankAtk, u8 bankDef)
 		return FALSE;
 
 	if ((move == MOVE_TOXIC && IsOfType(bankAtk, TYPE_POISON))
+	|| (move == MOVE_WILLOWISP && IsOfType(bankAtk, TYPE_FIRE))
+	|| (move == MOVE_THUNDERWAVE && IsOfType(bankAtk, TYPE_ELECTRIC))
 	||  (CheckTableForMove(move, gAlwaysHitWhenMinimizedMoves) && gStatuses3[bankDef] & STATUS3_MINIMIZED)
 	|| ((gStatuses3[bankDef] & STATUS3_TELEKINESIS) && gBattleMoves[move].effect != EFFECT_0HKO)
 	||  gBattleMoves[move].accuracy == 0
@@ -2010,6 +1928,40 @@ bool8 DamagingMoveInMoveset(u8 bank)
 	}
 
 	return FALSE;
+}
+
+u16 PriorityMoveInMoveset(u8 bank) 
+{
+	//some problems with this - doesn't account for prankster,
+	//doesn't account for 
+	u16 move;
+	u8 moveLimitations = CheckMoveLimitations(bank, 0, 0xFF);
+
+	u8 highestPriority = 0;
+	for (int i = 0; i < MAX_MON_MOVES; ++i)
+	{
+		move = GetBattleMonMove(bank, i);
+		if (move == MOVE_NONE)
+			break;
+
+		if (!(gBitTable[i] & moveLimitations))
+		{
+			if(move == MOVE_EXTREMESPEED && highestPriority < 2)
+				highestPriority = 2;
+			else if (ABILITY(bank) == ABILITY_TRIAGE && MoveEffectInMoveset(EFFECT_ABSORB, bank) && highestPriority < 3)
+				highestPriority = 3;
+			else if((gBattleMoves[move].effect == EFFECT_QUICK_ATTACK || move == MOVE_WATERSHURIKEN || move == MOVE_SUCKERPUNCH)  
+			&& highestPriority < 1)
+				highestPriority = 1;
+			else if ( (( (ABILITY(bank) == ABILITY_FLAMINGSOUL && MoveTypeInMoveset(TYPE_FIRE, bank)) 
+			|| (ABILITY(bank) == ABILITY_GALEWINGS && MoveTypeInMoveset(TYPE_FLYING, bank))) && BATTLER_MAX_HP(bank))
+			&& highestPriority < 1)
+				highestPriority = 1;
+			
+		}
+	}
+
+	return highestPriority;
 }
 
 bool8 PhysicalMoveInMoveset(u8 bank)
