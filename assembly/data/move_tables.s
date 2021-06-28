@@ -147,6 +147,7 @@ gCopycatBannedMoves:
 .hword MOVE_TRICK
 .hword MOVE_WHIRLWIND
 .hword MOVE_OBSTRUCT
+.hword MOVE_ROAROFTIME
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -475,6 +476,7 @@ gAssistBannedMoves:
 .hword MOVE_TRICK
 .hword MOVE_WHIRLWIND
 .hword MOVE_OBSTRUCT
+.hword MOVE_ROAROFTIME
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
