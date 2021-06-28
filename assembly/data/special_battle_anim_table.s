@@ -105,6 +105,8 @@ gBattleAnims_General:
 .word ANIM_MEANLOOK2
 .word ANIM_RAINBOW
 .word ANIM_MIST2
+.word ANIM_MAGMASTORM2
+
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
 ANIM_USEITEM:
@@ -1222,7 +1224,41 @@ ANIM_RAINBOW:
 ANIM_MIST2:	
 	goto 0x81d0821
 	endanimation
-	
+
+.pool
+ANIM_MAGMASTORM2:
+	loadparticle ANIM_TAG_GUST
+	launchtask AnimTask_BlendParticle 0x5 0x5 ANIM_TAG_GUST 0x0 0xE 0xE 0x115E @;Orangish Red
+	loadbg1 BG_FIRE
+	waitbgfadeout
+	launchtask AnimTask_scroll_background 0x5 0x4, -0x1000, 0x0 0x0 0xFFFF
+	waitbgfadein
+	playsound2 0x8F SOUND_PAN_TARGET
+	launchtask AnimTask_move_bank 0x2 0x5 bank_target 0x0 0x3 0x40 0x1
+	call HURRICANE_GUST
+	pause 0xA
+	launchtask AnimTask_pal_fade_complex 0x2 0x6 PAL_DEF 0x2 0x2 0x0 0xb 0x1F
+	playsound2 0x8F SOUND_PAN_TARGET
+	call HURRICANE_GUST
+	pause 0xA
+	playsound2 0x8F SOUND_PAN_TARGET
+	call HURRICANE_GUST
+	pause 0xA
+	call HURRICANE_GUST
+	pause 0xA
+	call HURRICANE_GUST
+	pause 0xA
+	call HURRICANE_GUST
+	waitanimation
+	call UNSET_SCROLLING_BG
+	endanimation
+
+
+HURRICANE_GUST:
+	launchtemplate Template_EllipticalGust TEMPLATE_TARGET | 2, 0x2 0x0 0xfff0
+	launchtask AnimTask_AnimateGustTornadoPalette 0x5 0x2 0x1 0x46
+	return
+
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
 .align 2

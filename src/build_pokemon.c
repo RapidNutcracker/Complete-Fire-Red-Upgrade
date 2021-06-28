@@ -39,7 +39,7 @@
 #include "Tables/raid_partners.h"
 #include "Tables/hardcore_trainers.h"
 #include "Tables/trainers_with_evs_table.h"
-
+ 
 /*
 build_pokemon.c
 	modifies the data that is set for generated pokemon, eg. for battle tower/frontier team generation and others.

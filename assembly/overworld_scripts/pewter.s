@@ -7,6 +7,10 @@
 
 .equ VAR_PRE_BATTLE_MUGSHOT_STYLE, 0x503A
 .equ VAR_PRE_BATTLE_MUGSHOT_SPRITE, 0x503B 
+.equ AURA_SHADOWTAG_STRING, 24
+
+.equ AURA_MAGMA_STORM_STRING, 26
+.equ AURA_MAGMA_STORM, 36
 
 .equ VAR_WEATHER, 0x5118
 .equ FLAG_MINIMAL_GRINDING_MODE, 0x1032
@@ -463,6 +467,7 @@ EventScript_AITestBattle:
     @ special 0x158
     @ waitstate
 	@ trainerbattle3 0x3  
+	setvar VAR_BATTLE_AURAS, AURA_MAGMA_STORM_STRING
 	trainerbattle3 0x3 0x7 0x0 gText_falkner_Defeat
 	release
 	end

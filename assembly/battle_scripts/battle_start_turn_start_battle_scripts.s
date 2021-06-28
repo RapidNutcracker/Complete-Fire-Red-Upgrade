@@ -51,6 +51,7 @@ battle_start_turn_start_battle_scripts.s
 .global BattleScript_RainbowBegins
 .global BattleScript_ShadowTagBegins
 .global BattleScript_StatusMistBegins
+.global BattleScript_MagmaStormBegins
 
 .global StringNull
 
@@ -292,7 +293,14 @@ BattleScript_StatusMistBegins:
 	playanimation BANK_SCRIPTING ANIM_MIST2 0x0
 	waitmessage DELAY_1SECOND
 	end3
-	
+
+BattleScript_MagmaStormBegins:
+	setword BATTLE_STRING_LOADER MagmaStormBeginsString
+	printstring 0x184
+	playanimation BANK_SCRIPTING ANIM_MAGMASTORM2 0x0
+	waitmessage DELAY_1SECOND
+	end3
+
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 BattleScript_QuickClaw:

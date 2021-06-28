@@ -605,13 +605,18 @@ bool8 TryActivateVarBattleAuras()
 
 			case AURA_STATUSMIST_STRING:
 				gBattleScripting.bank = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
-				// gSideTimers[GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT)].mistTimer = 5;
-				// gSideTimers[GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT)].safeguardTimer = 5;
+		
 				BattleScriptPushCursorAndCallback(BattleScript_StatusMistBegins);
 				VarSet(VAR_BATTLE_AURAS, AURA_STATUSMIST);
 				effect = TRUE;
 				break;
-
+			case AURA_MAGMA_STORM_STRING:
+				gBattleScripting.bank = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
+				gNewBS->SeaOfFireTimers[GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)] = 99;
+				BattleScriptPushCursorAndCallback(BattleScript_MagmaStormBegins);
+				VarSet(VAR_BATTLE_AURAS, AURA_SHADOWTAG);
+				effect = TRUE;
+				break;
 		}
 	}
 	

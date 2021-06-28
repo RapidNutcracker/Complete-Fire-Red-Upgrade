@@ -410,7 +410,7 @@ static const struct WildPokemon gMtMoon1F_LandMonsNight[] =
   {12, 14, SPECIES_ZUBAT},
   {12, 14, SPECIES_ROCKRUFF},
   {12, 14, SPECIES_MACHOP},
-  {12, 14, SPECIES_NOIBAT},
+  {10, 11, SPECIES_NOIBAT},
   {12, 14, SPECIES_TYMPOLE},
   {12, 14, SPECIES_MAKUHITA},
   {12, 14, SPECIES_MAKUHITA},

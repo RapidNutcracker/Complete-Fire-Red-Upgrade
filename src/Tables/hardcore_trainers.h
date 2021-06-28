@@ -4606,7 +4606,7 @@ static const struct BattleTowerSpread sExpertBossBattle_SilphCo_GarySquirtle[] =
 		.item = ITEM_SHARP_BEAK,
 		.moves =
 		{
-			MOVE_SLEEPPOWDER,
+			MOVE_SPORE,
 			MOVE_DOUBLEEDGE, 
 			MOVE_LEAFBLADE,
 			MOVE_SWORDSDANCE,
@@ -4853,7 +4853,7 @@ static const struct BattleTowerSpread sExpertBossBattle_SilphCo_GaryChar[] =
 		.item = ITEM_SHARP_BEAK,
 		.moves =
 		{
-			MOVE_SLEEPPOWDER,
+			MOVE_SPORE,
 			MOVE_DOUBLEEDGE, 
 			MOVE_LEAFBLADE,
 			MOVE_SWORDSDANCE,
@@ -7707,8 +7707,8 @@ static const struct BattleTowerSpread sExpertBossBattle_Cinnabar_May[] =
 //cannot remove hazards
 {
 	{
-		.species = SPECIES_RIBOMBEE,
-		.nature = NATURE_TIMID,
+		.species = SPECIES_AGGRON,
+		.nature = NATURE_ADAMANT,
 		.level = PLAYER_MAX_LEVEL,
 		.hpIv = 31,
 		.atkIv = 31,
@@ -7716,14 +7716,14 @@ static const struct BattleTowerSpread sExpertBossBattle_Cinnabar_May[] =
 		.spAtkIv = 31,
 		.spDefIv = 31,
 		.spdIv = 31,
-		.ability = FRONTIER_ABILITY_2, //ABILITY Shield Dust
-		.item = ITEM_FOCUS_SASH, 
+		.ability = FRONTIER_ABILITY_1, //ABILITY Sturdy
+		.item = ITEM_CUSTAP_BERRY, 
 		.moves =
 		{
-			MOVE_STICKYWEB,
-			MOVE_MOONBLAST, 
-			MOVE_STUNSPORE,
-			MOVE_BUGBUZZ,
+			MOVE_STONEEDGE,
+			MOVE_HEAVYSLAM, 
+			MOVE_HEATCRASH,
+			MOVE_ENDEAVOR,
 		},
 		.ball = BALL_TYPE_GREAT_BALL,
 		.forSingles = TRUE,
@@ -7731,31 +7731,7 @@ static const struct BattleTowerSpread sExpertBossBattle_Cinnabar_May[] =
 		.modifyMovesDoubles = FALSE,
 	},
 	{
-		.species = SPECIES_TOGEKISS,
-		.nature = NATURE_TIMID,
-		.level = PLAYER_MAX_LEVEL,
-		.hpIv = 31,
-		.atkIv = 31,
-		.defIv = 31,
-		.spAtkIv = 31,
-		.spDefIv = 31,
-		.spdIv = 31,
-		.ability = FRONTIER_ABILITY_2, //ABILITY Serene Grace
-		.item = ITEM_LEFTOVERS,
-		.moves =
-		{
-			MOVE_NASTYPLOT,
-			MOVE_AIRSLASH, 
-			MOVE_FLAMETHROWER, 
-			MOVE_ROOST, 
-		},
-		.ball = BALL_TYPE_GREAT_BALL,
-		.forSingles = TRUE,
-		.forDoubles = TRUE,
-		.modifyMovesDoubles = FALSE,
-	},
-	{
-		.species = SPECIES_JIRACHI,
+		.species = SPECIES_JUMPLUFF,
 		.nature = NATURE_JOLLY,
 		.level = PLAYER_MAX_LEVEL,
 		.hpIv = 31,
@@ -7764,14 +7740,38 @@ static const struct BattleTowerSpread sExpertBossBattle_Cinnabar_May[] =
 		.spAtkIv = 31,
 		.spDefIv = 31,
 		.spdIv = 31,
-		.ability = FRONTIER_ABILITY_1, //ABILITY Serene Grace
-		.item = ITEM_LEFTOVERS,
+		.ability = FRONTIER_ABILITY_HIDDEN, //ABILITY Aerilate
+		.item = ITEM_SHARP_BEAK,
 		.moves =
 		{
-			MOVE_POWERUPPUNCH,
-			MOVE_IRONHEAD, 
-			MOVE_THUNDERWAVE, 
-			MOVE_FIREPUNCH, 
+			MOVE_DOUBLEEDGE,
+			MOVE_UTURN, 
+			MOVE_SPORE, 
+			MOVE_SYNTHESIS, 
+		},
+		.ball = BALL_TYPE_GREAT_BALL,
+		.forSingles = TRUE,
+		.forDoubles = TRUE,
+		.modifyMovesDoubles = FALSE,
+	},
+	{
+		.species = SPECIES_REGIELEKI,
+		.nature = NATURE_NAIVE,
+		.level = PLAYER_MAX_LEVEL,
+		.hpIv = 31,
+		.atkIv = 31,
+		.defIv = 31,
+		.spAtkIv = 31,
+		.spDefIv = 31,
+		.spdIv = 31,
+		.ability = FRONTIER_ABILITY_1, //ABILITY Transistor
+		.item = ITEM_LIFE_ORB,
+		.moves =
+		{
+			MOVE_THUNDERBOLT,
+			MOVE_ELECTROBALL, 
+			MOVE_VOLTSWITCH, 
+			MOVE_EXPLOSION, 
 		},
 		.ball = BALL_TYPE_CHERISH_BALL,
 		.forSingles = TRUE,
@@ -7779,8 +7779,8 @@ static const struct BattleTowerSpread sExpertBossBattle_Cinnabar_May[] =
 		.modifyMovesDoubles = FALSE,
 	},
 	{
-		.species = SPECIES_XURKITREE,
-		.nature = NATURE_MODEST,
+		.species = SPECIES_SLOWBRO,
+		.nature = NATURE_BOLD,
 		.level = PLAYER_MAX_LEVEL,
 		.hpIv = 31,
 		.atkIv = 30,
@@ -7788,23 +7788,23 @@ static const struct BattleTowerSpread sExpertBossBattle_Cinnabar_May[] =
 		.spAtkIv = 31,
 		.spDefIv = 31,
 		.spdIv = 31,
-		.ability = FRONTIER_ABILITY_1, //ABILITY Beast Boost
-		.item = ITEM_ELECTRIUM_Z, 
+		.ability = FRONTIER_ABILITY_HIDDEN, //ABILITY Regenerator
+		.item = ITEM_LEFTOVERS, 
 		.moves =
 		{
-			MOVE_THUNDERBOLT,
-			MOVE_ENERGYBALL, 
-			MOVE_HIDDENPOWER, //ice
-			MOVE_DAZZLINGGLEAM, 
+			MOVE_SCALD,
+			MOVE_BODYPRES, 
+			MOVE_TELEPORT, 
+			MOVE_SLACKOFF, 
 		},
-		.ball = BALL_TYPE_BEAST_BALL,
+		.ball = BALL_TYPE_GREAT_BALL,
 		.forSingles = TRUE,
 		.forDoubles = TRUE,
 		.modifyMovesDoubles = FALSE,
 	},
 	{
-		.species = SPECIES_DURANT,
-		.nature = NATURE_JOLLY,
+		.species = SPECIES_SNORLAX,
+		.nature = NATURE_CAREFUL,
 		.level = PLAYER_MAX_LEVEL,
 		.hpIv = 31,
 		.atkIv = 31,
@@ -7812,14 +7812,14 @@ static const struct BattleTowerSpread sExpertBossBattle_Cinnabar_May[] =
 		.spAtkIv = 31,
 		.spDefIv = 31,
 		.spdIv = 31,
-		.ability = FRONTIER_ABILITY_2, //ABILITY Hustle
-		.item = ITEM_LIFE_ORB, 
+		.ability = FRONTIER_ABILITY_2, //ABILITY Thick Fat
+		.item = ITEM_LEFTOVERS, 
 		.moves =
 		{
-			MOVE_HONECLAWS,
-			MOVE_IRONHEAD, 
-			MOVE_ROCKSLIDE,
-			MOVE_SUPERPOWER, 
+			MOVE_BODYSLAM,
+			MOVE_DARKESTLARIAT, 
+			MOVE_CURSE,
+			MOVE_REST, 
 		},
 		.ball = BALL_TYPE_ULTRA_BALL,
 		.forSingles = TRUE,
@@ -8198,7 +8198,7 @@ static const struct BattleTowerSpread sExpertBossBattle_Cinnabar_Jasmine[] =
 			MOVE_CLOSECOMBAT,
 			MOVE_SWORDSDANCE, 
 		},
-		.ball = BALL_TYPE_BEAST_BALL,
+		.ball = BALL_TYPE_ULTRA_BALL,
 		.forSingles = TRUE,
 		.forDoubles = TRUE,
 		.modifyMovesDoubles = FALSE,
@@ -8620,7 +8620,7 @@ static const struct BattleTowerSpread sExpertBossBattle_CeruleanCave_Grunt2[] =
 			MOVE_WATERFALL,
 			MOVE_DESTINYBOND, 
 		},
-		.ball = BALL_TYPE_BEAST_BALL,
+		.ball = BALL_TYPE_GREAT_BALL,
 		.forSingles = TRUE,
 		.forDoubles = TRUE,
 		.modifyMovesDoubles = FALSE,
@@ -9362,7 +9362,7 @@ static const struct BattleTowerSpread sExpertBossBattle_CeruleanCave_Ketchup2[] 
 		.moves =
 		{
 			MOVE_DRAGONDANCE, 
-			MOVE_PHANTOMFORCE,
+			MOVE_SPIRITSHACKLE,
 			MOVE_DRAGONDARTS, 
 			MOVE_IRONTAIL, 
 		},
@@ -9575,7 +9575,7 @@ static const struct BattleTowerSpread sExpertBossBattle_Viridian_Clair[] =
 
 
 static const struct BattleTowerSpread sExpertBossBattle_Viridian_GaryPreE4Charmander[] =
-// sea of fire
+// updated to magma storm
 {
 	{
 		.species = SPECIES_CHARIZARD,
@@ -10141,7 +10141,7 @@ static const struct BattleTowerSpread sExpertBossBattle_Viridian_BrendanFinal[] 
 			MOVE_FLAMETHROWER, 
 			MOVE_ICEBEAM, 
 		},
-		.ball = BALL_TYPE_BEAST_BALL,
+		.ball = BALL_TYPE_GREAT_BALL,
 		.forSingles = TRUE,
 		.forDoubles = TRUE,
 		.modifyMovesDoubles = FALSE,
@@ -10291,7 +10291,7 @@ static const struct BattleTowerSpread sExpertBossBattle_VictoryRoad_AceTrainer1[
 			MOVE_BUGBUZZ, 
 			MOVE_THUNDER, 
 		},
-		.ball = BALL_TYPE_BEAST_BALL,
+		.ball = BALL_TYPE_NET_BALL,
 		.forSingles = TRUE,
 		.forDoubles = TRUE,
 		.modifyMovesDoubles = FALSE,

@@ -252,7 +252,7 @@ The [LAST_ITEM] restored\n[SCRIPTING_BANK]'s status!
 [TARGET] got trapped\nby a snap trap!
 
 #org @gText_HurtBySeaOfFire
-[ATTACKER] is hurt\nby the sea of fire!
+[ATTACKER] is hurt\nby the magma storm!
 
 #org @gText_BallFetchRetrievedItem
 [SCRIPTING_BANK] found one\n[LAST_ITEM]!
@@ -498,3 +498,6 @@ The opponent's intimidation prevents\nyour Pok\emon from switching out.
 
 #org @MistBeginsString
 The opponent surrounded himself in a\nshrouded mist, preventing them\lfrom being affected by status and\lstat reduction. 
+
+#org @MagmaStormBeginsString
+The opponent's fierce competitiveness\ntrapped your Pok\emon in a permanent\lMagma Storm.

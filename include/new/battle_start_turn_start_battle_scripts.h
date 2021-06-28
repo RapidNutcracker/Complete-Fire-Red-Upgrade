@@ -47,6 +47,7 @@ extern const u8 BattleScript_SeaOfFireBegins[];
 extern const u8 BattleScript_RainbowBegins[];
 extern const u8 BattleScript_ShadowTagBegins[];
 extern const u8 BattleScript_StatusMistBegins[];
+extern const u8 BattleScript_MagmaStormBegins[];
 
 extern const u8 gText_CamomonsTypeReveal[];
 extern const u8 gText_CamomonsTypeRevealDualType[];

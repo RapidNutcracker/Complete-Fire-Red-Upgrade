@@ -11,6 +11,7 @@
 .equ AURA_RAINBOW_STRING,  23
 .equ VAR_BATTLE_AURAS, 0x5119 
 .equ VAR_WEATHER, 0x5118
+.equ AURA_MAGMA_STORM_STRING, 26
 	@---------------
 .global EventScript_garypree4top_GaryPreE4Top
 EventScript_garypree4top_GaryPreE4Top:
@@ -111,7 +112,7 @@ SetAuraBulbasaur:
     setvar VAR_BATTLE_AURAS AURA_SWAMP_STRING
     return
 SetAuraCharmander:
-    setvar VAR_BATTLE_AURAS AURA_SEAOFFIRE_STRING
+    setvar VAR_BATTLE_AURAS AURA_MAGMA_STORM_STRING
     return
 
 EventScript_garypree4top_GaryLeave:
