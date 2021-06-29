@@ -411,6 +411,8 @@ gHardcoreBannedMoves:
 .hword MOVE_HOWL
 .hword MOVE_FIERYDANCE
 .hword MOVE_DESTINYBOND
+.hword MOVE_HARDEN
+.hword MOVE_WITHDRAW
 .hword MOVE_TABLES_TERMIN
 
 gHardcoreHalfBannedMoves:

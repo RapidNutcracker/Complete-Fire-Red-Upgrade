@@ -1796,7 +1796,7 @@ static const struct BattleTowerSpread sExpertBossBattle_Route24_BugsyPostSurge[]
 		.spDefIv = 31,
 		.spdIv = 31,
 		.ability = FRONTIER_ABILITY_2, //Technician
-		.item = ITEM_ASSAULT_VEST,
+		.item = ITEM_SCIZORITE,
 		.moves =
 		{
 			MOVE_BULLETPUNCH,
@@ -1896,7 +1896,7 @@ static const struct BattleTowerSpread sExpertBossBattle_Route24_BugsyPostSurge[]
 		.moves =
 		{
 			MOVE_THUNDER,
-			MOVE_SIGNALBEAM, 
+			MOVE_BUGBUZZ, 
 			MOVE_VOLTSWITCH,
 			MOVE_ENERGYBALL,  
 		},
@@ -7793,7 +7793,7 @@ static const struct BattleTowerSpread sExpertBossBattle_Cinnabar_May[] =
 		.moves =
 		{
 			MOVE_SCALD,
-			MOVE_BODYPRES, 
+			MOVE_BODYPRESS, 
 			MOVE_TELEPORT, 
 			MOVE_SLACKOFF, 
 		},

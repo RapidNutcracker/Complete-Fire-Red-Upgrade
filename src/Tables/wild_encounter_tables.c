@@ -129,8 +129,8 @@ static const struct WildPokemonInfo gViridianCity_SurfMonsInfo = {5, gViridianCi
 
 static const struct WildPokemon gViridianCity_FishingMons[] = 
 {
-  {2, 4, SPECIES_MARILL},
-  {2, 4, SPECIES_MAGIKARP},
+  {3, 4, SPECIES_MARILL},
+  {3, 4, SPECIES_CLAMPERL},
   {27, 29, SPECIES_CLAUNCHER},
   {27, 29, SPECIES_REMORAID},
   {27, 29, SPECIES_CORSOLA_G},

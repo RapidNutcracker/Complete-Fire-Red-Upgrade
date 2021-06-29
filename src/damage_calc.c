@@ -3398,7 +3398,7 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 		case ABILITY_PUNKROCK:
 		//1.3x Boost
 			if (CheckSoundMove(move))
-				power = (power * 13) / 10; //changed
+				power = (power * 13) / 10; 
 			break;
 		
 		case ABILITY_BULLRUSH:
