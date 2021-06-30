@@ -979,7 +979,7 @@ static const struct BattleTowerSpread sExpertBossBattle_MtMoon_Scientist[] =
 		.spAtkIv = 30,
 		.spDefIv = 31,
 		.spdIv = 31,
-		.ability = FRONTIER_ABILITY_HIDDEN, //galvanize 
+		.ability = FRONTIER_ABILITY_HIDDEN, //ABILITY Galvanize 
 		.item = ITEM_FOCUS_SASH,
 		.moves =
 		{
@@ -1127,7 +1127,7 @@ static const struct BattleTowerSpread sExpertBossBattle_CeruleanGary_Squirtle[] 
 		.spAtkIv = 31,
 		.spDefIv = 30,
 		.spdIv = 30,
-		.ability = FRONTIER_ABILITY_HIDDEN, //ABILITY Sage power
+		.ability = FRONTIER_ABILITY_HIDDEN, //ABILITY Sage Power
 		.item = ITEM_CHARCOAL,
 		.moves =
 		{
@@ -1151,7 +1151,7 @@ static const struct BattleTowerSpread sExpertBossBattle_CeruleanGary_Squirtle[] 
 		.spAtkIv = 31,
 		.spDefIv = 31,
 		.spdIv = 31,
-		.ability = FRONTIER_ABILITY_1, //ABILITY INtimidate
+		.ability = FRONTIER_ABILITY_1, //ABILITY Intimidate
 		.item = ITEM_POISON_BARB,
 		.moves =
 		{
@@ -1251,7 +1251,7 @@ static const struct BattleTowerSpread sExpertBossBattle_CeruleanGary_Bulbasaur[]
 		.spAtkIv = 31,
 		.spDefIv = 31,
 		.spdIv = 31,
-		.ability = FRONTIER_ABILITY_2, //Magic Guard
+		.ability = FRONTIER_ABILITY_2, //ABILITY Magic Guard
 		.item = ITEM_LIFE_ORB,
 		.moves =
 		{
@@ -1275,7 +1275,7 @@ static const struct BattleTowerSpread sExpertBossBattle_CeruleanGary_Bulbasaur[]
 		.spAtkIv = 30,
 		.spDefIv = 31,
 		.spdIv = 31,
-		.ability = FRONTIER_ABILITY_HIDDEN, //ABILITY Sage power
+		.ability = FRONTIER_ABILITY_HIDDEN, //ABILITY Sage Power
 		.item = ITEM_MYSTIC_WATER,
 		.moves =
 		{
@@ -1299,7 +1299,7 @@ static const struct BattleTowerSpread sExpertBossBattle_CeruleanGary_Bulbasaur[]
 		.spAtkIv = 31,
 		.spDefIv = 31,
 		.spdIv = 31,
-		.ability = FRONTIER_ABILITY_1, //ABILITY INtimidate
+		.ability = FRONTIER_ABILITY_1, //ABILITY Intimidate
 		.item = ITEM_POISON_BARB,
 		.moves =
 		{
@@ -1365,7 +1365,7 @@ static const struct BattleTowerSpread sExpertBossBattle_CeruleanGary_Bulbasaur[]
 
 static const struct BattleTowerSpread sExpertBossBattle_CeruleanGary_Charmander[] =
 {
-		{
+	{
 		.species = SPECIES_HITMONTOP,
 		.nature = NATURE_JOLLY,
 		.level = ONE_BELOW_PLAYER_MAX_LEVEL,
@@ -1399,7 +1399,7 @@ static const struct BattleTowerSpread sExpertBossBattle_CeruleanGary_Charmander[
 		.spAtkIv = 31,
 		.spDefIv = 31,
 		.spdIv = 31,
-		.ability = FRONTIER_ABILITY_2, //Magic Guard
+		.ability = FRONTIER_ABILITY_2, //ABILITY Magic Guard
 		.item = ITEM_LIFE_ORB,
 		.moves =
 		{
@@ -1423,7 +1423,7 @@ static const struct BattleTowerSpread sExpertBossBattle_CeruleanGary_Charmander[
 		.spAtkIv = 30,
 		.spDefIv = 31,
 		.spdIv = 30,
-		.ability = FRONTIER_ABILITY_HIDDEN, //ABILITY Sage power
+		.ability = FRONTIER_ABILITY_HIDDEN, //ABILITY Sage Power
 		.item = ITEM_MIRACLE_SEED,
 		.moves =
 		{
@@ -10508,7 +10508,7 @@ static const struct BattleTowerSpread sExpertBossBattle_VictoryRoad_AceTrainer3[
 		.spAtkIv = 31,
 		.spDefIv = 31,
 		.spdIv = 31,
-		.ability = FRONTIER_ABILITY_2, //ABILITY Levitate
+		.ability = FRONTIER_ABILITY_2, //ABILITY Regenerator
 		.item = ITEM_AUDINITE, 
 		.moves =
 		{
@@ -10524,7 +10524,7 @@ static const struct BattleTowerSpread sExpertBossBattle_VictoryRoad_AceTrainer3[
 	},
 	{
 		.species = SPECIES_MEW,
-		.nature = NATURE_TIMID,
+		.nature = NATURE_JOLLY,
 		.level = PLAYER_MAX_LEVEL,
 		.hpIv = 31,
 		.atkIv = 31,
@@ -10536,10 +10536,10 @@ static const struct BattleTowerSpread sExpertBossBattle_VictoryRoad_AceTrainer3[
 		.item = ITEM_LEFTOVERS,
 		.moves =
 		{
-			MOVE_COSMICPOWER,
-			MOVE_BODYPRESS, 
-			MOVE_STOREDPOWER, 
-			MOVE_ROOST, 
+			MOVE_DRAGONDANCE,
+			MOVE_DRAINPUNCH, 
+			MOVE_PSYCHOCUT, 
+			MOVE_KNOCKOFF, 
 		},
 		.ball = BALL_TYPE_CHERISH_BALL,
 		.forSingles = TRUE,
