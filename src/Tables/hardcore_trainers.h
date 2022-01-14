@@ -11945,7 +11945,7 @@ static const struct BattleTowerSpread sExpertBossBattle_E4_Agatha1[] =
 		.modifyMovesDoubles = FALSE,
 	},
 	{
-		.species = SPECIES_CALYREX_SHADOW,
+		.species = SPECIES_CALYREX_SHADOW_RIDER,
 		.nature = NATURE_TIMID,
 		.level = PLAYER_MAX_LEVEL,
 		.hpIv = 31,
@@ -12095,7 +12095,7 @@ static const struct BattleTowerSpread sExpertBossBattle_E4_Agatha2[] =
 		.modifyMovesDoubles = FALSE,
 	},
 	{
-		.species = SPECIES_CALYREX_SHADOW,
+		.species = SPECIES_CALYREX_SHADOW_RIDER,
 		.nature = NATURE_TIMID,
 		.level = PLAYER_MAX_LEVEL,
 		.hpIv = 31,

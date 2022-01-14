@@ -222,7 +222,7 @@ void HandleInputChooseMove(void)
 
 	sub_8033AC8();
 
-	if (gMain.newKeys & A_BUTTON && gNewBS->zMoveData.viewingDetails == FALSE) //added 
+	if (gMain.newKeys & A_BUTTON) 
 	{
 		u8 moveTarget;
 		u16 chosenMove = moveInfo->moves[gMoveSelectionCursor[gActiveBattler]];

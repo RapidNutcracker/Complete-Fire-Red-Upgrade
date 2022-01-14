@@ -16,6 +16,7 @@ build/*
 *.ss4
 *.ss5
 *.ss6
+*.toml
 
 Multi Target Moves Plan.txt
 generatedrepoints

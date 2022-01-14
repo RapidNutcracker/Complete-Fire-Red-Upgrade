@@ -5,6 +5,13 @@
 .include "../xse_defines.s"
 .include "../asm_defines.s" 
 
+.equ FLAG_EXPERT_DIFFICULTY, 0x93A
+
+.equ FLAG_POKEMON_RANDOMIZER, 0x940
+.equ FLAG_POKEMON_LEARNSET_RANDOMIZER, 0x941
+.equ FLAG_ABILITY_RANDOMIZER, 0x942
+
+.equ FLAG_MIN_GRINDING, 0x1032
 .equ FLAG_EASY_MODE, 0x1033
 .equ FLAG_HARDCORE_MODE, 0x1034
 .equ FLAG_RESTRICT_MODE, 0x103C
@@ -31,8 +38,6 @@ LevelScripts_PalletTownPlayerHome:
 
 LevelScript_PalletTownPlayerHome:
     setvar 0x5100 0x1
-    @ setvar 0x407C 0x2
-    setflag FLAG_SYS_SAVE_HIDE
     fadescreen 0x1
     fadeoutbgm 0x0
     sethealingplace 0x1
@@ -44,43 +49,43 @@ LevelScript_PalletTownPlayerHome:
     if equal _goto DefinitiveEdition
     msgbox gText_DoYouWantMinGrinding MSG_YESNO
     compare LASTRESULT YES
-    if equal _call setmingrinding
+    if equal _call SetMinGrindingOn
+    if NO _call SetMinGrindingOff
     msgbox gText_DoYouWantHardcoreMode MSG_YESNO
     compare LASTRESULT YES
-    if equal _goto sethardcoremode
+    if equal _goto SetHardcoreModeOn
     msgbox gText_DoYouWantRestrictMode MSG_YESNO
     compare LASTRESULT YES
-    if equal _goto setrestrictmode
+    if equal _goto SetRestrictedModeOn
     msgbox gText_DoYouWantEasyMode MSG_YESNO
     compare LASTRESULT YES
-    if equal _call seteasymode
+    if equal _call SetEasyModeOn
     goto AskRandomizer
-    @ goto endofscript
 
 endofscript: 
+    @ setvar 0x511B 0x1
     fadeinbgm 0x0 
     fadescreen 0x0
-    warp 0x4 0x1 0x1 0x0 0x0
-    @ givepokemon SPECIES_ABSOL 30 0x0 0x0 0x0 0x0
-    @ warp 0x1 0x6 0x0 0x0 0x0
     release
     end 
 
 .global EventScript_AskRandomizer
 EventScript_AskRandomizer:
+    msgbox gText_Pallet_Technology1 MSG_KEEPOPEN
     clearflag FLAG_SYS_SAVE_HIDE
     callasm CheckIfHallOfFame
     compare LASTRESULT 0x1
-    if equal _goto SetHofFlag
+    if equal _goto SetHallOfFameFlag
     goto EndRandomizerScript
 
 EndRandomizerScript:
     setvar 0x511B 0x1
     setvar 0x407C 0x2 @this clears the pokemon center flag
+    clearflag FLAG_SYS_SAVE_HIDE
     release
     end
 
-SetHofFlag:
+SetHallOfFameFlag:
     setflag 0x103D
     goto EndRandomizerScript
 
@@ -93,37 +98,43 @@ AskRandomizer:
     @ waitmovement 0x0
     msgbox gText_DoYouWantRandomizer MSG_YESNO 
     compare LASTRESULT YES 
-    if equal _call setrandom 
+    if NO _goto SetRandomizerOff
+    if equal _call SetPokemonRandomizerOn
     msgbox gText_DoYouWantAbility MSG_YESNO  
     compare LASTRESULT YES 
-    if equal _call setability 
+    if equal _call SetAbilityRandomizerOn 
     msgbox gText_DoYouWantLearnsets MSG_YESNO 
     compare LASTRESULT YES 
-    if equal _call setlearnsets
+    if equal _call SetLearnsetRandomizerOn
     @ setvar 0x511B 0x1
     goto endofscript
-    release
-    end
 
 DefinitiveEdition:
+    clearflag FLAG_HARDCORE_MODE
+    clearflag FLAG_POKEMON_RANDOMIZER
+    clearflag FLAG_POKEMON_LEARNSET_RANDOMIZER
+    clearflag FLAG_ABILITY_RANDOMIZER
+    clearflag FLAG_EASY_MODE
+    clearflag FLAG_RESTRICT_MODE
+    clearflag FLAG_MIN_GRINDING
     sound 0x30 
     msgbox gText_DefinitiveEdition MSG_KEEPOPEN
     checksound
     closeonkeypress
     goto endofscript
 
-sethardcoremode:
+SetHardcoreModeOn:
     setflag FLAG_HARDCORE_MODE
-    checkflag 0x1032
-    if 0x0 _call setmingrinding
-    setflag 0x1032
+    checkflag FLAG_MIN_GRINDING
+    if 0x0 _call SetMinGrindingOn
+    setflag FLAG_MIN_GRINDING
     sound 0x30 
     msgbox gText_hardcoremodeset MSG_KEEPOPEN
     checksound
     closeonkeypress
     goto endofscript
 
-setrestrictmode:
+SetRestrictedModeOn:
     setflag FLAG_RESTRICT_MODE
     sound 0x30 
     msgbox gText_restrictmodeset MSG_KEEPOPEN
@@ -131,7 +142,7 @@ setrestrictmode:
     closeonkeypress
     goto endofscript
 
-seteasymode:
+SetEasyModeOn:
     setflag FLAG_EASY_MODE
     sound 0x30
     msgbox gText_easymodeset MSG_KEEPOPEN
@@ -139,43 +150,53 @@ seteasymode:
     closeonkeypress
     return
 
-setmingrinding:
-    setflag 0x1032
+SetMinGrindingOn:
+    setflag FLAG_MIN_GRINDING
     sound 0x30
-    msgbox gText_setmingrinding MSG_KEEPOPEN
+    msgbox gText_SetMinGrindingOn MSG_KEEPOPEN
     checksound
     closeonkeypress 
     return
 
-setrandom:
-    setflag 0x940 
+SetMinGrindingOff:
+    clearflag FLAG_MIN_GRINDING
+    return
+
+SetRandomizerOff:
+    clearflag FLAG_POKEMON_RANDOMIZER
+    clearflag FLAG_POKEMON_LEARNSET_RANDOMIZER
+    clearflag FLAG_ABILITY_RANDOMIZER
+    goto endofscript
+
+SetPokemonRandomizerOn:
+    setflag FLAG_POKEMON_RANDOMIZER 
     msgbox gText_RandomizerHard MSG_YESNO 
     compare LASTRESULT YES 
-    if equal _goto SetHard 
+    if equal _goto SetExpertDifficultyOn 
     sound 0x30
     msgbox gText_RandomizerSet MSG_KEEPOPEN
     checksound
     closeonkeypress 
     return 
  
-SetHard: 
-    setflag 0x93A 
+SetExpertDifficultyOn: 
+    setflag FLAG_EXPERT_DIFFICULTY 
     sound 0x30
     msgbox gText_RandomizerSetHard MSG_KEEPOPEN 
     checksound
     closeonkeypress 
     return 
 
-setability:
-    setflag 0x942
+SetAbilityRandomizerOn:
+    setflag FLAG_ABILITY_RANDOMIZER
     sound 0x30
     msgbox gText_RandomAbilitySet MSG_KEEPOPEN
     checksound
     closeonkeypress 
     return 
 
-setlearnsets:
-    setflag 0x941
+SetLearnsetRandomizerOn:
+    setflag FLAG_POKEMON_LEARNSET_RANDOMIZER
     sound 0x30
     msgbox gText_RandomLearnsets MSG_KEEPOPEN
     checksound

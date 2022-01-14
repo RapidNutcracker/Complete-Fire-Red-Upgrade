@@ -58,7 +58,7 @@ If you're looking for more\ntrainers to fight, I hear a seer\lon Route 16 gives 
 #org @gText_restrictmodeset
 [GREEN]Restricted Mode[BLACK] has been set!
 
-#org @gText_setmingrinding
+#org @gText_SetMinGrindingOn
 [GREEN]Minimal Grinding Mode[BLACK] has been\nset!
 
 #org @gText_DoYouWantRandomizer
