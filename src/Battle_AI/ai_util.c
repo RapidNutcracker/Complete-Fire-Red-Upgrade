@@ -1953,7 +1953,7 @@ u16 PriorityMoveInMoveset(u8 bank)
 			else if((gBattleMoves[move].effect == EFFECT_QUICK_ATTACK || move == MOVE_WATERSHURIKEN || move == MOVE_SUCKERPUNCH)  
 			&& highestPriority < 1)
 				highestPriority = 1;
-			else if ( (( (ABILITY(bank) == ABILITY_FLAMINGSOUL && MoveTypeInMoveset(TYPE_FIRE, bank)) 
+			else if ( (( (ABILITY(bank) == ABILITY_WILDFIRE && MoveTypeInMoveset(TYPE_FIRE, bank)) 
 			|| (ABILITY(bank) == ABILITY_GALEWINGS && MoveTypeInMoveset(TYPE_FLYING, bank))) && BATTLER_MAX_HP(bank))
 			&& highestPriority < 1)
 				highestPriority = 1;

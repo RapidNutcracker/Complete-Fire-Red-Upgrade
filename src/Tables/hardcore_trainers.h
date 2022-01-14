@@ -1079,7 +1079,7 @@ static const struct BattleTowerSpread sExpertBossBattle_CeruleanGary_Squirtle[] 
 		.spAtkIv = 31,
 		.spDefIv = 31,
 		.spdIv = 31,
-		.ability = FRONTIER_ABILITY_HIDDEN, //ABILITY Striker
+		.ability = FRONTIER_ABILITY_HIDDEN, //ABILITY Lead Foot
 		.item = ITEM_BLACK_BELT,
 		.moves =
 		{
@@ -7567,7 +7567,7 @@ static const struct BattleTowerSpread sExpertBossBattle_Celadon_ErikaRe[] =
 		.spAtkIv = 31,
 		.spDefIv = 31,
 		.spdIv = 31,
-		.ability = FRONTIER_ABILITY_HIDDEN, //ABILITY Striker
+		.ability = FRONTIER_ABILITY_HIDDEN, //ABILITY Lead Foot
 		.item = ITEM_LIFE_ORB, 
 		.moves =
 		{

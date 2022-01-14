@@ -497,7 +497,7 @@ Ups Attack on entry.
 #org @DESC_DAUNTLESSSHIELD
 Ups Defense on entry.
 
-#org @DESC_STRIKER
+#org @DESC_LEADFOOT
 Boosts kicking moves.
 
 #org @DESC_COTTONDOWN
@@ -533,7 +533,7 @@ Takes one free physical hit.
 #org @DESC_POWERSPOT
 Powers up ally moves.
 
-#org @DESC_FLAMINGSOUL
+#org @DESC_WILDFIRE
 Fire moves hit first at full HP.
 
 #org @DESC_SCREENCLEANER

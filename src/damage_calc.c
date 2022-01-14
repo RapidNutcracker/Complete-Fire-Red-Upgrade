@@ -3281,7 +3281,7 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 				power = (power * 13) / 10; //added 
 			break;
 
-		case ABILITY_STRIKER: //added 
+		case ABILITY_LEADFOOT: //added 
 		//1.3x Boost
 			if (CheckTableForMove(move, gKickingMoves))
 				power = (power * 13) / 10;

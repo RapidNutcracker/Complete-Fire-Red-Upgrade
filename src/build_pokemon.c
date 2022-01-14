@@ -4360,7 +4360,7 @@ u8 HardcoreBannedAbilitySwapper(u8 ability, unusedArg u16 species){
 		// case ABILITY_SERENEGRACE:
 			return ABILITY_NATURALCURE;
 		
-		case ABILITY_FLAMINGSOUL:
+		case ABILITY_WILDFIRE:
 			return ABILITY_FLASHFIRE;  
 		
 		case ABILITY_TRACE:
