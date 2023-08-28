@@ -122,18 +122,18 @@ enum //These vars need to be one after the other (hence the enum)
 #define REUSABLE_TMS	//if defined, don't forget to give all TMs a Mystery byte of 1!
 
 /*===== Time of Day Options =====*/
-#define TIME_MORNING_START 4		//4:00 AM / 4:00
-#define TIME_DAY_START 8			//8:00 AM / 8:00
+#define TIME_MORNING_START 6		//6:00 AM / 6:00
+#define TIME_DAY_START 10			//10:00 AM / 10:00
 #define TIME_EVENING_START 17		//5:00 PM / 17:00
 #define TIME_NIGHT_START 20			//8:00 PM / 20:00
 
 /*===== General Number Options =====*/
 #define KANTO_DEX_COUNT 151
-#define NATIONAL_DEX_COUNT 809
+#define NATIONAL_DEX_COUNT 909
 
 #define MAX_LEVEL 100 //Also change this in the file "asm_defines.asm" found in the root
 #define NUM_TRAINER_CLASSES 107 //Vanilla FR has 107
-#define EVOS_PER_MON 16 //The number of maximum evolutions per Pokemon. Vanilla FR has 5. DPE has 16!!!
+#define EVOS_PER_MON 9 //The number of maximum evolutions per Pokemon. Vanilla FR has 5. DPE has 16!!!
 #define EV_CAP 252 //Also change this in the file "asm_defines.s" found in the root
 #define POWER_ITEM_EV_YIELD 24 //Set to 4 for older mechanic
 
@@ -313,6 +313,7 @@ enum //These vars need to be one after the other (hence the enum)
 /*===== Ability Options =====*/
 //#define OLD_GALE_WINGS //Uncomment this line if you want Gale Wings to activate regardless of the user's HP
 //#define OLD_PRANKSTER //Uncomment this line if you want Prankster to be able to affect Dark-Types
+#define BASELINE_LIQUIDOOZE //Comment this line if you want Liquid Ooze to remain an ability and not be baseline for all poison types.
 
 /*===== Damage Calculation Options =====*/
 //#define OLD_CRIT_DAMAGE //Uncomment this line if you want Critical hits to do 2x damage, and 3x with Sniper
@@ -332,6 +333,9 @@ enum //These vars need to be one after the other (hence the enum)
 #define GEN_7_POWER_NERFS //Comment out for Sucker Punch to retain its original base power.
 #define BUFFED_LEECH_LIFE //Comment out for Leech Life to retain its original base power.
 #define DARK_VOID_ACC_NERF //Comment out for Dark Void to retain its original accuracy.
+#define DUAL_TYPE_MOVES	//Comment out to remove changes that add an additional type to several moves.
+#define NERFED_MAX_AIRSTREAM //Comment out for Max Airstram to retain its original BP table.
+#define BUFFED_HAIL //Comment out for Hail to retain its original mechanics.
 
 /*===== Capturing Pokemon Options =====*/
 //#define NO_HARDER_WILD_DOUBLES //In Gen 5, Pokemon encountered in double wild battles were harder to catch (based on how many species are owned). Uncomment this line to remove the catch rate decrement.

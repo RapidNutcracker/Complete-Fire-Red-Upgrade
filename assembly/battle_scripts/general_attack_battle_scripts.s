@@ -129,7 +129,8 @@ DrainHPGarbodor:
 
 DrainHPBSP2:
 	orword HIT_MARKER HITMARKER_IGNORE_SUBSTITUTE
-	jumpifability BANK_TARGET ABILITY_LIQUIDOOZE BattleScript_AbsorbLiquidOoze
+	@jumpifability BANK_TARGET ABILITY_LIQUIDOOZE BattleScript_AbsorbLiquidOoze
+	jumpiftype BANK_TARGET TYPE_POISON BattleScript_AbsorbLiquidOoze
 	setbyte MULTISTRING_CHOOSER 0x0
 	goto 0x81D6A2B
 	
@@ -154,14 +155,14 @@ StrengthSapBS:
 BattleScript_AbsorbLiquidOoze:
 	jumpifmovehadnoeffect BS_MOVE_FAINT
 	copybyte BATTLE_SCRIPTING_BANK TARGET_BANK
-	call BattleScript_AbilityPopUp
+	@call BattleScript_AbilityPopUp
 	manipulatedamage 0x0 @;ATK80_DMG_CHANGE_SIGN
 	setbyte MULTISTRING_CHOOSER, 0x1
 	graphicalhpupdate BANK_ATTACKER
 	datahpupdate BANK_ATTACKER
 	printfromtable 0x83FE5DC @;gLeechSeedDrainStringIds
 	waitmessage DELAY_1SECOND
-	call BattleScript_AbilityPopUpRevert
+	@call BattleScript_AbilityPopUpRevert
 	faintpokemon BANK_ATTACKER 0x0 0x0
 	prefaintmoveendeffects 0x0
 	faintpokemonaftermove
@@ -219,7 +220,8 @@ EatTheDreams:
 	jumpifmovehadnoeffect BS_MOVE_FAINT
 	negativedamage
 	orword HIT_MARKER HITMARKER_IGNORE_SUBSTITUTE
-	jumpifability BANK_TARGET ABILITY_LIQUIDOOZE BattleScript_AbsorbLiquidOoze
+	@jumpifability BANK_TARGET ABILITY_LIQUIDOOZE BattleScript_AbsorbLiquidOoze
+	jumpiftype BANK_TARGET TYPE_POISON BattleScript_AbsorbLiquidOoze
 	graphicalhpupdate BANK_ATTACKER
 	datahpupdate BANK_ATTACKER
 	printstring 0x3C

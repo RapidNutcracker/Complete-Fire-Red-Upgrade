@@ -1141,6 +1141,18 @@ TYPE_LOOP:
 		moveType = TYPE_FLYING;
 		goto TYPE_LOOP;
 	}
+	#ifdef DUAL_TYPE_MOVES
+	else if (move == MOVE_FIERYWRATH && moveType != TYPE_FIRE)
+	{
+		moveType = TYPE_FIRE;
+		goto TYPE_LOOP;
+	}
+	else if (move == MOVE_FREEZESHOCK && moveType != TYPE_ELECTRIC)
+	{
+		moveType = TYPE_ELECTRIC;
+		goto TYPE_LOOP;
+	}
+	#endif
 }
 
 void TypeDamageModificationPartyMon(u8 atkAbility, struct Pokemon* monDef, u16 move, u8 moveType, u8* flags)
@@ -1164,6 +1176,18 @@ TYPE_LOOP_AI:
 		moveType = TYPE_FLYING;
 		goto TYPE_LOOP_AI;
 	}
+	#ifdef DUAL_TYPE_MOVES
+	else if (move == MOVE_FIERYWRATH && moveType != TYPE_FIRE)
+	{
+		moveType = TYPE_FIRE;
+		goto TYPE_LOOP_AI;
+	}
+	else if (move == MOVE_FREEZESHOCK && moveType != TYPE_ELECTRIC)
+	{
+		moveType = TYPE_ELECTRIC;
+		goto TYPE_LOOP_AI;
+	}
+	#endif
 }
 
 static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, const u8 defType, const u8 bankDef, u8 atkAbility, u8* flags, struct Pokemon* monDef, bool8 checkMonDef)
@@ -1212,6 +1236,12 @@ static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, 
 	}
 
 	if (move == MOVE_FREEZEDRY && defType == TYPE_WATER) //Always Super-Effective, even in Inverse Battles
+		multiplier = TYPE_MUL_SUPER_EFFECTIVE;
+
+	if (move == MOVE_SCALD && defType == TYPE_ICE)	// Always Super-Effective, even in Inverse Battles
+		multiplier = TYPE_MUL_SUPER_EFFECTIVE;
+
+	if (move == MOVE_SKYUPPERCUT && defType == TYPE_FLYING)	// Always Super-Effective, even in Inverse Battles
 		multiplier = TYPE_MUL_SUPER_EFFECTIVE;
 
 	if (moveType == TYPE_FIRE && gNewBS->tarShotBits & gBitTable[bankDef]) //Fire always Super-Effective if covered in tar
@@ -2209,7 +2239,18 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		//2x Boost
 			data->defense *= 2;
 			break;
-			
+		
+		// #ifdef PORTAL_POWER
+		// case ABILITY_PORTALPOWER:
+		// //0.75x Decrement
+		// 	if ((useMonAtk && !CheckContactByMon(move, data->monAtk))
+		// 	|| (!useMonAtk && !CheckContact(move, bankAtk)))
+		// 	{
+		// 		attack = (attack * 75) / 100;
+		// 		spAttack = (spAttack * 75) / 100;
+		// 	}
+		// 	break;
+		// #endif
 	}
 
 //Attacker Item Checks
@@ -2337,6 +2378,13 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 	if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_SANDSTORM_ANY)
 	&& ((!useMonDef && IsOfType(bankDef, TYPE_ROCK)) || (useMonDef && IsMonOfType(data->monDef, TYPE_ROCK))))
 		data->spDefense = (15 * data->spDefense) / 10;
+
+	#ifdef BUFFED_HAIL
+// Hail Defense Increase
+	if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_HAIL_ANY)
+	&& ((!useMonDef && IsOfType(bankDef, TYPE_ICE)) || (useMonDef && IsMonOfType(data->monDef, TYPE_ICE))))
+		data->defense = (15 * data->defense) / 10;
+	#endif
 
 // For pryce Hardcore mode battle aura
 	if ( (VarGet(VAR_BATTLE_AURAS) == AURA_ICE_DEFENSE) && (SIDE(bankDef) == B_SIDE_OPPONENT)) {
@@ -2563,7 +2611,7 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 				damage = (damage * 125) / 100;
 			break;
 
-		case ABILITY_SOLIDROCK:
+		case ABILITY_CRITICALSHIELD:
 		case ABILITY_FILTER:
 		case ABILITY_PRISMARMOR:
 		//0.75x Decrement

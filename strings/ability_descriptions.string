@@ -87,6 +87,7 @@ Boosts not very effective moves.
 
 #org @DESC_SOLIDROCK
 #org @DESC_FILTER
+#org @DESC_CRITICALSHIELD
 Weakens super-effective moves.
 
 #org @DESC_INFILTRATOR
@@ -477,7 +478,7 @@ Copies dance moves.
 #org @DESC_BONE_ZONE
 Bone moves ignore immunity/resists
 
-#org @DESC_RECEIVER
+#org @DESC_INHERIT
 Takes over a KOed ally's Ability.
 
 #org @DESC_SELFSUFFICIENT
@@ -564,4 +565,7 @@ Protects team from poison.
 Changes form each turn.
 
 #org @DESC_SAGEPOWER
-Ups Sp Atk, but allows one move.
+Ups Sp. Atk, but allows one move.
+
+#org @DESC_TEST
+A test of additional abilities.

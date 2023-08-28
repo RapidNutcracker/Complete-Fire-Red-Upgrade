@@ -20,6 +20,9 @@
 .equ AURA_CANT_HAZARD_CONTROL_STRING, 8
 .equ AURA_STATUSMIST_STRING, 25
 
+.equ DISABLE_BAG, 0x915
+.equ SCALE_TRAINER_LEVELS, 0x90E
+
 @ .equ AURA_RAINBOW_STRING, 23
 
 .global gMapScripts_Champion
@@ -101,7 +104,7 @@ EventScript_lorelei_Rematch:
 	return
 
 EventScript_lorelei_Firstbattle:
-	setflag 0x915
+	setflag DISABLE_BAG
 	random 0x2
 	compare 0x800D 0x0
 	if 0x1 _goto EventScript_lorelei_Option1
@@ -135,8 +138,8 @@ SetHail:
 	return
 
 EventScript_lorelei_Rematchbattle:
-	setflag 0x915
-	setflag 0x90E
+	setflag DISABLE_BAG
+	setflag SCALE_TRAINER_LEVELS
 	random 0x2
 	compare 0x800D 0x0
 	if 0x1 _goto EventScript_lorelei_Option1
@@ -224,7 +227,7 @@ EventScript_bruno_Postdefeat:
 	end
 
 EventScript_bruno_Firstbattle:
-	setflag 0x915
+	setflag DISABLE_BAG
 	checkflag FLAG_HARDCORE_MODE
 	if 0x1 _call SetBrunoAura
 	random 0x2
@@ -250,8 +253,8 @@ EventScript_bruno_Option2:
 	end
 
 EventScript_bruno_Rematch:
-	setflag 0x915
-	setflag 0x90E
+	setflag DISABLE_BAG
+	setflag SCALE_TRAINER_LEVELS
 	goto EventScript_bruno_Firstbattle
 	@ random 0x3
 	@ compare 0x800D 0x0
@@ -400,7 +403,7 @@ EventScript_agatha_Afterdefeat:
 
 	@---------------
 EventScript_agatha_Firstbattle:
-	setflag 0x915
+	setflag DISABLE_BAG
 	checkflag FLAG_HARDCORE_MODE
 	if 0x1 _call SetAgathaAura
 	random 0x2
@@ -427,8 +430,8 @@ EventScript_agatha_Option2:
 
 	@---------------
 EventScript_agatha_Rematch:
-	setflag 0x915
-	setflag 0x90E
+	setflag DISABLE_BAG
+	setflag SCALE_TRAINER_LEVELS
 	goto EventScript_agatha_Firstbattle
 	@ random 0x3
 	@ compare 0x800D 0x0
@@ -537,7 +540,7 @@ EventScript_lance_Prebattle2:
 
 	@---------------
 EventScript_lance_Firstbattle:
-	setflag 0x915
+	setflag DISABLE_BAG
 	checkflag FLAG_HARDCORE_MODE
 	if 0x1 _call SetLance
 	random 0x2
@@ -563,8 +566,8 @@ EventScript_lance_Option2:
 
 	@---------------
 EventScript_lance_Rematch:
-	setflag 0x915
-	setflag 0x90E 
+	setflag DISABLE_BAG
+	setflag SCALE_TRAINER_LEVELS 
 	goto EventScript_lance_Firstbattle
 	@ random 0x3
 	@ compare 0x800D 0x0
@@ -658,7 +661,7 @@ EventScript_TileProcScale:
 	end
 
 SetScaleFlag:
-	setflag 0x90E
+	setflag SCALE_TRAINER_LEVELS
 	return
 
 	@---------------

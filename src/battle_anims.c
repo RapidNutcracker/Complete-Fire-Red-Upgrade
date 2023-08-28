@@ -4234,6 +4234,7 @@ void HandleSpeciesGfxDataChange(u8 bankAtk, u8 bankDef, u8 transformType)
 	}
 	else if (transformType != 0) //Castform
 	{
+		// HELP!
 		StartSpriteAnim(&gSprites[gBattlerSpriteIds[bankAtk]], gBattleSpritesDataPtr->animationData->animArg);
 		paletteOffset = 0x100 + bankAtk * 16;
 		LoadPalette(gBattleStruct->castformPalette[gBattleSpritesDataPtr->animationData->animArg], paletteOffset, 32);

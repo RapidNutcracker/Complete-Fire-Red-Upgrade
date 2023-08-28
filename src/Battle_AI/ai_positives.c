@@ -702,7 +702,11 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			if (IsOfType(bankDef, TYPE_GRASS)
 			|| data->defStatus3 & STATUS3_LEECHSEED
 			|| MoveInMoveset(MOVE_RAPIDSPIN, bankDef)
+			#ifdef BASELINE_LIQUIDOOZE
+			|| IsOfType(bankDef, TYPE_POISON)
+			#else
 			|| defAbility == ABILITY_LIQUIDOOZE
+			#endif
 			|| defAbility == ABILITY_MAGICGUARD)
 				break;
 			else
@@ -1337,8 +1341,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			&& atkAbility != ABILITY_CONTRARY)
 				IncreaseTailwindViability(&viability, class, bankAtk, bankDef);
 
-			else if (IsClassDoublesSetupAttacker(class)
-			&& atkAbility == ABILITY_SWIFTSWIM)
+			else if (IsClassDoublesSetupAttacker(class) && atkAbility == ABILITY_SWIFTSWIM)
 				IncreaseTailwindViability(&viability, class, bankAtk, bankDef);
 
 			else if (data->atkItemEffect != ITEM_EFFECT_UTILITY_UMBRELLA

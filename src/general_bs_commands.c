@@ -1342,7 +1342,7 @@ void atk1B_cleareffectsonfaint(void) {
 				u8 partnerAbility = ABILITY(partner);
 
 				if (IS_DOUBLE_BATTLE
-				&& (partnerAbility == ABILITY_RECEIVER)
+				&& (partnerAbility == ABILITY_INHERIT)
 				&& !CheckTableForAbility(CopyAbility(gActiveBattler), gReceiverBannedAbilities))
 				{
 					gLastUsedAbility = partnerAbility;
@@ -4986,6 +4986,14 @@ u8 CastformDataTypeChange(unusedArg u8 bank)
 				SET_BATTLER_TYPE(bank, TYPE_ICE);
 				formChange = CASTFORM_TO_ICE;
 			}
+		}
+		else if (gBattleWeather & WEATHER_SANDSTORM_ANY)
+		{
+			SET_BATTLER_TYPE(bank, TYPE_ROCK);
+			// if (gBattleMonForms[bank] != CASTFORM_SANDSTORM)
+			// {
+			// 	formChange = CASTFORM_TO_ROCK;
+			// }
 		}
 		else if (gBattleMonForms[bank] != CASTFORM_NORMAL)
 		{

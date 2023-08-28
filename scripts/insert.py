@@ -8,7 +8,7 @@ from datetime import datetime
 import _io
 
 OFFSET_TO_PUT = 0x1400000
-SOURCE_ROM = "BPRE0.gba"
+SOURCE_ROM = "DPE.gba"
 ROM_NAME = "test.gba"
 
 if sys.platform.startswith('win'):
@@ -632,7 +632,7 @@ def main():
 
                                 # Check if valid npc
                                 if eventId >= npcCount:
-                                    print("Errror! NPC id {} exceeds the count of {} on line {}: {}".format(eventId, npcCount, i, line.strip()))
+                                    print("Error! NPC id {} exceeds the count of {} on line {}: {}".format(eventId, npcCount, i, line.strip()))
                                     continue
 
                                 # Check shortcut npcs and modify symbol

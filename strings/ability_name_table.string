@@ -302,8 +302,8 @@ Dry Skin
 #org @NAME_TINTED_LENS
 Tinted Lens
 
-#org @NAME_SOLID_ROCK
-Solid Rock
+#org @NAME_CRITICAL_SHIELD
+Critical Shield
 
 #org @NAME_FILTER
 Filter
@@ -704,8 +704,8 @@ Dancer
 #org @NAME_BONEZONE
 Bone Zone 
 
-#org @NAME_RECEIVER
-Receiver
+#org @NAME_INHERIT
+Inherit
 
 #org @NAME_SELF_SUFFICIENT
 Self Sufficient
@@ -769,3 +769,6 @@ Pastel Veil
 
 #org @NAME_SAGEPOWER 
 Sage Power
+
+#org @NAME_TEST
+Test Ability

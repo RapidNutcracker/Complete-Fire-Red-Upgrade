@@ -172,7 +172,7 @@ const struct BattleTowerSpread gSpecialTowerSpread_Palmer1[] =
 		.hpEv = 252,
 		.atkEv = 252,
 		.defEv = 4,
-		.ability = FRONTIER_ABILITY_2, //ABILITY_SOLIDROCK
+		.ability = FRONTIER_ABILITY_2, //ABILITY_CRITICALSHIELD
 		.item = ITEM_FOCUS_SASH,
 		.moves =
 		{
@@ -198,7 +198,7 @@ const struct BattleTowerSpread gSpecialTowerSpread_Palmer1[] =
 		.hpEv = 4,
 		.atkEv = 252,
 		.spDefEv = 252,
-		.ability = FRONTIER_ABILITY_2, //ABILITY_SOLIDROCK
+		.ability = FRONTIER_ABILITY_2, //ABILITY_CRITICALSHIELD
 		.item = ITEM_ROCKIUM_Z,
 		.moves =
 		{
@@ -223,7 +223,7 @@ const struct BattleTowerSpread gSpecialTowerSpread_Palmer1[] =
 		.spdIv = 0,
 		.atkEv = 252,
 		.spDefEv = 252,
-		.ability = FRONTIER_ABILITY_2, //ABILITY_SOLIDROCK
+		.ability = FRONTIER_ABILITY_2, //ABILITY_CRITICALSHIELD
 		.item = ITEM_WEAKNESS_POLICY,
 		.moves =
 		{
@@ -20101,7 +20101,7 @@ const struct BattleTowerSpread gSpecialTowerSpread_Giovanni[] =
 		.hpEv = 252,
 		.atkEv = 252,
 		.spDefEv = 4,
-		.ability = FRONTIER_ABILITY_2, //ABILITY_SOLIDROCK
+		.ability = FRONTIER_ABILITY_2, //ABILITY_CRITICALSHIELD
 		.item = ITEM_WEAKNESS_POLICY,
 		.moves =
 		{
@@ -20127,7 +20127,7 @@ const struct BattleTowerSpread gSpecialTowerSpread_Giovanni[] =
 		.hpEv = 252,
 		.atkEv = 252,
 		.spDefEv = 4,
-		.ability = FRONTIER_ABILITY_2, //ABILITY_SOLIDROCK
+		.ability = FRONTIER_ABILITY_2, //ABILITY_CRITICALSHIELD
 		.item = ITEM_ASSAULT_VEST,
 		.moves =
 		{
@@ -20153,7 +20153,7 @@ const struct BattleTowerSpread gSpecialTowerSpread_Giovanni[] =
 		.hpEv = 4,
 		.atkEv = 252,
 		.spDefEv = 252,
-		.ability = FRONTIER_ABILITY_2, //ABILITY_SOLIDROCK
+		.ability = FRONTIER_ABILITY_2, //ABILITY_CRITICALSHIELD
 		.item = ITEM_ELECTRIUM_Z,
 		.moves =
 		{

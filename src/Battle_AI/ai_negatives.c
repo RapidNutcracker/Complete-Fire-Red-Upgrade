@@ -592,7 +592,11 @@ MOVESCR_CHECK_0:
 			break;
 
 		case EFFECT_ABSORB:
+			#ifdef BASELINE_LIQUIDOOZE
+			if (IsOfType(bankDef, TYPE_POISON))
+			#else
 			if (data->defAbility == ABILITY_LIQUIDOOZE)
+			#endif
 				DECREASE_VIABILITY(6);
 
 			if (move == MOVE_STRENGTHSAP)
@@ -1299,7 +1303,11 @@ MOVESCR_CHECK_0:
 			if (IsOfType(bankDef, TYPE_GRASS)
 			|| data->defStatus2 & STATUS2_SUBSTITUTE
 			|| data->defStatus3 & STATUS3_LEECHSEED
+			#ifdef BASELINE_LIQUIDOOZE
+			|| IsOfType(bankDef, TYPE_POISON)
+			#else
 			|| data->defAbility == ABILITY_LIQUIDOOZE
+			#endif
 			|| data->defAbility == ABILITY_MAGICGUARD
 			|| MoveInMoveset(MOVE_SUBSTITUTE, bankDef) //don't use leech seed if they have sub 
 			|| PARTNER_MOVE_EFFECT_IS_SAME)
@@ -2060,7 +2068,7 @@ MOVESCR_CHECK_0:
 
 		case EFFECT_KNOCK_OFF:
 			if (data->defItemEffect == ITEM_EFFECT_ASSAULT_VEST
-			|| (data->defItemEffect == ITEM_EFFECT_CHOICE_BAND && data->atkAbility != ABILITY_GORILLATACTICS && gBattleStruct->choicedMove[bankDef] && data->atkAbility != ABILITY_SAGEPOWER))
+			|| (data->defItemEffect == ITEM_EFFECT_CHOICE_BAND && (data->atkAbility != ABILITY_GORILLATACTICS && data->atkAbility != ABILITY_SAGEPOWER) && gBattleStruct->choicedMove[bankDef]))
 			{
 				if (GetStrongestMove(bankDef, bankAtk) == MOVE_NONE
 				|| AI_SpecialTypeCalc(GetStrongestMove(bankDef, bankAtk), bankDef, bankAtk) & (MOVE_RESULT_NO_EFFECT | MOVE_RESULT_MISSED))

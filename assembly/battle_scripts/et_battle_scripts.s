@@ -183,7 +183,8 @@ BattleScript_LeechSeedTurnDrain:
 	datahpupdate BANK_ATTACKER
 	copyword DAMAGE_LOC HP_DEALT
 	callasm TryManipulateDamageForLeechSeedBigRoot
-	jumpifability BANK_ATTACKER, ABILITY_LIQUIDOOZE, BattleScript_LeechSeedTurnPrintLiquidOoze
+	@jumpifability BANK_ATTACKER, ABILITY_LIQUIDOOZE, BattleScript_LeechSeedTurnPrintLiquidOoze
+	jumpiftype BANK_ATTACKER, TYPE_POISON, BattleScript_LeechSeedTurnPrintLiquidOoze
 	manipulatedamage 0x0
 	setbyte MULTISTRING_CHOOSER, 0x3
 	goto BattleScript_LeechSeedTurnPrintAndUpdateHp
